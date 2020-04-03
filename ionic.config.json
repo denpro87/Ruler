@@ -1,7 +1,7 @@
 {
-  "name": "ruler-app",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
+	"name": "ruler-app",
+	"integrations": {
+		"capacitor": {}
+	},
+	"type": "react"
 }
