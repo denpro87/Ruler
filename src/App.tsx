@@ -1,8 +1,8 @@
 import { CssBaseline } from '@material-ui/core';
+import { Theming } from 'components';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
-import { Theming } from '../Theming';
 import React from 'react';
 
 /* Core CSS required for Ionic components to work properly */
