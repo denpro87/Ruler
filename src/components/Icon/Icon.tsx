@@ -3,12 +3,14 @@ import { DEFAULT_ICON_SIZE, getColorFromColorType, styles } from './Icon.styles'
 import { ReactSVG } from 'react-svg';
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
 
 export const Icon: React.FunctionComponent<IIconProps> = ({
 	iconName,
 	colorType,
+	className,
 	size,
 	width = size,
 	height = size,
@@ -39,7 +41,7 @@ export const Icon: React.FunctionComponent<IIconProps> = ({
 
 	import(`./icons/${iconName.trim().toLowerCase()}-icon.svg`).then(({ default: iconPath }) => setIconPath(iconPath));
 
-	return <ReactSVG wrapper="div" className={classes.icon} src={iconPath} />;
+	return <ReactSVG wrapper="div" className={clsx(classes.icon, className)} src={iconPath} />;
 };
 
 Icon.defaultProps = {

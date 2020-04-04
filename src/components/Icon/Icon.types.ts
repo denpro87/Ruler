@@ -11,6 +11,8 @@ export interface IIconProps {
 
 	colorType?: IconColorType;
 
+	className?: string;
+
 	size?: number | string;
 
 	width?: number | string;
