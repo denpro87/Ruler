@@ -14,7 +14,9 @@
 		"react-router": "^5.1.2",
 		"react-router-dom": "^5.1.2",
 		"react-scripts": "3.4.0",
-		"react-svg": "^11.0.15"
+		"react-svg": "^11.0.15",
+		"typeface-montserrat": "0.0.75",
+		"typeface-roboto": "0.0.75"
 	},
 	"devDependencies": {
 		"@capacitor/cli": "2.0.0",
