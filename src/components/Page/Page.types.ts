@@ -1,3 +1,3 @@
 export interface IPageProps {
-	backgroundColor: string;
+	backgroundColor?: string;
 }
