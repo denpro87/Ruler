@@ -15,13 +15,7 @@ const SPLASH_PAGE_BOTTOM_BACKGROUND_ELEMENT_INITIAL_POSITION_BOTTOM = -77;
 const SPLASH_PAGE_BOTTOM_BACKGROUND_ELEMENT_INITIAL_POSITION_LEFT = 33;
 
 export const styles = createStyles({
-	background: {
-		position: 'absolute',
-		top: 0,
-		right: 0,
-		bottom: 0,
-		left: 0,
-		backgroundColor: '#000',
+	page: {
 		overflow: 'hidden'
 	},
 	logoContainer: {
