@@ -1,3 +1,1 @@
-export interface IPageProps {
-	backgroundColor?: string;
-}
+export interface IPageProps {}
