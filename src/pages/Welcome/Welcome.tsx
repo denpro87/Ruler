@@ -1,8 +1,9 @@
-import { IconButton, Page, SocialIconButton } from 'components';
+import { GoBackIconButton, IconButton, Page, SocialIconButton } from 'components';
 import React from 'react';
 
 export const Welcome: React.FunctionComponent = () => (
-	<Page backgroundColor="#AAA">
+	<Page>
 		<SocialIconButton iconProps={{ iconName: 'facebook' }} />
+		<GoBackIconButton noShadow={false} />
 	</Page>
 );

@@ -1,5 +1,5 @@
 import { DEFAULT_ICON_BUTTON_SIZE, styles } from './IconButton.styles';
-import { IIconButtonProps, SocialIconButtonProps } from './IconButton.types';
+import { GoBackIconButtonProps, IIconButtonProps, SocialIconButtonProps } from './IconButton.types';
 import { Icon } from 'components';
 import { IconButton as MuiIconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
@@ -39,3 +39,16 @@ IconButton.defaultProps = {
 };
 
 export const SocialIconButton: React.FunctionComponent<SocialIconButtonProps> = props => <IconButton noShadow outlined {...props} />;
+
+export const GoBackIconButton: React.FunctionComponent<GoBackIconButtonProps> = props => (
+	<IconButton
+		iconProps={{
+			iconName: 'back'
+		}}
+		{...props}
+	/>
+);
+
+GoBackIconButton.defaultProps = {
+	noShadow: true
+};

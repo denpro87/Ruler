@@ -21,7 +21,7 @@ export const styles = createStyles({
 		boxShadow: (props: any) => {
 			const shadows = [];
 
-			if (props.noShadow) {
+			if (!props.noShadow) {
 				shadows.push(ICON_BUTTON_BOX_SHADOW);
 			}
 
