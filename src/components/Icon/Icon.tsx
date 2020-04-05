@@ -1,7 +1,9 @@
 import { ColoredIconProps, IIconProps } from './Icon.types';
-import { DEFAULT_ICON_SIZE, getColorFromColorType, styles } from './Icon.styles';
+import { DEFAULT_ICON_SIZE } from './Icon.variables';
 import { ReactSVG } from 'react-svg';
+import { getColorFromColorType } from './getColorFromColorType';
 import { makeStyles } from '@material-ui/core';
+import { styles } from './Icon.styles';
 import React from 'react';
 import clsx from 'clsx';
 

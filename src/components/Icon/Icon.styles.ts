@@ -1,49 +1,17 @@
-import { IconColorType } from './Icon.types';
+import { classes } from './Icon.classNames';
 import { createStyles } from '@material-ui/core';
 
-export const DEFAULT_ICON_SIZE = 30;
-export const BLACK_COLOR_TYPE_PRIMARY_COLOR = '#181C19';
-export const BLACK_COLOR_TYPE_SECONDARY_COLOR = '#F8CA06';
-export const GREEN_COLOR_TYPE_COLOR = '#CAF1DD';
-export const WHITE_COLOR_TYPE_COLOR = '#FFF';
-
-export const classes = {
-	fill: '--fill',
-	stroke: '--stroke',
-	primaryColor: '--primary-color',
-	primaryFillColor: '--primary-fill-color',
-	primaryStrokeColor: '--primary-stroke-color',
-	secondaryColor: '--secondary-color',
-	secondaryFillColor: '--secondary-fill-color',
-	secondaryStrokeColor: '--secondary-stroke-color'
-};
-
-export const getColorFromColorType = (colorType: IconColorType, colorSubject: 'primary' | 'secondary' = 'primary'): string | undefined => {
-	switch (colorType) {
-		case 'black':
-			return colorSubject === 'primary' ? BLACK_COLOR_TYPE_PRIMARY_COLOR : BLACK_COLOR_TYPE_SECONDARY_COLOR;
-
-		case 'green':
-			return GREEN_COLOR_TYPE_COLOR;
-
-		case 'white':
-			return WHITE_COLOR_TYPE_COLOR;
-	}
-
-	return undefined;
-};
-
 export const styles = createStyles({
-	icon: (props: any) => ({
+	icon: {
 		display: 'inline-block',
 		flexShrink: 0,
 		'@global': {
 			svg: {
 				fill: 'currentColor',
-				width: props.width,
-				height: props.height,
+				width: (props: any) => props.width,
+				height: (props: any) => props.height,
 				display: 'block',
-				fontSize: props.height,
+				fontSize: (props: any) => props.height,
 				transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
 				userSelect: 'none',
 				overflow: 'hidden',
@@ -51,17 +19,17 @@ export const styles = createStyles({
 				shapeRendering: 'geometricPrecision'
 			},
 			[`.${classes.primaryFillColor}, .${classes.primaryColor}.${classes.fill}`]: {
-				fill: props.primaryFillColor || props.primaryColor || props.fillColor || props.color || 'currentColor'
+				fill: (props: any) => props.primaryFillColor || props.primaryColor || props.fillColor || props.color || 'currentColor'
 			},
 			[`.${classes.primaryStrokeColor}, .${classes.primaryColor}.${classes.stroke}`]: {
-				stroke: props.primaryStrokeColor || props.primaryColor || props.strokeColor || props.color || 'currentColor'
+				stroke: (props: any) => props.primaryStrokeColor || props.primaryColor || props.strokeColor || props.color || 'currentColor'
 			},
 			[`.${classes.secondaryFillColor}, .${classes.secondaryColor}.${classes.fill}`]: {
-				fill: props.secondaryFillColor || props.secondaryColor || props.fillColor || props.color || 'currentColor'
+				fill: (props: any) => props.secondaryFillColor || props.secondaryColor || props.fillColor || props.color || 'currentColor'
 			},
 			[`.${classes.secondaryStrokeColor}, .${classes.secondaryColor}.${classes.stroke}`]: {
-				stroke: props.secondaryStrokeColor || props.secondaryColor || props.strokeColor || props.color || 'currentColor'
+				stroke: (props: any) => props.secondaryStrokeColor || props.secondaryColor || props.strokeColor || props.color || 'currentColor'
 			}
 		}
-	})
+	}
 });

@@ -3,7 +3,7 @@ import { createStyles } from '@material-ui/core';
 export const DEFAULT_PAGE_BACKGROUND = '#fff';
 
 export const styles = createStyles({
-	page: (props: any) => ({
+	page: {
 		display: 'block',
 		position: 'absolute',
 		top: 0,
@@ -11,7 +11,7 @@ export const styles = createStyles({
 		bottom: 0,
 		left: 0,
 		overflow: 'auto',
-		background: props.background,
-		backgroundColor: props.backgroundColor
-	})
+		background: (props: any) => props.background,
+		backgroundColor: (props: any) => props.backgroundColor
+	}
 });

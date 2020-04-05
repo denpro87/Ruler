@@ -1,4 +1,4 @@
-import { Page, Text, createTextStyles } from 'components';
+import { Button, Icon, IconButton, Page, Text, createTextStyles } from 'components';
 import React from 'react';
 
 const welcomeText = createTextStyles({
@@ -18,5 +18,7 @@ export const Welcome: React.FunctionComponent = () => (
 			scooters for adults. Order a Bird scooter now to get a convenient, eco-friendly transportation options and relieve your reliance on
 			cars and traditional expensive and pollution causing transport options.
 		</Text>
+		<Button iconProps={{ iconName: 'create-account' }}>Create account</Button>
+		<IconButton>Hello World</IconButton>
 	</Page>
 );
