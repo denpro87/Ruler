@@ -8,6 +8,7 @@ export type ButtonColorType = 'default' | 'black' | 'green' | 'lightGreen';
 export interface IButtonProps extends Omit<ButtonProps, 'disableElevation' | 'size' | 'variant' | 'startIcon' | 'endIcon' | 'classes'> {
 	className?: string;
 	colorType?: ButtonColorType;
+	href?: string;
 	iconProps?: IIconProps;
 	compact?: boolean;
 	textColor?: string;

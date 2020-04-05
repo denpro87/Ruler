@@ -18,6 +18,7 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 	pressedBackgroundColor = hoveredBackgroundColor,
 	disabledTextColor = textColor,
 	disabledBackgroundColor = getColorFromColorType(colorType!, 'disabledBackground') || backgroundColor,
+	href,
 	iconProps,
 	compact,
 	children,
@@ -43,6 +44,7 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 			disableElevation
 			size="medium"
 			variant="contained"
+			href={href}
 			{...restProps}
 		>
 			{iconProps?.iconName && <Icon {...iconProps} />}

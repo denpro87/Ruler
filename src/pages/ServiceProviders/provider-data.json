@@ -1,0 +1,79 @@
+{
+	"providers": [
+		{
+			"name": "Lime",
+			"icon": "./images/Lime.png",
+			"shortDescription": "$ 0.20 /min. $ 5 to unlock",
+			"paragraphs": [
+				{
+					"title": "About",
+					"text": "Lime is a leading mobility service provider that offers shared scooters, bikes and transit vehicles across the major European cities and America. Ruler allows you to choose from a variety of riding options available at Lime, without charging any additional fee. "
+				},
+				{
+					"title": "Prices, terms and conditions",
+					"text": "Starts from $3 + $ 0.20/min"
+				}
+			]
+		},
+		{
+			"name": "Bird",
+			"icon": "./images/Bird.png",
+			"shortDescription": "$ 0.25 /min. $ 3 to unlock",
+			"paragraphs": [
+				{
+					"title": "About",
+					"text": "Whether you are looking for a way to get to work, class, or just need a breath of fresh air, Bird offers some of the best electric scooters for adults. Order a Bird scooter now to get a convenient, eco-friendly transportation options and relieve your reliance on cars and traditional expensive and pollution causing transport options."
+				},
+				{
+					"title": "Prices, terms and conditions",
+					"text": "Starts from $3 + $ 0.25/min"
+				}
+			]
+		},
+		{
+			"name": "Spin",
+			"icon": "./images/Voi-scooters.png",
+			"shortDescription": "$ 0.21 /min. $ 6 to unlock",
+			"paragraphs": [
+				{
+					"title": "About",
+					"text": "Spin is a US based mobility platform striving to reimagine urban mobility. It combines high-quality scooters, excellent customer service and affordable prices."
+				},
+				{
+					"title": "Prices, terms and conditions",
+					"text": "Starts from $1 + $ 0.25/min"
+				}
+			]
+		},
+		{
+			"name": "Tier",
+			"icon": "./images/Tier.png",
+			"shortDescription": "$ 0.30 /min. $ 5 to unlock",
+			"paragraphs": [
+				{
+					"title": "About",
+					"text": "TIER Mobility provides you with a fun, independent and on-demand mobility solution for your city commutes: electric scooters. TIER’s diverse community stretches all across Europe in currently over 48 cities."
+				},
+				{
+					"title": "Prices, terms and conditions",
+					"text": "Starts from $1 + $ 0.25/min"
+				}
+			]
+		},
+		{
+			"name": "Circ",
+			"icon": "./images/Circ.png",
+			"shortDescription": "$ 0.15 /min. $ 7 to unlock",
+			"paragraphs": [
+				{
+					"title": "About",
+					"text": "Also operating as a ride-hailing app, Circ allows riders to locate, unlock and ride their electronic scooter options in over eighty cities in twenty-five countries worldwide. It offers affordable electric scooters for adults that can also be parked anywhere, anytime at the rider’s convenience, meaning you will never have to worry about navigating traffic or finding a parking place ever again!"
+				},
+				{
+					"title": "Prices, terms and conditions",
+					"text": "Starts from $7 + $ 0.15/min"
+				}
+			]
+		}
+	]
+}

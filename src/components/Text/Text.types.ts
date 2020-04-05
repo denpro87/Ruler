@@ -4,7 +4,7 @@ export type TextStyles = Omit<ITextProps, 'textStyles'>;
 
 export interface ITextProps extends CSSFontProperties {
 	className?: string;
-	component?: 'span' | 'p';
+	component?: 'span' | 'p' | string;
 	block?: boolean;
 	nowrap?: boolean;
 

@@ -1,10 +1,13 @@
 import { ISwitchProps } from './Switch.types';
 import { Switch as MuiSwitch } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import { styles } from './Switch.styles';
 import React from 'react';
 
-export const Switch: React.FC<ISwitchProps> = props => {
-	const classes = styles();
+const useStyles = makeStyles(styles);
+
+export const Switch: React.FunctionComponent<ISwitchProps> = props => {
+	const classes = useStyles();
 
 	return (
 		<MuiSwitch

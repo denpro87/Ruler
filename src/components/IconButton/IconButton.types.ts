@@ -7,12 +7,11 @@ export type GoBackIconButtonProps = Omit<IIconButtonProps, 'outlined' | 'iconPro
 
 export interface IIconButtonProps extends Omit<IconButtonProps, 'size'> {
 	className?: string;
+	href?: string;
 	iconProps: IIconProps;
 	size?: number;
 	width?: number;
 	height?: number;
-
 	noShadow?: boolean;
-
 	outlined?: boolean;
 }
