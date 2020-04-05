@@ -1,6 +1,8 @@
 import { ButtonProps } from '@material-ui/core';
 import { IIconProps } from 'components/Icon';
 
+export type ColoredButtonProps = Omit<IButtonProps, 'colorType'>;
+
 export type ButtonColorType = 'default' | 'black' | 'green' | 'lightGreen';
 
 export interface IButtonProps extends Omit<ButtonProps, 'disableElevation' | 'startIcon' | 'endIcon' | 'classes'> {

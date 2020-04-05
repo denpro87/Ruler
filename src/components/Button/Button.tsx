@@ -1,4 +1,4 @@
-import { IButtonProps } from './Button.types';
+import { ColoredButtonProps, IButtonProps } from './Button.types';
 import { Icon } from 'components';
 import { Button as MuiButton } from '@material-ui/core';
 import { getColorFromColorType } from './getColorFromColorType';
@@ -47,3 +47,9 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 Button.defaultProps = {
 	colorType: 'default'
 };
+
+export const BlackButton: React.FunctionComponent<ColoredButtonProps> = props => <Button colorType="black" {...props} />;
+
+export const GreenButton: React.FunctionComponent<ColoredButtonProps> = props => <Button colorType="green" {...props} />;
+
+export const LightGreenButton: React.FunctionComponent<ColoredButtonProps> = props => <Button colorType="lightGreen" {...props} />;
