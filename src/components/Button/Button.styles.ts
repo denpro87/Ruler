@@ -13,7 +13,6 @@ export const styles = createStyles({
 			letterSpacing: 'normal'
 		}),
 		display: 'flex',
-		width: '100%',
 		borderRadius: 15,
 		padding: '10px 15px',
 		backgroundColor: (props: any) => props.backgroundColor,
@@ -30,6 +29,9 @@ export const styles = createStyles({
 		'&:disabled': {
 			color: (props: any) => props.disabledTextColor,
 			backgroundColor: (props: any) => props.disabledBackgroundColor
+		},
+		'& .MuiTouchRipple-child': {
+			borderRadius: 15
 		}
 	},
 	buttonLabel: {

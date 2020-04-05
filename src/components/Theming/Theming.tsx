@@ -2,10 +2,7 @@ import { ThemeProvider } from '@material-ui/core';
 import { theme } from './Theming.styles';
 import React from 'react';
 
-function useStyles(): void {
-	require('./variables.css');
-	require('./theme.css');
-}
+const useStyles = (): void => require('./variables.css');
 
 export const Theming: React.FunctionComponent = ({ children }) => {
 	useStyles();

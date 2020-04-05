@@ -1,5 +1,5 @@
-import './App.styles';
 import { CssBaseline } from '@material-ui/core';
+import { GlobalCss } from './App.styles';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
@@ -10,6 +10,7 @@ import React from 'react';
 export const App: React.FunctionComponent = () => (
 	<Theming>
 		<CssBaseline />
+		<GlobalCss />
 		<IonApp>
 			<IonReactRouter>
 				<IonRouterOutlet>

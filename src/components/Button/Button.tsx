@@ -37,7 +37,14 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 	});
 
 	return (
-		<MuiButton classes={{ root: classes.button, label: classes.buttonLabel }} className={className} disableElevation {...restProps}>
+		<MuiButton
+			classes={{ root: classes.button, label: classes.buttonLabel }}
+			className={className}
+			disableElevation
+			size="medium"
+			variant="contained"
+			{...restProps}
+		>
 			{iconProps?.iconName && <Icon {...iconProps} />}
 			<span className={classes.buttonText}>{children}</span>
 		</MuiButton>
@@ -45,7 +52,8 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 };
 
 Button.defaultProps = {
-	colorType: 'default'
+	colorType: 'default',
+	fullWidth: true
 };
 
 export const BlackButton: React.FunctionComponent<ColoredButtonProps> = props => <Button colorType="black" {...props} />;
