@@ -34,16 +34,16 @@ export const getColorFromColorType = (colorType: IconColorType, colorSubject: 'p
 };
 
 export const styles = createStyles({
-	icon: {
+	icon: (props: any) => ({
 		display: 'inline-block',
 		flexShrink: 0,
 		'@global': {
 			svg: {
 				fill: 'currentColor',
-				width: (props: any): number | string => props.width,
-				height: (props: any): number | string => props.height,
+				width: props.width,
+				height: props.height,
 				display: 'block',
-				fontSize: (props: any): number | string => props.height,
+				fontSize: props.height,
 				transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
 				userSelect: 'none',
 				overflow: 'hidden',
@@ -51,18 +51,17 @@ export const styles = createStyles({
 				shapeRendering: 'geometricPrecision'
 			},
 			[`.${classes.primaryFillColor}, .${classes.primaryColor}.${classes.fill}`]: {
-				fill: (props: any): string => props.primaryFillColor || props.primaryColor || props.fillColor || props.color || 'currentColor'
+				fill: props.primaryFillColor || props.primaryColor || props.fillColor || props.color || 'currentColor'
 			},
 			[`.${classes.primaryStrokeColor}, .${classes.primaryColor}.${classes.stroke}`]: {
-				stroke: (props: any): string => props.primaryStrokeColor || props.primaryColor || props.strokeColor || props.color || 'currentColor'
+				stroke: props.primaryStrokeColor || props.primaryColor || props.strokeColor || props.color || 'currentColor'
 			},
 			[`.${classes.secondaryFillColor}, .${classes.secondaryColor}.${classes.fill}`]: {
-				fill: (props: any): string => props.secondaryFillColor || props.secondaryColor || props.fillColor || props.color || 'currentColor'
+				fill: props.secondaryFillColor || props.secondaryColor || props.fillColor || props.color || 'currentColor'
 			},
 			[`.${classes.secondaryStrokeColor}, .${classes.secondaryColor}.${classes.stroke}`]: {
-				stroke: (props: any): string =>
-					props.secondaryStrokeColor || props.secondaryColor || props.strokeColor || props.color || 'currentColor'
+				stroke: props.secondaryStrokeColor || props.secondaryColor || props.strokeColor || props.color || 'currentColor'
 			}
 		}
-	}
+	})
 });

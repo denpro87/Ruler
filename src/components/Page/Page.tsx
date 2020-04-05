@@ -7,7 +7,7 @@ import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
 
-export const Page: React.FunctionComponent<IPageProps> = ({ background, backgroundColor, className, children }) => {
+export const Page: React.FunctionComponent<IPageProps> = React.memo(({ background, backgroundColor, className, onClick, children }) => {
 	const classes = useStyles({
 		background,
 		backgroundColor
@@ -16,11 +16,13 @@ export const Page: React.FunctionComponent<IPageProps> = ({ background, backgrou
 	return (
 		<IonPage>
 			<IonContent>
-				<Box className={clsx(classes.page, className)}>{children}</Box>
+				<Box className={clsx(classes.page, className)} onClick={onClick}>
+					{children}
+				</Box>
 			</IonContent>
 		</IonPage>
 	);
-};
+});
 
 Page.defaultProps = {
 	background: DEFAULT_PAGE_BACKGROUND

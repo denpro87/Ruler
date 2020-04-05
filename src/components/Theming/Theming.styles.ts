@@ -1,10 +1,11 @@
 import 'typeface-montserrat';
 import 'typeface-roboto';
+import { DEFAULT_FONT_FAMILY } from 'styles';
 import { createMuiTheme } from '@material-ui/core';
 
 export const theme = createMuiTheme({
 	typography: {
-		fontFamily: 'Montserrat'
+		fontFamily: DEFAULT_FONT_FAMILY
 	},
 	palette: {
 		background: {

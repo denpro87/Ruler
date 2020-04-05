@@ -1,5 +1,5 @@
 import { createStyles } from '@material-ui/core';
-import { percentage } from 'utils';
+import { percentage } from 'styles';
 
 const SPLASH_PAGE_INITIAL_WIDTH = 375;
 const SPLASH_PAGE_INITIAL_HEIGHT = 667;

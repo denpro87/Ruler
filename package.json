@@ -9,6 +9,7 @@
 		"@material-ui/core": "^4.9.8",
 		"@material-ui/styles": "^4.9.6",
 		"clsx": "^1.1.0",
+		"css-supports": "^0.1.1",
 		"ionicons": "^5.0.0",
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0",
