@@ -42,7 +42,14 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 		});
 		const [iconPath, setIconPath] = React.useState<string>('');
 
-		import(`./icons/${iconName.trim().toLowerCase()}-icon.svg`).then(({ default: iconPath }) => setIconPath(iconPath));
+		iconName = iconName.trim().toLowerCase();
+
+		React.useEffect(() => {
+			import(`./icons/${iconName}-icon.svg`).then(({ default: iconPath }) => {
+				if (iconPath) setIconPath(iconPath);
+				else console.warn(`No icon with the name (${iconName}) was found.`);
+			});
+		}, []);
 
 		return <ReactSVG wrapper="div" className={clsx(classes.icon, className)} src={iconPath} />;
 	}
