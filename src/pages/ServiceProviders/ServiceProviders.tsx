@@ -8,7 +8,7 @@ import providerData from './provider-data.json';
 
 const useStyles = makeStyles(styles);
 
-export class ServiceProviders extends React.Component<IServiceProvidersProps, IServiceProvidersState, ServiceProvider> {
+export class ServiceProviders extends React.Component<IServiceProvidersProps, IServiceProvidersState> {
 	state: IServiceProvidersState = {
 		selectedProvider: undefined,
 		providers: [] as ServiceProvider[]
@@ -17,12 +17,9 @@ export class ServiceProviders extends React.Component<IServiceProvidersProps, IS
 	private handleProviderClick = (_event: React.MouseEvent<HTMLElement>, provider: ServiceProvider) =>
 		this.setState({ selectedProvider: provider });
 
-	private handleGoBackButtonClick = () =>
-		this.state.selectedProvider ? this.setState({ selectedProvider: undefined }) : this.props.history.push('/welcome');
-
 	componentDidMount = () => this.setState({ providers: this.fetchProviders() });
 
-	fetchProviders = (): ServiceProvider[] =>
+	private fetchProviders = (): ServiceProvider[] =>
 		providerData.providers.map(provider => {
 			const icon = images.find(image => image.title === provider.name)?.src;
 
@@ -37,7 +34,7 @@ export class ServiceProviders extends React.Component<IServiceProvidersProps, IS
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page>
+					<Page canGoBack title="Service Providers" titleSize="large">
 						{this.state.selectedProvider ? (
 							<ProviderDetail
 								key={this.state.selectedProvider.name}
@@ -47,7 +44,6 @@ export class ServiceProviders extends React.Component<IServiceProvidersProps, IS
 							/>
 						) : (
 							<Box className={classes.innerContent}>
-								<Typography variant="h1">Service Providers</Typography>
 								<Box className={classes.providersList}>
 									{this.state.providers.map(provider => (
 										<Provider

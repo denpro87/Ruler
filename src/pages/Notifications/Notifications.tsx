@@ -49,7 +49,6 @@ export class Notifications extends React.Component<INotificationsProps, INotific
 				{classes => (
 					<Page>
 						<Box className={classes.innerContent}>
-							<Typography variant="h2">Notifications</Typography>
 							<List className={classes.providersList}>
 								<SwitchListItem title="Discounts and News" checked={this.state.newsNotify} onChange={this.handleNewsNotifyChange} />
 								<Divider />

@@ -39,7 +39,6 @@ export class Languages extends React.Component<ILanguagesProps, ILanguagesState,
 				{classes => (
 					<Page>
 						<Box className={classes.innerContent}>
-							<Typography variant="h2">Languages</Typography>
 							<SearchBox className={classes.searchBox} onChange={this.filterLanguage} />
 
 							<List className={classes.providersList}>

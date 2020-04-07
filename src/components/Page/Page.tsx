@@ -42,7 +42,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 		<>
 			{hasPageHeader && (
 				<Box className={classes.pageHeader}>
-					<GoBackIconButton onClick={handleGoBack} {...goBackIconButtonProps} />
+					{canGoBack && <GoBackIconButton onClick={handleGoBack} {...goBackIconButtonProps} />}
 					{title && (
 						<Box className={classes.pageHeaderInner}>
 							<Text className={classes.pageTitle} block>

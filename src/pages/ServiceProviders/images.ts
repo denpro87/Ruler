@@ -5,12 +5,6 @@ interface IProvider {
 	description: string;
 }
 
-// interface IImage {
-// 	key: string;
-// 	data: IProvider;
-// 	[index: string]: string | IProvider;
-// }
-
 export const images: IProvider[] = [
 	{ id: 1, src: require('./images/Lime.png'), title: 'Lime', description: 'Lime' },
 	{ id: 2, src: require('./images/Bird.png'), title: 'Bird', description: 'Bird' },

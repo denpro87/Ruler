@@ -52,7 +52,6 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 				{classes => (
 					<Page>
 						<Box /* className={classes.innerContent} */>
-							<Typography variant="h2">DarkMode</Typography>
 							<List className={classes.providersList}>
 								<SwitchListItem
 									title="Automatically"

@@ -19,7 +19,6 @@ export class ChangePassword extends React.Component<IChangePasswordProps, IChang
 				{classes => (
 					<Page>
 						<Box className={classes.innerContent}>
-							<Typography variant="h2">Change Password</Typography>
 							<PasswordInput placeholder="Enter the current password" />
 							<PasswordInput placeholder="Enter a new password" />
 							<PasswordInput placeholder="Repeat new password" />

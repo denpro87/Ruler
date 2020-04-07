@@ -55,7 +55,6 @@ export const Settings: React.FunctionComponent = () => {
 		<Page>
 			<Box>
 				<Box className={classes.innerContent}>
-					<Typography variant="h1">Settings</Typography>
 					<Box className={classes.providersList}>
 						<SidebarMenuItem image={<BlackIcon iconName="name" />} title="Profile" href="/settings/profile" />
 						<SidebarMenuItem image={<BlackIcon iconName="notification" />} title="Notification" href="/settings/notifications" />

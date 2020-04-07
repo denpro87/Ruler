@@ -115,9 +115,7 @@ export class DriveLicence extends Component {
 								</Box>
 							</Box>
 						)}
-						<Box className={classes.heading}>
-							<Typography variant="h4">Driver licence</Typography>
-						</Box>
+						<Box className={classes.heading}></Box>
 
 						<Box className={classes.description}>
 							<Typography variant="h4">

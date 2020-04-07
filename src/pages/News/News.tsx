@@ -25,9 +25,7 @@ export class News extends Component {
 			<Styling useStyles={useStyles}>
 				{classes => (
 					<Page>
-						<Box className={classes.heading}>
-							<Typography variant="h4">News</Typography>
-						</Box>
+						<Box className={classes.heading}></Box>
 						<Box className={classes.newsContainer}>
 							<List className={classes.newsList}>
 								{news.map(item => (
