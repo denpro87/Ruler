@@ -17,7 +17,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	background,
 	backgroundColor,
 	onRenderBackground,
-	canGoBack,
+	canGoBack = !fullPage,
 	goBackIconButtonProps,
 	onClick,
 	className,
