@@ -1,6 +1,6 @@
 import { DEFAULT_GO_BACK_ICON_BUTTON_SIZE, DEFAULT_ICON_BUTTON_SIZE } from './IconButton.variables';
 import { GoBackIconButtonProps, IIconButtonProps, SocialIconButtonProps } from './IconButton.types';
-import { Icon } from 'components';
+import { IIconProps, Icon } from 'components';
 import { IconButton as MuiIconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './IconButton.styles';
@@ -11,6 +11,8 @@ const useStyles = makeStyles(styles);
 
 export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 	href,
+	iconName,
+	colorType,
 	iconProps,
 	size,
 	width = size,
@@ -28,6 +30,8 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 		noShadow,
 		outlined
 	});
+
+	iconProps = Object.assign({}, { iconName, colorType }, iconProps) as IIconProps;
 
 	// TODO: Add `href` property.
 	return (
@@ -53,6 +57,5 @@ export const GoBackIconButton: React.FunctionComponent<GoBackIconButtonProps> = 
 );
 
 GoBackIconButton.defaultProps = {
-	size: DEFAULT_GO_BACK_ICON_BUTTON_SIZE,
 	noShadow: true
 };

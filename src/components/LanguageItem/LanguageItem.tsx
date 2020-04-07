@@ -19,7 +19,7 @@ export const LanguageItem: React.FunctionComponent<ILanguageItemProps> = ({ titl
 			<Box className={classes.li}>
 				<Typography variant="h6">{title}</Typography>
 				<Typography variant="caption">{text}</Typography>
-				{selected && <Icon iconName={IconName.WellDone} />}
+				{/* {selected && <Icon iconName={IconName.WellDone} />} */}
 			</Box>
 		</Box>
 	);

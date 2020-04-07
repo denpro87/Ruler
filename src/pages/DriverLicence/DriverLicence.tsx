@@ -115,116 +115,113 @@ export class DriveLicence extends Component {
 								</Box>
 							</Box>
 						)}
-
-						<Box className={classes.wrapper}>
-							<Box className={classes.heading}>
-								<Typography variant="h4">Driver licence</Typography>
-							</Box>
-
-							<Box className={classes.description}>
-								<Typography variant="h4">
-									If you are going to rent a car or motorcycle - you need to validate your driver's license. Add two photos and expect
-									confirmation within two days.
-								</Typography>
-							</Box>
-							{isSubmitting || isSubmitSuccess || isSubmitInvalid ? (
-								<Box>
-									{isSubmitting ? (
-										<Box className={classes.progressbox}>
-											<Typography className={classes.progressText}>Driver licence validation is in progress.</Typography>
-										</Box>
-									) : (
-										''
-									)}
-
-									{isSubmitSuccess ? <Box className={classes.validbox}></Box> : ''}
-
-									{isSubmitInvalid ? <Box className={classes.isSubmitInvalidbox}></Box> : ''}
-
-									<Box className={classes.description}>
-										<Typography style={{ fontSize: '15px', color: '#0000007f', width: '325px', margin: 'auto' }}>
-											Request for validation of driver licence was send 24 Nov
-										</Typography>
-									</Box>
-								</Box>
-							) : (
-								<Box className={classes.buttonContainer}>
-									{frontPhoto ? (
-										<Box className={classes.cardbox}>
-											<Box className={classes.cardImageContainer}>
-												<IonImg className={classes.cardImage} src={frontPhoto}></IonImg>
-												<Box className={classes.imageCover}>
-													<Icon iconName="CheckCircleOutlineIcon" className={classes.checkedIcon} />
-													<Typography className={classes.cardTextWhite}>Front side</Typography>
-												</Box>
-
-												<Icon className={classes.closeIcon} {...{ onClick: () => this.removeFrontPhoto() }} iconName="close" />
-											</Box>
-											<Typography className={classes.cardDescription}>On this side is a photograph of ther driver</Typography>
-										</Box>
-									) : (
-										<Box className={classes.cardbox} onClick={() => this.takeFrontPhoto()}>
-											<Box className={classes.cardButton}>
-												<Icon iconName="camera" />
-												<Typography className={classes.cardTextBlack}>Front side</Typography>
-											</Box>
-											<Typography className={classes.cardDescription}>On this side is a photograph of ther driver</Typography>
-										</Box>
-									)}
-									{backPhoto ? (
-										<Box className={classes.cardbox}>
-											<Box className={classes.cardImageContainer}>
-												<IonImg className={classes.cardImage} src={frontPhoto}></IonImg>
-												<Box className={classes.imageCover}>
-													{/* <CheckCircleOutlineIcon className={classes.checkedIcon} onClick={() => this.removeBackPhoto()} /> */}
-													<Typography className={classes.cardTextWhite}>Back side</Typography>
-												</Box>
-												{/* <CloseIcon className={classes.closeIcon} onClick={() => this.removeBackPhoto()} /> */}
-											</Box>
-											<Typography className={classes.cardDescription}>On this side in information about vehicle categories</Typography>
-										</Box>
-									) : (
-										<Box className={classes.cardbox} onClick={() => this.takeBackPhoto()}>
-											<Box className={classes.cardButton}>
-												{/* <CameraAltIcon className={classes.submitIcon} /> */}
-												<Typography className={classes.cardTextBlack}>Back side</Typography>
-											</Box>
-											<Typography className={classes.cardDescription}>On this side in information about vehicle categories</Typography>
-										</Box>
-									)}
-								</Box>
-							)}
-							{!isSubmitting && !isSubmitSuccess && !isSubmitInvalid && (
-								<Box>
-									<Box className={classes.footer}>
-										<Button
-											className={isSubmitDisabled ? classes.submitButton : classes.submitButtonActive}
-											disabled={isSubmitDisabled}
-											onClick={() => this.submit()}
-										>
-											{/* <SendIcon className={classes.sendIcon} /> */}
-											<Typography variant="button">Submit for validation</Typography>
-										</Button>
-										<Box className={classes.description}>
-											<Typography variant="h5">We will send you a notification with your decision.</Typography>
-										</Box>
-									</Box>
-								</Box>
-							)}
-							{isSubmitInvalid && (
-								<Box>
-									<Box className={classes.footer}>
-										<Button className={classes.submitButtonActive} onClick={() => this.submit()}>
-											{/* <RefreshIcon className={classes.sendIcon} /> */}
-											<Typography variant="button">Try again</Typography>
-										</Button>
-										<Box className={classes.description}>
-											<Typography variant="h5">We will send you a notification with your decision.</Typography>
-										</Box>
-									</Box>
-								</Box>
-							)}
+						<Box className={classes.heading}>
+							<Typography variant="h4">Driver licence</Typography>
 						</Box>
+
+						<Box className={classes.description}>
+							<Typography variant="h4">
+								If you are going to rent a car or motorcycle - you need to validate your driver's license. Add two photos and expect
+								confirmation within two days.
+							</Typography>
+						</Box>
+						{isSubmitting || isSubmitSuccess || isSubmitInvalid ? (
+							<Box>
+								{isSubmitting ? (
+									<Box className={classes.progressbox}>
+										<Typography className={classes.progressText}>Driver licence validation is in progress.</Typography>
+									</Box>
+								) : (
+									''
+								)}
+
+								{isSubmitSuccess ? <Box className={classes.validbox}></Box> : ''}
+
+								{isSubmitInvalid ? <Box className={classes.isSubmitInvalidbox}></Box> : ''}
+
+								<Box className={classes.description}>
+									<Typography style={{ fontSize: '15px', color: '#0000007f', width: '325px', margin: 'auto' }}>
+										Request for validation of driver licence was send 24 Nov
+									</Typography>
+								</Box>
+							</Box>
+						) : (
+							<Box className={classes.buttonContainer}>
+								{frontPhoto ? (
+									<Box className={classes.cardbox}>
+										<Box className={classes.cardImageContainer}>
+											<IonImg className={classes.cardImage} src={frontPhoto}></IonImg>
+											<Box className={classes.imageCover}>
+												<Icon iconName="CheckCircleOutlineIcon" className={classes.checkedIcon} />
+												<Typography className={classes.cardTextWhite}>Front side</Typography>
+											</Box>
+
+											<Icon className={classes.closeIcon} {...{ onClick: () => this.removeFrontPhoto() }} iconName="close" />
+										</Box>
+										<Typography className={classes.cardDescription}>On this side is a photograph of ther driver</Typography>
+									</Box>
+								) : (
+									<Box className={classes.cardbox} onClick={() => this.takeFrontPhoto()}>
+										<Box className={classes.cardButton}>
+											<Icon iconName="camera" />
+											<Typography className={classes.cardTextBlack}>Front side</Typography>
+										</Box>
+										<Typography className={classes.cardDescription}>On this side is a photograph of ther driver</Typography>
+									</Box>
+								)}
+								{backPhoto ? (
+									<Box className={classes.cardbox}>
+										<Box className={classes.cardImageContainer}>
+											<IonImg className={classes.cardImage} src={frontPhoto}></IonImg>
+											<Box className={classes.imageCover}>
+												{/* <CheckCircleOutlineIcon className={classes.checkedIcon} onClick={() => this.removeBackPhoto()} /> */}
+												<Typography className={classes.cardTextWhite}>Back side</Typography>
+											</Box>
+											{/* <CloseIcon className={classes.closeIcon} onClick={() => this.removeBackPhoto()} /> */}
+										</Box>
+										<Typography className={classes.cardDescription}>On this side in information about vehicle categories</Typography>
+									</Box>
+								) : (
+									<Box className={classes.cardbox} onClick={() => this.takeBackPhoto()}>
+										<Box className={classes.cardButton}>
+											{/* <CameraAltIcon className={classes.submitIcon} /> */}
+											<Typography className={classes.cardTextBlack}>Back side</Typography>
+										</Box>
+										<Typography className={classes.cardDescription}>On this side in information about vehicle categories</Typography>
+									</Box>
+								)}
+							</Box>
+						)}
+						{!isSubmitting && !isSubmitSuccess && !isSubmitInvalid && (
+							<Box>
+								<Box className={classes.footer}>
+									<Button
+										className={isSubmitDisabled ? classes.submitButton : classes.submitButtonActive}
+										disabled={isSubmitDisabled}
+										onClick={() => this.submit()}
+									>
+										{/* <SendIcon className={classes.sendIcon} /> */}
+										<Typography variant="button">Submit for validation</Typography>
+									</Button>
+									<Box className={classes.description}>
+										<Typography variant="h5">We will send you a notification with your decision.</Typography>
+									</Box>
+								</Box>
+							</Box>
+						)}
+						{isSubmitInvalid && (
+							<Box>
+								<Box className={classes.footer}>
+									<Button className={classes.submitButtonActive} onClick={() => this.submit()}>
+										{/* <RefreshIcon className={classes.sendIcon} /> */}
+										<Typography variant="button">Try again</Typography>
+									</Button>
+									<Box className={classes.description}>
+										<Typography variant="h5">We will send you a notification with your decision.</Typography>
+									</Box>
+								</Box>
+							</Box>
+						)}
 					</Page>
 				)}
 			</Styling>

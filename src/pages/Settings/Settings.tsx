@@ -53,7 +53,7 @@ export const Settings: React.FunctionComponent = () => {
 
 	return (
 		<Page>
-			<Box className={classes.wrapper}>
+			<Box>
 				<Box className={classes.innerContent}>
 					<Typography variant="h1">Settings</Typography>
 					<Box className={classes.providersList}>

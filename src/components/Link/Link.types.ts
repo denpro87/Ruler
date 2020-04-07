@@ -1,3 +1,5 @@
-import { LinkProps } from '@material-ui/core';
+export interface ILinkProps {
+	href?: string;
 
-export type ILinkProps = LinkProps;
+	onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+}

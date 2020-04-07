@@ -20,7 +20,7 @@ export const Provider: React.FunctionComponent<IProviderProps> = ({ image, title
 			<Box className={classes.li}>
 				<img src={image} alt={title} />
 				<Typography variant="h5">{title}</Typography>
-				<Icon iconName={IconName.Forward} />
+				{/* <Icon iconName={IconName.Forward} /> */}
 			</Box>
 			<Box className={classes.text}>{children}</Box>
 		</Box>

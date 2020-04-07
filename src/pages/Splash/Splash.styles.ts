@@ -16,18 +16,30 @@ import {
 import { createStyles } from '@material-ui/core';
 import { percentage } from 'styles';
 
-const page: CSSProperties = {
-	overflow: 'hidden'
-};
-
 const logoContainer: CSSProperties = {
 	position: 'absolute',
 	top: '50%',
 	left: '50%',
+	zIndex: 1,
 	transform: 'translate(-50%, -50%)',
 	whiteSpace: 'nowrap',
 	width: percentage(SPLASH_PAGE_LOGO_INITIAL_WIDTH / SPLASH_PAGE_INITIAL_WIDTH),
 	height: percentage(SPLASH_PAGE_LOGO_INITIAL_HEIGHT / SPLASH_PAGE_INITIAL_HEIGHT)
+};
+
+const backgroundElementContainer: CSSProperties = {
+	zIndex: -1,
+	overflow: 'visible'
+};
+
+const topBackgroundElement: CSSProperties = {
+	position: 'absolute',
+	bottom: 0
+};
+
+const bottomBackgroundElement: CSSProperties = {
+	position: 'absolute',
+	top: 0
 };
 
 const topBackgroundElementContainer: CSSProperties = {
@@ -59,8 +71,10 @@ const image: CSSProperties = {
 };
 
 export const styles = createStyles({
-	page,
 	logoContainer,
+	topBackgroundElement,
+	bottomBackgroundElement,
+	backgroundElementContainer,
 	topBackgroundElementContainer,
 	bottomBackgroundElementContainer,
 	image

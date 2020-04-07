@@ -13,15 +13,6 @@ const heading: CSSProperties = {
 	}
 };
 
-const wrapper: CSSProperties = {
-	background: 'white',
-	textAlign: 'left',
-	maxWidth: '768px',
-	height: '100%',
-	padding: '20px',
-	margin: 'auto'
-};
-
 const wrapper1: CSSProperties = {
 	margin: '0 auto',
 	minHeight: '50px',
@@ -45,7 +36,6 @@ const newsContainer: CSSProperties = {
 
 export const styles = createStyles({
 	heading,
-	wrapper,
 	wrapper1,
 	newsList,
 	newItem,

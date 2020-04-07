@@ -13,11 +13,11 @@ export interface IIconProps {
 
 	className?: string;
 
-	size?: number | string;
+	size?: number;
 
-	width?: number | string;
+	width?: number;
 
-	height?: number | string;
+	height?: number;
 
 	/**
 	 * @description Icon color.

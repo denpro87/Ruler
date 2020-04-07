@@ -4,8 +4,6 @@ import { styles } from './Text.styles';
 import React from 'react';
 import clsx from 'clsx';
 
-const useStyles = makeStyles(styles);
-
 export const createTextStyles = (textStyles: TextStyles): TextStyles => textStyles;
 
 export const Paragraph: React.FunctionComponent<ParagraphProps> = props => <Text component="p" block {...props} />;
@@ -14,6 +12,7 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 	const props = { ...textStyles, ...restProps };
 	const {
 		component,
+		componentProps,
 		block,
 		nowrap,
 		fontStretch,
@@ -25,9 +24,13 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 		fontFamily,
 		letterSpacing,
 		color,
+		inheritStyles,
 		className,
 		children
 	} = props;
+
+	const _makeStyles = React.useCallback((inheritStyles: boolean = false) => makeStyles(styles(inheritStyles)), [inheritStyles]);
+	const useStyles = _makeStyles();
 
 	const classes = useStyles({
 		block,
@@ -53,7 +56,8 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 					[classes.paragraph]: component === 'p'
 				},
 				className
-			)
+			),
+			...componentProps
 		},
 		children
 	);

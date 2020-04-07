@@ -1,44 +1,60 @@
-import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
-import { createStyles } from '@material-ui/core';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
+import { pxToRem } from 'styles';
 
-export const DEFAULT_PAGE_BACKGROUND = '#fff';
+const pageBody: CSSProperties = {
+	zIndex: 0,
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	right: 0,
+	minHeight: 0
+};
 
-const page: CreateCSSProperties = {
-	display: 'flex',
-	flexDirection: 'column',
+const backgroundContainer: CreateCSSProperties = {
+	zIndex: -9999,
 	position: 'absolute',
 	top: 0,
 	right: 0,
 	bottom: 0,
 	left: 0,
-	margin: 0,
-	padding: (props: any) => (props.fullPage ? 0 : 20),
-	overflow: 'auto',
+	overflow: 'hidden',
+	whiteSpace: 'nowrap',
 	background: (props: any) => props.background,
-	backgroundColor: (props: any) => props.backgroundColor,
-	textAlign: 'left'
+	backgroundColor: (props: any) => props.backgroundColor
+};
+
+const fullPage: CSSProperties = {
+	zIndex: 0,
+	position: 'absolute',
+	top: 0,
+	right: 0,
+	bottom: 0,
+	left: 0,
+	overflow: 'hidden'
+};
+
+const fullPageBody: CSSProperties = {
+	zIndex: 0,
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	right: 0,
+	minHeight: '100%'
 };
 
 const pageHeader: CSSProperties = {
-	display: 'block',
-	width: '100%',
-	height: 'auto',
-	paddingTop: 10,
-	paddingBottom: 10,
-	flexGrow: 0,
-	flexShrink: 0
+	padding: `${pxToRem(20)} ${pxToRem(10)}`
 };
 
 const pageContent: CSSProperties = {
-	display: 'block',
-	width: '100%',
-	height: 'auto',
-	flexGrow: 1,
-	flexShrink: 0
+	padding: pxToRem(20)
 };
 
 export const styles = createStyles({
-	page,
+	pageBody,
+	backgroundContainer,
+	fullPage,
+	fullPageBody,
 	pageHeader,
 	pageContent
 });

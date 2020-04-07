@@ -51,7 +51,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 			<Styling useStyles={useStyles}>
 				{classes => (
 					<Page>
-						<Box className={classes.innerContent}>
+						<Box /* className={classes.innerContent} */>
 							<Typography variant="h2">DarkMode</Typography>
 							<List className={classes.providersList}>
 								<SwitchListItem
@@ -62,7 +62,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 								/>
 								<Divider />
 								<SwitchListItem
-									title="Don't use"
+									title="Don'AzAzuADankDt use"
 									name="dontUseDarkMode"
 									checked={this.state.dontUseDarkMode}
 									onChange={this.handleDontUseChange}
@@ -94,7 +94,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 													value={this.state.startTimeDarkMode}
 													onIonChange={e => this.handleStartDateChange(e)}
 												/>
-												<Icon iconName={IconName.Forward} />
+												{/* <Icon iconName={IconName.Forward} /> */}
 											</IonItem>
 										</ListItem>
 										<Divider />
@@ -112,7 +112,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 													value={this.state.endTimeDarkMode}
 													onIonChange={e => this.handleEndDateChange(e)}
 												/>
-												<Icon iconName={IconName.Forward} />
+												{/* <Icon iconName={IconName.Forward} /> */}
 											</IonItem>
 											<Divider />
 										</ListItem>

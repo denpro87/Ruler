@@ -5,6 +5,8 @@ export const initial = <T>(value: T | 'initial', initialValue: T): T => (value =
 
 export const percentage = (x: number): string => `${x * 100}%`;
 
+export const pxToRem = (x: number): string => `${x / 16}rem`;
+
 export function responsiveFontSize(fontSize: FontSize): FontSize {
 	switch (fontSize) {
 		case 'xx-small':
@@ -38,7 +40,7 @@ export function responsiveFontSize(fontSize: FontSize): FontSize {
 	}
 
 	if (typeof fontSize === 'number') {
-		fontSize = (`${fontSize / 16}rem` as any) as number;
+		fontSize = (pxToRem(fontSize) as any) as number;
 	}
 
 	return fontSize;

@@ -7,7 +7,6 @@ const providersList: CSSProperties = {
 const wrapper: CSSProperties = {
 	background: 'white',
 	textAlign: 'center',
-	maxWidth: '768px',
 	margin: '0 auto',
 	width: '100%',
 	height: '100%',

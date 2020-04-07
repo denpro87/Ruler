@@ -48,45 +48,43 @@ export class Notifications extends React.Component<INotificationsProps, INotific
 			<Styling useStyles={useStyles}>
 				{classes => (
 					<Page>
-						<Box className={classes.wrapper}>
-							<Box className={classes.innerContent}>
-								<Typography variant="h2">Notifications</Typography>
-								<List className={classes.providersList}>
-									<SwitchListItem title="Discounts and News" checked={this.state.newsNotify} onChange={this.handleNewsNotifyChange} />
-									<Divider />
-									<SwitchListItem title="New report reply" checked={this.state.reportNotify} onChange={this.handleReportNotifyChange} />
-									<Divider />
-									<SwitchListItem title="New area" checked={this.state.newAreaNotify} onChange={this.handleNewAreaNotifyChange} />
-									<Typography variant="caption">Vehicle notifications</Typography>
-									<SwitchListItem
-										title="Vehicle near you"
-										name="vehicleNotify"
-										checked={this.state.vehicleNotify}
-										onChange={this.handleVehicleNotifyChange}
-									/>
-									<Divider />
-									<SwitchListItem
-										title="Bike near you"
-										checked={this.state.bikeNotify}
-										onChange={this.handleBikeNotifyChange}
-										disabled={this.state.vehicleNotify}
-									/>
-									<Divider />
-									<SwitchListItem
-										title="Car near you"
-										onChange={this.handleCarNotifyChange}
-										checked={this.state.carNotify}
-										disabled={this.state.vehicleNotify}
-									/>
-									<Divider />
-									<SwitchListItem
-										title="Scooter near you"
-										onChange={this.handleScooterNotifyChange}
-										checked={this.state.scooterNotify}
-										disabled={this.state.vehicleNotify}
-									/>
-								</List>
-							</Box>
+						<Box className={classes.innerContent}>
+							<Typography variant="h2">Notifications</Typography>
+							<List className={classes.providersList}>
+								<SwitchListItem title="Discounts and News" checked={this.state.newsNotify} onChange={this.handleNewsNotifyChange} />
+								<Divider />
+								<SwitchListItem title="New report reply" checked={this.state.reportNotify} onChange={this.handleReportNotifyChange} />
+								<Divider />
+								<SwitchListItem title="New area" checked={this.state.newAreaNotify} onChange={this.handleNewAreaNotifyChange} />
+								<Typography variant="caption">Vehicle notifications</Typography>
+								<SwitchListItem
+									title="Vehicle near you"
+									name="vehicleNotify"
+									checked={this.state.vehicleNotify}
+									onChange={this.handleVehicleNotifyChange}
+								/>
+								<Divider />
+								<SwitchListItem
+									title="Bike near you"
+									checked={this.state.bikeNotify}
+									onChange={this.handleBikeNotifyChange}
+									disabled={this.state.vehicleNotify}
+								/>
+								<Divider />
+								<SwitchListItem
+									title="Car near you"
+									onChange={this.handleCarNotifyChange}
+									checked={this.state.carNotify}
+									disabled={this.state.vehicleNotify}
+								/>
+								<Divider />
+								<SwitchListItem
+									title="Scooter near you"
+									onChange={this.handleScooterNotifyChange}
+									checked={this.state.scooterNotify}
+									disabled={this.state.vehicleNotify}
+								/>
+							</List>
 						</Box>
 					</Page>
 				)}

@@ -1,6 +1,7 @@
 import { CreateCSSProperties } from '@material-ui/styles';
 import { classes } from './Icon.classNames';
 import { createStyles } from '@material-ui/core';
+import { pxToRem } from 'styles';
 
 const icon: CreateCSSProperties = {
 	display: 'inline-block',
@@ -8,10 +9,10 @@ const icon: CreateCSSProperties = {
 	'@global': {
 		svg: {
 			fill: 'currentColor',
-			width: (props: any) => props.width,
-			height: (props: any) => props.height,
+			width: (props: any) => pxToRem(props.width),
+			height: (props: any) => pxToRem(props.height),
 			display: 'block',
-			fontSize: (props: any) => props.height,
+			fontSize: (props: any) => pxToRem(props.height),
 			transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
 			userSelect: 'none',
 			overflow: 'hidden',

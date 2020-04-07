@@ -10,9 +10,7 @@ export const SearchBox: React.FunctionComponent<ISearchBoxProps> = ({ onChange }
 
 	return (
 		<div className={classes.inputWrapper}>
-			<div className={classes.searchIcon}>
-				<Icon iconName={IconName.Search} />
-			</div>
+			<div className={classes.searchIcon}>{/* <Icon iconName={IconName.Search} /> */}</div>
 			<InputBase
 				placeholder="Search…"
 				classes={{

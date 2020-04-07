@@ -40,7 +40,6 @@ const description: CSSProperties = {
 const wrapper: CSSProperties = {
 	background: 'white',
 	textAlign: 'center',
-	maxWidth: '768px',
 	margin: '0 auto',
 	height: '100%',
 	padding: '20px',

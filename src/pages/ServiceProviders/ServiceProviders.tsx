@@ -38,32 +38,30 @@ export class ServiceProviders extends React.Component<IServiceProvidersProps, IS
 			<Styling useStyles={useStyles}>
 				{classes => (
 					<Page>
-						<Box className={classes.wrapper}>
-							{this.state.selectedProvider ? (
-								<ProviderDetail
-									key={this.state.selectedProvider.name}
-									title={this.state.selectedProvider.name}
-									image={this.state.selectedProvider.icon}
-									paragraphs={this.state.selectedProvider.paragraphs}
-								/>
-							) : (
-								<Box className={classes.innerContent}>
-									<Typography variant="h1">Service Providers</Typography>
-									<Box className={classes.providersList}>
-										{this.state.providers.map(provider => (
-											<Provider
-												key={provider.name}
-												image={provider.icon}
-												title={provider.name}
-												onClick={e => this.handleProviderClick(e, provider)}
-											>
-												<Typography variant="body1">{provider.shortDescription}</Typography>
-											</Provider>
-										))}
-									</Box>
+						{this.state.selectedProvider ? (
+							<ProviderDetail
+								key={this.state.selectedProvider.name}
+								title={this.state.selectedProvider.name}
+								image={this.state.selectedProvider.icon}
+								paragraphs={this.state.selectedProvider.paragraphs}
+							/>
+						) : (
+							<Box className={classes.innerContent}>
+								<Typography variant="h1">Service Providers</Typography>
+								<Box className={classes.providersList}>
+									{this.state.providers.map(provider => (
+										<Provider
+											key={provider.name}
+											image={provider.icon}
+											title={provider.name}
+											onClick={e => this.handleProviderClick(e, provider)}
+										>
+											<Typography variant="body1">{provider.shortDescription}</Typography>
+										</Provider>
+									))}
 								</Box>
-							)}
-						</Box>
+							</Box>
+						)}
 					</Page>
 				)}
 			</Styling>

@@ -1,7 +1,7 @@
 import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
-import { DEFAULT_ICON_SIZE } from 'components';
+import { DEFAULT_ICON_SIZE } from 'components/Icon';
 import { createStyles } from '@material-ui/core';
-import { font } from 'styles';
+import { font, pxToRem } from 'styles';
 
 const button: CreateCSSProperties = {
 	...font({
@@ -13,10 +13,11 @@ const button: CreateCSSProperties = {
 		letterSpacing: 'normal'
 	}),
 	display: 'flex',
-	borderRadius: 15,
+	borderRadius: pxToRem(15),
 	padding: '10px 15px',
 	backgroundColor: (props: any) => props.backgroundColor,
 	color: (props: any) => props.textColor,
+	textAlign: 'center',
 	textTransform: 'none',
 	'&:hover': {
 		color: (props: any) => props.hoveredTextColor,
@@ -31,16 +32,16 @@ const button: CreateCSSProperties = {
 		backgroundColor: (props: any) => props.disabledBackgroundColor
 	},
 	'& .MuiTouchRipple-child': {
-		borderRadius: 15
+		borderRadius: pxToRem(15)
 	}
 };
 
 const buttonLabel: CreateCSSProperties = {
 	display: 'inline-flex',
-	justifyContent: (props: any) => (props.compact ? 'center' : 'space-between'),
+	justifyContent: (props: any) => (!props.compact && props.hasIcon ? 'space-between' : 'center'),
 	'&:after': {
 		content: '""',
-		display: (props: any) => (props.compact ? 'none' : 'block'),
+		display: (props: any) => (props.compact || !props.hasIcon ? 'none' : 'block'),
 		flex: `0 0 ${DEFAULT_ICON_SIZE}px`,
 		width: DEFAULT_ICON_SIZE,
 		height: DEFAULT_ICON_SIZE
@@ -49,8 +50,8 @@ const buttonLabel: CreateCSSProperties = {
 
 const buttonText: CSSProperties = {
 	display: 'inline-block',
-	paddingLeft: 5,
-	paddingRight: 5
+	paddingLeft: pxToRem(5),
+	paddingRight: pxToRem(5)
 };
 
 export const styles = createStyles({

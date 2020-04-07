@@ -1,8 +1,8 @@
 import { IPasswordInputProps } from './PasswordInput.types';
-import { Icon, IconName } from 'components';
 import { InputAdornment, TextField, makeStyles } from '@material-ui/core';
 import { styles } from './PasswordInput.styles';
 import React from 'react';
+
 const useStyles = makeStyles(styles);
 
 export const PasswordInput: React.FunctionComponent<IPasswordInputProps> = ({ onChange, ...props }) => {
@@ -19,13 +19,9 @@ export const PasswordInput: React.FunctionComponent<IPasswordInputProps> = ({ on
 			variant="standard"
 			fullWidth
 			type={passwordIsMasked ? 'password' : 'text'}
-			{...props}
+			// {...props}
 			InputProps={{
-				endAdornment: (
-					<InputAdornment position="end">
-						<Icon iconName={IconName.Eye} onClick={togglePasswordMask} />
-					</InputAdornment>
-				)
+				endAdornment: <InputAdornment position="end">{/* <Icon iconName={IconName.Eye} onClick={togglePasswordMask} /> */}</InputAdornment>
 			}}
 		/>
 	);

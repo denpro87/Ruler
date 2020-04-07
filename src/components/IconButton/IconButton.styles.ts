@@ -2,7 +2,7 @@ import { CreateCSSProperties } from '@material-ui/styles';
 import { DEFAULT_ICON_BUTTON_SIZE, ICON_BUTTON_BOX_SHADOW, ICON_BUTTON_BOX_SHADOW_INSET } from './IconButton.variables';
 import { DEFAULT_ICON_SIZE } from 'components';
 import { createStyles } from '@material-ui/core';
-import { initial } from 'styles';
+import { initial, pxToRem } from 'styles';
 
 const iconButton: CreateCSSProperties = {
 	padding: (props: any) => {
@@ -12,7 +12,7 @@ const iconButton: CreateCSSProperties = {
 		return `${paddingY}px ${paddingX}px`;
 	},
 	color: '#000',
-	borderRadius: 15,
+	borderRadius: pxToRem(15),
 	backgroundColor: '#fff',
 	boxShadow: (props: any) => {
 		const shadows = [];
@@ -31,7 +31,7 @@ const iconButton: CreateCSSProperties = {
 		backgroundColor: '#f2f2f2'
 	},
 	'& .MuiTouchRipple-child': {
-		borderRadius: 15
+		borderRadius: pxToRem(15)
 	}
 };
 

@@ -1,5 +1,5 @@
 import { ColoredButtonProps, IButtonProps } from './Button.types';
-import { Icon } from 'components';
+import { IIconProps, Icon } from 'components';
 import { Button as MuiButton } from '@material-ui/core';
 import { getColorFromColorType } from './getColorFromColorType';
 import { makeStyles } from '@material-ui/styles';
@@ -19,13 +19,18 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 	disabledTextColor = textColor,
 	disabledBackgroundColor = getColorFromColorType(colorType!, 'disabledBackground') || backgroundColor,
 	href,
-	iconProps,
+	iconName,
+	iconProps = {},
 	compact,
 	children,
 	className,
 	...restProps
 }) => {
+	iconProps = Object.assign({}, iconProps, { iconName }) as IIconProps;
+	const hasIcon = iconProps?.iconName;
+
 	const classes = useStyles({
+		hasIcon,
 		compact,
 		textColor,
 		backgroundColor,
@@ -47,7 +52,7 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 			href={href}
 			{...restProps}
 		>
-			{iconProps?.iconName && <Icon {...iconProps} />}
+			{hasIcon && <Icon {...iconProps} />}
 			<span className={classes.buttonText}>{children}</span>
 		</MuiButton>
 	);

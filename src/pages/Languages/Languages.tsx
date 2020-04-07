@@ -1,6 +1,6 @@
 import { Box, Divider, List, Typography, makeStyles } from '@material-ui/core';
 import { ILanguage, ILanguagesProps, ILanguagesState } from './Languages.types';
-import { LanguageItem, Page, SearchInputBox, Styling } from 'components';
+import { LanguageItem, Page, SearchBox, Styling } from 'components';
 import { styles } from './Languages.styles';
 
 import React from 'react';
@@ -38,36 +38,35 @@ export class Languages extends React.Component<ILanguagesProps, ILanguagesState,
 			<Styling useStyles={useStyles}>
 				{classes => (
 					<Page>
-						<Box className={classes.wrapper}>
-							<Box className={classes.innerContent}>
-								<Typography variant="h2">Languages</Typography>
-								<SearchInputBox className={classes.searchBox} onChange={this.filterLanguage} />
-								<List className={classes.providersList}>
-									{this.state.filteredLanguages.map(filteredLanguage => {
-										return (
-											<Box key={filteredLanguage.langName}>
-												{this.state.selectedLanguage === filteredLanguage.langCode ? (
-													<LanguageItem
-														title={filteredLanguage.langName}
-														text={filteredLanguage.text}
-														code={filteredLanguage.langCode}
-														selected
-														onClick={e => this.languageClick(e, filteredLanguage.langCode)}
-													/>
-												) : (
-													<LanguageItem
-														title={filteredLanguage.langName}
-														text={filteredLanguage.text}
-														code={filteredLanguage.langCode}
-														onClick={e => this.languageClick(e, filteredLanguage.langCode)}
-													/>
-												)}
-												<Divider />
-											</Box>
-										);
-									})}
-								</List>
-							</Box>
+						<Box className={classes.innerContent}>
+							<Typography variant="h2">Languages</Typography>
+							<SearchBox className={classes.searchBox} onChange={this.filterLanguage} />
+
+							<List className={classes.providersList}>
+								{this.state.filteredLanguages.map(filteredLanguage => {
+									return (
+										<Box key={filteredLanguage.langName}>
+											{this.state.selectedLanguage === filteredLanguage.langCode ? (
+												<LanguageItem
+													title={filteredLanguage.langName}
+													text={filteredLanguage.text}
+													code={filteredLanguage.langCode}
+													selected
+													onClick={e => this.languageClick(e, filteredLanguage.langCode)}
+												/>
+											) : (
+												<LanguageItem
+													title={filteredLanguage.langName}
+													text={filteredLanguage.text}
+													code={filteredLanguage.langCode}
+													onClick={e => this.languageClick(e, filteredLanguage.langCode)}
+												/>
+											)}
+											<Divider />
+										</Box>
+									);
+								})}
+							</List>
 						</Box>
 					</Page>
 				)}

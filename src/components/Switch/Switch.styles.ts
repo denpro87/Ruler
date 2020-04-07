@@ -1,16 +1,17 @@
 import { CSSProperties } from '@material-ui/styles';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+import { pxToRem } from 'styles';
 
 const root = (theme: Theme): CSSProperties => ({
-	width: 52,
-	height: 31,
+	width: pxToRem(52),
+	height: pxToRem(31),
 	padding: 0,
 	marginTop: theme.spacing(1),
 	marginBottom: theme.spacing(1)
 });
 
 const switchBase = (theme: Theme): CSSProperties => ({
-	padding: 1,
+	padding: pxToRem(1),
 	'&$checked': {
 		transform: 'translateX(20px)',
 		color: theme.palette.common.white,
@@ -30,13 +31,13 @@ const switchBase = (theme: Theme): CSSProperties => ({
 });
 
 const thumb: CSSProperties = {
-	width: 29,
-	height: 28,
+	width: pxToRem(29),
+	height: pxToRem(28),
 	boxShadow: '0 3px 8px 0 rgba(0, 0, 0, 0.15), 0 3px 1px 0 rgba(0, 0, 0, 0.06)'
 };
 
 const track: CSSProperties = {
-	borderRadius: 31 / 2,
+	borderRadius: pxToRem(31 / 2),
 	border: 'none',
 	backgroundColor: 'rgba(120, 120, 128, 0.16)',
 	opacity: 1,

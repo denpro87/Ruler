@@ -1,6 +1,6 @@
 import { Box, Typography, makeStyles } from '@material-ui/core';
-import { IOSSwitch } from 'components';
 import { ISwitchListItemProps } from './SwitchListItem.types';
+import { Switch } from 'components';
 import { styles } from './SwitchListItem.styles';
 import React from 'react';
 
@@ -15,7 +15,7 @@ export const SwitchListItem: React.FunctionComponent<ISwitchListItemProps> = ({ 
 				<Typography variant="h6" color="textPrimary" className={checked ? '' : classes.deactivated}>
 					{title}
 				</Typography>
-				<IOSSwitch checked={checked} onChange={onChange} name={name} disabled={disabled} />
+				<Switch checked={checked} onChange={onChange} name={name} disabled={disabled} />
 			</Box>
 		</Box>
 	);

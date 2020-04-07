@@ -10,16 +10,6 @@ const heading: CSSProperties = {
 	}
 };
 
-const wrapper: CSSProperties = {
-	background: 'white',
-	textAlign: 'left',
-	maxWidth: '768px',
-	height: 'calc(100% - 40px)',
-	padding: '20px',
-	margin: 'auto',
-	fontFamily: 'Montserrat'
-};
-
 const openBrowser: CSSProperties = {
 	fontSize: '15px',
 	lineHeight: '25px',
@@ -114,7 +104,6 @@ const scheduleIcon: CSSProperties = {
 
 export const styles = createStyles({
 	heading,
-	wrapper,
 	wrapper1,
 	openBrowser,
 	imageContainer,

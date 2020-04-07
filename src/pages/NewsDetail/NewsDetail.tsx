@@ -27,32 +27,28 @@ export class NewsDetail extends Component {
 			<Styling useStyles={useStyles}>
 				{classes => (
 					<Page>
-						<IonContent>
-							<Box className={classes.wrapper}>
-								<Box className={classes.wrapper1}>
-									<IonRouterLink className={classes.openBrowser} href="https://instagram.com">
-										Open in browder
-									</IonRouterLink>
-								</Box>
+						<Box className={classes.wrapper1}>
+							<IonRouterLink className={classes.openBrowser} href="https://instagram.com">
+								Open in browser
+							</IonRouterLink>
+						</Box>
 
-								<Box className={classes.imageContainer}>
-									<IonImg src={news.image} className={classes.image}></IonImg>
-								</Box>
-								<Box className={classes.title}>{news.title}</Box>
-								<Box className={classes.description}>{news.description}</Box>
+						<Box className={classes.imageContainer}>
+							<IonImg src={news.image} className={classes.image}></IonImg>
+						</Box>
+						<Box className={classes.title}>{news.title}</Box>
+						<Box className={classes.description}>{news.description}</Box>
 
-								<Box className={classes.footer}>
-									<Box className={classes.social}>
-										<IonIcon icon={getSocialIcon(news.social)} className={classes.icon}></IonIcon>
-										{news.social}
-									</Box>
-									<Box className={classes.date}>
-										{/* <ScheduleIcon className={classes.schedulIcon} /> */}
-										{getDiffDate(news.date)}
-									</Box>
-								</Box>
+						<Box className={classes.footer}>
+							<Box className={classes.social}>
+								<IonIcon icon={getSocialIcon(news.social)} className={classes.icon}></IonIcon>
+								{news.social}
 							</Box>
-						</IonContent>
+							<Box className={classes.date}>
+								{/* <ScheduleIcon className={classes.schedulIcon} /> */}
+								{getDiffDate(news.date)}
+							</Box>
+						</Box>
 					</Page>
 				)}
 			</Styling>

@@ -2,8 +2,8 @@ import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, fontSmoothing } from 'styles';
 
-const text: CreateCSSProperties = {
-	...font(),
+const text = (inheritStyles: boolean = false): CreateCSSProperties => ({
+	...font({}, inheritStyles),
 	fontStretch: (props: any) => props.fontStretch,
 	fontStyle: (props: any) => props.fontStyle,
 	fontVariant: (props: any) => props.fontVariant,
@@ -19,13 +19,14 @@ const text: CreateCSSProperties = {
 	...fontSmoothing('antialiased'),
 	textOverflow: 'ellipsis',
 	overflow: 'hidden'
-};
+});
 
 const paragraph: CSSProperties = {
 	marginBottom: '1rem'
 };
 
-export const styles = createStyles({
-	text,
-	paragraph
-});
+export const styles = (inheritStyles: boolean = false) =>
+	createStyles({
+		text: text(inheritStyles),
+		paragraph
+	});
