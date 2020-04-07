@@ -9,6 +9,8 @@ export interface IPageProps extends Pick<BoxProps, 'onClick'> {
 	backgroundColor?: string;
 	fullPage?: boolean;
 	canGoBack?: boolean;
+	title?: string;
+	titleSize?: 'medium' | 'large';
 	goBackIconButtonProps?: GoBackIconButtonProps;
 	onRenderBackground?: () => React.ReactElement;
 }

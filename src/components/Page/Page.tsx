@@ -1,6 +1,6 @@
 import { Box } from '@material-ui/core';
 import { FullPageProps, IPageProps } from './Page.types';
-import { GoBackIconButton } from 'components/IconButton';
+import { GoBackIconButton, Text } from 'components';
 import { IonContent, IonPage } from '@ionic/react';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Page.styles';
@@ -11,6 +11,8 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Page: React.FunctionComponent<IPageProps> = ({
+	title,
+	titleSize,
 	fullPage,
 	background,
 	backgroundColor,
@@ -22,6 +24,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	children
 }) => {
 	const classes = useStyles({
+		titleSize,
 		background,
 		backgroundColor
 	});
@@ -34,11 +37,19 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 
 	const backgroundElement = onRenderBackground?.();
 	const backgroundContainer = <Box className={classes.backgroundContainer}>{backgroundElement}</Box>;
+	const hasPageHeader = Boolean(canGoBack || title);
 	const innerContent = (
 		<>
-			{canGoBack && (
+			{hasPageHeader && (
 				<Box className={classes.pageHeader}>
 					<GoBackIconButton onClick={handleGoBack} {...goBackIconButtonProps} />
+					{title && (
+						<Box className={classes.pageHeaderInner}>
+							<Text className={classes.pageTitle} block>
+								{title}
+							</Text>
+						</Box>
+					)}
 				</Box>
 			)}
 			<Box className={classes.pageContent}>{children}</Box>
@@ -62,6 +73,10 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 			</IonContent>
 		</IonPage>
 	);
+};
+
+Page.defaultProps = {
+	titleSize: 'medium'
 };
 
 /**

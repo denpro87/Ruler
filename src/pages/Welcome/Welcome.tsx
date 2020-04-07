@@ -31,20 +31,12 @@ export const Welcome: React.FunctionComponent = () => {
 						<Text className={classes.signInWithSocialsText} block>
 							Sign in with socials
 						</Text>
-						<Grid container>
-							<Grid item xs={3}>
-								<SocialIconButton iconProps={{} as any} iconName="apple" />
-							</Grid>
-							<Grid item xs={3}>
-								<SocialIconButton iconProps={{} as any} iconName="twitter" />
-							</Grid>
-							<Grid item xs={3}>
-								<SocialIconButton iconProps={{} as any} iconName="google" />
-							</Grid>
-							<Grid item xs={3}>
-								<SocialIconButton iconProps={{} as any} iconName="facebook" />
-							</Grid>
-						</Grid>
+						<Stack horizontal horizontalAlign="space-between" verticalAlign="center">
+							<SocialIconButton iconName="apple" />
+							<SocialIconButton iconName="twitter" />
+							<SocialIconButton iconName="google" />
+							<SocialIconButton iconName="facebook" />
+						</Stack>
 					</Stack.Item>
 
 					<Stack.Item>

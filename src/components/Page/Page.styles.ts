@@ -1,5 +1,5 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
-import { pxToRem } from 'styles';
+import { font, pxToRem } from 'styles';
 
 const pageBody: CSSProperties = {
 	zIndex: 0,
@@ -43,18 +43,39 @@ const fullPageBody: CSSProperties = {
 };
 
 const pageHeader: CSSProperties = {
-	padding: `${pxToRem(20)} ${pxToRem(10)}`
+	padding: `${pxToRem(20)} ${pxToRem(10)}`,
+	paddingBottom: pxToRem(10)
+};
+
+const pageHeaderInner: CSSProperties = {
+	paddingLeft: pxToRem(5),
+	paddingRight: pxToRem(5)
 };
 
 const pageContent: CSSProperties = {
 	padding: pxToRem(20)
 };
 
+const pageTitle: CreateCSSProperties = {
+	...font({
+		fontWeight: 'bold',
+		fontStretch: 'normal',
+		fontStyle: 'normal',
+		letterSpacing: 'normal',
+		color: '#181c19'
+	}),
+	fontSize: (props: any) => (props.titleSize === 'large' ? pxToRem(32) : pxToRem(25)),
+	lineHeight: (props: any) => (props.titleSize === 'large' ? 1.5 : 1.4),
+	marginTop: pxToRem(20)
+};
+
 export const styles = createStyles({
+	pageTitle,
 	pageBody,
 	backgroundContainer,
 	fullPage,
 	fullPageBody,
 	pageHeader,
+	pageHeaderInner,
 	pageContent
 });

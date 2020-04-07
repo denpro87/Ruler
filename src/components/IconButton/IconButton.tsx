@@ -1,4 +1,4 @@
-import { DEFAULT_GO_BACK_ICON_BUTTON_SIZE, DEFAULT_ICON_BUTTON_SIZE } from './IconButton.variables';
+import { DEFAULT_ICON_BUTTON_SIZE } from './IconButton.variables';
 import { GoBackIconButtonProps, IIconButtonProps, SocialIconButtonProps } from './IconButton.types';
 import { IIconProps, Icon } from 'components';
 import { IconButton as MuiIconButton } from '@material-ui/core';
@@ -22,11 +22,15 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 	className,
 	...restProps
 }) => {
+	if (!(iconName && iconProps)) {
+		console.warn('`IconButton` requires `iconName` or `iconProps` to be specified.');
+	}
+
 	const classes = useStyles({
 		width,
 		height,
-		iconWidth: iconProps.width,
-		iconHeight: iconProps.height,
+		iconWidth: iconProps?.width,
+		iconHeight: iconProps?.height,
 		noShadow,
 		outlined
 	});

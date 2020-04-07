@@ -10,7 +10,7 @@ export interface IIconButtonProps extends Omit<IconButtonProps, 'size'> {
 	href?: string;
 	iconName?: IIconProps['iconName'];
 	colorType?: IIconProps['colorType'];
-	iconProps: IIconProps;
+	iconProps?: IIconProps;
 	size?: number;
 	width?: number;
 	height?: number;
