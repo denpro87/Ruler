@@ -1,3 +1,8 @@
+export enum CommonIcon {
+	Back = 'back',
+	Forward = 'forward'
+}
+
 export type IconComponent = React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string }>;
 
 export type IconName = string | 'add';
@@ -5,11 +10,6 @@ export type IconName = string | 'add';
 export type IconColorType = 'default' | 'green' | 'black' | 'white';
 
 export type ColoredIconProps = Omit<IIconProps, 'colorType'>;
-
-export enum CommonIcon {
-	Back = 'back',
-	Forward = 'forward'
-}
 
 export interface IIconProps {
 	iconName: IconName;

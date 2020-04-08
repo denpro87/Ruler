@@ -3,6 +3,7 @@
 		{
 			"name": "Lime",
 			"subtext": "$ 0.20 /min. $ 5 to unlock",
+			"logo": "./images/lime.png",
 			"paragraphs": [
 				{
 					"title": "About",
@@ -17,6 +18,7 @@
 		{
 			"name": "Bird",
 			"subtext": "$ 0.25 /min. $ 3 to unlock",
+			"logo": "./images/bird.png",
 			"paragraphs": [
 				{
 					"title": "About",
@@ -31,6 +33,7 @@
 		{
 			"name": "Spin",
 			"subtext": "$ 0.21 /min. $ 6 to unlock",
+			"logo": "./images/spin.png",
 			"paragraphs": [
 				{
 					"title": "About",
@@ -45,6 +48,7 @@
 		{
 			"name": "Tier",
 			"subtext": "$ 0.30 /min. $ 5 to unlock",
+			"logo": "./images/tier.png",
 			"paragraphs": [
 				{
 					"title": "About",
@@ -59,6 +63,7 @@
 		{
 			"name": "Circ",
 			"subtext": "$ 0.15 /min. $ 7 to unlock",
+			"logo": "./images/circ.png",
 			"paragraphs": [
 				{
 					"title": "About",

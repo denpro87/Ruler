@@ -48,8 +48,8 @@ const pageHeader: CSSProperties = {
 };
 
 const pageHeaderInner: CSSProperties = {
-	paddingLeft: pxToRem(5),
-	paddingRight: pxToRem(5)
+	paddingLeft: pxToRem(10),
+	paddingRight: pxToRem(10)
 };
 
 const pageContent: CreateCSSProperties = {
