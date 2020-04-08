@@ -1,6 +1,6 @@
-import { Box, List, Typography, makeStyles } from '@material-ui/core';
+import { Box, List, makeStyles } from '@material-ui/core';
 import { IonList } from '@ionic/react';
-import { NewsItem } from 'components/NewsItem';
+import { NewsItem } from './components';
 import { Page, Styling } from 'components';
 import { news as newsList } from './news-data.json';
 import { styles } from './News.styles';

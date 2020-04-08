@@ -1,6 +1,7 @@
 import { Box, Typography, makeStyles } from '@material-ui/core';
 import { IServiceProvidersProps, IServiceProvidersState, ServiceProvider } from './ServiceProviders.types';
-import { Page, Provider, ProviderDetail, Styling } from 'components';
+import { Page, Styling } from 'components';
+import { Provider, ProviderDetail } from './components';
 import { images } from './images';
 import { styles } from './ServiceProviders.styles';
 import React from 'react';
