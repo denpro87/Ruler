@@ -22,7 +22,7 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 	className,
 	...restProps
 }) => {
-	if (!(iconName && iconProps)) {
+	if (!(iconName || iconProps)) {
 		console.warn('`IconButton` requires `iconName` or `iconProps` to be specified.');
 	}
 

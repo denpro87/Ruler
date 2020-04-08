@@ -23,7 +23,9 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	className,
 	children
 }) => {
+	const hasPageHeader = Boolean(canGoBack || title);
 	const classes = useStyles({
+		hasPageHeader,
 		titleSize,
 		background,
 		backgroundColor
@@ -37,7 +39,6 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 
 	const backgroundElement = onRenderBackground?.();
 	const backgroundContainer = <Box className={classes.backgroundContainer}>{backgroundElement}</Box>;
-	const hasPageHeader = Boolean(canGoBack || title);
 	const innerContent = (
 		<>
 			{hasPageHeader && (

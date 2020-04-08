@@ -6,6 +6,7 @@ import { pxToRem } from 'styles';
 const icon: CreateCSSProperties = {
 	display: 'inline-block',
 	flexShrink: 0,
+	transform: (props: any) => (props.rotate ? `rotate(${props.rotate}deg)` : undefined),
 	'@global': {
 		svg: {
 			fill: 'currentColor',

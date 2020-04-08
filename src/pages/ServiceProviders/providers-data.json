@@ -2,12 +2,11 @@
 	"providers": [
 		{
 			"name": "Lime",
-			"icon": "./images/Lime.png",
-			"shortDescription": "$ 0.20 /min. $ 5 to unlock",
+			"subtext": "$ 0.20 /min. $ 5 to unlock",
 			"paragraphs": [
 				{
 					"title": "About",
-					"text": "Lime is a leading mobility service provider that offers shared scooters, bikes and transit vehicles across the major European cities and America. Ruler allows you to choose from a variety of riding options available at Lime, without charging any additional fee. "
+					"text": "Lime is a leading mobility service provider that offers shared scooters, bikes and transit vehicles across the major European cities and America. Ruler allows you to choose from a variety of riding options available at Lime, without charging any additional fee."
 				},
 				{
 					"title": "Prices, terms and conditions",
@@ -17,8 +16,7 @@
 		},
 		{
 			"name": "Bird",
-			"icon": "./images/Bird.png",
-			"shortDescription": "$ 0.25 /min. $ 3 to unlock",
+			"subtext": "$ 0.25 /min. $ 3 to unlock",
 			"paragraphs": [
 				{
 					"title": "About",
@@ -32,8 +30,7 @@
 		},
 		{
 			"name": "Spin",
-			"icon": "./images/Voi-scooters.png",
-			"shortDescription": "$ 0.21 /min. $ 6 to unlock",
+			"subtext": "$ 0.21 /min. $ 6 to unlock",
 			"paragraphs": [
 				{
 					"title": "About",
@@ -47,8 +44,7 @@
 		},
 		{
 			"name": "Tier",
-			"icon": "./images/Tier.png",
-			"shortDescription": "$ 0.30 /min. $ 5 to unlock",
+			"subtext": "$ 0.30 /min. $ 5 to unlock",
 			"paragraphs": [
 				{
 					"title": "About",
@@ -62,8 +58,7 @@
 		},
 		{
 			"name": "Circ",
-			"icon": "./images/Circ.png",
-			"shortDescription": "$ 0.15 /min. $ 7 to unlock",
+			"subtext": "$ 0.15 /min. $ 7 to unlock",
 			"paragraphs": [
 				{
 					"title": "About",

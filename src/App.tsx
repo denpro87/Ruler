@@ -28,7 +28,7 @@ export const App: React.FunctionComponent = () => (
 				<IonRouterOutlet>
 					<Route path="/splash" component={Splash} exact />
 					<Route path="/settings" component={Settings} exact />
-					<Route path="/service-providers" component={ServiceProviders} exact />
+					<Route path="/service-providers/:provider?" component={ServiceProviders} exact />
 					<Route path="/welcome" component={Welcome} exact />
 					<Route path="/news" component={News} exact />
 					<Route path="/settings/change-password" component={ChangePassword} exact />

@@ -1,4 +1,4 @@
-import { ColoredIconProps, IIconProps } from './Icon.types';
+import { ColoredIconProps, CommonIcon, IIconProps } from './Icon.types';
 import { DEFAULT_ICON_SIZE } from './Icon.variables';
 import { ReactSVG } from 'react-svg';
 import { getColorFromColorType } from './getColorFromColorType';
@@ -17,6 +17,7 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 		size,
 		width = size,
 		height = size,
+		rotate,
 		color,
 		fillColor,
 		strokeColor,
@@ -27,9 +28,17 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 		secondaryFillColor,
 		secondaryStrokeColor
 	}) => {
+		iconName = iconName.trim().toLowerCase();
+
+		if (iconName === CommonIcon.Forward) {
+			iconName = CommonIcon.Back;
+			rotate = (rotate || 0) + 180;
+		}
+
 		const classes = useStyles({
 			width,
 			height,
+			rotate,
 			color,
 			fillColor,
 			strokeColor,
@@ -42,13 +51,14 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 		});
 		const [iconPath, setIconPath] = React.useState<string>('');
 
-		iconName = iconName.trim().toLowerCase();
-
 		React.useEffect(() => {
-			import(`./icons/${iconName}-icon.svg`).then(({ default: iconPath }) => {
-				if (iconPath) setIconPath(iconPath);
-				else console.warn(`No icon with the name (${iconName}) was found.`);
-			});
+			import(`./icons/${iconName}-icon.svg`)
+				.then(({ default: iconPath }) => {
+					if (iconPath) {
+						setIconPath(iconPath);
+					}
+				})
+				.catch(() => console.warn(`No icon with the name \`${iconName}\` (\`${iconName}-icon.svg\`) was found.`));
 		}, []);
 
 		return <ReactSVG wrapper="div" className={clsx(classes.icon, className)} src={iconPath} />;

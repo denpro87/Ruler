@@ -52,8 +52,8 @@ const pageHeaderInner: CSSProperties = {
 	paddingRight: pxToRem(5)
 };
 
-const pageContent: CSSProperties = {
-	padding: pxToRem(20)
+const pageContent: CreateCSSProperties = {
+	padding: (props: any) => (props.hasPageHeader ? `0 ${pxToRem(20)}` : pxToRem(20))
 };
 
 const pageTitle: CreateCSSProperties = {

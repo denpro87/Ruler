@@ -6,6 +6,11 @@ export type IconColorType = 'default' | 'green' | 'black' | 'white';
 
 export type ColoredIconProps = Omit<IIconProps, 'colorType'>;
 
+export enum CommonIcon {
+	Back = 'back',
+	Forward = 'forward'
+}
+
 export interface IIconProps {
 	iconName: IconName;
 
@@ -18,6 +23,11 @@ export interface IIconProps {
 	width?: number;
 
 	height?: number;
+
+	/**
+	 * @description Rotate the icon clockwise in degrees.
+	 */
+	rotate?: number;
 
 	/**
 	 * @description Icon color.
