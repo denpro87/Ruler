@@ -39,6 +39,7 @@ const button: CreateCSSProperties = {
 const buttonLabel: CreateCSSProperties = {
 	display: 'inline-flex',
 	justifyContent: (props: any) => (!props.compact && props.hasIcon ? 'space-between' : 'center'),
+	minHeight: 30,
 	'&:after': {
 		content: '""',
 		display: (props: any) => (props.compact || !props.hasIcon ? 'none' : 'block'),
