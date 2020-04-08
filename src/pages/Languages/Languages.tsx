@@ -1,8 +1,8 @@
-import { Box, Divider, List, Typography, makeStyles } from '@material-ui/core';
+import { Box, Divider, List, makeStyles } from '@material-ui/core';
 import { ILanguage, ILanguagesProps, ILanguagesState } from './Languages.types';
-import { LanguageItem, Page, SearchBox, Styling } from 'components';
+import { LanguageItem } from './components';
+import { Page, SearchBox, Styling } from 'components';
 import { styles } from './Languages.styles';
-
 import React from 'react';
 
 const useStyles = makeStyles(styles);

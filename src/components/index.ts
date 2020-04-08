@@ -1,7 +1,6 @@
 export * from './Button';
 export * from './Icon';
 export * from './IconButton';
-export * from './LanguageItem';
 export * from './Link';
 export * from './Menu';
 export * from './Page';
