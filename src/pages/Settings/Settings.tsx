@@ -52,81 +52,76 @@ export const Settings: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page>
-			<Box>
-				<Box className={classes.providersList}>
-					<Stack horizontalAlign="stretch" verticalAlign="space-between" verticalFill>
-						<Stack.Item>
-							<SidebarMenuItem image={<BlackIcon iconName="name" />} title="Profile" href="/settings/profile" />
-						</Stack.Item>
-						<Stack.Item>
-							<SidebarMenuItem image={<BlackIcon iconName="notification" />} title="Notification" href="/settings/notifications" />
-						</Stack.Item>
-						<Stack.Item>
-							<SidebarMenuItem image={<BlackIcon iconName="dark-mode" />} title="Dark Mode" href="/settings/dark-mode" />
-						</Stack.Item>
-						<Stack.Item>
-							<SidebarMenuItem image={<BlackIcon iconName="language" />} title="Language" href="/settings/languages" />
-						</Stack.Item>
-						<Stack.Item>
-							<SidebarMenuItem image={<BlackIcon iconName="change-password" />} title="Change Password" href="/settings/change-password" />
-						</Stack.Item>
-						<Stack.Item>
-							<SidebarMenuItem image={<BlackIcon iconName="delete-account" />} title="Delete account" onClick={handleDeleteAccountOpen} />
-						</Stack.Item>
-						<Stack.Item className={classes.lastItem}>
-							<SidebarMenuItem image={<BlackIcon iconName="log-out" />} title="Log out" onClick={handleLogoutClickOpen} />
-						</Stack.Item>
-					</Stack>
-				</Box>
-			</Box>
-			<div>
-				<Dialog open={logout} onClose={handleLogoutClose} aria-labelledby="form-dialog-title" classes={{ paper: classes.logoutDialog }}>
-					<DialogTitle classes={{ root: classes.dialogTitle }}>Log out?</DialogTitle>
-					<DialogContent className={classes.logoutContent}>
-						<Typography variant="caption">Are you sure you want to logout?</Typography>
-					</DialogContent>
-					<DialogActions classes={{ root: classes.logOutAction, spacing: classes.logOutActionSpacing }}>
-						<Button onClick={handleLogoutClose} color="secondary">
-							Cancel
-						</Button>
-						<Button onClick={handleLogoutOk} color="secondary" className={classes.notRecommendedButton}>
-							Yes, logout
-						</Button>
-					</DialogActions>
-				</Dialog>
-
-				<Dialog
-					open={deleteAccount}
-					onClose={handleDeleteAccountClose}
-					aria-labelledby="form-dialog-title"
-					classes={{ paper: classes.deleteAccountDialog }}
-				>
-					<DialogTitle classes={{ root: classes.dialogTitle }}>Delete account?</DialogTitle>
-					<DialogContent className={classes.logoutContent}>
-						<Typography variant="caption">Enter the email address for this account, a deletion request will be sent to it</Typography>
-						<TextField
-							margin="normal"
-							id="name"
-							placeholder="Email address"
-							type="email"
-							fullWidth
-							variant="outlined"
-							value={email}
-							classes={{ root: classes.emailRoot }}
-							onChange={handleEmailInputChanges}
-						/>
-					</DialogContent>
-					<DialogActions classes={{ root: classes.deleteAccountAction }}>
-						<Button onClick={handleDeleteAccountCancel} color="secondary" className={classes.notRecommendedButton}>
-							Cancel
-						</Button>
-						<Button onClick={handleSendEmail} color="secondary">
-							Send
-						</Button>
-					</DialogActions>
-				</Dialog>
-			</div>
-		</Page>
+		<>
+			<Page>
+				<Stack horizontalAlign="stretch" grow={1} tokens={{ childrenGap: 25 }} verticalFill>
+					<Stack.Item>
+						<SidebarMenuItem image={<BlackIcon iconName="name" />} title="Profile" href="/settings/profile" />
+					</Stack.Item>
+					<Stack.Item>
+						<SidebarMenuItem image={<BlackIcon iconName="notification" />} title="Notification" href="/settings/notifications" />
+					</Stack.Item>
+					<Stack.Item>
+						<SidebarMenuItem image={<BlackIcon iconName="dark-mode" />} title="Dark Mode" href="/settings/dark-mode" />
+					</Stack.Item>
+					<Stack.Item>
+						<SidebarMenuItem image={<BlackIcon iconName="language" />} title="Language" href="/settings/languages" />
+					</Stack.Item>
+					<Stack.Item>
+						<SidebarMenuItem image={<BlackIcon iconName="change-password" />} title="Change Password" href="/settings/change-password" />
+					</Stack.Item>
+					<Stack.Item>
+						<SidebarMenuItem image={<BlackIcon iconName="delete-account" />} title="Delete account" onClick={handleDeleteAccountOpen} />
+					</Stack.Item>
+					<Stack.Item className={classes.lastItem}>
+						<SidebarMenuItem image={<BlackIcon iconName="log-out" />} title="Log out" onClick={handleLogoutClickOpen} />
+					</Stack.Item>
+				</Stack>
+			</Page>
+			<Dialog open={logout} onClose={handleLogoutClose} aria-labelledby="form-dialog-title" classes={{ paper: classes.logoutDialog }}>
+				<DialogTitle classes={{ root: classes.dialogTitle }}>Log out?</DialogTitle>
+				<DialogContent className={classes.logoutContent}>
+					<Typography variant="caption">Are you sure you want to logout?</Typography>
+				</DialogContent>
+				<DialogActions classes={{ root: classes.logOutAction, spacing: classes.logOutActionSpacing }}>
+					<Button onClick={handleLogoutClose} color="secondary">
+						Cancel
+					</Button>
+					<Button onClick={handleLogoutOk} color="secondary" className={classes.notRecommendedButton}>
+						Yes, logout
+					</Button>
+				</DialogActions>
+			</Dialog>
+			<Dialog
+				open={deleteAccount}
+				onClose={handleDeleteAccountClose}
+				aria-labelledby="form-dialog-title"
+				classes={{ paper: classes.deleteAccountDialog }}
+			>
+				<DialogTitle classes={{ root: classes.dialogTitle }}>Delete account?</DialogTitle>
+				<DialogContent className={classes.logoutContent}>
+					<Typography variant="caption">Enter the email address for this account, a deletion request will be sent to it</Typography>
+					<TextField
+						margin="normal"
+						id="name"
+						placeholder="Email address"
+						type="email"
+						fullWidth
+						variant="outlined"
+						value={email}
+						classes={{ root: classes.emailRoot }}
+						onChange={handleEmailInputChanges}
+					/>
+				</DialogContent>
+				<DialogActions classes={{ root: classes.deleteAccountAction }}>
+					<Button onClick={handleDeleteAccountCancel} color="secondary" className={classes.notRecommendedButton}>
+						Cancel
+					</Button>
+					<Button onClick={handleSendEmail} color="secondary">
+						Send
+					</Button>
+				</DialogActions>
+			</Dialog>
+		</>
 	);
 };

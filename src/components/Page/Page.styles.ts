@@ -7,7 +7,10 @@ const pageBody: CSSProperties = {
 	top: 0,
 	left: 0,
 	right: 0,
-	minHeight: 0
+	minHeight: '100%',
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'stretch'
 };
 
 const backgroundContainer: CreateCSSProperties = {
@@ -43,6 +46,9 @@ const fullPageBody: CSSProperties = {
 };
 
 const pageHeader: CSSProperties = {
+	flexBasis: 'auto',
+	flexGrow: 0,
+	flexShrink: 0,
 	padding: `${pxToRem(20)} ${pxToRem(10)}`,
 	paddingBottom: pxToRem(10)
 };
@@ -53,6 +59,11 @@ const pageHeaderInner: CSSProperties = {
 };
 
 const pageContent: CreateCSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	flexBasis: 'auto',
+	flexGrow: 1,
+	flexShrink: 0,
 	padding: (props: any) => (props.hasPageHeader ? `0 ${pxToRem(20)}` : pxToRem(20))
 };
 

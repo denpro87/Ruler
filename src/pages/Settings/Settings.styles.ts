@@ -92,7 +92,7 @@ const notRecommendedButton: CSSProperties = {
 };
 
 const lastItem: CSSProperties = {
-	marginTop: 'auto'
+	marginTop: 'auto !important'
 };
 
 export const styles = createStyles({
