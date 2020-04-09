@@ -1,11 +1,8 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
 
-const providersList: CSSProperties = {
-	marginTop: '25px'
-};
+const providersList: CSSProperties = {};
 
 const innerContent: CSSProperties = {
-	padding: '80px 20px 30px',
 	textAlign: 'left'
 };
 
@@ -94,12 +91,8 @@ const notRecommendedButton: CSSProperties = {
 	fontWeight: 600
 };
 
-const footer: CSSProperties = {
-	position: 'absolute',
-	bottom: '0px',
-	padding: '0 20px',
-	width: '100%',
-	textAlign: 'left'
+const lastItem: CSSProperties = {
+	marginTop: 'auto'
 };
 
 export const styles = createStyles({
@@ -107,7 +100,7 @@ export const styles = createStyles({
 	innerContent,
 	logOutActionSpacing,
 	logoutContent,
-	footer,
+	lastItem,
 	dialogTitle,
 	deleteAccountAction,
 	deleteAccountDialog,

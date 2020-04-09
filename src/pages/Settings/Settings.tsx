@@ -1,12 +1,12 @@
 import { BlackIcon, Page, SidebarMenuItem } from 'components';
 import { Box, Button, Dialog, TextField, Typography, makeStyles } from '@material-ui/core';
+import { Stack } from '@fluentui/react';
 import { styles } from './Settings.styles';
-import React from 'react';
-
 import { useHistory } from 'react-router-dom';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import React from 'react';
 
 const useStyles = makeStyles(styles);
 
@@ -54,18 +54,30 @@ export const Settings: React.FunctionComponent = () => {
 	return (
 		<Page>
 			<Box>
-				<Box className={classes.innerContent}>
-					<Box className={classes.providersList}>
-						<SidebarMenuItem image={<BlackIcon iconName="name" />} title="Profile" href="/settings/profile" />
-						<SidebarMenuItem image={<BlackIcon iconName="notification" />} title="Notification" href="/settings/notifications" />
-						<SidebarMenuItem image={<BlackIcon iconName="dark-mode" />} title="Dark Mode" href="/settings/dark-mode" />
-						<SidebarMenuItem image={<BlackIcon iconName="language" />} title="Language" href="/settings/languages" />
-						<SidebarMenuItem image={<BlackIcon iconName="change-password" />} title="Change Password" href="/settings/change-password" />
-						<SidebarMenuItem image={<BlackIcon iconName="delete-account" />} title="Delete account" onClick={handleDeleteAccountOpen} />
-					</Box>
-				</Box>
-				<Box className={classes.footer}>
-					<SidebarMenuItem image={<BlackIcon iconName="logout" />} title="Log out" onClick={handleLogoutClickOpen} />
+				<Box className={classes.providersList}>
+					<Stack horizontalAlign="stretch" verticalAlign="space-between" verticalFill>
+						<Stack.Item>
+							<SidebarMenuItem image={<BlackIcon iconName="name" />} title="Profile" href="/settings/profile" />
+						</Stack.Item>
+						<Stack.Item>
+							<SidebarMenuItem image={<BlackIcon iconName="notification" />} title="Notification" href="/settings/notifications" />
+						</Stack.Item>
+						<Stack.Item>
+							<SidebarMenuItem image={<BlackIcon iconName="dark-mode" />} title="Dark Mode" href="/settings/dark-mode" />
+						</Stack.Item>
+						<Stack.Item>
+							<SidebarMenuItem image={<BlackIcon iconName="language" />} title="Language" href="/settings/languages" />
+						</Stack.Item>
+						<Stack.Item>
+							<SidebarMenuItem image={<BlackIcon iconName="change-password" />} title="Change Password" href="/settings/change-password" />
+						</Stack.Item>
+						<Stack.Item>
+							<SidebarMenuItem image={<BlackIcon iconName="delete-account" />} title="Delete account" onClick={handleDeleteAccountOpen} />
+						</Stack.Item>
+						<Stack.Item className={classes.lastItem}>
+							<SidebarMenuItem image={<BlackIcon iconName="log-out" />} title="Log out" onClick={handleLogoutClickOpen} />
+						</Stack.Item>
+					</Stack>
 				</Box>
 			</Box>
 			<div>
