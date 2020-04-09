@@ -3,8 +3,7 @@ import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
 const providerListItem: CSSProperties = {
-	paddingTop: pxToRem(10),
-	paddingBottom: pxToRem(10)
+	padding: `${pxToRem(10)} 0`
 };
 
 const iconContainer: CSSProperties = {
@@ -16,6 +15,7 @@ const providerIconContainer: CSSProperties = {
 };
 
 const providerIcon: CSSProperties = {
+	marginRight: 'auto',
 	padding: pxToRem(5),
 	boxSizing: 'content-box'
 };
@@ -50,6 +50,9 @@ const providerSubtext: CSSProperties = {
 	})
 };
 
+const goToIcon: CSSProperties = {
+	marginLeft: 'auto'
+};
 export const styles = createStyles({
 	iconContainer,
 	providerListItem,
@@ -57,5 +60,6 @@ export const styles = createStyles({
 	providerIcon,
 	providerTextContainer,
 	providerText,
-	providerSubtext
+	providerSubtext,
+	goToIcon
 });

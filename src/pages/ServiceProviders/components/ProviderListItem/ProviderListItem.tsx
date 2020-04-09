@@ -1,5 +1,5 @@
+import { BlackIcon, Image } from 'components';
 import { IProviderListItemProps } from './ProviderListItem.types';
-import { Icon, Image } from 'components';
 import { ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import { styles } from './ProviderListItem.styles';
 import React from 'react';
@@ -32,7 +32,7 @@ export const ProviderListItem: React.FunctionComponent<IProviderListItemProps> =
 			/>
 			{canGoTo && (
 				<ListItemIcon className={classes.iconContainer}>
-					<Icon iconName="forward" />
+					<BlackIcon className={classes.goToIcon} iconName="forward" />
 				</ListItemIcon>
 			)}
 		</ListItem>
