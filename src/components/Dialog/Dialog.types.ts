@@ -1,0 +1,7 @@
+import { DialogProps } from '@material-ui/core';
+
+export interface IDialogProps extends Omit<DialogProps, 'disableElevation' | 'classes'> {
+	className?: string;
+	image?: string;
+	hasClose?: boolean;
+}
