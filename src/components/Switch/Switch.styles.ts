@@ -16,13 +16,13 @@ const switchBase = (theme: Theme): CSSProperties => ({
 		transform: 'translateX(20px)',
 		color: theme.palette.common.white,
 		'& + $track': {
-			backgroundColor: theme.palette.secondary.main,
+			backgroundColor: '#00b559',
 			opacity: 1,
 			border: 'none'
 		}
 	},
 	'&$focusVisible $thumb': {
-		color: theme.palette.secondary.main,
+		color: '#00b559',
 		border: '6px solid #fff'
 	},
 	'&disabled': {

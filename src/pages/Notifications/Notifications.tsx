@@ -1,6 +1,6 @@
-import { Box, Divider, List, Typography, makeStyles } from '@material-ui/core';
+import { Box, Divider, List, makeStyles } from '@material-ui/core';
 import { INotificationsProps, INotificationsState } from './Notifications.types';
-import { Page, Styling, SwitchListItem } from 'components';
+import { Page, Styling, SwitchListItem, Text } from 'components';
 import { styles } from './Notifications.styles';
 import React from 'react';
 
@@ -47,7 +47,7 @@ export class Notifications extends React.Component<INotificationsProps, INotific
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page>
+					<Page title="Notifications" titleSize="large">
 						<Box className={classes.innerContent}>
 							<List className={classes.providersList}>
 								<SwitchListItem title="Discounts and News" checked={this.state.newsNotify} onChange={this.handleNewsNotifyChange} />
@@ -55,7 +55,7 @@ export class Notifications extends React.Component<INotificationsProps, INotific
 								<SwitchListItem title="New report reply" checked={this.state.reportNotify} onChange={this.handleReportNotifyChange} />
 								<Divider />
 								<SwitchListItem title="New area" checked={this.state.newAreaNotify} onChange={this.handleNewAreaNotifyChange} />
-								<Typography variant="caption">Vehicle notifications</Typography>
+								<Text className={classes.sectionBreaker}>Vehicle notifications</Text>
 								<SwitchListItem
 									title="Vehicle near you"
 									name="vehicleNotify"

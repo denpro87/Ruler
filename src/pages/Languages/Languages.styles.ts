@@ -1,7 +1,10 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
 
 const providersList: CSSProperties = {
-	padding: '0px'
+	padding: '0px',
+	'& .MuiBox-root:last-child hr': {
+		display: 'none'
+	}
 };
 
 const wrapper: CSSProperties = {
@@ -17,7 +20,6 @@ const wrapper: CSSProperties = {
 };
 
 const innerContent: CSSProperties = {
-	padding: '80px 20px 30px',
 	textAlign: 'left'
 };
 

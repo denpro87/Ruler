@@ -37,7 +37,7 @@ export class Languages extends React.Component<ILanguagesProps, ILanguagesState,
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page>
+					<Page title="Languages" titleSize="large">
 						<Box className={classes.innerContent}>
 							<SearchBox className={classes.searchBox} onChange={this.filterLanguage} />
 

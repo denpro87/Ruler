@@ -6,7 +6,7 @@ const providersList: CSSProperties = {
 };
 
 const innerContent: CSSProperties = {
-	padding: '80px 20px 30px',
+	paddingTop: '30px',
 	textAlign: 'left'
 };
 

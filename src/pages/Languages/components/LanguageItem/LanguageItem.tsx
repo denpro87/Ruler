@@ -1,6 +1,6 @@
 import { Box, Typography, makeStyles } from '@material-ui/core';
+import { GreenIcon, Text } from 'components';
 import { ILanguageItemProps } from './LanguageItem.types';
-import { Icon, IconName } from 'components';
 import { styles } from './LanguageItem.styles';
 import React from 'react';
 const useStyles = makeStyles(styles);
@@ -17,9 +17,13 @@ export const LanguageItem: React.FunctionComponent<ILanguageItemProps> = ({ titl
 			}}
 		>
 			<Box className={classes.li}>
-				<Typography variant="h6">{title}</Typography>
-				<Typography variant="caption">{text}</Typography>
-				{/* {selected && <Icon iconName={IconName.WellDone} />} */}
+				<Text className={classes.langTitle} block>
+					{title}
+				</Text>
+				<Text className={classes.exampleTxt} block>
+					{text}
+				</Text>
+				{selected && <GreenIcon className={classes.selectedIcon} iconName="well-done-checked" />}
 			</Box>
 		</Box>
 	);

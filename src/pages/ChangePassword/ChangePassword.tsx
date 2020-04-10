@@ -1,6 +1,7 @@
-import { Box, Typography, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import { IChangePasswordProps, IChangePasswordState } from './ChangePassword.types';
 import { Page, PasswordInput, Styling } from 'components';
+import { Stack } from '@fluentui/react';
 import { styles } from './ChangePassword.styles';
 import React from 'react';
 
@@ -17,11 +18,19 @@ export class ChangePassword extends React.Component<IChangePasswordProps, IChang
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page>
+					<Page title="Change Password" titleSize="medium">
 						<Box className={classes.innerContent}>
-							<PasswordInput placeholder="Enter the current password" />
-							<PasswordInput placeholder="Enter a new password" />
-							<PasswordInput placeholder="Repeat new password" />
+							<Stack horizontalAlign="stretch" verticalFill tokens={{ childrenGap: 30 }}>
+								<Stack.Item>
+									<PasswordInput placeholder="Enter the current password" />
+								</Stack.Item>
+								<Stack.Item>
+									<PasswordInput placeholder="Enter a new password" />
+								</Stack.Item>
+								<Stack.Item>
+									<PasswordInput placeholder="Repeat new password" />
+								</Stack.Item>
+							</Stack>
 						</Box>
 					</Page>
 				)}

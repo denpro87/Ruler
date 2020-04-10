@@ -61,7 +61,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 								/>
 								<Divider />
 								<SwitchListItem
-									title="Don'AzAzuADankDt use"
+									title="Don't use"
 									name="dontUseDarkMode"
 									checked={this.state.dontUseDarkMode}
 									onChange={this.handleDontUseChange}

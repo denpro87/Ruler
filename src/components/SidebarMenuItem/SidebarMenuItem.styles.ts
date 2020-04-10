@@ -4,8 +4,7 @@ const li: CSSProperties = {
 	display: 'flex',
 	'& h6': {
 		width: '100%',
-		marginLeft: '10px',
-		paddingTop: '3px'
+		marginLeft: '10px'
 	},
 	'& img': {
 		width: '30px',

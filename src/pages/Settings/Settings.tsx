@@ -1,11 +1,10 @@
-import { BlackIcon, Page, SidebarMenuItem } from 'components';
-import { Box, Button, Dialog, TextField, Typography, makeStyles } from '@material-ui/core';
+import { BlackButton, BlackIcon, Dialog, Page, SidebarMenuItem, Text } from 'components';
+import { Box, TextField, Typography, makeStyles } from '@material-ui/core';
 import { Stack } from '@fluentui/react';
 import { styles } from './Settings.styles';
 import { useHistory } from 'react-router-dom';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import manSvg from './images/man.svg';
+
 import React from 'react';
 
 const useStyles = makeStyles(styles);
@@ -18,6 +17,7 @@ export const Settings: React.FunctionComponent = () => {
 	const [email, setEmail] = React.useState('');
 
 	const handleLogoutClickOpen = () => {
+		console.log();
 		setLogout(true);
 	};
 
@@ -53,8 +53,8 @@ export const Settings: React.FunctionComponent = () => {
 
 	return (
 		<>
-			<Page>
-				<Stack horizontalAlign="stretch" grow={1} tokens={{ childrenGap: 25 }} verticalFill>
+			<Page title="Settings" titleSize="large">
+				<Stack horizontalAlign="stretch" grow={1} tokens={{ childrenGap: 0 }} verticalFill>
 					<Stack.Item>
 						<SidebarMenuItem image={<BlackIcon iconName="name" />} title="Profile" href="/settings/profile" />
 					</Stack.Item>
@@ -78,49 +78,27 @@ export const Settings: React.FunctionComponent = () => {
 					</Stack.Item>
 				</Stack>
 			</Page>
-			<Dialog open={logout} onClose={handleLogoutClose} aria-labelledby="form-dialog-title" classes={{ paper: classes.logoutDialog }}>
-				<DialogTitle classes={{ root: classes.dialogTitle }}>Log out?</DialogTitle>
-				<DialogContent className={classes.logoutContent}>
-					<Typography variant="caption">Are you sure you want to logout?</Typography>
-				</DialogContent>
-				<DialogActions classes={{ root: classes.logOutAction, spacing: classes.logOutActionSpacing }}>
-					<Button onClick={handleLogoutClose} color="secondary">
-						Cancel
-					</Button>
-					<Button onClick={handleLogoutOk} color="secondary" className={classes.notRecommendedButton}>
-						Yes, logout
-					</Button>
-				</DialogActions>
+			<Dialog open={logout} hasClose={true} image={manSvg} onClose={handleLogoutClose} aria-labelledby="form-dialog-title" title="Log out?">
+				<Text className={classes.dialogContentText}>Are you sure you want to logout?</Text>
+
+				<BlackButton onClick={handleLogoutOk} className={classes.notRecommendedButton}>
+					Yes, logout
+				</BlackButton>
 			</Dialog>
-			<Dialog
-				open={deleteAccount}
-				onClose={handleDeleteAccountClose}
-				aria-labelledby="form-dialog-title"
-				classes={{ paper: classes.deleteAccountDialog }}
-			>
-				<DialogTitle classes={{ root: classes.dialogTitle }}>Delete account?</DialogTitle>
-				<DialogContent className={classes.logoutContent}>
-					<Typography variant="caption">Enter the email address for this account, a deletion request will be sent to it</Typography>
-					<TextField
-						margin="normal"
-						id="name"
-						placeholder="Email address"
-						type="email"
-						fullWidth
-						variant="outlined"
-						value={email}
-						classes={{ root: classes.emailRoot }}
-						onChange={handleEmailInputChanges}
-					/>
-				</DialogContent>
-				<DialogActions classes={{ root: classes.deleteAccountAction }}>
-					<Button onClick={handleDeleteAccountCancel} color="secondary" className={classes.notRecommendedButton}>
-						Cancel
-					</Button>
-					<Button onClick={handleSendEmail} color="secondary">
-						Send
-					</Button>
-				</DialogActions>
+			<Dialog open={deleteAccount} hasClose={true} title="Delete account?" image={manSvg} onClose={handleDeleteAccountClose}>
+				<Text className={classes.dialogContentText}>Enter the email address for this account, a deletion request will be sent to it</Text>
+				<TextField
+					margin="normal"
+					id="name"
+					placeholder="Email address"
+					type="email"
+					fullWidth
+					variant="outlined"
+					value={email}
+					classes={{ root: classes.emailRoot }}
+					onChange={handleEmailInputChanges}
+				/>
+				<BlackButton onClick={handleSendEmail}>Send</BlackButton>
 			</Dialog>
 		</>
 	);

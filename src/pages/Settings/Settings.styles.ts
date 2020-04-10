@@ -1,4 +1,5 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
+import { font, pxToRem } from 'styles';
 
 const providersList: CSSProperties = {};
 
@@ -57,6 +58,18 @@ const deleteAccountDialog: CSSProperties = {
 	}
 };
 
+const dialogContentText: CSSProperties = {
+	...font({
+		fontSize: 10,
+		fontWeight: 600,
+		fontStretch: 'normal',
+		fontStyle: 'normal',
+		lineHeight: '15px',
+		letterSpacing: 'normal',
+		color: '#181c19'
+	}),
+	opacity: 0.5
+};
 const deleteAccountAction: CSSProperties = {
 	padding: '0',
 	borderTop: '2px solid #dddddd',
@@ -104,6 +117,7 @@ export const styles = createStyles({
 	dialogTitle,
 	deleteAccountAction,
 	deleteAccountDialog,
+	dialogContentText,
 	emailRoot,
 	emailInput,
 	logOutAction,

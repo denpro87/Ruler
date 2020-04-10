@@ -51,7 +51,7 @@ export class Profile extends React.Component<IProfileProps, IProfileState> {
 									/>
 								</Stack.Item>
 								<Stack.Item>
-									<GreenButton className={classes.saveBtn} iconName="well-done-checked" onClick={this.handleSaveChanges}>
+									<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={this.handleSaveChanges}>
 										{' '}
 										Save changes
 									</GreenButton>

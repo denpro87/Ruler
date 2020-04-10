@@ -10,11 +10,7 @@ const inputWrapper: CSSProperties = {
 };
 
 const eyeIcon: CSSProperties = {
-	height: '100%',
-	position: 'absolute',
-	right: '6px',
-	alignItems: 'center',
-	justifyContent: 'center'
+	padding: 0
 };
 
 const inputRoot: CSSProperties = {

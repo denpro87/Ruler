@@ -1,5 +1,5 @@
+import { BlackIcon } from 'components';
 import { ISearchBoxProps } from './SearchBox.types';
-import { Icon } from 'components';
 import { InputBase, makeStyles } from '@material-ui/core';
 import { styles } from './SearchBox.styles';
 import React from 'react';
@@ -10,7 +10,7 @@ export const SearchBox: React.FunctionComponent<ISearchBoxProps> = ({ onChange }
 
 	return (
 		<div className={classes.inputWrapper}>
-			<div className={classes.searchIcon}>{/* <Icon iconName={IconName.Search} /> */}</div>
+			<div className={classes.searchIcon}>{<BlackIcon iconName="search" />}</div>
 			<InputBase
 				placeholder="Search…"
 				classes={{
