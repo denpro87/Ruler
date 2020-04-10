@@ -77,7 +77,7 @@ const pageTitle: CreateCSSProperties = {
 	}),
 	fontSize: (props: any) => (props.titleSize === 'large' ? pxToRem(32) : pxToRem(25)),
 	lineHeight: (props: any) => (props.titleSize === 'large' ? 1.5 : 1.4),
-	marginTop: pxToRem(20)
+	marginTop: pxToRem(10)
 };
 
 export const styles = createStyles({
