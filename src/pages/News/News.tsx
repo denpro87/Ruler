@@ -1,45 +1,31 @@
-import { Box, List, makeStyles } from '@material-ui/core';
-import { IonList } from '@ionic/react';
-import { NewsItem } from './components';
-import { Page, Styling } from 'components';
-import { news as newsList } from './news-data.json';
+import { List, ListItemText } from '@material-ui/core';
+import { Page, Text } from 'components';
+import { makeStyles } from '@material-ui/styles';
 import { styles } from './News.styles';
-import React, { Component } from 'react';
+import React from 'react';
 
 const useStyles = makeStyles(styles);
 
-const INITIAL_STATE = {};
+export const News: React.FunctionComponent = () => {
+	const classes = useStyles();
 
-export class News extends Component {
-	state: any = {};
-
-	constructor(props: any) {
-		super(props);
-		this.state = { ...INITIAL_STATE };
-	}
-
-	render() {
-		const news = newsList;
-
-		return (
-			<Styling useStyles={useStyles}>
-				{classes => (
-					<Page>
-						<Box className={classes.heading}></Box>
-						<Box className={classes.newsContainer}>
-							<List className={classes.newsList}>
-								{news.map(item => (
-									<IonList key={item.id} className={classes.newItem}>
-										<NewsItem news={item} />
-									</IonList>
-								))}
-							</List>
-						</Box>
-					</Page>
-				)}
-			</Styling>
-		);
-	}
-}
-
-export default News;
+	return (
+		<Page title="News" titleSize="large">
+			<List className={classes.articleList}>
+				<ListItemText>
+					<Text className={classes.articleDescription} block>
+						<div className={classes.platformText}>Facebook</div>
+						<div className={classes.articleTime}>2h ago</div>
+					</Text>
+					<Text className={classes.articleTitle} block>
+						I have unlocked the scooter. How can I start the ride?
+					</Text>
+					<Text className={classes.articleText} block>
+						To start your scooter ride, place one foot firmly on the baseboard and use your other foot to push off against the ground a few
+						times....
+					</Text>
+				</ListItemText>
+			</List>
+		</Page>
+	);
+};

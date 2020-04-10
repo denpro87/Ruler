@@ -1,43 +1,65 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties } from '@material-ui/styles';
+import { createStyles } from '@material-ui/core';
+import { font, pxToRem } from 'styles';
 
-const heading: CSSProperties = {
-	margin: '20px auto',
-	width: '100%',
-	textAlign: 'left',
-	'& h4': {
-		fontSize: '32px',
-		fontWeight: 'bold',
-		lineHeight: '48px',
-		fontFamily: 'Montserrat',
+const articleList: CSSProperties = {
+	paddingTop: pxToRem(15)
+};
+
+const articleTitle: CSSProperties = {
+	marginBottom: pxToRem(5),
+	...font({
+		fontSize: 15,
+		fontWeight: 600,
+		fontStretch: 'normal',
+		fontStyle: 'normal',
+		lineHeight: 1.67,
+		letterSpacing: 'normal',
 		color: '#181c19'
-	}
+	})
 };
 
-const wrapper1: CSSProperties = {
-	margin: '0 auto',
-	minHeight: '50px',
-	backgroundRepeat: 'no-repeat',
-	backgroundPosition: 'left bottom',
-	position: 'relative'
+const articleText: CSSProperties = {
+	...font({
+		fontSize: 10,
+		fontWeight: 600,
+		fontStretch: 'normal',
+		fontStyle: 'normal',
+		lineHeight: 1.5,
+		letterSpacing: 'normal',
+		color: 'rgba(24, 28, 25, 0.5)'
+	})
 };
 
-const newsList: CSSProperties = {
-	padding: 0
+const articleDescription: CSSProperties = {
+	display: 'flex !important',
+	justifyContent: 'space-between',
+	flexDirection: 'row',
+	marginBottom: pxToRem(5),
+	...font({
+		fontSize: 10,
+		fontWeight: 600,
+		fontStretch: 'normal',
+		fontStyle: 'normal',
+		lineHeight: 1.5,
+		letterSpacing: 'normal',
+		color: 'rgba(24, 28, 25, 0.5)'
+	})
 };
 
-const newItem: CSSProperties = {
-	padding: '20px 0'
+const articleTime: CSSProperties = {
+	whiteSpace: 'nowrap'
 };
 
-const newsContainer: CSSProperties = {
-	height: '75vh',
-	overflow: 'scroll'
+const platformText: CSSProperties = {
+	color: '#00b559'
 };
 
 export const styles = createStyles({
-	heading,
-	wrapper1,
-	newsList,
-	newItem,
-	newsContainer
+	articleList,
+	articleTitle,
+	articleText,
+	articleDescription,
+	articleTime,
+	platformText
 });
