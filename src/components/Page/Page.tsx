@@ -1,6 +1,6 @@
 import { Box } from '@material-ui/core';
+import { DEFAULT_PAGE_BACKGROUND_COLOR, GoBackIconButton, Text } from 'components';
 import { FullPageProps, IPageProps } from './Page.types';
-import { GoBackIconButton, Text } from 'components';
 import { IonContent, IonPage } from '@ionic/react';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Page.styles';
@@ -77,7 +77,8 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 };
 
 Page.defaultProps = {
-	titleSize: 'medium'
+	titleSize: 'medium',
+	backgroundColor: DEFAULT_PAGE_BACKGROUND_COLOR
 };
 
 /**
