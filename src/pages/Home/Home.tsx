@@ -1,16 +1,16 @@
 import { FullPage, IconButton } from 'components';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
-import MapGL from 'react-map-gl';
-import React, { useState } from 'react';
+import MapGL, { ViewState } from 'react-map-gl';
 
+import React, { useState } from 'react';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const useStyle = makeStyles(styles);
 
 export const Home: React.FunctionComponent = () => {
 	const classes = useStyle();
-	const [viewport, setViewport] = useState({
+	const [viewport, setViewport] = useState<ViewState>({
 		latitude: 37.8,
 		longitude: -122.4,
 		zoom: 14,
