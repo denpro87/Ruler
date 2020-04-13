@@ -14,10 +14,26 @@ const subHeader: CSSProperties = {
   marginBottom: 15,
   marginTop: 16
 };
+const menuItem: CSSProperties = {
+  margin: '15px 10px 0 10px'
+};
 const subMenuItem: CSSProperties = { color: '#00b559' };
+const bigButton: CSSProperties = {
+  margin: '20px 10px',
+  backgroundColor: '#caf1dd',
+  color: '#00b559',
+  fontSize: '1.25rem',
+  fontWeight: 'bold',
+  lineHeight: 1.67,
+  padding: '12px 0 13px 0',
+  textTransform: 'capitalize',
+  borderRadius: 15
+};
 export const styles = createStyles({
 	innerContent,
   searchBox,
   subHeader,
-  subMenuItem
+  menuItem,
+  subMenuItem,
+  bigButton
 });
