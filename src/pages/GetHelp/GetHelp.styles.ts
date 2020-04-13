@@ -15,7 +15,7 @@ const subHeader: CSSProperties = {
   marginTop: 16
 };
 const menuItem: CSSProperties = {
-  margin: '15px 10px 0 10px'
+  margin: '15px 10px -5px 10px'
 };
 const subMenuItem: CSSProperties = { color: '#00b559' };
 const bigButton: CSSProperties = {
@@ -29,11 +29,17 @@ const bigButton: CSSProperties = {
   textTransform: 'capitalize',
   borderRadius: 15
 };
+const menuItemUnderLine: CSSProperties = {
+  backgroundColor: '#181c19',
+  opacity: '5%',
+  margin: '0 10px'
+}
 export const styles = createStyles({
 	innerContent,
   searchBox,
   subHeader,
   menuItem,
   subMenuItem,
-  bigButton
+  bigButton,
+  menuItemUnderLine
 });
