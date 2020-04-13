@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { IconButton } from 'components';
+import { FullPage, IconButton } from 'components';
 import { makeStyles } from '@material-ui/styles';
-import { styles } from './Home.types';
+import { mapViewer, styles } from './Home.styles';
 import { useState } from 'react';
 import MapGL from 'react-map-gl';
 
@@ -20,18 +20,21 @@ export const Home: React.FunctionComponent = () => {
 	});
 
 	return (
-		<MapGL
-			{...viewport}
-			width="100vw"
-			height="100vh"
-			mapStyle="mapbox://styles/mapbox/streets-v11"
-			onViewportChange={setViewport}
-			mapboxApiAccessToken={MAPBOX_TOKEN}
-		>
-			<IconButton className={classes.reportIcon} iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }} />
-			<IconButton className={classes.zonesIcon} iconProps={{ iconName: 'zones', primaryColor: 'black', secondaryColor: 'red' }} />
-			<IconButton className={classes.vehicleIcon} iconProps={{ iconName: 'vehicle', primaryColor: 'black', secondaryColor: 'red' }} />
-			<IconButton className={classes.findMeIcon} iconProps={{ iconName: 'find-me', primaryColor: 'black', secondaryColor: 'red' }} />
-		</MapGL>
+		<FullPage>
+			<MapGL
+				{...viewport}
+				width="100%"
+				height="100%"
+				style={mapViewer}
+				mapStyle="mapbox://styles/mapbox/streets-v11"
+				onViewportChange={setViewport}
+				mapboxApiAccessToken={MAPBOX_TOKEN}
+			>
+				<IconButton className={classes.reportIcon} iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }} />
+				<IconButton className={classes.zonesIcon} iconProps={{ iconName: 'zones', primaryColor: 'black', secondaryColor: 'red' }} />
+				<IconButton className={classes.vehicleIcon} iconProps={{ iconName: 'vehicle', primaryColor: 'black', secondaryColor: 'red' }} />
+				<IconButton className={classes.findMeIcon} iconProps={{ iconName: 'find-me', primaryColor: 'black', secondaryColor: 'red' }} />
+			</MapGL>
+		</FullPage>
 	);
 };

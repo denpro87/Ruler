@@ -1,5 +1,13 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
 
+export const mapViewer: CSSProperties = {
+	position: 'absolute',
+	top: 0,
+	right: 0,
+	bottom: 0,
+	left: 0
+};
+
 const reportIcon: CSSProperties = {
 	position: 'absolute',
 	top: 30,
