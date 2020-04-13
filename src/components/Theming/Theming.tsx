@@ -10,6 +10,6 @@ export const Theming: React.FunctionComponent = ({ children }) => {
 	if (document.fonts?.onloadingdone) {
 		document.fonts.onloadingdone = () => console.log('Fonts are initialized.');
 	}
-
+  document.body.setAttribute('data-theme', 'light');
 	return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };

@@ -1,3 +1,4 @@
+import { IonActionSheet } from '@ionic/react';
 import { Divider, Button, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { Page, SidebarMenuItem } from 'components';
@@ -27,7 +28,7 @@ const items = [
   },
   {
     title: 'Add report',
-    href: '/gethelp/add-report'
+    // href: '/gethelp/add-report'
   },
   {
     title: 'My reports',
@@ -42,6 +43,11 @@ export const GetHelp: React.FunctionComponent = () => {
 
   const classes = useStyles();
   const history = useHistory();
+  const [showAddReport, setShowAddReport] = React.useState(false);
+
+  const onHandleAddReport = () => {
+    setShowAddReport(true);
+  }
 	return (
 		<>
 			<Page title="Get help" titleSize="large">
@@ -49,13 +55,53 @@ export const GetHelp: React.FunctionComponent = () => {
           {
             items.map((item, index) => (
               <Stack.Item key={index}>
-                <SidebarMenuItem className={classes.menuItem} title={item.title} href={item.href} />
-                <Divider />
+                {
+                  index > 0 &&
+                    <Divider className={classes.menuItemUnderLine} />
+                }
+                <SidebarMenuItem
+                  className={classes.menuItem}
+                  title={item.title}
+                  href={item.href}
+                  onClick={() => index === 4 ? onHandleAddReport() : null}
+                />
               </Stack.Item>
             ))
           }
         </Stack>
         <Button className={classes.bigButton} onClick={() => history.goBack()}>Back</Button>
+        <IonActionSheet
+          isOpen={showAddReport}
+          cssClass='gethelp-action-sheet'
+          onDidDismiss={() => setShowAddReport(false)}
+          header="Anything wrong?"
+          buttons={[{
+              text: 'Let us know! We are here for your 24/7',
+              role: 'destructive',
+              cssClass: 'gethelp-action-title',
+            },
+            {
+            text: 'Report a badly parked vehicle',
+            // role: 'destructive',
+            cssClass: 'gethelp-action-button gethelp-action-dadly-button',
+            handler: () => {
+              console.log('badly parked');
+            }
+          }, {
+            text: 'The vehicle is damaged',
+            cssClass: 'gethelp-action-button gethelp-action-damage-button',
+            handler: () => {
+              console.log('vehicle is damaged.');
+            }
+          }, {
+            text: 'Contact Ruler',
+            cssClass: 'gethelp-action-button gethelp-action-ruler-button',
+            handler: () => {
+              console.log('contact ruler');
+            }
+          }]}
+        >
+      </IonActionSheet>
 			</Page>
 		</>
 	);
