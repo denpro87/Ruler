@@ -12,11 +12,7 @@ import {
 	Welcome
 } from 'pages';
 
-import {
-  GetHelp,
-  Faq,
-  Privacy
-} from 'pages/GetHelp';
+import { GetHelp, Faq, Privacy } from 'pages/GetHelp';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
@@ -43,13 +39,13 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/settings/notifications" component={Notifications} exact />
 					<Route path="/settings/languages" component={Languages} exact />
 					<Route path="/settings/profile" component={Profile} exact />
-          <Route path="/settings/dark-mode" component={DarkMode} exact />
+					<Route path="/settings/dark-mode" component={DarkMode} exact />
 
-          <Route path="/gethelp" component={GetHelp} exact />
-          <Route path="/gethelp/faq" component={Faq} exact />
-          <Route path="/gethelp/privacy-policy" component={Privacy} exact />
+					<Route path="/gethelp" component={GetHelp} exact />
+					<Route path="/gethelp/faq" component={Faq} exact />
+					<Route path="/gethelp/privacy-policy" component={Privacy} exact />
 
-          <Route exact path="/" render={() => <Redirect to="/splash" />} />
+					<Route exact path="/" render={() => <Redirect to="/splash" />} />
 				</IonRouterOutlet>
 			</IonReactRouter>
 		</IonApp>
