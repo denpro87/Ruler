@@ -7,27 +7,31 @@ const innerContent: CSSProperties = {
 
 const searchBox: CSSProperties = { marginTop: '25px', marginBottom: '25px' };
 const subHeader: CSSProperties = {
-  fontSize: '1.67rem',
+  fontSize: '20px',
   fontWeight: 'bold',
   lineHeight: 1.5,
   marginLeft: 10,
   marginBottom: 15,
-  marginTop: 16
+  marginTop: 16,
+  color: '#181c19',
 };
 const menuItem: CSSProperties = {
-  margin: '15px 10px -5px 10px'
+  margin: '15px 10px -5px 10px',
+  color: '#181c19',
+  fontSize: 15
 };
-const subMenuItem: CSSProperties = { color: '#00b559' };
+const subMenuItem: CSSProperties = { color: '#00b559', fontSize: '15px' };
 const bigButton: CSSProperties = {
   margin: '20px 10px',
   backgroundColor: '#caf1dd',
   color: '#00b559',
-  fontSize: '1.25rem',
+  fontSize: 15,
   fontWeight: 'bold',
   lineHeight: 1.67,
   padding: '12px 0 13px 0',
   textTransform: 'capitalize',
-  borderRadius: 15
+  borderRadius: 15,
+  height: 50
 };
 const menuItemUnderLine: CSSProperties = {
   backgroundColor: '#181c19',
