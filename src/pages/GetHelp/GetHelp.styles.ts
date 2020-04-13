@@ -7,16 +7,11 @@ const innerContent: CSSProperties = {
 
 const searchBox: CSSProperties = { marginTop: '25px', marginBottom: '25px' };
 const subHeader: CSSProperties = {
-<<<<<<< HEAD
   fontSize: '20px',
-=======
-  fontSize: '1.67rem',
->>>>>>> add get help and faq page
   fontWeight: 'bold',
   lineHeight: 1.5,
   marginLeft: 10,
   marginBottom: 15,
-<<<<<<< HEAD
   marginTop: 16,
   color: '#181c19',
 };
@@ -43,21 +38,12 @@ const menuItemUnderLine: CSSProperties = {
   opacity: '5%',
   margin: '0 10px'
 }
-=======
-  marginTop: 16
-};
-const subMenuItem: CSSProperties = { color: '#00b559' };
->>>>>>> add get help and faq page
 export const styles = createStyles({
 	innerContent,
   searchBox,
   subHeader,
-<<<<<<< HEAD
   menuItem,
   subMenuItem,
   bigButton,
   menuItemUnderLine
-=======
-  subMenuItem
->>>>>>> add get help and faq page
 });
