@@ -1,9 +1,8 @@
-import * as React from 'react';
 import { FullPage, IconButton } from 'components';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
-import { useState } from 'react';
 import MapGL from 'react-map-gl';
+import React, { useState } from 'react';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
