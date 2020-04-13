@@ -2,6 +2,7 @@ import {
 	ChangePassword,
 	DarkMode,
 	DriveLicence,
+	Home,
 	Languages,
 	News,
 	Notifications,
@@ -27,6 +28,7 @@ export const App: React.FunctionComponent = () => (
 		<IonApp>
 			<IonReactRouter>
 				<IonRouterOutlet>
+					<Route path="/home" component={Home} exact />
 					<Route path="/splash" component={Splash} exact />
 					<Route path="/settings" component={Settings} exact />
 					<Route path="/service-providers/:provider?" component={ServiceProviders} exact />
