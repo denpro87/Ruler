@@ -16,7 +16,7 @@
 
 .gethelp-action-sheet .action-sheet-container .action-sheet-group .action-sheet-title {
   color: #181c19;
-  font-size: 1.67rem;
+  font-size: 20px;
   line-height: 1.5;
   font-weight: bold;
   padding-bottom: 5px;
@@ -26,7 +26,7 @@
   margin-bottom: 15px;
   border-radius: 15px;
   height: 50px !important;
-  font-size: 1.25rem !important;
+  font-size: 15px !important;
   padding: 12px 0px 13px 0px !important;
   background-repeat: no-repeat !important;
   background-position: 10px 10px !important;
@@ -47,6 +47,7 @@
 .gethelp-action-title {
   background: transparent !important;
   padding: 0 !important;
+  font-size: 15px !important;
   line-height: 1.67;
   font-weight: 600;
   opacity: 0.5;
