@@ -59,7 +59,15 @@ export const Menu: React.FunctionComponent<IMenuProps> = props => {
 
 	return (
 		<div>
-			<SwipeableDrawer anchor="left" open={open} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>
+			<SwipeableDrawer
+				anchor="left"
+				open={open}
+				onClose={toggleDrawer(false)}
+				onOpen={toggleDrawer(true)}
+				PaperProps={{
+					className: classes.menuPaper
+				}}
+			>
 				{renderMenuList()}
 			</SwipeableDrawer>
 		</div>

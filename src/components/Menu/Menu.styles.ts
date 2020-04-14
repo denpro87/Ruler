@@ -14,6 +14,11 @@ const menu: CSSProperties = {
 	justifyContent: 'space-between'
 };
 
+const menuPaper: CSSProperties = {
+	borderTopRightRadius: 15,
+	borderBottomRightRadius: 15
+};
+
 const listItem: CSSProperties = {
 	padding: `${pxToRem(12.5)} ${pxToRem(20)}}`
 };
@@ -46,6 +51,7 @@ const list: CSSProperties = {
 export const styles = createStyles({
 	footer,
 	menu,
+	menuPaper,
 	list,
 	listItem,
 	listItemIcon,
