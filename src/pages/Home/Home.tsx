@@ -6,10 +6,10 @@ import MapGL, { ViewState } from 'react-map-gl';
 import React, { useState } from 'react';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
-const useStyle = makeStyles(styles);
+const useStyles = makeStyles(styles);
 
 export const Home: React.FunctionComponent = () => {
-	const classes = useStyle();
+	const classes = useStyles();
 	const [viewport, setViewport] = useState<ViewState>({
 		latitude: 37.8,
 		longitude: -122.4,
