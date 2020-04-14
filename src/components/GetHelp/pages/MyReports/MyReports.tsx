@@ -1,8 +1,8 @@
 import { Page } from 'components';
 import { makeStyles } from '@material-ui/core';
-import { styles } from './GetHelp.styles';
-import { IReportProps } from './GetHelp.types';
-import { Report } from './components';
+import { styles } from './MyReports.styles';
+import { IReportProps } from './MyReports.types';
+import { Report } from '../../../../pages/GetHelp/components';
 
 import React from 'react';
 
