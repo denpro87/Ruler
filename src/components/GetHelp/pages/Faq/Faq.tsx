@@ -1,7 +1,7 @@
-import { Page, SidebarMenuItem, SearchBox } from 'components';
-import { makeStyles, Typography } from '@material-ui/core';
-import { Stack } from '@fluentui/react';
-import { styles } from './GetHelp.styles';
+import { Page, SearchBox } from 'components';
+import { Typography, makeStyles, List, ListItem, ListItemText } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+import { styles } from './Faq.styles';
 
 import React from 'react';
 
@@ -71,25 +71,23 @@ export const Faq: React.FunctionComponent = () => {
 	};
 
 	return (
-		<>
-			<Page title="FAQ" titleSize="medium">
-				<SearchBox className={classes.searchBox} onChange={filter} />
-				{types.map((type, index) => {
-					const typeQuestions = questions.filter(item => item.type === type.type);
-					return (
-						<div key={`${index}-type`}>
-							{typeQuestions.length > 0 && <Typography className={classes.subHeader}>{type.title}</Typography>}
-							<Stack horizontalAlign="stretch" grow={1} tokens={{ childrenGap: 0 }} verticalFill>
-								{typeQuestions.map((question, index) => (
-									<Stack.Item key={index}>
-										<SidebarMenuItem className={classes.subMenuItem} title={question.title} href={question.href} />
-									</Stack.Item>
-								))}
-							</Stack>
-						</div>
-					);
-				})}
-			</Page>
-		</>
+		<Page title="FAQ" titleSize="medium">
+			<SearchBox className={classes.searchBox} onChange={filter} />
+			{types.map((type, index) => {
+				const typeQuestions = questions.filter(item => item.type === type.type);
+				return (
+					<div key={`${index}-type`}>
+						{typeQuestions.length > 0 && <Typography className={classes.subHeader}>{type.title}</Typography>}
+						<List className={classes.list}>
+							{typeQuestions.map((question, index) => (
+								<ListItem key={index} className={classes.listItem} component={RouterLink} to={question.href}>
+									<ListItemText primary={question.title} classes={{ primary: classes.text }} />
+								</ListItem>
+							))}
+						</List>
+					</div>
+				);
+			})}
+		</Page>
 	);
 };

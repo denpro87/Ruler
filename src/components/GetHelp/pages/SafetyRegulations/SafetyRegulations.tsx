@@ -25,19 +25,17 @@ export const SafetyRegulations: React.FunctionComponent = () => {
 	const classes = useStyles();
 
 	return (
-		<>
-			<Page title="Safety regulations" titleSize="medium">
-				<List>
-					{items.map((item, index) => (
-						<div key={index}>
-							<ListItem className={classes.listItem} component={RouterLink} to={item.href}>
-								<ListItemText primary={item.title} classes={{ primary: classes.text }} />
-							</ListItem>
-							<Divider component="li" className={classes.divider} />
-						</div>
-					))}
-				</List>
-			</Page>
-		</>
+		<Page title="Safety regulations" titleSize="medium">
+			<List>
+				{items.map((item, index) => (
+					<div key={index}>
+						<ListItem className={classes.listItem} component={RouterLink} to={item.href}>
+							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
+						</ListItem>
+						<Divider component="li" className={classes.divider} />
+					</div>
+				))}
+			</List>
+		</Page>
 	);
 };

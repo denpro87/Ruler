@@ -1,7 +1,7 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import { BlackIcon } from 'components';
-import { styles } from '../GetHelp.styles';
-import { IReportProps } from '../GetHelp.types';
+import { styles } from './Report.styles';
+import { IReportProps } from '../../GetHelp.types';
 import React from 'react';
 
 const useStyles = makeStyles(styles);

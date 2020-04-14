@@ -2,7 +2,7 @@ import { Page } from 'components';
 import { makeStyles } from '@material-ui/core';
 import { styles } from './GetHelp.styles';
 import { IReportProps } from './GetHelp.types';
-import { Report } from './components/Report';
+import { Report } from './components';
 
 import React from 'react';
 
