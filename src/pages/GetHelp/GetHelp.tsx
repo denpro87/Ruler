@@ -24,7 +24,11 @@ const items = [
 	},
 	{
 		title: 'Contact us',
+<<<<<<< HEAD
 		href: '/gethelp/contact'
+=======
+		href: '/gethelp/contactus'
+>>>>>>> add my report page
 	},
 	{
 		title: 'Add report'
@@ -63,9 +67,17 @@ export const GetHelp: React.FunctionComponent = () => {
 						</Stack.Item>
 					))}
 				</Stack>
+<<<<<<< HEAD
 				<Button className={classes.bigButton} onClick={() => history.goBack()}>
 					Back
 				</Button>
+=======
+				<div className={classes.buttonWrapper}>
+					<Button className={classes.bigButton} onClick={() => history.goBack()}>
+						Back
+					</Button>
+				</div>
+>>>>>>> add my report page
 				<IonActionSheet
 					isOpen={showAddReport}
 					cssClass="gethelp-action-sheet"
