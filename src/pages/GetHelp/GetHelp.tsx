@@ -12,31 +12,30 @@ const useStyles = makeStyles(styles);
 const items = [
 	{
 		title: 'Safety regulations',
-		href: '/gethelp/regulations'
+		href: '/get-help/regulations'
 	},
 	{
 		title: 'How to ride',
-		href: '/gethelp/ride'
+		href: '/get-help/ride'
 	},
 	{
 		title: 'FAQ',
-		href: '/gethelp/faq'
+		href: '/get-help/faq'
 	},
 	{
 		title: 'Contact us',
-		href: '/gethelp/contactus'
+		href: '/get-help/contact-us'
 	},
 	{
 		title: 'Add report'
-		// href: '/gethelp/add-report'
 	},
 	{
 		title: 'My reports',
-		href: '/gethelp/my-reports'
+		href: '/get-help/my-reports'
 	},
 	{
 		title: 'Privacy Policy',
-		href: '/gethelp/privacy-policy'
+		href: '/get-help/privacy-policy'
 	}
 ];
 export const GetHelp: React.FunctionComponent = () => {
