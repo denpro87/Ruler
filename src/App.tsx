@@ -16,7 +16,14 @@ import {
   GetHelp,
   Faq,
   Privacy,
-  Contactus
+  Contactus,
+  FaqUnlock,
+  FaqStart,
+  FaqPause,
+  FaqLock,
+  FaqFinding,
+  FaqPark,
+  FaqZones
 } from 'pages/GetHelp';
 
 import { CssBaseline } from '@material-ui/core';
@@ -48,6 +55,13 @@ export const App: React.FunctionComponent = () => (
 
           <Route path="/gethelp" component={GetHelp} exact />
           <Route path="/gethelp/faq" component={Faq} exact />
+          <Route path="/gethelp/faq/unlock" component={FaqUnlock} exact />
+          <Route path="/gethelp/faq/start" component={FaqStart} exact />
+          <Route path="/gethelp/faq/pause" component={FaqPause} exact />
+          <Route path="/gethelp/faq/lock" component={FaqLock} exact />
+          <Route path="/gethelp/faq/finding" component={FaqFinding} exact />
+          <Route path="/gethelp/faq/park" component={FaqPark} exact />
+          <Route path="/gethelp/faq/zones" component={FaqZones} exact />
           <Route path="/gethelp/privacy-policy" component={Privacy} exact />
           <Route path="/gethelp/contactus" component={Contactus} exact />
 
