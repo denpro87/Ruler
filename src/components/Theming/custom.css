@@ -12,6 +12,7 @@
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 	padding: 20px 20px 4px 20px;
+	font-family: 'Montserrat';
 }
 
 .gethelp-action-sheet .action-sheet-container .action-sheet-group .action-sheet-title {
@@ -27,6 +28,7 @@
 	border-radius: 15px;
 	height: 50px !important;
 	font-size: 15px !important;
+	font-weight: bold !important;
 	padding: 12px 0px 13px 0px !important;
 	background-repeat: no-repeat !important;
 	background-position: 10px 10px !important;
