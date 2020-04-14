@@ -9,25 +9,25 @@ export const mapViewer: CSSProperties = {
 	left: 0
 };
 
-const reportIcon: CSSProperties = {
+const reportButton: CSSProperties = {
 	position: 'absolute',
 	top: pxToRem(30),
 	left: pxToRem(20)
 };
 
-const zonesIcon: CSSProperties = {
+const zonesButton: CSSProperties = {
 	position: 'absolute',
 	top: pxToRem(30),
 	right: pxToRem(20)
 };
 
-const vehicleIcon: CSSProperties = {
+const vehicleButton: CSSProperties = {
 	position: 'absolute',
 	bottom: pxToRem(30),
 	left: pxToRem(20)
 };
 
-const findMeIcon: CSSProperties = {
+const findMeButton: CSSProperties = {
 	position: 'absolute',
 	bottom: pxToRem(30),
 	right: pxToRem(20)
@@ -63,10 +63,10 @@ const filterButton: CSSProperties = {
 	marginRight: pxToRem(10)
 };
 export const styles = createStyles({
-	reportIcon,
-	zonesIcon,
-	vehicleIcon,
-	findMeIcon,
+	reportButton,
+	zonesButton,
+	vehicleButton,
+	findMeButton,
 	homeButtons,
 	qrButton,
 	menuButton,

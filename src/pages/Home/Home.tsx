@@ -29,10 +29,16 @@ export const Home: React.FunctionComponent = () => {
 				onViewportChange={setViewport}
 				mapboxApiAccessToken={MAPBOX_TOKEN}
 			>
-				<IconButton className={classes.reportIcon} iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }} />
-				<IconButton className={classes.zonesIcon} iconProps={{ iconName: 'zones', primaryColor: 'black', secondaryColor: '#f8ca06' }} />
-				<IconButton className={classes.vehicleIcon} iconProps={{ iconName: 'vehicle', primaryColor: 'black', secondaryColor: '#f8ca06' }} />
-				<IconButton className={classes.findMeIcon} iconProps={{ iconName: 'find-me', primaryColor: 'black', secondaryColor: '#f8ca06' }} />
+				<IconButton className={classes.reportButton} iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }} />
+				<IconButton className={classes.zonesButton} iconProps={{ iconName: 'zones', primaryColor: 'black', secondaryColor: '#f8ca06' }} />
+				<IconButton
+					className={classes.vehicleButton}
+					iconProps={{ iconName: 'vehicle', primaryColor: 'black', secondaryColor: '#f8ca06' }}
+				/>
+				<IconButton
+					className={classes.findMeButton}
+					iconProps={{ iconName: 'find-me', primaryColor: 'black', secondaryColor: '#f8ca06' }}
+				/>
 				<div className={classes.homeButtons}>
 					<IconButton
 						className={classes.menuButton}
