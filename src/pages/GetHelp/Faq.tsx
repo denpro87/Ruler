@@ -72,7 +72,7 @@ export const Faq: React.FunctionComponent = () => {
 
 	return (
     <>
-      <Page title="FAQ" titleSize="large">
+      <Page title="FAQ" titleSize="medium">
         <SearchBox className={classes.searchBox} onChange={filter} />
         {
           types.map((type, index) => {
