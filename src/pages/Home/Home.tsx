@@ -30,9 +30,9 @@ export const Home: React.FunctionComponent = () => {
 				mapboxApiAccessToken={MAPBOX_TOKEN}
 			>
 				<IconButton className={classes.reportIcon} iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }} />
-				<IconButton className={classes.zonesIcon} iconProps={{ iconName: 'zones', primaryColor: 'black', secondaryColor: 'red' }} />
-				<IconButton className={classes.vehicleIcon} iconProps={{ iconName: 'vehicle', primaryColor: 'black', secondaryColor: 'red' }} />
-				<IconButton className={classes.findMeIcon} iconProps={{ iconName: 'find-me', primaryColor: 'black', secondaryColor: 'red' }} />
+				<IconButton className={classes.zonesIcon} iconProps={{ iconName: 'zones', primaryColor: 'black', secondaryColor: '#f8ca06' }} />
+				<IconButton className={classes.vehicleIcon} iconProps={{ iconName: 'vehicle', primaryColor: 'black', secondaryColor: '#f8ca06' }} />
+				<IconButton className={classes.findMeIcon} iconProps={{ iconName: 'find-me', primaryColor: 'black', secondaryColor: '#f8ca06' }} />
 			</MapGL>
 		</FullPage>
 	);
