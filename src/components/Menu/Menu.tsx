@@ -10,7 +10,7 @@ const useStyles = makeStyles(styles);
 export const Menu: React.FunctionComponent<IMenuProps> = props => {
 	const classes = useStyles();
 
-	const [open, setOpen] = React.useState(true);
+	const [open, setOpen] = React.useState(false);
 
 	const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent): void => {
 		if (
