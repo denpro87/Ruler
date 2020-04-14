@@ -24,7 +24,8 @@ import {
 	FaqFinding,
 	FaqPark,
 	FaqZones,
-	SafetyRegulations
+	SafetyRegulations,
+	SafetyScooter
 } from 'pages/GetHelp';
 
 import { CssBaseline } from '@material-ui/core';
@@ -66,6 +67,7 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/gethelp/privacy-policy" component={Privacy} exact />
 					<Route path="/gethelp/contactus" component={Contactus} exact />
 					<Route path="/gethelp/regulations" component={SafetyRegulations} exact />
+					<Route path="/gethelp/regulations/scooter" component={SafetyScooter} exact />
 
 					<Route exact path="/" render={() => <Redirect to="/splash" />} />
 				</IonRouterOutlet>

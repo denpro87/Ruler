@@ -92,6 +92,12 @@ const faqContentItem: CSSProperties = {
 };
 const faqLi: CSSProperties = {
   marginRight: 9
+};
+const subTitle: CSSProperties = {
+  margin: '20px 0 5px 0',
+  color: '#181c19',
+  fontWeight: 600,
+  fontSize: 15
 }
 export const styles = createStyles({
 	innerContent,
@@ -108,5 +114,6 @@ export const styles = createStyles({
   faqFooter,
   faqLi,
   faqContentItem,
-  greenText
+  greenText,
+  subTitle
 });
