@@ -12,7 +12,20 @@ import {
 	Welcome
 } from 'pages';
 
-import { GetHelp, Faq, Privacy, Contactus, FaqUnlock, FaqStart, FaqPause, FaqLock, FaqFinding, FaqPark, FaqZones } from 'pages/GetHelp';
+import {
+	GetHelp,
+	Faq,
+	Privacy,
+	Contactus,
+	FaqUnlock,
+	FaqStart,
+	FaqPause,
+	FaqLock,
+	FaqFinding,
+	FaqPark,
+	FaqZones,
+	SafetyRegulations
+} from 'pages/GetHelp';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
@@ -52,6 +65,7 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/gethelp/faq/zones" component={FaqZones} exact />
 					<Route path="/gethelp/privacy-policy" component={Privacy} exact />
 					<Route path="/gethelp/contactus" component={Contactus} exact />
+					<Route path="/gethelp/regulations" component={SafetyRegulations} exact />
 
 					<Route exact path="/" render={() => <Redirect to="/splash" />} />
 				</IonRouterOutlet>
