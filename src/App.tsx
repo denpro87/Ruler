@@ -50,7 +50,7 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/gethelp/faq/park" component={getHelp.FaqPark} exact />
 					<Route path="/gethelp/faq/zones" component={getHelp.FaqZones} exact />
 					<Route path="/gethelp/privacy-policy" component={getHelp.Privacy} exact />
-					<Route path="/gethelp/contactus" component={getHelp.Contactus} exact />
+					<Route path="/gethelp/contactus" component={getHelp.ContactUs} exact />
 					<Route path="/gethelp/regulations" component={getHelp.SafetyRegulations} exact />
 					<Route path="/gethelp/regulations/scooter" component={getHelp.SafetyScooter} exact />
 					<Route path="/gethelp/my-reports" component={getHelp.MyReports} exact />
