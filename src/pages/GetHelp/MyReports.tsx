@@ -1,6 +1,5 @@
-import { Page, SidebarMenuItem, SearchBox } from 'components';
-import { makeStyles, Typography } from '@material-ui/core';
-import { Stack } from '@fluentui/react';
+import { Page } from 'components';
+import { makeStyles } from '@material-ui/core';
 import { styles } from './GetHelp.styles';
 import { IReportProps } from './GetHelp.types';
 import { Report } from './components/Report';

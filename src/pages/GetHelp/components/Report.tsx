@@ -1,4 +1,4 @@
-import { makeStyles, Box, Typography } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import { BlackIcon } from 'components';
 import { styles } from '../GetHelp.styles';
 import { IReportProps } from '../GetHelp.types';
