@@ -20,7 +20,7 @@ export const Contactus: React.FunctionComponent = () => {
       <Page title='Contact us' titleSize='medium'>
         <Stack horizontalAlign='stretch' grow={1} tokens={{ childrenGap: 0 }} verticalFill>
           <Stack.Item>
-            <Box className={classes.li}>
+            <Box className={classes.li} style={{ marginTop: 17 }}>
               <GreenIcon iconName='support'></GreenIcon>
               <Typography variant="h6">{info.phoneNumber}</Typography>
             </Box>
@@ -38,9 +38,11 @@ export const Contactus: React.FunctionComponent = () => {
             </Box>
           </Stack.Item>
           <Stack.Item>
-            <Typography variant="h6" className={classes.contactContent}>
-              We have our head-office located in City, Country and our regional offices across all cities of our operations. Our team consists of over 30 dedicated members who are actively working to ensure a seamless, secure and hassle-free mobility experience for our consumers.
-            </Typography>
+            <div style={{ paddingLeft: 40 }}>
+              <Typography variant="h6" className={classes.content}>
+                We have our head-office located in City, Country and our regional offices across all cities of our operations. Our team consists of over 30 dedicated members who are actively working to ensure a seamless, secure and hassle-free mobility experience for our consumers.
+              </Typography>
+            </div>
           </Stack.Item>
         </Stack>
         <div className={classes.buttonWrapper}>

@@ -51,7 +51,7 @@ const menuItemUnderLine: CSSProperties = {
 const li: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
-  margin: '17px 0 5px 0',
+  margin: '27px 0 0 0',
 	'& h6': {
 		width: '100%',
     marginLeft: '10px',
@@ -64,19 +64,32 @@ const li: CSSProperties = {
 		height: '30px'
 	}
 };
-const contactContent: CSSProperties = {
+const content: CSSProperties = {
   fontSize: 15,
+  fontFamily: 'Montserrat',
   opacity: 0.5,
   lineHeight: 1.67,
   fontWeight: 600,
-  marginLeft: 40,
-  marginTop: -5
+  marginTop: 5
 };
 const buttonIcon: CSSProperties = {
   position: 'absolute',
   left: 15
+};
+const faqFooter: CSSProperties = {
+  display: 'flex',
+  marginBottom: 23,
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center'
+};
+const faqContentItem: CSSProperties = {
+  display: 'flex',
+  marginTop: 10
+};
+const faqLi: CSSProperties = {
+  marginRight: 9
 }
-
 export const styles = createStyles({
 	innerContent,
   searchBox,
@@ -86,7 +99,10 @@ export const styles = createStyles({
   buttonWrapper,
   bigButton,
   menuItemUnderLine,
-  contactContent,
+  content,
   li,
-  buttonIcon
+  buttonIcon,
+  faqFooter,
+  faqLi,
+  faqContentItem
 });

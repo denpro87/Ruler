@@ -1,3 +1,4 @@
-export interface ISettingsState {}
-
-export interface ISettingsProps {}
+export interface IFaqContentProps {
+  title?: string;
+  content?: string;
+}
