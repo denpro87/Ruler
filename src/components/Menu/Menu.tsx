@@ -1,8 +1,8 @@
 import { Box, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, SwipeableDrawer, makeStyles } from '@material-ui/core';
 import { GreenButton, Icon, IconButton } from 'components';
 import { IMenuProps } from './Menu.types';
+import { listItemIcon, styles } from './Menu.styles';
 import { menuItems } from './MenuList';
-import { styles } from './Menu.styles';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
@@ -29,12 +29,19 @@ export const Menu: React.FunctionComponent<IMenuProps> = props => {
 			<List className={classes.list}>
 				{menuItems.map((item, index) => (
 					<ListItem key={item.text} button className={classes.listItem}>
-						<ListItemIcon className={classes.listItemIcon}>
+						{/* ListItemIcon classname doesn't work??? */}
+						<ListItemIcon className={classes.listItemIcon} style={listItemIcon}>
 							<Icon {...item.iconProps} />
 						</ListItemIcon>
-						<ListItemText primary={item.text} className={classes.listItemText} />
+
+						<ListItemText
+							primaryTypographyProps={{ className: classes.listItemTextPrimary }}
+							primary={item.text}
+							className={classes.listItemText}
+						/>
+
 						{index === 0 && (
-							<ListItemSecondaryAction className={classes.listItemSecondaryAction}>
+							<ListItemSecondaryAction>
 								<IconButton iconName="notification" />
 							</ListItemSecondaryAction>
 						)}

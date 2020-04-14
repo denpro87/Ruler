@@ -18,16 +18,16 @@ const listItem: CSSProperties = {
 	padding: `${pxToRem(12.5)} ${pxToRem(20)}}`
 };
 
-const listItemIcon: CSSProperties = {
+export const listItemIcon: CSSProperties = {
 	minWidth: pxToRem(40)
 };
 
 const listItemText: CSSProperties = {
-	//   width: 145px;
-	// height: 25px;
-	// font-family: Montserrat;
 	marginTop: 0,
-	marginBottom: 0,
+	marginBottom: 0
+};
+
+const listItemTextPrimary: CSSProperties = {
 	...font({
 		fontSize: 15,
 		fontWeight: 600,
@@ -43,10 +43,6 @@ const list: CSSProperties = {
 	paddingTop: pxToRem(27.5)
 };
 
-const listItemSecondaryAction: CSSProperties = {
-	marginRight: 10
-};
-
 export const styles = createStyles({
 	footer,
 	menu,
@@ -54,5 +50,5 @@ export const styles = createStyles({
 	listItem,
 	listItemIcon,
 	listItemText,
-	listItemSecondaryAction
+	listItemTextPrimary
 });
