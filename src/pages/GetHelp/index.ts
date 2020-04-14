@@ -10,3 +10,4 @@ export * from './FaqFinding';
 export * from './FaqPark';
 export * from './FaqZones';
 export * from './SafetyRegulations';
+export * from './SafetyScooter';
