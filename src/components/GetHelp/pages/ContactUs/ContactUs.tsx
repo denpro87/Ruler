@@ -1,7 +1,7 @@
 import { Button, makeStyles, Box, Typography } from '@material-ui/core';
 import { Stack } from '@fluentui/react';
 import { Page, GreenIcon } from 'components';
-import { styles } from './GetHelp.styles';
+import { styles } from './ContactUs.styles';
 
 import React from 'react';
 
