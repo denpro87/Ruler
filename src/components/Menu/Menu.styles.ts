@@ -1,55 +1,53 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
+import { font, percentage, pxToRem } from 'styles';
 
 const footer: CSSProperties = {
-	position: 'absolute',
-	bottom: '0px',
-	width: '100%'
-};
-
-const notificationWrapper: CSSProperties = {
-	position: 'absolute',
-	top: '0px',
-	right: '0px'
+	padding: pxToRem(20)
 };
 
 const menu: CSSProperties = {
+	width: pxToRem(291),
+	height: percentage(1),
 	position: 'relative',
-	width: '100%',
-	height: '100%'
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'space-between'
 };
 
-const createAccountButton: CSSProperties = {
-	width: '100%',
-	borderRadius: '15px',
-	height: '50px'
+const listItem: CSSProperties = {
+	padding: `${pxToRem(12.5)} ${pxToRem(20)}}`
 };
 
-const notificationButton: CSSProperties = {
-	width: '50px',
-	background: 'white',
-	minWidth: '50px',
-	borderRadius: '15px',
-	boxShadow: '0 10px 20px 0 rgba(0, 0, 0, 0.07)',
-	height: '50px'
+const listItemIcon: CSSProperties = {
+	minWidth: pxToRem(40)
 };
 
-const sidebarWrapper: CSSProperties = {
-	'& .MuiDrawer-paper': {
-		maxWidth: '291px',
-		width: '100%',
-		padding: '40px 20px 20px',
-		background: 'white',
-		boxSizing: 'border-box',
-		borderTopRightRadius: '15px',
-		borderBottomRightRadius: '15px'
-	}
+const listItemText: CSSProperties = {
+	//   width: 145px;
+	// height: 25px;
+	// font-family: Montserrat;
+	marginTop: 0,
+	marginBottom: 0,
+	...font({
+		fontSize: 15,
+		fontWeight: 600,
+		fontStretch: 'normal',
+		fontStyle: 'normal',
+		lineHeight: 1.67,
+		letterSpacing: 'normal',
+		color: '#181c19'
+	})
+};
+
+const list: CSSProperties = {
+	paddingTop: pxToRem(27.5)
 };
 
 export const styles = createStyles({
 	footer,
 	menu,
-	createAccountButton,
-	notificationButton,
-	notificationWrapper,
-	sidebarWrapper
+	list,
+	listItem,
+	listItemIcon,
+	listItemText
 });
