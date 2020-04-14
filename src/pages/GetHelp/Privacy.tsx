@@ -66,7 +66,7 @@ export const Privacy: React.FunctionComponent = () => {
 
 	return (
     <>
-      <Page title="Privacy policy" titleSize="large">
+      <Page title="Privacy policy" titleSize="medium">
         <SearchBox className={classes.searchBox} onChange={filter} />
         {
           types.map((type, index) => {

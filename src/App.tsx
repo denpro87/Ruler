@@ -15,7 +15,8 @@ import {
 import {
   GetHelp,
   Faq,
-  Privacy
+  Privacy,
+  Contactus
 } from 'pages/GetHelp';
 
 import { CssBaseline } from '@material-ui/core';
@@ -48,6 +49,7 @@ export const App: React.FunctionComponent = () => (
           <Route path="/gethelp" component={GetHelp} exact />
           <Route path="/gethelp/faq" component={Faq} exact />
           <Route path="/gethelp/privacy-policy" component={Privacy} exact />
+          <Route path="/gethelp/contactus" component={Contactus} exact />
 
           <Route exact path="/" render={() => <Redirect to="/splash" />} />
 				</IonRouterOutlet>
