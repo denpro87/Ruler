@@ -11,23 +11,7 @@ import {
 	Splash,
 	Welcome
 } from 'pages';
-
-import {
-  GetHelp,
-  Faq,
-  Privacy,
-  Contactus,
-  FaqUnlock,
-  FaqStart,
-  FaqPause,
-  FaqLock,
-  FaqFinding,
-  FaqPark,
-  FaqZones,
-  SafetyRegulations,
-  SafetyScooter,
-  MyReports
-} from 'pages/GetHelp';
+import * as getHelp from 'pages/GetHelp';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
@@ -54,24 +38,24 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/settings/notifications" component={Notifications} exact />
 					<Route path="/settings/languages" component={Languages} exact />
 					<Route path="/settings/profile" component={Profile} exact />
-          <Route path="/settings/dark-mode" component={DarkMode} exact />
+					<Route path="/settings/dark-mode" component={DarkMode} exact />
 
-          <Route path="/gethelp" component={GetHelp} exact />
-          <Route path="/gethelp/faq" component={Faq} exact />
-          <Route path="/gethelp/faq/unlock" component={FaqUnlock} exact />
-          <Route path="/gethelp/faq/start" component={FaqStart} exact />
-          <Route path="/gethelp/faq/pause" component={FaqPause} exact />
-          <Route path="/gethelp/faq/lock" component={FaqLock} exact />
-          <Route path="/gethelp/faq/finding" component={FaqFinding} exact />
-          <Route path="/gethelp/faq/park" component={FaqPark} exact />
-          <Route path="/gethelp/faq/zones" component={FaqZones} exact />
-          <Route path="/gethelp/privacy-policy" component={Privacy} exact />
-          <Route path="/gethelp/contactus" component={Contactus} exact />
-          <Route path="/gethelp/regulations" component={SafetyRegulations} exact />
-          <Route path="/gethelp/regulations/scooter" component={SafetyScooter} exact />
-          <Route path="/gethelp/my-reports" component={MyReports} exact />
+					<Route path="/gethelp" component={getHelp.GetHelp} exact />
+					<Route path="/gethelp/faq" component={getHelp.Faq} exact />
+					<Route path="/gethelp/faq/unlock" component={getHelp.FaqUnlock} exact />
+					<Route path="/gethelp/faq/start" component={getHelp.FaqStart} exact />
+					<Route path="/gethelp/faq/pause" component={getHelp.FaqPause} exact />
+					<Route path="/gethelp/faq/lock" component={getHelp.FaqLock} exact />
+					<Route path="/gethelp/faq/finding" component={getHelp.FaqFinding} exact />
+					<Route path="/gethelp/faq/park" component={getHelp.FaqPark} exact />
+					<Route path="/gethelp/faq/zones" component={getHelp.FaqZones} exact />
+					<Route path="/gethelp/privacy-policy" component={getHelp.Privacy} exact />
+					<Route path="/gethelp/contactus" component={getHelp.Contactus} exact />
+					<Route path="/gethelp/regulations" component={getHelp.SafetyRegulations} exact />
+					<Route path="/gethelp/regulations/scooter" component={getHelp.SafetyScooter} exact />
+					<Route path="/gethelp/my-reports" component={getHelp.MyReports} exact />
 
-          <Route exact path="/" render={() => <Redirect to="/splash" />} />
+					<Route exact path="/" render={() => <Redirect to="/splash" />} />
 				</IonRouterOutlet>
 			</IonReactRouter>
 		</IonApp>
