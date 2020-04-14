@@ -33,9 +33,42 @@ const findMeIcon: CSSProperties = {
 	right: pxToRem(20)
 };
 
+const homeButtons: CSSProperties = {
+	position: 'absolute',
+	bottom: pxToRem(30),
+	left: '50%',
+	transform: 'translate(-50%, 0%)',
+	height: pxToRem(50),
+	borderRadius: pxToRem(15),
+	boxShadow: '0 10px 40px 0 rgba(0, 0, 0, 0.1)',
+	backgroundColor: '#ffffff',
+	display: 'flex',
+	alignItems: 'center'
+};
+
+const qrButton: CSSProperties = {
+	width: pxToRem(72),
+	height: pxToRem(72),
+	border: `solid ${pxToRem(5)} #ffffff`,
+	backgroundColor: '#00b559',
+	boxShadow: 'none',
+	margin: `0 ${pxToRem(6)}`
+};
+
+const menuButton: CSSProperties = {
+	marginLeft: pxToRem(10)
+};
+
+const filterButton: CSSProperties = {
+	marginRight: pxToRem(10)
+};
 export const styles = createStyles({
 	reportIcon,
 	zonesIcon,
 	vehicleIcon,
-	findMeIcon
+	findMeIcon,
+	homeButtons,
+	qrButton,
+	menuButton,
+	filterButton
 });
