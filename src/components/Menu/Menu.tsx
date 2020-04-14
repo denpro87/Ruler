@@ -1,5 +1,5 @@
-import { Box, List, ListItem, ListItemIcon, ListItemText, SwipeableDrawer, makeStyles } from '@material-ui/core';
-import { GreenButton, Icon } from 'components';
+import { Box, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, SwipeableDrawer, makeStyles } from '@material-ui/core';
+import { GreenButton, Icon, IconButton } from 'components';
 import { IMenuProps } from './Menu.types';
 import { menuItems } from './MenuList';
 import { styles } from './Menu.styles';
@@ -27,12 +27,17 @@ export const Menu: React.FunctionComponent<IMenuProps> = props => {
 	const renderMenuList = (): JSX.Element => (
 		<div className={classes.menu} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
 			<List className={classes.list}>
-				{menuItems.map(item => (
+				{menuItems.map((item, index) => (
 					<ListItem key={item.text} button className={classes.listItem}>
 						<ListItemIcon className={classes.listItemIcon}>
 							<Icon {...item.iconProps} />
 						</ListItemIcon>
 						<ListItemText primary={item.text} className={classes.listItemText} />
+						{index === 0 && (
+							<ListItemSecondaryAction className={classes.listItemSecondaryAction}>
+								<IconButton iconName="notification" />
+							</ListItemSecondaryAction>
+						)}
 					</ListItem>
 				))}
 			</List>

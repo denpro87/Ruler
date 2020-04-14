@@ -43,11 +43,16 @@ const list: CSSProperties = {
 	paddingTop: pxToRem(27.5)
 };
 
+const listItemSecondaryAction: CSSProperties = {
+	marginRight: 10
+};
+
 export const styles = createStyles({
 	footer,
 	menu,
 	list,
 	listItem,
 	listItemIcon,
-	listItemText
+	listItemText,
+	listItemSecondaryAction
 });
