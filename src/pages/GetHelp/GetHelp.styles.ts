@@ -44,6 +44,9 @@ const bigButton: CSSProperties = {
   height: 50,
   flex: 1
 };
+const greenText: CSSProperties = {
+  color: '#00b559'
+}
 const menuItemUnderLine: CSSProperties = {
   backgroundColor: '#181c19',
   opacity: '5%'
@@ -104,5 +107,6 @@ export const styles = createStyles({
   buttonIcon,
   faqFooter,
   faqLi,
-  faqContentItem
+  faqContentItem,
+  greenText
 });
