@@ -28,6 +28,7 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/settings/notifications" component={Notifications} exact />
 					<Route path="/settings/languages" component={Languages} exact />
 					<Route path="/settings/profile" component={settings.Profile} exact />
+					<Route path="/settings/change-email" component={settings.ChangeEmail} exact />
 					<Route path="/settings/dark-mode" component={DarkMode} exact />
 
 					<Route path="/get-help" component={getHelp.GetHelp} exact />
