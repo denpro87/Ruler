@@ -1,17 +1,6 @@
 import * as getHelp from 'pages/GetHelp';
-import {
-	ChangePassword,
-	DarkMode,
-	DriveLicence,
-	Languages,
-	News,
-	Notifications,
-	Profile,
-	ServiceProviders,
-	Settings,
-	Splash,
-	Welcome
-} from 'pages';
+import * as settings from 'pages/Settings';
+import { ChangePassword, DarkMode, DriveLicence, Languages, News, Notifications, ServiceProviders, Splash, Welcome } from 'pages';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
@@ -29,7 +18,7 @@ export const App: React.FunctionComponent = () => (
 			<IonReactRouter>
 				<IonRouterOutlet>
 					<Route path="/splash" component={Splash} exact />
-					<Route path="/settings" component={Settings} exact />
+					<Route path="/settings" component={settings.Settings} exact />
 					<Route path="/service-providers/:provider?" component={ServiceProviders} exact />
 					<Route path="/welcome" component={Welcome} exact />
 					<Route path="/news" component={News} exact />
@@ -37,7 +26,7 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/drive-license" component={DriveLicence} exact />
 					<Route path="/settings/notifications" component={Notifications} exact />
 					<Route path="/settings/languages" component={Languages} exact />
-					<Route path="/settings/profile" component={Profile} exact />
+					<Route path="/settings/profile" component={settings.Profile} exact />
 					<Route path="/settings/dark-mode" component={DarkMode} exact />
 
 					<Route path="/get-help" component={getHelp.GetHelp} exact />
