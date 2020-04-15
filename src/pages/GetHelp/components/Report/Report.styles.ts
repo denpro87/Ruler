@@ -1,5 +1,5 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { pxToRem, DEFAULT_FONT_FAMILY, dropShadow } from 'styles';
+import { DEFAULT_FONT_FAMILY, dropShadow, pxToRem } from 'styles';
 
 const content: CSSProperties = {
 	fontSize: pxToRem(15),
@@ -10,13 +10,13 @@ const content: CSSProperties = {
 	marginTop: pxToRem(5)
 };
 const reportContainer: CSSProperties = {
-  backgroundColor: '#f3f3f3',
-  marginTop: pxToRem(25),
-  borderRadius: pxToRem(15),
+	backgroundColor: '#f3f3f3',
+	marginTop: pxToRem(25),
+	borderRadius: pxToRem(15)
 };
 const reportHeaderWrapper: CSSProperties = {
 	backgroundColor: '#ffffff',
-		padding: `${pxToRem(20)} ${pxToRem(20)} ${pxToRem(20)} ${pxToRem(10)}`,
+	padding: `${pxToRem(20)} ${pxToRem(20)} ${pxToRem(20)} ${pxToRem(10)}`,
 	display: 'flex',
 	flexDirection: 'row',
 	justifyContent: 'space-between',
@@ -63,13 +63,13 @@ const reportTitleWrapper: CSSProperties = {
 	}
 };
 const reportIconWrapper: CSSProperties = {
-  width: pxToRem(40),
-  height: pxToRem(40),
-  borderRadius: pxToRem(20),
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'relative'
+	width: pxToRem(40),
+	height: pxToRem(40),
+	borderRadius: pxToRem(20),
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	position: 'relative'
 };
 const reportDataWrapper: CSSProperties = {
 	padding: `${pxToRem(5)} 0 ${pxToRem(20)} 0`,
@@ -95,14 +95,14 @@ const reportDataText: CSSProperties = {
 	color: '#181c19'
 };
 const reportBadge: CSSProperties = {
-  width: pxToRem(6),
-  height: pxToRem(6),
-  borderRadius: pxToRem(3),
-  backgroundColor: '#ffffff',
-  position: 'absolute',
-  top: pxToRem(12),
-  left: pxToRem(12)
-}
+	width: pxToRem(6),
+	height: pxToRem(6),
+	borderRadius: pxToRem(3),
+	backgroundColor: '#ffffff',
+	position: 'absolute',
+	top: pxToRem(12),
+	left: pxToRem(12)
+};
 const bgYellow: CSSProperties = {
 	backgroundColor: '#f8ca06'
 };
@@ -113,15 +113,15 @@ const bgWhite: CSSProperties = {
 	backgroundColor: '#ffffff'
 };
 export const styles = createStyles({
-  content,
-  reportContainer,
-  reportHeaderWrapper,
-  reportTitleWrapper,
-  reportDataWrapper,
-  reportIconWrapper,
-  reportDataText,
-  reportBadge,
-  bgYellow,
-  bgGreen,
-  bgWhite
+	content,
+	reportContainer,
+	reportHeaderWrapper,
+	reportTitleWrapper,
+	reportDataWrapper,
+	reportIconWrapper,
+	reportDataText,
+	reportBadge,
+	bgYellow,
+	bgGreen,
+	bgWhite
 });

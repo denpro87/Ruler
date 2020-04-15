@@ -9,5 +9,5 @@ const myReportContainer: CSSProperties = {
 };
 
 export const styles = createStyles({
-    myReportContainer
-  });
+	myReportContainer
+});

@@ -1,8 +1,8 @@
+import { IReportProps } from './MyReports.types';
 import { Page } from 'components';
+import { Report } from 'pages/GetHelp/components';
 import { makeStyles } from '@material-ui/core';
 import { styles } from './MyReports.styles';
-import { IReportProps } from './MyReports.types';
-import { Report } from '../../../../pages/GetHelp/components';
 
 import React from 'react';
 
@@ -45,6 +45,7 @@ const data: IReportProps[] = [
 		}
 	}
 ];
+
 export const MyReports: React.FunctionComponent = () => {
 	const classes = useStyles();
 

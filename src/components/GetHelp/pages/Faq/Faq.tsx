@@ -1,5 +1,5 @@
+import { List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
 import { Page, SearchBox } from 'components';
-import { Typography, makeStyles, List, ListItem, ListItemText } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { styles } from './Faq.styles';
 
@@ -75,6 +75,7 @@ export const Faq: React.FunctionComponent = () => {
 			<SearchBox className={classes.searchBox} onChange={filter} />
 			{types.map((type, index) => {
 				const typeQuestions = questions.filter(item => item.type === type.type);
+
 				return (
 					<div key={`${index}-type`}>
 						{typeQuestions.length > 0 && <Typography className={classes.subHeader}>{type.title}</Typography>}

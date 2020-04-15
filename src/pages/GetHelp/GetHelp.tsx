@@ -1,8 +1,7 @@
+import { Button, Divider, List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { IonActionSheet } from '@ionic/react';
-import { Divider, makeStyles, List, ListItem, ListItemText, Button } from '@material-ui/core';
-import { Link as RouterLink } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 import { Page } from 'components';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './GetHelp.styles';
 
 import React from 'react';
@@ -38,6 +37,7 @@ const items = [
 		href: '/get-help/privacy-policy'
 	}
 ];
+
 export const GetHelp: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const history = useHistory();
@@ -46,6 +46,7 @@ export const GetHelp: React.FunctionComponent = () => {
 	const onHandleAddReport = () => {
 		setShowAddReport(true);
 	};
+
 	return (
 		<Page title="Get help" titleSize="large">
 			<List className={classes.list}>

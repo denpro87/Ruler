@@ -1,5 +1,5 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { pxToRem, DEFAULT_FONT_FAMILY } from 'styles';
+import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const list: CSSProperties = {
 	padding: 0

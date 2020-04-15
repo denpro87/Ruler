@@ -1,8 +1,8 @@
-import { makeStyles, Typography } from '@material-ui/core';
 import { BlackIcon } from 'components';
 import { ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR } from 'components/Icon';
-import { styles } from './Report.styles';
 import { IReportProps } from './Report.types';
+import { Typography, makeStyles } from '@material-ui/core';
+import { styles } from './Report.styles';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -10,6 +10,7 @@ const useStyles = makeStyles(styles);
 
 export const Report: React.FunctionComponent<IReportProps> = props => {
 	const classes = useStyles();
+
 	return (
 		<div className={classes.reportContainer}>
 			<div className={classes.reportHeaderWrapper}>

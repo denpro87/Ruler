@@ -1,7 +1,7 @@
-import { makeStyles, Typography, Paper } from '@material-ui/core';
-import clsx from 'clsx';
 import { Page } from 'components';
+import { Paper, Typography, makeStyles } from '@material-ui/core';
 import { styles } from './SafetyRegulations.styles';
+import clsx from 'clsx';
 
 import React from 'react';
 

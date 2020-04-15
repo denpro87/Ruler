@@ -1,5 +1,5 @@
-import { makeStyles, Box, Typography } from '@material-ui/core';
 import { BlackIcon } from 'components';
+import { Box, Typography, makeStyles } from '@material-ui/core';
 import { styles } from './FaqFooter.styles';
 
 import React from 'react';

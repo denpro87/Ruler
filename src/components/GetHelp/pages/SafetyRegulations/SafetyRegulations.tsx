@@ -1,6 +1,6 @@
-import { Divider, makeStyles, List, ListItem, ListItemText } from '@material-ui/core';
-import { Link as RouterLink } from 'react-router-dom';
+import { Divider, List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { Page } from 'components';
+import { Link as RouterLink } from 'react-router-dom';
 import { styles } from './SafetyRegulations.styles';
 
 import React from 'react';
@@ -21,6 +21,7 @@ const items = [
 		href: '/get-help/regulations-scooter'
 	}
 ];
+
 export const SafetyRegulations: React.FunctionComponent = () => {
 	const classes = useStyles();
 

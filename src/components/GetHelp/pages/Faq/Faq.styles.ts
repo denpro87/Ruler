@@ -1,16 +1,16 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { pxToRem, DEFAULT_FONT_FAMILY } from 'styles';
+import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const list: CSSProperties = {
-  padding: 0
+	padding: 0
 };
 const searchBox: CSSProperties = { marginTop: 0, marginBottom: 15 };
 const listItem: CSSProperties = {
-  padding: `0 0 ${pxToRem(7)} 0`,
-  color: '#00b559'
+	padding: `0 0 ${pxToRem(7)} 0`,
+	color: '#00b559'
 };
 const container: CSSProperties = {
-  flex: 1
+	flex: 1
 };
 const text: CSSProperties = {
 	lineHeight: 1.67,
@@ -19,7 +19,7 @@ const text: CSSProperties = {
 	fontFamily: DEFAULT_FONT_FAMILY
 };
 const content: CSSProperties = {
-  opacity: 0.5
+	opacity: 0.5
 };
 const subHeader: CSSProperties = {
 	fontSize: pxToRem(20),
@@ -39,13 +39,13 @@ const faqLi: CSSProperties = {
 	marginRight: pxToRem(9)
 };
 export const styles = createStyles({
-  list,
-  searchBox,
-  listItem,
-  text,
-  container,
-  content,
-  subHeader,
-  faqContentItem,
-  faqLi
+	list,
+	searchBox,
+	listItem,
+	text,
+	container,
+	content,
+	subHeader,
+	faqContentItem,
+	faqLi
 });

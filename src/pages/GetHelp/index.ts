@@ -1,2 +1,2 @@
 export * from './GetHelp';
-export * from '../../components/GetHelp/pages';
+export * from 'components/GetHelp/pages';

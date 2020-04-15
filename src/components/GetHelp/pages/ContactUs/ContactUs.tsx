@@ -1,5 +1,5 @@
-import { Button, makeStyles, Box, Typography, Paper } from '@material-ui/core';
-import { Page, GreenIcon } from 'components';
+import { Box, Button, Paper, Typography, makeStyles } from '@material-ui/core';
+import { GreenIcon, Page } from 'components';
 import { styles } from './ContactUs.styles';
 
 import React from 'react';
