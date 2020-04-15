@@ -1,4 +1,4 @@
-import { Page, SidebarMenuItem, SearchBox } from 'components';
+import { Page, SearchBox } from 'components';
 import { Typography, makeStyles, List, ListItem, ListItemText } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { styles } from './Privacy.styles';

@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { makeStyles, Typography, Paper } from '@material-ui/core';
-import { Stack } from '@fluentui/react';
 import { Page } from 'components';
 import { styles } from './Faq.styles';
 import { FaqFooter } from '../../../../pages/GetHelp/components';

@@ -36,7 +36,6 @@ const reportTitleWrapper: CSSProperties = {
     '& span': {
       width: 10,
       height: 10,
-      backgroundColor: '#f8ca06',
       borderRadius: 5,
       display: 'flex',
       justifyContent: 'center',
@@ -102,6 +101,15 @@ const reportBadge: CSSProperties = {
   top: 12,
   left: 12
 }
+const bgYellow: CSSProperties = {
+	backgroundColor: '#f8ca06'
+};
+const bgGreen: CSSProperties = {
+	backgroundColor: '#00b559'
+};
+const bgWhite: CSSProperties = {
+	backgroundColor: '#ffffff'
+};
 export const styles = createStyles({
   content,
   reportContainer,
@@ -110,5 +118,8 @@ export const styles = createStyles({
   reportDataWrapper,
   reportIconWrapper,
   reportDataText,
-  reportBadge
+  reportBadge,
+  bgYellow,
+  bgGreen,
+  bgWhite
 });
