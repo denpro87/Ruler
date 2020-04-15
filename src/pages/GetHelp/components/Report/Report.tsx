@@ -1,5 +1,6 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import { BlackIcon } from 'components';
+import { ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR } from 'components/Icon';
 import { styles } from './Report.styles';
 import { IReportProps } from './Report.types';
 import React from 'react';
@@ -26,7 +27,7 @@ export const Report: React.FunctionComponent<IReportProps> = props => {
 					</div>
 				</div>
 				<div className={clsx(classes.reportIconWrapper, props.type === 'new' ? classes.bgYellow : classes.bgWhite)}>
-					<BlackIcon iconName="notification" {...(props.type === 'new' && { color: 'red' })} />
+					<BlackIcon iconName="notification" {...(props.type === 'new' && { secondaryColor: ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR })} />
 					{props.type === 'new' && <div className={classes.reportBadge} />}
 				</div>
 			</div>
