@@ -1,3 +1,4 @@
+import * as getHelp from 'pages/GetHelp';
 import {
 	ChangePassword,
 	DarkMode,
@@ -11,7 +12,6 @@ import {
 	Splash,
 	Welcome
 } from 'pages';
-import * as getHelp from 'pages/GetHelp';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
