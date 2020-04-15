@@ -1,0 +1,59 @@
+.gethelp-action-sheet {
+	--button-background: #caf1dd;
+	--button-color: #00b559;
+}
+
+.gethelp-action-sheet .action-sheet-container {
+	padding: 0;
+}
+
+.gethelp-action-sheet .action-sheet-container .action-sheet-group {
+	margin-bottom: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	padding: 20px 20px 4px 20px;
+	font-family: 'Montserrat';
+}
+
+.gethelp-action-sheet .action-sheet-container .action-sheet-group .action-sheet-title {
+	color: #181c19;
+	font-size: 20px;
+	line-height: 1.5;
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+
+.gethelp-action-button {
+	margin-bottom: 15px;
+	border-radius: 15px;
+	height: 50px !important;
+	font-size: 15px !important;
+	font-weight: bold !important;
+	padding: 12px 0px 13px 0px !important;
+	background-repeat: no-repeat !important;
+	background-position: 10px 10px !important;
+}
+
+.gethelp-action-ruler-button {
+	background-image: url('../Icon/icons/ruler.svg') !important;
+}
+
+.gethelp-action-dadly-button {
+	background-image: url('../Icon/icons/greeen-badly.svg') !important;
+}
+
+.gethelp-action-damage-button {
+	background-image: url('../Icon/icons/green-damage.svg') !important;
+}
+
+.gethelp-action-title {
+	background: transparent !important;
+	padding: 0 !important;
+	font-size: 15px !important;
+	line-height: 1.67;
+	font-weight: 600;
+	opacity: 0.5;
+	height: 25px !important;
+	margin-bottom: 20px;
+	color: #181c19 !important;
+}
