@@ -23,7 +23,7 @@ const reportHeaderWrapper: CSSProperties = {
 	alignItems: 'center',
 	borderBottomLeftRadius: pxToRem(15),
 	borderBottomRightRadius: pxToRem(15),
-	...dropShadow('0 10px 40px 0 rgba(0, 0, 0, 0.1)')
+	...dropShadow('0 10px 40px rgba(0, 0, 0, 0.1)')
 };
 const reportTitleWrapper: CSSProperties = {
 	display: 'flex',
