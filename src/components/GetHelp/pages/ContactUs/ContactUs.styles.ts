@@ -1,59 +1,60 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
+import { pxToRem, DEFAULT_FONT_FAMILY } from 'styles';
 
 const container: CSSProperties = {
 	flex: 1,
 	'& > :last-child': {
-		paddingLeft: 40
+		paddingLeft: pxToRem(40)
 	}
 };
 const buttonWrapper: CSSProperties = {
-  paddingBottom: 5,
+  paddingBottom: pxToRem(5),
   display: 'flex',
   flexDirection: 'column'
 };
 const bigButton: CSSProperties = {
-  marginBottom: 15,
+  marginBottom: pxToRem(15),
   backgroundColor: '#caf1dd',
   color: '#00b559',
-  fontSize: 15,
+  fontSize: pxToRem(15),
   fontWeight: 'bold',
   lineHeight: 1.67,
-  padding: '12px 0 13px 0',
+  padding: `${pxToRem(12)} 0 ${pxToRem(12)} 0`,
   textTransform: 'none',
-  borderRadius: 15,
-  height: 50,
+  borderRadius: pxToRem(15),
+  height: pxToRem(50),
   flex: 1
 };
 const li: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
-  margin: '27px 0 0 0',
+  margin: `${pxToRem(27)} 0 0 0`,
   '&:first-child' : {
-    marginTop: 17
+    marginTop: pxToRem(17)
   },
 	'& h6': {
 		width: '100%',
-    marginLeft: '10px',
+    marginLeft: pxToRem(10),
     color: '#181c19',
     fontWeight: 600,
-    fontSize: 15
+    fontSize: pxToRem(15)
 	},
 	'& img': {
-		width: '30px',
-		height: '30px'
+		width: pxToRem(30),
+		height: pxToRem(30)
 	}
 };
 const content: CSSProperties = {
-  fontSize: 15,
-  fontFamily: 'Montserrat',
+  fontSize: pxToRem(15),
+  fontFamily: DEFAULT_FONT_FAMILY,
   opacity: 0.5,
   lineHeight: 1.67,
   fontWeight: 600,
-  marginTop: 5
+  marginTop: pxToRem(5)
 };
 const buttonIcon: CSSProperties = {
   position: 'absolute',
-  left: 15
+  left: pxToRem(15)
 };
 
 export const styles = createStyles({

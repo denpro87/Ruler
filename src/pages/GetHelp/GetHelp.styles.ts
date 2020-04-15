@@ -1,7 +1,8 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
+import { pxToRem, DEFAULT_FONT_FAMILY } from 'styles';
 
 const listItem: CSSProperties = {
-	padding: '11px 0px',
+	padding: `${pxToRem(11)} 0`,
 	color: '#181c19'
 };
 const list: CSSProperties = {
@@ -10,8 +11,8 @@ const list: CSSProperties = {
 const text: CSSProperties = {
 	lineHeight: 1.67,
 	fontWeight: 600,
-	fontSize: 15,
-	fontFamily: 'Montserrat'
+	fontSize: pxToRem(15),
+	fontFamily: DEFAULT_FONT_FAMILY
 };
 
 const divider: CSSProperties = {
@@ -19,21 +20,21 @@ const divider: CSSProperties = {
 	opacity: '5%'
 };
 const buttonWrapper: CSSProperties = {
-  paddingBottom: 5,
+  paddingBottom: pxToRem(5),
   display: 'flex',
   flexDirection: 'column'
 };
 const bigButton: CSSProperties = {
-  marginBottom: 15,
+  marginBottom: pxToRem(15),
   backgroundColor: '#caf1dd',
   color: '#00b559',
-  fontSize: 15,
+  fontSize: pxToRem(15),
   fontWeight: 'bold',
   lineHeight: 1.67,
-  padding: '12px 0 13px 0',
+  padding: `${pxToRem(12)} 0 ${pxToRem(13)} 0`,
   textTransform: 'none',
-  borderRadius: 15,
-  height: 50,
+  borderRadius: pxToRem(15),
+  height: pxToRem(50),
   flex: 1
 };
 
