@@ -1,5 +1,11 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
 
+const container: CSSProperties = {
+	flex: 1,
+	'& > :last-child': {
+		paddingLeft: 40
+	}
+};
 const buttonWrapper: CSSProperties = {
   paddingBottom: 5,
   display: 'flex',
@@ -22,6 +28,9 @@ const li: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   margin: '27px 0 0 0',
+  '&:first-child' : {
+    marginTop: 17
+  },
 	'& h6': {
 		width: '100%',
     marginLeft: '10px',
@@ -48,9 +57,10 @@ const buttonIcon: CSSProperties = {
 };
 
 export const styles = createStyles({
+    container,
     buttonWrapper,
-  bigButton,
-    content,
-  li,
-  buttonIcon
+    bigButton,
+      content,
+    li,
+    buttonIcon
   });

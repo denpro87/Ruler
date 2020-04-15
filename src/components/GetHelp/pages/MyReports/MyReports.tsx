@@ -49,14 +49,12 @@ export const MyReports: React.FunctionComponent = () => {
 	const classes = useStyles();
 
 	return (
-		<>
-			<Page title="My reports" titleSize="medium">
-				<div className={classes.myReportContainer}>
-					{data.map((report, index) => (
-						<Report key={index} {...report} />
-					))}
-				</div>
-			</Page>
-		</>
+		<Page title="My reports" titleSize="medium">
+			<div className={classes.myReportContainer}>
+				{data.map((report, index) => (
+					<Report key={index} {...report} />
+				))}
+			</div>
+		</Page>
 	);
 };

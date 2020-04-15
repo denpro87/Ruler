@@ -65,25 +65,23 @@ export const Privacy: React.FunctionComponent = () => {
 	};
 
 	return (
-		<>
-			<Page title="Privacy policy" titleSize="medium">
-				<SearchBox className={classes.searchBox} onChange={filter} />
-				{types.map((type, index) => {
-					const typeQuestions = questions.filter(item => item.type === type.type);
-					return (
-						<div key={`${index}-type`}>
-							{typeQuestions.length > 0 && <Typography className={classes.subHeader}>{type.title}</Typography>}
-							<List className={classes.list}>
-								{typeQuestions.map((question, index) => (
-									<ListItem key={index} className={classes.listItem} component={RouterLink} to={question.href}>
-										<ListItemText primary={question.title} classes={{ primary: classes.text }} />
-									</ListItem>
-								))}
-							</List>
-						</div>
-					);
-				})}
-			</Page>
-		</>
+		<Page title="Privacy policy" titleSize="medium">
+			<SearchBox className={classes.searchBox} onChange={filter} />
+			{types.map((type, index) => {
+				const typeQuestions = questions.filter(item => item.type === type.type);
+				return (
+					<div key={`${index}-type`}>
+						{typeQuestions.length > 0 && <Typography className={classes.subHeader}>{type.title}</Typography>}
+						<List className={classes.list}>
+							{typeQuestions.map((question, index) => (
+								<ListItem key={index} className={classes.listItem} component={RouterLink} to={question.href}>
+									<ListItemText primary={question.title} classes={{ primary: classes.text }} />
+								</ListItem>
+							))}
+						</List>
+					</div>
+				);
+			})}
+		</Page>
 	);
 };
