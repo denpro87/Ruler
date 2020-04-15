@@ -1,5 +1,5 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
+import { pxToRem } from 'styles';
 
 const innerContent: CSSProperties = {
 	marginTop: pxToRem(10)
