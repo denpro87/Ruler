@@ -9,7 +9,7 @@ const textFieldRoot: CSSProperties = {
 	'& .MuiInput-formControl': {
 		marginTop: pxToRem(12)
 	},
-	'& .MuiInput-underline:before': {
+	'& .MuiInput-underline:before, .MuiInput-underline:after': {
 		borderBottom: '2px solid #181c19'
 	},
 	'& input': {
