@@ -8,6 +8,9 @@ const listItem: CSSProperties = {
   padding: '0px 0px 7px 0px',
   color: '#00b559'
 };
+const container: CSSProperties = {
+  flex: 1
+};
 const text: CSSProperties = {
 	lineHeight: 1.67,
 	fontWeight: 600,
@@ -39,6 +42,7 @@ export const styles = createStyles({
   searchBox,
   listItem,
   text,
+  container,
   content,
   subHeader,
   faqContentItem,
