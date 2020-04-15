@@ -1,13 +1,52 @@
-import { BlackButton, BlackIcon, Dialog, Page, SidebarMenuItem, Text } from 'components';
-import { Box, TextField, Typography, makeStyles } from '@material-ui/core';
-import { Stack } from '@fluentui/react';
+import { BlackButton, BlackIcon, Dialog, Page } from 'components';
+import { List, ListItem, ListItemIcon, ListItemText, TextField, Typography, makeStyles } from '@material-ui/core';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './Settings.styles';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import clsx from 'clsx';
 import manSvg from './images/man.svg';
 
-import React from 'react';
-
 const useStyles = makeStyles(styles);
+const items = [
+	{
+		title: 'Profile',
+		href: '/settings/profile',
+		iconName: 'name'
+	},
+	{
+		title: 'Notification',
+		href: '/settings/notifications',
+		iconName: 'notification'
+	},
+	{
+		title: 'Dark mode',
+		href: '/settings/dark-mode',
+		iconName: 'dark-mode'
+	},
+	{
+		title: 'Language',
+		href: '/settings/languages',
+		iconName: 'language'
+	},
+	{
+		title: 'Change password',
+		href: '/settings/change-password',
+		iconName: 'change-password'
+	},
+	{
+		title: 'Change email',
+		href: '/settings/change-email',
+		iconName: 'invite'
+	},
+	{
+		title: 'Delete account',
+		iconName: 'delete-account'
+	},
+	{
+		title: 'Log out',
+		iconName: 'log-out'
+	}
+];
 
 export const Settings: React.FunctionComponent = () => {
 	const classes = useStyles();
@@ -37,11 +76,6 @@ export const Settings: React.FunctionComponent = () => {
 		setDeleteAccount(false);
 	};
 
-	const handleDeleteAccountCancel = () => {
-		setDeleteAccount(false);
-		setEmail('');
-	};
-
 	const handleSendEmail = (event: React.MouseEvent<HTMLElement>) => {
 		setDeleteAccount(false);
 	};
@@ -52,54 +86,57 @@ export const Settings: React.FunctionComponent = () => {
 	};
 
 	return (
-		<>
-			<Page title="Settings" titleSize="large">
-				<Stack horizontalAlign="stretch" grow={1} tokens={{ childrenGap: 0 }} verticalFill>
-					<Stack.Item>
-						<SidebarMenuItem image={<BlackIcon iconName="name" />} title="Profile" href="/settings/profile" />
-					</Stack.Item>
-					<Stack.Item>
-						<SidebarMenuItem image={<BlackIcon iconName="notification" />} title="Notification" href="/settings/notifications" />
-					</Stack.Item>
-					<Stack.Item>
-						<SidebarMenuItem image={<BlackIcon iconName="dark-mode" />} title="Dark Mode" href="/settings/dark-mode" />
-					</Stack.Item>
-					<Stack.Item>
-						<SidebarMenuItem image={<BlackIcon iconName="language" />} title="Language" href="/settings/languages" />
-					</Stack.Item>
-					<Stack.Item>
-						<SidebarMenuItem image={<BlackIcon iconName="change-password" />} title="Change Password" href="/settings/change-password" />
-					</Stack.Item>
-					<Stack.Item>
-						<SidebarMenuItem image={<BlackIcon iconName="delete-account" />} title="Delete account" onClick={handleDeleteAccountOpen} />
-					</Stack.Item>
-					<Stack.Item className={classes.lastItem}>
-						<SidebarMenuItem image={<BlackIcon iconName="log-out" />} title="Log out" onClick={handleLogoutClickOpen} />
-					</Stack.Item>
-				</Stack>
-			</Page>
+		<Page title="Settings" titleSize="large">
+			<List className={classes.list}>
+				{items.map((item, index) =>
+					item.href ? (
+						<ListItem
+							key={index}
+							className={clsx(classes.listItem, index === items.length - 1 && classes.last)}
+							component={RouterLink}
+							to={item.href}
+						>
+							<ListItemIcon className={classes.icon}>
+								<BlackIcon iconName={item.iconName} />
+							</ListItemIcon>
+							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
+						</ListItem>
+					) : (
+						<ListItem
+							key={index}
+							className={clsx(classes.listItem, index === items.length - 1 && classes.last)}
+							button
+							onClick={item.title === 'Log out' ? handleLogoutClickOpen : handleDeleteAccountOpen}
+						>
+							<ListItemIcon className={classes.icon}>
+								<BlackIcon iconName={item.iconName} />
+							</ListItemIcon>
+							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
+						</ListItem>
+					)
+				)}
+			</List>
 			<Dialog open={logout} hasClose={true} image={manSvg} onClose={handleLogoutClose} aria-labelledby="form-dialog-title" title="Log out?">
-				<Text className={classes.dialogContentText}>Are you sure you want to logout?</Text>
-
+				<Typography className={classes.dialogContentText}>Are you sure you want to logout?</Typography>
 				<BlackButton onClick={handleLogoutOk} className={classes.notRecommendedButton}>
 					Yes, logout
 				</BlackButton>
 			</Dialog>
 			<Dialog open={deleteAccount} hasClose={true} title="Delete account?" image={manSvg} onClose={handleDeleteAccountClose}>
-				<Text className={classes.dialogContentText}>Enter the email address for this account, a deletion request will be sent to it</Text>
+				<Typography className={classes.dialogContentText}>
+					Enter the email address for this account, a deletion request will be sent to it
+				</Typography>
 				<TextField
-					margin="normal"
 					id="name"
 					placeholder="Email address"
 					type="email"
 					fullWidth
-					variant="outlined"
 					value={email}
 					classes={{ root: classes.emailRoot }}
 					onChange={handleEmailInputChanges}
 				/>
 				<BlackButton onClick={handleSendEmail}>Send</BlackButton>
 			</Dialog>
-		</>
+		</Page>
 	);
 };
