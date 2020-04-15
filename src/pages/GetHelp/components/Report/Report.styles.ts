@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, dropShadow, pxToRem } from 'styles';
 
 const content: CSSProperties = {
@@ -25,7 +25,7 @@ const reportHeaderWrapper: CSSProperties = {
 	borderBottomRightRadius: pxToRem(15),
 	...dropShadow('0 10px 40px rgba(0, 0, 0, 0.1)')
 };
-const reportTitleWrapper: CSSProperties = {
+const reportTitleWrapper: CreateCSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	'& span': {
@@ -41,6 +41,7 @@ const reportTitleWrapper: CSSProperties = {
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
+			backgroundColor: (props: any) => (props.type === 'resolved' ? '#00b559' : '#f8ca06'),
 			'& span': {
 				width: pxToRem(4),
 				height: pxToRem(4),
@@ -62,14 +63,15 @@ const reportTitleWrapper: CSSProperties = {
 		}
 	}
 };
-const reportIconWrapper: CSSProperties = {
+const reportIconWrapper: CreateCSSProperties = {
 	width: pxToRem(40),
 	height: pxToRem(40),
 	borderRadius: pxToRem(20),
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center',
-	position: 'relative'
+	position: 'relative',
+	backgroundColor: (props: any) => (props.type === 'new' ? '#f8ca06' : '#ffffff')
 };
 const reportDataWrapper: CSSProperties = {
 	padding: `${pxToRem(5)} 0 ${pxToRem(20)} 0`,
@@ -103,15 +105,6 @@ const reportBadge: CSSProperties = {
 	top: pxToRem(12),
 	left: pxToRem(12)
 };
-const bgYellow: CSSProperties = {
-	backgroundColor: '#f8ca06'
-};
-const bgGreen: CSSProperties = {
-	backgroundColor: '#00b559'
-};
-const bgWhite: CSSProperties = {
-	backgroundColor: '#ffffff'
-};
 export const styles = createStyles({
 	content,
 	reportContainer,
@@ -120,8 +113,5 @@ export const styles = createStyles({
 	reportDataWrapper,
 	reportIconWrapper,
 	reportDataText,
-	reportBadge,
-	bgYellow,
-	bgGreen,
-	bgWhite
+	reportBadge
 });

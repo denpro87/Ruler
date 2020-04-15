@@ -4,19 +4,18 @@ import { IReportProps } from './Report.types';
 import { Typography, makeStyles } from '@material-ui/core';
 import { styles } from './Report.styles';
 import React from 'react';
-import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
 
 export const Report: React.FunctionComponent<IReportProps> = props => {
-	const classes = useStyles();
+	const classes = useStyles(props);
 
 	return (
 		<div className={classes.reportContainer}>
 			<div className={classes.reportHeaderWrapper}>
 				<div className={classes.reportTitleWrapper}>
 					<span>
-						<span className={props.type === 'resolved' ? classes.bgGreen : classes.bgYellow}>
+						<span>
 							<span />
 						</span>
 					</span>
@@ -27,7 +26,7 @@ export const Report: React.FunctionComponent<IReportProps> = props => {
 						<Typography className={classes.content}>{props.date}</Typography>
 					</div>
 				</div>
-				<div className={clsx(classes.reportIconWrapper, props.type === 'new' ? classes.bgYellow : classes.bgWhite)}>
+				<div className={classes.reportIconWrapper}>
 					<BlackIcon iconName="notification" {...(props.type === 'new' && { secondaryColor: ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR })} />
 					{props.type === 'new' && <div className={classes.reportBadge} />}
 				</div>
