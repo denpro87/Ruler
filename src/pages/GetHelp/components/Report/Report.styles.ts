@@ -16,14 +16,14 @@ const reportContainer: CSSProperties = {
 };
 const reportHeaderWrapper: CSSProperties = {
 	backgroundColor: '#ffffff',
-	boxShadow: '0 10px 40px 0 rgba(0, 0, 0, 0.1)',
-	padding: `${pxToRem(20)} ${pxToRem(20)} ${pxToRem(20)} ${pxToRem(10)}`,
+		padding: `${pxToRem(20)} ${pxToRem(20)} ${pxToRem(20)} ${pxToRem(10)}`,
 	display: 'flex',
 	flexDirection: 'row',
 	justifyContent: 'space-between',
 	alignItems: 'center',
 	borderBottomLeftRadius: pxToRem(15),
-	borderBottomRightRadius: pxToRem(15)
+	borderBottomRightRadius: pxToRem(15),
+	...dropShadow('0 10px 40px 0 rgba(0, 0, 0, 0.1)')
 };
 const reportTitleWrapper: CSSProperties = {
 	display: 'flex',
