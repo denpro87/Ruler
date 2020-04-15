@@ -26,7 +26,7 @@ export const Report: React.FunctionComponent<IReportProps> = props => {
 					</div>
 				</div>
 				<div className={clsx(classes.reportIconWrapper, props.type === 'new' ? classes.bgYellow : classes.bgWhite)}>
-					<BlackIcon iconName="notification" />
+					<BlackIcon iconName="notification" {...(props.type === 'new' && { color: 'red' })} />
 					{props.type === 'new' && <div className={classes.reportBadge} />}
 				</div>
 			</div>
