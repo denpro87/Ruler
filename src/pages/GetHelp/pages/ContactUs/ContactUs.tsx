@@ -1,5 +1,5 @@
 import { Box, Button, Paper, Typography, makeStyles } from '@material-ui/core';
-import { GreenIcon, Page } from 'components';
+import { GreenIcon, LightGreenButton, Page } from 'components';
 import { styles } from './ContactUs.styles';
 
 import React from 'react';
@@ -38,14 +38,14 @@ export const ContactUs: React.FunctionComponent = () => {
 				</div>
 			</Paper>
 			<div className={classes.buttonWrapper}>
-				<Button className={classes.bigButton} onClick={() => console.log('contact your insureance')}>
+				<LightGreenButton className={classes.bigButton} onClick={() => console.log('contact your insureance')}>
 					<GreenIcon className={classes.buttonIcon} iconName="support" />
 					Contact your insurance
-				</Button>
-				<Button className={classes.bigButton} onClick={() => console.log('contact us via email')}>
+				</LightGreenButton>
+				<LightGreenButton className={classes.bigButton} onClick={() => console.log('contact us via email')}>
 					<GreenIcon className={classes.buttonIcon} iconName="invite" />
 					Contact us via email
-				</Button>
+				</LightGreenButton>
 			</div>
 		</Page>
 	);

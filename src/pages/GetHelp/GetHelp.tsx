@@ -1,6 +1,6 @@
 import { Button, Divider, List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { IonActionSheet } from '@ionic/react';
-import { Page } from 'components';
+import { LightGreenButton, Page } from 'components';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './GetHelp.styles';
 
@@ -66,11 +66,9 @@ export const GetHelp: React.FunctionComponent = () => {
 					</div>
 				))}
 			</List>
-			<div className={classes.buttonWrapper}>
-				<Button className={classes.bigButton} onClick={() => history.goBack()}>
-					Back
-				</Button>
-			</div>
+			<LightGreenButton className={classes.backButton} onClick={() => history.goBack()}>
+				Back
+			</LightGreenButton>
 			<IonActionSheet
 				isOpen={showAddReport}
 				cssClass="gethelp-action-sheet"
