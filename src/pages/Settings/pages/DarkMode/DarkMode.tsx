@@ -1,7 +1,7 @@
 import { Box, Divider, List, ListItem, Typography, makeStyles } from '@material-ui/core';
 import { IDarkModeProps, IDarkModeState } from './DarkMode.types';
-import { Icon, Page, Styling, SwitchListItem } from 'components';
 import { IonDatetime, IonItem } from '@ionic/react';
+import { Page, Styling, SwitchListItem } from 'components';
 import { styles } from './DarkMode.styles';
 
 import React from 'react';

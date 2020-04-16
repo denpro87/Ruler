@@ -1,6 +1,6 @@
 import * as getHelp from 'pages/GetHelp';
 import * as settings from 'pages/Settings';
-import { DarkMode, DriveLicence, Home, Languages, News, Notifications, ServiceProviders, Splash, Welcome } from 'pages';
+import { DriveLicence, Home, Languages, News, Notifications, ServiceProviders, Splash, Welcome } from 'pages';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
@@ -29,7 +29,7 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/settings/languages" component={Languages} exact />
 					<Route path="/settings/profile" component={settings.Profile} exact />
 					<Route path="/settings/change-email" component={settings.ChangeEmail} exact />
-					<Route path="/settings/dark-mode" component={DarkMode} exact />
+					<Route path="/settings/dark-mode" component={settings.DarkMode} exact />
 
 					<Route path="/get-help" component={getHelp.GetHelp} exact />
 					<Route path="/get-help/faq" component={getHelp.Faq} exact />

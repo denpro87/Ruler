@@ -6,7 +6,8 @@ const listItem: CSSProperties = {
 	color: '#181c19'
 };
 const list: CSSProperties = {
-	flex: 1
+	flex: 1,
+	padding: 0
 };
 const text: CSSProperties = {
 	lineHeight: 1.67,

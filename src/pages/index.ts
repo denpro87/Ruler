@@ -1,4 +1,3 @@
-export * from './DarkMode';
 export * from './DriverLicence';
 export * from './Languages';
 export * from './News';
