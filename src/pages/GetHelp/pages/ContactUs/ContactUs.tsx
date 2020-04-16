@@ -25,6 +25,12 @@ export const ContactUs: React.FunctionComponent = () => {
 					<Icon iconName="invite" color="#00b559"></Icon>
 					<Typography variant="h6">{info.email}</Typography>
 				</Box>
+				<div>
+					<Typography variant="h6" className={classes.content}>
+						Need our assistance? Our support team is here to assist you 24/7. Give us a call, send us an email or live chat and get your
+						issue resolved now!
+					</Typography>
+				</div>
 				<Box className={classes.li}>
 					<Icon iconName="point" color="#00b559"></Icon>
 					<Typography variant="h6">{info.address}</Typography>
