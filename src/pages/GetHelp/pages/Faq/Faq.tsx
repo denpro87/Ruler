@@ -64,7 +64,7 @@ export const Faq: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const [questions, setQuestions] = React.useState(defaultQuestions);
 
-	const filter = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleSearchBoxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const keywords = event.target.value.toLowerCase();
 		const filteredQuestions = defaultQuestions.filter(item => item.title.toLowerCase().includes(keywords.toLowerCase()));
 		setQuestions(filteredQuestions);
@@ -72,7 +72,7 @@ export const Faq: React.FunctionComponent = () => {
 
 	return (
 		<Page title="FAQ" titleSize="medium">
-			<SearchBox className={classes.searchBox} onChange={filter} />
+			<SearchBox className={classes.searchBox} onChange={handleSearchBoxChange} />
 			{types.map((type, index) => {
 				const typeQuestions = questions.filter(item => item.type === type.type);
 

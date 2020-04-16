@@ -2,10 +2,7 @@ import { CSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const container: CSSProperties = {
-	flex: 1,
-	'& > :last-child': {
-		paddingLeft: pxToRem(40)
-	}
+	flex: 1
 };
 const buttonWrapper: CSSProperties = {
 	paddingBottom: pxToRem(5),
@@ -19,7 +16,7 @@ const bigButton: CSSProperties = {
 const li: CSSProperties = {
 	display: 'flex',
 	alignItems: 'center',
-	margin: `${pxToRem(27)} 0 0 0`,
+	margin: `${pxToRem(23)} 0 ${pxToRem(5)} 0`,
 	'&:first-child': {
 		marginTop: pxToRem(17)
 	},
@@ -41,7 +38,7 @@ const content: CSSProperties = {
 	opacity: 0.5,
 	lineHeight: 1.67,
 	fontWeight: 600,
-	marginTop: pxToRem(5)
+	paddingLeft: pxToRem(40)
 };
 
 export const styles = createStyles({
