@@ -1,5 +1,5 @@
-import { BlackIcon, IconButton } from 'components';
 import { IPasswordInputProps } from './PasswordInput.types';
+import { IconButton } from 'components';
 import { InputAdornment, TextField, makeStyles } from '@material-ui/core';
 import { styles } from './PasswordInput.styles';
 
@@ -22,6 +22,7 @@ export const PasswordInput: React.FunctionComponent<IPasswordInputProps> = ({ on
 			fullWidth
 			placeholder={placeholder}
 			type={passwordIsMasked ? 'password' : 'text'}
+			classes={{ root: classes.textFieldRoot }}
 			// {...props}
 			InputProps={{
 				endAdornment: (

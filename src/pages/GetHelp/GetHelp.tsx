@@ -1,8 +1,10 @@
-import { Button, Divider, List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
-import { IonActionSheet } from '@ionic/react';
-import { Page } from 'components';
+import { Divider, List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
+import { LightGreenButton, Page } from 'components';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
+import { pxToRem } from 'styles';
 import { styles } from './GetHelp.styles';
+// @ts-ignore
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet';
 
 import React from 'react';
 
@@ -43,8 +45,24 @@ export const GetHelp: React.FunctionComponent = () => {
 	const history = useHistory();
 	const [showAddReport, setShowAddReport] = React.useState(false);
 
-	const onHandleAddReport = () => {
+	const handleAddReportClick = () => {
 		setShowAddReport(true);
+	};
+
+	const handleBottomSheetChange = (isOpen: boolean) => {
+		setShowAddReport(isOpen);
+	};
+
+	const handleBadlyClick = () => {
+		setShowAddReport(false);
+	};
+
+	const handleDamagedClick = () => {
+		setShowAddReport(false);
+	};
+
+	const handleContactClick = () => {
+		setShowAddReport(false);
 	};
 
 	return (
@@ -58,7 +76,7 @@ export const GetHelp: React.FunctionComponent = () => {
 							</ListItem>
 						)}
 						{!item.href && (
-							<ListItem className={classes.listItem} button onClick={onHandleAddReport}>
+							<ListItem className={classes.listItem} button onClick={handleAddReportClick}>
 								<ListItemText primary={item.title} classes={{ primary: classes.text }} />
 							</ListItem>
 						)}
@@ -66,46 +84,31 @@ export const GetHelp: React.FunctionComponent = () => {
 					</div>
 				))}
 			</List>
-			<div className={classes.buttonWrapper}>
-				<Button className={classes.bigButton} onClick={() => history.goBack()}>
-					Back
-				</Button>
+			<LightGreenButton className={classes.backButton} onClick={() => history.goBack()}>
+				Back
+			</LightGreenButton>
+			<div className={classes.sheetContainer}>
+				<SwipeableBottomSheet
+					bodyStyle={{ borderTopLeftRadius: pxToRem(20), borderTopRightRadius: pxToRem(20) }}
+					open={showAddReport}
+					onChange={handleBottomSheetChange}
+				>
+					<div className={classes.sheetWrapper}>
+						<div className={classes.blackBar}></div>
+						<Typography className={classes.sheetTitle}>Anything wrong?</Typography>
+						<Typography className={classes.sheetText}>Let us know! We are here for you 24/7</Typography>
+						<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
+							Report a badly parked vehicle
+						</LightGreenButton>
+						<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
+							The vehicle is damaged
+						</LightGreenButton>
+						<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
+							Contact Ruler
+						</LightGreenButton>
+					</div>
+				</SwipeableBottomSheet>
 			</div>
-			<IonActionSheet
-				isOpen={showAddReport}
-				cssClass="gethelp-action-sheet"
-				onDidDismiss={() => setShowAddReport(false)}
-				header="Anything wrong?"
-				buttons={[
-					{
-						text: 'Let us know! We are here for your 24/7',
-						role: 'destructive',
-						cssClass: 'gethelp-action-title'
-					},
-					{
-						text: 'Report a badly parked vehicle',
-						// role: 'destructive',
-						cssClass: 'gethelp-action-button gethelp-action-dadly-button',
-						handler: () => {
-							console.log('badly parked');
-						}
-					},
-					{
-						text: 'The vehicle is damaged',
-						cssClass: 'gethelp-action-button gethelp-action-damage-button',
-						handler: () => {
-							console.log('vehicle is damaged.');
-						}
-					},
-					{
-						text: 'Contact Ruler',
-						cssClass: 'gethelp-action-button gethelp-action-ruler-button',
-						handler: () => {
-							console.log('contact ruler');
-						}
-					}
-				]}
-			></IonActionSheet>
 		</Page>
 	);
 };

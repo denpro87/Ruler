@@ -1,126 +1,62 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { font, pxToRem } from 'styles';
+import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
-const providersList: CSSProperties = {};
-
-const innerContent: CSSProperties = {
-	textAlign: 'left'
+const listItem: CSSProperties = {
+	padding: `${pxToRem(11)} 0`,
+	color: '#181c19'
 };
-
-const logOutAction: CSSProperties = {
-	display: 'block',
-	padding: '0',
-	borderTop: '2px solid #eee',
-	'& button': {
-		width: '100%',
-		display: 'block',
-		margin: '0 auto',
-		padding: '10px'
-	}
+const list: CSSProperties = {
+	flex: 1,
+	display: 'flex',
+	flexDirection: 'column'
 };
-
-const dialogTitle: CSSProperties = {
-	paddingTop: '20px',
-	paddingBottom: '5px'
+const text: CSSProperties = {
+	lineHeight: 1.67,
+	fontWeight: 600,
+	fontSize: pxToRem(15),
+	fontFamily: DEFAULT_FONT_FAMILY
 };
-
-const logOutActionSpacing: CSSProperties = {
-	'& > :not(:first-child)': {
-		borderTop: '2px solid #eee',
-		marginLeft: 0
-	}
+const icon: CSSProperties = {
+	marginRight: pxToRem(10),
+	width: pxToRem(30),
+	minWidth: pxToRem(30)
 };
-
-const logoutContent: CSSProperties = {
-	padding: '0px 60px 20px'
+const last: CSSProperties = {
+	marginTop: 'auto',
+	marginBottom: pxToRem(4)
 };
-
-const logoutDialog: CSSProperties = {
-	boxShadow: 'none',
-	borderRadius: '15px',
-	color: 'black',
-	textAlign: 'center',
-	width: '270px'
-};
-
-const deleteAccountDialog: CSSProperties = {
-	boxShadow: 'none',
-	borderRadius: '15px',
-	color: 'black',
-	textAlign: 'center',
-	width: '270px',
-	'& .MuiDialogContent-root': {
-		padding: '0px 16px 20px',
-		'& span': {
-			display: 'inline-block',
-			padding: '0 12px'
-		}
-	}
-};
-
 const dialogContentText: CSSProperties = {
-	...font({
-		fontSize: 10,
-		fontWeight: 600,
-		fontStretch: 'normal',
-		fontStyle: 'normal',
-		lineHeight: '15px',
-		letterSpacing: 'normal',
-		color: '#181c19'
-	}),
-	opacity: 0.5
+	fontSize: pxToRem(10),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: '#181c19',
+	opacity: 0.5,
+	padding: `${pxToRem(15)} 0`
 };
-const deleteAccountAction: CSSProperties = {
-	padding: '0',
-	borderTop: '2px solid #dddddd',
-	'& button': {
-		width: '100%',
-		padding: '10px',
-		borderRadius: 0
-	},
-	'& > :not(:first-child)': {
-		borderLeft: '2px solid #dddddd',
-		marginLeft: 0
-	}
-};
-
-const emailRoot: CSSProperties = {
-	'& input': {
-		padding: '5px',
-		caretColor: '#00b559',
-		borderRadius: '5px'
-	},
-	'& .MuiOutlinedInput-root': {
-		borderRadius: '5px'
-	},
-	'& .MuiOutlinedInput-root.Mui-focused fieldset': {
-		border: '0.5px solid #181c19'
-	}
-};
-
-const emailInput: CSSProperties = {};
-
 const notRecommendedButton: CSSProperties = {
-	fontWeight: 600
+	fontWeight: 'bold'
 };
-
-const lastItem: CSSProperties = {
-	marginTop: 'auto !important'
+const emailRoot: CSSProperties = {
+	marginBottom: pxToRem(25),
+	'& .MuiInput-underline:before': {
+		borderBottom: '2px solid #181c19'
+	},
+	'& input': {
+		padding: `0 0 ${pxToRem(12)} 0`,
+		fontSize: pxToRem(15),
+		fontWeight: 600,
+		lineHeight: 1.67,
+		color: '#181c19'
+	}
 };
 
 export const styles = createStyles({
-	providersList,
-	innerContent,
-	logOutActionSpacing,
-	logoutContent,
-	lastItem,
-	dialogTitle,
-	deleteAccountAction,
-	deleteAccountDialog,
+	list,
+	listItem,
+	text,
+	icon,
+	last,
 	dialogContentText,
-	emailRoot,
-	emailInput,
-	logOutAction,
-	logoutDialog,
-	notRecommendedButton
+	notRecommendedButton,
+	emailRoot
 });

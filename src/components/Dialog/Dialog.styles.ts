@@ -62,13 +62,13 @@ const imgWrapper: CSSProperties = {
 };
 const closeBtn: CSSProperties = {
 	position: 'absolute',
-	right: pxToRem(10),
-	top: pxToRem(10),
+	right: pxToRem(15),
+	top: pxToRem(15),
 	padding: '0 !important'
 };
 const dialogTitle: CSSProperties = {
 	textAlign: 'center',
-	padding: '0',
+	padding: `${pxToRem(15)} 0 0 0`,
 	...font({
 		fontSize: 20,
 		fontWeight: 'bold',
