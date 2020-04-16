@@ -13,17 +13,7 @@ const buttonWrapper: CSSProperties = {
 	flexDirection: 'column'
 };
 const bigButton: CSSProperties = {
-	marginBottom: pxToRem(15),
-	backgroundColor: '#caf1dd',
-	color: '#00b559',
-	fontSize: pxToRem(15),
-	fontWeight: 'bold',
-	lineHeight: 1.67,
-	padding: `${pxToRem(12)} 0 ${pxToRem(12)} 0`,
-	textTransform: 'none',
-	borderRadius: pxToRem(15),
-	height: pxToRem(50),
-	flex: 1
+	marginBottom: pxToRem(15)
 };
 const li: CSSProperties = {
 	display: 'flex',
