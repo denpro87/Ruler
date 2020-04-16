@@ -27,7 +27,7 @@ export const SafetyRegulations: React.FunctionComponent = () => {
 
 	return (
 		<Page title="Safety regulations" titleSize="medium">
-			<List>
+			<List className={classes.list}>
 				{items.map((item, index) => (
 					<div key={index}>
 						<ListItem className={classes.listItem} component={RouterLink} to={item.href}>
