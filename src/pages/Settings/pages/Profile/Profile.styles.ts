@@ -2,7 +2,11 @@ import { CSSProperties, createStyles } from '@material-ui/styles';
 import { pxToRem } from 'styles';
 
 const innerContent: CSSProperties = {
-	marginTop: pxToRem(10)
+	paddingTop: pxToRem(13),
+	textAlign: 'left',
+	display: 'flex',
+	flexDirection: 'column',
+	flex: 1
 };
 const textFieldRoot: CSSProperties = {
 	marginBottom: pxToRem(25),
@@ -29,7 +33,8 @@ const textFieldRoot: CSSProperties = {
 	}
 };
 const saveBtn: CSSProperties = {
-	marginTop: pxToRem(17)
+	marginTop: 'auto',
+	marginBottom: pxToRem(20)
 };
 
 export const styles = createStyles({
