@@ -9,4 +9,4 @@ export * from './Settings';
 export * from './Splash';
 export * from './Welcome';
 export * from './Profile';
-
+export * from './Home';
