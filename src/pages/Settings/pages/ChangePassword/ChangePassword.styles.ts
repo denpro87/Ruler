@@ -2,7 +2,7 @@ import { CSSProperties, createStyles } from '@material-ui/styles';
 import { pxToRem } from 'styles';
 
 const innerContent: CSSProperties = {
-	paddingTop: '23px',
+	paddingTop: pxToRem(13),
 	textAlign: 'left',
 	display: 'flex',
 	flexDirection: 'column',
@@ -18,7 +18,7 @@ const dialogContentText: CSSProperties = {
 	lineHeight: 1.5,
 	color: '#181c19',
 	opacity: 0.5,
-	padding: `${pxToRem(10)} 0 ${pxToRem(5)} 0`
+	padding: `${pxToRem(10)} ${pxToRem(10)} ${pxToRem(5)} ${pxToRem(10)}`
 };
 
 export const styles = createStyles({
