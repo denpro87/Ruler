@@ -43,16 +43,11 @@ const content: CSSProperties = {
 	fontWeight: 600,
 	marginTop: pxToRem(5)
 };
-const buttonIcon: CSSProperties = {
-	position: 'absolute',
-	left: pxToRem(15)
-};
 
 export const styles = createStyles({
 	container,
 	buttonWrapper,
 	bigButton,
 	content,
-	li,
-	buttonIcon
+	li
 });

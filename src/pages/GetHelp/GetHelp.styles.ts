@@ -63,10 +63,6 @@ const sheetButton: CSSProperties = {
 	marginBottom: pxToRem(15),
 	fontWeight: 'bold'
 };
-const buttonIcon: CSSProperties = {
-	position: 'absolute',
-	left: pxToRem(15)
-};
 
 export const styles = createStyles({
 	list,
@@ -79,6 +75,5 @@ export const styles = createStyles({
 	blackBar,
 	sheetTitle,
 	sheetText,
-	sheetButton,
-	buttonIcon
+	sheetButton
 });
