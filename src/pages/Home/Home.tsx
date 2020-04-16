@@ -30,29 +30,15 @@ export const Home: React.FunctionComponent = () => {
 				mapboxApiAccessToken={MAPBOX_TOKEN}
 			>
 				<IconButton className={classes.reportButton} iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }} />
-				<IconButton className={classes.zonesButton} iconProps={{ iconName: 'zones', primaryColor: 'black', secondaryColor: '#f8ca06' }} />
-				<IconButton
-					className={classes.vehicleButton}
-					iconProps={{ iconName: 'vehicle', primaryColor: 'black', secondaryColor: '#f8ca06' }}
-				/>
-				<IconButton
-					className={classes.findMeButton}
-					iconProps={{ iconName: 'find-me', primaryColor: 'black', secondaryColor: '#f8ca06' }}
-				/>
+				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" />
+				<IconButton className={classes.vehicleButton} iconName="vehicle" colorType="black" />
+				<IconButton className={classes.findMeButton} iconName="find-me" colorType="black" />
 				<div className={classes.homeButtons}>
-					<IconButton
-						className={classes.menuButton}
-						iconProps={{ iconName: 'menu', primaryColor: 'black', secondaryColor: '#f8ca06' }}
-						noShadow={true}
-					/>
+					<IconButton className={classes.menuButton} iconName="menu" colorType="black" noShadow />
 					<Fab aria-label="add" className={classes.qrButton}>
 						<Icon colorType="black" iconName="qr" primaryColor="white" secondaryColor="white" />
 					</Fab>
-					<IconButton
-						className={classes.filterButton}
-						iconProps={{ iconName: 'filter', primaryColor: 'black', secondaryColor: '#f8ca06' }}
-						noShadow={true}
-					/>
+					<IconButton className={classes.filterButton} iconName="filter" colorType="black" noShadow />
 				</div>
 			</MapGL>
 		</FullPage>
