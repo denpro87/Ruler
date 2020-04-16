@@ -13,15 +13,24 @@ export const SafetyScooter: React.FunctionComponent = () => {
 	return (
 		<Page title="Scooter" titleSize="medium">
 			<Paper elevation={0}>
-				<Typography className={clsx(classes.subTitle, classes.text)}>Placerat vestibulum lectus</Typography>
+				<Typography className={clsx(classes.subTitle, classes.text)}>Your safety is important to us</Typography>
 				<Typography className={clsx(classes.content, classes.text)}>
-					Viverra adipiscing at in tellus integer feugiat. Sed arcu non odio euismod lacinia at. Egestas sed sed risus pretium. Viverra
-					suspendisse potenti nullam ac tortor vitae purus. Pharetra convallis posuere morbi leo urna molestie at elementum.
-				</Typography>
-				<Typography className={clsx(classes.subTitle, classes.text)}>Amet massa vitae tortor</Typography>
-				<Typography className={clsx(classes.content, classes.text)}>
-					Vel turpis nunc eget lorem dolor sed. Sed euismod nisi porta lorem mollis aliquam ut porttitor leo. Ut ornare lectus sit amet est.
-					Elit pellentesque.
+					Always follow the following rules while you are looking to ride via scooter.
+					<br />
+					<br />
+					1. Do a pre-ride check: Accelerator, Brake and Handle
+					<br />
+					2. Always follow helmet laws
+					<br />
+					3. Park properly at the designated Parking sites.
+					<br />
+					4. Apply brakes to slow down or stop
+					<br />
+					5. Take care of road obstructions
+					<br />
+					6. Always follow traffic rules
+					<br />
+					7. Do not use your phone while riding
 				</Typography>
 			</Paper>
 		</Page>
