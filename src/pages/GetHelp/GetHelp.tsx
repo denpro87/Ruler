@@ -1,5 +1,5 @@
 import { Divider, List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
-import { GreenIcon, LightGreenButton, Page } from 'components';
+import { LightGreenButton, Page } from 'components';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { pxToRem } from 'styles';
 import { styles } from './GetHelp.styles';
@@ -97,16 +97,13 @@ export const GetHelp: React.FunctionComponent = () => {
 						<div className={classes.blackBar}></div>
 						<Typography className={classes.sheetTitle}>Anything wrong?</Typography>
 						<Typography className={classes.sheetText}>Let us know! We are here for you 24/7</Typography>
-						<LightGreenButton className={classes.sheetButton} onClick={onHandleBadly}>
-							<GreenIcon className={classes.buttonIcon} iconName="badly-parked-vehicle" />
+						<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={onHandleBadly}>
 							Report a badly parked vehicle
 						</LightGreenButton>
-						<LightGreenButton className={classes.sheetButton} onClick={onHandleDamaged}>
-							<GreenIcon className={classes.buttonIcon} iconName="damaged-vehicle" />
+						<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={onHandleDamaged}>
 							The vehicle is damaged
 						</LightGreenButton>
-						<LightGreenButton className={classes.sheetButton} onClick={onHandleContact}>
-							<GreenIcon className={classes.buttonIcon} iconName="support" />
+						<LightGreenButton className={classes.sheetButton} iconName="support" onClick={onHandleContact}>
 							Contact Ruler
 						</LightGreenButton>
 					</div>
