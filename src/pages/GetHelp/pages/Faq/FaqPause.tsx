@@ -1,4 +1,4 @@
-import { FaqFooter } from 'pages/GetHelp/components';
+import { FaqFooter } from '../../components';
 import { Page } from 'components';
 import { Paper, Typography, makeStyles } from '@material-ui/core';
 import { styles } from './Faq.styles';
