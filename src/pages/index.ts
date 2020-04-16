@@ -1,4 +1,3 @@
-export * from './ChangePassword';
 export * from './DarkMode';
 export * from './DriverLicence';
 export * from './Languages';

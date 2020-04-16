@@ -1,32 +1,38 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-
-const inputWrapper: CSSProperties = {
-	width: '100%',
-	height: '36px',
-	borderRadius: '10px',
-	position: 'relative',
-	marginTop: '20px',
-	marginBottom: '20px'
-};
+import { pxToRem } from 'styles';
 
 const eyeIcon: CSSProperties = {
-	padding: 0
+	padding: 0,
+	marginBottom: pxToRem(12),
+	boxShadow: 'none'
 };
 
-const inputRoot: CSSProperties = {
-	color: 'inherit',
-	width: '100%'
-};
-
-const inputInput: CSSProperties = {
-	width: '100%',
-	padding: '6px 10px 6px 40px',
-	height: '25px'
+const textFieldRoot: CSSProperties = {
+	marginBottom: pxToRem(25),
+	'& .MuiInput-formControl': {
+		marginTop: pxToRem(12)
+	},
+	'& .MuiInput-underline:before, .MuiInput-underline:after': {
+		borderBottom: '2px solid #181c19'
+	},
+	'& input': {
+		padding: `0 0 ${pxToRem(12)} 0`,
+		fontSize: pxToRem(15),
+		fontWeight: 600,
+		lineHeight: 1.67,
+		color: '#181c19'
+	},
+	'& label': {
+		top: pxToRem(-12),
+		fontSize: pxToRem(15),
+		fontWeight: 600,
+		lineHeight: 1.67,
+		color: '#181c19!important',
+		opacity: 0.5
+	}
 };
 
 export const styles = createStyles({
 	eyeIcon,
-	inputWrapper,
-	inputRoot,
-	inputInput
+	textFieldRoot
 });

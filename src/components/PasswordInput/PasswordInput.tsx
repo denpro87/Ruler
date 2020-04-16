@@ -22,6 +22,7 @@ export const PasswordInput: React.FunctionComponent<IPasswordInputProps> = ({ on
 			fullWidth
 			placeholder={placeholder}
 			type={passwordIsMasked ? 'password' : 'text'}
+			classes={{ root: classes.textFieldRoot }}
 			// {...props}
 			InputProps={{
 				endAdornment: (
