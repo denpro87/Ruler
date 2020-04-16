@@ -11,7 +11,7 @@ const content: CSSProperties = {
 };
 const reportContainer: CSSProperties = {
 	backgroundColor: '#f3f3f3',
-	marginTop: pxToRem(25),
+	marginTop: pxToRem(20),
 	borderRadius: pxToRem(15)
 };
 const reportHeaderWrapper: CSSProperties = {
@@ -21,8 +21,7 @@ const reportHeaderWrapper: CSSProperties = {
 	flexDirection: 'row',
 	justifyContent: 'space-between',
 	alignItems: 'center',
-	borderBottomLeftRadius: pxToRem(15),
-	borderBottomRightRadius: pxToRem(15),
+	borderRadius: pxToRem(15),
 	...dropShadow('0 10px 40px rgba(0, 0, 0, 0.1)')
 };
 const reportTitleWrapper: CreateCSSProperties = {
