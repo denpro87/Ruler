@@ -20,6 +20,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-svg": "^11.0.15",
+    "react-swipeable-bottom-sheet": "^1.1.1",
     "typeface-montserrat": "0.0.75",
     "typeface-roboto": "0.0.75"
   },

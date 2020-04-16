@@ -13,7 +13,8 @@ const buttonWrapper: CSSProperties = {
 	flexDirection: 'column'
 };
 const bigButton: CSSProperties = {
-	marginBottom: pxToRem(15)
+	marginBottom: pxToRem(15),
+	fontWeight: 'bold'
 };
 const li: CSSProperties = {
 	display: 'flex',
