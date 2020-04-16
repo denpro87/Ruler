@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Typography, makeStyles } from '@material-ui/core';
+import { Box, Paper, Typography, makeStyles } from '@material-ui/core';
 import { GreenIcon, LightGreenButton, Page } from 'components';
 import { styles } from './ContactUs.styles';
 

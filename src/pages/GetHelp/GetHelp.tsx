@@ -1,4 +1,4 @@
-import { Button, Divider, List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
+import { Divider, List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { IonActionSheet } from '@ionic/react';
 import { LightGreenButton, Page } from 'components';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
