@@ -45,23 +45,23 @@ export const GetHelp: React.FunctionComponent = () => {
 	const history = useHistory();
 	const [showAddReport, setShowAddReport] = React.useState(false);
 
-	const onHandleAddReport = () => {
+	const handleAddReportClick = () => {
 		setShowAddReport(true);
 	};
 
-	const onCloseSheet = (isOpen: boolean) => {
+	const handleBottomSheetChange = (isOpen: boolean) => {
 		setShowAddReport(isOpen);
 	};
 
-	const onHandleBadly = () => {
+	const handleBadlyClick = () => {
 		setShowAddReport(false);
 	};
 
-	const onHandleDamaged = () => {
+	const handleDamagedClick = () => {
 		setShowAddReport(false);
 	};
 
-	const onHandleContact = () => {
+	const handleContactClick = () => {
 		setShowAddReport(false);
 	};
 
@@ -76,7 +76,7 @@ export const GetHelp: React.FunctionComponent = () => {
 							</ListItem>
 						)}
 						{!item.href && (
-							<ListItem className={classes.listItem} button onClick={onHandleAddReport}>
+							<ListItem className={classes.listItem} button onClick={handleAddReportClick}>
 								<ListItemText primary={item.title} classes={{ primary: classes.text }} />
 							</ListItem>
 						)}
@@ -91,19 +91,19 @@ export const GetHelp: React.FunctionComponent = () => {
 				<SwipeableBottomSheet
 					bodyStyle={{ borderTopLeftRadius: pxToRem(20), borderTopRightRadius: pxToRem(20) }}
 					open={showAddReport}
-					onChange={onCloseSheet}
+					onChange={handleBottomSheetChange}
 				>
 					<div className={classes.sheetWrapper}>
 						<div className={classes.blackBar}></div>
 						<Typography className={classes.sheetTitle}>Anything wrong?</Typography>
 						<Typography className={classes.sheetText}>Let us know! We are here for you 24/7</Typography>
-						<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={onHandleBadly}>
+						<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
 							Report a badly parked vehicle
 						</LightGreenButton>
-						<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={onHandleDamaged}>
+						<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
 							The vehicle is damaged
 						</LightGreenButton>
-						<LightGreenButton className={classes.sheetButton} iconName="support" onClick={onHandleContact}>
+						<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
 							Contact Ruler
 						</LightGreenButton>
 					</div>
