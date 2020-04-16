@@ -1,6 +1,6 @@
 import { IReportProps } from './MyReports.types';
 import { Page } from 'components';
-import { Report } from 'pages/GetHelp/components';
+import { Report } from '../../components';
 import { makeStyles } from '@material-ui/core';
 import { styles } from './MyReports.styles';
 
