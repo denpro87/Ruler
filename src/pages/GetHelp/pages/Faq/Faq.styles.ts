@@ -4,12 +4,13 @@ import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 const list: CSSProperties = {
 	padding: 0
 };
-const searchBox: CSSProperties = { marginTop: 0, marginBottom: 15 };
+const searchBox: CSSProperties = { marginTop: pxToRem(5), marginBottom: pxToRem(15) };
 const listItem: CSSProperties = {
 	padding: `0 0 ${pxToRem(7)} 0`,
 	color: '#00b559'
 };
 const container: CSSProperties = {
+	paddingTop: pxToRem(5),
 	flex: 1
 };
 const text: CSSProperties = {
