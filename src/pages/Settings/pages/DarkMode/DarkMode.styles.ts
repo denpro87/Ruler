@@ -41,7 +41,7 @@ const timePicker: CSSProperties = {
 const li: CSSProperties = {
 	display: 'flex',
 	alignItems: 'center',
-	padding: `${pxToRem(10)} 0`
+	padding: `${pxToRem(10)} 0 ${pxToRem(15)} 0`
 };
 const itemText: CSSProperties = {
 	margin: 0,
