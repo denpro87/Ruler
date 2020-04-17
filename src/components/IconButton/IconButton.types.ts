@@ -16,4 +16,5 @@ export interface IIconButtonProps extends Omit<IconButtonProps, 'size'> {
 	height?: number;
 	noShadow?: boolean;
 	outlined?: boolean;
+	label?: string;
 }

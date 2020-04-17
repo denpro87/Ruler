@@ -21,7 +21,7 @@ const zonesButton: CSSProperties = {
 	right: pxToRem(20)
 };
 
-const vehicleButton: CSSProperties = {
+const vehicleButtonGroup: CSSProperties = {
 	position: 'absolute',
 	bottom: pxToRem(30),
 	left: pxToRem(20)
@@ -65,7 +65,7 @@ const filterButton: CSSProperties = {
 export const styles = createStyles({
 	reportButton,
 	zonesButton,
-	vehicleButton,
+	vehicleButtonGroup,
 	findMeButton,
 	homeButtons,
 	qrButton,

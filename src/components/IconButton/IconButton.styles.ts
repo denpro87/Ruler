@@ -1,15 +1,26 @@
-import { CreateCSSProperties } from '@material-ui/styles';
-import { DEFAULT_ICON_BUTTON_SIZE, ICON_BUTTON_BOX_SHADOW, ICON_BUTTON_BOX_SHADOW_INSET } from './IconButton.variables';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
+import {
+	DEFAULT_ICON_BUTTON_SIZE,
+	DEFAULT_ICON_LABEL_SIZE,
+	ICON_BUTTON_BOX_SHADOW,
+	ICON_BUTTON_BOX_SHADOW_INSET
+} from './IconButton.variables';
 import { DEFAULT_ICON_SIZE } from 'components';
 import { createStyles } from '@material-ui/core';
-import { initial, pxToRem } from 'styles';
+import { font, initial, pxToRem } from 'styles';
 
 const iconButton: CreateCSSProperties = {
 	padding: (props: any) => {
 		const paddingX = Math.max(0, (initial(props.width, DEFAULT_ICON_BUTTON_SIZE) - initial(props.iconWidth, DEFAULT_ICON_SIZE)) / 2);
-		const paddingY = Math.max(0, (initial(props.height, DEFAULT_ICON_BUTTON_SIZE) - initial(props.iconHeight, DEFAULT_ICON_SIZE)) / 2);
+		const paddingY = Math.max(
+			0,
+			(initial(props.height, DEFAULT_ICON_BUTTON_SIZE) -
+				initial(props.iconHeight, DEFAULT_ICON_SIZE) -
+				(props.label ? initial(props.labelHeight, DEFAULT_ICON_LABEL_SIZE) : 0)) /
+				2
+		);
 
-		return `${paddingY}px ${paddingX}px`;
+		return `${pxToRem(paddingY)} ${pxToRem(paddingX)}`;
 	},
 	color: '#000',
 	borderRadius: pxToRem(15),
@@ -32,9 +43,28 @@ const iconButton: CreateCSSProperties = {
 	},
 	'& .MuiTouchRipple-child': {
 		borderRadius: pxToRem(15)
+	},
+	'& .MuiIconButton-label': {
+		flexDirection: 'column',
+		width: (props: any): any => pxToRem(initial(props.iconWidth, DEFAULT_ICON_SIZE))
 	}
 };
 
+const iconLabel: CSSProperties = {
+	...font({
+		fontSize: 10,
+		fontWeight: 600,
+		fontStretch: 'normal',
+		fontStyle: 'normal',
+		lineHeight: 1.5,
+		letterSpacing: 'normal',
+		color: '#181c19'
+	}),
+	opacity: 0.5,
+	height: 15
+};
+
 export const styles = createStyles({
-	iconButton
+	iconButton,
+	iconLabel
 });

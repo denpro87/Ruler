@@ -1,7 +1,7 @@
 import { DEFAULT_ICON_BUTTON_SIZE } from './IconButton.variables';
 import { GoBackIconButtonProps, IIconButtonProps, SocialIconButtonProps } from './IconButton.types';
 import { IIconProps, Icon } from 'components';
-import { IconButton as MuiIconButton } from '@material-ui/core';
+import { IconButton as MuiIconButton, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './IconButton.styles';
 import React from 'react';
@@ -20,6 +20,7 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 	noShadow,
 	outlined,
 	className,
+	label,
 	...restProps
 }) => {
 	if (!(iconName || iconProps)) {
@@ -32,7 +33,8 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 		iconWidth: iconProps?.width,
 		iconHeight: iconProps?.height,
 		noShadow,
-		outlined
+		outlined,
+		label
 	});
 
 	iconProps = Object.assign({}, { iconName, colorType }, iconProps) as IIconProps;
@@ -41,6 +43,7 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 	return (
 		<MuiIconButton size="medium" className={clsx(classes.iconButton, className)} {...restProps}>
 			<Icon {...iconProps} />
+			{label && <Typography className={classes.iconLabel}>{label}</Typography>}
 		</MuiIconButton>
 	);
 };
