@@ -24,8 +24,8 @@ const switchBase = (theme: Theme): CSSProperties => ({
 		color: '#00b559',
 		border: '6px solid #fff'
 	},
-	'&disabled': {
-		backgroundColor: '#555555'
+	'&$disabled': {
+		color: '#ffffff'
 	}
 });
 
@@ -51,5 +51,6 @@ export const styles = (theme: Theme) =>
 		track,
 		// `checked` and `focusVisible` are required to be an empty object.
 		checked: {},
+		disabled: {},
 		focusVisible: {}
 	});

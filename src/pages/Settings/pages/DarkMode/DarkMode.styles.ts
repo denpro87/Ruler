@@ -11,9 +11,11 @@ const subText: CSSProperties = {
 	fontWeight: 600,
 	fontFamily: DEFAULT_FONT_FAMILY,
 	fontSize: pxToRem(10),
-	lineHeight: 1.5,
-	marginTop: pxToRem(20),
-	marginBottom: pxToRem(11)
+	lineHeight: 1.5
+};
+const textWrapper: CSSProperties = {
+	paddingTop: pxToRem(20),
+	paddingBottom: pxToRem(11)
 };
 const divider: CSSProperties = {
 	backgroundColor: '#181c19',
@@ -124,5 +126,6 @@ export const styles = createStyles({
 	divider,
 	secondaryAction,
 	itemText,
-	secondaryButton
+	secondaryButton,
+	textWrapper
 });

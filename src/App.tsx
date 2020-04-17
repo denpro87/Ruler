@@ -1,6 +1,6 @@
 import * as getHelp from 'pages/GetHelp';
 import * as settings from 'pages/Settings';
-import { DriveLicence, Home, Languages, News, Notifications, ServiceProviders, Splash, Welcome } from 'pages';
+import { DriveLicence, Home, Languages, News, ServiceProviders, Splash, Welcome } from 'pages';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
@@ -25,7 +25,7 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/news" component={News} exact />
 					<Route path="/settings/change-password" component={settings.ChangePassword} exact />
 					<Route path="/drive-license" component={DriveLicence} exact />
-					<Route path="/settings/notifications" component={Notifications} exact />
+					<Route path="/settings/notifications" component={settings.Notifications} exact />
 					<Route path="/settings/languages" component={Languages} exact />
 					<Route path="/settings/profile" component={settings.Profile} exact />
 					<Route path="/settings/change-email" component={settings.ChangeEmail} exact />

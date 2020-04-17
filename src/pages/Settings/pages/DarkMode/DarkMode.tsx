@@ -1,6 +1,6 @@
-import { Box, Button, Divider, List, ListItem, ListItemSecondaryAction, ListItemText, Typography, makeStyles } from '@material-ui/core';
+import { Box, Button, Divider, List, ListItem, ListItemSecondaryAction, ListItemText, makeStyles } from '@material-ui/core';
 import { IDarkModeProps, IDarkModeState } from './DarkMode.types';
-import { Icon, Page, Styling, SwitchListItem } from 'components';
+import { Icon, Page, Styling, SwitchListItem, Text } from 'components';
 import { IonDatetime } from '@ionic/react';
 import { styles } from './DarkMode.styles';
 
@@ -77,7 +77,9 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 								checked={this.state.dontUseDarkMode}
 								onChange={this.handleDontUseChange}
 							/>
-							<Typography className={classes.subText}>Set by time</Typography>
+							<div className={classes.textWrapper}>
+								<Text className={classes.subText}>Set by time</Text>
+							</div>
 							<SwitchListItem
 								title="Scheduled"
 								name="scheduledDarkMode"
