@@ -1,10 +1,16 @@
-import { ITextProps, ParagraphProps, TextStyles } from './Text.types';
-import { makeStyles } from '@material-ui/core';
+import { ITextProps, ParagraphProps, TextStyles, TitleProps } from './Text.types';
+import { Typography, makeStyles } from '@material-ui/core';
 import { styles } from './Text.styles';
 import React from 'react';
 import clsx from 'clsx';
 
 export const createTextStyles = (textStyles: TextStyles): TextStyles => textStyles;
+
+export const Title: React.FunctionComponent<TitleProps> = props => <Text block {...props} />;
+
+Title.defaultProps = {
+	component: 'h1'
+};
 
 export const Paragraph: React.FunctionComponent<ParagraphProps> = props => <Text component="p" block {...props} />;
 
@@ -12,9 +18,15 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 	const props = { ...textStyles, ...restProps };
 	const {
 		component,
-		componentProps,
 		block,
-		nowrap,
+		inline,
+		align,
+		display = block ? (inline ? ('inline-block' as 'block') : 'block') : inline ? 'inline' : undefined,
+		gutterBottom,
+		noWrap,
+		paragraph,
+		variant,
+		variantMapping,
 		fontStretch,
 		fontStyle,
 		fontVariant,
@@ -33,8 +45,6 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 	const useStyles = _makeStyles();
 
 	const classes = useStyles({
-		block,
-		nowrap,
 		fontStretch,
 		fontStyle,
 		fontVariant,
@@ -45,21 +55,29 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 		letterSpacing,
 		color
 	});
-	const TextWrapper = component as string;
 
-	return React.createElement(
-		TextWrapper,
-		{
-			className: clsx(
+	const isParagraph = component === 'p' || paragraph;
+
+	return (
+		<Typography
+			component={component as any}
+			align={align}
+			display={display}
+			gutterBottom={gutterBottom}
+			noWrap={noWrap}
+			paragraph={paragraph}
+			variant={variant}
+			variantMapping={variantMapping}
+			className={clsx(
 				classes.text,
 				{
-					[classes.paragraph]: component === 'p'
+					[classes.paragraph]: isParagraph
 				},
 				className
-			),
-			...componentProps
-		},
-		children
+			)}
+		>
+			{children}
+		</Typography>
 	);
 });
 

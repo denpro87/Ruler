@@ -1,5 +1,4 @@
 import { ILinkProps } from './Link.types';
-import { Text } from 'components';
 import { makeStyles } from '@material-ui/core';
 import { styles } from './Link.styles';
 import React from 'react';
@@ -18,16 +17,8 @@ export const Link: React.FunctionComponent<ILinkProps> = ({ href, onClick, child
 	}
 
 	return (
-		<Text
-			className={classes.link}
-			component="a"
-			componentProps={{
-				href,
-				onClick
-			}}
-			inheritStyles
-		>
+		<a className={classes.link} href={href} onClick={onClick}>
 			{children}
-		</Text>
+		</a>
 	);
 };
