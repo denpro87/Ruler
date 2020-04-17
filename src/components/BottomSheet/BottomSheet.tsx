@@ -1,5 +1,4 @@
 import { IBottomSheetProps } from './BottomSheet.types';
-import { LightGreenButton } from 'components';
 import { Typography, makeStyles } from '@material-ui/core';
 import { pxToRem } from 'styles';
 import { styles } from './BottomSheet.styles';
@@ -10,35 +9,21 @@ import React from 'react';
 
 const useStyles = makeStyles(styles);
 
-export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
-	open,
-	onBottomSheetChange,
-	onBadlyClick,
-	onDamagedClick,
-	onContactClick
-}) => {
+export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({ open, onBottomSheetChange, children, title }) => {
 	const classes = useStyles();
 
 	return (
 		<div className={classes.sheetContainer}>
 			<SwipeableBottomSheet
 				bodyStyle={{ borderTopLeftRadius: pxToRem(15), borderTopRightRadius: pxToRem(15) }}
+				overlayStyle={{ background: '#181c19', opacity: open ? 0.4 : 0 }}
 				open={open}
 				onChange={onBottomSheetChange}
 			>
 				<div className={classes.sheetWrapper}>
 					<div className={classes.blackBar}></div>
-					<Typography className={classes.sheetTitle}>Anything wrong?</Typography>
-					<Typography className={classes.sheetText}>Let us know! We are here for you 24/7</Typography>
-					<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={onBadlyClick}>
-						Report a badly parked vehicle
-					</LightGreenButton>
-					<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={onDamagedClick}>
-						The vehicle is damaged
-					</LightGreenButton>
-					<LightGreenButton className={classes.sheetButton} iconName="support" onClick={onContactClick}>
-						Contact Ruler
-					</LightGreenButton>
+					{title && <Typography className={classes.sheetTitle}>Anything wrong?</Typography>}
+					{children}
 				</div>
 			</SwipeableBottomSheet>
 		</div>

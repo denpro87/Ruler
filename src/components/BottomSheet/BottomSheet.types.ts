@@ -1,7 +1,5 @@
 export interface IBottomSheetProps {
 	open: boolean;
+	title?: string;
 	onBottomSheetChange: (isOpen: boolean) => void;
-	onBadlyClick: () => void;
-	onDamagedClick: () => void;
-	onContactClick: () => void;
 }
