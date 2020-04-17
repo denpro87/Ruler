@@ -2,6 +2,8 @@ import { IBottomSheetProps } from './BottomSheet.types';
 import { Typography, makeStyles } from '@material-ui/core';
 import { pxToRem } from 'styles';
 import { styles } from './BottomSheet.styles';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet';
 
