@@ -69,30 +69,51 @@ const secondaryButton: CSSProperties = {
 const customPicker: CSSProperties = {
 	'& .picker-wrapper': {
 		display: 'flex',
+		height: pxToRem(320),
 		flexDirection: 'column-reverse',
-		borderRadius: '14px',
-		'& .picker-toolbar-button': {}
-	}
-};
-const bottomSheetButtonWrapper: CSSProperties = {
-	padding: `${pxToRem(30)} 0 ${pxToRem(19)} 0`,
-	display: 'flex',
-	flexDirection: 'row',
-	justifyContent: 'space-between',
-	alignItems: 'center',
-	width: '100%',
-	'& button': {
-		flex: 1,
-		fontWeight: 'bold',
-		'&:first-child': {
-			marginRight: pxToRem(7.5)
+		borderTopLeftRadius: '15px',
+		borderTopRightRadius: '15px',
+		padding: `${pxToRem(20)} ${pxToRem(20)} ${pxToRem(19)} ${pxToRem(20)}`,
+		'& .picker-above-highlight, .picker-below-highlight': {
+			borderColor: 'rgba(24, 28, 35, 0.05) !important'
 		},
-		'&:last-child': {
-			marginLeft: pxToRem(7.5)
+		'& .picker-opt': {
+			color: '#181c19',
+			fontSize: pxToRem(20),
+			lineHeight: 1.67,
+			fontWeight: 600,
+			fontFamily: DEFAULT_FONT_FAMILY
+		},
+		'& .picker-toolbar': {
+			marginTop: pxToRem(20),
+			height: pxToRem(50),
+			border: 'none',
+			'& button': {
+				borderRadius: pxToRem(15),
+				width: '100%',
+				height: pxToRem(50),
+				fontSize: pxToRem(15),
+				lineHeight: 1.67,
+				fontWeight: 'bold !important',
+				fontFamily: DEFAULT_FONT_FAMILY
+			},
+			'& div:first-child': {
+				marginRight: pxToRem(7.5),
+				'& button': {
+					backgroundColor: '#caf1dd',
+					color: '#00b559'
+				}
+			},
+			'& div:last-child': {
+				marginLeft: pxToRem(7.5),
+				'& button': {
+					backgroundColor: '#00b559',
+					color: '#ffffff'
+				}
+			}
 		}
 	}
 };
-const bottomSheetButton: CSSProperties = {};
 
 export const styles = createStyles({
 	providersList,
@@ -103,7 +124,5 @@ export const styles = createStyles({
 	divider,
 	secondaryAction,
 	itemText,
-	secondaryButton,
-	bottomSheetButtonWrapper,
-	bottomSheetButton
+	secondaryButton
 });
