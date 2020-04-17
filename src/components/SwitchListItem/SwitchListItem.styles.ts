@@ -3,10 +3,7 @@ import { font, pxToRem } from 'styles';
 const li: CSSProperties = {
 	display: 'flex',
 	alignItems: 'center',
-	'& h6': {
-		width: '100%',
-		paddingTop: '3px'
-	}
+	padding: `${pxToRem(10)} 0`
 };
 
 const deactivated: CSSProperties = {
@@ -18,18 +15,22 @@ const provider: CSSProperties = {
 };
 
 const stackWrapper: CSSProperties = {
-	width: '100%'
+	width: '100%',
+	alignItems: 'flex-start'
 };
 const switchLabel: CSSProperties = {
-	...font({
-		fontSize: 15,
-		fontWeight: 600,
-		fontStretch: 'normal',
-		fontStyle: 'normal',
-		lineHeight: 1.67,
-		letterSpacing: 'normal',
-		color: '#181c19'
-	})
+	'& span': {
+		...font({
+			fontWeight: 600,
+			fontStretch: 'normal',
+			fontStyle: 'normal',
+			lineHeight: 1.67,
+			letterSpacing: 'normal',
+			color: '#181c19'
+		}),
+		fontSize: pxToRem(15)
+	},
+	margin: 0
 };
 export const styles = createStyles({
 	li,
