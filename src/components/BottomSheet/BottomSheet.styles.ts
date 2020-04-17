@@ -4,7 +4,8 @@ import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 const sheetContainer: CSSProperties = {
 	'& .react-swipeable-view-container': {
 		borderTopLeftRadius: pxToRem(15),
-		borderTopRightRadius: pxToRem(15)
+		borderTopRightRadius: pxToRem(15),
+		boxShadow: 'none !important'
 	}
 };
 const sheetWrapper: CSSProperties = {
