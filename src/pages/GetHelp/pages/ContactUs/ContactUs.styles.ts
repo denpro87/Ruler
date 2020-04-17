@@ -6,6 +6,7 @@ const container: CSSProperties = {
 };
 const buttonWrapper: CSSProperties = {
 	paddingBottom: pxToRem(5),
+	paddingTop: pxToRem(30),
 	display: 'flex',
 	flexDirection: 'column'
 };

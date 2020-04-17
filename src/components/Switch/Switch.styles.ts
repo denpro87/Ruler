@@ -6,8 +6,7 @@ const root = (theme: Theme): CSSProperties => ({
 	width: pxToRem(52),
 	height: pxToRem(31),
 	padding: 0,
-	marginTop: theme.spacing(1),
-	marginBottom: theme.spacing(1)
+	marginTop: pxToRem(-1)
 });
 
 const switchBase = (theme: Theme): CSSProperties => ({

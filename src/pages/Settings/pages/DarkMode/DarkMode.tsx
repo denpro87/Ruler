@@ -1,7 +1,7 @@
-import { Box, Divider, List, ListItem, Typography, makeStyles } from '@material-ui/core';
+import { BottomSheet, GreenButton, Icon, LightGreenButton, Page, Styling, SwitchListItem } from 'components';
+import { Box, Button, Divider, List, ListItem, ListItemSecondaryAction, ListItemText, Typography, makeStyles } from '@material-ui/core';
 import { IDarkModeProps, IDarkModeState } from './DarkMode.types';
-import { IonDatetime, IonItem } from '@ionic/react';
-import { Page, Styling, SwitchListItem } from 'components';
+import { IonDatetime } from '@ionic/react';
 import { styles } from './DarkMode.styles';
 
 import React from 'react';
@@ -13,9 +13,15 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		automaticallyDarkMode: true,
 		dontUseDarkMode: false,
 		scheduledDarkMode: false,
-		startTimeDarkMode: '1990-02-19T22:00Z',
-		endTimeDarkMode: '1990-02-19T07:00Z'
+		startTimeDarkMode: '22:00',
+		endTimeDarkMode: '07:00',
+		open: false,
+		dateItem: ''
 	};
+
+	startDate = React.createRef();
+
+	endDate = React.createRef();
 
 	private handleAutomaticallyChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
 		if (checked) {
@@ -46,79 +52,89 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		this.setState({ endTimeDarkMode: _event.detail.value });
 	};
 
+	private handleBottomSheetChange = (isOpen: boolean) => {
+		this.setState({ open: isOpen, dateItem: '' });
+	};
+
+	private handleStartClick = () => {
+		this.setState({ open: true, dateItem: 'start' });
+	};
+
+	private handleEndClick = () => {
+		this.setState({ open: true, dateItem: 'end' });
+	};
+
 	render() {
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page>
-						<Box /* className={classes.innerContent} */>
-							<List className={classes.providersList}>
-								<SwitchListItem
-									title="Automatically"
-									name="automaticallyDarkMode"
-									checked={this.state.automaticallyDarkMode}
-									onChange={this.handleAutomaticallyChange}
-								/>
-								<Divider />
-								<SwitchListItem
-									title="Don't use"
-									name="dontUseDarkMode"
-									checked={this.state.dontUseDarkMode}
-									onChange={this.handleDontUseChange}
-								/>
-								<Divider />
-								<Typography variant="caption">Set by time</Typography>
-								<SwitchListItem
-									title="Scheduled"
-									name="scheduledDarkMode"
-									checked={this.state.scheduledDarkMode}
-									onChange={this.handleScheduledChange}
-								/>
+					<Page title="Dark mode" titleSize="medium">
+						<List className={classes.providersList}>
+							<SwitchListItem
+								title="Automatically"
+								name="automaticallyDarkMode"
+								checked={this.state.automaticallyDarkMode}
+								onChange={this.handleAutomaticallyChange}
+							/>
+							<Divider className={classes.divider} />
+							<SwitchListItem
+								title="Manually enable till tomorrow"
+								name="dontUseDarkMode"
+								checked={this.state.dontUseDarkMode}
+								onChange={this.handleDontUseChange}
+							/>
+							<Typography className={classes.subText}>Set by time</Typography>
+							<SwitchListItem
+								title="Scheduled"
+								name="scheduledDarkMode"
+								checked={this.state.scheduledDarkMode}
+								onChange={this.handleScheduledChange}
+							/>
 
-								{this.state.scheduledDarkMode && (
-									<Box>
-										<Divider />
-
-										<ListItem className={classes.li}>
-											<IonItem lines="none" className={classes.ionItem}>
-												<Typography variant="h6">Start</Typography>
-												<IonDatetime
-													display-timezone="utc"
-													mode="ios"
-													pickerOptions={{
-														cssClass: classes.customPicker
-													}}
-													display-format="HH:mm"
-													picker-format="HH:mm"
-													value={this.state.startTimeDarkMode}
-													onIonChange={e => this.handleStartDateChange(e)}
-												/>
-												{/* <Icon iconName={IconName.Forward} /> */}
-											</IonItem>
-										</ListItem>
-										<Divider />
-										<ListItem className={classes.li}>
-											<IonItem lines="none" className={classes.ionItem}>
-												<Typography variant="h6">Ending</Typography>
-												<IonDatetime
-													display-timezone="utc"
-													display-format="HH:mm"
-													mode="ios"
-													pickerOptions={{
-														cssClass: classes.customPicker
-													}}
-													picker-format="HH:mm"
-													value={this.state.endTimeDarkMode}
-													onIonChange={e => this.handleEndDateChange(e)}
-												/>
-												{/* <Icon iconName={IconName.Forward} /> */}
-											</IonItem>
-											<Divider />
-										</ListItem>
-									</Box>
-								)}
-							</List>
-						</Box>
+							{this.state.scheduledDarkMode && (
+								<Box>
+									<Divider className={classes.divider} />
+									<ListItem className={classes.li}>
+										<ListItemText className={classes.itemText}>Start</ListItemText>
+										<ListItemSecondaryAction className={classes.secondaryAction}>
+											<Button className={classes.secondaryButton} onClick={this.handleStartClick}>
+												{this.state.startTimeDarkMode}
+												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
+											</Button>
+										</ListItemSecondaryAction>
+									</ListItem>
+									<Divider className={classes.divider} />
+									<ListItem className={classes.li}>
+										<ListItemText className={classes.itemText}>Ending</ListItemText>
+										<ListItemSecondaryAction className={classes.secondaryAction}>
+											<Button className={classes.secondaryButton} onClick={this.handleEndClick}>
+												{this.state.endTimeDarkMode}
+												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
+											</Button>
+										</ListItemSecondaryAction>
+										<Divider className={classes.divider} />
+									</ListItem>
+								</Box>
+							)}
+						</List>
+						<BottomSheet title="" open={this.state.open} onBottomSheetChange={this.handleBottomSheetChange}>
+							<IonDatetime
+								// ref={this.state.dateItem === 'start' ? this.startDate : this.endDate}
+								display-timezone="utc"
+								display-format="HH:mm"
+								mode="ios"
+								pickerOptions={{
+									cssClass: classes.customPicker
+								}}
+								picker-format="HH:mm"
+								value={this.state.dateItem === 'start' ? this.state.startTimeDarkMode : this.state.endTimeDarkMode}
+								onIonChange={this.state.dateItem === 'start' ? e => this.handleStartDateChange(e) : e => this.handleEndDateChange(e)}
+							/>
+							<div className={classes.bottomSheetButtonWrapper}>
+								<LightGreenButton>Cancel</LightGreenButton>
+								<GreenButton>Set time</GreenButton>
+							</div>
+						</BottomSheet>
 					</Page>
 				)}
 			</Styling>

@@ -28,7 +28,7 @@ const divider: CSSProperties = {
 	width: '100%'
 };
 const buttonWrapper: CSSProperties = {
-	padding: `0 ${pxToRem(20)} ${pxToRem(20)} ${pxToRem(20)}`
+	padding: `${pxToRem(30)} ${pxToRem(20)} ${pxToRem(20)} ${pxToRem(20)}`
 };
 const backButton: CSSProperties = {
 	fontWeight: 'bold'
