@@ -29,25 +29,10 @@ const sheetTitle: CSSProperties = {
 	color: '#181c19',
 	padding: `${pxToRem(10)} 0 ${pxToRem(5)} 0`
 };
-const sheetText: CSSProperties = {
-	fontFamily: DEFAULT_FONT_FAMILY,
-	fontSize: pxToRem(15),
-	fontWeight: 600,
-	lineHeight: 1.67,
-	color: '#181c19',
-	opacity: 0.5,
-	padding: `0 0 ${pxToRem(20)} 0`
-};
-const sheetButton: CSSProperties = {
-	marginBottom: pxToRem(15),
-	fontWeight: 'bold'
-};
 
 export const styles = createStyles({
 	sheetContainer,
 	sheetWrapper,
 	blackBar,
-	sheetTitle,
-	sheetText,
-	sheetButton
+	sheetTitle
 });

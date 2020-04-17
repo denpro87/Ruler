@@ -1,5 +1,6 @@
 import { BottomSheet, LightGreenButton, Page } from 'components';
-import { Divider, List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
+import { Divider, List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
+
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './GetHelp.styles';
 
@@ -84,13 +85,18 @@ export const GetHelp: React.FunctionComponent = () => {
 					Back
 				</LightGreenButton>
 			</div>
-			<BottomSheet
-				open={showAddReport}
-				onBottomSheetChange={handleBottomSheetChange}
-				onBadlyClick={handleBadlyClick}
-				onDamagedClick={handleDamagedClick}
-				onContactClick={handleContactClick}
-			/>
+			<BottomSheet title="Anything wrong?" open={showAddReport} onBottomSheetChange={handleBottomSheetChange}>
+				<Typography className={classes.sheetText}>Let us know! We are here for you 24/7</Typography>
+				<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
+					Report a badly parked vehicle
+				</LightGreenButton>
+				<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
+					The vehicle is damaged
+				</LightGreenButton>
+				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
+					Contact Ruler
+				</LightGreenButton>
+			</BottomSheet>
 		</Page>
 	);
 };
