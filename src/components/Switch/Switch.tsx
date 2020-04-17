@@ -18,7 +18,8 @@ export const Switch: React.FunctionComponent<ISwitchProps> = props => {
 				switchBase: classes.switchBase,
 				thumb: classes.thumb,
 				track: classes.track,
-				checked: classes.checked
+				checked: classes.checked,
+				disabled: classes.disabled
 			}}
 			{...props}
 		/>
