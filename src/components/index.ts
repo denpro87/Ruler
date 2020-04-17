@@ -14,3 +14,4 @@ export * from './Switch';
 export * from './SwitchListItem';
 export * from './Text';
 export * from './Theming';
+export * from './BottomSheet';

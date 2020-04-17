@@ -1,10 +1,7 @@
-import { Divider, List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
-import { LightGreenButton, Page } from 'components';
+import { BottomSheet, LightGreenButton, Page } from 'components';
+import { Divider, List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
-import { pxToRem } from 'styles';
 import { styles } from './GetHelp.styles';
-// @ts-ignore
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet';
 
 import React from 'react';
 
@@ -66,49 +63,34 @@ export const GetHelp: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page title="Get help" titleSize="large">
+		<Page title="Get help" titleSize="large" noHorizontalContentPadding>
 			<List className={classes.list}>
-				{items.map((item, index) => (
-					<div key={index}>
-						{item.href && (
-							<ListItem className={classes.listItem} component={RouterLink} to={item.href}>
-								<ListItemText primary={item.title} classes={{ primary: classes.text }} />
-							</ListItem>
-						)}
-						{!item.href && (
-							<ListItem className={classes.listItem} button onClick={handleAddReportClick}>
-								<ListItemText primary={item.title} classes={{ primary: classes.text }} />
-							</ListItem>
-						)}
-						<Divider component="li" className={classes.divider} />
-					</div>
-				))}
+				{items.map((item, index) =>
+					item.href ? (
+						<ListItem key={index} className={classes.listItem} button component={RouterLink} to={item.href}>
+							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
+							<Divider component="li" className={classes.divider} />
+						</ListItem>
+					) : (
+						<ListItem key={index} className={classes.listItem} button onClick={handleAddReportClick}>
+							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
+							<Divider component="li" className={classes.divider} />
+						</ListItem>
+					)
+				)}
 			</List>
-			<LightGreenButton className={classes.backButton} onClick={() => history.goBack()}>
-				Back
-			</LightGreenButton>
-			<div className={classes.sheetContainer}>
-				<SwipeableBottomSheet
-					bodyStyle={{ borderTopLeftRadius: pxToRem(20), borderTopRightRadius: pxToRem(20) }}
-					open={showAddReport}
-					onChange={handleBottomSheetChange}
-				>
-					<div className={classes.sheetWrapper}>
-						<div className={classes.blackBar}></div>
-						<Typography className={classes.sheetTitle}>Anything wrong?</Typography>
-						<Typography className={classes.sheetText}>Let us know! We are here for you 24/7</Typography>
-						<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
-							Report a badly parked vehicle
-						</LightGreenButton>
-						<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
-							The vehicle is damaged
-						</LightGreenButton>
-						<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
-							Contact Ruler
-						</LightGreenButton>
-					</div>
-				</SwipeableBottomSheet>
+			<div className={classes.buttonWrapper}>
+				<LightGreenButton className={classes.backButton} onClick={() => history.goBack()}>
+					Back
+				</LightGreenButton>
 			</div>
+			<BottomSheet
+				open={showAddReport}
+				onBottomSheetChange={handleBottomSheetChange}
+				onBadlyClick={handleBadlyClick}
+				onDamagedClick={handleDamagedClick}
+				onContactClick={handleContactClick}
+			/>
 		</Page>
 	);
 };
