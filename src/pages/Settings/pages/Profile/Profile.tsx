@@ -12,7 +12,7 @@ export const Profile: React.FunctionComponent = () => {
 		lastName: ''
 	});
 
-	const handleSaveChanges = (): void => {
+	const handleSaveClick = (): void => {
 		console.log(state.firstName, state.lastName);
 	};
 
@@ -42,7 +42,7 @@ export const Profile: React.FunctionComponent = () => {
 					value={state.lastName}
 					onChange={handleStateChange}
 				/>
-				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveChanges}>
+				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
 					{' '}
 					Save changes
 				</GreenButton>

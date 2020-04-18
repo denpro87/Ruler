@@ -64,7 +64,7 @@ const pageContent: CreateCSSProperties = {
 	flexBasis: 'auto',
 	flexGrow: 1,
 	flexShrink: 0,
-	padding: (props: any) => (props.hasPageHeader ? `0 ${pxToRem(20)}` : pxToRem(20))
+	padding: (props: any) => (props.noHorizontalContentPadding ? 0 : props.hasPageHeader ? `0 ${pxToRem(20)}` : pxToRem(20))
 };
 
 const pageTitle: CreateCSSProperties = {

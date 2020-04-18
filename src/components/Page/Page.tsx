@@ -21,6 +21,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	goBackIconButtonProps,
 	onClick,
 	className,
+	noHorizontalContentPadding,
 	children
 }) => {
 	const hasPageHeader = Boolean(canGoBack || title);
@@ -28,7 +29,8 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 		hasPageHeader,
 		titleSize,
 		background,
-		backgroundColor
+		backgroundColor,
+		noHorizontalContentPadding
 	});
 	const history = useHistory();
 

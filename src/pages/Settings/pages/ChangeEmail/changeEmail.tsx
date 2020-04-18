@@ -1,6 +1,6 @@
 import { Box, TextField, Typography, makeStyles } from '@material-ui/core';
 import { Dialog, GreenButton, Page } from 'components';
-import { styles } from './changeEmail.styles';
+import { styles } from './ChangeEmail.styles';
 import React from 'react';
 import manSvg from '../../images/man.svg';
 
@@ -11,7 +11,7 @@ export const ChangeEmail: React.FunctionComponent = () => {
 	const [email, setEmail] = React.useState('');
 	const [showDialog, setShowDialog] = React.useState(false);
 
-	const handleSaveChanges = (): void => {
+	const handleSaveClick = (): void => {
 		console.log(email);
 		setShowDialog(true);
 	};
@@ -33,7 +33,7 @@ export const ChangeEmail: React.FunctionComponent = () => {
 					value={email}
 					onChange={handleEmailChange}
 				/>
-				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveChanges}>
+				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
 					{' '}
 					Save changes
 				</GreenButton>

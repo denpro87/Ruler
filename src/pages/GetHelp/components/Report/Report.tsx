@@ -15,9 +15,7 @@ export const Report: React.FunctionComponent<IReportProps> = props => {
 			<div className={classes.reportHeaderWrapper}>
 				<div className={classes.reportTitleWrapper}>
 					<span>
-						<span>
-							<span />
-						</span>
+						<span />
 					</span>
 					<div>
 						<Typography className={classes.content} variant="h6">

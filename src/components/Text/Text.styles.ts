@@ -14,7 +14,6 @@ const text = (inheritStyles: boolean = false): CreateCSSProperties => ({
 	letterSpacing: (props: any) => props.letterSpacing,
 	color: (props: any) => props.color,
 	whiteSpace: (props: any) => (props.nowrap ? 'nowrap' : 'normal'),
-	display: (props: any) => (props.block ? 'block' : 'inline'),
 	textDecoration: 'none',
 	...fontSmoothing('antialiased'),
 	textOverflow: 'ellipsis',

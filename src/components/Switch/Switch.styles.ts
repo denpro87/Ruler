@@ -1,13 +1,12 @@
 import { CSSProperties } from '@material-ui/styles';
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+import { Theme, createStyles } from '@material-ui/core/styles';
 import { pxToRem } from 'styles';
 
 const root = (theme: Theme): CSSProperties => ({
 	width: pxToRem(52),
 	height: pxToRem(31),
 	padding: 0,
-	marginTop: theme.spacing(1),
-	marginBottom: theme.spacing(1)
+	marginTop: pxToRem(-1)
 });
 
 const switchBase = (theme: Theme): CSSProperties => ({
@@ -25,8 +24,8 @@ const switchBase = (theme: Theme): CSSProperties => ({
 		color: '#00b559',
 		border: '6px solid #fff'
 	},
-	'&disabled': {
-		backgroundColor: '#555555'
+	'&$disabled': {
+		color: '#ffffff'
 	}
 });
 
@@ -52,5 +51,6 @@ export const styles = (theme: Theme) =>
 		track,
 		// `checked` and `focusVisible` are required to be an empty object.
 		checked: {},
+		disabled: {},
 		focusVisible: {}
 	});

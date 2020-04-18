@@ -34,19 +34,13 @@ const reportTitleWrapper: CreateCSSProperties = {
 		justifyContent: 'center',
 		alignItems: 'center',
 		'& span': {
-			width: pxToRem(10),
-			height: pxToRem(10),
+			width: pxToRem(4),
+			height: pxToRem(4),
 			borderRadius: pxToRem(5),
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
-			backgroundColor: (props: any) => (props.type === 'resolved' ? '#00b559' : '#f8ca06'),
-			'& span': {
-				width: pxToRem(4),
-				height: pxToRem(4),
-				backgroundColor: '#ffffff',
-				borderRadius: pxToRem(2)
-			}
+			border: (props: any) => `${pxToRem(3)} solid ${props.type === 'resolved' ? '#00b559' : '#f8ca06'}`
 		}
 	},
 	'& div': {
@@ -70,6 +64,7 @@ const reportIconWrapper: CreateCSSProperties = {
 	justifyContent: 'center',
 	alignItems: 'center',
 	position: 'relative',
+	boxShadow: '0 10px 40px 0 rgba(0, 0, 0, 0.1)',
 	backgroundColor: (props: any) => (props.type === 'new' ? '#f8ca06' : '#ffffff')
 };
 const reportDataWrapper: CSSProperties = {

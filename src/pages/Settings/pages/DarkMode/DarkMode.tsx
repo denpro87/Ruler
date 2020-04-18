@@ -1,7 +1,7 @@
-import { Box, Divider, List, ListItem, Typography, makeStyles } from '@material-ui/core';
+import { Box, Button, Divider, List, ListItem, ListItemSecondaryAction, ListItemText, makeStyles } from '@material-ui/core';
 import { IDarkModeProps, IDarkModeState } from './DarkMode.types';
-import { IonDatetime, IonItem } from '@ionic/react';
-import { Page, Styling, SwitchListItem } from 'components';
+import { Icon, Page, Styling, SwitchListItem, Text } from 'components';
+import { IonDatetime } from '@ionic/react';
 import { styles } from './DarkMode.styles';
 
 import React from 'react';
@@ -13,8 +13,8 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		automaticallyDarkMode: true,
 		dontUseDarkMode: false,
 		scheduledDarkMode: false,
-		startTimeDarkMode: '1990-02-19T22:00Z',
-		endTimeDarkMode: '1990-02-19T07:00Z'
+		startTimeDarkMode: '22:00',
+		endTimeDarkMode: '07:00'
 	};
 
 	private handleAutomaticallyChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
@@ -46,79 +46,109 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		this.setState({ endTimeDarkMode: _event.detail.value });
 	};
 
+	private handleBottomSheetChange = (isOpen: boolean) => {
+		this.setState({ open: isOpen, dateItem: '' });
+	};
+
 	render() {
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page>
-						<Box /* className={classes.innerContent} */>
-							<List className={classes.providersList}>
-								<SwitchListItem
-									title="Automatically"
-									name="automaticallyDarkMode"
-									checked={this.state.automaticallyDarkMode}
-									onChange={this.handleAutomaticallyChange}
-								/>
-								<Divider />
-								<SwitchListItem
-									title="Don't use"
-									name="dontUseDarkMode"
-									checked={this.state.dontUseDarkMode}
-									onChange={this.handleDontUseChange}
-								/>
-								<Divider />
-								<Typography variant="caption">Set by time</Typography>
-								<SwitchListItem
-									title="Scheduled"
-									name="scheduledDarkMode"
-									checked={this.state.scheduledDarkMode}
-									onChange={this.handleScheduledChange}
-								/>
+					<Page title="Dark mode" titleSize="medium">
+						<List className={classes.providersList}>
+							<SwitchListItem
+								title="Automatically"
+								name="automaticallyDarkMode"
+								checked={this.state.automaticallyDarkMode}
+								onChange={this.handleAutomaticallyChange}
+							/>
+							<Divider className={classes.divider} />
+							<SwitchListItem
+								title="Manually enable till tomorrow"
+								name="dontUseDarkMode"
+								checked={this.state.dontUseDarkMode}
+								onChange={this.handleDontUseChange}
+							/>
+							<div className={classes.textWrapper}>
+								<Text className={classes.subText}>Set by time</Text>
+							</div>
+							<SwitchListItem
+								title="Scheduled"
+								name="scheduledDarkMode"
+								checked={this.state.scheduledDarkMode}
+								onChange={this.handleScheduledChange}
+							/>
 
-								{this.state.scheduledDarkMode && (
-									<Box>
-										<Divider />
-
-										<ListItem className={classes.li}>
-											<IonItem lines="none" className={classes.ionItem}>
-												<Typography variant="h6">Start</Typography>
+							{this.state.scheduledDarkMode && (
+								<Box>
+									<Divider className={classes.divider} />
+									<ListItem className={classes.li}>
+										<ListItemText className={classes.itemText}>Start</ListItemText>
+										<ListItemSecondaryAction className={classes.secondaryAction}>
+											<Button className={classes.secondaryButton}>
 												<IonDatetime
 													display-timezone="utc"
+													display-format="HH:mm"
 													mode="ios"
 													pickerOptions={{
-														cssClass: classes.customPicker
+														cssClass: classes.customPicker,
+														buttons: [
+															{
+																text: 'Cancel',
+																handler: () => console.log('Cancel')
+															},
+															{
+																text: 'Set time',
+																handler: () => {
+																	console.log('set time');
+																}
+															}
+														]
 													}}
-													display-format="HH:mm"
 													picker-format="HH:mm"
 													value={this.state.startTimeDarkMode}
 													onIonChange={e => this.handleStartDateChange(e)}
 												/>
-												{/* <Icon iconName={IconName.Forward} /> */}
-											</IonItem>
-										</ListItem>
-										<Divider />
-										<ListItem className={classes.li}>
-											<IonItem lines="none" className={classes.ionItem}>
-												<Typography variant="h6">Ending</Typography>
+												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
+											</Button>
+										</ListItemSecondaryAction>
+									</ListItem>
+									<Divider className={classes.divider} />
+									<ListItem className={classes.li}>
+										<ListItemText className={classes.itemText}>Ending</ListItemText>
+										<ListItemSecondaryAction className={classes.secondaryAction}>
+											<Button className={classes.secondaryButton}>
 												<IonDatetime
 													display-timezone="utc"
 													display-format="HH:mm"
 													mode="ios"
 													pickerOptions={{
-														cssClass: classes.customPicker
+														cssClass: classes.customPicker,
+														buttons: [
+															{
+																text: 'Cancel',
+																handler: () => console.log('Cancel')
+															},
+															{
+																text: 'Set time',
+																handler: () => {
+																	console.log('set time');
+																}
+															}
+														]
 													}}
 													picker-format="HH:mm"
 													value={this.state.endTimeDarkMode}
 													onIonChange={e => this.handleEndDateChange(e)}
 												/>
-												{/* <Icon iconName={IconName.Forward} /> */}
-											</IonItem>
-											<Divider />
-										</ListItem>
-									</Box>
-								)}
-							</List>
-						</Box>
+												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
+											</Button>
+										</ListItemSecondaryAction>
+									</ListItem>
+									<Divider className={classes.divider} />
+								</Box>
+							)}
+						</List>
 					</Page>
 				)}
 			</Styling>

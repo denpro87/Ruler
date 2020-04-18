@@ -22,7 +22,8 @@ const searchIcon: CSSProperties = {
 
 const inputRoot: CSSProperties = {
 	color: 'inherit',
-	width: '100%'
+	width: '100%',
+	fontWeight: 600
 };
 
 const inputInput: CSSProperties = {

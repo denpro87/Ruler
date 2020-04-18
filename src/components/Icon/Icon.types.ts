@@ -1,6 +1,7 @@
 export enum CommonIcon {
 	Back = 'back',
-	Forward = 'forward'
+	Forward = 'forward',
+	DamagedVehicle = 'damaged-vehicle'
 }
 
 export type IconComponent = React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string }>;

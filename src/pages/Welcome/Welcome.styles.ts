@@ -98,8 +98,6 @@ const alreadyHaveAnAccountText: CSSProperties = {
 	})
 };
 
-const logInText: CSSProperties = {};
-
 export const styles = createStyles({
 	alreadyHaveAnAccountText,
 	signInWithSocialsText,

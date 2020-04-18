@@ -1,3 +1,4 @@
+import { BUTTON_LIGHT_GREEN_COLOR_TYPE_BACKGROUND_COLOR } from 'components/Button/Button.variables';
 import { ColoredIconProps, CommonIcon, IIconProps } from './Icon.types';
 import { DEFAULT_ICON_SIZE } from './Icon.variables';
 import { ReactSVG } from 'react-svg';
@@ -33,6 +34,9 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 		if (iconName === CommonIcon.Forward) {
 			iconName = CommonIcon.Back;
 			rotate = (rotate || 0) + 180;
+		} else if (iconName === CommonIcon.DamagedVehicle && primaryColor === secondaryColor) {
+			// This is an unsightly fix for the tires of the damaged car
+			secondaryColor = BUTTON_LIGHT_GREEN_COLOR_TYPE_BACKGROUND_COLOR;
 		}
 
 		const classes = useStyles({
@@ -59,7 +63,7 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 					}
 				})
 				.catch(() => console.warn(`No icon with the name \`${iconName}\` (\`${iconName}-icon.svg\`) was found.`));
-		}, []);
+		}, [iconName]);
 
 		return <ReactSVG wrapper="div" className={clsx(classes.icon, className)} src={iconPath} />;
 	}
