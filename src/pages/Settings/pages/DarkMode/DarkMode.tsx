@@ -50,14 +50,6 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		this.setState({ open: isOpen, dateItem: '' });
 	};
 
-	private handleStartClick = () => {
-		this.setState({ open: true, dateItem: 'start' });
-	};
-
-	private handleEndClick = () => {
-		this.setState({ open: true, dateItem: 'end' });
-	};
-
 	render() {
 		return (
 			<Styling useStyles={useStyles}>
@@ -93,7 +85,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 									<ListItem className={classes.li}>
 										<ListItemText className={classes.itemText}>Start</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
-											<Button className={classes.secondaryButton} onClick={this.handleStartClick}>
+											<Button className={classes.secondaryButton}>
 												<IonDatetime
 													display-timezone="utc"
 													display-format="HH:mm"
@@ -125,7 +117,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 									<ListItem className={classes.li}>
 										<ListItemText className={classes.itemText}>Ending</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
-											<Button className={classes.secondaryButton} onClick={this.handleEndClick}>
+											<Button className={classes.secondaryButton}>
 												<IonDatetime
 													display-timezone="utc"
 													display-format="HH:mm"

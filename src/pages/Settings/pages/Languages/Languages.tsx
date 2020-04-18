@@ -21,11 +21,11 @@ export class Languages extends React.Component<ILanguagesProps, ILanguagesState,
 		filteredLanguages: new Array<ILanguage>()
 	};
 
-	private languageClick = (event: React.MouseEvent<HTMLElement>, langCode: string) => {
+	private handleLanguageClick = (event: React.MouseEvent<HTMLElement>, langCode: string) => {
 		this.setState({ selectedLanguage: langCode });
 	};
 
-	private filterLanguage = (event: React.ChangeEvent<HTMLInputElement>) => {
+	private handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const currentLanguage = event.target.value.toLowerCase();
 		const filteredLanguages = this.state.languages.filter(language => language.langName.toLowerCase().includes(currentLanguage));
 		this.setState({ filteredLanguages });
@@ -39,7 +39,7 @@ export class Languages extends React.Component<ILanguagesProps, ILanguagesState,
 				{classes => (
 					<Page title="Languages" titleSize="large" noHorizontalContentPadding>
 						<div className={classes.searchBoxWrapper}>
-							<SearchBox className={classes.searchBox} onChange={this.filterLanguage} />
+							<SearchBox className={classes.searchBox} onChange={this.handleSearchChange} />
 						</div>
 						<List className={classes.providersList}>
 							{this.state.filteredLanguages.map(filteredLanguage => {
@@ -51,14 +51,14 @@ export class Languages extends React.Component<ILanguagesProps, ILanguagesState,
 												text={filteredLanguage.text}
 												code={filteredLanguage.langCode}
 												selected
-												onClick={e => this.languageClick(e, filteredLanguage.langCode)}
+												onClick={e => this.handleLanguageClick(e, filteredLanguage.langCode)}
 											/>
 										) : (
 											<LanguageItem
 												title={filteredLanguage.langName}
 												text={filteredLanguage.text}
 												code={filteredLanguage.langCode}
-												onClick={e => this.languageClick(e, filteredLanguage.langCode)}
+												onClick={e => this.handleLanguageClick(e, filteredLanguage.langCode)}
 											/>
 										)}
 									</Box>
