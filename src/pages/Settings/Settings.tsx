@@ -86,12 +86,13 @@ export const Settings: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page title="Settings" titleSize="large">
+		<Page title="Settings" titleSize="large" noHorizontalContentPadding>
 			<List className={classes.list}>
 				{items.map((item, index) =>
 					item.href ? (
 						<ListItem
 							key={index}
+							button
 							className={clsx(classes.listItem, index === items.length - 1 && classes.last)}
 							component={RouterLink}
 							to={item.href}
@@ -104,8 +105,8 @@ export const Settings: React.FunctionComponent = () => {
 					) : (
 						<ListItem
 							key={index}
-							className={clsx(classes.listItem, index === items.length - 1 && classes.last)}
 							button
+							className={clsx(classes.listItem, index === items.length - 1 && classes.last)}
 							onClick={item.title === 'Log out' ? handleLogoutClickOpen : handleDeleteAccountOpen}
 						>
 							<ListItemIcon className={classes.icon}>

@@ -73,9 +73,10 @@ const customPicker: CSSProperties = {
 		display: 'flex',
 		height: pxToRem(320),
 		flexDirection: 'column-reverse',
-		borderTopLeftRadius: '15px',
-		borderTopRightRadius: '15px',
+		borderTopLeftRadius: pxToRem(15),
+		borderTopRightRadius: pxToRem(15),
 		padding: `${pxToRem(20)} ${pxToRem(20)} ${pxToRem(19)} ${pxToRem(20)}`,
+		maxWidth: '100vw',
 		'& .picker-above-highlight, .picker-below-highlight': {
 			borderColor: 'rgba(24, 28, 35, 0.05) !important'
 		},
