@@ -1,4 +1,4 @@
-import { Box, Divider, List, makeStyles } from '@material-ui/core';
+import { Divider, List, makeStyles } from '@material-ui/core';
 import { INotificationsProps, INotificationsState } from './Notifications.types';
 import { Page, Styling, SwitchListItem, Text } from 'components';
 import { styles } from './Notifications.styles';

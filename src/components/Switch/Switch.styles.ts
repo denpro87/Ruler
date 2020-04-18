@@ -1,5 +1,5 @@
 import { CSSProperties } from '@material-ui/styles';
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+import { Theme, createStyles } from '@material-ui/core/styles';
 import { pxToRem } from 'styles';
 
 const root = (theme: Theme): CSSProperties => ({

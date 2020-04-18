@@ -63,7 +63,7 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 					}
 				})
 				.catch(() => console.warn(`No icon with the name \`${iconName}\` (\`${iconName}-icon.svg\`) was found.`));
-		}, []);
+		}, [iconName]);
 
 		return <ReactSVG wrapper="div" className={clsx(classes.icon, className)} src={iconPath} />;
 	}

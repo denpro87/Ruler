@@ -1,6 +1,6 @@
-import { Box, Divider, ListItem, ListItemSecondaryAction, ListItemText, makeStyles } from '@material-ui/core';
 import { ILanguageItemProps } from './LanguageItem.types';
 import { Icon } from 'components';
+import { ListItem, ListItemSecondaryAction, ListItemText, makeStyles } from '@material-ui/core';
 import { styles } from './LanguageItem.styles';
 import React from 'react';
 const useStyles = makeStyles(styles);

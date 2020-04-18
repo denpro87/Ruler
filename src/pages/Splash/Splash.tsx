@@ -1,5 +1,5 @@
 import { Box, makeStyles } from '@material-ui/core';
-import { FullPage, Page } from 'components';
+import { FullPage } from 'components';
 import { styles } from './Splash.styles';
 import { useHistory } from 'react-router-dom';
 import React from 'react';

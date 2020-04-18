@@ -1,5 +1,4 @@
 import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
-import { DEFAULT_ICON_SIZE } from 'components/Icon';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
@@ -83,6 +82,7 @@ const dialogContent: CSSProperties = {
 };
 export const styles = createStyles({
 	dialogContent,
+	button,
 	dialogTitle,
 	modalPaper,
 	titleTextStyle,
