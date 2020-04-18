@@ -1,6 +1,6 @@
-import { BottomSheet, GreenButton, Icon, LightGreenButton, Page, Styling, SwitchListItem } from 'components';
-import { Box, Button, Divider, List, ListItem, ListItemSecondaryAction, ListItemText, Typography, makeStyles } from '@material-ui/core';
+import { Box, Button, Divider, List, ListItem, ListItemSecondaryAction, ListItemText, makeStyles } from '@material-ui/core';
 import { IDarkModeProps, IDarkModeState } from './DarkMode.types';
+import { Icon, Page, Styling, SwitchListItem, Text } from 'components';
 import { IonDatetime } from '@ionic/react';
 import { styles } from './DarkMode.styles';
 
@@ -14,14 +14,8 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		dontUseDarkMode: false,
 		scheduledDarkMode: false,
 		startTimeDarkMode: '22:00',
-		endTimeDarkMode: '07:00',
-		open: false,
-		dateItem: ''
+		endTimeDarkMode: '07:00'
 	};
-
-	startDate = React.createRef();
-
-	endDate = React.createRef();
 
 	private handleAutomaticallyChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
 		if (checked) {
@@ -56,14 +50,6 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		this.setState({ open: isOpen, dateItem: '' });
 	};
 
-	private handleStartClick = () => {
-		this.setState({ open: true, dateItem: 'start' });
-	};
-
-	private handleEndClick = () => {
-		this.setState({ open: true, dateItem: 'end' });
-	};
-
 	render() {
 		return (
 			<Styling useStyles={useStyles}>
@@ -83,7 +69,9 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 								checked={this.state.dontUseDarkMode}
 								onChange={this.handleDontUseChange}
 							/>
-							<Typography className={classes.subText}>Set by time</Typography>
+							<div className={classes.textWrapper}>
+								<Text className={classes.subText}>Set by time</Text>
+							</div>
 							<SwitchListItem
 								title="Scheduled"
 								name="scheduledDarkMode"
@@ -97,8 +85,30 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 									<ListItem className={classes.li}>
 										<ListItemText className={classes.itemText}>Start</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
-											<Button className={classes.secondaryButton} onClick={this.handleStartClick}>
-												{this.state.startTimeDarkMode}
+											<Button className={classes.secondaryButton}>
+												<IonDatetime
+													display-timezone="utc"
+													display-format="HH:mm"
+													mode="ios"
+													pickerOptions={{
+														cssClass: classes.customPicker,
+														buttons: [
+															{
+																text: 'Cancel',
+																handler: () => console.log('Cancel')
+															},
+															{
+																text: 'Set time',
+																handler: () => {
+																	console.log('set time');
+																}
+															}
+														]
+													}}
+													picker-format="HH:mm"
+													value={this.state.startTimeDarkMode}
+													onIonChange={e => this.handleStartDateChange(e)}
+												/>
 												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
 											</Button>
 										</ListItemSecondaryAction>
@@ -107,34 +117,38 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 									<ListItem className={classes.li}>
 										<ListItemText className={classes.itemText}>Ending</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
-											<Button className={classes.secondaryButton} onClick={this.handleEndClick}>
-												{this.state.endTimeDarkMode}
+											<Button className={classes.secondaryButton}>
+												<IonDatetime
+													display-timezone="utc"
+													display-format="HH:mm"
+													mode="ios"
+													pickerOptions={{
+														cssClass: classes.customPicker,
+														buttons: [
+															{
+																text: 'Cancel',
+																handler: () => console.log('Cancel')
+															},
+															{
+																text: 'Set time',
+																handler: () => {
+																	console.log('set time');
+																}
+															}
+														]
+													}}
+													picker-format="HH:mm"
+													value={this.state.endTimeDarkMode}
+													onIonChange={e => this.handleEndDateChange(e)}
+												/>
 												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
 											</Button>
 										</ListItemSecondaryAction>
-										<Divider className={classes.divider} />
 									</ListItem>
+									<Divider className={classes.divider} />
 								</Box>
 							)}
 						</List>
-						<BottomSheet title="" open={this.state.open} onBottomSheetChange={this.handleBottomSheetChange}>
-							<IonDatetime
-								// ref={this.state.dateItem === 'start' ? this.startDate : this.endDate}
-								display-timezone="utc"
-								display-format="HH:mm"
-								mode="ios"
-								pickerOptions={{
-									cssClass: classes.customPicker
-								}}
-								picker-format="HH:mm"
-								value={this.state.dateItem === 'start' ? this.state.startTimeDarkMode : this.state.endTimeDarkMode}
-								onIonChange={this.state.dateItem === 'start' ? e => this.handleStartDateChange(e) : e => this.handleEndDateChange(e)}
-							/>
-							<div className={classes.bottomSheetButtonWrapper}>
-								<LightGreenButton>Cancel</LightGreenButton>
-								<GreenButton>Set time</GreenButton>
-							</div>
-						</BottomSheet>
 					</Page>
 				)}
 			</Styling>

@@ -1,27 +1,22 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
 import { font, pxToRem } from 'styles';
-const li: CSSProperties = {
-	position: 'relative',
-	'& h6': {
-		width: '100%',
-		paddingTop: '10px'
-	}
-};
 
 const selectedIcon: CSSProperties = {
-	position: 'absolute',
-	right: 0,
 	width: '30px',
-	top: pxToRem(10),
 	height: '30px'
 };
 
 const provider: CSSProperties = {
-	marginBottom: '10px'
+	padding: `0 ${pxToRem(20)}`,
+
 };
 
-const langTitle: CSSProperties = {
-	marginTop: '5px',
+const itemTextRoot: CSSProperties = {
+  borderBottom: '1px solid rgba(24, 28, 35, 0.05)',
+  margin: 0,
+  padding: `${pxToRem(10)} 0`
+};
+const itemTextPrimary: CSSProperties = {
 	...font({
 		fontSize: 15,
 		fontWeight: 600,
@@ -32,9 +27,7 @@ const langTitle: CSSProperties = {
 		color: '#181c19'
 	})
 };
-
-const exampleTxt: CSSProperties = {
-	opacity: 0.5,
+const itemTextSecondary: CSSProperties = {
 	...font({
 		fontSize: 10,
 		fontWeight: 600,
@@ -43,12 +36,14 @@ const exampleTxt: CSSProperties = {
 		lineHeight: 1.5,
 		letterSpacing: 'normal',
 		color: '#181c19'
-	})
+  }),
+  opacity: 0.5
 };
+
 export const styles = createStyles({
-	li,
 	provider,
-	exampleTxt,
 	selectedIcon,
-	langTitle
+	itemTextRoot,
+	itemTextPrimary,
+	itemTextSecondary
 });

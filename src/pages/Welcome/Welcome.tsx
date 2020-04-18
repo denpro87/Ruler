@@ -1,5 +1,5 @@
 import { BlackButton, FullPage, Link, SocialIconButton, Text } from 'components';
-import { Box, Grid, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import { Stack } from '@fluentui/react';
 import { styles } from './Welcome.styles';
 import React from 'react';
