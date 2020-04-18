@@ -31,8 +31,8 @@ const switchBase = (theme: Theme): CSSProperties => ({
 
 const thumb: CSSProperties = {
 	width: pxToRem(29),
-	height: pxToRem(28),
-	boxShadow: '0 3px 8px 0 rgba(0, 0, 0, 0.15), 0 3px 1px 0 rgba(0, 0, 0, 0.06)'
+	height: pxToRem(28)
+	// boxShadow: '0 3px 8px 0 rgba(0, 0, 0, 0.15), 0 3px 1px 0 rgba(0, 0, 0, 0.06)'
 };
 
 const track: CSSProperties = {

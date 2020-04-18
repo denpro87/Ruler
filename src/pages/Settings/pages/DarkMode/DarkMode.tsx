@@ -13,8 +13,8 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		automaticallyDarkMode: true,
 		dontUseDarkMode: false,
 		scheduledDarkMode: false,
-		startTimeDarkMode: '22:00',
-		endTimeDarkMode: '07:00'
+		startTimeDarkMode: '1990-02-19T22:00Z',
+		endTimeDarkMode: '1990-02-19T07:00Z'
 	};
 
 	private handleAutomaticallyChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
