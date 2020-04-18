@@ -1,4 +1,4 @@
-import { Box, Divider, List, makeStyles } from '@material-ui/core';
+import { Divider, List, makeStyles } from '@material-ui/core';
 import { INotificationsProps, INotificationsState } from './Notifications.types';
 import { Page, Styling, SwitchListItem, Text } from 'components';
 import { styles } from './Notifications.styles';
@@ -48,43 +48,43 @@ export class Notifications extends React.Component<INotificationsProps, INotific
 			<Styling useStyles={useStyles}>
 				{classes => (
 					<Page title="Notifications" titleSize="large">
-						<Box className={classes.innerContent}>
-							<List className={classes.providersList}>
-								<SwitchListItem title="Discounts and News" checked={this.state.newsNotify} onChange={this.handleNewsNotifyChange} />
-								<Divider />
-								<SwitchListItem title="New report reply" checked={this.state.reportNotify} onChange={this.handleReportNotifyChange} />
-								<Divider />
-								<SwitchListItem title="New area" checked={this.state.newAreaNotify} onChange={this.handleNewAreaNotifyChange} />
+						<List className={classes.providersList}>
+							<SwitchListItem title="Discounts and News" checked={this.state.newsNotify} onChange={this.handleNewsNotifyChange} />
+							<Divider className={classes.divider} />
+							<SwitchListItem title="New report reply" checked={this.state.reportNotify} onChange={this.handleReportNotifyChange} />
+							<Divider className={classes.divider} />
+							<SwitchListItem title="New area" checked={this.state.newAreaNotify} onChange={this.handleNewAreaNotifyChange} />
+							<div className={classes.textWrapper}>
 								<Text className={classes.sectionBreaker}>Vehicle notifications</Text>
-								<SwitchListItem
-									title="Vehicle near you"
-									name="vehicleNotify"
-									checked={this.state.vehicleNotify}
-									onChange={this.handleVehicleNotifyChange}
-								/>
-								<Divider />
-								<SwitchListItem
-									title="Bike near you"
-									checked={this.state.bikeNotify}
-									onChange={this.handleBikeNotifyChange}
-									disabled={this.state.vehicleNotify}
-								/>
-								<Divider />
-								<SwitchListItem
-									title="Car near you"
-									onChange={this.handleCarNotifyChange}
-									checked={this.state.carNotify}
-									disabled={this.state.vehicleNotify}
-								/>
-								<Divider />
-								<SwitchListItem
-									title="Scooter near you"
-									onChange={this.handleScooterNotifyChange}
-									checked={this.state.scooterNotify}
-									disabled={this.state.vehicleNotify}
-								/>
-							</List>
-						</Box>
+							</div>
+							<SwitchListItem
+								title="Vehicle near you"
+								name="vehicleNotify"
+								checked={this.state.vehicleNotify}
+								onChange={this.handleVehicleNotifyChange}
+							/>
+							<Divider className={classes.divider} />
+							<SwitchListItem
+								title="Bike near you"
+								checked={this.state.bikeNotify}
+								onChange={this.handleBikeNotifyChange}
+								disabled={this.state.vehicleNotify}
+							/>
+							<Divider className={classes.divider} />
+							<SwitchListItem
+								title="Car near you"
+								onChange={this.handleCarNotifyChange}
+								checked={this.state.carNotify}
+								disabled={this.state.vehicleNotify}
+							/>
+							<Divider className={classes.divider} />
+							<SwitchListItem
+								title="Scooter near you"
+								onChange={this.handleScooterNotifyChange}
+								checked={this.state.scooterNotify}
+								disabled={this.state.vehicleNotify}
+							/>
+						</List>
 					</Page>
 				)}
 			</Styling>

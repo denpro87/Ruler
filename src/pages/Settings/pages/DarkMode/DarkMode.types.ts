@@ -4,8 +4,6 @@ export interface IDarkModeState {
 	scheduledDarkMode: boolean;
 	startTimeDarkMode: string;
 	endTimeDarkMode: string;
-	open: boolean;
-	dateItem: string;
 
 	[index: string]: boolean | Date | string;
 }

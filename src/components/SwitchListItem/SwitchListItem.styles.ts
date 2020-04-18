@@ -1,8 +1,8 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { font, pxToRem } from 'styles';
 const li: CSSProperties = {
 	display: 'flex',
-	alignItems: 'center',
+	alignItems: 'flex-start',
 	padding: `${pxToRem(10)} 0`
 };
 
@@ -10,15 +10,7 @@ const deactivated: CSSProperties = {
 	opacity: 0.5
 };
 
-const provider: CSSProperties = {
-	marginBottom: '20px'
-};
-
-const stackWrapper: CSSProperties = {
-	width: '100%',
-	alignItems: 'flex-start'
-};
-const switchLabel: CSSProperties = {
+const switchLabel: CreateCSSProperties = {
 	'& span': {
 		...font({
 			fontWeight: 600,
@@ -28,14 +20,13 @@ const switchLabel: CSSProperties = {
 			letterSpacing: 'normal',
 			color: '#181c19'
 		}),
-		fontSize: pxToRem(15)
+		fontSize: pxToRem(15),
+		opacity: (props: any) => (props.disabled ? 0.5 : 1)
 	},
 	margin: 0
 };
 export const styles = createStyles({
 	li,
-	provider,
 	switchLabel,
-	stackWrapper,
 	deactivated
 });

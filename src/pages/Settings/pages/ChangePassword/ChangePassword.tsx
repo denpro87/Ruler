@@ -15,7 +15,7 @@ export class ChangePassword extends React.Component<IChangePasswordProps, IChang
 		showDialog: false
 	};
 
-	handleSaveChanges = () => {
+	handleSaveClick = () => {
 		this.setState({ showDialog: true });
 	};
 
@@ -28,7 +28,7 @@ export class ChangePassword extends React.Component<IChangePasswordProps, IChang
 							<PasswordInput placeholder="Enter the current password" />
 							<PasswordInput placeholder="Enter a new password" />
 							<PasswordInput placeholder="Repeat new password" />
-							<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={this.handleSaveChanges}>
+							<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={this.handleSaveClick}>
 								{' '}
 								Save changes
 							</GreenButton>
