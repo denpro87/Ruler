@@ -229,3 +229,23 @@ http://ionicframework.com/docs/theming/ */
 		--color: white;
 	}
 }
+
+/* "how to ride" page slider pagination style */
+.swiper-container-horizontal > .swiper-pagination-bullets {
+	text-align: left;
+	padding-left: 20px;
+}
+
+.swiper-pagination-bullet {
+	width: 4px;
+	height: 4px;
+	background-color: #00b559;
+	opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+	width: 30px;
+	height: 4px;
+	border-radius: 10px;
+	background-color: #00b559;
+}

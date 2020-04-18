@@ -9,7 +9,13 @@ export const createTextStyles = (textStyles: TextStyles): TextStyles => textStyl
 export const Title: React.FunctionComponent<TitleProps> = props => <Text block {...props} />;
 
 Title.defaultProps = {
-	component: 'h1'
+	component: 'h1',
+	fontSize: 32,
+	fontWeight: 'bold',
+	fontStretch: 'normal',
+	lineHeight: 1.5,
+	letterSpacing: 'normal',
+	color: '#181c19'
 };
 
 export const Paragraph: React.FunctionComponent<ParagraphProps> = props => <Text component="p" block {...props} />;

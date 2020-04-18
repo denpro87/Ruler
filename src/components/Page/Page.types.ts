@@ -5,6 +5,7 @@ export type FullPageProps = Omit<IPageProps, 'fullPage'>;
 
 export interface IPageProps extends Pick<BoxProps, 'onClick'> {
 	className?: string;
+	pageHeaderClassName?: string;
 	background?: string;
 	backgroundColor?: string;
 	fullPage?: boolean;

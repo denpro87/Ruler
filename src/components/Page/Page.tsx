@@ -22,6 +22,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	onClick,
 	className,
 	noHorizontalContentPadding,
+	pageHeaderClassName,
 	children
 }) => {
 	const hasPageHeader = Boolean(canGoBack || title);
@@ -44,7 +45,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	const innerContent = (
 		<>
 			{hasPageHeader && (
-				<Box className={classes.pageHeader}>
+				<Box className={clsx(classes.pageHeader, pageHeaderClassName)}>
 					{canGoBack && <GoBackIconButton onClick={handleGoBack} {...goBackIconButtonProps} />}
 					{title && (
 						<Box className={classes.pageHeaderInner}>
