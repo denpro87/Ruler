@@ -1,5 +1,4 @@
 export * from './DriverLicence';
-export * from './Languages';
 export * from './News';
 export * from './ServiceProviders';
 export * from './Settings';

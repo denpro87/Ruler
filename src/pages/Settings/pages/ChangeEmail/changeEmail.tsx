@@ -1,6 +1,6 @@
 import { Box, TextField, Typography, makeStyles } from '@material-ui/core';
 import { Dialog, GreenButton, Page } from 'components';
-import { styles } from './changeEmail.styles';
+import { styles } from './ChangeEmail.styles';
 import React from 'react';
 import manSvg from '../../images/man.svg';
 
