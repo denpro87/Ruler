@@ -2,7 +2,7 @@ import { CSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const listItem: CSSProperties = {
-	padding: `${pxToRem(11)} 0`,
+	padding: `${pxToRem(11)} ${pxToRem(10)}`,
 	color: '#181c19'
 };
 const list: CSSProperties = {
