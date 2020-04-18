@@ -2,7 +2,7 @@ import { CustomIonSlide } from 'components/CustomIonSlide';
 import { FullPage, GreenButton } from 'components';
 import { IonSlides } from '@ionic/react';
 import { makeStyles } from '@material-ui/styles';
-import { slides } from './SlideData';
+import { slides } from './slide-data';
 import { styles } from './HowToRide.styles';
 import React from 'react';
 
