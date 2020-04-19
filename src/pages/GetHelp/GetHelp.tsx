@@ -15,7 +15,7 @@ const items = [
 	},
 	{
 		title: 'How to ride',
-		href: '/get-help/ride'
+		href: '/get-help/how-to-ride'
 	},
 	{
 		title: 'FAQ',
