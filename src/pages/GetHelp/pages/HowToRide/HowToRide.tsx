@@ -25,13 +25,11 @@ export const HowToRide: React.FunctionComponent = () => {
 							<CustomIonSlide key={index} slide={slide} />
 						))}
 					</IonSlides>
-					<div className={classes.footer}>
-						<div className={classes.footerContainer}>
-							<GreenButton compact iconName="well-done-checked" className={classes.skipButton}>
-								Got it
-							</GreenButton>
-						</div>
-					</div>
+				</div>
+				<div className={classes.footer}>
+					<GreenButton compact iconName="well-done-checked" className={classes.skipButton}>
+						Got it
+					</GreenButton>
 				</div>
 			</div>
 		</FullPage>

@@ -11,29 +11,27 @@ const pageContent: CSSProperties = {
 	top: 0,
 	bottom: 0,
 	left: 0,
-	right: 0
+	right: 0,
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'space-between'
 };
 
 const footer: CSSProperties = {
-	position: 'absolute',
-	width: '100%',
-	bottom: 0,
-	zIndex: 1
-};
-
-const footerContainer: CSSProperties = {
-	padding: pxToRem(20)
+	zIndex: 1,
+	margin: pxToRem(20),
+	width: `calc(100% - ${pxToRem(40)})`,
+	display: 'flex',
+	justifyContent: 'center'
 };
 
 const skipButton: CSSProperties = {
 	maxWidth: pxToRem(335),
-	maxHeight: pxToRem(50),
-	margin: '0 auto'
+	maxHeight: pxToRem(50)
 };
 export const styles = createStyles({
 	pageHeader,
 	pageContent,
 	footer,
-	footerContainer,
 	skipButton
 });
