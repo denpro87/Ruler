@@ -76,7 +76,8 @@ const dateText: CSSProperties = {
 	lineHeight: 1.67,
 	fontWeight: 600,
 	fontFamily: DEFAULT_FONT_FAMILY,
-	opacity: 0.5
+	opacity: 0.5,
+	paddingRight: pxToRem(5)
 };
 
 export const styles = createStyles({

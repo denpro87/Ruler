@@ -5,9 +5,9 @@ const body: CreateCSSProperties = {
 	width: '100%',
 	borderTopLeftRadius: pxToRem(15),
 	borderTopRightRadius: pxToRem(15),
-	marginTop: (props: any) => (props.open ? `calc(100vh - ${pxToRem(320)}` : '100vh'),
+	marginTop: (props: any) => (props.open ? `calc(100vh - ${pxToRem(350)}` : '100vh'),
 	transition: 'margin-top 400ms cubic-bezier(0.4, 0, 0.2, 1)',
-	height: pxToRem(320)
+	height: pxToRem(350)
 };
 
 const content: CSSProperties = {
@@ -37,24 +37,23 @@ const pickerColumnWrapper: CSSProperties = {
 	position: 'relative',
 	flexDirection: 'row',
 	justifyContent: 'center',
-	padding: `${pxToRem(30)} 0 0 0`,
+	padding: `${pxToRem(30)} 0 ${pxToRem(30)} 0`,
 	'& .picker-col': {
 		flex: 'unset',
 		padding: 0,
 		'& .picker-opts': {
-			width: pxToRem(60),
+			width: pxToRem(70),
 			'& .picker-opt': {
 				height: pxToRem(38),
 				fontFamily: DEFAULT_FONT_FAMILY,
-				fontSize: pxToRem(18),
+				fontSize: pxToRem(20),
 				fontWeight: 600,
 				lineHeight: 1.5,
 				color: '#181c19',
 				opacity: 0.35
 			},
 			'& .picker-opt-selected': {
-				opacity: 1,
-				fontSize: pxToRem(20)
+				opacity: 1
 			}
 		}
 	}
