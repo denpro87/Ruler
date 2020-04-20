@@ -12,8 +12,10 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		automaticallyDarkMode: true,
 		dontUseDarkMode: false,
 		scheduledDarkMode: false,
-		startTimeDarkMode: '22:00',
-		endTimeDarkMode: '07:00',
+		startTimeHour: 22,
+		startTimeMin: 0,
+		endTimeHour: 7,
+		endTimeMin: 0,
 		pickerIsOpen: false,
 		pickerItem: ''
 	};
@@ -39,8 +41,10 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		this.setState({ scheduledDarkMode: checked });
 	};
 
-	private handleStartDateChange = (_event: CustomEvent<any>): void => {
-		this.setState({ startTimeDarkMode: _event.detail.value });
+	private handleDatePickerChange = (hour: number, min: number): void => {
+		if (this.state.pickerItem === 'start') this.setState({ startTimeHour: hour, startTimeMin: min });
+		else if (this.state.pickerItem === 'end') this.setState({ endTimeHour: hour, endTimeMin: min });
+		this.setState({ pickerIsOpen: false, pickerItem: '' });
 	};
 
 	private handleEndDateChange = (_event: CustomEvent<any>): void => {
@@ -95,7 +99,9 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 										<ListItemText className={classes.itemText}>Start</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
 											<Button className={classes.secondaryButton} onClick={this.onFirstPickerClick}>
-												<Text className={classes.dateText}>{this.state.startTimeDarkMode}</Text>
+												<Text className={classes.dateText}>{`${this.state.startTimeHour}:${this.state.startTimeMin
+													.toString()
+													.padStart(2, '0')}`}</Text>
 												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
 											</Button>
 										</ListItemSecondaryAction>
@@ -105,7 +111,9 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 										<ListItemText className={classes.itemText}>Ending</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
 											<Button className={classes.secondaryButton} onClick={this.onEndPickerClick}>
-												<Text className={classes.dateText}>{this.state.endTimeDarkMode}</Text>
+												<Text className={classes.dateText}>{`${this.state.endTimeHour}:${this.state.endTimeMin
+													.toString()
+													.padStart(2, '0')}`}</Text>
 												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
 											</Button>
 										</ListItemSecondaryAction>
@@ -114,7 +122,13 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 								</Box>
 							)}
 						</List>
-						<DateTimePicker open={this.state.pickerIsOpen} handleRequestClose={this.onClosePicker}></DateTimePicker>
+						<DateTimePicker
+							open={this.state.pickerIsOpen}
+							hourIndex={this.state.pickerItem === 'start' ? this.state.startTimeHour : this.state.endTimeHour}
+							minIndex={this.state.pickerItem === 'start' ? this.state.startTimeMin : this.state.endTimeMin}
+							handleRequestClose={this.onClosePicker}
+							handleDatePickerChange={this.handleDatePickerChange}
+						></DateTimePicker>
 					</Page>
 				)}
 			</Styling>

@@ -1,5 +1,7 @@
 export interface IDateTimePickerProps {
 	open: boolean;
+	hourIndex: number;
+	minIndex: number;
 	handleRequestClose: () => void;
-	handleTopReached?: () => void;
+	handleDatePickerChange: (hour: number, min: number) => void;
 }
