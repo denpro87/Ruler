@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core';
 import { FullPage, Icon, IconButton } from 'components';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
@@ -17,6 +18,7 @@ export const Home: React.FunctionComponent = () => {
 		bearing: 0,
 		pitch: 0
 	});
+	const [vehicleSelectionExpanded, setVehicleSelectionExpanded] = useState(false);
 
 	return (
 		<FullPage>
@@ -31,7 +33,19 @@ export const Home: React.FunctionComponent = () => {
 			>
 				<IconButton className={classes.reportButton} iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }} />
 				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" />
-				<IconButton className={classes.vehicleButton} iconName="vehicle" colorType="black" />
+				<Box className={classes.vehicleButtonGroup}>
+					{vehicleSelectionExpanded ? (
+						<Box display="flex" flexDirection="column" bgcolor="white" borderRadius={15}>
+							<IconButton noShadow label="All" key="vehicle" iconName="vehicle" colorType="black" />
+							<IconButton noShadow label="Car" key="car" iconName="car" colorType="black" />
+							<IconButton noShadow label="Bike" key="bike" iconName="bike" colorType="black" />
+							<IconButton noShadow label="Scooter" key="scooter" iconName="scooter" colorType="black" />
+							<IconButton key="close" iconName="close" colorType="black" onClick={(): void => setVehicleSelectionExpanded(false)} />
+						</Box>
+					) : (
+						<IconButton iconName="vehicle" colorType="black" onClick={(): void => setVehicleSelectionExpanded(true)} />
+					)}
+				</Box>
 				<IconButton className={classes.findMeButton} iconName="find-me" colorType="black" />
 				<div className={classes.homeButtons}>
 					<IconButton className={classes.menuButton} iconName="menu" colorType="black" noShadow />
