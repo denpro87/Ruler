@@ -45,22 +45,13 @@ export class Languages extends React.Component<ILanguagesProps, ILanguagesState,
 							{this.state.filteredLanguages.map(filteredLanguage => {
 								return (
 									<Box key={filteredLanguage.langName}>
-										{this.state.selectedLanguage === filteredLanguage.langCode ? (
-											<LanguageItem
-												title={filteredLanguage.langName}
-												text={filteredLanguage.text}
-												code={filteredLanguage.langCode}
-												selected
-												onClick={e => this.handleLanguageClick(e, filteredLanguage.langCode)}
-											/>
-										) : (
-											<LanguageItem
-												title={filteredLanguage.langName}
-												text={filteredLanguage.text}
-												code={filteredLanguage.langCode}
-												onClick={e => this.handleLanguageClick(e, filteredLanguage.langCode)}
-											/>
-										)}
+										<LanguageItem
+											title={filteredLanguage.langName}
+											text={filteredLanguage.text}
+											code={filteredLanguage.langCode}
+											selected={this.state.selectedLanguage === filteredLanguage.langCode}
+											onClick={e => this.handleLanguageClick(e, filteredLanguage.langCode)}
+										/>
 									</Box>
 								);
 							})}

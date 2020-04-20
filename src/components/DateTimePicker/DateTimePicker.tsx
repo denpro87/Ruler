@@ -2,23 +2,14 @@ import { GreenButton, LightGreenButton } from 'components';
 import { IDateTimePickerProps } from './DateTimePicker.types';
 import { IonPickerColumn } from '@ionic/react';
 import { Paper, makeStyles } from '@material-ui/core';
-import { PickerColumn } from '@ionic/core';
+import { PickerColumn, PickerColumnOption } from '@ionic/core';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { Scrollbars } from 'react-custom-scrollbars';
 import { getScrollbarStyles, styles } from './DateTimePicker.styles';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const useStyles = makeStyles(styles);
-const hoursOptions: { text: string; value: string }[] = [];
-const minsOptions: { text: string; value: string }[] = [];
-
-for (let i = 0; i < 60; i++) {
-	if (i < 24) {
-		hoursOptions.push({ text: i.toString(), value: i.toString() });
-	}
-	minsOptions.push({ text: i.toString().padStart(2, '0'), value: i.toString().padStart(2, '0') });
-}
 
 export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 	open,
@@ -30,6 +21,19 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 	const classes = useStyles({ open });
 	const hoursRef = useRef<HTMLIonPickerColumnElement>(null);
 	const minsRef = useRef<HTMLIonPickerColumnElement>(null);
+	const hoursOptions: PickerColumnOption[] = [];
+	const minsOptions: PickerColumnOption[] = [];
+
+	for (let i = 0; i < 60; i++) {
+		if (i < 24) {
+			hoursOptions.push({ text: i.toString(), value: i.toString(), transform: `translate3d(0px,${(i - hourIndex) * 38}px,0px) ` });
+		}
+		minsOptions.push({
+			text: i.toString().padStart(2, '0'),
+			value: i.toString().padStart(2, '0'),
+			transform: `translate3d(0px,${(i - minIndex) * 38}px,0px) `
+		});
+	}
 	const hoursColumn = {
 		name: 'Hours',
 		options: hoursOptions,
@@ -41,6 +45,8 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 		selectedIndex: minIndex
 	} as PickerColumn;
 
+	// useEffect(() => {}, []);
+
 	const handleClickOverlay = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.preventDefault();
 		handleRequestClose();
@@ -49,6 +55,7 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 	const onSetClick = () => {
 		const hour = hoursRef.current?.col.selectedIndex;
 		const min = minsRef.current?.col.selectedIndex;
+		console.log(hoursRef);
 
 		if (hour && min) handleDatePickerChange(hour, min);
 	};
