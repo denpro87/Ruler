@@ -15,8 +15,8 @@ const menu: CSSProperties = {
 };
 
 const menuPaper: CSSProperties = {
-	borderTopRightRadius: 15,
-	borderBottomRightRadius: 15
+	borderTopRightRadius: pxToRem(15),
+	borderBottomRightRadius: pxToRem(15)
 };
 
 const listItem: CSSProperties = {
