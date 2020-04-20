@@ -9,14 +9,19 @@ const useStyles = makeStyles(styles);
 
 export class ChangePassword extends React.Component<IChangePasswordProps, IChangePasswordState> {
 	state = {
-		oldPassword: 'true',
-		newPassword: 'true',
-		confirmedPassword: 'true',
+		oldPassword: '',
+		newPassword: '',
+		confirmedPassword: '',
 		showDialog: false
 	};
 
 	handleSaveClick = () => {
 		this.setState({ showDialog: true });
+	};
+
+	handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		event.persist();
+		this.setState(prevState => ({ ...prevState, [event.target.name]: event.target.value }));
 	};
 
 	render() {
@@ -25,9 +30,24 @@ export class ChangePassword extends React.Component<IChangePasswordProps, IChang
 				{classes => (
 					<Page title="Change Password" titleSize="medium">
 						<Box className={classes.innerContent}>
-							<PasswordInput placeholder="Enter the current password" />
-							<PasswordInput placeholder="Enter a new password" />
-							<PasswordInput placeholder="Repeat new password" />
+							<PasswordInput
+								label="Enter the current password"
+								name="oldPassword"
+								value={this.state.oldPassword}
+								onValueChange={this.handleStateChange}
+							/>
+							<PasswordInput
+								label="Enter the new password"
+								name="newPassword"
+								value={this.state.newPassword}
+								onValueChange={this.handleStateChange}
+							/>
+							<PasswordInput
+								label="Repeat new password"
+								name="confirmedPassword"
+								value={this.state.confirmedPassword}
+								onValueChange={this.handleStateChange}
+							/>
 							<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={this.handleSaveClick}>
 								{' '}
 								Save changes

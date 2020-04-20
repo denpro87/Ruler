@@ -1,5 +1,5 @@
-import { Box, TextField, Typography, makeStyles } from '@material-ui/core';
-import { Dialog, GreenButton, Page, Text } from 'components';
+import { Box, Typography, makeStyles } from '@material-ui/core';
+import { Dialog, GreenButton, Page, Text, TextField } from 'components';
 import { styles } from './ChangeEmail.styles';
 import React from 'react';
 import clsx from 'clsx';
@@ -33,15 +33,7 @@ export const ChangeEmail: React.FunctionComponent = () => {
 	return (
 		<Page title="Change email" titleSize="medium">
 			<Box className={classes.innerContent}>
-				<TextField
-					classes={{ root: classes.textFieldRoot }}
-					fullWidth
-					id="email"
-					label={`Enter ${state} email`}
-					name="email"
-					value={email}
-					onChange={handleEmailChange}
-				/>
+				<TextField label={`Enter ${state} email`} name="email" value={email} onValueChange={handleEmailChange} />
 				<GreenButton
 					compact
 					className={classes.saveBtn}

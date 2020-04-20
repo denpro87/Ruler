@@ -1,5 +1,5 @@
-import { Box, TextField, makeStyles } from '@material-ui/core';
-import { GreenButton, Page } from 'components';
+import { Box, makeStyles } from '@material-ui/core';
+import { GreenButton, Page, TextField } from 'components';
 import { styles } from './Profile.styles';
 import React from 'react';
 
@@ -24,24 +24,8 @@ export const Profile: React.FunctionComponent = () => {
 	return (
 		<Page title="Profile" titleSize="medium">
 			<Box className={classes.innerContent}>
-				<TextField
-					classes={{ root: classes.textFieldRoot }}
-					fullWidth
-					id="your-first-name"
-					label="First name"
-					name="firstName"
-					value={state.firstName}
-					onChange={handleStateChange}
-				/>
-				<TextField
-					classes={{ root: classes.textFieldRoot }}
-					fullWidth
-					id="your-last-name"
-					label="Second name"
-					name="lastName"
-					value={state.lastName}
-					onChange={handleStateChange}
-				/>
+				<TextField label="First name" name="firstName" value={state.firstName} onValueChange={handleStateChange} />
+				<TextField label="Second name" name="lastName" value={state.lastName} onValueChange={handleStateChange} />
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
 					{' '}
 					Save changes

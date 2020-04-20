@@ -50,7 +50,8 @@ const buttonLabel: CreateCSSProperties = {
 };
 
 const buttonText: CSSProperties = {
-	display: 'inline-block'
+	display: 'inline-block',
+	padding: ` 0 ${pxToRem(5)}`
 };
 
 export const styles = createStyles({
