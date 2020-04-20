@@ -5,7 +5,7 @@ export const initial = <T>(value: T | 'initial', initialValue: T): T => (value =
 
 export const percentage = (x: number): string => `${x * 100}%`;
 
-export const pxToRem = (x: number): string => `${x / 16}rem`;
+export const pxToRem = (x: number): string => (x <= 1 && x >= -1 ? '1px' : `${x / 16}rem`);
 
 export function responsiveFontSize(fontSize: FontSize): FontSize {
 	switch (fontSize) {

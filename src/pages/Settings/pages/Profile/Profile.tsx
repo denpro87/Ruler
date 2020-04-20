@@ -1,19 +1,24 @@
-import { Box, TextField, makeStyles } from '@material-ui/core';
-import { GreenButton, Page } from 'components';
+import { Box, Typography, makeStyles } from '@material-ui/core';
+import { Dialog, GreenButton, Page, TextField } from 'components';
 import { styles } from './Profile.styles';
 import React from 'react';
-
+import manSvg from '../../images/man.svg';
 const useStyles = makeStyles(styles);
 
 export const Profile: React.FunctionComponent = () => {
 	const classes = useStyles();
+	const [showDialog, setShowDialog] = React.useState(false);
 	const [state, setState] = React.useState({
 		firstName: '',
 		lastName: ''
 	});
 
 	const handleSaveClick = (): void => {
-		console.log(state.firstName, state.lastName);
+		setShowDialog(true);
+	};
+
+	const handleDialogClose = (): void => {
+		setShowDialog(false);
 	};
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -24,29 +29,22 @@ export const Profile: React.FunctionComponent = () => {
 	return (
 		<Page title="Profile" titleSize="medium">
 			<Box className={classes.innerContent}>
-				<TextField
-					classes={{ root: classes.textFieldRoot }}
-					fullWidth
-					id="your-first-name"
-					label="First name"
-					name="firstName"
-					value={state.firstName}
-					onChange={handleStateChange}
-				/>
-				<TextField
-					classes={{ root: classes.textFieldRoot }}
-					fullWidth
-					id="your-last-name"
-					label="Second name"
-					name="lastName"
-					value={state.lastName}
-					onChange={handleStateChange}
-				/>
+				<TextField label="First name" name="firstName" value={state.firstName} onValueChange={handleStateChange} />
+				<TextField label="Second name" name="lastName" value={state.lastName} onValueChange={handleStateChange} />
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
-					{' '}
 					Save changes
 				</GreenButton>
 			</Box>
+			<Dialog
+				open={showDialog}
+				hasClose={true}
+				image={manSvg}
+				onClose={handleDialogClose}
+				aria-labelledby="form-dialog-title"
+				title="Changes saved!"
+			>
+				<Typography className={classes.smallText}>Your name has been successfully changed!</Typography>
+			</Dialog>
 		</Page>
 	);
 };
