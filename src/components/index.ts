@@ -16,3 +16,4 @@ export * from './Theming';
 export * from './BottomSheet';
 export * from './TextField';
 export * from './DateTimePicker';
+export * from './CustomIonSlide';

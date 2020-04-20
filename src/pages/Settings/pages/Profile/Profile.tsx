@@ -1,19 +1,24 @@
-import { Box, makeStyles } from '@material-ui/core';
-import { GreenButton, Page, TextField } from 'components';
+import { Box, Typography, makeStyles } from '@material-ui/core';
+import { Dialog, GreenButton, Page, TextField } from 'components';
 import { styles } from './Profile.styles';
 import React from 'react';
-
+import manSvg from '../../images/man.svg';
 const useStyles = makeStyles(styles);
 
 export const Profile: React.FunctionComponent = () => {
 	const classes = useStyles();
+	const [showDialog, setShowDialog] = React.useState(false);
 	const [state, setState] = React.useState({
 		firstName: '',
 		lastName: ''
 	});
 
 	const handleSaveClick = (): void => {
-		console.log(state.firstName, state.lastName);
+		setShowDialog(true);
+	};
+
+	const handleDialogClose = (): void => {
+		setShowDialog(false);
 	};
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -31,6 +36,16 @@ export const Profile: React.FunctionComponent = () => {
 					Save changes
 				</GreenButton>
 			</Box>
+			<Dialog
+				open={showDialog}
+				hasClose={true}
+				image={manSvg}
+				onClose={handleDialogClose}
+				aria-labelledby="form-dialog-title"
+				title="Changes saved!"
+			>
+				<Typography className={classes.smallText}>Your name has been successfully changed!</Typography>
+			</Dialog>
 		</Page>
 	);
 };
