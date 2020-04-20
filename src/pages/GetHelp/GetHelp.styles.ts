@@ -11,10 +11,12 @@ const listItem: CSSProperties = {
 		display: 'none'
 	}
 };
+
 const list: CSSProperties = {
 	flex: 1,
 	padding: 0
 };
+
 const text: CSSProperties = {
 	lineHeight: 1.67,
 	fontWeight: 600,
@@ -22,17 +24,15 @@ const text: CSSProperties = {
 	fontFamily: DEFAULT_FONT_FAMILY,
 	padding: `${pxToRem(11)} 0`
 };
-const divider: CSSProperties = {
-	backgroundColor: '#181c19',
-	opacity: '5%',
-	width: '100%'
-};
+
 const buttonWrapper: CSSProperties = {
 	padding: `${pxToRem(30)} ${pxToRem(20)} ${pxToRem(20)} ${pxToRem(20)}`
 };
+
 const backButton: CSSProperties = {
 	fontWeight: 'bold'
 };
+
 const sheetText: CSSProperties = {
 	fontFamily: DEFAULT_FONT_FAMILY,
 	fontSize: pxToRem(15),
@@ -42,6 +42,7 @@ const sheetText: CSSProperties = {
 	opacity: 0.5,
 	padding: `0 0 ${pxToRem(20)} 0`
 };
+
 const sheetButton: CSSProperties = {
 	marginBottom: pxToRem(15),
 	fontWeight: 'bold'
@@ -51,7 +52,6 @@ export const styles = createStyles({
 	list,
 	listItem,
 	text,
-	divider,
 	buttonWrapper,
 	backButton,
 	sheetText,

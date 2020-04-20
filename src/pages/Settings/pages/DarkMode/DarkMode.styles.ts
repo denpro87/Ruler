@@ -19,11 +19,6 @@ const textWrapper: CSSProperties = {
 	paddingBottom: pxToRem(11)
 };
 
-const divider: CSSProperties = {
-	backgroundColor: 'rgba(24, 28, 25, 0.05)',
-	height: pxToRem(1)
-};
-
 const timePicker: CSSProperties = {
 	position: 'absolute',
 	right: '0',
@@ -83,7 +78,6 @@ export const styles = createStyles({
 	timePicker,
 	dateText,
 	subText,
-	divider,
 	secondaryAction,
 	itemText,
 	secondaryButton,

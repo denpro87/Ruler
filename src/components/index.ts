@@ -17,3 +17,4 @@ export * from './BottomSheet';
 export * from './TextField';
 export * from './DateTimePicker';
 export * from './Slide';
+export * from './Divider';

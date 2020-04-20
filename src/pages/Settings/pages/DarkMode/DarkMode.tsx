@@ -1,5 +1,5 @@
-import { Box, Button, Divider, List, ListItem, ListItemSecondaryAction, ListItemText, makeStyles } from '@material-ui/core';
-import { DateTimePicker, Icon, Page, Styling, SwitchListItem, Text } from 'components';
+import { Box, Button, List, ListItem, ListItemSecondaryAction, ListItemText, makeStyles } from '@material-ui/core';
+import { DateTimePicker, Divider, Icon, Page, Styling, SwitchListItem, Text } from 'components';
 import { IDarkModeProps, IDarkModeState } from './DarkMode.types';
 import { styles } from './DarkMode.styles';
 
@@ -47,10 +47,6 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		this.setState({ pickerIsOpen: false, pickerItem: '' });
 	};
 
-	private handleEndDateChange = (_event: CustomEvent<any>): void => {
-		this.setState({ endTimeDarkMode: _event.detail.value });
-	};
-
 	private onClosePicker = () => {
 		this.setState({ pickerIsOpen: false, pickerItem: '' });
 	};
@@ -75,7 +71,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 								checked={this.state.automaticallyDarkMode}
 								onChange={this.handleAutomaticallyChange}
 							/>
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem
 								title="Manually enable till tomorrow"
 								name="dontUseDarkMode"
@@ -94,7 +90,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 
 							{this.state.scheduledDarkMode && (
 								<Box>
-									<Divider className={classes.divider} />
+									<Divider />
 									<ListItem className={classes.li}>
 										<ListItemText className={classes.itemText}>Start</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
@@ -106,7 +102,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 											</Button>
 										</ListItemSecondaryAction>
 									</ListItem>
-									<Divider className={classes.divider} />
+									<Divider />
 									<ListItem className={classes.li}>
 										<ListItemText className={classes.itemText}>Ending</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
@@ -118,7 +114,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 											</Button>
 										</ListItemSecondaryAction>
 									</ListItem>
-									<Divider className={classes.divider} />
+									<Divider />
 								</Box>
 							)}
 						</List>
