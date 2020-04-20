@@ -1,5 +1,5 @@
-import { BottomSheet, LightGreenButton, Page } from 'components';
-import { Divider, List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
+import { BottomSheet, Divider, LightGreenButton, Page } from 'components';
+import { List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
 
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './GetHelp.styles';
@@ -70,12 +70,12 @@ export const GetHelp: React.FunctionComponent = () => {
 					item.href ? (
 						<ListItem key={index} className={classes.listItem} button component={RouterLink} to={item.href}>
 							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
-							<Divider component="li" className={classes.divider} />
+							<Divider />
 						</ListItem>
 					) : (
 						<ListItem key={index} className={classes.listItem} button onClick={handleAddReportClick}>
 							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
-							<Divider component="li" className={classes.divider} />
+							<Divider />
 						</ListItem>
 					)
 				)}

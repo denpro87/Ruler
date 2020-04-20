@@ -1,5 +1,5 @@
-import { Divider, List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
-import { Page } from 'components';
+import { Divider, Page } from 'components';
+import { List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { styles } from './SafetyRegulations.styles';
 
@@ -33,7 +33,7 @@ export const SafetyRegulations: React.FunctionComponent = () => {
 						<ListItem className={classes.listItem} component={RouterLink} to={item.href}>
 							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
 						</ListItem>
-						<Divider component="li" className={classes.divider} />
+						<Divider />
 					</div>
 				))}
 			</List>
