@@ -65,7 +65,7 @@ const secondaryAction: CSSProperties = {
 };
 
 const secondaryButton: CSSProperties = {
-	padding: 0
+	padding: pxToRem(5)
 };
 
 const dateText: CSSProperties = {

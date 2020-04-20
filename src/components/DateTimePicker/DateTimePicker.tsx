@@ -1,93 +1,100 @@
 import { GreenButton, LightGreenButton } from 'components';
 import { IDateTimePickerProps } from './DateTimePicker.types';
-import { IonPickerColumn } from '@ionic/react';
-import { Paper, makeStyles } from '@material-ui/core';
-import { PickerColumn, PickerColumnOption } from '@ionic/core';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import { Scrollbars } from 'react-custom-scrollbars';
-import { getScrollbarStyles, styles } from './DateTimePicker.styles';
-import React, { useEffect, useRef } from 'react';
+import { IonBackdrop, IonPickerColumn } from '@ionic/react';
+import { PickerColumnOption } from '@ionic/core';
+import { Stack } from '@fluentui/react';
+import { makeStyles } from '@material-ui/core';
+import { styles } from './DateTimePicker.styles';
+import React from 'react';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
 
 export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 	open,
-	hourIndex,
-	minIndex,
-	handleRequestClose,
-	handleDatePickerChange
+	defaultHour,
+	defaultMinute,
+	onSet,
+	onChange,
+	onHourChange,
+	onMinuteChange,
+	onDismiss
 }) => {
-	const classes = useStyles({ open });
-	const hoursRef = useRef<HTMLIonPickerColumnElement>(null);
-	const minsRef = useRef<HTMLIonPickerColumnElement>(null);
-	const hoursOptions: PickerColumnOption[] = [];
-	const minsOptions: PickerColumnOption[] = [];
+	const classes = useStyles();
 
-	for (let i = 0; i < 60; i++) {
-		if (i < 24) {
-			hoursOptions.push({ text: i.toString(), value: i.toString(), transform: `translate3d(0px,${(i - hourIndex) * 38}px,0px) ` });
-		}
-		minsOptions.push({
-			text: i.toString().padStart(2, '0'),
-			value: i.toString().padStart(2, '0'),
-			transform: `translate3d(0px,${(i - minIndex) * 38}px,0px) `
+	const hourPickerRef = React.useRef<HTMLIonPickerColumnElement>(null);
+	const minutePickerRef = React.useRef<HTMLIonPickerColumnElement>(null);
+
+	const hourOptions: PickerColumnOption[] = [];
+	const minuteOptions: PickerColumnOption[] = [];
+
+	for (let i = 0; i < 24; i++) {
+		hourOptions.push({
+			text: i.toString(),
+			value: i.toString()
 		});
 	}
-	const hoursColumn = {
-		name: 'Hours',
-		options: hoursOptions,
-		selectedIndex: hourIndex
-	} as PickerColumn;
-	const minsColumn = {
-		name: 'Hours',
-		options: minsOptions,
-		selectedIndex: minIndex
-	} as PickerColumn;
 
-	// useEffect(() => {}, []);
+	for (let i = 0; i < 60; i++) {
+		minuteOptions.push({
+			text: i.toString().padStart(2, '0'),
+			value: i.toString().padStart(2, '0')
+		});
+	}
 
-	const handleClickOverlay = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		event.preventDefault();
-		handleRequestClose();
+	const handleSet = () => {
+		const currentHour = hourPickerRef.current?.col.selectedIndex;
+		const currentMinute = minutePickerRef.current?.col.selectedIndex;
+
+		if (typeof currentHour === 'number' && typeof currentMinute === 'number') {
+			console.log(`Set current hour to ${currentHour}`);
+			console.log(`Set current minute to ${currentMinute}`);
+
+			onSet?.();
+			onChange?.(currentHour, currentMinute);
+			onHourChange?.(currentHour);
+			onMinuteChange?.(currentMinute);
+		}
+
+		return 0;
 	};
-
-	const onSetClick = () => {
-		const hour = hoursRef.current?.col.selectedIndex;
-		const min = minsRef.current?.col.selectedIndex;
-		console.log(hoursRef);
-
-		if (hour && min) handleDatePickerChange(hour, min);
-	};
-
-	const onCancelClick = () => {
-		handleRequestClose();
-	};
-
-	const getContent = () => (
-		<div className={classes.sheetWrapper}>
-			<div className={classes.blackBar}></div>
-			<div className={classes.pickerColumnWrapper}>
-				<IonPickerColumn ref={hoursRef} col={hoursColumn} />
-				<IonPickerColumn ref={minsRef} col={minsColumn} />
-				<div className={classes.selectedRow}></div>
-			</div>
-			<div className={classes.buttonWrapper}>
-				<LightGreenButton className={classes.button} onClick={onCancelClick}>
-					Cancel
-				</LightGreenButton>
-				<GreenButton className={classes.button} onClick={onSetClick}>
-					Set time
-				</GreenButton>
-			</div>
-		</div>
-	);
 
 	return (
-		<Scrollbars autoHide style={getScrollbarStyles(open)} onClick={handleClickOverlay}>
-			<Paper className={classes.body} onClick={e => e.stopPropagation()}>
-				<div className={classes.content}>{getContent()}</div>
-			</Paper>
-		</Scrollbars>
+		<>
+			{open && (
+				<div className={classes.picker}>
+					<IonBackdrop className={classes.backdrop} onIonBackdropTap={onDismiss} visible={open} />
+					<div className={classes.pickerWrapper}>
+						<div className={classes.blackBar} />
+						<div className={classes.pickerColumns}>
+							<div className={clsx(classes.pickerHighlight, classes.pickerAboveHighlight)} />
+							<IonPickerColumn
+								ref={hourPickerRef}
+								className={classes.pickerColumn}
+								col={{
+									name: 'Hours',
+									options: hourOptions,
+									selectedIndex: defaultHour
+								}}
+							/>
+							<IonPickerColumn
+								ref={minutePickerRef}
+								className={classes.pickerColumn}
+								col={{
+									name: 'Minutes',
+									options: minuteOptions,
+									selectedIndex: defaultMinute
+								}}
+							/>
+							<div className={clsx(classes.pickerHighlight, classes.pickerBelowHighlight)} />
+						</div>
+						<Stack horizontal tokens={{ childrenGap: 15 }}>
+							<LightGreenButton onClick={onDismiss}>Cancel</LightGreenButton>
+							<GreenButton onClick={handleSet}>Set time</GreenButton>
+						</Stack>
+					</div>
+				</div>
+			)}
+		</>
 	);
 };

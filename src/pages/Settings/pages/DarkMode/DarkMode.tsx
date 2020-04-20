@@ -122,13 +122,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 								</Box>
 							)}
 						</List>
-						<DateTimePicker
-							open={this.state.pickerIsOpen}
-							hourIndex={this.state.pickerItem === 'start' ? this.state.startTimeHour : this.state.endTimeHour}
-							minIndex={this.state.pickerItem === 'start' ? this.state.startTimeMin : this.state.endTimeMin}
-							handleRequestClose={this.onClosePicker}
-							handleDatePickerChange={this.handleDatePickerChange}
-						/>
+						<DateTimePicker open={this.state.pickerIsOpen} onChange={this.handleDatePickerChange} onDismiss={this.onClosePicker} />
 					</Page>
 				)}
 			</Styling>
