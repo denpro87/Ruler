@@ -1,12 +1,12 @@
 import { CSSProperties } from '@material-ui/styles';
 
-export interface ICustomSlide {
+export interface ISlide {
 	image?: string;
 	title: string;
 	description: string;
 	style?: CSSProperties;
 }
 
-export interface ICustomIonSlide {
-	slide: ICustomSlide;
+export interface ISlideProps {
+	slide: ISlide;
 }
