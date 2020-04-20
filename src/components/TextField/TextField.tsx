@@ -1,6 +1,6 @@
 import { ITextFieldProps } from './TextField.types';
 import { IconButton } from 'components';
-import { InputAdornment, TextField as MaterialTextField, makeStyles } from '@material-ui/core';
+import { InputAdornment, TextField as MuiTextField, makeStyles } from '@material-ui/core';
 import { styles } from './TextField.styles';
 import React from 'react';
 const useStyles = makeStyles(styles);
@@ -9,7 +9,7 @@ export const TextField: React.FunctionComponent<ITextFieldProps> = ({ name, valu
 	const classes = useStyles();
 
 	return (
-		<MaterialTextField
+		<MuiTextField
 			classes={{ root: classes.textFieldRoot }}
 			type={type}
 			fullWidth
