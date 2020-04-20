@@ -1,14 +1,9 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { pxToRem } from 'styles';
-
-const eyeIcon: CSSProperties = {
-	padding: 0,
-	marginBottom: pxToRem(12),
-	boxShadow: 'none'
-};
+import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const textFieldRoot: CSSProperties = {
 	marginBottom: pxToRem(25),
+	fontFamily: DEFAULT_FONT_FAMILY,
 	'& .MuiInput-formControl': {
 		marginTop: pxToRem(12)
 	},
@@ -31,8 +26,12 @@ const textFieldRoot: CSSProperties = {
 		opacity: 0.5
 	}
 };
-
+const eyeIcon: CSSProperties = {
+	padding: 0,
+	marginBottom: pxToRem(12),
+	boxShadow: 'none'
+};
 export const styles = createStyles({
-	eyeIcon,
-	textFieldRoot
+	textFieldRoot,
+	eyeIcon
 });
