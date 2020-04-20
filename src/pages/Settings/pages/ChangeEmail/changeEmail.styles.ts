@@ -8,12 +8,15 @@ const innerContent: CSSProperties = {
 	flexDirection: 'column',
 	flex: 1
 };
+
 const saveBtn: CSSProperties = {
 	marginTop: 'auto'
 };
+
 const dialogContentText: CSSProperties = {
 	padding: `${pxToRem(10)} ${pxToRem(10)} ${pxToRem(5)} ${pxToRem(10)} !important`
 };
+
 const smallText: CSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,

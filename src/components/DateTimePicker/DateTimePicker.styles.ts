@@ -14,6 +14,7 @@ const content: CSSProperties = {
 	height: '100%',
 	overflow: 'hidden'
 };
+
 const sheetWrapper: CSSProperties = {
 	padding: `${pxToRem(15)} ${pxToRem(20)} ${pxToRem(0)} ${pxToRem(25)}`,
 	display: 'flex',
@@ -21,12 +22,14 @@ const sheetWrapper: CSSProperties = {
 	alignItems: 'center',
 	height: '100%'
 };
+
 const blackBar: CSSProperties = {
 	width: pxToRem(37),
 	height: pxToRem(4),
 	borderRadius: pxToRem(5),
 	background: '#181c19'
 };
+
 const pickerColumnWrapper: CSSProperties = {
 	display: 'flex',
 	width: '100%',
@@ -56,6 +59,7 @@ const pickerColumnWrapper: CSSProperties = {
 		}
 	}
 };
+
 const selectedRow: CSSProperties = {
 	position: 'absolute',
 	left: 0,
@@ -65,12 +69,14 @@ const selectedRow: CSSProperties = {
 	borderTop: '1px solid rgba(24, 28, 25, 0.05)',
 	borderBottom: '1px solid rgba(24, 28, 25, 0.05)'
 };
+
 const buttonWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	marginBottom: pxToRem(30),
 	width: '100%'
 };
+
 const button: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
@@ -83,6 +89,7 @@ const button: CSSProperties = {
 		marginLeft: pxToRem(7.5)
 	}
 };
+
 export const styles = createStyles({
 	body,
 	content,

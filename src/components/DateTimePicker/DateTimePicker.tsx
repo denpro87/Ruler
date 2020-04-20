@@ -57,26 +57,24 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 		handleRequestClose();
 	};
 
-	const getContent = () => {
-		return (
-			<div className={classes.sheetWrapper}>
-				<div className={classes.blackBar}></div>
-				<div className={classes.pickerColumnWrapper}>
-					<IonPickerColumn ref={hoursRef} col={hoursColumn} />
-					<IonPickerColumn ref={minsRef} col={minsColumn} />
-					<div className={classes.selectedRow}></div>
-				</div>
-				<div className={classes.buttonWrapper}>
-					<LightGreenButton className={classes.button} onClick={onCancelClick}>
-						Cancel
-					</LightGreenButton>
-					<GreenButton className={classes.button} onClick={onSetClick}>
-						Set time
-					</GreenButton>
-				</div>
+	const getContent = () => (
+		<div className={classes.sheetWrapper}>
+			<div className={classes.blackBar}></div>
+			<div className={classes.pickerColumnWrapper}>
+				<IonPickerColumn ref={hoursRef} col={hoursColumn} />
+				<IonPickerColumn ref={minsRef} col={minsColumn} />
+				<div className={classes.selectedRow}></div>
 			</div>
-		);
-	};
+			<div className={classes.buttonWrapper}>
+				<LightGreenButton className={classes.button} onClick={onCancelClick}>
+					Cancel
+				</LightGreenButton>
+				<GreenButton className={classes.button} onClick={onSetClick}>
+					Set time
+				</GreenButton>
+			</div>
+		</div>
+	);
 
 	const getStyles = () => {
 		return {

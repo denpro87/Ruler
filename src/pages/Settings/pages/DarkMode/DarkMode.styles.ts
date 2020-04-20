@@ -5,6 +5,7 @@ const providersList: CSSProperties = {
 	marginTop: '6px',
 	padding: '0px'
 };
+
 const subText: CSSProperties = {
 	opacity: 0.5,
 	color: '#181c19',
@@ -13,15 +14,18 @@ const subText: CSSProperties = {
 	fontSize: pxToRem(10),
 	lineHeight: 1.5
 };
+
 const textWrapper: CSSProperties = {
 	paddingTop: pxToRem(20),
 	paddingBottom: pxToRem(11)
 };
+
 const divider: CSSProperties = {
 	backgroundColor: '#181c19',
 	height: pxToRem(1),
 	opacity: 0.05
 };
+
 const timePicker: CSSProperties = {
 	position: 'absolute',
 	right: '0',
@@ -38,6 +42,7 @@ const timePicker: CSSProperties = {
 		padding: 0
 	}
 };
+
 const li: CSSProperties = {
 	display: 'flex',
 	alignItems: 'center',
@@ -53,15 +58,18 @@ const itemText: CSSProperties = {
 		fontFamily: DEFAULT_FONT_FAMILY
 	}
 };
+
 const secondaryAction: CSSProperties = {
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
 	right: 0
 };
+
 const secondaryButton: CSSProperties = {
 	padding: 0
 };
+
 const dateText: CSSProperties = {
 	color: '#181c19',
 	fontSize: pxToRem(15),

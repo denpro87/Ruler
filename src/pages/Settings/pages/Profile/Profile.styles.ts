@@ -13,6 +13,7 @@ const saveBtn: CSSProperties = {
 	marginTop: 'auto',
 	marginBottom: pxToRem(20)
 };
+
 const smallText: CSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,

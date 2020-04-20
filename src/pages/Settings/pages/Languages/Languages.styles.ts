@@ -14,9 +14,11 @@ const providersList: CSSProperties = {
 const searchBoxWrapper: CSSProperties = {
 	padding: `${pxToRem(5)} ${pxToRem(20)} ${pxToRem(0)} ${pxToRem(20)}`
 };
+
 const searchBox: CSSProperties = {
 	margin: 0
 };
+
 export const styles = createStyles({
 	providersList,
 	searchBoxWrapper,

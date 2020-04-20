@@ -26,11 +26,13 @@ const textFieldRoot: CSSProperties = {
 		opacity: 0.5
 	}
 };
+
 const eyeIcon: CSSProperties = {
 	padding: 0,
 	marginBottom: pxToRem(12),
 	boxShadow: 'none'
 };
+
 export const styles = createStyles({
 	textFieldRoot,
 	eyeIcon
