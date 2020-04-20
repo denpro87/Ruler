@@ -60,7 +60,9 @@ const secondaryAction: CSSProperties = {
 	right: 0
 };
 const secondaryButton: CSSProperties = {
-	padding: 0,
+	padding: 0
+};
+const dateText: CSSProperties = {
 	color: '#181c19',
 	fontSize: pxToRem(15),
 	lineHeight: 1.67,
@@ -68,61 +70,12 @@ const secondaryButton: CSSProperties = {
 	fontFamily: DEFAULT_FONT_FAMILY,
 	opacity: 0.5
 };
-const customPicker: CSSProperties = {
-	'& .picker-wrapper': {
-		display: 'flex',
-		height: pxToRem(320),
-		flexDirection: 'column-reverse',
-		borderTopLeftRadius: pxToRem(15),
-		borderTopRightRadius: pxToRem(15),
-		padding: `${pxToRem(20)} ${pxToRem(20)} ${pxToRem(19)} ${pxToRem(20)}`,
-		maxWidth: '100vw',
-		'& .picker-above-highlight, .picker-below-highlight': {
-			borderColor: 'rgba(24, 28, 35, 0.05) !important'
-		},
-		'& .picker-opt': {
-			color: '#181c19',
-			fontSize: pxToRem(20),
-			lineHeight: 1.67,
-			fontWeight: 600,
-			fontFamily: DEFAULT_FONT_FAMILY
-		},
-		'& .picker-toolbar': {
-			marginTop: pxToRem(20),
-			height: pxToRem(50),
-			border: 'none',
-			'& button': {
-				borderRadius: pxToRem(15),
-				width: '100%',
-				height: pxToRem(50),
-				fontSize: pxToRem(15),
-				lineHeight: 1.67,
-				fontWeight: 'bold !important',
-				fontFamily: DEFAULT_FONT_FAMILY
-			},
-			'& div:first-child': {
-				marginRight: pxToRem(7.5),
-				'& button': {
-					backgroundColor: '#caf1dd',
-					color: '#00b559'
-				}
-			},
-			'& div:last-child': {
-				marginLeft: pxToRem(7.5),
-				'& button': {
-					backgroundColor: '#00b559',
-					color: '#ffffff'
-				}
-			}
-		}
-	}
-};
 
 export const styles = createStyles({
 	providersList,
 	li,
 	timePicker,
-	customPicker,
+	dateText,
 	subText,
 	divider,
 	secondaryAction,

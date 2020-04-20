@@ -15,3 +15,4 @@ export * from './Text';
 export * from './Theming';
 export * from './BottomSheet';
 export * from './TextField';
+export * from './DateTimePicker';
