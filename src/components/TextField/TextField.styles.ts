@@ -4,9 +4,6 @@ import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 const textFieldRoot: CSSProperties = {
 	marginBottom: pxToRem(25),
 	fontFamily: DEFAULT_FONT_FAMILY,
-	'& .MuiInput-formControl': {
-		marginTop: pxToRem(12)
-	},
 	'& .MuiInput-underline:before, .MuiInput-underline:after': {
 		borderBottom: '2px solid #181c19'
 	},
