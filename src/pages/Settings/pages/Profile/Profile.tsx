@@ -32,7 +32,6 @@ export const Profile: React.FunctionComponent = () => {
 				<TextField label="First name" name="firstName" value={state.firstName} onValueChange={handleStateChange} />
 				<TextField label="Second name" name="lastName" value={state.lastName} onValueChange={handleStateChange} />
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
-					{' '}
 					Save changes
 				</GreenButton>
 			</Box>

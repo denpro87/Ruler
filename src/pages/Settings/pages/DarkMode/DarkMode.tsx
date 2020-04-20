@@ -128,7 +128,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 							minIndex={this.state.pickerItem === 'start' ? this.state.startTimeMin : this.state.endTimeMin}
 							handleRequestClose={this.onClosePicker}
 							handleDatePickerChange={this.handleDatePickerChange}
-						></DateTimePicker>
+						/>
 					</Page>
 				)}
 			</Styling>

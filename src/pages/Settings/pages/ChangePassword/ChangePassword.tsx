@@ -49,7 +49,6 @@ export class ChangePassword extends React.Component<IChangePasswordProps, IChang
 								onValueChange={this.handleStateChange}
 							/>
 							<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={this.handleSaveClick}>
-								{' '}
 								Save changes
 							</GreenButton>
 						</Box>
