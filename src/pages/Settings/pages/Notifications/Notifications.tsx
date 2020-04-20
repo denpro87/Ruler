@@ -1,6 +1,6 @@
-import { Divider, List, makeStyles } from '@material-ui/core';
+import { Divider, Page, Styling, SwitchListItem, Text } from 'components';
 import { INotificationsProps, INotificationsState } from './Notifications.types';
-import { Page, Styling, SwitchListItem, Text } from 'components';
+import { List, makeStyles } from '@material-ui/core';
 import { styles } from './Notifications.styles';
 import React from 'react';
 
@@ -50,9 +50,9 @@ export class Notifications extends React.Component<INotificationsProps, INotific
 					<Page title="Notifications" titleSize="large">
 						<List className={classes.providersList}>
 							<SwitchListItem title="Discounts and News" checked={this.state.newsNotify} onChange={this.handleNewsNotifyChange} />
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem title="New report reply" checked={this.state.reportNotify} onChange={this.handleReportNotifyChange} />
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem title="New area" checked={this.state.newAreaNotify} onChange={this.handleNewAreaNotifyChange} />
 							<div className={classes.textWrapper}>
 								<Text className={classes.sectionBreaker}>Vehicle notifications</Text>
@@ -63,21 +63,21 @@ export class Notifications extends React.Component<INotificationsProps, INotific
 								checked={this.state.vehicleNotify}
 								onChange={this.handleVehicleNotifyChange}
 							/>
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem
 								title="Bike near you"
 								checked={this.state.bikeNotify}
 								onChange={this.handleBikeNotifyChange}
 								disabled={this.state.vehicleNotify}
 							/>
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem
 								title="Car near you"
 								onChange={this.handleCarNotifyChange}
 								checked={this.state.carNotify}
 								disabled={this.state.vehicleNotify}
 							/>
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem
 								title="Scooter near you"
 								onChange={this.handleScooterNotifyChange}

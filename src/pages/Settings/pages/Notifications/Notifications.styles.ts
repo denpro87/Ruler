@@ -23,15 +23,9 @@ const textWrapper: CSSProperties = {
 	paddingBottom: pxToRem(11)
 };
 
-const divider: CSSProperties = {
-	backgroundColor: 'rgba(24, 28, 25, 0.05)',
-	height: pxToRem(1)
-};
-
 export const styles = createStyles({
 	providersList,
 	sectionBreaker,
 	innerContent,
-	textWrapper,
-	divider
+	textWrapper
 });
