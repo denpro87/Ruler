@@ -1,4 +1,4 @@
-import { ICustomIonSlide, ICustomSlide } from './CustomIonSlide.types';
+import { ICustomIonSlide } from './CustomIonSlide.types';
 import { IonSlide } from '@ionic/react';
 import { Paragraph, Title } from 'components/Text';
 import { makeStyles } from '@material-ui/styles';
