@@ -6,7 +6,7 @@ import { PickerColumn } from '@ionic/core';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { Scrollbars } from 'react-custom-scrollbars';
-import { styles } from './DateTimePicker.styles';
+import { getScrollbarStyles, styles } from './DateTimePicker.styles';
 import React, { useRef } from 'react';
 
 const useStyles = makeStyles(styles);
@@ -76,25 +76,8 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 		</div>
 	);
 
-	const getStyles = () => {
-		return {
-			root: {
-				height: '100vh',
-				width: '100vw',
-				position: 'fixed',
-				zIndex: 1300,
-				left: 0,
-				top: 0,
-				backgroundColor: 'rgba(0,0,0,0.2)',
-				transition: 'opacity 400ms cubic-bezier(0.4, 0, 0.2, 1)',
-				pointerEvents: open ? null : 'none',
-				opacity: open ? '1' : '0'
-			}
-		};
-	};
-
 	return (
-		<Scrollbars autoHide style={getStyles().root} onClick={handleClickOverlay}>
+		<Scrollbars autoHide style={getScrollbarStyles(open)} onClick={handleClickOverlay}>
 			<Paper className={classes.body} onClick={e => e.stopPropagation()}>
 				<div className={classes.content}>{getContent()}</div>
 			</Paper>

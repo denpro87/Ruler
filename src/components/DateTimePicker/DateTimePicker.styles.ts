@@ -100,3 +100,16 @@ export const styles = createStyles({
 	button,
 	selectedRow
 });
+
+export const getScrollbarStyles = (open: boolean) => ({
+	height: '100vh',
+	width: '100vw',
+	position: 'fixed',
+	zIndex: 1300,
+	left: 0,
+	top: 0,
+	backgroundColor: 'rgba(0,0,0,0.2)',
+	transition: 'opacity 400ms cubic-bezier(0.4, 0, 0.2, 1)',
+	pointerEvents: open ? null : 'none',
+	opacity: open ? '1' : '0'
+});
