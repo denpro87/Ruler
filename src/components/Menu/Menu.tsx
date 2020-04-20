@@ -1,16 +1,18 @@
 import { Box, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, SwipeableDrawer, makeStyles } from '@material-ui/core';
 import { GreenButton, Icon, IconButton } from 'components';
 import { IMenuProps } from './Menu.types';
+import { IntlShape, useIntl } from 'react-intl';
 import { listItemIcon, styles } from './Menu.styles';
-import { menuItems } from './MenuList';
+import { menuItems } from './menu-list';
 import React from 'react';
-
 const useStyles = makeStyles(styles);
 
 export const Menu: React.FunctionComponent<IMenuProps> = props => {
 	const classes = useStyles();
 
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = React.useState(true);
+
+	const { formatMessage }: IntlShape = useIntl();
 
 	const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent): void => {
 		if (
@@ -36,7 +38,7 @@ export const Menu: React.FunctionComponent<IMenuProps> = props => {
 
 						<ListItemText
 							primaryTypographyProps={{ className: classes.listItemTextPrimary }}
-							primary={item.text}
+							primary={formatMessage({ id: item.text })}
 							className={classes.listItemText}
 						/>
 

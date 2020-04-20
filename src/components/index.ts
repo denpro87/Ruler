@@ -16,3 +16,4 @@ export * from './Text';
 export * from './Theming';
 export * from './BottomSheet';
 export * from './CustomIonSlide';
+export * from './IntlProvider';
