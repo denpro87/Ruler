@@ -7,7 +7,7 @@ import { PickerColumn, PickerColumnOption } from '@ionic/core';
 // @ts-ignore
 import { Scrollbars } from 'react-custom-scrollbars';
 import { getScrollbarStyles, styles } from './DateTimePicker.styles';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
 const useStyles = makeStyles(styles);
 
