@@ -49,11 +49,10 @@ const pickerColumnWrapper: CSSProperties = {
 				fontSize: pxToRem(20),
 				fontWeight: 600,
 				lineHeight: 1.5,
-				color: '#181c19',
-				opacity: 0.35
+				color: 'rgba(24, 28, 25, 0.35)'
 			},
 			'& .picker-opt-selected': {
-				opacity: 1
+				color: 'rgb(24, 28, 25)'
 			}
 		}
 	}

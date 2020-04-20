@@ -18,8 +18,7 @@ const dialogContentText: CSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,
 	lineHeight: 1.5,
-	color: '#181c19',
-	opacity: 0.5,
+	color: 'rgba(24, 28, 25, 0.5)',
 	padding: `${pxToRem(10)} ${pxToRem(10)} ${pxToRem(5)} ${pxToRem(10)}`
 };
 

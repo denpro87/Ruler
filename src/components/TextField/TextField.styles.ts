@@ -19,8 +19,7 @@ const textFieldRoot: CSSProperties = {
 		fontSize: pxToRem(15),
 		fontWeight: 600,
 		lineHeight: 1.67,
-		color: '#181c19!important',
-		opacity: 0.5
+		color: 'rgba(24, 28, 25, 0.5) !important'
 	}
 };
 

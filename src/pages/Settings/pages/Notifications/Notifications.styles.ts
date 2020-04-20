@@ -11,8 +11,7 @@ const innerContent: CSSProperties = {
 };
 
 const sectionBreaker: CSSProperties = {
-	opacity: 0.5,
-	color: '#181c19',
+	color: 'rgba(24, 28, 25, 0.5)',
 	fontWeight: 600,
 	fontFamily: DEFAULT_FONT_FAMILY,
 	fontSize: pxToRem(10),
@@ -25,9 +24,8 @@ const textWrapper: CSSProperties = {
 };
 
 const divider: CSSProperties = {
-	backgroundColor: '#181c19',
-	height: pxToRem(1),
-	opacity: 0.05
+	backgroundColor: 'rgba(24, 28, 25, 0.05)',
+	height: pxToRem(1)
 };
 
 export const styles = createStyles({

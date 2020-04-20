@@ -7,8 +7,7 @@ const providersList: CSSProperties = {
 };
 
 const subText: CSSProperties = {
-	opacity: 0.5,
-	color: '#181c19',
+	color: 'rgba(24, 28, 25, 0.5)',
 	fontWeight: 600,
 	fontFamily: DEFAULT_FONT_FAMILY,
 	fontSize: pxToRem(10),
@@ -21,9 +20,8 @@ const textWrapper: CSSProperties = {
 };
 
 const divider: CSSProperties = {
-	backgroundColor: '#181c19',
-	height: pxToRem(1),
-	opacity: 0.05
+	backgroundColor: 'rgba(24, 28, 25, 0.05)',
+	height: pxToRem(1)
 };
 
 const timePicker: CSSProperties = {
@@ -71,12 +69,11 @@ const secondaryButton: CSSProperties = {
 };
 
 const dateText: CSSProperties = {
-	color: '#181c19',
+	color: 'rgba(24, 28, 25, 0.5)',
 	fontSize: pxToRem(15),
 	lineHeight: 1.67,
 	fontWeight: 600,
 	fontFamily: DEFAULT_FONT_FAMILY,
-	opacity: 0.5,
 	paddingRight: pxToRem(5)
 };
 

@@ -35,9 +35,8 @@ const itemTextSecondary: CSSProperties = {
 		fontStyle: 'normal',
 		lineHeight: 1.5,
 		letterSpacing: 'normal',
-		color: '#181c19'
-	}),
-	opacity: 0.5
+		color: 'rgba(24, 28, 25, 0.5)'
+	})
 };
 
 export const styles = createStyles({
