@@ -1,7 +1,7 @@
 import { Box, List } from '@material-ui/core';
 import { ILanguage, ILanguagesProps } from './Languages.types';
 import { LanguageItem } from './components';
-import { Page, SearchBox } from 'components';
+import { Page, SearchBox, useLanguageContext } from 'components';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Languages.styles';
 import React from 'react';
@@ -19,8 +19,8 @@ const useStyles = makeStyles(styles);
 
 export const Languages: React.FunctionComponent<ILanguagesProps> = () => {
 	const classes = useStyles();
-	const [selectedLanguage, selectLanguage] = React.useState('en');
 	const [filteredLanguages, setFilteredLanguages] = React.useState<ILanguage[]>(languages);
+	const { locale: selectedLanguage, changeLanguage: selectLanguage } = useLanguageContext();
 
 	const handleLanguageClick = (langCode: string) => (): void => {
 		selectLanguage(langCode);
