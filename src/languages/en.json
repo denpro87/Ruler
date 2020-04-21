@@ -49,5 +49,11 @@
 	"menu.settings.change_password.repeat_new_password": "Repeat new password",
 	"menu.settings.change_password.save_changes": "Save changes",
 	"menu.settings.change_password.dialog.title": "Changes saved!",
-	"menu.settings.change_password.dialog.description": "Your password has been successfully changed!"
+	"menu.settings.change_password.dialog.description": "Your password has been successfully changed!",
+
+	"menu.settings.change_email.title": "Change Email",
+	"menu.settings.change_email.enter_new_email": "Enter new email",
+	"menu.settings.change_email.save_changes": "Save changes",
+	"menu.settings.change_email.dialog.title": "Changes saved!",
+	"menu.settings.change_email.dialog.description": "Your email has been successfully changed!"
 }
