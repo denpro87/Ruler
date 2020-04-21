@@ -1,5 +1,5 @@
 import { List, makeStyles } from '@material-ui/core';
-import { NewsData } from './NewsData';
+import { NewsData } from './News.data';
 import { NewsItem } from './components';
 import { Page } from 'components';
 import { styles } from './News.styles';

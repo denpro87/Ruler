@@ -1,5 +1,5 @@
-import { Box, ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { INewsItemProps } from './NewsItem.types';
+import { ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import { Text } from 'components';
 import { styles } from './NewsItem.styles';
