@@ -1,64 +1,47 @@
-import { Box, List, makeStyles } from '@material-ui/core';
-import { ILanguage, ILanguagesProps, ILanguagesState } from './Languages.types';
+import { Box, List } from '@material-ui/core';
+import { ILanguage, ILanguagesProps } from './Languages.types';
 import { LanguageItem } from './components';
-import { Page, SearchBox, Styling } from 'components';
+import { Page, SearchBox, useLanguageContext } from 'components';
+import { languages } from './Languages.data';
+import { makeStyles } from '@material-ui/styles';
 import { styles } from './Languages.styles';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
 
-export class Languages extends React.Component<ILanguagesProps, ILanguagesState, ILanguage> {
-	state = {
-		selectedLanguage: 'en',
-		languages: [
-			{ langName: 'English', text: 'English (default)', selected: true, langCode: 'en' },
-			{ langName: 'Russian', text: 'Русский', selected: false, langCode: 'ru' },
-			{ langName: 'Catalan', text: 'Catala', selected: false, langCode: 'sp' },
-			{ langName: 'French', text: 'français', selected: false, langCode: 'fr' },
-			{ langName: 'Italian', text: 'Italiano', selected: false, langCode: 'it' },
-			{ langName: 'Malay', text: 'Bahasa Melayu', selected: false, langCode: 'ma' }
-		],
-		filteredLanguages: new Array<ILanguage>()
+export const Languages: React.FunctionComponent<ILanguagesProps> = () => {
+	const classes = useStyles();
+	const [filteredLanguages, setFilteredLanguages] = React.useState<ILanguage[]>(languages);
+	const { locale: selectedLanguage, changeLanguage: selectLanguage } = useLanguageContext();
+
+	const handleLanguageClick = (langCode: string) => (): void => {
+		selectLanguage(langCode);
 	};
 
-	private handleLanguageClick = (event: React.MouseEvent<HTMLElement>, langCode: string) => {
-		this.setState({ selectedLanguage: langCode });
-	};
-
-	private handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		const currentLanguage = event.target.value.toLowerCase();
-		const filteredLanguages = this.state.languages.filter(language => language.langName.toLowerCase().includes(currentLanguage));
-		this.setState({ filteredLanguages });
+		const filteredLangs = languages.filter(language => language.langName.toLowerCase().includes(currentLanguage));
+		setFilteredLanguages(filteredLangs);
 	};
 
-	componentDidMount = () => this.setState({ filteredLanguages: this.state.languages });
-
-	render() {
-		return (
-			<Styling useStyles={useStyles}>
-				{classes => (
-					<Page title="Languages" titleSize="large" noHorizontalContentPadding>
-						<div className={classes.searchBoxWrapper}>
-							<SearchBox className={classes.searchBox} onChange={this.handleSearchChange} />
-						</div>
-						<List className={classes.providersList}>
-							{this.state.filteredLanguages.map(filteredLanguage => {
-								return (
-									<Box key={filteredLanguage.langName}>
-										<LanguageItem
-											title={filteredLanguage.langName}
-											text={filteredLanguage.text}
-											code={filteredLanguage.langCode}
-											selected={this.state.selectedLanguage === filteredLanguage.langCode}
-											onClick={e => this.handleLanguageClick(e, filteredLanguage.langCode)}
-										/>
-									</Box>
-								);
-							})}
-						</List>
-					</Page>
-				)}
-			</Styling>
-		);
-	}
-}
+	return (
+		<Page title="Languages" titleSize="large" noHorizontalContentPadding>
+			<div className={classes.searchBoxWrapper}>
+				<SearchBox className={classes.searchBox} onChange={handleSearchChange} />
+			</div>
+			<List className={classes.providersList}>
+				{filteredLanguages.map(filteredLanguage => (
+					<Box key={filteredLanguage.langName}>
+						<LanguageItem
+							title={filteredLanguage.langName}
+							text={filteredLanguage.text}
+							code={filteredLanguage.langCode}
+							selected={selectedLanguage === filteredLanguage.langCode}
+							onClick={handleLanguageClick(filteredLanguage.langCode)}
+						/>
+					</Box>
+				))}
+			</List>
+		</Page>
+	);
+};

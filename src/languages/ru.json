@@ -1,0 +1,19 @@
+{
+	"menu.news": "RU_News",
+	"menu.wallet": "RU_Wallet",
+	"menu.payment_methods": "RU_Payment methods",
+	"menu.driver_licence": "RU_News",
+	"menu.service_provider": "RU_Service providers",
+	"menu.my_rides": "RU_My rides",
+	"menu.invite_friends": "RU_Invite friends",
+	"menu.get_help": "RU_Get help",
+	"menu.settings": "RU_Settings",
+	"menu.settings.profile": "RU_Profile",
+	"menu.settings.notifications": "RU_Notification",
+	"menu.settings.dark_mode": "RU_Dark mode",
+	"menu.settings.language": "RU_Language",
+	"menu.settings.change_password": "RU_Change password",
+	"menu.settings.change_email": "RU_Change email",
+	"menu.settings.delete_account": "RU_Delete account",
+	"menu.settings.log_out": "RU_Log out"
+}

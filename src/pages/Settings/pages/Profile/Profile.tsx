@@ -1,5 +1,6 @@
 import { Box, Typography, makeStyles } from '@material-ui/core';
 import { Dialog, GreenButton, Page, TextField } from 'components';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { styles } from './Profile.styles';
 import React from 'react';
 import manSvg from '../../images/man.svg';
@@ -12,6 +13,7 @@ export const Profile: React.FunctionComponent = () => {
 		firstName: '',
 		lastName: ''
 	});
+	const { formatMessage } = useIntl();
 
 	const handleSaveClick = (): void => {
 		setShowDialog(true);
@@ -27,12 +29,22 @@ export const Profile: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page title="Profile" titleSize="medium">
+		<Page title={formatMessage({ id: 'menu.settings.profile.title' })} titleSize="medium">
 			<Box className={classes.innerContent}>
-				<TextField label="First name" name="firstName" value={state.firstName} onValueChange={handleStateChange} />
-				<TextField label="Second name" name="lastName" value={state.lastName} onValueChange={handleStateChange} />
+				<TextField
+					label={formatMessage({ id: 'menu.settings.profile.first_name' })}
+					name="firstName"
+					value={state.firstName}
+					onValueChange={handleStateChange}
+				/>
+				<TextField
+					label={formatMessage({ id: 'menu.settings.profile.second_name' })}
+					name="lastName"
+					value={state.lastName}
+					onValueChange={handleStateChange}
+				/>
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
-					Save changes
+					<FormattedMessage id={'menu.settings.profile.save_changes'} />
 				</GreenButton>
 			</Box>
 			<Dialog

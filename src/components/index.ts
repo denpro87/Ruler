@@ -14,6 +14,7 @@ export * from './SwitchListItem';
 export * from './Text';
 export * from './Theming';
 export * from './BottomSheet';
+export * from './IntlProvider';
 export * from './TextField';
 export * from './DateTimePicker';
 export * from './Slide';

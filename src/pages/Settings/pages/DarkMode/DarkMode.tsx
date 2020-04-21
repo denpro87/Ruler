@@ -3,11 +3,12 @@ import { DateTimePicker, Divider, Icon, Page, Styling, SwitchListItem, Text } fr
 import { IDarkModeProps, IDarkModeState } from './DarkMode.types';
 import { styles } from './DarkMode.styles';
 
+import { injectIntl } from 'react-intl';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
 
-export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
+class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 	state = {
 		automaticallyDarkMode: true,
 		dontUseDarkMode: false,
@@ -60,29 +61,32 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 	};
 
 	render() {
+		const { intl } = this.props;
+		const { formatMessage } = intl;
+
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page title="Dark mode" titleSize="medium">
+					<Page title={formatMessage({ id: 'menu.settings.dark_mode.title' })} titleSize="medium">
 						<List className={classes.providersList}>
 							<SwitchListItem
-								title="Automatically"
+								title={formatMessage({ id: 'menu.settings.dark_mode.automatically' })}
 								name="automaticallyDarkMode"
 								checked={this.state.automaticallyDarkMode}
 								onChange={this.handleAutomaticallyChange}
 							/>
 							<Divider />
 							<SwitchListItem
-								title="Manually enable till tomorrow"
+								title={formatMessage({ id: 'menu.settings.dark_mode.manually_enable_till_tomorrow' })}
 								name="dontUseDarkMode"
 								checked={this.state.dontUseDarkMode}
 								onChange={this.handleDontUseChange}
 							/>
 							<div className={classes.textWrapper}>
-								<Text className={classes.subText}>Set by time</Text>
+								<Text className={classes.subText}>{formatMessage({ id: 'menu.settings.dark_mode.set_by_time' })}</Text>
 							</div>
 							<SwitchListItem
-								title="Scheduled"
+								title={formatMessage({ id: 'menu.settings.dark_mode.scheduled' })}
 								name="scheduledDarkMode"
 								checked={this.state.scheduledDarkMode}
 								onChange={this.handleScheduledChange}
@@ -92,7 +96,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 								<Box>
 									<Divider />
 									<ListItem className={classes.li}>
-										<ListItemText className={classes.itemText}>Start</ListItemText>
+										<ListItemText className={classes.itemText}>{formatMessage({ id: 'menu.settings.dark_mode.start' })}</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
 											<Button className={classes.secondaryButton} onClick={this.onFirstPickerClick}>
 												<Text className={classes.dateText}>{`${this.state.startTimeHour}:${this.state.startTimeMin
@@ -104,7 +108,7 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 									</ListItem>
 									<Divider />
 									<ListItem className={classes.li}>
-										<ListItemText className={classes.itemText}>Ending</ListItemText>
+										<ListItemText className={classes.itemText}>{formatMessage({ id: 'menu.settings.dark_mode.ending' })}</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
 											<Button className={classes.secondaryButton} onClick={this.onEndPickerClick}>
 												<Text className={classes.dateText}>{`${this.state.endTimeHour}:${this.state.endTimeMin
@@ -125,3 +129,5 @@ export class DarkMode extends React.Component<IDarkModeProps, IDarkModeState> {
 		);
 	}
 }
+
+export const DarkMode = injectIntl(DarkModePage);

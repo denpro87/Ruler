@@ -1,3 +1,5 @@
+import { IntlShape } from 'react-intl';
+
 export interface IChangePasswordState {
 	newPassword: string;
 	oldPassword: string;
@@ -5,4 +7,6 @@ export interface IChangePasswordState {
 	showDialog: boolean;
 }
 
-export interface IChangePasswordProps {}
+export interface IChangePasswordProps {
+	intl: IntlShape;
+}

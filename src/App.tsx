@@ -4,13 +4,14 @@ import { DriveLicence, Home, News, ServiceProviders, Splash, Welcome } from 'pag
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
+import { IntlProvider, Theming } from 'components';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
-import { Theming } from 'components';
 import React from 'react';
 
 export const App: React.FunctionComponent = () => (
+  <IntlProvider>
 	<Theming>
 		<CssBaseline />
 		<GlobalCss />
@@ -53,4 +54,5 @@ export const App: React.FunctionComponent = () => (
 			</IonReactRouter>
 		</IonApp>
 	</Theming>
+  </IntlProvider>
 );
