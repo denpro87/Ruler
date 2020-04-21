@@ -41,5 +41,13 @@
 	"menu.settings.dark_mode.start": "Start",
 	"menu.settings.dark_mode.ending": "Ending",
 	"menu.settings.dark_mode.set_time": "Set time",
-	"menu.settings.dark_mode.cancel": "Cancel"
+	"menu.settings.dark_mode.cancel": "Cancel",
+
+	"menu.settings.change_password.title": "Change Password",
+	"menu.settings.change_password.enter_the_current_password": "Enter the current password",
+	"menu.settings.change_password.enter_a_new_password": "Enter a new password",
+	"menu.settings.change_password.repeat_new_password": "Repeat new password",
+	"menu.settings.change_password.save_changes": "Save changes",
+	"menu.settings.change_password.dialog.title": "Changes saved!",
+	"menu.settings.change_password.dialog.description": "Your password has been successfully changed!"
 }
