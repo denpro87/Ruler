@@ -1,3 +1,5 @@
+import { IntlShape } from 'react-intl';
+
 export interface IDarkModeState {
 	automaticallyDarkMode: boolean;
 	dontUseDarkMode: boolean;
@@ -8,4 +10,6 @@ export interface IDarkModeState {
 	[index: string]: boolean | Date | string;
 }
 
-export interface IDarkModeProps {}
+export interface IDarkModeProps {
+	intl: IntlShape;
+}

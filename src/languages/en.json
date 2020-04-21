@@ -31,5 +31,15 @@
 	"menu.settings.notifications.vehicle_near_you": "Vehicle near you",
 	"menu.settings.notifications.bike_near_you": "Bike near you",
 	"menu.settings.notifications.car_near_you": "Car near you",
-	"menu.settings.notifications.scooter_near_you": "Scooter near you"
+	"menu.settings.notifications.scooter_near_you": "Scooter near you",
+
+	"menu.settings.dark_mode.title": "Dark mode",
+	"menu.settings.dark_mode.automatically": "Automatically",
+	"menu.settings.dark_mode.manually_enable_till_tomorrow": "Manually enable till tomorrow",
+	"menu.settings.dark_mode.set_by_time": "Set by time",
+	"menu.settings.dark_mode.scheduled": "Scheduled",
+	"menu.settings.dark_mode.start": "Start",
+	"menu.settings.dark_mode.ending": "Ending",
+	"menu.settings.dark_mode.set_time": "Set time",
+	"menu.settings.dark_mode.cancel": "Cancel"
 }
