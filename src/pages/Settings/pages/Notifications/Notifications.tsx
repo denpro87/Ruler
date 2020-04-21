@@ -51,51 +51,51 @@ class NotificationsPage extends React.Component<INotificationsProps, INotificati
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page title={formatMessage({ id: 'menu.settings.notifications.title' })} titleSize="large">
+					<Page title={formatMessage({ id: 'settings.notifications.title' })} titleSize="large">
 						<List className={classes.providersList}>
 							<SwitchListItem
-								title={formatMessage({ id: 'menu.settings.notifications.discounts_and_news' })}
+								title={formatMessage({ id: 'settings.notifications.discounts_and_news' })}
 								checked={this.state.newsNotify}
 								onChange={this.handleNewsNotifyChange}
 							/>
 							<Divider />
 							<SwitchListItem
-								title={formatMessage({ id: 'menu.settings.notifications.new_report_reply' })}
+								title={formatMessage({ id: 'settings.notifications.new_report_reply' })}
 								checked={this.state.reportNotify}
 								onChange={this.handleReportNotifyChange}
 							/>
 							<Divider />
 							<SwitchListItem
-								title={formatMessage({ id: 'menu.settings.notifications.new_area' })}
+								title={formatMessage({ id: 'settings.notifications.new_area' })}
 								checked={this.state.newAreaNotify}
 								onChange={this.handleNewAreaNotifyChange}
 							/>
 							<div className={classes.textWrapper}>
-								<Text className={classes.sectionBreaker}>{formatMessage({ id: 'menu.settings.notifications.vehicle_notifications' })}</Text>
+								<Text className={classes.sectionBreaker}>{formatMessage({ id: 'settings.notifications.vehicle_notifications' })}</Text>
 							</div>
 							<SwitchListItem
-								title={formatMessage({ id: 'menu.settings.notifications.vehicle_near_you' })}
+								title={formatMessage({ id: 'settings.notifications.vehicle_near_you' })}
 								name="vehicleNotify"
 								checked={this.state.vehicleNotify}
 								onChange={this.handleVehicleNotifyChange}
 							/>
 							<Divider />
 							<SwitchListItem
-								title={formatMessage({ id: 'menu.settings.notifications.bike_near_you' })}
+								title={formatMessage({ id: 'settings.notifications.bike_near_you' })}
 								checked={this.state.bikeNotify}
 								onChange={this.handleBikeNotifyChange}
 								disabled={this.state.vehicleNotify}
 							/>
 							<Divider />
 							<SwitchListItem
-								title={formatMessage({ id: 'menu.settings.notifications.car_near_you' })}
+								title={formatMessage({ id: 'settings.notifications.car_near_you' })}
 								onChange={this.handleCarNotifyChange}
 								checked={this.state.carNotify}
 								disabled={this.state.vehicleNotify}
 							/>
 							<Divider />
 							<SwitchListItem
-								title={formatMessage({ id: 'menu.settings.notifications.scooter_near_you' })}
+								title={formatMessage({ id: 'settings.notifications.scooter_near_you' })}
 								onChange={this.handleScooterNotifyChange}
 								checked={this.state.scooterNotify}
 								disabled={this.state.vehicleNotify}

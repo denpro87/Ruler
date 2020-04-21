@@ -32,28 +32,28 @@ class ChangePasswordPage extends React.Component<IChangePasswordProps, IChangePa
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page title={formatMessage({ id: 'menu.settings.change_password.title' })} titleSize="medium">
+					<Page title={formatMessage({ id: 'settings.change_password.title' })} titleSize="medium">
 						<Box className={classes.innerContent}>
 							<PasswordInput
-								label={formatMessage({ id: 'menu.settings.change_password.enter_the_current_password' })}
+								label={formatMessage({ id: 'settings.change_password.enter_the_current_password' })}
 								name="oldPassword"
 								value={this.state.oldPassword}
 								onValueChange={this.handleStateChange}
 							/>
 							<PasswordInput
-								label={formatMessage({ id: 'menu.settings.change_password.enter_a_new_password' })}
+								label={formatMessage({ id: 'settings.change_password.enter_a_new_password' })}
 								name="newPassword"
 								value={this.state.newPassword}
 								onValueChange={this.handleStateChange}
 							/>
 							<PasswordInput
-								label={formatMessage({ id: 'menu.settings.change_password.repeat_new_password' })}
+								label={formatMessage({ id: 'settings.change_password.repeat_new_password' })}
 								name="confirmedPassword"
 								value={this.state.confirmedPassword}
 								onValueChange={this.handleStateChange}
 							/>
 							<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={this.handleSaveClick}>
-								{formatMessage({ id: 'menu.settings.change_password.save_changes' })}
+								{formatMessage({ id: 'settings.change_password.save_changes' })}
 							</GreenButton>
 						</Box>
 						<Dialog
@@ -62,10 +62,10 @@ class ChangePasswordPage extends React.Component<IChangePasswordProps, IChangePa
 							image={manSvg}
 							onClose={() => this.setState({ showDialog: false })}
 							aria-labelledby="form-dialog-title"
-							title={formatMessage({ id: 'menu.settings.change_password.dialog.title' })}
+							title={formatMessage({ id: 'settings.change_password.dialog.title' })}
 						>
 							<Typography className={classes.dialogContentText}>
-								{formatMessage({ id: 'menu.settings.change_password.dialog.description' })}
+								{formatMessage({ id: 'settings.change_password.dialog.description' })}
 							</Typography>
 						</Dialog>
 					</Page>

@@ -67,26 +67,26 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page title={formatMessage({ id: 'menu.settings.dark_mode.title' })} titleSize="medium">
+					<Page title={formatMessage({ id: 'settings.dark_mode.title' })} titleSize="medium">
 						<List className={classes.providersList}>
 							<SwitchListItem
-								title={formatMessage({ id: 'menu.settings.dark_mode.automatically' })}
+								title={formatMessage({ id: 'settings.dark_mode.automatically' })}
 								name="automaticallyDarkMode"
 								checked={this.state.automaticallyDarkMode}
 								onChange={this.handleAutomaticallyChange}
 							/>
 							<Divider />
 							<SwitchListItem
-								title={formatMessage({ id: 'menu.settings.dark_mode.manually_enable_till_tomorrow' })}
+								title={formatMessage({ id: 'settings.dark_mode.manually_enable_till_tomorrow' })}
 								name="dontUseDarkMode"
 								checked={this.state.dontUseDarkMode}
 								onChange={this.handleDontUseChange}
 							/>
 							<div className={classes.textWrapper}>
-								<Text className={classes.subText}>{formatMessage({ id: 'menu.settings.dark_mode.set_by_time' })}</Text>
+								<Text className={classes.subText}>{formatMessage({ id: 'settings.dark_mode.set_by_time' })}</Text>
 							</div>
 							<SwitchListItem
-								title={formatMessage({ id: 'menu.settings.dark_mode.scheduled' })}
+								title={formatMessage({ id: 'settings.dark_mode.scheduled' })}
 								name="scheduledDarkMode"
 								checked={this.state.scheduledDarkMode}
 								onChange={this.handleScheduledChange}
@@ -96,7 +96,7 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 								<Box>
 									<Divider />
 									<ListItem className={classes.li}>
-										<ListItemText className={classes.itemText}>{formatMessage({ id: 'menu.settings.dark_mode.start' })}</ListItemText>
+										<ListItemText className={classes.itemText}>{formatMessage({ id: 'settings.dark_mode.start' })}</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
 											<Button className={classes.secondaryButton} onClick={this.onFirstPickerClick}>
 												<Text className={classes.dateText}>{`${this.state.startTimeHour}:${this.state.startTimeMin
@@ -108,7 +108,7 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 									</ListItem>
 									<Divider />
 									<ListItem className={classes.li}>
-										<ListItemText className={classes.itemText}>{formatMessage({ id: 'menu.settings.dark_mode.ending' })}</ListItemText>
+										<ListItemText className={classes.itemText}>{formatMessage({ id: 'settings.dark_mode.ending' })}</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
 											<Button className={classes.secondaryButton} onClick={this.onEndPickerClick}>
 												<Text className={classes.dateText}>{`${this.state.endTimeHour}:${this.state.endTimeMin

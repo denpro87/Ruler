@@ -7,13 +7,14 @@
 	"menu.my_rides": "RU_My rides",
 	"menu.invite_friends": "RU_Invite friends",
 	"menu.get_help": "RU_Get help",
-	"menu.settings": "RU_Settings",
-	"menu.settings.profile": "RU_Profile",
-	"menu.settings.notifications": "RU_Notification",
-	"menu.settings.dark_mode": "RU_Dark mode",
-	"menu.settings.language": "RU_Language",
-	"menu.settings.change_password": "RU_Change password",
-	"menu.settings.change_email": "RU_Change email",
-	"menu.settings.delete_account": "RU_Delete account",
-	"menu.settings.log_out": "RU_Log out"
+
+	"settings.title": "RU_Settings",
+	"settings.menu.profile": "RU_Profile",
+	"settings.menu.notifications": "RU_Notification",
+	"settings.menu.dark_mode": "RU_Dark mode",
+	"settings.menu.language": "RU_Language",
+	"settings.menu.change_password": "RU_Change password",
+	"settings.menu.change_email": "RU_Change email",
+	"settings.menu.delete_account": "RU_Delete account",
+	"settings.menu.log_out": "RU_Log out"
 }

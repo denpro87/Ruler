@@ -11,41 +11,41 @@ import manSvg from './images/man.svg';
 const useStyles = makeStyles(styles);
 const items = [
 	{
-		title: 'menu.settings.profile',
+		title: 'settings.menu.profile',
 		href: '/settings/profile',
 		iconName: 'name'
 	},
 	{
-		title: 'menu.settings.notifications',
+		title: 'settings.menu.notifications',
 		href: '/settings/notifications',
 		iconName: 'notification'
 	},
 	{
-		title: 'menu.settings.dark_mode',
+		title: 'settings.menu.dark_mode',
 		href: '/settings/dark-mode',
 		iconName: 'dark-mode'
 	},
 	{
-		title: 'menu.settings.language',
+		title: 'settings.menu.language',
 		href: '/settings/languages',
 		iconName: 'language'
 	},
 	{
-		title: 'menu.settings.change_password',
+		title: 'settings.menu.change_password',
 		href: '/settings/change-password',
 		iconName: 'change-password'
 	},
 	{
-		title: 'menu.settings.change_email',
+		title: 'settings.menu.change_email',
 		href: '/settings/change-email',
 		iconName: 'invite'
 	},
 	{
-		title: 'menu.settings.delete_account',
+		title: 'settings.menu.delete_account',
 		iconName: 'delete-account'
 	},
 	{
-		title: 'menu.settings.log_out',
+		title: 'settings.menu.log_out',
 		iconName: 'log-out'
 	}
 ];
@@ -89,7 +89,7 @@ export const Settings: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page title="Settings" titleSize="large" noHorizontalContentPadding>
+		<Page title={formatMessage({ id: 'settings.title' })} titleSize="large" noHorizontalContentPadding>
 			<List className={classes.list}>
 				{items.map((item, index) =>
 					item.href ? (
@@ -109,7 +109,7 @@ export const Settings: React.FunctionComponent = () => {
 						<ListItem
 							key={index}
 							button
-							onClick={item.title === 'menu.settings.log_out' ? handleLogoutClickOpen : handleDeleteAccountOpen}
+							onClick={item.title === 'settings.menu.log_out' ? handleLogoutClickOpen : handleDeleteAccountOpen}
 							className={clsx(classes.listItem, index === items.length - 1 && classes.last)}
 						>
 							<ListItemIcon className={classes.icon}>
@@ -121,38 +121,36 @@ export const Settings: React.FunctionComponent = () => {
 				)}
 			</List>
 			<Dialog
-				title={formatMessage({ id: 'menu.settings.logout_dialog.title' })}
+				title={formatMessage({ id: 'settings.logout_dialog.title' })}
 				open={logout}
 				hasClose={true}
 				image={manSvg}
 				onClose={handleLogoutClose}
 				aria-labelledby="form-dialog-title"
 			>
-				<Typography className={classes.dialogContentText}>{formatMessage({ id: 'menu.settings.logout_dialog.description' })}</Typography>
+				<Typography className={classes.dialogContentText}>{formatMessage({ id: 'settings.logout_dialog.description' })}</Typography>
 				<BlackButton onClick={handleLogoutOk} className={classes.notRecommendedButton}>
-					{formatMessage({ id: 'menu.settings.logout_dialog.logout' })}
+					{formatMessage({ id: 'settings.logout_dialog.logout' })}
 				</BlackButton>
 			</Dialog>
 			<Dialog
-				title={formatMessage({ id: 'menu.settings.delete_account_dialog.title' })}
+				title={formatMessage({ id: 'settings.delete_account_dialog.title' })}
 				open={deleteAccount}
 				hasClose={true}
 				image={manSvg}
 				onClose={handleDeleteAccountClose}
 			>
-				<Typography className={classes.dialogContentText}>
-					{formatMessage({ id: 'menu.settings.delete_account_dialog.description' })}
-				</Typography>
+				<Typography className={classes.dialogContentText}>{formatMessage({ id: 'settings.delete_account_dialog.description' })}</Typography>
 				<TextField
 					id="name"
-					placeholder={formatMessage({ id: 'menu.settings.delete_account_dialog.email_address' })}
+					placeholder={formatMessage({ id: 'settings.delete_account_dialog.email_address' })}
 					type="email"
 					fullWidth
 					value={email}
 					classes={{ root: classes.emailRoot }}
 					onChange={handleEmailInputChanges}
 				/>
-				<BlackButton onClick={handleSendEmail}>{formatMessage({ id: 'menu.settings.delete_account_dialog.send' })}</BlackButton>
+				<BlackButton onClick={handleSendEmail}>{formatMessage({ id: 'settings.delete_account_dialog.send' })}</BlackButton>
 			</Dialog>
 		</Page>
 	);

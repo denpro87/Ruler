@@ -29,22 +29,22 @@ export const Profile: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page title={formatMessage({ id: 'menu.settings.profile.title' })} titleSize="medium">
+		<Page title={formatMessage({ id: 'settings.profile.title' })} titleSize="medium">
 			<Box className={classes.innerContent}>
 				<TextField
-					label={formatMessage({ id: 'menu.settings.profile.first_name' })}
+					label={formatMessage({ id: 'settings.profile.first_name' })}
 					name="firstName"
 					value={state.firstName}
 					onValueChange={handleStateChange}
 				/>
 				<TextField
-					label={formatMessage({ id: 'menu.settings.profile.second_name' })}
+					label={formatMessage({ id: 'settings.profile.second_name' })}
 					name="lastName"
 					value={state.lastName}
 					onValueChange={handleStateChange}
 				/>
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
-					<FormattedMessage id={'menu.settings.profile.save_changes'} />
+					<FormattedMessage id={'settings.profile.save_changes'} />
 				</GreenButton>
 			</Box>
 			<Dialog
@@ -53,9 +53,9 @@ export const Profile: React.FunctionComponent = () => {
 				image={manSvg}
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"
-				title="Changes saved!"
+				title={formatMessage({ id: 'settings.profile.dialog.title' })}
 			>
-				<Typography className={classes.smallText}>Your name has been successfully changed!</Typography>
+				<Typography className={classes.smallText}>{formatMessage({ id: 'settings.profile.dialog.description' })}</Typography>
 			</Dialog>
 		</Page>
 	);

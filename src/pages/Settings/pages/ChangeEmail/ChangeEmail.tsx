@@ -23,19 +23,19 @@ export const ChangeEmail: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page title={formatMessage({ id: 'menu.settings.change_email.title' })} titleSize="medium">
+		<Page title={formatMessage({ id: 'settings.change_email.title' })} titleSize="medium">
 			<Box className={classes.innerContent}>
 				<TextField
 					classes={{ root: classes.textFieldRoot }}
 					fullWidth
 					id="email"
-					label={formatMessage({ id: 'menu.settings.change_email.enter_new_email' })}
+					label={formatMessage({ id: 'settings.change_email.enter_new_email' })}
 					name="email"
 					value={email}
 					onChange={handleEmailChange}
 				/>
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
-					{formatMessage({ id: 'menu.settings.change_email.save_changes' })}
+					{formatMessage({ id: 'settings.change_email.save_changes' })}
 				</GreenButton>
 			</Box>
 			<Dialog
@@ -44,11 +44,9 @@ export const ChangeEmail: React.FunctionComponent = () => {
 				image={manSvg}
 				onClose={() => setShowDialog(false)}
 				aria-labelledby="form-dialog-title"
-				title={formatMessage({ id: 'menu.settings.change_email.dialog.title' })}
+				title={formatMessage({ id: 'settings.change_email.dialog.title' })}
 			>
-				<Typography className={classes.dialogContentText}>
-					{formatMessage({ id: 'menu.settings.change_email.dialog.description' })}
-				</Typography>
+				<Typography className={classes.dialogContentText}>{formatMessage({ id: 'settings.change_email.dialog.description' })}</Typography>
 			</Dialog>
 		</Page>
 	);
