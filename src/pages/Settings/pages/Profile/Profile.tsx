@@ -1,4 +1,5 @@
 import { Box, TextField, makeStyles } from '@material-ui/core';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { GreenButton, Page } from 'components';
 import { styles } from './Profile.styles';
 import React from 'react';
@@ -11,6 +12,7 @@ export const Profile: React.FunctionComponent = () => {
 		firstName: '',
 		lastName: ''
 	});
+	const { formatMessage } = useIntl();
 
 	const handleSaveClick = (): void => {
 		console.log(state.firstName, state.lastName);
@@ -22,13 +24,13 @@ export const Profile: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page title="Profile" titleSize="medium">
+		<Page title={formatMessage({ id: 'menu.settings.profile.title' })} titleSize="medium">
 			<Box className={classes.innerContent}>
 				<TextField
 					classes={{ root: classes.textFieldRoot }}
 					fullWidth
 					id="your-first-name"
-					label="First name"
+					label={formatMessage({ id: 'menu.settings.profile.first_name' })}
 					name="firstName"
 					value={state.firstName}
 					onChange={handleStateChange}
@@ -37,14 +39,13 @@ export const Profile: React.FunctionComponent = () => {
 					classes={{ root: classes.textFieldRoot }}
 					fullWidth
 					id="your-last-name"
-					label="Second name"
+					label={formatMessage({ id: 'menu.settings.profile.second_name' })}
 					name="lastName"
 					value={state.lastName}
 					onChange={handleStateChange}
 				/>
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
-					{' '}
-					Save changes
+					<FormattedMessage id={'menu.settings.profile.save_changes'} />
 				</GreenButton>
 			</Box>
 		</Page>

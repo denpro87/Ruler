@@ -7,6 +7,7 @@
 	"menu.my_rides": "My rides",
 	"menu.invite_friends": "Invite friends",
 	"menu.get_help": "Get help",
+
 	"menu.settings": "Settings",
 	"menu.settings.profile": "Profile",
 	"menu.settings.notifications": "Notification",
@@ -15,5 +16,10 @@
 	"menu.settings.change_password": "Change password",
 	"menu.settings.change_email": "Change email",
 	"menu.settings.delete_account": "Delete account",
-	"menu.settings.log_out": "Log out"
+	"menu.settings.log_out": "Log out",
+
+	"menu.settings.profile.title": "Settings",
+	"menu.settings.profile.first_name": "First name",
+	"menu.settings.profile.second_name": "Second name",
+	"menu.settings.profile.save_changes": "Save changes"
 }
