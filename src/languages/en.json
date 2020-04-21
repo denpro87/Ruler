@@ -18,6 +18,15 @@
 	"menu.settings.delete_account": "Delete account",
 	"menu.settings.log_out": "Log out",
 
+	"menu.settings.logout_dialog.title": "Log out?",
+	"menu.settings.logout_dialog.description": "Are you sure you want to logout?",
+	"menu.settings.logout_dialog.logout": "Yes, logout",
+
+	"menu.settings.delete_account_dialog.title": "Delete account?",
+	"menu.settings.delete_account_dialog.description": "Enter the email address for this account, a deletion request will be sent to it",
+	"menu.settings.delete_account_dialog.email_address": "Email address",
+	"menu.settings.delete_account_dialog.send": "Send",
+
 	"menu.settings.profile.title": "Settings",
 	"menu.settings.profile.first_name": "First name",
 	"menu.settings.profile.second_name": "Second name",

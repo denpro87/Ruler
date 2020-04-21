@@ -1,8 +1,9 @@
 import { BlackButton, BlackIcon, Dialog, Page } from 'components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { List, ListItem, ListItemIcon, ListItemText, TextField, Typography, makeStyles } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './Settings.styles';
+
 import React from 'react';
 import clsx from 'clsx';
 import manSvg from './images/man.svg';
@@ -55,6 +56,7 @@ export const Settings: React.FunctionComponent = () => {
 	const [logout, setLogout] = React.useState(false);
 	const [deleteAccount, setDeleteAccount] = React.useState(false);
 	const [email, setEmail] = React.useState('');
+	const { formatMessage } = useIntl();
 
 	const handleLogoutClickOpen = () => {
 		console.log();
@@ -117,26 +119,39 @@ export const Settings: React.FunctionComponent = () => {
 					)
 				)}
 			</List>
-			<Dialog open={logout} hasClose={true} image={manSvg} onClose={handleLogoutClose} aria-labelledby="form-dialog-title" title="Log out?">
-				<Typography className={classes.dialogContentText}>Are you sure you want to logout?</Typography>
+			<Dialog
+				title={formatMessage({ id: 'menu.settings.logout_dialog.title' })}
+				open={logout}
+				hasClose={true}
+				image={manSvg}
+				onClose={handleLogoutClose}
+				aria-labelledby="form-dialog-title"
+			>
+				<Typography className={classes.dialogContentText}>{formatMessage({ id: 'menu.settings.logout_dialog.description' })}</Typography>
 				<BlackButton onClick={handleLogoutOk} className={classes.notRecommendedButton}>
-					Yes, logout
+					{formatMessage({ id: 'menu.settings.logout_dialog.logout' })}
 				</BlackButton>
 			</Dialog>
-			<Dialog open={deleteAccount} hasClose={true} title="Delete account?" image={manSvg} onClose={handleDeleteAccountClose}>
+			<Dialog
+				title={formatMessage({ id: 'menu.settings.delete_account_dialog.title' })}
+				open={deleteAccount}
+				hasClose={true}
+				image={manSvg}
+				onClose={handleDeleteAccountClose}
+			>
 				<Typography className={classes.dialogContentText}>
-					Enter the email address for this account, a deletion request will be sent to it
+					{formatMessage({ id: 'menu.settings.delete_account_dialog.description' })}
 				</Typography>
 				<TextField
 					id="name"
-					placeholder="Email address"
+					placeholder={formatMessage({ id: 'menu.settings.delete_account_dialog.email_address' })}
 					type="email"
 					fullWidth
 					value={email}
 					classes={{ root: classes.emailRoot }}
 					onChange={handleEmailInputChanges}
 				/>
-				<BlackButton onClick={handleSendEmail}>Send</BlackButton>
+				<BlackButton onClick={handleSendEmail}>{formatMessage({ id: 'menu.settings.delete_account_dialog.send' })}</BlackButton>
 			</Dialog>
 		</Page>
 	);
