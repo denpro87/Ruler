@@ -7,5 +7,13 @@
 	"menu.my_rides": "My rides",
 	"menu.invite_friends": "Invite friends",
 	"menu.get_help": "Get help",
-	"menu.settings": "Settings"
+	"menu.settings": "Settings",
+	"menu.settings.profile": "Profile",
+	"menu.settings.notifications": "Notification",
+	"menu.settings.dark_mode": "Dark mode",
+	"menu.settings.language": "Language",
+	"menu.settings.change_password": "Change password",
+	"menu.settings.change_email": "Change email",
+	"menu.settings.delete_account": "Delete account",
+	"menu.settings.log_out": "Log out"
 }

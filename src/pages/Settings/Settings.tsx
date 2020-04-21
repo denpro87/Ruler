@@ -1,4 +1,5 @@
 import { BlackButton, BlackIcon, Dialog, Page } from 'components';
+import { FormattedMessage } from 'react-intl';
 import { List, ListItem, ListItemIcon, ListItemText, TextField, Typography, makeStyles } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './Settings.styles';
@@ -9,41 +10,41 @@ import manSvg from './images/man.svg';
 const useStyles = makeStyles(styles);
 const items = [
 	{
-		title: 'Profile',
+		title: 'menu.settings.profile',
 		href: '/settings/profile',
 		iconName: 'name'
 	},
 	{
-		title: 'Notification',
+		title: 'menu.settings.notifications',
 		href: '/settings/notifications',
 		iconName: 'notification'
 	},
 	{
-		title: 'Dark mode',
+		title: 'menu.settings.dark_mode',
 		href: '/settings/dark-mode',
 		iconName: 'dark-mode'
 	},
 	{
-		title: 'Language',
+		title: 'menu.settings.language',
 		href: '/settings/languages',
 		iconName: 'language'
 	},
 	{
-		title: 'Change password',
+		title: 'menu.settings.change_password',
 		href: '/settings/change-password',
 		iconName: 'change-password'
 	},
 	{
-		title: 'Change email',
+		title: 'menu.settings.change_email',
 		href: '/settings/change-email',
 		iconName: 'invite'
 	},
 	{
-		title: 'Delete account',
+		title: 'menu.settings.delete_account',
 		iconName: 'delete-account'
 	},
 	{
-		title: 'Log out',
+		title: 'menu.settings.log_out',
 		iconName: 'log-out'
 	}
 ];
@@ -99,19 +100,19 @@ export const Settings: React.FunctionComponent = () => {
 							<ListItemIcon className={classes.icon}>
 								<BlackIcon iconName={item.iconName} />
 							</ListItemIcon>
-							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
+							<ListItemText primary={<FormattedMessage id={item.title} />} classes={{ primary: classes.text }} />
 						</ListItem>
 					) : (
 						<ListItem
 							key={index}
 							className={clsx(classes.listItem, index === items.length - 1 && classes.last)}
 							button
-							onClick={item.title === 'Log out' ? handleLogoutClickOpen : handleDeleteAccountOpen}
+							onClick={item.title === 'menu.settings.log_out' ? handleLogoutClickOpen : handleDeleteAccountOpen}
 						>
 							<ListItemIcon className={classes.icon}>
 								<BlackIcon iconName={item.iconName} />
 							</ListItemIcon>
-							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
+							<ListItemText primary={<FormattedMessage id={item.title} />} classes={{ primary: classes.text }} />
 						</ListItem>
 					)
 				)}
