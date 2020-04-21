@@ -2,6 +2,7 @@ import { GreenButton, LightGreenButton } from 'components';
 import { IDateTimePickerProps } from './DateTimePicker.types';
 import { IonBackdrop, IonPickerColumn } from '@ionic/react';
 import { PickerColumnOption } from '@ionic/core';
+import { Platform } from 'types';
 import { Stack } from '@fluentui/react';
 import { makeStyles } from '@material-ui/core';
 import { styles } from './DateTimePicker.styles';
@@ -69,6 +70,7 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 						<div className={classes.pickerColumns}>
 							<div className={clsx(classes.pickerHighlight, classes.pickerAboveHighlight)} />
 							<IonPickerColumn
+								{...{ mode: Platform.iOS }}
 								ref={hourPickerRef}
 								className={classes.pickerColumn}
 								col={{
@@ -78,6 +80,7 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 								}}
 							/>
 							<IonPickerColumn
+								{...{ mode: Platform.iOS }}
 								ref={minutePickerRef}
 								className={classes.pickerColumn}
 								col={{

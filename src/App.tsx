@@ -18,7 +18,7 @@ export const App: React.FunctionComponent = () => (
 			<IonReactRouter>
 				<IonRouterOutlet>
 					<Route path="/home" component={Home} exact />
-					<Route path="/splash" component={Splash} exact />
+					<Route path="/splash" component={Settings.DarkMode} exact />
 					<Route path="/settings" component={Settings.Settings} exact />
 					<Route path="/service-providers/:provider?" component={ServiceProviders} exact />
 					<Route path="/welcome" component={Welcome} exact />
