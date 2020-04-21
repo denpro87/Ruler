@@ -1,8 +1,10 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
-import { font } from 'styles';
+import { font, pxToRem } from 'styles';
 
-const link: CSSProperties = {
+const link: CreateCSSProperties = {
+	display: 'inline-flex',
+	alignItems: 'center',
 	cursor: 'pointer',
 	textDecoration: 'none',
 	...font({
@@ -11,17 +13,22 @@ const link: CSSProperties = {
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.67,
-		letterSpacing: 'normal',
-		color: '#00b559'
+		letterSpacing: 'normal'
 	}),
+	color: (props: any) => props.linkColor,
 	'&:hover': {
-		color: '#009c4c'
+		color: (props: any) => props.hoveredLinkColor
 	},
 	'&:active': {
-		color: '#008240'
+		color: (props: any) => props.pressedLinkColor
 	}
 };
 
+const linkIcon: CSSProperties = {
+	marginRight: pxToRem(5)
+};
+
 export const styles = createStyles({
-	link
+	link,
+	linkIcon
 });

@@ -1,5 +1,5 @@
-import { Box, Button } from '@material-ui/core';
-import { DEFAULT_PAGE_BACKGROUND_COLOR, GoBackIconButton, Text } from 'components';
+import { Box } from '@material-ui/core';
+import { DEFAULT_PAGE_BACKGROUND_COLOR, GoBackIconButton, Link, Text } from 'components';
 import { FullPageProps, IPageProps } from './Page.types';
 import { IonContent, IonPage } from '@ionic/react';
 import { makeStyles } from '@material-ui/styles';
@@ -18,7 +18,8 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	backgroundColor,
 	onRenderBackground,
 	canGoBack = !fullPage,
-	headerText,
+	headerLink,
+	headerLinkProps,
 	goBackIconButtonProps,
 	onClick,
 	className,
@@ -49,10 +50,10 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 				<Box className={clsx(classes.pageHeader, pageHeaderClassName)}>
 					<Box className={classes.toolbarWrapper}>
 						{canGoBack && <GoBackIconButton onClick={handleGoBack} {...goBackIconButtonProps} />}
-						{headerText && (
-							<Button fullWidth={false} className={classes.headerText}>
-								{headerText}
-							</Button>
+						{headerLink && (
+							<Link className={classes.headerLink} {...headerLinkProps}>
+								{headerLink}
+							</Link>
 						)}
 					</Box>
 					{title && (

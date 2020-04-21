@@ -3,12 +3,11 @@ import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
 const vehicleImage: CSSProperties = {
-	width: '100%',
-	paddingBottom: pxToRem(20)
+	marginBottom: pxToRem(20)
 };
 
 const title: CSSProperties = {
-	paddingBottom: pxToRem(15)
+	marginBottom: pxToRem(15)
 };
 
 const titleTxt: CSSProperties = {
@@ -40,6 +39,7 @@ const descriptionText: CSSProperties = {
 const detailContainer: CSSProperties = {
 	flex: 1
 };
+
 export const styles = createStyles({
 	vehicleImage,
 	title,

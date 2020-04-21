@@ -35,8 +35,8 @@ const articleText: CSSProperties = {
 };
 
 const imageBox: CSSProperties = {
-	marginRight: pxToRem(20),
-	borderRadius: pxToRem(10)
+	marginRight: pxToRem(20)
+	// borderRadius: pxToRem(10)
 };
 
 const articleDescription: CSSProperties = {

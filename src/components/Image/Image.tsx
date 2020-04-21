@@ -9,7 +9,9 @@ const useStyles = makeStyles(styles);
 export const Image: React.FunctionComponent<IImageProps> = ({
 	className,
 	responsive,
-	width,
+	rounded,
+	fullWidth,
+	width = fullWidth ? '100%' : undefined,
 	height,
 	maxWidth = responsive ? '100%' : undefined,
 	maxHeight,
@@ -24,7 +26,8 @@ export const Image: React.FunctionComponent<IImageProps> = ({
 		height,
 		maxWidth,
 		maxHeight,
-		responsive
+		responsive,
+		rounded
 	});
 
 	srcSet = Array.isArray(srcSet) ? srcSet : srcSet ? [srcSet] : [];
@@ -42,7 +45,9 @@ export const Image: React.FunctionComponent<IImageProps> = ({
 	}
 
 	return (
-		<img className={clsx(classes.image, className)} src={src} alt={alt || ''} srcSet={srcSet.length > 0 ? srcSet.join(',') : undefined} />
+		<div className={clsx(classes.imageContainer, className)}>
+			<img className={classes.image} src={src} alt={alt || ''} srcSet={srcSet.length > 0 ? srcSet.join(',') : undefined} />
+		</div>
 	);
 };
 

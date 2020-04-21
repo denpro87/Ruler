@@ -1,12 +1,22 @@
-import { ILinkProps } from './Link.types';
+import { IIconProps, Icon } from 'components';
+import { ILinkProps, LinkColorType } from './Link.types';
+import { getColorFromColorType } from './getColorFromColorType';
 import { makeStyles } from '@material-ui/core';
 import { styles } from './Link.styles';
 import React from 'react';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
 
-export const Link: React.FunctionComponent<ILinkProps> = ({ href, onClick, children }) => {
-	const classes = useStyles();
+export const Link: React.FunctionComponent<ILinkProps> = ({ href, iconProps, iconName, colorType, onClick, className, children }) => {
+	iconProps = Object.assign({}, { iconName, colorType }, iconProps) as IIconProps;
+
+	const { linkColor, hoveredLinkColor, pressedLinkColor } = getColorFromColorType(iconProps.colorType as LinkColorType);
+	const classes = useStyles({
+		linkColor,
+		hoveredLinkColor,
+		pressedLinkColor
+	});
 
 	if (onClick) {
 		onClick = e => {
@@ -17,8 +27,13 @@ export const Link: React.FunctionComponent<ILinkProps> = ({ href, onClick, child
 	}
 
 	return (
-		<a className={classes.link} href={href} onClick={onClick}>
-			{children}
+		<a className={clsx(classes.link, className)} href={href} onClick={onClick}>
+			{iconProps.iconName && <Icon className={classes.linkIcon} primaryColor="currentColor" {...iconProps} />}
+			<span>{children}</span>
 		</a>
 	);
+};
+
+Link.defaultProps = {
+	colorType: 'default'
 };
