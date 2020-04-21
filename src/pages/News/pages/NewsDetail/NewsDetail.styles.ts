@@ -6,9 +6,11 @@ const vehicleImage: CSSProperties = {
 	width: '100%',
 	paddingBottom: pxToRem(20)
 };
+
 const title: CSSProperties = {
 	paddingBottom: pxToRem(15)
 };
+
 const titleTxt: CSSProperties = {
 	...font({
 		fontWeight: 600,
@@ -20,7 +22,8 @@ const titleTxt: CSSProperties = {
 	}),
 	fontSize: pxToRem(25)
 };
-const descriptionTxt: CSSProperties = {
+
+const descriptionText: CSSProperties = {
 	...font({
 		fontFamily: 'Montserrat',
 		fontWeight: 600,
@@ -33,6 +36,7 @@ const descriptionTxt: CSSProperties = {
 	opacity: 0.5,
 	fontSize: pxToRem(15)
 };
+
 const detailContainer: CSSProperties = {
 	flex: 1
 };
@@ -40,6 +44,6 @@ export const styles = createStyles({
 	vehicleImage,
 	title,
 	titleTxt,
-	descriptionTxt,
+	descriptionText,
 	detailContainer
 });

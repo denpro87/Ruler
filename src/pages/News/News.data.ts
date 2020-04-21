@@ -1,5 +1,5 @@
 import { INewsItemProps } from './components/NewsItem/NewsItem.types';
-export const NewsData: Array<INewsItemProps> = [
+export const newsData: Array<INewsItemProps> = [
 	{
 		imageUrl: require('./pages/images/news1/image.png'),
 		altName: 'news1',

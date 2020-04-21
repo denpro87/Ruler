@@ -14,11 +14,11 @@ export const NewsDetail: React.FunctionComponent<INewsDetailProps> = props => {
 	return (
 		<Page className={classes.detailContainer} headerText="Open in browser">
 			<Paper elevation={0} className={classes.detailContainer}>
-				<img src={vehicle} alt="vehicleImage" className={classes.vehicleImage}></img>
+				<img src={vehicle} alt="vehicleImage" className={classes.vehicleImage} />
 				<div className={classes.title}>
 					<Text className={classes.titleTxt}>Id cursus metus aliquam eleifen min nulla?</Text>
 				</div>
-				<Text className={classes.descriptionTxt}>
+				<Text className={classes.descriptionText}>
 					To start your scooter ride, place one foot firmly on the baseboard and use your other foot to push off against the ground a few
 					times. Once you’ve gained some speed, press on the throttle near your right thumb to accelerate. Familiarize yourself with the
 					throttle and squeeze the hand brake to slow down when needed.
