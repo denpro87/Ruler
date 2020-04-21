@@ -1,7 +1,8 @@
-import { Divider, List, makeStyles } from '@material-ui/core';
+import { Divider, Page, Styling, SwitchListItem, Text } from 'components';
 import { INotificationsProps, INotificationsState } from './Notifications.types';
-import { Page, Styling, SwitchListItem, Text } from 'components';
+import { List } from '@material-ui/core';
 import { injectIntl } from 'react-intl';
+import { makeStyles } from '@material-ui/core/styles';
 import { styles } from './Notifications.styles';
 import React from 'react';
 const useStyles = makeStyles(styles);
@@ -57,13 +58,13 @@ class NotificationsPage extends React.Component<INotificationsProps, INotificati
 								checked={this.state.newsNotify}
 								onChange={this.handleNewsNotifyChange}
 							/>
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem
 								title={formatMessage({ id: 'menu.settings.notifications.new_report_reply' })}
 								checked={this.state.reportNotify}
 								onChange={this.handleReportNotifyChange}
 							/>
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem
 								title={formatMessage({ id: 'menu.settings.notifications.new_area' })}
 								checked={this.state.newAreaNotify}
@@ -78,21 +79,21 @@ class NotificationsPage extends React.Component<INotificationsProps, INotificati
 								checked={this.state.vehicleNotify}
 								onChange={this.handleVehicleNotifyChange}
 							/>
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem
 								title={formatMessage({ id: 'menu.settings.notifications.bike_near_you' })}
 								checked={this.state.bikeNotify}
 								onChange={this.handleBikeNotifyChange}
 								disabled={this.state.vehicleNotify}
 							/>
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem
 								title={formatMessage({ id: 'menu.settings.notifications.car_near_you' })}
 								onChange={this.handleCarNotifyChange}
 								checked={this.state.carNotify}
 								disabled={this.state.vehicleNotify}
 							/>
-							<Divider className={classes.divider} />
+							<Divider />
 							<SwitchListItem
 								title={formatMessage({ id: 'menu.settings.notifications.scooter_near_you' })}
 								onChange={this.handleScooterNotifyChange}

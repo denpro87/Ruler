@@ -2,7 +2,7 @@ import { CSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const listItem: CSSProperties = {
-	padding: `${pxToRem(11)} 0`,
+	padding: `${pxToRem(11)} ${pxToRem(10)}`,
 	color: '#181c19'
 };
 const list: CSSProperties = {
@@ -29,8 +29,7 @@ const dialogContentText: CSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,
 	lineHeight: 1.5,
-	color: '#181c19',
-	opacity: 0.5,
+	color: 'rgba(24, 28, 25, 0.5)',
 	padding: `${pxToRem(15)} 0`
 };
 const notRecommendedButton: CSSProperties = {

@@ -1,13 +1,14 @@
-import { Box, TextField, makeStyles } from '@material-ui/core';
+import { Box, Typography, makeStyles } from '@material-ui/core';
+import { Dialog, GreenButton, Page, TextField } from 'components';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { GreenButton, Page } from 'components';
 import { styles } from './Profile.styles';
 import React from 'react';
-
+import manSvg from '../../images/man.svg';
 const useStyles = makeStyles(styles);
 
 export const Profile: React.FunctionComponent = () => {
 	const classes = useStyles();
+	const [showDialog, setShowDialog] = React.useState(false);
 	const [state, setState] = React.useState({
 		firstName: '',
 		lastName: ''
@@ -15,7 +16,11 @@ export const Profile: React.FunctionComponent = () => {
 	const { formatMessage } = useIntl();
 
 	const handleSaveClick = (): void => {
-		console.log(state.firstName, state.lastName);
+		setShowDialog(true);
+	};
+
+	const handleDialogClose = (): void => {
+		setShowDialog(false);
 	};
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -27,27 +32,31 @@ export const Profile: React.FunctionComponent = () => {
 		<Page title={formatMessage({ id: 'menu.settings.profile.title' })} titleSize="medium">
 			<Box className={classes.innerContent}>
 				<TextField
-					classes={{ root: classes.textFieldRoot }}
-					fullWidth
-					id="your-first-name"
 					label={formatMessage({ id: 'menu.settings.profile.first_name' })}
 					name="firstName"
 					value={state.firstName}
-					onChange={handleStateChange}
+					onValueChange={handleStateChange}
 				/>
 				<TextField
-					classes={{ root: classes.textFieldRoot }}
-					fullWidth
-					id="your-last-name"
 					label={formatMessage({ id: 'menu.settings.profile.second_name' })}
 					name="lastName"
 					value={state.lastName}
-					onChange={handleStateChange}
+					onValueChange={handleStateChange}
 				/>
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
 					<FormattedMessage id={'menu.settings.profile.save_changes'} />
 				</GreenButton>
 			</Box>
+			<Dialog
+				open={showDialog}
+				hasClose={true}
+				image={manSvg}
+				onClose={handleDialogClose}
+				aria-labelledby="form-dialog-title"
+				title="Changes saved!"
+			>
+				<Typography className={classes.smallText}>Your name has been successfully changed!</Typography>
+			</Dialog>
 		</Page>
 	);
 };

@@ -1,5 +1,5 @@
-import { ICustomSlide } from 'components';
-export const slides: Array<ICustomSlide> = [
+import { ISlide } from 'components';
+export const slides: Array<ISlide> = [
 	{
 		image: require('./images/slide1/img.png'),
 		title: 'Scan QR code',

@@ -1,17 +1,9 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { pxToRem } from 'styles';
-
-const eyeIcon: CSSProperties = {
-	padding: 0,
-	marginBottom: pxToRem(12),
-	boxShadow: 'none'
-};
+import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const textFieldRoot: CSSProperties = {
 	marginBottom: pxToRem(25),
-	'& .MuiInput-formControl': {
-		marginTop: pxToRem(12)
-	},
+	fontFamily: DEFAULT_FONT_FAMILY,
 	'& .MuiInput-underline:before, .MuiInput-underline:after': {
 		borderBottom: '2px solid #181c19'
 	},
@@ -27,12 +19,17 @@ const textFieldRoot: CSSProperties = {
 		fontSize: pxToRem(15),
 		fontWeight: 600,
 		lineHeight: 1.67,
-		color: '#181c19!important',
-		opacity: 0.5
+		color: 'rgba(24, 28, 25, 0.5) !important'
 	}
 };
 
+const eyeIcon: CSSProperties = {
+	padding: 0,
+	marginBottom: pxToRem(12),
+	boxShadow: 'none'
+};
+
 export const styles = createStyles({
-	eyeIcon,
-	textFieldRoot
+	textFieldRoot,
+	eyeIcon
 });

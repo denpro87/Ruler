@@ -2,9 +2,9 @@ import { CSSProperties, createStyles } from '@material-ui/styles';
 import { pxToRem } from 'styles';
 
 const providersList: CSSProperties = {
-	padding: '0px',
+	padding: `${pxToRem(20)} 0 0 0`,
 	'& .MuiBox-root:first-child .MuiListItemText-root': {
-		padding: `${pxToRem(30)} 0`
+		paddingBottom: pxToRem(30)
 	},
 	'& .MuiBox-root:last-child .MuiListItemText-root': {
 		borderBottom: 'none'
@@ -14,9 +14,11 @@ const providersList: CSSProperties = {
 const searchBoxWrapper: CSSProperties = {
 	padding: `${pxToRem(5)} ${pxToRem(20)} ${pxToRem(0)} ${pxToRem(20)}`
 };
+
 const searchBox: CSSProperties = {
 	margin: 0
 };
+
 export const styles = createStyles({
 	providersList,
 	searchBoxWrapper,

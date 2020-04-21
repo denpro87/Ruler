@@ -93,6 +93,7 @@
 				"capIsNew": false
 			}
 		],
+		"no-unused-expressions": "off",
 		"autofix/padding-line-between-statements": [
 			"error",
 			{

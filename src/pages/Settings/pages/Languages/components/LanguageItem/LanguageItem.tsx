@@ -6,7 +6,7 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const LanguageItem: React.FunctionComponent<ILanguageItemProps> = ({ title, text, selected, onClick, code }) => {
-	const classes = useStyles();
+	const classes = useStyles({ selected });
 
 	return (
 		<ListItem
@@ -22,11 +22,9 @@ export const LanguageItem: React.FunctionComponent<ILanguageItemProps> = ({ titl
 				primary={title}
 				secondary={text}
 			/>
-			{selected && (
-				<ListItemSecondaryAction>
-					<Icon className={classes.selectedIcon} color="#00b559" iconName="well-done-checked" />
-				</ListItemSecondaryAction>
-			)}
+			<ListItemSecondaryAction>
+				<Icon className={classes.selectedIcon} color="#00b559" iconName="well-done-checked" />
+			</ListItemSecondaryAction>
 		</ListItem>
 	);
 };

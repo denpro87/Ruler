@@ -10,14 +10,19 @@ const useStyles = makeStyles(styles);
 
 class ChangePasswordPage extends React.Component<IChangePasswordProps, IChangePasswordState> {
 	state = {
-		oldPassword: 'true',
-		newPassword: 'true',
-		confirmedPassword: 'true',
+		oldPassword: '',
+		newPassword: '',
+		confirmedPassword: '',
 		showDialog: false
 	};
 
 	handleSaveClick = () => {
 		this.setState({ showDialog: true });
+	};
+
+	handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		event.persist();
+		this.setState(prevState => ({ ...prevState, [event.target.name]: event.target.value }));
 	};
 
 	render() {
@@ -29,9 +34,24 @@ class ChangePasswordPage extends React.Component<IChangePasswordProps, IChangePa
 				{classes => (
 					<Page title={formatMessage({ id: 'menu.settings.change_password.title' })} titleSize="medium">
 						<Box className={classes.innerContent}>
-							<PasswordInput placeholder={formatMessage({ id: 'menu.settings.change_password.enter_the_current_password' })} />
-							<PasswordInput placeholder={formatMessage({ id: 'menu.settings.change_password.enter_a_new_password' })} />
-							<PasswordInput placeholder={formatMessage({ id: 'menu.settings.change_password.repeat_new_password' })} />
+							<PasswordInput
+								label={formatMessage({ id: 'menu.settings.change_password.enter_the_current_password' })}
+								name="oldPassword"
+								value={this.state.oldPassword}
+								onValueChange={this.handleStateChange}
+							/>
+							<PasswordInput
+								label={formatMessage({ id: 'menu.settings.change_password.enter_a_new_password' })}
+								name="newPassword"
+								value={this.state.newPassword}
+								onValueChange={this.handleStateChange}
+							/>
+							<PasswordInput
+								label={formatMessage({ id: 'menu.settings.change_password.repeat_new_password' })}
+								name="confirmedPassword"
+								value={this.state.confirmedPassword}
+								onValueChange={this.handleStateChange}
+							/>
 							<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={this.handleSaveClick}>
 								{formatMessage({ id: 'menu.settings.change_password.save_changes' })}
 							</GreenButton>

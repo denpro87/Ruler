@@ -1,13 +1,13 @@
-import { ICustomIonSlide } from './CustomIonSlide.types';
+import { ISlideProps } from './Slide.types';
 import { IonSlide } from '@ionic/react';
 import { Paragraph, Title } from 'components/Text';
 import { makeStyles } from '@material-ui/styles';
-import { styles } from './CustomIonSlide.styles';
+import { styles } from './Slide.styles';
 import React from 'react';
 
 const useStyle = makeStyles(styles);
 
-export const CustomIonSlide: React.FunctionComponent<ICustomIonSlide> = props => {
+export const Slide: React.FunctionComponent<ISlideProps> = props => {
 	const classes = useStyle();
 	const { slide } = props;
 

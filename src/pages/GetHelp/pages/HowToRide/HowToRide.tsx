@@ -1,6 +1,6 @@
-import { CustomIonSlide } from 'components/CustomIonSlide';
 import { FullPage, GreenButton } from 'components';
 import { IonSlides } from '@ionic/react';
+import { Slide } from 'components/Slide';
 import { makeStyles } from '@material-ui/styles';
 import { slides } from './slide-data';
 import { styles } from './HowToRide.styles';
@@ -22,7 +22,7 @@ export const HowToRide: React.FunctionComponent = () => {
 				<div>
 					<IonSlides pager options={slideOpts}>
 						{slides.map((slide, index) => (
-							<CustomIonSlide key={index} slide={slide} />
+							<Slide key={index} slide={slide} />
 						))}
 					</IonSlides>
 				</div>
