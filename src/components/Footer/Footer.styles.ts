@@ -17,6 +17,7 @@ const li: CSSProperties = {
 		height: pxToRem(30)
 	}
 };
+
 const faqFooter: CSSProperties = {
 	display: 'flex',
 	marginBottom: pxToRem(23),

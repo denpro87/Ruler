@@ -1,5 +1,4 @@
-import { FaqFooter } from '../../components';
-import { Page } from 'components';
+import { Footer, Page } from 'components';
 import { Paper, Typography, makeStyles } from '@material-ui/core';
 import { styles } from './Faq.styles';
 import clsx from 'clsx';
@@ -21,7 +20,7 @@ export const FaqUnlock: React.FunctionComponent = () => {
 					not available for usage right now. So please select another nearest available bike/vehicle.
 				</Typography>
 			</Paper>
-			<FaqFooter />
+			<Footer leftIcon="support" leftText="Ruler Support" rightIcon="ride-history" rightText="Nov 24" />
 		</Page>
 	);
 };

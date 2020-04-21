@@ -80,6 +80,28 @@ const pageTitle: CreateCSSProperties = {
 	marginTop: pxToRem(10)
 };
 
+const toolbarWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-between',
+	alignItems: 'center',
+	paddingRight: pxToRem(10)
+};
+
+const headerText: CSSProperties = {
+	...font({
+		fontWeight: 600,
+		fontStretch: 'normal',
+		fontStyle: 'normal',
+		letterSpacing: 'normal',
+		color: '#00b559'
+	}),
+	fontSize: pxToRem(15),
+	backgroundColor: 'transparent',
+	textTransform: 'none',
+	padding: `${pxToRem(7)} 0`
+};
+
 export const styles = createStyles({
 	pageTitle,
 	pageBody,
@@ -88,5 +110,7 @@ export const styles = createStyles({
 	fullPageBody,
 	pageHeader,
 	pageHeaderInner,
-	pageContent
+	pageContent,
+	toolbarWrapper,
+	headerText
 });

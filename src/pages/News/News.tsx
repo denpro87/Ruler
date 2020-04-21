@@ -1,30 +1,20 @@
-import { List, ListItemText } from '@material-ui/core';
-import { Page, Text } from 'components';
-import { makeStyles } from '@material-ui/styles';
+import { List, makeStyles } from '@material-ui/core';
+import { NewsItem } from './components';
+import { Page } from 'components';
+import { newsData } from './news.data';
 import { styles } from './News.styles';
 import React from 'react';
-
 const useStyles = makeStyles(styles);
 
 export const News: React.FunctionComponent = () => {
 	const classes = useStyles();
 
 	return (
-		<Page title="News" titleSize="large">
+		<Page title="News" titleSize="large" noHorizontalContentPadding>
 			<List className={classes.articleList}>
-				<ListItemText>
-					<Text className={classes.articleDescription} block>
-						<div className={classes.platformText}>Facebook</div>
-						<div className={classes.articleTime}>2h ago</div>
-					</Text>
-					<Text className={classes.articleTitle} block>
-						I have unlocked the scooter. How can I start the ride?
-					</Text>
-					<Text className={classes.articleText} block>
-						To start your scooter ride, place one foot firmly on the baseboard and use your other foot to push off against the ground a few
-						times....
-					</Text>
-				</ListItemText>
+				{newsData.map((newsData, index) => (
+					<NewsItem key={index} {...newsData} />
+				))}
 			</List>
 		</Page>
 	);
