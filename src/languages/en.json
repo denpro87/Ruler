@@ -21,5 +21,15 @@
 	"menu.settings.profile.title": "Settings",
 	"menu.settings.profile.first_name": "First name",
 	"menu.settings.profile.second_name": "Second name",
-	"menu.settings.profile.save_changes": "Save changes"
+	"menu.settings.profile.save_changes": "Save changes",
+
+	"menu.settings.notifications.title": "Notifications",
+	"menu.settings.notifications.discounts_and_news": "Discounts and News",
+	"menu.settings.notifications.new_report_reply": "New report reply",
+	"menu.settings.notifications.new_area": "New area",
+	"menu.settings.notifications.vehicle_notifications": "Vehicle notifications",
+	"menu.settings.notifications.vehicle_near_you": "Vehicle near you",
+	"menu.settings.notifications.bike_near_you": "Bike near you",
+	"menu.settings.notifications.car_near_you": "Car near you",
+	"menu.settings.notifications.scooter_near_you": "Scooter near you"
 }

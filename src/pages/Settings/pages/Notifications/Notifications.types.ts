@@ -1,3 +1,5 @@
+import { IntlShape } from 'react-intl';
+
 export interface INotificationsState {
 	newsNotify: boolean;
 	reportNotify: boolean;
@@ -8,4 +10,6 @@ export interface INotificationsState {
 	scooterNotify: boolean;
 }
 
-export interface INotificationsProps {}
+export interface INotificationsProps {
+	intl: IntlShape;
+}

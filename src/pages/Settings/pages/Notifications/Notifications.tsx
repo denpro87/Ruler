@@ -1,12 +1,12 @@
 import { Divider, List, makeStyles } from '@material-ui/core';
 import { INotificationsProps, INotificationsState } from './Notifications.types';
 import { Page, Styling, SwitchListItem, Text } from 'components';
+import { injectIntl } from 'react-intl';
 import { styles } from './Notifications.styles';
 import React from 'react';
-
 const useStyles = makeStyles(styles);
 
-export class Notifications extends React.Component<INotificationsProps, INotificationsState> {
+class NotificationsPage extends React.Component<INotificationsProps, INotificationsState> {
 	state = {
 		newsNotify: true,
 		reportNotify: true,
@@ -44,42 +44,57 @@ export class Notifications extends React.Component<INotificationsProps, INotific
 		this.setState({ scooterNotify: checked });
 
 	render() {
+		const { intl } = this.props;
+		const { formatMessage } = intl;
+
 		return (
 			<Styling useStyles={useStyles}>
 				{classes => (
-					<Page title="Notifications" titleSize="large">
+					<Page title={formatMessage({ id: 'menu.settings.notifications.title' })} titleSize="large">
 						<List className={classes.providersList}>
-							<SwitchListItem title="Discounts and News" checked={this.state.newsNotify} onChange={this.handleNewsNotifyChange} />
+							<SwitchListItem
+								title={formatMessage({ id: 'menu.settings.notifications.discounts_and_news' })}
+								checked={this.state.newsNotify}
+								onChange={this.handleNewsNotifyChange}
+							/>
 							<Divider className={classes.divider} />
-							<SwitchListItem title="New report reply" checked={this.state.reportNotify} onChange={this.handleReportNotifyChange} />
+							<SwitchListItem
+								title={formatMessage({ id: 'menu.settings.notifications.new_report_reply' })}
+								checked={this.state.reportNotify}
+								onChange={this.handleReportNotifyChange}
+							/>
 							<Divider className={classes.divider} />
-							<SwitchListItem title="New area" checked={this.state.newAreaNotify} onChange={this.handleNewAreaNotifyChange} />
+							<SwitchListItem
+								title={formatMessage({ id: 'menu.settings.notifications.new_area' })}
+								checked={this.state.newAreaNotify}
+								onChange={this.handleNewAreaNotifyChange}
+							/>
 							<div className={classes.textWrapper}>
-								<Text className={classes.sectionBreaker}>Vehicle notifications</Text>
+								<Text className={classes.sectionBreaker}>{formatMessage({ id: 'menu.settings.notifications.vehicle_notifications' })}</Text>
 							</div>
 							<SwitchListItem
-								title="Vehicle near you"
+								title={formatMessage({ id: 'menu.settings.notifications.vehicle_near_you' })}
 								name="vehicleNotify"
 								checked={this.state.vehicleNotify}
 								onChange={this.handleVehicleNotifyChange}
 							/>
 							<Divider className={classes.divider} />
 							<SwitchListItem
-								title="Bike near you"
+								title={formatMessage({ id: 'menu.settings.notifications.bike_near_you' })}
 								checked={this.state.bikeNotify}
 								onChange={this.handleBikeNotifyChange}
 								disabled={this.state.vehicleNotify}
 							/>
 							<Divider className={classes.divider} />
 							<SwitchListItem
-								title="Car near you"
+								title={formatMessage({ id: 'menu.settings.notifications.car_near_you' })}
 								onChange={this.handleCarNotifyChange}
 								checked={this.state.carNotify}
 								disabled={this.state.vehicleNotify}
 							/>
 							<Divider className={classes.divider} />
 							<SwitchListItem
-								title="Scooter near you"
+								title={formatMessage({ id: 'menu.settings.notifications.scooter_near_you' })}
 								onChange={this.handleScooterNotifyChange}
 								checked={this.state.scooterNotify}
 								disabled={this.state.vehicleNotify}
@@ -91,3 +106,5 @@ export class Notifications extends React.Component<INotificationsProps, INotific
 		);
 	}
 }
+
+export const Notifications = injectIntl(NotificationsPage);
