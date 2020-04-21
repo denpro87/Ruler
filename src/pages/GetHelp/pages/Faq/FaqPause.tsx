@@ -1,5 +1,4 @@
-import { FaqFooter } from '../../components';
-import { Page } from 'components';
+import { Footer, Page } from 'components';
 import { Paper, Typography, makeStyles } from '@material-ui/core';
 import { styles } from './Faq.styles';
 import clsx from 'clsx';
@@ -26,7 +25,7 @@ export const FaqPause: React.FunctionComponent = () => {
 					Please do not forget to end your ride when you are finished! You will continue to be charged if you do not end the ride.
 				</Typography>
 			</Paper>
-			<FaqFooter />
+			<Footer leftIcon="support" leftText="Ruler Support" rightIcon="ride-history" rightText="Nov 24" />
 		</Page>
 	);
 };

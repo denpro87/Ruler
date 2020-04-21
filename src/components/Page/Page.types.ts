@@ -11,6 +11,7 @@ export interface IPageProps extends Pick<BoxProps, 'onClick'> {
 	fullPage?: boolean;
 	canGoBack?: boolean;
 	title?: string;
+	headerText?: string;
 	titleSize?: 'medium' | 'large';
 	noHorizontalContentPadding?: boolean;
 	goBackIconButtonProps?: GoBackIconButtonProps;

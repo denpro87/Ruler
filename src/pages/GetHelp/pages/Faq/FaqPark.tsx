@@ -1,5 +1,4 @@
-import { FaqFooter } from '../../components';
-import { Page } from 'components';
+import { Footer, Page } from 'components';
 import { Paper, Typography, makeStyles } from '@material-ui/core';
 import { styles } from './Faq.styles';
 import clsx from 'clsx';
@@ -43,7 +42,7 @@ export const FaqPark: React.FunctionComponent = () => {
 					<span>Any place where parking is not allowed by law </span>
 				</div>
 			</Paper>
-			<FaqFooter />
+			<Footer leftIcon="support" leftText="Ruler Support" rightIcon="ride-history" rightText="Nov 24" />
 		</Page>
 	);
 };
