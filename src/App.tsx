@@ -18,13 +18,14 @@ export const App: React.FunctionComponent = () => (
 			<IonReactRouter>
 				<IonRouterOutlet>
 					<Route path="/home" component={Home} exact />
-					<Route path="/splash" component={Settings.DarkMode} exact />
+					<Route path="/splash" component={Splash} exact />
 					<Route path="/settings" component={Settings.Settings} exact />
 					<Route path="/service-providers/:provider?" component={ServiceProviders} exact />
 					<Route path="/welcome" component={Welcome} exact />
 					<Route path="/news" component={News} exact />
-					<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
 					<Route path="/drive-license" component={DriveLicence} exact />
+
+					<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
 					<Route path="/settings/notifications" component={Settings.Notifications} exact />
 					<Route path="/settings/languages" component={Settings.Languages} exact />
 					<Route path="/settings/profile" component={Settings.Profile} exact />
@@ -46,6 +47,7 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/get-help/regulations-scooter" component={GetHelp.SafetyScooter} exact />
 					<Route path="/get-help/my-reports" component={GetHelp.MyReports} exact />
 					<Route path="/get-help/how-to-ride" component={GetHelp.HowToRide} exact />
+
 					<Route exact path="/" render={() => <Redirect to="/splash" />} />
 				</IonRouterOutlet>
 			</IonReactRouter>
