@@ -1,9 +1,9 @@
 import { Box, List } from '@material-ui/core';
-import { ILanguage, ILanguagesProps, ILanguagesState } from './Languages.types';
+import { ILanguage, ILanguagesProps } from './Languages.types';
 import { LanguageItem } from './components';
 import { Page, SearchBox } from 'components';
+import { makeStyles } from '@material-ui/styles';
 import { styles } from './Languages.styles';
-import { withStyles } from '@material-ui/styles';
 import React from 'react';
 
 const languages: ILanguage[] = [
@@ -15,48 +15,41 @@ const languages: ILanguage[] = [
 	{ langName: 'Malay', text: 'Bahasa Melayu', langCode: 'ma' }
 ];
 
-export class LanguagesPage extends React.Component<ILanguagesProps, ILanguagesState, ILanguage> {
-	state = {
-		selectedLanguage: 'en',
-		filteredLanguages: languages
+const useStyles = makeStyles(styles);
+
+export const Languages: React.FunctionComponent<ILanguagesProps> = () => {
+	const classes = useStyles();
+	const [selectedLanguage, selectLanguage] = React.useState('en');
+	const [filteredLanguages, setFilteredLanguages] = React.useState<ILanguage[]>(languages);
+
+	const handleLanguageClick = (langCode: string) => (): void => {
+		selectLanguage(langCode);
 	};
 
-	private handleLanguageClick = (langCode: string) => (): void => {
-		this.setState({ selectedLanguage: langCode });
-	};
-
-	private handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		const currentLanguage = event.target.value.toLowerCase();
-		const filteredLanguages = languages.filter(language => language.langName.toLowerCase().includes(currentLanguage));
-		this.setState({ filteredLanguages });
+		const filteredLangs = languages.filter(language => language.langName.toLowerCase().includes(currentLanguage));
+		setFilteredLanguages(filteredLangs);
 	};
 
-	render(): JSX.Element {
-		const { classes } = this.props;
-
-		return (
-			<Page title="Languages" titleSize="large" noHorizontalContentPadding>
-				<div className={classes.searchBoxWrapper}>
-					<SearchBox className={classes.searchBox} onChange={this.handleSearchChange} />
-				</div>
-				<List className={classes.providersList}>
-					{this.state.filteredLanguages.map(filteredLanguage => {
-						return (
-							<Box key={filteredLanguage.langName}>
-								<LanguageItem
-									title={filteredLanguage.langName}
-									text={filteredLanguage.text}
-									code={filteredLanguage.langCode}
-									selected={this.state.selectedLanguage === filteredLanguage.langCode}
-									onClick={this.handleLanguageClick(filteredLanguage.langCode)}
-								/>
-							</Box>
-						);
-					})}
-				</List>
-			</Page>
-		);
-	}
-}
-
-export const Languages = withStyles(styles)(LanguagesPage);
+	return (
+		<Page title="Languages" titleSize="large" noHorizontalContentPadding>
+			<div className={classes.searchBoxWrapper}>
+				<SearchBox className={classes.searchBox} onChange={handleSearchChange} />
+			</div>
+			<List className={classes.providersList}>
+				{filteredLanguages.map(filteredLanguage => (
+					<Box key={filteredLanguage.langName}>
+						<LanguageItem
+							title={filteredLanguage.langName}
+							text={filteredLanguage.text}
+							code={filteredLanguage.langCode}
+							selected={selectedLanguage === filteredLanguage.langCode}
+							onClick={handleLanguageClick(filteredLanguage.langCode)}
+						/>
+					</Box>
+				))}
+			</List>
+		</Page>
+	);
+};

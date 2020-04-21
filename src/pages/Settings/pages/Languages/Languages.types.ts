@@ -1,6 +1,3 @@
-import { WithStyles } from '@material-ui/core/styles';
-import { styles } from './Languages.styles';
-
 export interface ILanguage {
 	langName: string;
 	langCode: string;
@@ -11,4 +8,4 @@ export interface ILanguagesState {
 	selectedLanguage: string;
 }
 
-export type ILanguagesProps = WithStyles<typeof styles>;
+export type ILanguagesProps = {};
