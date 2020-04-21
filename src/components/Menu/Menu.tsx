@@ -3,7 +3,7 @@ import { GreenButton, Icon, IconButton } from 'components';
 import { IMenuProps } from './Menu.types';
 import { IntlShape, useIntl } from 'react-intl';
 import { listItemIcon, styles } from './Menu.styles';
-import { menuItems } from './MenuList.data';
+import { menuItems } from './Menu.data';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
