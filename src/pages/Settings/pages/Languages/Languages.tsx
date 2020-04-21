@@ -2,18 +2,10 @@ import { Box, List } from '@material-ui/core';
 import { ILanguage, ILanguagesProps } from './Languages.types';
 import { LanguageItem } from './components';
 import { Page, SearchBox, useLanguageContext } from 'components';
+import { languages } from './Languages.data';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Languages.styles';
 import React from 'react';
-
-const languages: ILanguage[] = [
-	{ langName: 'English', text: 'English (default)', langCode: 'en' },
-	{ langName: 'Russian', text: 'Русский', langCode: 'ru' },
-	{ langName: 'Catalan', text: 'Catala', langCode: 'sp' },
-	{ langName: 'French', text: 'français', langCode: 'fr' },
-	{ langName: 'Italian', text: 'Italiano', langCode: 'it' },
-	{ langName: 'Malay', text: 'Bahasa Melayu', langCode: 'ma' }
-];
 
 const useStyles = makeStyles(styles);
 
