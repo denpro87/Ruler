@@ -1,5 +1,4 @@
-import { FaqFooter } from '../../components';
-import { Page } from 'components';
+import { Footer, Page } from 'components';
 import { Paper, Typography, makeStyles } from '@material-ui/core';
 import { styles } from './Faq.styles';
 import clsx from 'clsx';
@@ -19,7 +18,7 @@ export const FaqFinding: React.FunctionComponent = () => {
 					place and that’s it. You are all set to star your ride.
 				</Typography>
 			</Paper>
-			<FaqFooter />
+			<Footer leftIcon="support" leftText="Ruler Support" rightIcon="ride-history" rightText="Nov 24" />
 		</Page>
 	);
 };

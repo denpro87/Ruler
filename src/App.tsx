@@ -1,6 +1,7 @@
 import * as getHelp from 'pages/GetHelp';
+import * as news from 'pages/News';
 import * as settings from 'pages/Settings';
-import { DriveLicence, Home, News, ServiceProviders, Splash, Welcome } from 'pages';
+import { DriveLicence, Home, ServiceProviders, Splash, Welcome } from 'pages';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
@@ -22,7 +23,8 @@ export const App: React.FunctionComponent = () => (
 					<Route path="/settings" component={settings.Settings} exact />
 					<Route path="/service-providers/:provider?" component={ServiceProviders} exact />
 					<Route path="/welcome" component={Welcome} exact />
-					<Route path="/news" component={News} exact />
+					<Route path="/news" component={news.News} exact />
+					<Route path="/news/:social?" component={news.NewsDetail} exact />
 					<Route path="/settings/change-password" component={settings.ChangePassword} exact />
 					<Route path="/drive-license" component={DriveLicence} exact />
 					<Route path="/settings/notifications" component={settings.Notifications} exact />
