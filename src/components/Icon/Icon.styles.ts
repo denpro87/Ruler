@@ -9,7 +9,7 @@ const icon: CreateCSSProperties = {
 	transform: (props: any) => (props.rotate ? `rotate(${props.rotate}deg)` : undefined),
 	'@global': {
 		svg: {
-			fill: 'currentColor',
+			fill: (props: any) => props.fillColor,
 			width: (props: any) => pxToRem(props.width),
 			height: (props: any) => pxToRem(props.height),
 			display: 'block',

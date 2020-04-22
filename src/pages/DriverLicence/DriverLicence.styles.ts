@@ -1,73 +1,32 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
+import { pxToRem } from 'styles';
 import isSubmitInvalidImage from './images/invalidate.png';
 import isSubmittingImage from './images/submitting.png';
 import validImage from './images/verified.png';
 
-const btnSection: CSSProperties = {};
-
-const heading: CSSProperties = {
-	margin: '20px auto',
-	width: '100%',
-	textAlign: 'left',
-	'& h4': {
-		fontSize: '32px',
-		fontWeight: 'bold',
-		lineHeight: '48px'
-	}
-};
-
 const description: CSSProperties = {
-	margin: '10px auto',
-	width: '100%',
-	textAlign: 'left',
-	'& h4': {
-		width: 'auto',
-		fontSize: '15px',
-		fontWeight: '600',
-		color: '#0000007f',
-		lineHeight: '25px'
-	},
-	'& h5': {
-		width: 'auto',
-		fontSize: '10px',
-		fontWeight: 'bold',
-		color: '#181c197f',
-		textAlign: 'center',
-		lineHeight: '15px'
-	}
-};
-
-const wrapper: CSSProperties = {
-	background: 'white',
-	textAlign: 'center',
-	margin: '0 auto',
-	height: '100%',
-	padding: '20px',
-	fontFamily: 'Montserrat'
-};
-
-const wrapper1: CSSProperties = {
-	margin: '0 auto',
-	minHeight: '50px',
-	backgroundRepeat: 'no-repeat',
-	backgroundPosition: 'left bottom',
-	position: 'relative'
+	fontSize: pxToRem(15),
+	color: 'rgba(24, 28, 25, 0.5)',
+	fontWeight: 600,
+	lineHeight: 1.67
 };
 
 const buttonContainer: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
-	justifyContent: 'space-between'
+	justifyContent: 'space-between',
+	padding: `${pxToRem(25)} ${pxToRem(5)}`
 };
 
-const cardbox: CSSProperties = {
+const cardBox: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'flex-start',
 	alignItems: 'center',
-	height: '282px',
-	marginTop: '25px',
-	width: 'calc(50% - 5px)'
+	width: `calc(50% - ${pxToRem(7.5)})`,
+	'&> span': {
+		paddingTop: pxToRem(12)
+	}
 };
 
 const cardButton: CSSProperties = {
@@ -75,63 +34,49 @@ const cardButton: CSSProperties = {
 	justifyContent: 'center',
 	alignItems: 'center',
 	flexDirection: 'column',
-	width: '155px',
+	width: '100%',
 	border: 'dashed #00b559 2px',
 	backgroundColor: 'transparent',
-	height: '240px',
-	borderRadius: '20px'
+	height: pxToRem(240),
+	borderRadius: pxToRem(20)
 };
 
-const cardDescription: CSSProperties = {
-	fontSize: '10px',
-	lineHeight: '15px',
-	marginTop: '12px'
+const cardText: CSSProperties = {
+	color: '#181c19',
+	maxWidth: pxToRem(60),
+	paddingTop: pxToRem(10),
+	fontSize: pxToRem(15),
+	lineHeight: 1.67,
+	fontWeight: 'bold',
+	textAlign: 'center'
+};
+
+const descriptionText: CSSProperties = {
+	fontSize: pxToRem(10),
+	fontWeight: 600,
+	color: 'rgba(24, 28, 25, 0.5)',
+	textAlign: 'center'
 };
 
 const submitButton: CSSProperties = {
-	width: '100%',
-	borderRadius: '15px',
-	height: '50px',
-	color: 'white',
-	backgroundColor: '#caf1dd'
-};
-
-const submitButtonActive: CSSProperties = {
-	width: '100%',
-	borderRadius: '15px',
-	height: '50px',
-	color: 'white',
-	backgroundColor: '#00b559'
+	borderRadius: pxToRem(15),
+	height: pxToRem(50),
+	textTransform: 'none',
+	fontWeight: 'bold',
+	backgroundColor: '#00b559',
+	color: '#ffffff',
+	'&:hover': {
+		backgroundColor: '#00b559c8'
+	}
 };
 
 const footer: CSSProperties = {
-	position: 'absolute',
-	width: 'calc(100% - 40px)',
-	bottom: '42px',
-	borderRadius: '10px',
-	backgroundColor: 'white'
-};
-
-const submitIcon = {
-	marginRight: '10px!mportant'
-};
-
-const cardTextBlack = {
-	color: '#000000',
-	maxWidth: '60px',
-	opacity: 1,
-	lineHeight: '25px',
-	marginTop: '10px',
-	fontSize: '15px'
-};
-
-const cardTextWhite = {
-	color: '#ffffff',
-	maxWidth: '60px',
-	opacity: 1,
-	lineHeight: '25px',
-	marginTop: '10px',
-	fontSize: '15px'
+	marginTop: 'auto',
+	display: 'flex',
+	flexDirection: 'column',
+	'&> span': {
+		padding: `${pxToRem(7)} 0 ${pxToRem(8)} 0`
+	}
 };
 
 const cardImage: CSSProperties = {
@@ -156,30 +101,37 @@ const imageCover: CSSProperties = {
 
 const cardImageContainer: CSSProperties = {
 	position: 'relative',
-	width: '155px',
-	height: '240px',
-	borderRadius: '20px',
+	width: pxToRem(155),
+	height: pxToRem(240),
+	borderRadius: pxToRem(15),
 	overflow: 'hidden'
-};
-
-const checkedIcon: CSSProperties = {
-	color: 'white'
 };
 
 const closeIcon: CSSProperties = {
 	position: 'absolute',
-	right: '20px',
-	top: '20px',
+	right: pxToRem(10),
+	top: pxToRem(10),
+	padding: 0,
+	boxShadow: 'none',
 	color: 'white',
+	backgroundColor: 'transparent',
 	zIndex: 3
 };
 
-const sendIcon: CSSProperties = {
-	marginRight: '15px',
-	transform: 'rotate(-30deg)'
+const submitContainer: CSSProperties = {
+	display: 'flex',
+	flex: 1,
+	flexDirection: 'column',
+	padding: `${pxToRem(15)} ${pxToRem(5)} 0 ${pxToRem(5)}`
 };
 
-const progressbox: CSSProperties = {
+const submitWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	flex: 1
+};
+
+const progressBox: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	justifyContent: 'center',
@@ -188,12 +140,20 @@ const progressbox: CSSProperties = {
 	backgroundSize: 'contain',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'center',
-	height: '110px',
-	margin: 'auto',
-	marginTop: '30px'
+	height: pxToRem(110),
+	margin: `${pxToRem(10)} 0 ${pxToRem(20)} 0`
 };
 
-const validbox: CSSProperties = {
+const progressText: CSSProperties = {
+	fontSize: pxToRem(15),
+	color: '#181c19',
+	fontWeight: 'bold',
+	lineHeight: 1.67,
+	textAlign: 'center',
+	padding: `0 ${pxToRem(35)}`
+};
+
+const validBox: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	justifyContent: 'center',
@@ -203,11 +163,26 @@ const validbox: CSSProperties = {
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'center',
 	height: '110px',
-	margin: 'auto',
-	marginTop: '30px'
+	marginBottom: pxToRem(25)
 };
 
-const isSubmitInvalidbox: CSSProperties = {
+const addButton: CSSProperties = {
+	backgroundColor: 'transparent',
+	fontSize: pxToRem(15),
+	color: '#00b559',
+	fontWeight: 'bold',
+	lineHeight: 1.67,
+	padding: `${pxToRem(12)} 0 ${pxToRem(13)} 0`,
+	textTransform: 'none',
+	margin: `auto 0 ${pxToRem(20)} 0`,
+	borderRadius: pxToRem(15)
+};
+
+const buttonIcon: CSSProperties = {
+	marginRight: pxToRem(5)
+};
+
+const invalidBox: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	justifyContent: 'center',
@@ -217,84 +192,42 @@ const isSubmitInvalidbox: CSSProperties = {
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'center',
 	height: '110px',
-	margin: 'auto',
-	marginTop: '30px'
-};
-const progressText: CSSProperties = {
-	fontSize: '16px',
-	color: 'black',
-	fontWeight: 'bold',
-	width: '60%',
-	opacity: 1
+	margin: `${pxToRem(10)} 0 ${pxToRem(20)} 0`
 };
 
-const modal: CSSProperties = {
-	position: 'fixed',
-	left: 0,
-	right: 0,
-	bottom: 0,
-	top: 0,
-	backgroundColor: '#00000088',
-	zIndex: 1050,
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center'
+const tryButton: CSSProperties = {
+	marginBottom: pxToRem(20)
 };
 
-const modalBody: CSSProperties = {
-	width: '250px',
-	height: '250px',
-	backgroundColor: 'white',
-	borderRadius: '20px',
-	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'center',
-	alignItems: 'center'
-};
-
-const modalTitle: CSSProperties = {
-	fontSize: '16px',
-	fontWeight: 'bold',
-	opacity: 1,
-	marginTop: '5px',
-	padding: '10px'
-};
-
-const modalText: CSSProperties = {
-	fontSize: '12px',
-	lineHeight: '18px',
-	textAlign: 'center',
-	width: '80%'
+const dialogContentText: CSSProperties = {
+	fontSize: pxToRem(10),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: 'rgba(24, 28, 25, 0.5)',
+	padding: `${pxToRem(15)} 0`
 };
 
 export const styles = createStyles({
-	heading,
 	description,
-	btnSection,
-	wrapper1,
 	footer,
-	wrapper,
 	buttonContainer,
-	cardbox,
+	cardBox,
 	cardButton,
-	cardDescription,
-	submitButtonActive,
+	descriptionText,
 	submitButton,
-	submitIcon,
-	cardTextWhite,
-	cardTextBlack,
+	cardText,
 	cardImage,
 	cardImageContainer,
 	imageCover,
-	checkedIcon,
 	closeIcon,
-	sendIcon,
-	progressbox,
+	submitContainer,
+	submitWrapper,
+	progressBox,
 	progressText,
-	validbox,
-	isSubmitInvalidbox,
-	modal,
-	modalBody,
-	modalTitle,
-	modalText
+	validBox,
+	invalidBox,
+	tryButton,
+	addButton,
+	buttonIcon,
+	dialogContentText
 });
