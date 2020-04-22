@@ -65,6 +65,10 @@ const submitButton: CSSProperties = {
 	fontWeight: 'bold',
 	backgroundColor: '#00b559',
 	color: '#ffffff',
+	'&.Mui-disabled': {
+		backgroundColor: '#caf1dd',
+		color: '#ffffff'
+	},
 	'&:hover': {
 		backgroundColor: '#00b559c8'
 	}
