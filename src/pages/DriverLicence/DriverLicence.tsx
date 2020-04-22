@@ -16,7 +16,7 @@ const { Camera } = Plugins;
 const INITIAL_STATE = {
 	frontPhoto: '',
 	backPhoto: '',
-	isSubmitDisabled: false,
+	isSubmitDisabled: true,
 	isSubmitting: false,
 	isSubmitSuccess: false,
 	isSubmitInvalid: false,
