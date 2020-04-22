@@ -14,8 +14,8 @@ const useStyles = makeStyles(styles);
 
 const { Camera } = Plugins;
 const INITIAL_STATE = {
-	frontPhoto: 'a',
-	backPhoto: 'b',
+	frontPhoto: '',
+	backPhoto: '',
 	isSubmitDisabled: false,
 	isSubmitting: false,
 	isSubmitSuccess: false,
