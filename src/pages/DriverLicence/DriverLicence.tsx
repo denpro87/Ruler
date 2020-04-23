@@ -12,7 +12,7 @@ const useStyles = makeStyles(styles);
 export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props => {
 	const history = useHistory();
 	const { formatMessage } = useIntl();
-	const [state, setState] = React.useState<'success' | 'progress' | 'invalid'>('success');
+	const [state, setState] = React.useState<'success' | 'progress' | 'invalid' | ''>('');
 	const [data, setData] = React.useState<string[]>([]);
 	const [isInitialSet, setInitialSet] = React.useState(false);
 	const classes = useStyles({ state });
