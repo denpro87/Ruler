@@ -1,1 +1,1 @@
-export * from './LicenseItem';
+export * from './LicenceItem';
