@@ -80,5 +80,10 @@
 	"get-help.add-report-sheet.description": "Let us know! We are here for you 24/7",
 	"get-help.add-report-sheet.button.badly-parked-vehicle": "Report a badly parked vehicle",
 	"get-help.add-report-sheet.button.damaged-vehicle": "The vehicle is damaged",
-	"get-help.add-report-sheet.button.support": "Contact Ruler"
+	"get-help.add-report-sheet.button.support": "Contact Ruler",
+
+	"get-help.regulations.title": "Safety regulations",
+	"get-help.regulations.menu.bike": "Bike",
+	"get-help.regulations.menu.car": "Car",
+	"get-help.regulations.menu.scooter": "Scooter"
 }
