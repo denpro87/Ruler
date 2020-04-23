@@ -1,7 +1,8 @@
+import * as DriverLicence from 'pages/DriverLicence';
 import * as GetHelp from 'pages/GetHelp';
 import * as News from 'pages/News';
 import * as Settings from 'pages/Settings';
-import { DriveLicence, Home, ServiceProviders, Splash, Welcome } from 'pages';
+import { Home, ServiceProviders, Splash, Welcome } from 'pages';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
@@ -27,7 +28,8 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/news" component={News.News} exact />
 						<Route path="/news/:social?" component={News.NewsDetail} exact />
 						<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
-						<Route path="/drive-licence" component={DriveLicence} exact />
+						<Route path="/driver-licence" component={DriverLicence.DriverLicence} exact />
+						<Route path="/driver-licence/add" component={DriverLicence.AddDriveLicence} exact />
 						<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
 						<Route path="/settings/notifications" component={Settings.Notifications} exact />
 						<Route path="/settings/languages" component={Settings.Languages} exact />
