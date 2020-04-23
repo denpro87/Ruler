@@ -3,7 +3,7 @@ import { IDialogProps } from './Dialog.types';
 import { IconButton, Image, Text } from 'components';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Dialog.styles';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const useStyles = makeStyles(styles);
 
@@ -21,7 +21,7 @@ export const Dialog: React.FunctionComponent<IDialogProps> = ({
 	const classes = useStyles();
 	const [imagePath, setImagePath] = React.useState(image);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (illustrationName) {
 			import(`./svg/${illustrationName}.svg`)
 				.then(({ default: illustrationPath }) => {
