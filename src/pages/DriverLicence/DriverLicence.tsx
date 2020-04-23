@@ -64,7 +64,7 @@ export const DriveLicence: React.FunctionComponent = () => {
 			isSubmitSuccessModal: false
 		}));
 
-		setTimeout(function() {
+		setTimeout(() => {
 			const success = true;
 			setState(prevState => ({
 				...prevState,
