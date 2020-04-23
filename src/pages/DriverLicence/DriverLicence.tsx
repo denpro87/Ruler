@@ -6,36 +6,33 @@ import { LicenceItem } from './components';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './DriverLicence.styles';
 import { useIntl } from 'react-intl';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import manSvg from './images/man.svg';
 
 const useStyles = makeStyles(styles);
 
 const { Camera } = Plugins;
-const INITIAL_STATE = {
-	frontPhoto: '',
-	backPhoto: '',
-	isSubmitDisabled: true,
-	isSubmitting: false,
-	isSubmitSuccess: false,
-	isSubmitInvalid: false,
-	isSubmitSuccessModal: false
-};
 
 export const DriveLicence: React.FunctionComponent = () => {
 	const classes = useStyles();
-	const [state, setState] = React.useState(INITIAL_STATE);
+	const [frontPhoto, setFrontPhoto] = useState('');
+	const [backPhoto, setBackPhoto] = useState('');
+	const [isSubmitDisabled, setSubmitDisabled] = useState(true);
+	const [isSubmitting, setSubmitting] = useState(false);
+	const [isSubmitSuccess, setSubmitSuccess] = useState(false);
+	const [isSubmitInvalid, setSubmitInvalid] = useState(false);
+	const [isSubmitSuccessModal, setSubmitSuccessModal] = useState(false);
 	const { formatMessage } = useIntl();
 
 	useEffect(() => {
 		defineCustomElements(window);
 	}, []);
 	useEffect(() => {
-		if (state.frontPhoto && state.backPhoto) {
-			setState(prevState => ({ ...prevState, isSubmitDisabled: false }));
+		if (frontPhoto && backPhoto) {
+			setSubmitDisabled(false);
 		}
-	}, [state.frontPhoto, state.backPhoto]);
+	}, [frontPhoto, backPhoto]);
 
 	const takePhoto = async (type: 'front' | 'back') => {
 		const image = await Camera.getPhoto({
@@ -43,34 +40,33 @@ export const DriveLicence: React.FunctionComponent = () => {
 			allowEditing: false,
 			resultType: CameraResultType.Uri
 		});
-		const imageUrl = image.webPath;
-		setState(prevState => ({ ...prevState, [`${type}Photo`]: imageUrl }));
+		const imageUrl = image.webPath ?? '';
+
+		if (type === 'front') setFrontPhoto(imageUrl);
+		else setBackPhoto(imageUrl);
 	};
 
 	const removePhoto = (type: 'front' | 'back') => {
-		setState(prevState => ({ ...prevState, [`${type}Photo`]: '', isSubmitDisabled: true }));
+		setSubmitDisabled(true);
+
+		if (type === 'front') setFrontPhoto('');
+		else setBackPhoto('');
 	};
 
 	const submit = () => {
-		setState(prevState => ({ ...prevState, isSubmitSuccessModal: true }));
+		setSubmitSuccessModal(true);
 	};
 
 	const handleDialogClose = () => {
-		setState(prevState => ({
-			...prevState,
-			isSubmitting: true,
-			isSubmitDisabled: true,
-			isSubmitInvalid: false,
-			isSubmitSuccessModal: false
-		}));
+		setSubmitting(true);
+		setSubmitDisabled(true);
+		setSubmitInvalid(false);
+		setSubmitSuccessModal(false);
 
 		setTimeout(() => {
 			const success = true;
-			setState(prevState => ({
-				...prevState,
-				isSubmitting: !success,
-				isSubmitSuccess: success
-			}));
+			setSubmitting(!success);
+			setSubmitSuccess(success);
 		}, 1500);
 	};
 
@@ -80,10 +76,10 @@ export const DriveLicence: React.FunctionComponent = () => {
 
 	return (
 		<Page title={formatMessage({ id: 'driver-licence.title' })} titleSize="large">
-			{!state.isSubmitSuccess && <Text className={classes.description}>{formatMessage({ id: 'driver-licence.description' })}</Text>}
-			{state.isSubmitting || state.isSubmitSuccess || state.isSubmitInvalid ? (
+			{!isSubmitSuccess && <Text className={classes.description}>{formatMessage({ id: 'driver-licence.description' })}</Text>}
+			{isSubmitting || isSubmitSuccess || isSubmitInvalid ? (
 				<Box className={classes.submitContainer}>
-					{state.isSubmitting && (
+					{isSubmitting && (
 						<Box className={classes.submitWrapper}>
 							<Box className={classes.progressBox}>
 								<Text className={classes.progressText}>{formatMessage({ id: 'driver-licence.validation.progress.title' })}</Text>
@@ -91,17 +87,17 @@ export const DriveLicence: React.FunctionComponent = () => {
 							<Text className={classes.description}>{formatMessage({ id: 'driver-licence.validation.progress.description' })}</Text>
 						</Box>
 					)}
-					{state.isSubmitSuccess && (
+					{isSubmitSuccess && (
 						<Box className={classes.submitWrapper}>
 							<Box className={classes.validBox} />
-							<LicenceItem imageSrc={state.frontPhoto} handleRemoveClick={handleRemoveClick} />
+							<LicenceItem imageSrc={frontPhoto} handleRemoveClick={handleRemoveClick} />
 							<Button className={classes.addButton}>
 								<Icon className={classes.buttonIcon} iconName="add"></Icon>
 								{formatMessage({ id: 'driver-licence.add' })}
 							</Button>
 						</Box>
 					)}
-					{state.isSubmitInvalid && (
+					{isSubmitInvalid && (
 						<Box className={classes.submitWrapper}>
 							<Box className={classes.invalidBox} />
 							<Text className={classes.description}>{formatMessage({ id: 'driver-licence.invalid.description' })}</Text>
@@ -110,10 +106,10 @@ export const DriveLicence: React.FunctionComponent = () => {
 				</Box>
 			) : (
 				<Box className={classes.buttonContainer}>
-					{state.frontPhoto ? (
+					{frontPhoto ? (
 						<Box className={classes.cardBox}>
 							<Box className={classes.cardImageContainer}>
-								<IonImg className={classes.cardImage} src={state.frontPhoto}></IonImg>
+								<IonImg className={classes.cardImage} src={frontPhoto}></IonImg>
 								<Box className={classes.imageCover}>
 									<Icon iconName="well-done-checked" color="#ffffff" />
 									<Text className={classes.cardText} color="#ffffff">
@@ -133,10 +129,10 @@ export const DriveLicence: React.FunctionComponent = () => {
 							<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.driver.photograph' })}</Text>
 						</Box>
 					)}
-					{state.backPhoto ? (
+					{backPhoto ? (
 						<Box className={classes.cardBox}>
 							<Box className={classes.cardImageContainer}>
-								<IonImg className={classes.cardImage} src={state.backPhoto}></IonImg>
+								<IonImg className={classes.cardImage} src={backPhoto}></IonImg>
 								<Box className={classes.imageCover}>
 									<Icon iconName="well-done-checked" color="#ffffff" />
 									<Text className={classes.cardText} color="#ffffff">
@@ -158,16 +154,16 @@ export const DriveLicence: React.FunctionComponent = () => {
 					)}
 				</Box>
 			)}
-			{!state.isSubmitting && !state.isSubmitSuccess && !state.isSubmitInvalid && (
+			{!isSubmitting && !isSubmitSuccess && !isSubmitInvalid && (
 				<Box className={classes.footer}>
-					<Button fullWidth className={classes.submitButton} disabled={state.isSubmitDisabled} onClick={() => submit()}>
+					<Button fullWidth className={classes.submitButton} disabled={isSubmitDisabled} onClick={() => submit()}>
 						<Icon className={classes.buttonIcon} iconName="submit-report"></Icon>
 						{formatMessage({ id: 'driver-licence.submit.for.validation' })}
 					</Button>
 					<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.submit.description' })}</Text>
 				</Box>
 			)}
-			{state.isSubmitInvalid && (
+			{isSubmitInvalid && (
 				<Box className={classes.footer}>
 					<Button fullWidth className={clsx(classes.submitButton, classes.tryButton)} onClick={() => submit()}>
 						<Icon className={classes.buttonIcon} iconName="reset"></Icon>
@@ -177,7 +173,7 @@ export const DriveLicence: React.FunctionComponent = () => {
 			)}
 			<Dialog
 				title={formatMessage({ id: 'driver-licence.submit-success.dialog.title' })}
-				open={state.isSubmitSuccessModal}
+				open={isSubmitSuccessModal}
 				hasClose={true}
 				image={manSvg}
 				onClose={handleDialogClose}
