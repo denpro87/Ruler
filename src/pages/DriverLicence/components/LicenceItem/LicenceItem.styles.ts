@@ -1,5 +1,5 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { dropShadow, pxToRem } from 'styles';
+import { pxToRem } from 'styles';
 
 const content: CSSProperties = {
 	display: 'flex',
@@ -15,14 +15,7 @@ const image: CSSProperties = {
 	borderRadius: pxToRem(15)
 };
 
-const iconButton: CSSProperties = {
-	padding: pxToRem(10),
-	borderRadius: pxToRem(15),
-	...dropShadow(`0 ${pxToRem(10)} ${pxToRem(20)} rgba(0, 0, 0, 0.07)`)
-};
-
 export const styles = createStyles({
 	content,
-	iconButton,
 	image
 });

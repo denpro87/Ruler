@@ -5,7 +5,7 @@ import { LicenceItem } from './components';
 import { styles } from './DriverLicence.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const useStyles = makeStyles(styles);
 
@@ -13,24 +13,28 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 	const classes = useStyles();
 	const history = useHistory();
 	const { formatMessage } = useIntl();
-	const [state, setState] = React.useState('');
-	const [data, setData] = React.useState([]);
+	const [state, setState] = React.useState<'success' | 'progress' | 'invalid'>('success');
+	const [data, setData] = React.useState<string[]>([]);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		const params: any = props.location.state;
-		const data = params && params.data ? params.data : null;
+		const urls = params && params.data ? params.data : null;
 		const state = params && params.state ? params.state : null;
-		setState(state);
-		setData(data);
+
+		if (state) setState(state);
+
+		if (urls) setData(urls);
 	}, [props.location.state]);
 
-	useEffect(() => {
-		if ((!state || state === 'success') && !data) history.push('/driver-licence/add');
-
+	React.useEffect(() => {
 		if (state === 'progress') {
 			setTimeout(() => setState('success'), 1500);
 		}
-	}, [data, state, history]);
+	}, [state]);
+
+	React.useEffect(() => {
+		if (data.length === 0) history.push('/driver-licence/add');
+	}, [data, history]);
 
 	const handleRemoveClick = (index: number) => {
 		console.log(index);

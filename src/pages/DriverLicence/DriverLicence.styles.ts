@@ -13,7 +13,7 @@ const validBox: CSSProperties = {
 	backgroundSize: 'contain',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'center',
-	height: '110px',
+	height: pxToRem(110),
 	margin: `${pxToRem(10)} 0 ${pxToRem(15)} 0`
 };
 
