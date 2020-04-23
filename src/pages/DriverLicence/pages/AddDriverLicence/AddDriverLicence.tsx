@@ -4,6 +4,7 @@ import { Dialog, Icon, IconButton, Page, Text } from 'components';
 import { IonImg } from '@ionic/react';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './AddDriverLicence.styles';
+import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React, { useEffect, useState } from 'react';
 
@@ -13,6 +14,7 @@ const { Camera } = Plugins;
 
 export const AddDriveLicence: React.FunctionComponent = () => {
 	const classes = useStyles();
+	const history = useHistory();
 	const [frontPhoto, setFrontPhoto] = useState('');
 	const [backPhoto, setBackPhoto] = useState('');
 	const [isSubmitDisabled, setSubmitDisabled] = useState(true);
@@ -53,6 +55,7 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 
 	const handleDialogClose = () => {
 		setSubmitSuccessModal(false);
+		history.push('/driver-licence', { data: [frontPhoto], state: 'progress' });
 	};
 
 	return (
