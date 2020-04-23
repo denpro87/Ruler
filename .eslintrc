@@ -128,6 +128,13 @@
 		],
 		"prettier/prettier": "warn",
 		"react/prop-types": "off",
+		"react/self-closing-comp": [
+			"error",
+			{
+				"component": true,
+				"html": true
+			}
+		],
 		"sonarjs/cognitive-complexity": "off",
 		"sonarjs/no-duplicate-string": "off",
 		"sort-imports-es6-autofix/sort-imports-es6": "error",
