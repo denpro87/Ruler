@@ -1,20 +1,26 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { pxToRem } from 'styles';
-import isSubmitInvalidImage from './images/invalidate.png';
-import isSubmittingImage from './images/submitting.png';
-import validImage from './images/verified.png';
+import isSubmitInvalidImage from './images/invalidate.svg';
+import isSubmittingImage from './images/submitting.svg';
+import validImage from './images/verified.svg';
 
-const validBox: CSSProperties = {
+const bannerBox: CreateCSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	justifyContent: 'center',
 	alignItems: 'center',
-	backgroundImage: `url(${validImage})`,
+	backgroundImage: (props: any) =>
+		props.state === 'progress'
+			? `url(${isSubmittingImage})`
+			: props.state === 'success'
+			? `url(${validImage})`
+			: `url(${isSubmitInvalidImage})`,
 	backgroundSize: 'contain',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'center',
 	height: pxToRem(110),
-	margin: `${pxToRem(10)} 0 ${pxToRem(15)} 0`
+	width: pxToRem(325),
+	margin: `${pxToRem(10)} auto ${pxToRem(15)} auto`
 };
 
 const addButton: CSSProperties = {
@@ -39,39 +45,13 @@ const submitWrapper: CSSProperties = {
 	flex: 1
 };
 
-const progressBox: CSSProperties = {
-	display: 'flex',
-	flexDirection: 'row',
-	justifyContent: 'center',
-	alignItems: 'center',
-	backgroundImage: `url(${isSubmittingImage})`,
-	backgroundSize: 'contain',
-	backgroundRepeat: 'no-repeat',
-	backgroundPosition: 'center',
-	height: pxToRem(110),
-	margin: `${pxToRem(25)} 0 ${pxToRem(20)} 0`
-};
-
-const progressText: CSSProperties = {
+const bannerText: CreateCSSProperties = {
 	fontSize: pxToRem(15),
-	color: '#181c19',
+	color: (props: any) => (props.state === 'progress' ? '#181c19' : '#ffffff'),
 	fontWeight: 'bold',
 	lineHeight: 1.67,
 	textAlign: 'center',
 	padding: `0 ${pxToRem(35)}`
-};
-
-const invalidBox: CSSProperties = {
-	display: 'flex',
-	flexDirection: 'row',
-	justifyContent: 'center',
-	alignItems: 'center',
-	backgroundImage: `url(${isSubmitInvalidImage})`,
-	backgroundSize: 'contain',
-	backgroundRepeat: 'no-repeat',
-	backgroundPosition: 'center',
-	height: '110px',
-	margin: `${pxToRem(25)} 0 ${pxToRem(20)} 0`
 };
 
 const tryButton: CSSProperties = {
@@ -103,13 +83,11 @@ const submitButton: CSSProperties = {
 };
 
 export const styles = createStyles({
-	validBox,
+	bannerBox,
 	addButton,
 	buttonIcon,
 	submitWrapper,
-	progressBox,
-	progressText,
-	invalidBox,
+	bannerText,
 	tryButton,
 	description,
 	submitButton
