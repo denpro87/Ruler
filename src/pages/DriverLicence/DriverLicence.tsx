@@ -15,6 +15,7 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 	const { formatMessage } = useIntl();
 	const [state, setState] = React.useState<'success' | 'progress' | 'invalid'>('success');
 	const [data, setData] = React.useState<string[]>([]);
+	const [isInitialSet, setInitialSet] = React.useState(false);
 
 	React.useEffect(() => {
 		const params: any = props.location.state;
@@ -24,6 +25,7 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 		if (state) setState(state);
 
 		if (urls) setData(urls);
+		setInitialSet(true);
 	}, [props.location.state]);
 
 	React.useEffect(() => {
@@ -33,8 +35,8 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 	}, [state]);
 
 	React.useEffect(() => {
-		if (data.length === 0) history.push('/driver-licence/add');
-	}, [data, history]);
+		if (isInitialSet && data.length === 0) history.push('/driver-licence/add');
+	}, [data, history, isInitialSet]);
 
 	const handleRemoveClick = (index: number) => {
 		console.log(index);
