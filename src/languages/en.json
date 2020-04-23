@@ -89,5 +89,11 @@
 
 	"get-help.faq.title": "FAQ",
 	"get-help.faq.basic": "Rider basics",
-	"get-help.faq.pricing": "Pricing & payment"
+	"get-help.faq.pricing": "Pricing & payment",
+
+	"get-help.contact-us.title": "Contact us",
+	"get-help.contact-us.email-description": "Need our assistance? Our support team is here to assist you 24/7. Give us a call, send us an email or live chat and get your issue resolved now!",
+	"get-help.contact-us.address-description": "We have our head-office located in City, Country and our regional offices across all cities of our operations. Our team consists of over 30 dedicated members who are actively working to ensure a seamless, secure and hassle-free mobility experience for our consumers.",
+	"get-help.contact-us.button.contact-your-insurance": "Contact your insurance",
+	"get-help.contact-us.button.contact-us-via-email": "Contact us via email"
 }
