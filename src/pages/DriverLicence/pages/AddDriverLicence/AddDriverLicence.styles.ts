@@ -92,7 +92,7 @@ const imageCover: CSSProperties = {
 	left: 0,
 	right: 0,
 	bottom: 0,
-	backgroundColor: '#00b559c8',
+	backgroundColor: 'rgb(0, 181, 89, 0.8)',
 	display: 'flex',
 	justifyContent: 'center',
 	flexDirection: 'column',
@@ -114,7 +114,7 @@ const closeIcon: CSSProperties = {
 	top: pxToRem(10),
 	padding: 0,
 	boxShadow: 'none',
-	color: 'white',
+	color: '#ffffff',
 	backgroundColor: 'transparent',
 	zIndex: 3
 };

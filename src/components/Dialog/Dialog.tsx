@@ -24,9 +24,9 @@ export const Dialog: React.FunctionComponent<IDialogProps> = ({
 	useEffect(() => {
 		if (illustrationName) {
 			import(`./svg/${illustrationName}.svg`)
-				.then(({ default: iconPath }) => {
-					if (iconPath) {
-						setImagePath(iconPath);
+				.then(({ default: illustrationPath }) => {
+					if (illustrationPath) {
+						setImagePath(illustrationPath);
 					}
 				})
 				.catch(() => console.warn(`No icon with the name \`${illustrationName}\` (\`${illustrationName}.svg\`) was found.`));

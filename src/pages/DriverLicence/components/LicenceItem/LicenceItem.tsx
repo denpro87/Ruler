@@ -12,7 +12,7 @@ export const LicenceItem: React.FunctionComponent<ILicenceItemProps> = ({ imageS
 	return (
 		<Box className={classes.content}>
 			<Image className={classes.image} src={imageSrc} />
-			<IconButton className={classes.iconButton} iconProps={{ iconName: 'trash', colorType: 'green' }} onClick={handleRemoveClick} />
+			<IconButton iconProps={{ iconName: 'trash', colorType: 'green' }} onClick={handleRemoveClick} />
 		</Box>
 	);
 };

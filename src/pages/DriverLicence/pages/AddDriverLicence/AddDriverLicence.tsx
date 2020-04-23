@@ -6,7 +6,7 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './AddDriverLicence.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const useStyles = makeStyles(styles);
 
@@ -15,16 +15,16 @@ const { Camera } = Plugins;
 export const AddDriveLicence: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const history = useHistory();
-	const [frontPhoto, setFrontPhoto] = useState('');
-	const [backPhoto, setBackPhoto] = useState('');
-	const [isSubmitDisabled, setSubmitDisabled] = useState(true);
-	const [isSubmitSuccessModal, setSubmitSuccessModal] = useState(false);
+	const [frontPhoto, setFrontPhoto] = React.useState('');
+	const [backPhoto, setBackPhoto] = React.useState('');
+	const [isSubmitDisabled, setSubmitDisabled] = React.useState(true);
+	const [isSubmitSuccessModal, setSubmitSuccessModal] = React.useState(false);
 	const { formatMessage } = useIntl();
 
-	useEffect(() => {
+	React.useEffect(() => {
 		defineCustomElements(window);
 	}, []);
-	useEffect(() => {
+	React.useEffect(() => {
 		if (frontPhoto && backPhoto) {
 			setSubmitDisabled(false);
 		}
@@ -49,9 +49,7 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 		else setBackPhoto('');
 	};
 
-	const submit = () => {
-		setSubmitSuccessModal(true);
-	};
+	const submit = () => setSubmitSuccessModal(true);
 
 	const handleDialogClose = () => {
 		setSubmitSuccessModal(false);
