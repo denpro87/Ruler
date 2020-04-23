@@ -62,6 +62,8 @@
   "driver-licence.title": "Driver licence",
   "driver-licence.description": "Before you rent a car, let's validate your driver's license. Simply upload a scanned picture of your driver's license and we will get back to you upon validation.",
   "driver-licence.validation.progress.title": "Driver licence validation is in progress",
+  "driver-licence.validation.success.title": "Your driver’s license has been validated successfully!",
+  "driver-licence.validation.invalid.title": "Your driver's license has been declined.",
   "driver-licence.validation.progress.description": "A confirmation email will be sent to your registered email upon validation.",
   "driver-licence.add": "Add new driver’s licence",
   "driver-licence.invalid.description": "Please retry again with a clearly readable picture and make sure that the license is not expired",
