@@ -35,7 +35,10 @@ const cardButton: CSSProperties = {
 	backgroundColor: 'transparent',
 	backgroundImage: `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='15' ry='15' stroke='%2300B559FF' stroke-width='4' stroke-dasharray='7%2c 13' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`,
 	height: pxToRem(240),
-	borderRadius: pxToRem(15)
+	borderRadius: pxToRem(15),
+	'&:hover': {
+		cursor: 'pointer'
+	}
 };
 
 const cardText: CSSProperties = {
@@ -128,7 +131,7 @@ const dialogContentText: CSSProperties = {
 	fontWeight: 600,
 	lineHeight: 1.5,
 	color: 'rgba(24, 28, 25, 0.5)',
-	padding: `${pxToRem(15)} 0`
+	padding: `${pxToRem(15)} 0 0 0`
 };
 
 export const styles = createStyles({

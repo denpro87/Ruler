@@ -75,8 +75,8 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 						<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.driver.photograph' })}</Text>
 					</Box>
 				) : (
-					<Box className={classes.cardBox} onClick={() => takePhoto('front')}>
-						<Box className={classes.cardButton}>
+					<Box className={classes.cardBox}>
+						<Box className={classes.cardButton} onClick={() => takePhoto('front')}>
 							<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
 							<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.front.side' })}</Text>
 						</Box>
@@ -98,8 +98,8 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 						<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.vehicle.info' })}</Text>
 					</Box>
 				) : (
-					<Box className={classes.cardBox} onClick={() => takePhoto('back')}>
-						<Box className={classes.cardButton}>
+					<Box className={classes.cardBox}>
+						<Box className={classes.cardButton} onClick={() => takePhoto('back')}>
 							<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
 							<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.back.side' })}</Text>
 						</Box>

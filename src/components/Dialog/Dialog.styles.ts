@@ -8,12 +8,12 @@ const button: CreateCSSProperties = {
 		fontWeight: 600,
 		fontStretch: 'normal',
 		fontStyle: 'normal',
-		lineHeight: '30px',
+		lineHeight: pxToRem(30),
 		letterSpacing: 'normal'
 	}),
 	display: 'flex',
 	borderRadius: pxToRem(15),
-	padding: '10px 15px',
+	padding: `${pxToRem(10)} ${pxToRem(15)}`,
 	backgroundColor: (props: any) => props.backgroundColor,
 	color: (props: any) => props.textColor,
 	textAlign: 'center',
@@ -48,7 +48,7 @@ const titleTextStyle: CSSProperties = {
 };
 
 const modalPaper: CSSProperties = {
-	width: '290px',
+	width: pxToRem(290),
 	boxShadow: 'none',
 	borderRadius: pxToRem(30),
 	color: 'black',
@@ -75,7 +75,7 @@ const dialogTitle: CSSProperties = {
 		fontWeight: 'bold',
 		fontStretch: 'normal',
 		fontStyle: 'normal',
-		lineHeight: '30px',
+		lineHeight: 1.5,
 		letterSpacing: 'normal'
 	})
 };
