@@ -1,6 +1,6 @@
-import { Box, Button, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
+import { Button, Page, Text } from 'components';
 import { IDriverLicenceProps } from './DriverLicence.types';
-import { Icon, Page, Text } from 'components';
 import { LicenceItem } from './components';
 import { styles } from './DriverLicence.styles';
 import { useHistory } from 'react-router-dom';
@@ -31,7 +31,7 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 	React.useEffect(() => {
 		if (state === 'progress') {
 			setTimeout(() => {
-				const success = true;
+				const success = false;
 				setState(success ? 'success' : 'invalid');
 			}, 1500);
 		}
@@ -62,8 +62,7 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 						<Text className={classes.bannerText}>{formatMessage({ id: 'driver-licence.validation.invalid.title' })}</Text>
 					</Box>
 					<Text className={classes.description}>{formatMessage({ id: 'driver-licence.invalid.description' })}</Text>
-					<Button fullWidth className={classes.submitButton} href="/driver-licence/add">
-						<Icon className={classes.buttonIcon} iconName="reset"></Icon>
+					<Button iconName="reset" compact fullWidth className={classes.submitButton} href="/driver-licence/add">
 						{formatMessage({ id: 'driver-licence.try.again' })}
 					</Button>
 				</Box>
@@ -76,8 +75,7 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 					{data?.map((item: string, index: number) => (
 						<LicenceItem key={index} imageSrc={item} handleRemoveClick={() => handleRemoveClick(index)} />
 					))}
-					<Button className={classes.addButton} href="/driver-licence/add">
-						<Icon className={classes.buttonIcon} iconName="add"></Icon>
+					<Button iconName="add" compact className={classes.addButton} href="/driver-licence/add">
 						{formatMessage({ id: 'driver-licence.add' })}
 					</Button>
 				</Box>

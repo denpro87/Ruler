@@ -36,10 +36,6 @@ const addButton: CSSProperties = {
 	borderRadius: pxToRem(15)
 };
 
-const buttonIcon: CSSProperties = {
-	marginRight: pxToRem(5)
-};
-
 const submitWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
@@ -86,7 +82,6 @@ const submitButton: CSSProperties = {
 export const styles = createStyles({
 	bannerBox,
 	addButton,
-	buttonIcon,
 	submitWrapper,
 	bannerText,
 	tryButton,
