@@ -1,6 +1,6 @@
-import { Box, Button, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
+import { Button, Dialog, Icon, IconButton, Page, Text } from 'components';
 import { CameraResultType, Plugins } from '@capacitor/core';
-import { Dialog, Icon, IconButton, Page, Text } from 'components';
 import { IonImg } from '@ionic/react';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './AddDriverLicence.styles';
@@ -110,8 +110,14 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 				</Box>
 			</Box>
 			<Box className={classes.footer}>
-				<Button fullWidth className={classes.submitButton} disabled={isSubmitDisabled} onClick={() => submit()}>
-					<Icon className={classes.buttonIcon} iconName="submit-report"></Icon>
+				<Button
+					fullWidth
+					iconName="submit-report"
+					compact
+					className={classes.submitButton}
+					disabled={isSubmitDisabled}
+					onClick={() => submit()}
+				>
 					{formatMessage({ id: 'driver-licence.submit.for.validation' })}
 				</Button>
 				<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.submit.description' })}</Text>

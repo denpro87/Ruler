@@ -141,10 +141,6 @@ const closeIcon: CSSProperties = {
 	zIndex: 3
 };
 
-const buttonIcon: CSSProperties = {
-	marginRight: pxToRem(5)
-};
-
 const dialogContentText: CSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,
@@ -167,7 +163,6 @@ export const styles = createStyles({
 	cardImageContainer,
 	imageCover,
 	closeIcon,
-	buttonIcon,
 	dialogContentText,
 	photoAspectRatioBoxInside
 });
