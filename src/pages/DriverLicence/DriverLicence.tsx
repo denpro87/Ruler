@@ -14,9 +14,9 @@ const useStyles = makeStyles(styles);
 
 const { Camera } = Plugins;
 const INITIAL_STATE = {
-	frontPhoto: 'a',
-	backPhoto: 'b',
-	isSubmitDisabled: false,
+	frontPhoto: '',
+	backPhoto: '',
+	isSubmitDisabled: true,
 	isSubmitting: false,
 	isSubmitSuccess: false,
 	isSubmitInvalid: false,
@@ -136,7 +136,7 @@ export const DriveLicence: React.FunctionComponent = () => {
 					{state.backPhoto ? (
 						<Box className={classes.cardBox}>
 							<Box className={classes.cardImageContainer}>
-								<IonImg className={classes.cardImage} src={state.frontPhoto}></IonImg>
+								<IonImg className={classes.cardImage} src={state.backPhoto}></IonImg>
 								<Box className={classes.imageCover}>
 									<Icon iconName="well-done-checked" color="#ffffff" />
 									<Text className={classes.cardText} color="#ffffff">

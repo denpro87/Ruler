@@ -4,6 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@capacitor/core": "2.0.0",
+		"@capacitor/ios": "^2.0.1",
 		"@fluentui/react": "^7.105.11",
 		"@ionic/core": "^5.0.7",
 		"@ionic/pwa-elements": "^1.5.1",
