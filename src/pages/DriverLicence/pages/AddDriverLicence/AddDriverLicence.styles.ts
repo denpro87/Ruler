@@ -11,8 +11,26 @@ const description: CSSProperties = {
 const buttonContainer: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
-	justifyContent: 'space-between',
-	padding: `${pxToRem(25)} ${pxToRem(5)}`
+	justifyContent: 'center',
+	padding: `${pxToRem(25)} ${pxToRem(5)}`,
+	'&> div:first-child': {
+		marginRight: pxToRem(15)
+	}
+};
+
+const photoAspectRatioBox: CSSProperties = {
+	height: 0,
+	width: '100%',
+	paddingTop: 'calc(240 / 155 * 100%)',
+	position: 'relative'
+};
+
+const photoAspectRatioBoxInside: CSSProperties = {
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	width: '100%',
+	height: '100%'
 };
 
 const cardBox: CSSProperties = {
@@ -21,6 +39,7 @@ const cardBox: CSSProperties = {
 	justifyContent: 'flex-start',
 	alignItems: 'center',
 	width: `calc(50% - ${pxToRem(7.5)})`,
+	maxWidth: pxToRem(388),
 	'&> span': {
 		paddingTop: pxToRem(12)
 	}
@@ -32,9 +51,9 @@ const cardButton: CSSProperties = {
 	alignItems: 'center',
 	flexDirection: 'column',
 	width: '100%',
+	height: '100%',
 	backgroundColor: 'transparent',
 	backgroundImage: `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='15' ry='15' stroke='%2300B559FF' stroke-width='4' stroke-dasharray='7%2c 13' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`,
-	height: pxToRem(240),
 	borderRadius: pxToRem(15),
 	'&:hover': {
 		cursor: 'pointer'
@@ -105,8 +124,8 @@ const imageCover: CSSProperties = {
 
 const cardImageContainer: CSSProperties = {
 	position: 'relative',
-	width: pxToRem(155),
-	height: pxToRem(240),
+	width: '100%',
+	height: '100%',
 	borderRadius: pxToRem(15),
 	overflow: 'hidden'
 };
@@ -138,6 +157,7 @@ export const styles = createStyles({
 	description,
 	footer,
 	buttonContainer,
+	photoAspectRatioBox,
 	cardBox,
 	cardButton,
 	descriptionText,
@@ -148,5 +168,6 @@ export const styles = createStyles({
 	imageCover,
 	closeIcon,
 	buttonIcon,
-	dialogContentText
+	dialogContentText,
+	photoAspectRatioBoxInside
 });
