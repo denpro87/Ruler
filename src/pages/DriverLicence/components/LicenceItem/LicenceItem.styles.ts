@@ -7,7 +7,7 @@ const content: CSSProperties = {
 	justifyContent: 'space-between',
 	alignItems: 'center',
 	width: pxToRem(325),
-	margin: `0 auto ${pxToRem(20)} auto`
+	margin: `${pxToRem(15)} auto ${pxToRem(5)} auto`
 };
 
 const image: CSSProperties = {

@@ -20,7 +20,8 @@ const bannerBox: CreateCSSProperties = {
 	backgroundPosition: 'center',
 	height: pxToRem(110),
 	width: pxToRem(325),
-	margin: `${pxToRem(10)} auto ${pxToRem(15)} auto`
+	margin: (props: any) =>
+		props.state === 'success' ? `${pxToRem(15)} auto ${pxToRem(10)} auto` : `${pxToRem(25)} auto ${pxToRem(20)} auto`
 };
 
 const addButton: CSSProperties = {
