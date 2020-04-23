@@ -57,7 +57,9 @@ const modalPaper: CSSProperties = {
 	padding: pxToRem(30)
 };
 const imgWrapper: CSSProperties = {
-	marginTop: '-114px'
+	marginTop: pxToRem(-114),
+	width: 'fit-content',
+	height: 'fit-content'
 };
 const closeBtn: CSSProperties = {
 	position: 'absolute',

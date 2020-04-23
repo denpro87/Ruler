@@ -6,7 +6,6 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './AddDriverLicence.styles';
 import { useIntl } from 'react-intl';
 import React, { useEffect, useState } from 'react';
-import manSvg from '../../images/man.svg';
 
 const useStyles = makeStyles(styles);
 
@@ -118,7 +117,7 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 				title={formatMessage({ id: 'driver-licence.submit-success.dialog.title' })}
 				open={isSubmitSuccessModal}
 				hasClose={true}
-				image={manSvg}
+				illustrationName="sent"
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"
 			>

@@ -4,4 +4,5 @@ export interface IDialogProps extends Omit<DialogProps, 'disableElevation' | 'cl
 	className?: string;
 	image?: string;
 	hasClose?: boolean;
+	illustrationName?: string;
 }
