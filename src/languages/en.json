@@ -85,5 +85,9 @@
 	"get-help.regulations.title": "Safety regulations",
 	"get-help.regulations.menu.bike": "Bike",
 	"get-help.regulations.menu.car": "Car",
-	"get-help.regulations.menu.scooter": "Scooter"
+	"get-help.regulations.menu.scooter": "Scooter",
+
+	"get-help.faq.title": "FAQ",
+	"get-help.faq.basic": "Rider basics",
+	"get-help.faq.pricing": "Pricing & payment"
 }
