@@ -60,52 +60,54 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 		<Page title={formatMessage({ id: 'driver-licence.title' })} titleSize="large">
 			<Text className={classes.description}>{formatMessage({ id: 'driver-licence.description' })}</Text>
 			<Box className={classes.buttonContainer}>
-				{frontPhoto ? (
-					<Box className={classes.cardBox}>
-						<Box className={classes.cardImageContainer}>
-							<IonImg className={classes.cardImage} src={frontPhoto}></IonImg>
-							<Box className={classes.imageCover}>
-								<Icon iconName="well-done-checked" color="#ffffff" />
-								<Text className={classes.cardText} color="#ffffff">
-									{formatMessage({ id: 'driver-licence.front.side' })}
-								</Text>
-							</Box>
-							<IconButton className={classes.closeIcon} onClick={() => removePhoto('front')} iconName="close" />
+				<Box className={classes.cardBox}>
+					<Box className={classes.photoAspectRatioBox}>
+						<Box className={classes.photoAspectRatioBoxInside}>
+							{frontPhoto ? (
+								<Box className={classes.cardImageContainer}>
+									<IonImg className={classes.cardImage} src={frontPhoto}></IonImg>
+									<Box className={classes.imageCover}>
+										<Icon iconName="well-done-checked" color="#ffffff" />
+										<Text className={classes.cardText} color="#ffffff">
+											{formatMessage({ id: 'driver-licence.front.side' })}
+										</Text>
+									</Box>
+									<IconButton className={classes.closeIcon} onClick={() => removePhoto('front')} iconName="close" />
+								</Box>
+							) : (
+								<Box className={classes.cardButton} onClick={() => takePhoto('front')}>
+									<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
+									<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.front.side' })}</Text>
+								</Box>
+							)}
 						</Box>
-						<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.driver.photograph' })}</Text>
 					</Box>
-				) : (
-					<Box className={classes.cardBox}>
-						<Box className={classes.cardButton} onClick={() => takePhoto('front')}>
-							<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
-							<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.front.side' })}</Text>
+					<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.driver.photograph' })}</Text>
+				</Box>
+				<Box className={classes.cardBox}>
+					<Box className={classes.photoAspectRatioBox}>
+						<Box className={classes.photoAspectRatioBoxInside}>
+							{backPhoto ? (
+								<Box className={classes.cardImageContainer}>
+									<IonImg className={classes.cardImage} src={backPhoto}></IonImg>
+									<Box className={classes.imageCover}>
+										<Icon iconName="well-done-checked" color="#ffffff" />
+										<Text className={classes.cardText} color="#ffffff">
+											{formatMessage({ id: 'driver-licence.back.side' })}
+										</Text>
+									</Box>
+									<IconButton className={classes.closeIcon} onClick={() => removePhoto('back')} iconName="close" />
+								</Box>
+							) : (
+								<Box className={classes.cardButton} onClick={() => takePhoto('back')}>
+									<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
+									<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.back.side' })}</Text>
+								</Box>
+							)}
 						</Box>
-						<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.driver.photograph' })}</Text>
 					</Box>
-				)}
-				{backPhoto ? (
-					<Box className={classes.cardBox}>
-						<Box className={classes.cardImageContainer}>
-							<IonImg className={classes.cardImage} src={backPhoto}></IonImg>
-							<Box className={classes.imageCover}>
-								<Icon iconName="well-done-checked" color="#ffffff" />
-								<Text className={classes.cardText} color="#ffffff">
-									{formatMessage({ id: 'driver-licence.back.side' })}
-								</Text>
-							</Box>
-							<IconButton className={classes.closeIcon} onClick={() => removePhoto('back')} iconName="close" />
-						</Box>
-						<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.vehicle.info' })}</Text>
-					</Box>
-				) : (
-					<Box className={classes.cardBox}>
-						<Box className={classes.cardButton} onClick={() => takePhoto('back')}>
-							<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
-							<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.back.side' })}</Text>
-						</Box>
-						<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.vehicle.info' })}s</Text>
-					</Box>
-				)}
+					<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.vehicle.info' })}s</Text>
+				</Box>
 			</Box>
 			<Box className={classes.footer}>
 				<Button fullWidth className={classes.submitButton} disabled={isSubmitDisabled} onClick={() => submit()}>
