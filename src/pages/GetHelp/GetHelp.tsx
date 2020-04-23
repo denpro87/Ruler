@@ -4,36 +4,36 @@ import { List, ListItem, ListItemText, Typography, makeStyles } from '@material-
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './GetHelp.styles';
 
+import { FormattedMessage, useIntl } from 'react-intl';
 import React from 'react';
-
 const useStyles = makeStyles(styles);
 
 const items = [
 	{
-		title: 'Safety regulations',
+		title: 'get-help.menu.safety-regulation',
 		href: '/get-help/regulations'
 	},
 	{
-		title: 'How to ride',
+		title: 'get-help.menu.how-to-ride',
 		href: '/get-help/how-to-ride'
 	},
 	{
-		title: 'FAQ',
+		title: 'get-help.menu.faq',
 		href: '/get-help/faq'
 	},
 	{
-		title: 'Contact us',
+		title: 'get-help.menu.contact-us',
 		href: '/get-help/contact-us'
 	},
 	{
-		title: 'Add report'
+		title: 'get-help.menu.add-report'
 	},
 	{
-		title: 'My reports',
+		title: 'get-help.menu.my-reports',
 		href: '/get-help/my-reports'
 	},
 	{
-		title: 'Privacy Policy',
+		title: 'get-help.menu.privacy-policy',
 		href: '/get-help/privacy-policy'
 	}
 ];
@@ -42,6 +42,7 @@ export const GetHelp: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const history = useHistory();
 	const [showAddReport, setShowAddReport] = React.useState(false);
+	const { formatMessage } = useIntl();
 
 	const handleAddReportClick = () => {
 		setShowAddReport(true);
@@ -64,17 +65,17 @@ export const GetHelp: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page title="Get help" titleSize="large" noHorizontalContentPadding>
+		<Page title={formatMessage({ id: 'get-help.title' })} titleSize="large" noHorizontalContentPadding>
 			<List className={classes.list}>
 				{items.map((item, index) =>
 					item.href ? (
 						<ListItem key={index} className={classes.listItem} button component={RouterLink} to={item.href}>
-							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
+							<ListItemText primary={formatMessage({ id: item.title })} classes={{ primary: classes.text }} />
 							<Divider />
 						</ListItem>
 					) : (
 						<ListItem key={index} className={classes.listItem} button onClick={handleAddReportClick}>
-							<ListItemText primary={item.title} classes={{ primary: classes.text }} />
+							<ListItemText primary={formatMessage({ id: item.title })} classes={{ primary: classes.text }} />
 							<Divider />
 						</ListItem>
 					)
@@ -85,16 +86,22 @@ export const GetHelp: React.FunctionComponent = () => {
 					Back
 				</LightGreenButton>
 			</div>
-			<BottomSheet title="Anything wrong?" open={showAddReport} onBottomSheetChange={handleBottomSheetChange}>
-				<Typography className={classes.sheetText}>Let us know! We are here for you 24/7</Typography>
+			<BottomSheet
+				title={formatMessage({ id: 'get-help.add-report-sheet.title' })}
+				open={showAddReport}
+				onBottomSheetChange={handleBottomSheetChange}
+			>
+				<Typography className={classes.sheetText}>
+					<FormattedMessage id="get-help.add-report-sheet.description" />
+				</Typography>
 				<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
-					Report a badly parked vehicle
+					<FormattedMessage id="get-help.add-report-sheet.button.badly-parked-vehicle" />
 				</LightGreenButton>
 				<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
-					The vehicle is damaged
+					<FormattedMessage id="get-help.add-report-sheet.button.damaged-vehicle" />
 				</LightGreenButton>
 				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
-					Contact Ruler
+					<FormattedMessage id="get-help.add-report-sheet.button.support" />
 				</LightGreenButton>
 			</BottomSheet>
 		</Page>
