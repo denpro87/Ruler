@@ -1,4 +1,5 @@
-export interface IDriverLicenceProps {
+import { RouteComponentProps } from 'react-router';
+export interface IDriverLicenceProps extends RouteComponentProps {
 	data?: string[];
-	isSubmitSuccess?: boolean;
+	state?: 'success' | 'invalid' | 'progress';
 }
