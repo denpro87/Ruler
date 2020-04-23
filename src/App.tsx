@@ -27,7 +27,7 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/news" component={News.News} exact />
 						<Route path="/news/:social?" component={News.NewsDetail} exact />
 						<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
-						<Route path="/drive-license" component={DriveLicence} exact />
+						<Route path="/drive-licence" component={DriveLicence} exact />
 						<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
 						<Route path="/settings/notifications" component={Settings.Notifications} exact />
 						<Route path="/settings/languages" component={Settings.Languages} exact />
