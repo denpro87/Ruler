@@ -9,15 +9,15 @@ const useStyles = makeStyles(styles);
 
 const items = [
 	{
-		title: 'get-help.regulations.menu.bike',
+		title: 'get_help.regulations.menu.bike',
 		href: '/get-help/regulations-bike'
 	},
 	{
-		title: 'get-help.regulations.menu.car',
+		title: 'get_help.regulations.menu.car',
 		href: '/get-help/regulations-car'
 	},
 	{
-		title: 'get-help.regulations.menu.scooter',
+		title: 'get_help.regulations.menu.scooter',
 		href: '/get-help/regulations-scooter'
 	}
 ];
