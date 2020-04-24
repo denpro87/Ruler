@@ -1,3 +1,3 @@
 export interface ICommonPageProps {
-    step: number;
+	step: number;
 }

@@ -18,6 +18,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	backgroundColor,
 	onRenderBackground,
 	canGoBack = !fullPage,
+	headerBackgroundProps,
 	headerLink,
 	headerLinkProps,
 	goBackIconButtonProps,
@@ -49,6 +50,9 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 			{hasPageHeader && (
 				<Box className={clsx(classes.pageHeader, pageHeaderClassName)}>
 					<Box className={classes.toolbarWrapper}>
+						{headerBackgroundProps && (
+							<img src={headerBackgroundProps.image} alt="header background" className={headerBackgroundProps.className} />
+						)}
 						{canGoBack && <GoBackIconButton onClick={handleGoBack} {...goBackIconButtonProps} />}
 						{headerLink && (
 							<Link className={classes.headerLink} {...headerLinkProps}>
