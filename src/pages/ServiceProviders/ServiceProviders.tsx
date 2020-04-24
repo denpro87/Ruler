@@ -29,7 +29,7 @@ export const ServiceProviders: React.FunctionComponent<IServiceProvidersProps> =
 	const handleProviderClick = (provider: string) => () => history.push(`/service-providers/${provider}`);
 
 	return (
-		<Page title="Service Providers" titleSize="large">
+		<Page title="Service Providers" titleSize="large" noHorizontalContentPadding>
 			<List className={classes.providerList}>
 				{currentProvider
 					? currentProvider.paragraphs.map((paragraph, i) => (

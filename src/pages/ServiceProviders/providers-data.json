@@ -74,6 +74,21 @@
 					"text": "Starts from $7 + $ 0.15/min"
 				}
 			]
+		},
+		{
+			"name": "Share Now",
+			"subtext": "$ 2.00 /min. $ 50 to unlock",
+			"logo": "./images/share-now.png",
+			"paragraphs": [
+				{
+					"title": "About",
+					"text": "Spin is a US based mobility platform striving to reimagine urban mobility. It combines high-quality scooters, excellent customer service and affordable prices."
+				},
+				{
+					"title": "Prices, terms and conditions",
+					"text": "Starts from $1 + $ 0.25/min"
+				}
+			]
 		}
 	]
 }

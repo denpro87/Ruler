@@ -3,7 +3,7 @@ import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
 const providerListItem: CSSProperties = {
-	padding: `${pxToRem(10)} 0`
+	padding: `${pxToRem(10)} ${pxToRem(20)}`
 };
 
 const iconContainer: CSSProperties = {
