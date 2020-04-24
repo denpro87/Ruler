@@ -1,5 +1,4 @@
-import { BlackIcon } from 'components/Icon';
-import { Box, Typography, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import { IFooterProps } from './Footer.types';
 import { Link } from 'components';
 import { styles } from './Footer.styles';
