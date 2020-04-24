@@ -89,7 +89,7 @@ const submitButton: CSSProperties = {
 		color: '#ffffff'
 	},
 	'&:hover': {
-		backgroundColor: '#00b559c8'
+		backgroundColor: 'rgba(0, 181, 89, 0.8)'
 	}
 };
 
@@ -114,7 +114,7 @@ const imageCover: CSSProperties = {
 	left: 0,
 	right: 0,
 	bottom: 0,
-	backgroundColor: 'rgb(0, 181, 89, 0.8)',
+	backgroundColor: 'rgba(0, 181, 89, 0.8)',
 	display: 'flex',
 	justifyContent: 'center',
 	flexDirection: 'column',

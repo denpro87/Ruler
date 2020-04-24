@@ -21,11 +21,14 @@ const bannerBox: CreateCSSProperties = {
 	height: pxToRem(110),
 	width: pxToRem(325),
 	margin: (props: any) =>
-		props.state === 'success' ? `${pxToRem(15)} auto ${pxToRem(10)} auto` : `${pxToRem(25)} auto ${pxToRem(20)} auto`
+		props.state === 'success' ? `${pxToRem(15)} auto ${pxToRem(10)} auto` : `${pxToRem(25)} auto ${pxToRem(20)} auto`,
+	'&> span': {
+		whiteSpace: 'pre-line'
+	}
 };
 
 const addButton: CSSProperties = {
-	backgroundColor: 'transparent',
+	backgroundColor: '#ffffff',
 	fontSize: pxToRem(15),
 	color: '#00b559',
 	fontWeight: 'bold',
@@ -33,7 +36,11 @@ const addButton: CSSProperties = {
 	padding: `${pxToRem(12)} 0 ${pxToRem(13)} 0`,
 	textTransform: 'none',
 	margin: `auto 0 ${pxToRem(20)} 0`,
-	borderRadius: pxToRem(15)
+	borderRadius: pxToRem(15),
+	'&:hover': {
+		color: '#00b559',
+		backgroundColor: 'rgba(0, 0, 0, 0.04)'
+	}
 };
 
 const submitWrapper: CSSProperties = {
@@ -70,12 +77,8 @@ const submitButton: CSSProperties = {
 	backgroundColor: '#00b559',
 	margin: `auto 0 ${pxToRem(20)} 0`,
 	color: '#ffffff',
-	'&.Mui-disabled': {
-		backgroundColor: '#caf1dd',
-		color: '#ffffff'
-	},
 	'&:hover': {
-		backgroundColor: '#00b559c8'
+		backgroundColor: 'rgba(0, 181, 89, 0.8)'
 	}
 };
 
