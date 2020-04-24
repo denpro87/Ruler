@@ -25,8 +25,10 @@ export const CommonPage: React.FunctionComponent<ICommonPageProps> = ({ step }) 
 			.catch(() => console.warn(`No iamge with the name \`${step}\` (\`${step}.svg\`) was found.`));
 	}, [step]);
 
+	const headerBackground = () => <img src={imagePath} className={classes.headerBackground} />;
+
 	return (
-		<Page title="" headerBackgroundProps={{ image: imagePath, className: classes.headerBackground }} pageHeaderClassName={classes.header}>
+		<Page title="" onHeaderBackground={headerBackground} pageHeaderClassName={classes.header}>
 			<Text className={classes.title}>{formatMessage({ id: pagesData[step].title })}</Text>
 			<Text className={classes.description}>{formatMessage({ id: pagesData[step].description })}</Text>
 			<Box className={classes.footerWrapper}>
