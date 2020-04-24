@@ -1,7 +1,7 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, Page, Text } from 'components';
 import { ICommonPageProps } from './CommonPage.types';
-import { pagesData } from '../../pages.data';
+import { pagesData } from '../../HowToRide.data';
 import { styles } from './CommonPage.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
