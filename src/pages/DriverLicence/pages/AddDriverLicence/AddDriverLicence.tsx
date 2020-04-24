@@ -69,7 +69,7 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 									<Box className={classes.imageCover}>
 										<Icon iconName="well-done-checked" color="#ffffff" />
 										<Text className={classes.cardText} color="#ffffff">
-											{formatMessage({ id: 'driver-licence.front.side' })}
+											{formatMessage({ id: 'driver-licence.front_side' })}
 										</Text>
 									</Box>
 									<IconButton className={classes.closeIcon} onClick={() => removePhoto('front')} iconName="close" />
@@ -77,7 +77,7 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 							) : (
 								<Box className={classes.cardButton} onClick={() => takePhoto('front')}>
 									<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
-									<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.front.side' })}</Text>
+									<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.front_side' })}</Text>
 								</Box>
 							)}
 						</Box>
@@ -93,7 +93,7 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 									<Box className={classes.imageCover}>
 										<Icon iconName="well-done-checked" color="#ffffff" />
 										<Text className={classes.cardText} color="#ffffff">
-											{formatMessage({ id: 'driver-licence.back.side' })}
+											{formatMessage({ id: 'driver-licence.back_side' })}
 										</Text>
 									</Box>
 									<IconButton className={classes.closeIcon} onClick={() => removePhoto('back')} iconName="close" />
@@ -101,7 +101,7 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 							) : (
 								<Box className={classes.cardButton} onClick={() => takePhoto('back')}>
 									<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
-									<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.back.side' })}</Text>
+									<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.back_side' })}</Text>
 								</Box>
 							)}
 						</Box>
@@ -118,19 +118,19 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 					disabled={isSubmitDisabled}
 					onClick={() => submit()}
 				>
-					{formatMessage({ id: 'driver-licence.submit.for.validation' })}
+					{formatMessage({ id: 'driver-licence.submit_for_validation' })}
 				</Button>
 				<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.submit.description' })}</Text>
 			</Box>
 			<Dialog
-				title={formatMessage({ id: 'driver-licence.submit-success.dialog.title' })}
+				title={formatMessage({ id: 'driver-licence.submit_success.dialog.title' })}
 				open={isSubmitSuccessModal}
 				hasClose={true}
 				illustrationName="sent"
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"
 			>
-				<Text className={classes.dialogContentText}>{formatMessage({ id: 'driver-licence.submit-success.dialog.description' })}</Text>
+				<Text className={classes.dialogContentText}>{formatMessage({ id: 'driver-licence.submit_success.dialog.description' })}</Text>
 			</Dialog>
 		</Page>
 	);

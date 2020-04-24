@@ -31,7 +31,7 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 	React.useEffect(() => {
 		if (state === 'progress') {
 			setTimeout(() => {
-				const success = false;
+				const success = true;
 				setState(success ? 'success' : 'invalid');
 			}, 1500);
 		}
@@ -62,9 +62,11 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 						<Text className={classes.bannerText}>{formatMessage({ id: 'driver-licence.validation.invalid.title' })}</Text>
 					</Box>
 					<Text className={classes.description}>{formatMessage({ id: 'driver-licence.invalid.description' })}</Text>
-					<Button iconName="reset" compact fullWidth className={classes.submitButton} href="/driver-licence/add">
-						{formatMessage({ id: 'driver-licence.try.again' })}
-					</Button>
+					<Box className={classes.buttonWrapper}>
+						<Button iconName="reset" compact fullWidth className={classes.submitButton} href="/driver-licence/add">
+							{formatMessage({ id: 'driver-licence.try_again' })}
+						</Button>
+					</Box>
 				</Box>
 			)}
 			{state === 'success' && (
@@ -75,9 +77,11 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 					{data?.map((item: string, index: number) => (
 						<LicenceItem key={index} imageSrc={item} handleRemoveClick={() => handleRemoveClick(index)} />
 					))}
-					<Button iconName="add" compact className={classes.addButton} href="/driver-licence/add">
-						{formatMessage({ id: 'driver-licence.add' })}
-					</Button>
+					<Box className={classes.buttonWrapper}>
+						<Button iconName="add" compact className={classes.addButton} href="/driver-licence/add">
+							{formatMessage({ id: 'driver-licence.add' })}
+						</Button>
+					</Box>
 				</Box>
 			)}
 		</Page>

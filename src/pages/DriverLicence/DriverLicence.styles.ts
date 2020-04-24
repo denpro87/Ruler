@@ -35,7 +35,7 @@ const addButton: CSSProperties = {
 	lineHeight: 1.67,
 	padding: `${pxToRem(12)} 0 ${pxToRem(13)} 0`,
 	textTransform: 'none',
-	margin: `auto 0 ${pxToRem(20)} 0`,
+	marginTop: pxToRem(20),
 	borderRadius: pxToRem(15),
 	'&:hover': {
 		color: '#00b559',
@@ -58,15 +58,15 @@ const bannerText: CreateCSSProperties = {
 	padding: `0 ${pxToRem(35)}`
 };
 
-const tryButton: CSSProperties = {
-	marginBottom: pxToRem(20)
-};
-
 const description: CSSProperties = {
 	fontSize: pxToRem(15),
 	color: 'rgba(24, 28, 25, 0.5)',
 	fontWeight: 600,
 	lineHeight: 1.67
+};
+
+const buttonWrapper: CSSProperties = {
+	margin: `auto 0 ${pxToRem(20)} 0`
 };
 
 const submitButton: CSSProperties = {
@@ -75,7 +75,7 @@ const submitButton: CSSProperties = {
 	textTransform: 'none',
 	fontWeight: 'bold',
 	backgroundColor: '#00b559',
-	margin: `auto 0 ${pxToRem(20)} 0`,
+	marginTop: pxToRem(20),
 	color: '#ffffff',
 	'&:hover': {
 		backgroundColor: 'rgba(0, 181, 89, 0.8)'
@@ -87,7 +87,7 @@ export const styles = createStyles({
 	addButton,
 	submitWrapper,
 	bannerText,
-	tryButton,
 	description,
-	submitButton
+	submitButton,
+	buttonWrapper
 });
