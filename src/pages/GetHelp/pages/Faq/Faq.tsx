@@ -3,8 +3,8 @@ import { Page, SearchBox } from 'components';
 import { Link as RouterLink } from 'react-router-dom';
 import { styles } from './Faq.styles';
 
+import { FormattedMessage, useIntl } from 'react-intl';
 import React from 'react';
-
 const useStyles = makeStyles(styles);
 const defaultQuestions = [
 	{
@@ -52,11 +52,11 @@ const defaultQuestions = [
 const types = [
 	{
 		type: 'basics',
-		title: 'Rider basics'
+		title: 'get-help.faq.basic'
 	},
 	{
 		type: 'pricing',
-		title: 'Pricing & payment'
+		title: 'get-help.faq.pricing'
 	}
 ];
 
@@ -69,16 +69,21 @@ export const Faq: React.FunctionComponent = () => {
 		const filteredQuestions = defaultQuestions.filter(item => item.title.toLowerCase().includes(keywords.toLowerCase()));
 		setQuestions(filteredQuestions);
 	};
+	const { formatMessage } = useIntl();
 
 	return (
-		<Page title="FAQ" titleSize="medium">
+		<Page title={formatMessage({ id: 'get-help.faq.title' })} titleSize="medium">
 			<SearchBox className={classes.searchBox} onChange={handleSearchBoxChange} />
 			{types.map((type, index) => {
 				const typeQuestions = questions.filter(item => item.type === type.type);
 
 				return (
 					<div key={`${index}-type`}>
-						{typeQuestions.length > 0 && <Typography className={classes.subHeader}>{type.title}</Typography>}
+						{typeQuestions.length > 0 && (
+							<Typography className={classes.subHeader}>
+								<FormattedMessage id={type.title} />
+							</Typography>
+						)}
 						<List className={classes.list}>
 							{typeQuestions.map((question, index) => (
 								<ListItem key={index} className={classes.listItem} component={RouterLink} to={question.href}>

@@ -2,8 +2,8 @@ import { Box, Paper, Typography, makeStyles } from '@material-ui/core';
 import { Icon, LightGreenButton, Page } from 'components';
 import { styles } from './ContactUs.styles';
 
+import { FormattedMessage, useIntl } from 'react-intl';
 import React from 'react';
-
 const useStyles = makeStyles(styles);
 const info = {
 	phoneNumber: '+123 456 789 00',
@@ -13,9 +13,10 @@ const info = {
 
 export const ContactUs: React.FunctionComponent = () => {
 	const classes = useStyles();
+	const { formatMessage } = useIntl();
 
 	return (
-		<Page title="Contact us" titleSize="medium">
+		<Page title={formatMessage({ id: 'get-help.contact-us.title' })} titleSize="medium">
 			<Paper elevation={0} className={classes.container}>
 				<Box className={classes.li}>
 					<Icon iconName="support" color="#00b559"></Icon>
@@ -27,8 +28,7 @@ export const ContactUs: React.FunctionComponent = () => {
 				</Box>
 				<div>
 					<Typography variant="h6" className={classes.content}>
-						Need our assistance? Our support team is here to assist you 24/7. Give us a call, send us an email or live chat and get your
-						issue resolved now!
+						<FormattedMessage id="get-help.contact-us.email-description" />
 					</Typography>
 				</div>
 				<Box className={classes.li}>
@@ -37,18 +37,16 @@ export const ContactUs: React.FunctionComponent = () => {
 				</Box>
 				<div>
 					<Typography variant="h6" className={classes.content}>
-						We have our head-office located in City, Country and our regional offices across all cities of our operations. Our team consists
-						of over 30 dedicated members who are actively working to ensure a seamless, secure and hassle-free mobility experience for our
-						consumers.
+						<FormattedMessage id="get-help.contact-us.address-description" />
 					</Typography>
 				</div>
 			</Paper>
 			<div className={classes.buttonWrapper}>
 				<LightGreenButton className={classes.bigButton} iconName="support" onClick={() => console.log('contact your insureance')}>
-					Contact your insurance
+					<FormattedMessage id="get-help.contact-us.button.contact-your-insurance" />
 				</LightGreenButton>
 				<LightGreenButton className={classes.bigButton} iconName="invite" onClick={() => console.log('contact us via email')}>
-					Contact us via email
+					<FormattedMessage id="get-help.contact-us.button.contact-us-via-email" />
 				</LightGreenButton>
 			</div>
 		</Page>
