@@ -1,31 +1,31 @@
 export const pagesData: Array<any> = [
 	{
-		title: 'how-to-ride-scan-qr-title',
-		description: 'how-to-ride-scan-qr-description',
+		title: 'how_to_ride.scan_qr.title',
+		description: 'how_to_ride.scan_qr.description',
 		href: '/how-to-ride/payment-method',
 		image: 'scanQrCode'
 	},
 	{
-		title: 'how-to-ride-payment-method-title',
-		description: 'how-to-ride-payment-method-description',
+		title: 'how_to_ride.payment_method.title',
+		description: 'how_to_ride.payment_method.description',
 		href: '/how-to-ride/start-trip',
 		image: 'paymentMethod'
 	},
 	{
-		title: 'how-to-ride-start-trip-title',
-		description: 'how-to-ride-start-trip-description',
+		title: 'how_to_ride.start_trip.title',
+		description: 'how_to_ride.start_trip.description',
 		href: '/how-to-ride/watch-areas',
 		image: 'startTrip'
 	},
 	{
-		title: 'how-to-ride-watch-areas-title',
-		description: 'how-to-ride-watch-areas-description',
+		title: 'how_to_ride.watch_areas.title',
+		description: 'how_to_ride.watch_areas.description',
 		href: '/how-to-ride/trip-status',
 		image: 'watchAreas'
 	},
 	{
-		title: 'how-to-ride-trip-status-title',
-		description: 'how-to-ride-trip-status-description',
+		title: 'how_to_ride.trip_status.title',
+		description: 'how_to_ride.trip_status.description',
 		href: '/how-to-ride',
 		image: 'tripStatus'
 	}
