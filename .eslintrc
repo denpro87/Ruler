@@ -127,6 +127,7 @@
 			}
 		],
 		"prettier/prettier": "warn",
+		"react/jsx-curly-brace-presence": ["error", "never"],
 		"react/prop-types": "off",
 		"react/self-closing-comp": [
 			"error",
