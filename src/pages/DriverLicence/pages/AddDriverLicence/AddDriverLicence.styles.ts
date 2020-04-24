@@ -39,7 +39,7 @@ const cardBox: CSSProperties = {
 	justifyContent: 'flex-start',
 	alignItems: 'center',
 	width: `calc(50% - ${pxToRem(7.5)})`,
-	maxWidth: pxToRem(388),
+	maxWidth: pxToRem(375),
 	'&> span': {
 		paddingTop: pxToRem(12)
 	}
@@ -84,6 +84,7 @@ const submitButton: CSSProperties = {
 	fontWeight: 'bold',
 	backgroundColor: '#00b559',
 	color: '#ffffff',
+	marginTop: pxToRem(20),
 	'&.Mui-disabled': {
 		backgroundColor: '#caf1dd',
 		color: '#ffffff'

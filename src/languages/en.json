@@ -67,13 +67,13 @@
   "driver-licence.validation.progress.description": "A confirmation email will be sent to your registered email upon validation.",
   "driver-licence.add": "Add new driver’s licence",
   "driver-licence.invalid.description": "Please retry again with a clearly readable picture and make sure that the license is not expired",
-  "driver-licence.front.side": "Front side",
-  "driver-licence.back.side": "Back side",
+  "driver-licence.front_side": "Front side",
+  "driver-licence.back_side": "Back side",
   "driver-licence.driver.photograph": "On this side is a photograph of the driver",
   "driver-licence.vehicle.info": "On this side is information about vehicle categories",
-  "driver-licence.submit.for.validation": "Submit for validation",
+  "driver-licence.submit_for_validation": "Submit for validation",
   "driver-licence.submit.description": "We’ll send you a notification with our decision",
-  "driver-licence.try.again": "Try again",
-  "driver-licence.submit-success.dialog.title": "Submitted!",
-  "driver-licence.submit-success.dialog.description": "We will validate your driver’s licence and send you a notification!"
+  "driver-licence.try_again": "Try again",
+  "driver-licence.submit_success.dialog.title": "Submitted!",
+  "driver-licence.submit_success.dialog.description": "We will validate your driver’s licence and send you a notification!"
 }
