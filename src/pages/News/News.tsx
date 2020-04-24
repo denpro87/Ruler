@@ -1,7 +1,7 @@
 import { List, makeStyles } from '@material-ui/core';
 import { NewsItem } from './components';
 import { Page } from 'components';
-import { newsData } from './News.data';
+import { newsData } from './news.data';
 import { styles } from './News.styles';
 import React from 'react';
 const useStyles = makeStyles(styles);
