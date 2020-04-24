@@ -15,6 +15,7 @@ export const Image: React.FunctionComponent<IImageProps> = ({
 	height,
 	maxWidth = responsive ? '100%' : undefined,
 	maxHeight,
+	borderRadius,
 	src,
 	srcSet,
 	x2,
@@ -26,6 +27,7 @@ export const Image: React.FunctionComponent<IImageProps> = ({
 		height,
 		maxWidth,
 		maxHeight,
+		borderRadius,
 		responsive,
 		rounded
 	});
