@@ -12,7 +12,6 @@ export interface IPageProps extends Pick<BoxProps, 'onClick'> {
 	fullPage?: boolean;
 	canGoBack?: boolean;
 	title?: string;
-	onHeaderBackground?: () => React.ReactElement;
 	headerLink?: string;
 	headerLinkProps?: ILinkProps;
 	titleSize?: 'medium' | 'large';

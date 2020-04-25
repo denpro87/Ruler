@@ -1,6 +1,5 @@
 import * as DriverLicence from 'pages/DriverLicence';
 import * as GetHelp from 'pages/GetHelp';
-import * as HowToRide from 'pages/HowToRide';
 import * as News from 'pages/News';
 import * as Settings from 'pages/Settings';
 import { Home, ServiceProviders, Splash, Welcome } from 'pages';
@@ -52,11 +51,6 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/get-help/regulations-scooter" component={GetHelp.SafetyScooter} exact />
 						<Route path="/get-help/my-reports" component={GetHelp.MyReports} exact />
 						<Route path="/get-help/how-to-ride" component={GetHelp.HowToRide} exact />
-						<Route path="/how-to-ride" component={HowToRide.HowToRide} exact />
-						<Route path="/how-to-ride/payment-method" component={HowToRide.PaymentMethod} exact />
-						<Route path="/how-to-ride/start-trip" component={HowToRide.StartTrip} exact />
-						<Route path="/how-to-ride/watch-areas" component={HowToRide.WatchAreas} exact />
-						<Route path="/how-to-ride/trip-status" component={HowToRide.TripStatus} exact />
 						<Route exact path="/" render={() => <Redirect to="/splash" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>

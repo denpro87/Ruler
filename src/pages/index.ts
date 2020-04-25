@@ -5,4 +5,3 @@ export * from './Settings';
 export * from './Splash';
 export * from './Welcome';
 export * from './Home';
-export * from './HowToRide';
