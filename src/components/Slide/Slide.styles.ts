@@ -16,7 +16,7 @@ const imageContainer: CSSProperties = {
 		position: 'absolute',
 		bottom: 0,
 		left: 0,
-		width: 'auto',
+		width: '100%',
 		height: '100%',
 		maxWidth: '100%',
 		maxHeight: '100%',
