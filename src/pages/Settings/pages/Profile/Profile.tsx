@@ -3,7 +3,7 @@ import { Dialog, GreenButton, Page, TextField } from 'components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { styles } from './Profile.styles';
 import React from 'react';
-import manSvg from '../../images/man.svg';
+
 const useStyles = makeStyles(styles);
 
 export const Profile: React.FunctionComponent = () => {
@@ -44,13 +44,13 @@ export const Profile: React.FunctionComponent = () => {
 					onValueChange={handleStateChange}
 				/>
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
-					<FormattedMessage id={'settings.profile.save_changes'} />
+					<FormattedMessage id="settings.profile.save_changes" />
 				</GreenButton>
 			</Box>
 			<Dialog
 				open={showDialog}
 				hasClose={true}
-				image={manSvg}
+				illustrationName="question"
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"
 				title={formatMessage({ id: 'settings.profile.dialog.title' })}

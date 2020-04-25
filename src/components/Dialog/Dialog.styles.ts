@@ -57,7 +57,7 @@ const modalPaper: CSSProperties = {
 	padding: pxToRem(30)
 };
 const imgWrapper: CSSProperties = {
-	marginTop: pxToRem(-114),
+	margin: `${pxToRem(-114)} auto 0 auto`,
 	width: 'fit-content',
 	height: 'fit-content'
 };

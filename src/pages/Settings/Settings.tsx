@@ -6,7 +6,6 @@ import { styles } from './Settings.styles';
 
 import React from 'react';
 import clsx from 'clsx';
-import manSvg from './images/man.svg';
 
 const useStyles = makeStyles(styles);
 const items = [
@@ -124,7 +123,7 @@ export const Settings: React.FunctionComponent = () => {
 				title={formatMessage({ id: 'settings.logout_dialog.title' })}
 				open={logout}
 				hasClose={true}
-				image={manSvg}
+				illustrationName="question"
 				onClose={handleLogoutClose}
 				aria-labelledby="form-dialog-title"
 			>
@@ -137,7 +136,7 @@ export const Settings: React.FunctionComponent = () => {
 				title={formatMessage({ id: 'settings.delete_account_dialog.title' })}
 				open={deleteAccount}
 				hasClose={true}
-				image={manSvg}
+				illustrationName="question"
 				onClose={handleDeleteAccountClose}
 			>
 				<Typography className={classes.dialogContentText}>{formatMessage({ id: 'settings.delete_account_dialog.description' })}</Typography>

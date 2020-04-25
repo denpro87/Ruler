@@ -1,5 +1,5 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { font } from 'styles';
+import { font, pxToRem } from 'styles';
 
 const image: CSSProperties = {
 	objectFit: 'cover',
@@ -10,7 +10,8 @@ const slide: CSSProperties = {
 	'& img': {
 		objectFit: 'cover',
 		width: '100%',
-		height: 'calc(100vh * 293 / 667)'
+		maxHeight: pxToRem(524)
+		// height: 'calc(100vh * 293 / 667)'
 	}
 };
 
@@ -37,7 +38,8 @@ const description: CSSProperties = {
 const slideContainer: CSSProperties = {
 	paddingTop: 27,
 	paddingBottom: 20,
-	height: '100%'
+	height: '100%',
+	width: '100%'
 };
 
 const slideContent: CSSProperties = {
