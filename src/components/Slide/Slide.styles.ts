@@ -1,7 +1,10 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { font, pxToRem } from 'styles';
 
-const slide: CSSProperties = {};
+const slide: CSSProperties = {
+	position: 'relative',
+	overflow: 'hidden'
+};
 
 const imageContainer: CSSProperties = {
 	zIndex: -1,
@@ -40,18 +43,10 @@ const description: CSSProperties = {
 	})
 };
 
-const slideContainer: CSSProperties = {
-	paddingTop: 27,
-	height: '100%',
-	width: '100%',
-	position: 'relative',
-	overflow: 'hidden'
-};
-
 const slideContent: CreateCSSProperties = {
 	paddingLeft: 20,
 	paddingRight: 20,
-	paddingTop: (props: any) => `calc(${props.imageStyle.height} + ${pxToRem(25)})`,
+	paddingTop: (props: any) => `calc(${props.imageStyle.height} + ${pxToRem(25)} + ${props.imageStyle.top})`,
 	textAlign: 'left',
 	marginTop: -5
 };
@@ -61,6 +56,5 @@ export const styles = createStyles({
 	slide,
 	title,
 	description,
-	slideContainer,
 	slideContent
 });

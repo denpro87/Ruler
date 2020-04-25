@@ -15,14 +15,12 @@ export const Slide: React.FunctionComponent<ISlideProps> = props => {
 
 	return (
 		<IonSlide className={classes.slide}>
-			<div className={classes.slideContainer}>
-				<Box style={slide.style} className={classes.imageContainer}>
-					<img src={slide.image} alt={slide.title} />
-				</Box>
-				<div className={classes.slideContent}>
-					<Title className={classes.title}>{formatMessage({ id: slide.title })}</Title>
-					<Text className={classes.description}>{formatMessage({ id: slide.description })}</Text>
-				</div>
+			<Box style={slide.style} className={classes.imageContainer}>
+				<img src={slide.image} alt={slide.title} />
+			</Box>
+			<div className={classes.slideContent}>
+				<Title className={classes.title}>{formatMessage({ id: slide.title })}</Title>
+				<Text className={classes.description}>{formatMessage({ id: slide.description })}</Text>
 			</div>
 		</IonSlide>
 	);
