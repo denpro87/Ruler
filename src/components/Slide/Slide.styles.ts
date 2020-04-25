@@ -1,17 +1,22 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { font, pxToRem } from 'styles';
 
-const image: CSSProperties = {
-	objectFit: 'cover',
-	width: '100%'
-};
+const slide: CSSProperties = {};
 
-const slide: CSSProperties = {
+const imageContainer: CSSProperties = {
+	zIndex: -1,
+	position: 'absolute',
+	whiteSpace: 'nowrap',
+	overflow: 'visible',
 	'& img': {
-		objectFit: 'cover',
-		width: '100%',
-		maxHeight: pxToRem(524)
-		// height: 'calc(100vh * 293 / 667)'
+		position: 'absolute',
+		bottom: 0,
+		width: 'auto',
+		height: 'auto',
+		maxWidth: '100%',
+		maxHeight: '100%',
+		userSelect: 'none',
+		userDrag: 'none'
 	}
 };
 
@@ -37,21 +42,22 @@ const description: CSSProperties = {
 
 const slideContainer: CSSProperties = {
 	paddingTop: 27,
-	paddingBottom: 20,
 	height: '100%',
-	width: '100%'
+	width: '100%',
+	position: 'relative',
+	overflow: 'hidden'
 };
 
-const slideContent: CSSProperties = {
+const slideContent: CreateCSSProperties = {
 	paddingLeft: 20,
 	paddingRight: 20,
-	paddingBottom: 28,
-	paddingTop: 28,
+	paddingTop: (props: any) => `calc(${props.imageStyle.height} + ${pxToRem(25)})`,
 	textAlign: 'left',
 	marginTop: -5
 };
+
 export const styles = createStyles({
-	image,
+	imageContainer,
 	slide,
 	title,
 	description,

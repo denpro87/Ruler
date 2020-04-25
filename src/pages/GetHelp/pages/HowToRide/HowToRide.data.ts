@@ -1,15 +1,39 @@
 import { ISlide } from 'components';
-import { pxToRem } from 'styles';
+import {
+	PAGE_INITIAL_HEIGHT,
+	PAGE_INITIAL_WIDTH,
+	PAYMENT_METHOD_BACKGROUND_INITIAL_HEIGHT,
+	PAYMENT_METHOD_BACKGROUND_INITIAL_POSITION_RIGHT,
+	PAYMENT_METHOD_BACKGROUND_INITIAL_POSITION_TOP,
+	PAYMENT_METHOD_BACKGROUND_INITIAL_WIDTH,
+	SCAN_QR_CODE_BACKGROUND_INITIAL_HEIGHT,
+	SCAN_QR_CODE_BACKGROUND_INITIAL_POSITION_RIGHT,
+	SCAN_QR_CODE_BACKGROUND_INITIAL_POSITION_TOP,
+	SCAN_QR_CODE_BACKGROUND_INITIAL_WIDTH,
+	START_TRIP_BACKGROUND_INITIAL_HEIGHT,
+	START_TRIP_BACKGROUND_INITIAL_POSITION_RIGHT,
+	START_TRIP_BACKGROUND_INITIAL_POSITION_TOP,
+	START_TRIP_BACKGROUND_INITIAL_WIDTH,
+	TRIP_STATUS_BACKGROUND_INITIAL_HEIGHT,
+	TRIP_STATUS_BACKGROUND_INITIAL_POSITION_RIGHT,
+	TRIP_STATUS_BACKGROUND_INITIAL_POSITION_TOP,
+	TRIP_STATUS_BACKGROUND_INITIAL_WIDTH,
+	WATCH_AREAS_BACKGROUND_INITIAL_HEIGHT,
+	WATCH_AREAS_BACKGROUND_INITIAL_POSITION_RIGHT,
+	WATCH_AREAS_BACKGROUND_INITIAL_POSITION_TOP,
+	WATCH_AREAS_BACKGROUND_INITIAL_WIDTH
+} from './HowToRide.variables';
+import { percentage, pxToRem } from 'styles';
 export const slides: Array<ISlide> = [
 	{
 		image: require('./images/scan-qr-code.svg'),
 		title: 'get_help.how_to_ride.scan_qr.title',
 		description: 'get_help.how_to_ride.scan_qr.description',
 		style: {
-			objectPosition: -100,
-			height: 'calc(100vw * 293 / 375)',
-			maxHeight: pxToRem(524),
-			maxWidth: pxToRem((524 / 289) * 636)
+			right: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_POSITION_RIGHT / PAGE_INITIAL_WIDTH) * 100}vw`,
+			top: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_POSITION_TOP / PAGE_INITIAL_HEIGHT) * 100}vh`,
+			width: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_WIDTH / PAGE_INITIAL_WIDTH) * 100}vw`,
+			height: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_HEIGHT / PAGE_INITIAL_HEIGHT) * 100}vh`
 		}
 	},
 	{
@@ -17,10 +41,10 @@ export const slides: Array<ISlide> = [
 		title: 'get_help.how_to_ride.payment_method.title',
 		description: 'get_help.how_to_ride.payment_method.description',
 		style: {
-			objectPosition: 12.3,
-			height: 'calc(100vw * 289 / 375)',
-			maxHeight: pxToRem(516),
-			maxWidth: pxToRem((516 / 289) * 521 + 12.3)
+			right: `${(PAYMENT_METHOD_BACKGROUND_INITIAL_POSITION_RIGHT / PAGE_INITIAL_WIDTH) * 100}vw`,
+			top: `${(PAYMENT_METHOD_BACKGROUND_INITIAL_POSITION_TOP / PAGE_INITIAL_HEIGHT) * 100}vh`,
+			width: `${(PAYMENT_METHOD_BACKGROUND_INITIAL_WIDTH / PAGE_INITIAL_WIDTH) * 100}vw`,
+			height: `${(PAYMENT_METHOD_BACKGROUND_INITIAL_HEIGHT / PAGE_INITIAL_HEIGHT) * 100}vh`
 		}
 	},
 	{
@@ -28,9 +52,10 @@ export const slides: Array<ISlide> = [
 		title: 'get_help.how_to_ride.start_trip.title',
 		description: 'get_help.how_to_ride.start_trip.description',
 		style: {
-			objectPosition: 13,
-			height: 'calc(100vw * 289 / 375)',
-			maxWidth: pxToRem((516 / 289) * 520 + 13)
+			right: `${(START_TRIP_BACKGROUND_INITIAL_POSITION_RIGHT / PAGE_INITIAL_WIDTH) * 100}vw`,
+			top: `${(START_TRIP_BACKGROUND_INITIAL_POSITION_TOP / PAGE_INITIAL_HEIGHT) * 100}vh`,
+			width: `${(START_TRIP_BACKGROUND_INITIAL_WIDTH / PAGE_INITIAL_WIDTH) * 100}vw`,
+			height: `${(START_TRIP_BACKGROUND_INITIAL_HEIGHT / PAGE_INITIAL_HEIGHT) * 100}vh`
 		}
 	},
 	{
@@ -38,9 +63,10 @@ export const slides: Array<ISlide> = [
 		title: 'get_help.how_to_ride.watch_areas.title',
 		description: 'get_help.how_to_ride.watch_areas.description',
 		style: {
-			objectPosition: 14,
-			height: 'calc(100vw * 288 / 375)',
-			maxWidth: pxToRem((516 / 289) * 519 + 14)
+			right: `${(WATCH_AREAS_BACKGROUND_INITIAL_POSITION_RIGHT / PAGE_INITIAL_WIDTH) * 100}vw`,
+			top: `${(WATCH_AREAS_BACKGROUND_INITIAL_POSITION_TOP / PAGE_INITIAL_HEIGHT) * 100}vh`,
+			width: `${(WATCH_AREAS_BACKGROUND_INITIAL_WIDTH / PAGE_INITIAL_WIDTH) * 100}vw`,
+			height: `${(WATCH_AREAS_BACKGROUND_INITIAL_HEIGHT / PAGE_INITIAL_HEIGHT) * 100}vh`
 		}
 	},
 	{
@@ -48,9 +74,10 @@ export const slides: Array<ISlide> = [
 		title: 'get_help.how_to_ride.trip_status.title',
 		description: 'get_help.how_to_ride.trip_status.description',
 		style: {
-			objectPosition: 32,
-			height: 'calc(100vw * 289 / 375)',
-			maxWidth: pxToRem((524 / 289) * 501 + 32)
+			right: `${(TRIP_STATUS_BACKGROUND_INITIAL_POSITION_RIGHT / PAGE_INITIAL_WIDTH) * 100}vw`,
+			top: `${(TRIP_STATUS_BACKGROUND_INITIAL_POSITION_TOP / PAGE_INITIAL_HEIGHT) * 100}vh`,
+			width: `${(TRIP_STATUS_BACKGROUND_INITIAL_WIDTH / PAGE_INITIAL_WIDTH) * 100}vw`,
+			height: `${(TRIP_STATUS_BACKGROUND_INITIAL_HEIGHT / PAGE_INITIAL_HEIGHT) * 100}vh`
 		}
 	}
 ];
