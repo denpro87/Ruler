@@ -3,7 +3,8 @@ import { font, pxToRem } from 'styles';
 
 const slide: CSSProperties = {
 	position: 'relative',
-	overflow: 'hidden'
+	overflow: 'hidden',
+	justifyContent: 'flex-start'
 };
 
 const imageContainer: CSSProperties = {
