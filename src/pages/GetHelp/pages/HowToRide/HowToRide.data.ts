@@ -30,7 +30,7 @@ export const slides: Array<ISlide> = [
 		title: 'get_help.how_to_ride.scan_qr.title',
 		description: 'get_help.how_to_ride.scan_qr.description',
 		style: {
-			right: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_POSITION_RIGHT / PAGE_INITIAL_WIDTH) * 100}vw`,
+			right: `${(-1 - SCAN_QR_CODE_BACKGROUND_INITIAL_POSITION_RIGHT / PAGE_INITIAL_WIDTH) * 100}vw`,
 			top: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_POSITION_TOP / PAGE_INITIAL_HEIGHT) * 100}vh`,
 			width: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_WIDTH / PAGE_INITIAL_WIDTH) * 100}vw`,
 			height: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_HEIGHT / PAGE_INITIAL_HEIGHT) * 100}vh`
