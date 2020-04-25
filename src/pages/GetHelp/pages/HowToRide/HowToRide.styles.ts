@@ -19,8 +19,7 @@ const pageContent: CSSProperties = {
 
 const footer: CSSProperties = {
 	zIndex: 1,
-	margin: pxToRem(20),
-	width: `calc(100% - ${pxToRem(40)})`,
+	padding: `${pxToRem(20)}`,
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'center',
@@ -37,7 +36,7 @@ const stateWrapper: CSSProperties = {
 	flexDirection: 'row',
 	justifyContent: 'center',
 	alignItems: 'center',
-	padding: `${pxToRem(20)} 0 ${pxToRem(30)} 0`
+	padding: `0 0 ${pxToRem(30)} 0`
 };
 
 const stateItem: CSSProperties = {
