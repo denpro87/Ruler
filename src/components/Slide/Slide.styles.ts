@@ -12,7 +12,7 @@ const imageContainer: CSSProperties = {
 		position: 'absolute',
 		bottom: 0,
 		width: 'auto',
-		height: 'auto',
+		height: '100%',
 		maxWidth: '100%',
 		maxHeight: '100%',
 		userSelect: 'none',

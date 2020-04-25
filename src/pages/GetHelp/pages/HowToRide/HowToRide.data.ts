@@ -23,7 +23,7 @@ import {
 	WATCH_AREAS_BACKGROUND_INITIAL_POSITION_TOP,
 	WATCH_AREAS_BACKGROUND_INITIAL_WIDTH
 } from './HowToRide.variables';
-import { percentage, pxToRem } from 'styles';
+
 export const slides: Array<ISlide> = [
 	{
 		image: require('./images/scan-qr-code.svg'),
