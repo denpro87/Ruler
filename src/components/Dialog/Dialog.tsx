@@ -10,6 +10,7 @@ const useStyles = makeStyles(styles);
 export const Dialog: React.FunctionComponent<IDialogProps> = ({
 	title,
 	image,
+	illustrationName,
 	open,
 	hasClose,
 	onClose,
@@ -18,6 +19,19 @@ export const Dialog: React.FunctionComponent<IDialogProps> = ({
 	...restProps
 }) => {
 	const classes = useStyles();
+	const [imagePath, setImagePath] = React.useState(image);
+
+	React.useEffect(() => {
+		if (illustrationName) {
+			import(`./svg/${illustrationName}.svg`)
+				.then(({ default: illustrationPath }) => {
+					if (illustrationPath) {
+						setImagePath(illustrationPath);
+					}
+				})
+				.catch(() => console.warn(`No icon with the name \`${illustrationName}\` (\`${illustrationName}.svg\`) was found.`));
+		}
+	}, [illustrationName]);
 
 	const handleDeleteAccountClose = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		onClose && onClose(e, 'escapeKeyDown');
@@ -25,7 +39,7 @@ export const Dialog: React.FunctionComponent<IDialogProps> = ({
 
 	return (
 		<MuiDialog open={open} onClose={handleDeleteAccountClose} classes={{ paper: classes.modalPaper }}>
-			<Box className={classes.imgWrapper}>{image && <Image src={image} />}</Box>
+			<Box className={classes.imgWrapper}>{imagePath && <Image src={imagePath} />}</Box>
 			<DialogTitle classes={{ root: classes.dialogTitle }}>
 				<Text color="primary" className={classes.titleTextStyle} block>
 					{title}

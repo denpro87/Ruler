@@ -12,6 +12,7 @@ export interface IImageProps {
 	height?: number;
 	maxWidth?: number;
 	maxHeight?: number;
+	borderRadius?: number;
 	rounded?: boolean;
 	fullWidth?: boolean;
 }
