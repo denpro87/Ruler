@@ -52,11 +52,11 @@ const defaultQuestions = [
 const types = [
 	{
 		type: 'basics',
-		title: 'get-help.faq.basic'
+		title: 'get_help.faq.basic'
 	},
 	{
 		type: 'pricing',
-		title: 'get-help.faq.pricing'
+		title: 'get_help.faq.pricing'
 	}
 ];
 
@@ -72,7 +72,7 @@ export const Faq: React.FunctionComponent = () => {
 	const { formatMessage } = useIntl();
 
 	return (
-		<Page title={formatMessage({ id: 'get-help.faq.title' })} titleSize="medium">
+		<Page title={formatMessage({ id: 'get_help.faq.title' })} titleSize="medium">
 			<SearchBox className={classes.searchBox} onChange={handleSearchBoxChange} />
 			{types.map((type, index) => {
 				const typeQuestions = questions.filter(item => item.type === type.type);

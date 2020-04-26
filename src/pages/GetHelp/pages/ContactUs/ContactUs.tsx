@@ -16,37 +16,37 @@ export const ContactUs: React.FunctionComponent = () => {
 	const { formatMessage } = useIntl();
 
 	return (
-		<Page title={formatMessage({ id: 'get-help.contact-us.title' })} titleSize="medium">
+		<Page title={formatMessage({ id: 'get_help.contact_us.title' })} titleSize="medium">
 			<Paper elevation={0} className={classes.container}>
 				<Box className={classes.li}>
-					<Icon iconName="support" color="#00b559"></Icon>
+					<Icon iconName="support" color="#00b559" />
 					<Typography variant="h6">{info.phoneNumber}</Typography>
 				</Box>
 				<Box className={classes.li}>
-					<Icon iconName="invite" color="#00b559"></Icon>
+					<Icon iconName="invite" color="#00b559" />
 					<Typography variant="h6">{info.email}</Typography>
 				</Box>
 				<div>
 					<Typography variant="h6" className={classes.content}>
-						<FormattedMessage id="get-help.contact-us.email-description" />
+						<FormattedMessage id="get_help.contact_us.email_description" />
 					</Typography>
 				</div>
 				<Box className={classes.li}>
-					<Icon iconName="point" color="#00b559"></Icon>
+					<Icon iconName="point" color="#00b559" />
 					<Typography variant="h6">{info.address}</Typography>
 				</Box>
 				<div>
 					<Typography variant="h6" className={classes.content}>
-						<FormattedMessage id="get-help.contact-us.address-description" />
+						<FormattedMessage id="get_help.contact_us.address_description" />
 					</Typography>
 				</div>
 			</Paper>
 			<div className={classes.buttonWrapper}>
 				<LightGreenButton className={classes.bigButton} iconName="support" onClick={() => console.log('contact your insureance')}>
-					<FormattedMessage id="get-help.contact-us.button.contact-your-insurance" />
+					<FormattedMessage id="get_help.contact_us.button.contact_your_insurance" />
 				</LightGreenButton>
 				<LightGreenButton className={classes.bigButton} iconName="invite" onClick={() => console.log('contact us via email')}>
-					<FormattedMessage id="get-help.contact-us.button.contact-us-via-email" />
+					<FormattedMessage id="get_help.contact_us.button.contact_us_via_email" />
 				</LightGreenButton>
 			</div>
 		</Page>

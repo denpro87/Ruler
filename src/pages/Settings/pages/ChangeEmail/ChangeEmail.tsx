@@ -3,7 +3,6 @@ import { Dialog, GreenButton, Page } from 'components';
 import { styles } from './ChangeEmail.styles';
 import { useIntl } from 'react-intl';
 import React from 'react';
-import manSvg from '../../images/man.svg';
 const useStyles = makeStyles(styles);
 
 export const ChangeEmail: React.FunctionComponent = () => {
@@ -41,7 +40,7 @@ export const ChangeEmail: React.FunctionComponent = () => {
 			<Dialog
 				open={showDialog}
 				hasClose={true}
-				image={manSvg}
+				illustrationName="question"
 				onClose={() => setShowDialog(false)}
 				aria-labelledby="form-dialog-title"
 				title={formatMessage({ id: 'settings.change_email.dialog.title' })}

@@ -46,25 +46,25 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 	};
 
 	return (
-		<Page title={formatMessage({ id: 'driver-licence.title' })} titleSize="large">
-			{state !== 'success' && <Text className={classes.description}>{formatMessage({ id: 'driver-licence.description' })}</Text>}
+		<Page title={formatMessage({ id: 'driver_licence.title' })} titleSize="large">
+			{state !== 'success' && <Text className={classes.description}>{formatMessage({ id: 'driver_licence.description' })}</Text>}
 			{state === 'progress' && (
 				<Box className={classes.submitWrapper}>
 					<Box className={classes.bannerBox}>
-						<Text className={classes.bannerText}>{formatMessage({ id: 'driver-licence.validation.progress.title' })}</Text>
+						<Text className={classes.bannerText}>{formatMessage({ id: 'driver_licence.validation.progress.title' })}</Text>
 					</Box>
-					<Text className={classes.description}>{formatMessage({ id: 'driver-licence.validation.progress.description' })}</Text>
+					<Text className={classes.description}>{formatMessage({ id: 'driver_licence.validation.progress.description' })}</Text>
 				</Box>
 			)}
 			{state === 'invalid' && (
 				<Box className={classes.submitWrapper}>
 					<Box className={classes.bannerBox}>
-						<Text className={classes.bannerText}>{formatMessage({ id: 'driver-licence.validation.invalid.title' })}</Text>
+						<Text className={classes.bannerText}>{formatMessage({ id: 'driver_licence.validation.invalid.title' })}</Text>
 					</Box>
-					<Text className={classes.description}>{formatMessage({ id: 'driver-licence.invalid.description' })}</Text>
+					<Text className={classes.description}>{formatMessage({ id: 'driver_licence.invalid.description' })}</Text>
 					<Box className={classes.buttonWrapper}>
 						<Button iconName="reset" compact fullWidth className={classes.submitButton} href="/driver-licence/add">
-							{formatMessage({ id: 'driver-licence.try_again' })}
+							{formatMessage({ id: 'driver_licence.try_again' })}
 						</Button>
 					</Box>
 				</Box>
@@ -72,14 +72,14 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 			{state === 'success' && (
 				<Box className={classes.submitWrapper}>
 					<Box className={classes.bannerBox}>
-						<Text className={classes.bannerText}>{formatMessage({ id: 'driver-licence.validation.success.title' })}</Text>
+						<Text className={classes.bannerText}>{formatMessage({ id: 'driver_licence.validation.success.title' })}</Text>
 					</Box>
 					{data?.map((item: string, index: number) => (
 						<LicenceItem key={index} imageSrc={item} handleRemoveClick={() => handleRemoveClick(index)} />
 					))}
 					<Box className={classes.buttonWrapper}>
 						<Button iconName="add" compact className={classes.addButton} href="/driver-licence/add">
-							{formatMessage({ id: 'driver-licence.add' })}
+							{formatMessage({ id: 'driver_licence.add' })}
 						</Button>
 					</Box>
 				</Box>

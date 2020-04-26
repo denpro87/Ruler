@@ -10,30 +10,30 @@ const useStyles = makeStyles(styles);
 
 const items = [
 	{
-		title: 'get-help.menu.safety-regulation',
+		title: 'get_help.menu.safety_regulation',
 		href: '/get-help/regulations'
 	},
 	{
-		title: 'get-help.menu.how-to-ride',
+		title: 'get_help.menu.how_to_ride',
 		href: '/get-help/how-to-ride'
 	},
 	{
-		title: 'get-help.menu.faq',
+		title: 'get_help.menu.faq',
 		href: '/get-help/faq'
 	},
 	{
-		title: 'get-help.menu.contact-us',
+		title: 'get_help.menu.contact_us',
 		href: '/get-help/contact-us'
 	},
 	{
-		title: 'get-help.menu.add-report'
+		title: 'get_help.menu.add_report'
 	},
 	{
-		title: 'get-help.menu.my-reports',
+		title: 'get_help.menu.my_reports',
 		href: '/get-help/my-reports'
 	},
 	{
-		title: 'get-help.menu.privacy-policy',
+		title: 'get_help.menu.privacy_policy',
 		href: '/get-help/privacy-policy'
 	}
 ];
@@ -87,21 +87,21 @@ export const GetHelp: React.FunctionComponent = () => {
 				</LightGreenButton>
 			</div>
 			<BottomSheet
-				title={formatMessage({ id: 'get-help.add-report-sheet.title' })}
+				title={formatMessage({ id: 'get_help.add_report_sheet.title' })}
 				open={showAddReport}
 				onBottomSheetChange={handleBottomSheetChange}
 			>
 				<Typography className={classes.sheetText}>
-					<FormattedMessage id="get-help.add-report-sheet.description" />
+					<FormattedMessage id="get_help.add_report_sheet.description" />
 				</Typography>
 				<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
-					<FormattedMessage id="get-help.add-report-sheet.button.badly-parked-vehicle" />
+					<FormattedMessage id="get_help.add_report_sheet.button.badly_parked_vehicle" />
 				</LightGreenButton>
 				<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
-					<FormattedMessage id="get-help.add-report-sheet.button.damaged-vehicle" />
+					<FormattedMessage id="get_help.add_report_sheet.button.damaged_vehicle" />
 				</LightGreenButton>
 				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
-					<FormattedMessage id="get-help.add-report-sheet.button.support" />
+					<FormattedMessage id="get_help.add_report_sheet.button.support" />
 				</LightGreenButton>
 			</BottomSheet>
 		</Page>

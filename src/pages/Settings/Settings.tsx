@@ -2,53 +2,12 @@ import { BlackButton, BlackIcon, Dialog, Page } from 'components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { List, ListItem, ListItemIcon, ListItemText, TextField, Typography, makeStyles } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
+import { menuList } from './Settings.data';
 import { styles } from './Settings.styles';
-
 import React from 'react';
 import clsx from 'clsx';
-import manSvg from './images/man.svg';
 
 const useStyles = makeStyles(styles);
-const items = [
-	{
-		title: 'settings.menu.profile',
-		href: '/settings/profile',
-		iconName: 'name'
-	},
-	{
-		title: 'settings.menu.notifications',
-		href: '/settings/notifications',
-		iconName: 'notification'
-	},
-	{
-		title: 'settings.menu.dark_mode',
-		href: '/settings/dark-mode',
-		iconName: 'dark-mode'
-	},
-	{
-		title: 'settings.menu.language',
-		href: '/settings/languages',
-		iconName: 'language'
-	},
-	{
-		title: 'settings.menu.change_password',
-		href: '/settings/change-password',
-		iconName: 'change-password'
-	},
-	{
-		title: 'settings.menu.change_email',
-		href: '/settings/change-email',
-		iconName: 'invite'
-	},
-	{
-		title: 'settings.menu.delete_account',
-		iconName: 'delete-account'
-	},
-	{
-		title: 'settings.menu.log_out',
-		iconName: 'log-out'
-	}
-];
 
 export const Settings: React.FunctionComponent = () => {
 	const classes = useStyles();
@@ -91,12 +50,12 @@ export const Settings: React.FunctionComponent = () => {
 	return (
 		<Page title={formatMessage({ id: 'settings.title' })} titleSize="large" noHorizontalContentPadding>
 			<List className={classes.list}>
-				{items.map((item, index) =>
+				{menuList.map((item, index) =>
 					item.href ? (
 						<ListItem
 							key={index}
 							button
-							className={clsx(classes.listItem, index === items.length - 1 && classes.last)}
+							className={clsx(classes.listItem, index === menuList.length - 1 && classes.last)}
 							component={RouterLink}
 							to={item.href}
 						>
@@ -110,7 +69,7 @@ export const Settings: React.FunctionComponent = () => {
 							key={index}
 							button
 							onClick={item.title === 'settings.menu.log_out' ? handleLogoutClickOpen : handleDeleteAccountOpen}
-							className={clsx(classes.listItem, index === items.length - 1 && classes.last)}
+							className={clsx(classes.listItem, index === menuList.length - 1 && classes.last)}
 						>
 							<ListItemIcon className={classes.icon}>
 								<BlackIcon iconName={item.iconName} />
@@ -124,7 +83,7 @@ export const Settings: React.FunctionComponent = () => {
 				title={formatMessage({ id: 'settings.logout_dialog.title' })}
 				open={logout}
 				hasClose={true}
-				image={manSvg}
+				illustrationName="question"
 				onClose={handleLogoutClose}
 				aria-labelledby="form-dialog-title"
 			>
@@ -137,7 +96,7 @@ export const Settings: React.FunctionComponent = () => {
 				title={formatMessage({ id: 'settings.delete_account_dialog.title' })}
 				open={deleteAccount}
 				hasClose={true}
-				image={manSvg}
+				illustrationName="question"
 				onClose={handleDeleteAccountClose}
 			>
 				<Typography className={classes.dialogContentText}>{formatMessage({ id: 'settings.delete_account_dialog.description' })}</Typography>

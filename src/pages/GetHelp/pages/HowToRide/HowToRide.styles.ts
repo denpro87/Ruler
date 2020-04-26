@@ -19,19 +19,44 @@ const pageContent: CSSProperties = {
 
 const footer: CSSProperties = {
 	zIndex: 1,
-	margin: pxToRem(20),
-	width: `calc(100% - ${pxToRem(40)})`,
+	padding: `${pxToRem(20)}`,
 	display: 'flex',
-	justifyContent: 'center'
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignItems: 'center'
 };
 
 const skipButton: CSSProperties = {
 	maxWidth: pxToRem(335),
 	maxHeight: pxToRem(50)
 };
+
+const stateWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'center',
+	alignItems: 'center',
+	padding: `0 0 ${pxToRem(30)} 0`
+};
+
+const stateItem: CSSProperties = {
+	width: pxToRem(4),
+	height: pxToRem(4),
+	backgroundColor: '#00b559',
+	margin: `0 ${pxToRem(5)}`,
+	borderRadius: pxToRem(10)
+};
+
+const currentStateItem: CSSProperties = {
+	width: pxToRem(30)
+};
+
 export const styles = createStyles({
 	pageHeader,
 	pageContent,
 	footer,
-	skipButton
+	skipButton,
+	stateWrapper,
+	stateItem,
+	currentStateItem
 });

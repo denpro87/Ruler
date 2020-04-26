@@ -4,7 +4,6 @@ import { IChangePasswordProps, IChangePasswordState } from './ChangePassword.typ
 import { injectIntl } from 'react-intl';
 import { styles } from './ChangePassword.styles';
 import React from 'react';
-import manSvg from '../../images/man.svg';
 
 const useStyles = makeStyles(styles);
 
@@ -59,7 +58,7 @@ class ChangePasswordPage extends React.Component<IChangePasswordProps, IChangePa
 						<Dialog
 							open={this.state.showDialog}
 							hasClose={true}
-							image={manSvg}
+							illustrationName="question"
 							onClose={() => this.setState({ showDialog: false })}
 							aria-labelledby="form-dialog-title"
 							title={formatMessage({ id: 'settings.change_password.dialog.title' })}

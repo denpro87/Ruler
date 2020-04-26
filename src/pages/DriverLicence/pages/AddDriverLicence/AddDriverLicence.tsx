@@ -57,19 +57,19 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page title={formatMessage({ id: 'driver-licence.title' })} titleSize="large">
-			<Text className={classes.description}>{formatMessage({ id: 'driver-licence.description' })}</Text>
+		<Page title={formatMessage({ id: 'driver_licence.title' })} titleSize="large">
+			<Text className={classes.description}>{formatMessage({ id: 'driver_licence.description' })}</Text>
 			<Box className={classes.buttonContainer}>
 				<Box className={classes.cardBox}>
 					<Box className={classes.photoAspectRatioBox}>
 						<Box className={classes.photoAspectRatioBoxInside}>
 							{frontPhoto ? (
 								<Box className={classes.cardImageContainer}>
-									<IonImg className={classes.cardImage} src={frontPhoto}></IonImg>
+									<IonImg className={classes.cardImage} src={frontPhoto} />
 									<Box className={classes.imageCover}>
 										<Icon iconName="well-done-checked" color="#ffffff" />
 										<Text className={classes.cardText} color="#ffffff">
-											{formatMessage({ id: 'driver-licence.front_side' })}
+											{formatMessage({ id: 'driver_licence.front_side' })}
 										</Text>
 									</Box>
 									<IconButton className={classes.closeIcon} onClick={() => removePhoto('front')} iconName="close" />
@@ -77,23 +77,23 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 							) : (
 								<Box className={classes.cardButton} onClick={() => takePhoto('front')}>
 									<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
-									<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.front_side' })}</Text>
+									<Text className={classes.cardText}>{formatMessage({ id: 'driver_licence.front_side' })}</Text>
 								</Box>
 							)}
 						</Box>
 					</Box>
-					<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.driver.photograph' })}</Text>
+					<Text className={classes.descriptionText}>{formatMessage({ id: 'driver_licence.driver.photograph' })}</Text>
 				</Box>
 				<Box className={classes.cardBox}>
 					<Box className={classes.photoAspectRatioBox}>
 						<Box className={classes.photoAspectRatioBoxInside}>
 							{backPhoto ? (
 								<Box className={classes.cardImageContainer}>
-									<IonImg className={classes.cardImage} src={backPhoto}></IonImg>
+									<IonImg className={classes.cardImage} src={backPhoto} />
 									<Box className={classes.imageCover}>
 										<Icon iconName="well-done-checked" color="#ffffff" />
 										<Text className={classes.cardText} color="#ffffff">
-											{formatMessage({ id: 'driver-licence.back_side' })}
+											{formatMessage({ id: 'driver_licence.back_side' })}
 										</Text>
 									</Box>
 									<IconButton className={classes.closeIcon} onClick={() => removePhoto('back')} iconName="close" />
@@ -101,12 +101,12 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 							) : (
 								<Box className={classes.cardButton} onClick={() => takePhoto('back')}>
 									<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
-									<Text className={classes.cardText}>{formatMessage({ id: 'driver-licence.back_side' })}</Text>
+									<Text className={classes.cardText}>{formatMessage({ id: 'driver_licence.back_side' })}</Text>
 								</Box>
 							)}
 						</Box>
 					</Box>
-					<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.vehicle.info' })}s</Text>
+					<Text className={classes.descriptionText}>{formatMessage({ id: 'driver_licence.vehicle.info' })}s</Text>
 				</Box>
 			</Box>
 			<Box className={classes.footer}>
@@ -118,19 +118,19 @@ export const AddDriveLicence: React.FunctionComponent = () => {
 					disabled={isSubmitDisabled}
 					onClick={() => submit()}
 				>
-					{formatMessage({ id: 'driver-licence.submit_for_validation' })}
+					{formatMessage({ id: 'driver_licence.submit_for_validation' })}
 				</Button>
-				<Text className={classes.descriptionText}>{formatMessage({ id: 'driver-licence.submit.description' })}</Text>
+				<Text className={classes.descriptionText}>{formatMessage({ id: 'driver_licence.submit.description' })}</Text>
 			</Box>
 			<Dialog
-				title={formatMessage({ id: 'driver-licence.submit_success.dialog.title' })}
+				title={formatMessage({ id: 'driver_licence.submit_success.dialog.title' })}
 				open={isSubmitSuccessModal}
 				hasClose={true}
 				illustrationName="sent"
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"
 			>
-				<Text className={classes.dialogContentText}>{formatMessage({ id: 'driver-licence.submit_success.dialog.description' })}</Text>
+				<Text className={classes.dialogContentText}>{formatMessage({ id: 'driver_licence.submit_success.dialog.description' })}</Text>
 			</Dialog>
 		</Page>
 	);
