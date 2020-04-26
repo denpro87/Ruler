@@ -1,5 +1,4 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
-import { DEFAULT_PAGE_SAFE_AREA_BOTTOM, DEFAULT_PAGE_SAFE_AREA_TOP } from './Page.variables';
 import { font, pxToRem } from 'styles';
 
 const pageBody: CSSProperties = {
@@ -50,8 +49,7 @@ const pageHeader: CSSProperties = {
 	flexBasis: 'auto',
 	flexGrow: 0,
 	flexShrink: 0,
-	padding: `${pxToRem(20 + DEFAULT_PAGE_SAFE_AREA_TOP)} ${pxToRem(10)} ${pxToRem(20)}`,
-	paddingBottom: pxToRem(10)
+	padding: `calc(${pxToRem(20)} + var(--ion-safe-area-top, 0)) ${pxToRem(10)} ${pxToRem(10)}`
 };
 
 const pageHeaderInner: CSSProperties = {
@@ -65,8 +63,10 @@ const pageContent: CreateCSSProperties = {
 	flexBasis: 'auto',
 	flexGrow: 1,
 	flexShrink: 0,
-	padding: (props: any) => (props.noHorizontalContentPadding ? 0 : props.hasPageHeader ? `0 ${pxToRem(20)}` : pxToRem(20)),
-	paddingBottom: DEFAULT_PAGE_SAFE_AREA_BOTTOM
+	padding: (props: any) =>
+		`${props.hasPageHeader ? 0 : pxToRem(20)} ${props.noHorizontalContentPadding ? 0 : pxToRem(20)} calc(${pxToRem(
+			20
+		)} + var(--ion-safe-area-bottom, 0))`
 };
 
 const pageTitle: CreateCSSProperties = {
