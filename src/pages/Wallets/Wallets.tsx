@@ -7,6 +7,7 @@ import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import React from 'react';
 import clsx from 'clsx';
+
 const useStyles = makeStyles(styles);
 
 export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
