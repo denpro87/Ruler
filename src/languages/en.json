@@ -115,5 +115,6 @@
 	"welcome.text.sign-in-with-socials": "Sign in with socials",
 	"welcome.text.already-have-an-account": "Already have an account?",
 	"welcome.text.login": "Login in",
-	"welcome.button.create-account": "Create account"
+	"welcome.button.create-account": "Create account",
+	"news.title": "News"
 }
