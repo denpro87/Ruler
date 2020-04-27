@@ -103,7 +103,8 @@ const wordNumber: CSSProperties = {
 		lineHeight: 1.67
 	}),
 	fontSize: pxToRem(15),
-	opacity: 'rgba(24, 28, 25, 0.5)'
+	color: 'rgba(24, 28, 25, 0.5)',
+	marginRight: pxToRem(5)
 };
 const wordName: CSSProperties = {
 	...font({
