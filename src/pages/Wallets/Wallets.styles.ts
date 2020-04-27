@@ -88,12 +88,7 @@ const paymentTemplateButton: CSSProperties = {
 	padding: `${pxToRem(10)} ${pxToRem(20)} ${pxToRem(10)} ${pxToRem(25)}`,
 	marginLeft: pxToRem(10),
 	fontWeight: 'bold',
-	'&.to-friend': {
-		minWidth: pxToRem(183)
-	},
-	'&.to-wife': {
-		minWidth: pxToRem(140)
-	},
+	minWidth: 'fit-content',
 	'& .MuiButton-label> span': {
 		whiteSpace: 'nowrap'
 	}
