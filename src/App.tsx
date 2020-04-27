@@ -2,6 +2,7 @@ import * as DriverLicence from 'pages/DriverLicence';
 import * as GetHelp from 'pages/GetHelp';
 import * as News from 'pages/News';
 import * as Settings from 'pages/Settings';
+import * as Wallets from 'pages/Wallets';
 import { Home, ServiceProviders, Splash, Welcome } from 'pages';
 
 import { CssBaseline } from '@material-ui/core';
@@ -51,6 +52,7 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/get-help/regulations-scooter" component={GetHelp.SafetyScooter} exact />
 						<Route path="/get-help/my-reports" component={GetHelp.MyReports} exact />
 						<Route path="/get-help/how-to-ride" component={GetHelp.HowToRide} exact />
+						<Route path="/wallets" component={Wallets.Wallets} exact />
 						<Route exact path="/" render={() => <Redirect to="/splash" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>

@@ -110,5 +110,15 @@
   "get_help.how_to_ride.watch_areas.title": "Watch the areas",
   "get_help.how_to_ride.watch_areas.description": "There are certain zones highlighted as red points on the map e.g. a no-parking zone. Please pay attention to these zones.",
   "get_help.how_to_ride.trip_status.title": "Manage trip status",
-  "get_help.how_to_ride.trip_status.description": "Changing a trip status is important as it help us track your ride. For a bike, a trip can either be Unlocked, In-ride, Finished, and Completed."
+  "get_help.how_to_ride.trip_status.description": "Changing a trip status is important as it help us track your ride. For a bike, a trip can either be Unlocked, In-ride, Finished, and Completed.",
+  "wallets.title": "Wallets",
+  "wallets.logo_title": "Ruler Wallet",
+  "wallets.payment_templates": "Payment templates",
+  "wallets.to_my_friend": "To my friend",
+  "wallets.to_wife": "To wife",
+  "wallets.add_wallet": "Add Wallet",
+  "wallets.transfer": "Transfer",
+  "wallets.add_funds": "Add Funds",
+  "wallets.create_wallet.dialog.title": "Wallet created!",
+  "wallets.create_wallet.dialog.description": "Your crypto wallet has been successfully created!"
 }
