@@ -120,5 +120,11 @@
   "wallets.transfer": "Transfer",
   "wallets.add_funds": "Add Funds",
   "wallets.create_wallet.dialog.title": "Wallet created!",
-  "wallets.create_wallet.dialog.description": "Your crypto wallet has been successfully created!"
+  "wallets.create_wallet.dialog.description": "Your crypto wallet has been successfully created!",
+  "wallets.create_wallet.title": "Create Wallet",
+  "wallets.create_wallet.ruler_token": "Ruler Token",
+  "wallets.create_wallet.ethereum": "Ethereum",
+  "wallets.create_wallet.bitcoin": "Bitcoin",
+  "wallets.create_wallet.bnb_token": "BNB Token",
+  "wallets.create_wallet.next": "Next"
 }

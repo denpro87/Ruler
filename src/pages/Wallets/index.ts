@@ -1,2 +1,2 @@
 export * from './Wallets';
-// export * from './pages';
+export * from './pages';

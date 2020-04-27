@@ -53,6 +53,7 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/get-help/my-reports" component={GetHelp.MyReports} exact />
 						<Route path="/get-help/how-to-ride" component={GetHelp.HowToRide} exact />
 						<Route path="/wallets" component={Wallets.Wallets} exact />
+						<Route path="/wallets/create-wallet" component={Wallets.CreateWallet} exact />
 						<Route exact path="/" render={() => <Redirect to="/splash" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>
