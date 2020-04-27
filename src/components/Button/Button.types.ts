@@ -10,6 +10,7 @@ export interface IButtonProps extends Omit<ButtonProps, 'disableElevation' | 'si
 	colorType?: ButtonColorType;
 	href?: string;
 	iconName?: IIconProps['iconName'];
+	iconPosition?: 'left' | 'right';
 	iconProps?: IIconProps;
 	compact?: boolean;
 	textColor?: string;

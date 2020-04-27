@@ -19,6 +19,7 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 	disabledTextColor = textColor,
 	disabledBackgroundColor = getColorFromColorType(colorType!, 'disabledBackground') || backgroundColor,
 	href,
+	iconPosition,
 	iconName,
 	iconProps = {},
 	compact,
@@ -52,8 +53,9 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 			href={href}
 			{...restProps}
 		>
-			{hasIcon && <Icon {...iconProps} />}
+			{hasIcon && iconPosition !== 'right' && <Icon {...iconProps} />}
 			<span className={classes.buttonText}>{children}</span>
+			{hasIcon && iconPosition === 'right' && <Icon {...iconProps} />}
 		</MuiButton>
 	);
 };
