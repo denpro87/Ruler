@@ -6,12 +6,18 @@ import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
 
+const copy = require('clipboard-copy');
 const useStyles = makeStyles(styles);
 
 export const CreateWalletStore: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
 	const history = useHistory();
+
+	const handleCopyClick = () => {
+		const wordsOrder = createWalletWords.join(',');
+		copy(wordsOrder);
+	};
 
 	return (
 		<Page title={formatMessage({ id: 'wallets.create_wallet.title' })} titleSize="medium" noHorizontalContentPadding>
@@ -24,7 +30,7 @@ export const CreateWalletStore: React.FunctionComponent = () => {
 					</Box>
 				))}
 			</Box>
-			<Button className={classes.copyButton} iconName="copy" compact fullWidth={false}>
+			<Button className={classes.copyButton} iconName="copy" compact fullWidth={false} onClick={handleCopyClick}>
 				{formatMessage({ id: 'wallets.create_wallet.store.copy' })}
 			</Button>
 			<Box className={classes.footer}>
