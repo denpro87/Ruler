@@ -11,13 +11,18 @@ const listItem: CSSProperties = {
 	marginBottom: pxToRem(15),
 	border: `solid ${pxToRem(2)} #f3f3f3`,
 	padding: pxToRem(20),
+	'& .MuiListItemIcon-root': {
+		minWidth: pxToRem(30)
+	},
 	'& .MuiListItemText-primary': {
 		...font({
 			fontWeight: 'bold',
 			lineHeight: 1.67,
 			color: '#181c19'
 		}),
-		fontSize: pxToRem(15)
+		fontSize: pxToRem(15),
+		textAlign: 'center',
+		marginLeft: pxToRem(-30)
 	}
 };
 
