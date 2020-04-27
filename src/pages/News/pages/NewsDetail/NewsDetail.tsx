@@ -9,7 +9,6 @@ const useStyles = makeStyles(styles);
 
 export const NewsDetail: React.FunctionComponent<INewsDetailProps> = props => {
 	const classes = useStyles();
-	console.log('333', props);
 
 	return (
 		<Page className={classes.detailContainer} headerLink="Open in browser">
