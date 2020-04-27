@@ -19,7 +19,7 @@ export const CreateWalletStore: React.FunctionComponent = () => {
 			<Box className={classes.wordWrapper}>
 				{createWalletWords.map((createWalletWord, index) => (
 					<Box key={index} className={classes.wordButton}>
-						<Text className={classes.wordNumber}>{index + 1}.</Text>&nbsp;
+						<Text className={classes.wordNumber}>{index + 1}.</Text>
 						<Text className={classes.wordName}>{createWalletWord.toLowerCase()}</Text>
 					</Box>
 				))}
