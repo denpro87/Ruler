@@ -126,5 +126,6 @@
   "wallets.create_wallet.ethereum": "Ethereum",
   "wallets.create_wallet.bitcoin": "Bitcoin",
   "wallets.create_wallet.bnb_token": "BNB Token",
-  "wallets.create_wallet.next": "Next"
+  "wallets.create_wallet.next": "Next",
+  "wallets.create_wallet.description": "In the next step, you will see 9 words that will allow you to restore your wallet. If you lose the secret words you would lose access to your wallet"
 }

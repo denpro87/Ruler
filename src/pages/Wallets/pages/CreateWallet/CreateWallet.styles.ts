@@ -1,9 +1,16 @@
+import {
+	CREATE_WALLET_IMAGE_INITIAL_HEIGHT,
+	CREATE_WALLET_IMAGE_INITIAL_POSITION_RIGHT,
+	CREATE_WALLET_IMAGE_INITIAL_WIDTH,
+	CREATE_WALLET_PAGE_INITIAL_HEIGHT,
+	CREATE_WALLET_PAGE_INITIAL_WIDTH
+} from './CreateWalletDescription.variables';
 import { CSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
 const walletItemList: CSSProperties = {
-	paddingTop: pxToRem(25)
+	paddingTop: pxToRem(30)
 };
 
 const listItem: CSSProperties = {
@@ -35,9 +42,56 @@ const nextButton: CSSProperties = {
 	fontWeight: 'bold'
 };
 
+const descriptionContent: CSSProperties = {
+	position: 'relative'
+};
+
+const descriptionImageWrapper: CSSProperties = {
+	zIndex: -1,
+	position: 'absolute',
+	whiteSpace: 'nowrap',
+	overflow: 'visible',
+	right: `${(CREATE_WALLET_IMAGE_INITIAL_POSITION_RIGHT / CREATE_WALLET_PAGE_INITIAL_WIDTH) * 100}vw`,
+	top: 0,
+	width: `${(CREATE_WALLET_IMAGE_INITIAL_WIDTH / CREATE_WALLET_PAGE_INITIAL_WIDTH) * 100}vw`,
+	height: `${(CREATE_WALLET_IMAGE_INITIAL_HEIGHT / CREATE_WALLET_PAGE_INITIAL_HEIGHT) * 100}vh`
+};
+
+const descriptionImage: CSSProperties = {
+	position: 'absolute',
+	bottom: 0,
+	right: 0,
+	width: '100%',
+	height: '100%',
+	maxWidth: '100%',
+	maxHeight: '100%',
+	userSelect: 'none',
+	userDrag: 'none'
+};
+
+const description: CSSProperties = {
+	...font({
+		fontWeight: 600,
+		lineHeight: 1.67,
+		color: 'rgba(0, 0, 0, 0.5)'
+	}),
+	fontSize: pxToRem(15),
+	padding: `0 ${pxToRem(20)} ${pxToRem(14)} ${pxToRem(20)}`
+};
+
+const footer: CSSProperties = {
+	marginTop: 'auto',
+	padding: `${pxToRem(20)} ${pxToRem(20)} 0 ${pxToRem(20)}`
+};
+
 export const styles = createStyles({
 	walletItemList,
 	listItem,
 	activeListItem,
-	nextButton
+	footer,
+	nextButton,
+	descriptionContent,
+	descriptionImageWrapper,
+	descriptionImage,
+	description
 });
