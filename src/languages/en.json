@@ -117,6 +117,7 @@
 	"welcome.text.login": "Login in",
 	"welcome.button.create-account": "Create account",
 	"news.title": "News",
+	"news-detail.text.open-in-browser": "Open in browser",
 	"service-providers.title": "Service Providers",
 	"service-providers.text.about": "About",
 	"service-providers.text.price": "Price",
