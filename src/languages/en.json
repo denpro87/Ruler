@@ -131,5 +131,12 @@
   "wallets.create_wallet.store.description": "Record or copy these words in the correct order and store them in a safe place.",
   "wallets.create_wallet.store.copy": "Copy",
   "wallets.create_wallet.place.description": "Click on words to place them next to each other in the correct order",
-  "wallets.create_wallet.place.error_message": "Wrong order! Try one more time"
+  "wallets.create_wallet.place.error_message": "Wrong order! Try one more time",
+  "wallets.add_funds.title": "Add Funds",
+  "wallets.add_funds.helper_text.wallet_type": "Choose the wallet you want to add funds",
+  "wallets.add_funds.helper_text.ruler_bonus": "Choose Ruler and get bonus!",
+  "wallets.add_funds.helper_text.amount_description": "Insert amount",
+  "wallets.add_funds.helper_text.payment_method": "Choose payment method",
+  "wallets.add_funds.credit_card": "Credit card",
+  "wallets.add_funds.paypal": "Paypal"
 }
