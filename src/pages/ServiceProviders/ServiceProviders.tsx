@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/styles';
 import { styles } from './ServiceProviders.styles';
 import { unifyIdentifier } from 'utils';
 import { useHistory, useParams } from 'react-router';
+import { useIntl } from 'react-intl';
 import React from 'react';
 import providersData from './providers-data.json';
 
@@ -16,44 +17,43 @@ export const ServiceProviders: React.FunctionComponent<IServiceProvidersProps> =
 	const history = useHistory();
 	const params = useParams<{ provider?: string }>();
 	const classes = useStyles();
+	const { formatMessage } = useIntl();
 
 	const currentProviderName = params.provider && unifyIdentifier(params.provider);
 	const currentProvider =
 		currentProviderName &&
-		providersData.providers.find(provider => {
-			const providerName = unifyIdentifier(provider.name);
-
-			return providerName === currentProviderName;
-		});
+		providersData.providers.find(provider => unifyIdentifier(formatMessage({ id: provider.name })) === currentProviderName);
 
 	const handleProviderClick = (provider: string) => () => history.push(`/service-providers/${provider}`);
 
+	const title = currentProvider ? formatMessage({ id: currentProvider.name }) : formatMessage({ id: 'service_providers.title' });
+
 	return (
-		<Page title="Service Providers" titleSize="large" noHorizontalContentPadding>
+		<Page title={title} titleSize="large" noHorizontalContentPadding>
 			<List className={classes.providerList}>
 				{currentProvider
 					? currentProvider.paragraphs.map((paragraph, i) => (
 							<ProviderListItem
-								key={i}
-								primaryText={paragraph.title}
-								secondaryText={paragraph.text}
+								key={paragraph.title}
+								primaryText={formatMessage({ id: paragraph.title })}
+								secondaryText={formatMessage({ id: paragraph.text })}
 								providerIconProps={{
 									src: resolvePath(currentProvider.logo),
-									alt: currentProvider.name
+									alt: formatMessage({ id: currentProvider.name })
 								}}
 							/>
 					  ))
 					: providersData.providers.map((provider, i) => (
 							<ProviderListItem
-								key={i}
-								primaryText={provider.name}
-								secondaryText={provider.subtext}
+								key={provider.name}
+								primaryText={formatMessage({ id: provider.name })}
+								secondaryText={formatMessage({ id: provider.subtext })}
 								canGoTo
 								providerIconProps={{
 									src: resolvePath(provider.logo),
-									alt: provider.name
+									alt: formatMessage({ id: provider.name })
 								}}
-								onClick={handleProviderClick(unifyIdentifier(provider.name))}
+								onClick={handleProviderClick(unifyIdentifier(formatMessage({ id: provider.name })))}
 							/>
 					  ))}
 			</List>

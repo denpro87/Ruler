@@ -1,5 +1,6 @@
 import { BlackButton, FullPage, Link, SocialIconButton, Text } from 'components';
 import { Box, makeStyles } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 import { Stack } from '@fluentui/react';
 import { styles } from './Welcome.styles';
 import React from 'react';
@@ -21,15 +22,15 @@ export const Welcome: React.FunctionComponent = () => {
 				<Stack horizontalAlign="stretch" verticalAlign="space-between" verticalFill>
 					<Stack.Item>
 						<Text className={classes.welcomeText} block>
-							Welcome to Ruler!
+							<FormattedMessage id="welcome.text.welcome_to_ruler" />
 						</Text>
 						<BlackButton iconName="create-account" compact>
-							Create account
+							<FormattedMessage id="welcome.button.create_account" />
 						</BlackButton>
 					</Stack.Item>
 					<Stack.Item>
 						<Text className={classes.signInWithSocialsText} block>
-							Sign in with socials
+							<FormattedMessage id="welcome.text.sign_in_with_socials" />
 						</Text>
 						<Stack horizontal horizontalAlign="space-between" verticalAlign="center">
 							<SocialIconButton iconName="apple" />
@@ -41,7 +42,10 @@ export const Welcome: React.FunctionComponent = () => {
 
 					<Stack.Item>
 						<Text className={classes.alreadyHaveAnAccountText} block>
-							Already have an account? <Link>Log in</Link>
+							<FormattedMessage id="welcome.text.already_have_an_account" />
+							<Link>
+								<FormattedMessage id="welcome.text.login" />
+							</Link>
 						</Text>
 					</Stack.Item>
 				</Stack>
