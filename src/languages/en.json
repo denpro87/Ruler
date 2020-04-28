@@ -138,5 +138,13 @@
   "wallets.add_funds.helper_text.amount_description": "Insert amount",
   "wallets.add_funds.helper_text.payment_method": "Choose payment method",
   "wallets.add_funds.credit_card": "Credit card",
-  "wallets.add_funds.paypal": "Paypal"
+  "wallets.add_funds.paypal": "Paypal",
+  "wallets.add_credit_card.title": "Add Credit Card",
+  "wallets.add_credit_card.card_owner_name": "Card Owner Name",
+  "wallets.add_credit_card.card_number": "Card number",
+  "wallets.add_credit_card.cvc": "CVC",
+  "wallets.add_credit_card.card_country": "Card country",
+  "wallets.add_credit_card.zip_code": "Billing zip code",
+  "wallets.add_credit_card.save_payment_method": "Save payment method",
+  "wallets.add_credit_card.add_pay": "  Add and Pay"
 }

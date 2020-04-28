@@ -43,11 +43,41 @@ const helperText: CSSProperties = {
 	textAlign: 'center'
 };
 
+const cardInputWrapper: CSSProperties = {
+	paddingTop: pxToRem(25),
+	flex: 1,
+	'& .MuiTextField-root': {
+		marginBottom: pxToRem(35)
+	}
+};
+
+const cardCredentialWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-between',
+	'& .MuiTextField-root:first-child': {
+		marginRight: pxToRem(17.5)
+	},
+	'& .MuiTextField-root:last-child': {
+		marginLeft: pxToRem(17.5)
+	}
+};
+
+const footer: CSSProperties = {
+	'& button': {
+		fontWeight: 'bold',
+		marginTop: pxToRem(30)
+	}
+};
+
 export const styles = createStyles({
 	addFundsWrapper,
 	walletType,
 	insertAmount,
 	selectItem,
 	helperText,
-	rulerPriceBonusButtonGroup
+	rulerPriceBonusButtonGroup,
+	cardInputWrapper,
+	cardCredentialWrapper,
+	footer
 });

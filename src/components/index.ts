@@ -20,3 +20,4 @@ export * from './DateTimePicker';
 export * from './Slide';
 export * from './Divider';
 export * from './Footer';
+export * from './CheckBox';
