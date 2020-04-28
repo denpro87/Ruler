@@ -14,6 +14,7 @@ export const rulerPriceBonusData: Array<IRulerPriceBonusProps> = [
 		rulerBonus: '+25%'
 	}
 ];
+
 export const walletTypes: Array<IOptionType> = [
 	{
 		value: 'ruler_token',
@@ -32,6 +33,7 @@ export const walletTypes: Array<IOptionType> = [
 		label: 'wallets.create_wallet.bnb_token'
 	}
 ];
+
 export const paymentMethodTypes: Array<IOptionType> = [
 	{
 		value: 'credit_card',
