@@ -6,7 +6,6 @@ import { styles } from './AddFunds.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
-import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
 
@@ -50,9 +49,7 @@ export const AddFunds: React.FunctionComponent = () => {
 						</MenuItem>
 					))}
 				</Select>
-				<Text className={clsx(classes.helperText, classes.textCenter)}>
-					{formatMessage({ id: 'wallets.add_funds.helper_text.ruler_bonus' })}
-				</Text>
+				<Text className={classes.helperText}>{formatMessage({ id: 'wallets.add_funds.helper_text.ruler_bonus' })}</Text>
 				<Box className={classes.rulerPriceBonusButtonGroup}>
 					{rulerPriceBonusData.map((data, index) => (
 						<RulerButton
