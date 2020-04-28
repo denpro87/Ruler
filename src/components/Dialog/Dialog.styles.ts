@@ -54,10 +54,10 @@ const modalPaper: CSSProperties = {
 	color: 'black',
 	overflowY: 'visible',
 	textAlign: 'center',
-	padding: pxToRem(30)
+	padding: `${pxToRem(30)} 0`
 };
 const imgWrapper: CSSProperties = {
-	margin: `${pxToRem(-114)} auto 0 auto`,
+	margin: `${pxToRem(-114)} 53.3px 0 auto`,
 	width: 'fit-content',
 	height: 'fit-content'
 };
@@ -80,7 +80,7 @@ const dialogTitle: CSSProperties = {
 	})
 };
 const dialogContent: CSSProperties = {
-	padding: 0
+	padding: `0 ${pxToRem(30)}`
 };
 export const styles = createStyles({
 	dialogContent,

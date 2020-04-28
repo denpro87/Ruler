@@ -24,7 +24,7 @@ export const CreateWalletStore: React.FunctionComponent = () => {
 			<Text className={classes.description}>{formatMessage({ id: 'wallets.create_wallet.store.description' })}</Text>
 			<Box className={classes.wordWrapper}>
 				{createWalletWords.map((createWalletWord, index) => (
-					<Box key={index} className={classes.wordButton}>
+					<Box key={index} className={classes.wordText}>
 						<Text className={classes.wordNumber}>{index + 1}.</Text>
 						<Text className={classes.wordName}>{createWalletWord.toLowerCase()}</Text>
 					</Box>
@@ -34,7 +34,7 @@ export const CreateWalletStore: React.FunctionComponent = () => {
 				{formatMessage({ id: 'wallets.create_wallet.store.copy' })}
 			</Button>
 			<Box className={classes.footer}>
-				<GreenButton className={classes.nextButton} onClick={() => history.push('/wallets/create-wallet-check')}>
+				<GreenButton className={classes.nextButton} onClick={() => history.push('/wallets/create-wallet-place')}>
 					{formatMessage({ id: 'wallets.create_wallet.next' })}
 				</GreenButton>
 			</Box>

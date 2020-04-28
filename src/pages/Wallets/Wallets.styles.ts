@@ -89,6 +89,9 @@ const paymentTemplateButton: CSSProperties = {
 	marginLeft: pxToRem(10),
 	fontWeight: 'bold',
 	minWidth: 'fit-content',
+	'&:hover': {
+		backgroundColor: 'rgba(0, 0, 0, 0.2)'
+	},
 	'& .MuiButton-label> span': {
 		whiteSpace: 'nowrap'
 	}
@@ -126,7 +129,7 @@ const dialogContentText: CSSProperties = {
 	lineHeight: 1.5,
 	color: '#181c19',
 	opacity: 0.5,
-	padding: `${pxToRem(10)} ${pxToRem(10)} ${pxToRem(5)} ${pxToRem(10)}`
+	padding: `${pxToRem(10)} ${pxToRem(10)} 0 ${pxToRem(10)}`
 };
 
 export const styles = createStyles({
