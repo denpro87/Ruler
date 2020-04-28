@@ -37,6 +37,11 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 		history.push('/wallets/template');
 	};
 
+	const handleDialogClose = () => {
+		setShowDialog(false);
+		history.replace('/wallets');
+	};
+
 	return (
 		<Page title={formatMessage({ id: 'wallets.title' })} titleSize="large" headerLink="Payment methods" noHorizontalContentPadding>
 			<Box className={classes.walletsLogoContainer}>
@@ -84,7 +89,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 				open={showDialog}
 				hasClose={true}
 				illustrationName="superman"
-				onClose={(): void => setShowDialog(false)}
+				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"
 				title={formatMessage({ id: 'wallets.create_wallet.dialog.title' })}
 			>

@@ -129,5 +129,7 @@
   "wallets.create_wallet.next": "Next",
   "wallets.create_wallet.description": "In the next step, you will see 9 words that will allow you to restore your wallet. If you lose the secret words you would lose access to your wallet",
   "wallets.create_wallet.store.description": "Record or copy these words in the correct order and store them in a safe place.",
-  "wallets.create_wallet.store.copy": "Copy"
+  "wallets.create_wallet.store.copy": "Copy",
+  "wallets.create_wallet.place.description": "Click on words to place them next to each other in the correct order",
+  "wallets.create_wallet.place.error_message": "Wrong order! Try one more time"
 }

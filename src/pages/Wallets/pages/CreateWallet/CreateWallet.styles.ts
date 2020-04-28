@@ -5,7 +5,7 @@ import {
 	CREATE_WALLET_PAGE_INITIAL_HEIGHT,
 	CREATE_WALLET_PAGE_INITIAL_WIDTH
 } from './CreateWalletDescription.variables';
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
@@ -84,17 +84,43 @@ const footer: CSSProperties = {
 	padding: `${pxToRem(20)} ${pxToRem(20)} 0 ${pxToRem(20)}`
 };
 
-const wordWrapper: CSSProperties = {
+const wordWrapper: CreateCSSProperties = {
 	display: 'flex',
 	flexFlow: 'wrap',
-	padding: `${pxToRem(15)} ${pxToRem(10)} ${pxToRem(20)} ${pxToRem(20)}`
+	padding: (props: any) => `${pxToRem(5)} ${pxToRem(10)} ${props.isShowError ? 0 : pxToRem(15)} ${pxToRem(20)}`
 };
 
-const wordButton: CSSProperties = {
-	margin: `0 ${pxToRem(10)} ${pxToRem(10)} 0`,
+const wordText: CSSProperties = {
+	margin: `${pxToRem(10)} ${pxToRem(10)} 0 0`,
 	borderRadius: pxToRem(100),
 	padding: `${pxToRem(8)} ${pxToRem(20)} ${pxToRem(7)} ${pxToRem(20)}`,
 	border: `solid ${pxToRem(2)} #f3f3f3`
+};
+
+const unsetWordText: CSSProperties = {
+	margin: `${pxToRem(10)} ${pxToRem(10)} 0 0`,
+	borderRadius: pxToRem(100),
+	padding: `${pxToRem(8)} ${pxToRem(20)} ${pxToRem(7)} ${pxToRem(20)}`,
+	border: `dashed ${pxToRem(2)} #f3f3f3`,
+	'& span': {
+		color: '#ffffff'
+	}
+};
+
+const wordButtonWrapper: CSSProperties = {
+	backgroundColor: '#f3f3f3'
+};
+
+const wordButton: CSSProperties = {
+	backgroundColor: '#ffffff',
+	width: 'fit-content',
+	lineHeight: 1.67,
+	'& .MuiButton-label': {
+		minHeight: 'unset'
+	},
+	'&:hover': {
+		backgroundColor: 'rgba(0, 0, 0, 0.2)'
+	}
 };
 
 const wordNumber: CSSProperties = {
@@ -123,7 +149,25 @@ const copyButton: CSSProperties = {
 	width: 'fit-content',
 	paddingTop: pxToRem(10),
 	paddingBottom: pxToRem(10),
-	margin: `0 auto`
+	margin: `${pxToRem(5)} auto 0 auto`,
+	'&:hover': {
+		backgroundColor: 'rgba(0, 0, 0, 0.2)'
+	}
+};
+
+const errorWrapper: CSSProperties = {
+	width: '100%',
+	padding: `${pxToRem(10)} 0`,
+	textAlign: 'center'
+};
+
+const errorText: CSSProperties = {
+	...font({
+		fontWeight: 600,
+		lineHeight: 1.5,
+		color: '#f46c63'
+	}),
+	fontSize: pxToRem(10)
 };
 
 export const styles = createStyles({
@@ -137,8 +181,13 @@ export const styles = createStyles({
 	descriptionImage,
 	description,
 	wordWrapper,
+	wordButtonWrapper,
 	wordButton,
+	wordText,
+	unsetWordText,
 	wordNumber,
 	wordName,
-	copyButton
+	copyButton,
+	errorWrapper,
+	errorText
 });
