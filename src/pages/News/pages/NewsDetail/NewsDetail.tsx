@@ -1,21 +1,12 @@
 import { Footer, Image, Page, Text } from 'components';
 import { INewsDetailProps } from './NewsDetail.types';
 import { Paper, makeStyles } from '@material-ui/core';
+import { sampleNews } from './NewsDetail.data';
 import { styles } from './NewsDetail.styles';
 import { useIntl } from 'react-intl';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
-
-const sampleNews = {
-	imageUrl: require('./images/Vehicle.png'),
-	altName: 'new1',
-	title: 'Id cursus metus aliquam eleifen min nulla?',
-	description: `To start your scooter ride, place one foot firmly on the baseboard and use your other foot to push off against the ground a few
-            times. Once you’ve gained some speed, press on the throttle near your right thumb to accelerate. Familiarize yourself with the
-            throttle and squeeze the hand brake to slow down when needed.`,
-	timeHistory: 'Nov 24'
-};
 
 export const NewsDetail: React.FunctionComponent<INewsDetailProps> = props => {
 	const classes = useStyles();
@@ -30,7 +21,7 @@ export const NewsDetail: React.FunctionComponent<INewsDetailProps> = props => {
 				</div>
 				<Text className={classes.descriptionText}>{sampleNews.description}</Text>
 			</Paper>
-			<Footer leftIcon="instagram" leftText="Instagram" rightIcon="ride-history" rightText={sampleNews.timeHistory} />
+			<Footer leftIcon="instagram" leftText={sampleNews.socialName} rightIcon="ride-history" rightText={sampleNews.timeHistory} />
 		</Page>
 	);
 };
