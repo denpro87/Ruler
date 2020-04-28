@@ -1,24 +1,43 @@
 import { ITextFieldProps } from './TextField.types';
-import { IconButton } from 'components';
+import { Icon, IconButton } from 'components';
 import { InputAdornment, TextField as MuiTextField, makeStyles } from '@material-ui/core';
 import { styles } from './TextField.styles';
 import React from 'react';
+import clsx from 'clsx';
+
 const useStyles = makeStyles(styles);
 
-export const TextField: React.FunctionComponent<ITextFieldProps> = ({ name, value, label, type, onValueChange, inputProps }) => {
+export const TextField: React.FunctionComponent<ITextFieldProps> = ({
+	name,
+	className,
+	value,
+	label,
+	type,
+	select,
+	children,
+	onValueChange,
+	inputProps,
+	selectProps,
+	...rest
+}) => {
 	const classes = useStyles();
 
 	return (
 		<MuiTextField
-			classes={{ root: classes.textFieldRoot }}
+			classes={{ root: clsx(classes.textFieldRoot, className) }}
 			type={type}
 			fullWidth
+			select={select}
 			label={label}
 			name={name}
 			value={value}
+			SelectProps={selectProps}
 			InputProps={inputProps}
 			onChange={onValueChange}
-		/>
+			{...rest}
+		>
+			{children}
+		</MuiTextField>
 	);
 };
 
@@ -42,5 +61,16 @@ export const PasswordInput: React.FunctionComponent<ITextFieldProps> = props => 
 				)
 			}}
 		/>
+	);
+};
+
+export const Select: React.FunctionComponent<ITextFieldProps> = ({ children, ...rest }) => {
+	const classes = useStyles();
+	const iconComponent = () => <Icon className={classes.selectIcon} iconName="down" />;
+
+	return (
+		<TextField {...rest} select selectProps={{ IconComponent: iconComponent }}>
+			{children}
+		</TextField>
 	);
 };

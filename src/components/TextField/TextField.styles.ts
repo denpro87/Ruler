@@ -7,7 +7,7 @@ const textFieldRoot: CSSProperties = {
 	'& .MuiInput-underline:before, .MuiInput-underline:after': {
 		borderBottom: '2px solid #181c19'
 	},
-	'& input': {
+	'& input, .MuiSelect-root': {
 		padding: `0 0 ${pxToRem(12)} 0`,
 		fontSize: pxToRem(15),
 		fontWeight: 600,
@@ -20,6 +20,9 @@ const textFieldRoot: CSSProperties = {
 		fontWeight: 600,
 		lineHeight: 1.67,
 		color: 'rgba(24, 28, 25, 0.5) !important'
+	},
+	'& .MuiSelect-selectMenu:focus': {
+		backgroundColor: 'transparent'
 	}
 };
 
@@ -29,7 +32,16 @@ const eyeIcon: CSSProperties = {
 	boxShadow: 'none'
 };
 
+const selectIcon: CSSProperties = {
+	position: 'absolute',
+	color: '#181c19',
+	right: 0,
+	top: `calc(50% - ${pxToRem(20)})`,
+	zIndex: -100
+};
+
 export const styles = createStyles({
 	textFieldRoot,
-	eyeIcon
+	eyeIcon,
+	selectIcon
 });

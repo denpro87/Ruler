@@ -1,10 +1,13 @@
-import { InputProps, TextFieldProps } from '@material-ui/core';
+import { InputProps, SelectProps, TextFieldProps } from '@material-ui/core';
 export interface ITextFieldProps extends Pick<TextFieldProps, 'onChange'> {
 	className?: string;
 	value: string;
 	name?: string;
 	label?: string;
 	type?: string;
+	select?: boolean;
+	disabled?: boolean;
 	inputProps?: InputProps;
-	onValueChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	selectProps?: SelectProps;
+	onValueChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
