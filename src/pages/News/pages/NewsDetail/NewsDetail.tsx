@@ -22,7 +22,7 @@ export const NewsDetail: React.FunctionComponent<INewsDetailProps> = props => {
 	const { formatMessage } = useIntl();
 
 	return (
-		<Page className={classes.detailContainer} headerLink={formatMessage({ id: 'news-detail.text.open-in-browser' })}>
+		<Page className={classes.detailContainer} headerLink={formatMessage({ id: 'news-detail.text.open_in_browser' })}>
 			<Paper elevation={0} className={classes.detailContainer}>
 				<Image src={sampleNews.imageUrl} alt="vehicleImage" className={classes.vehicleImage} rounded fullWidth />
 				<div className={classes.title}>

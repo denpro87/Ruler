@@ -22,15 +22,15 @@ export const Welcome: React.FunctionComponent = () => {
 				<Stack horizontalAlign="stretch" verticalAlign="space-between" verticalFill>
 					<Stack.Item>
 						<Text className={classes.welcomeText} block>
-							<FormattedMessage id="welcome.text.welcome-to-ruler" />
+							<FormattedMessage id="welcome.text.welcome_to_ruler" />
 						</Text>
 						<BlackButton iconName="create-account" compact>
-							<FormattedMessage id="welcome.button.create-account" />
+							<FormattedMessage id="welcome.button.create_account" />
 						</BlackButton>
 					</Stack.Item>
 					<Stack.Item>
 						<Text className={classes.signInWithSocialsText} block>
-							<FormattedMessage id="welcome.text.sign-in-with-socials" />
+							<FormattedMessage id="welcome.text.sign_in_with_socials" />
 						</Text>
 						<Stack horizontal horizontalAlign="space-between" verticalAlign="center">
 							<SocialIconButton iconName="apple" />
@@ -42,7 +42,7 @@ export const Welcome: React.FunctionComponent = () => {
 
 					<Stack.Item>
 						<Text className={classes.alreadyHaveAnAccountText} block>
-							<FormattedMessage id="welcome.text.already-have-an-account" />
+							<FormattedMessage id="welcome.text.already_have_an_account" />
 							<Link>
 								<FormattedMessage id="welcome.text.login" />
 							</Link>

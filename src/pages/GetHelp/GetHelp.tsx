@@ -65,7 +65,7 @@ export const GetHelp: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page title={formatMessage({ id: 'get-help.title' })} titleSize="large" noHorizontalContentPadding>
+		<Page title={formatMessage({ id: 'get_help.title' })} titleSize="large" noHorizontalContentPadding>
 			<List className={classes.list}>
 				{items.map((item, index) =>
 					item.href ? (

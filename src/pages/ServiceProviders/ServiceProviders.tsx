@@ -26,7 +26,7 @@ export const ServiceProviders: React.FunctionComponent<IServiceProvidersProps> =
 
 	const handleProviderClick = (provider: string) => () => history.push(`/service-providers/${provider}`);
 
-	const title = currentProvider ? formatMessage({ id: currentProvider.name }) : formatMessage({ id: 'service-providers.title' });
+	const title = currentProvider ? formatMessage({ id: currentProvider.name }) : formatMessage({ id: 'service_providers.title' });
 
 	return (
 		<Page title={title} titleSize="large" noHorizontalContentPadding>
