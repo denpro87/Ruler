@@ -61,6 +61,7 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/wallets/add-funds/add-credit-card" component={Wallets.AddCreditCard} exact />
 						<Route path="/wallets/template" component={Wallets.Template} exact />
 						<Route path="/wallets/transfer" component={Wallets.Transfer} exact />
+						<Route path="/wallets/confirmation" component={Wallets.Confirmation} exact />
 						<Route exact path="/" render={() => <Redirect to="/splash" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>

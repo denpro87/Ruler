@@ -1,5 +1,6 @@
 {
   "button.next": "Next",
+  "button.pay": "Pay",
   "button.save_changes": "Save changes",
   "menu.news": "News",
   "menu.wallet": "Wallet",
@@ -151,5 +152,14 @@
   "wallets.template.helper_text.to_wallet_card": "To wallet/card",
   "wallets.transfer.title": "Transfer",
   "wallets.transfer.helper_text.wallet": "From wallet",
-  "wallets.transfer.wallet_address_description": "Recipient wallet address or scan QR"
+  "wallets.transfer.wallet_address_description": "Recipient wallet address or scan QR",
+  "wallets.confirmation.title": "Confirmation",
+  "wallets.confirmation.credited": "Will be credited",
+  "wallets.confirmation.transaction_fee": "Transaction Fee",
+  "wallets.confirmation.transaction_hash": "Transaction Hash",
+  "wallets.confirmation.from": "From:",
+  "wallets.confirmation.to": "To:",
+  "wallets.confirmation.save_payment_template": "Save as payment template",
+  "wallets.confirmation.dialog.title": "Transaction completed",
+  "wallets.confirmation.dialog.description": "Your wallet has been successfully replenished"
 }

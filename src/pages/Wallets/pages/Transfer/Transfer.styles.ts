@@ -31,7 +31,7 @@ const TemplateButtonsWrapper: CSSProperties = {
 			minHeight: 'unset'
 		},
 		'&.active': {
-			backgroundColor: 'transparent',
+			backgroundColor: 'transparent !important',
 			color: '#00b559',
 			borderColor: '#00b559'
 		},
