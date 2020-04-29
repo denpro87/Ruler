@@ -33,9 +33,7 @@ export const AddCreditCard: React.FunctionComponent = () => {
 		setChecked(event.target.checked);
 	};
 
-	const handleNextClick = (): void => {
-		history.push('/wallets');
-	};
+	const handleNextClick = (): void => history.push('/wallets');
 
 	return (
 		<Page title={formatMessage({ id: 'wallets.add_credit_card.title' })} titleSize="medium">

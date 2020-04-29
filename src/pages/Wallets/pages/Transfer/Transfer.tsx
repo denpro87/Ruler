@@ -20,9 +20,8 @@ export const Transfer: React.FunctionComponent = () => {
 	const [walletAddress, setWalletAddress] = React.useState<string>('');
 	const [templateName, setTemplateName] = React.useState<string>('');
 
-	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void => {
+	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setWalletType(event.target.value);
-	};
 
 	const handleRulerButtonClick = (amount: string): void => setAmount(amount);
 
@@ -32,9 +31,7 @@ export const Transfer: React.FunctionComponent = () => {
 
 	const handleQrClick = (): void => {};
 
-	const handleNextClick = (): void => {
-		history.push('/wallets/add-funds/add-credit-card');
-	};
+	const handleNextClick = (): void => history.push('/wallets/confirmation');
 
 	const handleTemplateClick = (template: ITemplateDataProps): void => {
 		setTemplateName(template.templateName);
