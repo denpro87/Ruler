@@ -1,5 +1,5 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
+import { DEFAULT_FONT_FAMILY, font, pxToRem } from 'styles';
 
 const textFieldRoot: CSSProperties = {
 	marginBottom: pxToRem(25),
@@ -23,6 +23,15 @@ const textFieldRoot: CSSProperties = {
 	},
 	'& .MuiSelect-selectMenu:focus': {
 		backgroundColor: 'transparent'
+	},
+	'& .MuiInputAdornment-root p': {
+		...font({
+			fontWeight: 600,
+			lineHeight: 1.67,
+			color: '#181c19'
+		}),
+		fontSize: pxToRem(15),
+		paddingBottom: pxToRem(12)
 	}
 };
 

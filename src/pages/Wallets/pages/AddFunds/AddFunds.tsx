@@ -1,4 +1,4 @@
-import { Box, MenuItem, makeStyles } from '@material-ui/core';
+import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, Page, Select, Text, TextField } from 'components';
 import { RulerButton } from '../../components';
 import { paymentMethodTypes, rulerPriceBonusData, walletTypes } from '../../Wallet.data';
@@ -15,7 +15,7 @@ export const AddFunds: React.FunctionComponent = () => {
 	const { formatMessage } = useIntl();
 	const [walletType, setWalletType] = React.useState<string>('ruler_token');
 	const [paymentMethodType, setPaymentMethodType] = React.useState<string>('credit_card');
-	const [rulerPrice, setRulerPrice] = React.useState<string>('€ 10');
+	const [rulerPrice, setRulerPrice] = React.useState<string>('10');
 
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void => {
 		setWalletType(event.target.value);
@@ -27,6 +27,10 @@ export const AddFunds: React.FunctionComponent = () => {
 
 	const handleRulerButtonClick = (price: string): void => {
 		setRulerPrice(price);
+	};
+
+	const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		setRulerPrice(event.target.value);
 	};
 
 	const handleNextClick = (): void => {
@@ -64,9 +68,12 @@ export const AddFunds: React.FunctionComponent = () => {
 				<TextField
 					name="insertAmount"
 					className={classes.insertAmount}
-					disabled
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
+					inputProps={{
+						startAdornment: <InputAdornment position="start">€</InputAdornment>
+					}}
 					value={rulerPrice}
+					onValueChange={handlePriceChange}
 				/>
 				<Select
 					name="paymentMethod"
