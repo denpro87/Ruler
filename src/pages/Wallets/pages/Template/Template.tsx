@@ -1,4 +1,4 @@
-import { Box, MenuItem, makeStyles } from '@material-ui/core';
+import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, IconButton, Page, Select, TextField } from 'components';
 import { ITemplateProps } from './Template.types';
 import { paymentMethodTypes, walletTypes } from '../../Wallet.data';
@@ -65,6 +65,9 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					value={amount}
 					onValueChange={handleAmountChange}
+					inputProps={{
+						startAdornment: <InputAdornment position="start">€</InputAdornment>
+					}}
 				/>
 				<Select
 					name="rulerToken"

@@ -24,15 +24,15 @@ export const createWalletWords: Array<string> = ['art', 'oxygen', 'title', 'ritu
 
 export const rulerPriceBonusData: Array<IRulerPriceBonusProps> = [
 	{
-		rulerPrice: '€ 5',
+		rulerPrice: '5',
 		rulerBonus: '+15%'
 	},
 	{
-		rulerPrice: '€ 10',
+		rulerPrice: '10',
 		rulerBonus: '+20%'
 	},
 	{
-		rulerPrice: '€ 15',
+		rulerPrice: '15',
 		rulerBonus: '+25%'
 	}
 ];
@@ -70,13 +70,13 @@ export const paymentMethodTypes: Array<IOptionType> = [
 export const templateData: Array<ITemplateDataProps> = [
 	{
 		templateName: 'wallets.to_my_friend',
-		amount: '€ 10',
+		amount: '10',
 		walletType: 'ruler_token',
 		paymentType: 'credit_card'
 	},
 	{
 		templateName: 'wallets.to_wife',
-		amount: '€ 15',
+		amount: '15',
 		walletType: 'bitcoin',
 		paymentType: 'credit_card'
 	}
