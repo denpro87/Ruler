@@ -6,4 +6,5 @@ export interface ITemplateDataProps {
 	amount: string;
 	walletType: string;
 	paymentType: string;
+	walletAddress: string;
 }
