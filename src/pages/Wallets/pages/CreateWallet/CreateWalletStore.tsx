@@ -1,6 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, Page, Text } from 'components';
-import { createWalletWords } from './CreateWallet.data';
+import { createWalletWords } from '../../Wallet.data';
 import { styles } from './CreateWallet.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -35,7 +35,7 @@ export const CreateWalletStore: React.FunctionComponent = () => {
 			</Button>
 			<Box className={classes.footer}>
 				<GreenButton className={classes.nextButton} onClick={() => history.push('/wallets/create-wallet-place')}>
-					{formatMessage({ id: 'wallets.create_wallet.next' })}
+					{formatMessage({ id: 'button.next' })}
 				</GreenButton>
 			</Box>
 		</Page>

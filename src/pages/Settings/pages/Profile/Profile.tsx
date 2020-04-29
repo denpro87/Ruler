@@ -44,7 +44,7 @@ export const Profile: React.FunctionComponent = () => {
 					onValueChange={handleStateChange}
 				/>
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
-					<FormattedMessage id="settings.profile.save_changes" />
+					<FormattedMessage id="button.save_changes" />
 				</GreenButton>
 			</Box>
 			<Dialog

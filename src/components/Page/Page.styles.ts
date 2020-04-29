@@ -90,10 +90,10 @@ const toolbarWrapper: CSSProperties = {
 	paddingRight: pxToRem(10)
 };
 
-const headerLink: CSSProperties = {
+const headerLink: CreateCSSProperties = {
 	alignSelf: 'flex-end',
 	display: 'block',
-	padding: pxToRem(10)
+	padding: (props: any) => (props.headerLinkIsString ? pxToRem(10) : 0)
 };
 
 export const styles = createStyles({

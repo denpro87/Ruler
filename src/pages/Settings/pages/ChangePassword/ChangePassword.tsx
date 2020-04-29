@@ -52,7 +52,7 @@ class ChangePasswordPage extends React.Component<IChangePasswordProps, IChangePa
 								onValueChange={this.handleStateChange}
 							/>
 							<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={this.handleSaveClick}>
-								{formatMessage({ id: 'settings.change_password.save_changes' })}
+								{formatMessage({ id: 'button.save_changes' })}
 							</GreenButton>
 						</Box>
 						<Dialog

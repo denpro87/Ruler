@@ -1,6 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, Page, Text } from 'components';
-import { createWalletWords } from './CreateWallet.data';
+import { createWalletWords } from '../../Wallet.data';
 import { styles } from './CreateWallet.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -85,7 +85,7 @@ export const CreateWalletPlace: React.FunctionComponent = () => {
 					onClick={() => history.push('/wallets', { showDialog: true })}
 					disabled={createWalletWords.length !== words.length}
 				>
-					{formatMessage({ id: 'wallets.create_wallet.next' })}
+					{formatMessage({ id: 'button.next' })}
 				</GreenButton>
 			</Box>
 		</Page>
