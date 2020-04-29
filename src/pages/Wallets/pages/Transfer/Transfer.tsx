@@ -109,7 +109,9 @@ export const Transfer: React.FunctionComponent = () => {
 					onValueChange={handleWalletAddressChange}
 				/>
 			</Box>
-			<GreenButton onClick={handleNextClick}>{formatMessage({ id: 'button.next' })}</GreenButton>
+			<GreenButton disabled={!walletType || !amount || !walletAddress} onClick={handleNextClick}>
+				{formatMessage({ id: 'button.next' })}
+			</GreenButton>
 		</Page>
 	);
 };
