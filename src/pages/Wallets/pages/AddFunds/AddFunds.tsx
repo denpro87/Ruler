@@ -17,25 +17,17 @@ export const AddFunds: React.FunctionComponent = () => {
 	const [paymentMethodType, setPaymentMethodType] = React.useState<string>('credit_card');
 	const [rulerPrice, setRulerPrice] = React.useState<string>('10');
 
-	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void => {
+	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setWalletType(event.target.value);
-	};
 
-	const handlePaymentMethodTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void => {
+	const handlePaymentMethodTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setPaymentMethodType(event.target.value);
-	};
 
-	const handleRulerButtonClick = (price: string): void => {
-		setRulerPrice(price);
-	};
+	const handleRulerButtonClick = (price: string): void => setRulerPrice(price);
 
-	const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		setRulerPrice(event.target.value);
-	};
+	const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>): void => setRulerPrice(event.target.value);
 
-	const handleNextClick = (): void => {
-		history.push('/wallets/add-funds/add-credit-card');
-	};
+	const handleNextClick = (): void => history.push('/wallets/add-funds/add-credit-card');
 
 	return (
 		<Page title={formatMessage({ id: 'wallets.add_funds.title' })} titleSize="large">

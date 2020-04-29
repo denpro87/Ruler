@@ -20,29 +20,21 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 		params?.data?.templateName ? formatMessage({ id: params.data.templateName }) : ''
 	);
 
-	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void => {
+	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setWalletType(event.target.value);
-	};
 
-	const handlePaymentMethodTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void => {
+	const handlePaymentMethodTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setPaymentMethodType(event.target.value);
-	};
 
-	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		setAmount(event.target.value);
-	};
+	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => setAmount(event.target.value);
 
-	const handleTemplateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		setTemplateName(event.target.value);
-	};
+	const handleTemplateChange = (event: React.ChangeEvent<HTMLInputElement>): void => setTemplateName(event.target.value);
 
 	const handleTrashClick = (): void => {
 		console.log('remove');
 	};
 
-	const handleSaveClick = (): void => {
-		history.push('/wallets');
-	};
+	const handleSaveClick = (): void => history.push('/wallets');
 
 	return (
 		<Page

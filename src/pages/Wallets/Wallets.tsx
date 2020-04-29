@@ -22,25 +22,15 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 		setShowDialog(showDialog);
 	}, [props.location.state]);
 
-	const handleCreateWallet = () => {
-		history.push('/wallets/create-wallet');
-	};
+	const handleCreateWallet = () => history.push('/wallets/create-wallet');
 
-	const handleAddFunds = () => {
-		history.push('/wallets/add-funds');
-	};
+	const handleAddFunds = () => history.push('/wallets/add-funds');
 
-	const handleTransfer = () => {
-		history.push('/wallets/transfer');
-	};
+	const handleTransfer = () => history.push('/wallets/transfer');
 
-	const handleTemplate = () => {
-		history.push('/wallets/template');
-	};
+	const handleTemplate = () => history.push('/wallets/template');
 
-	const handleTemplateClick = (template: ITemplateDataProps) => {
-		history.push('/wallets/template', { data: template });
-	};
+	const handleTemplateClick = (template: ITemplateDataProps) => history.push('/wallets/template', { data: template });
 
 	const handleDialogClose = () => {
 		setShowDialog(false);
