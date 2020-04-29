@@ -1,12 +1,13 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Page, Text } from 'components';
+import { ITemplateDataProps } from './pages/Template/Template.types';
 import { IWalletsProps } from './Wallets.types';
 import { styles } from './Wallets.styles';
+import { templateData } from './Wallet.data';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import React from 'react';
-import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
 
@@ -21,20 +22,24 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 		setShowDialog(showDialog);
 	}, [props.location.state]);
 
-	const handleCreateWallet = (event: React.MouseEvent<HTMLElement>) => {
+	const handleCreateWallet = () => {
 		history.push('/wallets/create-wallet');
 	};
 
-	const handleAddFunds = (event: React.MouseEvent<HTMLElement>) => {
+	const handleAddFunds = () => {
 		history.push('/wallets/add-funds');
 	};
 
-	const handleTransfer = (event: React.MouseEvent<HTMLElement>) => {
+	const handleTransfer = () => {
 		history.push('/wallets/transfer');
 	};
 
-	const handleTemplate = (event: React.MouseEvent<HTMLElement>) => {
+	const handleTemplate = () => {
 		history.push('/wallets/template');
+	};
+
+	const handleTemplateClick = (template: ITemplateDataProps) => {
+		history.push('/wallets/template', { data: template });
 	};
 
 	const handleDialogClose = () => {
@@ -58,18 +63,19 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 					<Fab aria-label="add" className={classes.addFabButton} onClick={handleTemplate}>
 						<Icon iconName="add-without-circle" primaryColor="white" secondaryColor="white" />
 					</Fab>
-					<Button
-						fullWidth={false}
-						className={clsx(classes.paymentTemplateButton, 'to-friend')}
-						compact
-						iconName="edit"
-						iconPosition="right"
-					>
-						{formatMessage({ id: 'wallets.to_my_friend' })}
-					</Button>
-					<Button fullWidth={false} className={clsx(classes.paymentTemplateButton, 'to-wife')} compact iconName="edit" iconPosition="right">
-						{formatMessage({ id: 'wallets.to_wife' })}
-					</Button>
+					{templateData.map((template, index) => (
+						<Button
+							key={index}
+							fullWidth={false}
+							className={classes.paymentTemplateButton}
+							compact
+							iconName="edit"
+							iconPosition="right"
+							onClick={() => handleTemplateClick(template)}
+						>
+							{formatMessage({ id: template.templateName })}
+						</Button>
+					))}
 				</Box>
 			</Box>
 			<Box className={classes.footer}>

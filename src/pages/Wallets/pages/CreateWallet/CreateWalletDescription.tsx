@@ -23,7 +23,7 @@ export const CreateWalletDescription: React.FunctionComponent = () => {
 			</Box>
 			<Box className={classes.footer}>
 				<GreenButton className={classes.nextButton} onClick={() => history.push('/wallets/create-wallet-store')}>
-					{formatMessage({ id: 'wallets.create_wallet.next' })}
+					{formatMessage({ id: 'button.next' })}
 				</GreenButton>
 			</Box>
 		</Page>

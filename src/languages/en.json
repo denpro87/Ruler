@@ -1,4 +1,6 @@
 {
+  "button.next": "Next",
+  "button.save_changes": "Save changes",
   "menu.news": "News",
   "menu.wallet": "Wallet",
   "menu.payment_methods": "Payment methods",
@@ -26,7 +28,6 @@
   "settings.profile.title": "Profile",
   "settings.profile.first_name": "First name",
   "settings.profile.second_name": "Second name",
-  "settings.profile.save_changes": "Save changes",
   "settings.profile.dialog.title": "Changes saved!",
   "settings.profile.dialog.description": "Your name has been successfully changed!",
   "settings.notifications.title": "Notifications",
@@ -51,12 +52,10 @@
   "settings.change_password.enter_the_current_password": "Enter the current password",
   "settings.change_password.enter_a_new_password": "Enter a new password",
   "settings.change_password.repeat_new_password": "Repeat new password",
-  "settings.change_password.save_changes": "Save changes",
   "settings.change_password.dialog.title": "Changes saved!",
   "settings.change_password.dialog.description": "Your password has been successfully changed!",
   "settings.change_email.title": "Change Email",
   "settings.change_email.enter_new_email": "Enter new email",
-  "settings.change_email.save_changes": "Save changes",
   "settings.change_email.dialog.title": "Changes saved!",
   "settings.change_email.dialog.description": "Your email has been successfully changed!",
   "get-help.title": "Get help",
@@ -126,7 +125,6 @@
   "wallets.create_wallet.ethereum": "Ethereum",
   "wallets.create_wallet.bitcoin": "Bitcoin",
   "wallets.create_wallet.bnb_token": "BNB Token",
-  "wallets.create_wallet.next": "Next",
   "wallets.create_wallet.description": "In the next step, you will see 9 words that will allow you to restore your wallet. If you lose the secret words you would lose access to your wallet",
   "wallets.create_wallet.store.description": "Record or copy these words in the correct order and store them in a safe place.",
   "wallets.create_wallet.store.copy": "Copy",
@@ -146,5 +144,7 @@
   "wallets.add_credit_card.card_country": "Card country",
   "wallets.add_credit_card.zip_code": "Billing zip code",
   "wallets.add_credit_card.save_payment_method": "Save payment method",
-  "wallets.add_credit_card.add_pay": "  Add and Pay"
+  "wallets.add_credit_card.add_pay": "  Add and Pay",
+  "wallets.template.title": "Template",
+  "wallets.template.helper_text.payment_template": "Name of payment template"
 }

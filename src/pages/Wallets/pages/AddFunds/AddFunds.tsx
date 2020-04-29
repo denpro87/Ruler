@@ -1,7 +1,7 @@
 import { Box, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, Page, Select, Text, TextField } from 'components';
 import { RulerButton } from '../../components';
-import { paymentMethodTypes, rulerPriceBonusData, walletTypes } from './AddFunds.data';
+import { paymentMethodTypes, rulerPriceBonusData, walletTypes } from '../../Wallet.data';
 import { styles } from './AddFunds.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -81,7 +81,7 @@ export const AddFunds: React.FunctionComponent = () => {
 					))}
 				</Select>
 			</Box>
-			<GreenButton onClick={handleNextClick}>{formatMessage({ id: 'wallets.create_wallet.next' })}</GreenButton>
+			<GreenButton onClick={handleNextClick}>{formatMessage({ id: 'button.next' })}</GreenButton>
 		</Page>
 	);
 };

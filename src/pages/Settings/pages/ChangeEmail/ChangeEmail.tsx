@@ -34,7 +34,7 @@ export const ChangeEmail: React.FunctionComponent = () => {
 					onChange={handleEmailChange}
 				/>
 				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
-					{formatMessage({ id: 'settings.change_email.save_changes' })}
+					{formatMessage({ id: 'button.save_changes' })}
 				</GreenButton>
 			</Box>
 			<Dialog

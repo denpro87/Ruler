@@ -33,7 +33,8 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 		titleSize,
 		background,
 		backgroundColor,
-		noHorizontalContentPadding
+		noHorizontalContentPadding,
+		headerLinkIsString: !!(headerLink && typeof headerLink === 'string')
 	});
 	const history = useHistory();
 

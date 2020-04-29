@@ -1,6 +1,6 @@
 import { GreenButton, Icon, Page } from 'components';
 import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
-import { createWalletTypes } from './CreateWallet.data';
+import { createWalletTypes } from '../../Wallet.data';
 import { styles } from './CreateWallet.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -37,7 +37,7 @@ export const CreateWallet: React.FunctionComponent = () => {
 				disabled={selectedTypeIndex < 0}
 				onClick={() => history.push('/wallets/create-wallet-description')}
 			>
-				{formatMessage({ id: 'wallets.create_wallet.next' })}
+				{formatMessage({ id: 'button.next' })}
 			</GreenButton>
 		</Page>
 	);
