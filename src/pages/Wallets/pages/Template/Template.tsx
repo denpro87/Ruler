@@ -13,9 +13,9 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const params: any = props.location.state;
-	const [walletType, setWalletType] = React.useState<string>(params?.data?.walletType);
-	const [paymentMethodType, setPaymentMethodType] = React.useState<string>(params?.data?.paymentType);
-	const [amount, setAmount] = React.useState<string>(params?.data?.amount);
+	const [walletType, setWalletType] = React.useState<string>(params?.data?.walletType ? params.data.walletType : '');
+	const [paymentMethodType, setPaymentMethodType] = React.useState<string>(params?.data?.paymentType ? params.data.paymentType : '');
+	const [amount, setAmount] = React.useState<string>(params?.data?.amount ? params.data.amount : '');
 	const [templateName, setTemplateName] = React.useState<string>(
 		params?.data?.templateName ? formatMessage({ id: params.data.templateName }) : ''
 	);
@@ -64,7 +64,7 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 				<Select
 					name="rulerToken"
 					className={classes.textField}
-					label={formatMessage({ id: 'wallets.add_funds.helper_text.wallet_type' })}
+					label={formatMessage({ id: 'wallets.template.helper_text.from_wallet_card' })}
 					value={walletType}
 					onValueChange={handleWalletTypeChange}
 				>
@@ -77,7 +77,7 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 				<Select
 					className={classes.textField}
 					name="paymentMethod"
-					label={formatMessage({ id: 'wallets.add_funds.helper_text.payment_method' })}
+					label={formatMessage({ id: 'wallets.template.helper_text.to_wallet_card' })}
 					value={paymentMethodType}
 					onValueChange={handlePaymentMethodTypeChange}
 				>
