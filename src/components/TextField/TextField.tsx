@@ -42,7 +42,6 @@ export const TextField: React.FunctionComponent<ITextFieldProps> = ({
 };
 
 export const PasswordInput: React.FunctionComponent<ITextFieldProps> = props => {
-	const classes = useStyles();
 	const [passwordIsMasked, setPasswordIsMasked] = React.useState(true);
 
 	const togglePasswordMask = () => {
@@ -56,7 +55,7 @@ export const PasswordInput: React.FunctionComponent<ITextFieldProps> = props => 
 			inputProps={{
 				endAdornment: (
 					<InputAdornment position="end">
-						<IconButton iconName="eye" onClick={togglePasswordMask} className={classes.eyeIcon} />
+						<IconButton iconName="eye" onClick={togglePasswordMask} />
 					</InputAdornment>
 				)
 			}}

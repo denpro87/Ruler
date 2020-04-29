@@ -72,12 +72,14 @@ export const templateData: Array<ITemplateDataProps> = [
 		templateName: 'wallets.to_my_friend',
 		amount: '10',
 		walletType: 'ruler_token',
-		paymentType: 'credit_card'
+		paymentType: 'credit_card',
+		walletAddress: '1BvBMSEYstWetqTFn5Au4m4GFg5Au4m4GFg'
 	},
 	{
 		templateName: 'wallets.to_wife',
 		amount: '15',
 		walletType: 'bitcoin',
-		paymentType: 'credit_card'
+		paymentType: 'credit_card',
+		walletAddress: '2Cs9vBMSEYstWetqTFn5Au4m4GFg5Au4m4GFg'
 	}
 ];

@@ -12,7 +12,9 @@ const textFieldRoot: CSSProperties = {
 		fontSize: pxToRem(15),
 		fontWeight: 600,
 		lineHeight: 1.67,
-		color: '#181c19'
+		color: '#181c19',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis'
 	},
 	'& label': {
 		top: pxToRem(-12),
@@ -24,21 +26,22 @@ const textFieldRoot: CSSProperties = {
 	'& .MuiSelect-selectMenu:focus': {
 		backgroundColor: 'transparent'
 	},
-	'& .MuiInputAdornment-root p': {
-		...font({
-			fontWeight: 600,
-			lineHeight: 1.67,
-			color: '#181c19'
-		}),
-		fontSize: pxToRem(15),
-		paddingBottom: pxToRem(12)
+	'& .MuiInputAdornment-root': {
+		paddingBottom: pxToRem(12),
+		'& p': {
+			...font({
+				fontWeight: 600,
+				lineHeight: 1.67,
+				color: '#181c19'
+			}),
+			fontSize: pxToRem(15)
+		},
+		'& button': {
+			padding: 0,
+			boxShadow: 'none',
+			marginLeft: pxToRem(32)
+		}
 	}
-};
-
-const eyeIcon: CSSProperties = {
-	padding: 0,
-	marginBottom: pxToRem(12),
-	boxShadow: 'none'
 };
 
 const selectIcon: CSSProperties = {
@@ -51,6 +54,5 @@ const selectIcon: CSSProperties = {
 
 export const styles = createStyles({
 	textFieldRoot,
-	eyeIcon,
 	selectIcon
 });

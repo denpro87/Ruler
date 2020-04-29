@@ -146,5 +146,8 @@
   "wallets.add_credit_card.save_payment_method": "Save payment method",
   "wallets.add_credit_card.add_pay": "  Add and Pay",
   "wallets.template.title": "Template",
-  "wallets.template.helper_text.payment_template": "Name of payment template"
+  "wallets.template.helper_text.payment_template": "Name of payment template",
+  "wallets.transfer.title": "Transfer",
+  "wallets.transfer.helper_text.wallet": "From wallet",
+  "wallets.transfer.wallet_address_description": "Recipient wallet address or scan QR"
 }
