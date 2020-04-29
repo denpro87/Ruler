@@ -44,7 +44,8 @@ const titleTextStyle: CSSProperties = {
 		lineHeight: 1.5,
 		letterSpacing: 'normal',
 		color: '#181c19'
-	})
+	}),
+	padding: `0 ${pxToRem(30)}`
 };
 
 const modalPaper: CSSProperties = {
