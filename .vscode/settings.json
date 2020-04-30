@@ -13,6 +13,7 @@
 	"editor.detectIndentation": false,
 	"editor.formatOnPaste": true,
 	"editor.formatOnSave": true,
+	"editor.insertSpaces": false,
 	"editor.tabSize": 2,
 	"files.exclude": {
 		"**/bower_components": true,
