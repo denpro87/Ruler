@@ -1,12 +1,6 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { font, pxToRem } from 'styles';
 
-const content: CSSProperties = {
-	display: 'flex',
-	flexDirection: 'column',
-	padding: `${pxToRem(25)} ${pxToRem(30)} ${pxToRem(15)} ${pxToRem(30)}`
-};
-
 const contentWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
@@ -65,7 +59,6 @@ const amountText: CreateCSSProperties = {
 };
 
 export const styles = createStyles({
-	content,
 	contentWrapper,
 	rowWrapper,
 	textWrapper,
