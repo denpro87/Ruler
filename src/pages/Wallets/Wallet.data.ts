@@ -1,4 +1,5 @@
 import { IOptionType, IRulerPriceBonusProps } from './pages/AddFunds/AddFunds.types';
+import { IRulerWalletHistoryProps } from './components/RulerWalletHistory/RulerWalletHistory.types';
 import { ITemplateDataProps } from './pages/Template/Template.types';
 
 export const createWalletTypes = [
@@ -81,5 +82,24 @@ export const templateData: Array<ITemplateDataProps> = [
 		walletType: 'bitcoin',
 		paymentType: 'credit_card',
 		walletAddress: '2Cs9vBMSEYstWetqTFn5Au4m4GFg5Au4m4GFg'
+	}
+];
+
+export const rulerWalletHistory: Array<IRulerWalletHistoryProps> = [
+	{
+		date: 'Saturday, 26 Nov 2019',
+		time: '12:00',
+		description: "Wallet's add funds",
+		hash: 'Tx Hash: a1075db55d416d3ca199f55bdsfsdfsdfsdfsdfsdfsdfsd',
+		type: 'send',
+		amount: '1500'
+	},
+	{
+		date: 'Saturday, 26 Nov 2019',
+		time: '12:00',
+		description: 'Trip payment',
+		hash: 'Tx Hash: a1075db55d416d3ca199f55bsdfsdfsdfsdfsdfsdfsddfsd',
+		type: 'receive',
+		amount: '1500'
 	}
 ];
