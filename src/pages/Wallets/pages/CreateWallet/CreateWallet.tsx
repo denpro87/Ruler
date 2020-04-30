@@ -1,6 +1,6 @@
 import { GreenButton, Icon, Page } from 'components';
 import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
-import { createWalletTypes } from '../../Wallet.data';
+import { createWalletTypes } from '../../Wallets.data';
 import { styles } from './CreateWallet.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';

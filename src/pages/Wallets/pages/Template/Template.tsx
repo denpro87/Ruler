@@ -1,7 +1,7 @@
 import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, IconButton, Page, Select, TextField } from 'components';
 import { ITemplateProps } from './Template.types';
-import { paymentMethodTypes, walletTypes } from '../../Wallet.data';
+import { paymentMethodTypes, walletTypes } from '../../Wallets.data';
 import { styles } from './Template.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';

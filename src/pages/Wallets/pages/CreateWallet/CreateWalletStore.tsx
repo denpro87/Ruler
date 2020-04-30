@@ -1,6 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, Page, Text } from 'components';
-import { createWalletWords } from '../../Wallet.data';
+import { createWalletWords } from '../../Wallets.data';
 import { styles } from './CreateWallet.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
