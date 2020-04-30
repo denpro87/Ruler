@@ -1,5 +1,7 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { IconButton, LightGreenButton, Page, Text } from 'components';
+import { RulerWalletHistory } from '../../components';
+import { rulerWalletHistory } from '../../Wallet.data';
 import { styles } from './RulerWallet.styles';
 import { useIntl } from 'react-intl';
 import React from 'react';
@@ -48,7 +50,11 @@ export const RulerWallet: React.FunctionComponent = () => {
 						</Box>
 					</Box>
 				</Box>
-				<Box className={classes.historyWrapper}>sdfds</Box>
+				<Box className={classes.historyWrapper}>
+					{rulerWalletHistory.map((item, index) => (
+						<RulerWalletHistory key={index} {...item} />
+					))}
+				</Box>
 				<Box className={classes.footer}>
 					<LightGreenButton iconName="submit-report" compact onClick={handleSendClick}>
 						send
