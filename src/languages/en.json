@@ -161,5 +161,8 @@
   "wallets.confirmation.to": "To:",
   "wallets.confirmation.save_payment_template": "Save as payment template",
   "wallets.confirmation.dialog.title": "Transaction completed",
-  "wallets.confirmation.dialog.description": "Your wallet has been successfully replenished"
+  "wallets.confirmation.dialog.description": "Your wallet has been successfully replenished",
+  "wallets.ruler_wallet.title": "Ruler wallet",
+  "wallets.ruler_wallet.balance": "Balance",
+  "wallets.ruler_wallet.wallet_address": "Public wallet address"
 }

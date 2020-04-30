@@ -1,5 +1,5 @@
 import { Box, makeStyles } from '@material-ui/core';
-import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Page, Text } from 'components';
+import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Link, Page, Text } from 'components';
 import { ITemplateDataProps } from './pages/Template/Template.types';
 import { IWalletsProps } from './Wallets.types';
 import { styles } from './Wallets.styles';
@@ -42,7 +42,9 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 			<Box className={classes.walletsLogoContainer}>
 				<Box className={classes.walletsLogo}>
 					<IconButton iconProps={{ iconName: 'trash', color: '#ffffff' }} className={classes.trashIcon} />
-					<Text className={classes.rulerWalletText}>{formatMessage({ id: 'wallets.logo_title' })}</Text>
+					<Link className={classes.rulerWalletText} onClick={() => history.push('/wallets/ruler-wallet')}>
+						{formatMessage({ id: 'wallets.logo_title' })}
+					</Link>
 					<Text className={classes.rulerPriceText}>€ 110 = 250 Ruler</Text>
 					<Text className={classes.rulerNumberText}>0 Ruler</Text>
 				</Box>

@@ -18,16 +18,16 @@ export const Link: React.FunctionComponent<ILinkProps> = ({ href, iconProps, ico
 		pressedLinkColor
 	});
 
-	if (onClick) {
-		onClick = e => {
-			e.preventDefault();
+	// if (onClick) {
+	// 	onClick = e => {
+	// 		e.preventDefault();
 
-			return onClick?.(e);
-		};
-	}
+	// 		return onClick?.(e);
+	// 	};
+	// }
 
 	return (
-		<a className={clsx(classes.link, className)} href={href} onClick={onClick}>
+		<a className={clsx(classes.link, className)} href={href} {...(onClick && { onClick: onClick })}>
 			{iconProps.iconName && <Icon className={classes.linkIcon} primaryColor="currentColor" {...iconProps} />}
 			<span>{children}</span>
 		</a>
