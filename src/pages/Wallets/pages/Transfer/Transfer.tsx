@@ -2,7 +2,7 @@ import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, IconButton, Page, Select, Text, TextField } from 'components';
 import { ITemplateDataProps } from '../Template/Template.types';
 import { RulerButton } from '../../components';
-import { rulerPriceBonusData, templateData, walletTypes } from '../../Wallet.data';
+import { rulerPriceBonusData, templateData, walletTypes } from '../../Wallets.data';
 import { styles } from './Transfer.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';

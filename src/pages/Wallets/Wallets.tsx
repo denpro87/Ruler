@@ -3,7 +3,7 @@ import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Link, 
 import { ITemplateDataProps } from './pages/Template/Template.types';
 import { IWalletsProps } from './Wallets.types';
 import { styles } from './Wallets.styles';
-import { templateData } from './Wallet.data';
+import { templateData } from './Wallets.data';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';

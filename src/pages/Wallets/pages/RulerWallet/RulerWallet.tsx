@@ -1,7 +1,7 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { GoBackIconButton, IconButton, LightGreenButton, Page, Text } from 'components';
 import { RulerWalletHistory } from '../../components';
-import { rulerWalletHistory } from '../../Wallet.data';
+import { rulerWalletHistory } from '../../Wallets.data';
 import { styles } from './RulerWallet.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
