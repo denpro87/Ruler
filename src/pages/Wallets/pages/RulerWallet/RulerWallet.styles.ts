@@ -140,7 +140,8 @@ const copyButton: CSSProperties = {
 const historyWrapper: CSSProperties = {
 	flex: 1,
 	display: 'flex',
-	flexDirection: 'column'
+	flexDirection: 'column',
+	overflowY: 'auto'
 };
 
 const footer: CSSProperties = {
