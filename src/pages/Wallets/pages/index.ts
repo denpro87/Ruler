@@ -3,3 +3,4 @@ export * from './AddFunds';
 export * from './Template';
 export * from './Transfer';
 export * from './Confirmation';
+export * from './RulerWallet';
