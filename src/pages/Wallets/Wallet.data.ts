@@ -101,5 +101,21 @@ export const rulerWalletHistory: Array<IRulerWalletHistoryProps> = [
 		hash: 'Tx Hash: a1075db55d416d3ca199f55bsdfsdfsdfsdfsdfsdfsddfsd',
 		type: 'receive',
 		amount: '1500'
+	},
+	{
+		date: 'Saturday, 26 Nov 2019',
+		time: '12:00',
+		description: "Wallet's add funds",
+		hash: 'Tx Hash: a1075db55d416d3ca199f55bdsfsdfsdfsdfsdfsdfsdfsd',
+		type: 'send',
+		amount: '1500'
+	},
+	{
+		date: 'Saturday, 26 Nov 2019',
+		time: '12:00',
+		description: 'Trip payment',
+		hash: 'Tx Hash: a1075db55d416d3ca199f55bsdfsdfsdfsdfsdfsdfsddfsd',
+		type: 'receive',
+		amount: '1500'
 	}
 ];

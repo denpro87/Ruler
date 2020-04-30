@@ -19,12 +19,14 @@ const rowWrapper: CSSProperties = {
 	alignItems: 'center',
 	justifyContent: 'space-between',
 	flex: 1,
-	paddingLeft: pxToRem(15)
+	paddingLeft: pxToRem(15),
+	overflow: 'hidden'
 };
 
 const textWrapper: CSSProperties = {
 	display: 'flex',
-	flexDirection: 'column'
+	flexDirection: 'column',
+	overflow: 'hidden'
 };
 
 const smallText: CSSProperties = {
@@ -57,7 +59,8 @@ const amountText: CreateCSSProperties = {
 	fontSize: pxToRem(15),
 	color: (props: any) => (props.type === 'send' ? '#00b559' : '#f46c63'),
 	'&.MuiTypography-root': {
-		whiteSpace: 'nowrap'
+		whiteSpace: 'nowrap',
+		overflow: 'visible'
 	}
 };
 
