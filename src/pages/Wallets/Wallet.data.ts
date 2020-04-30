@@ -85,37 +85,43 @@ export const templateData: Array<ITemplateDataProps> = [
 	}
 ];
 
-export const rulerWalletHistory: Array<IRulerWalletHistoryProps> = [
+export const rulerWalletHistory: Array<{ date: string; data: IRulerWalletHistoryProps[] }> = [
 	{
 		date: 'Saturday, 26 Nov 2019',
-		time: '12:00',
-		description: "Wallet's add funds",
-		hash: 'Tx Hash: a1075db55d416d3ca199f55bdsfsdfsdfsdfsdfsdfsdfsd',
-		type: 'send',
-		amount: '1500'
+		data: [
+			{
+				time: '12:00',
+				description: "Wallet's add funds",
+				hash: 'Tx Hash: a1075db55d416d3ca199f55bdsfsdfsdfsdfsdfsdfsdfsd',
+				type: 'send',
+				amount: '1500'
+			},
+			{
+				time: '12:00',
+				description: 'Trip payment',
+				hash: 'Tx Hash: a1075db55d416d3ca199f55bsdfsdfsdfsdfsdfsdfsddfsd',
+				type: 'receive',
+				amount: '1500'
+			}
+		]
 	},
 	{
-		date: 'Saturday, 26 Nov 2019',
-		time: '12:00',
-		description: 'Trip payment',
-		hash: 'Tx Hash: a1075db55d416d3ca199f55bsdfsdfsdfsdfsdfsdfsddfsd',
-		type: 'receive',
-		amount: '1500'
-	},
-	{
-		date: 'Saturday, 26 Nov 2019',
-		time: '12:00',
-		description: "Wallet's add funds",
-		hash: 'Tx Hash: a1075db55d416d3ca199f55bdsfsdfsdfsdfsdfsdfsdfsd',
-		type: 'send',
-		amount: '1500'
-	},
-	{
-		date: 'Saturday, 26 Nov 2019',
-		time: '12:00',
-		description: 'Trip payment',
-		hash: 'Tx Hash: a1075db55d416d3ca199f55bsdfsdfsdfsdfsdfsdfsddfsd',
-		type: 'receive',
-		amount: '1500'
+		date: 'Sunday, 27 Nov 2019',
+		data: [
+			{
+				time: '12:00',
+				description: "Wallet's add funds",
+				hash: 'Tx Hash: a1075db55d416d3ca199f55bdsfsdfsdfsdfsdfsdfsdfsd',
+				type: 'send',
+				amount: '1500'
+			},
+			{
+				time: '12:00',
+				description: 'Trip payment',
+				hash: 'Tx Hash: a1075db55d416d3ca199f55bsdfsdfsdfsdfsdfsdfsddfsd',
+				type: 'receive',
+				amount: '1500'
+			}
+		]
 	}
 ];

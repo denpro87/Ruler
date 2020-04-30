@@ -9,15 +9,12 @@ import {
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
-const pageHeader: CSSProperties = {
+const goBackIcon: CSSProperties = {
 	backgroundColor: '#00b559',
-	'& button': {
-		zIndex: 1,
-		backgroundColor: 'transparent',
-		color: '#ffffff'
-	},
-	'& div:last-child span': {
-		color: '#ffffff'
+	color: '#ffffff',
+	margin: `${pxToRem(20)} 0 0 ${pxToRem(20)}`,
+	'&:hover': {
+		backgroundColor: 'rgb(0, 171, 85)'
 	}
 };
 
@@ -30,7 +27,12 @@ const content: CSSProperties = {
 	flexDirection: 'column'
 };
 
+const container: CSSProperties = {
+	overflow: 'auto'
+};
+
 const headerWrapper: CSSProperties = {
+	position: 'relative',
 	backgroundColor: '#00b559',
 	width: '100%',
 	height: pxToRem(RULER_WALLET_IMAGE_INITIAL_HEIGHT),
@@ -40,7 +42,7 @@ const headerWrapper: CSSProperties = {
 };
 
 const titleWrapper: CSSProperties = {
-	padding: `${pxToRem(73)} ${pxToRem(20)} ${pxToRem(17)} ${pxToRem(30)}`,
+	padding: `0 ${pxToRem(20)} ${pxToRem(17)} ${pxToRem(30)}`,
 	display: 'flex',
 	flexDirection: 'row',
 	justifyContent: 'space-between',
@@ -138,16 +140,21 @@ const copyButton: CSSProperties = {
 };
 
 const historyWrapper: CSSProperties = {
-	flex: 1,
+	display: 'flex',
+	flexDirection: 'column'
+};
+
+const historyRowWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
-	overflowY: 'auto'
+	padding: `${pxToRem(25)} ${pxToRem(30)} ${pxToRem(15)} ${pxToRem(30)}`
 };
 
 const footer: CSSProperties = {
 	padding: pxToRem(20),
 	display: 'flex',
 	flexDirection: 'row',
+	marginTop: 'auto',
 	'& button': {
 		fontWeight: 'bold',
 		'&:first-child': {
@@ -159,10 +166,20 @@ const footer: CSSProperties = {
 	}
 };
 
+const dateText: CSSProperties = {
+	...font({
+		fontWeight: 600,
+		lineHeight: 1.5,
+		color: 'rgba(24, 28, 25, 0.5)'
+	}),
+	fontSize: pxToRem(10)
+};
+
 export const styles = createStyles({
 	content,
+	container,
 	headerWrapper,
-	pageHeader,
+	goBackIcon,
 	titleWrapper,
 	titleText,
 	image,
@@ -174,5 +191,7 @@ export const styles = createStyles({
 	addressText,
 	copyButton,
 	historyWrapper,
+	historyRowWrapper,
+	dateText,
 	footer
 });

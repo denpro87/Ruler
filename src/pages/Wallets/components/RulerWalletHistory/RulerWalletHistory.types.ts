@@ -1,5 +1,4 @@
 export interface IRulerWalletHistoryProps {
-	date: string;
 	time: string;
 	description: string;
 	hash: string;
