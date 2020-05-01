@@ -1,6 +1,7 @@
 {
   "button.next": "Next",
   "button.pay": "Pay",
+  "button.send": "Send",
   "button.save_changes": "Save changes",
   "menu.news": "News",
   "menu.wallet": "Wallet",
@@ -164,5 +165,10 @@
   "wallets.confirmation.dialog.description": "Your wallet has been successfully replenished",
   "wallets.ruler_wallet.title": "Ruler wallet",
   "wallets.ruler_wallet.balance": "Balance",
-  "wallets.ruler_wallet.wallet_address": "Public wallet address"
+  "wallets.ruler_wallet.wallet_address": "Public wallet address",
+  "wallets.receive.title": "Receive",
+  "wallets.send.title": "Send",
+  "wallets.send.send_to": "Send to",
+  "wallets.send.dialog.title": "Transaction completed",
+  "wallets.send.dialog.description": "Your wallet has been successfully replenished"
 }

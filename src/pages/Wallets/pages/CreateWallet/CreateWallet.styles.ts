@@ -7,7 +7,11 @@ import {
 } from './CreateWalletDescription.variables';
 import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
-import { font, pxToRem } from 'styles';
+import { font, percentage, pxToRem } from 'styles';
+
+const page: CSSProperties = {
+	height: '100%'
+};
 
 const walletItemList: CSSProperties = {
 	paddingTop: pxToRem(30)
@@ -51,9 +55,9 @@ const descriptionImageWrapper: CSSProperties = {
 	position: 'absolute',
 	whiteSpace: 'nowrap',
 	overflow: 'visible',
-	right: `${(CREATE_WALLET_IMAGE_INITIAL_POSITION_RIGHT / CREATE_WALLET_PAGE_INITIAL_WIDTH) * 100}vw`,
+	right: percentage(CREATE_WALLET_IMAGE_INITIAL_POSITION_RIGHT / CREATE_WALLET_PAGE_INITIAL_WIDTH),
 	top: 0,
-	width: `${(CREATE_WALLET_IMAGE_INITIAL_WIDTH / CREATE_WALLET_PAGE_INITIAL_WIDTH) * 100}vw`,
+	width: percentage(CREATE_WALLET_IMAGE_INITIAL_WIDTH / CREATE_WALLET_PAGE_INITIAL_WIDTH),
 	height: `${(CREATE_WALLET_IMAGE_INITIAL_HEIGHT / CREATE_WALLET_PAGE_INITIAL_HEIGHT) * 100}vh`
 };
 
@@ -171,6 +175,7 @@ const errorText: CSSProperties = {
 };
 
 export const styles = createStyles({
+	page,
 	walletItemList,
 	listItem,
 	activeListItem,
