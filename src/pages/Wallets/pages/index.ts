@@ -6,3 +6,4 @@ export * from './Confirmation';
 export * from './RulerWallet';
 export * from './Send';
 export * from './QrCode';
+export * from './Receive';

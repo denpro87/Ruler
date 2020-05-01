@@ -45,7 +45,10 @@ const titleTextStyle: CSSProperties = {
 		letterSpacing: 'normal',
 		color: '#181c19'
 	}),
-	padding: `0 ${pxToRem(30)}`
+	padding: `0 ${pxToRem(30)}`,
+	'&.MuiTypography-root': {
+		whiteSpace: 'pre-wrap'
+	}
 };
 
 const modalPaper: CSSProperties = {

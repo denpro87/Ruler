@@ -3,6 +3,7 @@
   "button.pay": "Pay",
   "button.send": "Send",
   "button.share": "Share",
+  "button.receive": "Receive",
   "button.save_changes": "Save changes",
   "menu.news": "News",
   "menu.wallet": "Wallet",
@@ -167,10 +168,15 @@
   "wallets.ruler_wallet.title": "Ruler wallet",
   "wallets.ruler_wallet.balance": "Balance",
   "wallets.ruler_wallet.wallet_address": "Public wallet address",
-  "wallets.receive.title": "Receive",
   "wallets.send.title": "Send",
   "wallets.send.send_to": "Send to",
   "wallets.send.dialog.title": "Transaction completed",
   "wallets.send.dialog.description": "Your wallet has been successfully replenished",
-  "wallets.qr_code.title": "QR code"
+  "wallets.qr_code.title": "QR code",
+  "wallets.receive.title": "Receive",
+  "wallets.receive.receive_from": "Receive from",
+  "wallets.receive.request_amount": "Request an amount",
+  "wallets.receive.share_qr_code": "Or share QR code",
+  "wallets.receive.dialog.title": "Request\nhas been sent!",
+  "wallets.receive.dialog.description": "Thank you for using our application!"
 }
