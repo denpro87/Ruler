@@ -7,7 +7,7 @@ import {
 	RULER_WALLET_PAGE_INITIAL_WIDTH
 } from './RulerWallet.variables';
 import { createStyles } from '@material-ui/core';
-import { font, pxToRem } from 'styles';
+import { font, percentage, pxToRem } from 'styles';
 
 const goBackIcon: CSSProperties = {
 	backgroundColor: '#00b559',
@@ -79,9 +79,9 @@ const imageWrapper: CSSProperties = {
 	position: 'absolute',
 	whiteSpace: 'nowrap',
 	overflow: 'visible',
-	right: `${(RULER_WALLET_IMAGE_INITIAL_POSITION_RIGHT / RULER_WALLET_PAGE_INITIAL_WIDTH) * 100}vw`,
+	right: percentage(RULER_WALLET_IMAGE_INITIAL_POSITION_RIGHT / RULER_WALLET_PAGE_INITIAL_WIDTH),
 	top: 0,
-	width: `${(RULER_WALLET_IMAGE_INITIAL_WIDTH / RULER_WALLET_PAGE_INITIAL_WIDTH) * 100}vw`,
+	width: percentage(RULER_WALLET_IMAGE_INITIAL_WIDTH / RULER_WALLET_PAGE_INITIAL_WIDTH),
 	height: pxToRem(RULER_WALLET_IMAGE_INITIAL_HEIGHT),
 	minHeight: pxToRem(RULER_WALLET_IMAGE_INITIAL_HEIGHT)
 };

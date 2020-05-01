@@ -20,7 +20,7 @@ export const RulerWallet: React.FunctionComponent = () => {
 	const handleCopyClick = () => copy(walletAddress);
 
 	const handleSendClick = (): void => {
-		console.log('send');
+		history.push('/wallets/send');
 	};
 
 	const handleReceiveClick = (): void => {

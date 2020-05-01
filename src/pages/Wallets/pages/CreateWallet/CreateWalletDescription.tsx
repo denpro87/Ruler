@@ -14,7 +14,12 @@ export const CreateWalletDescription: React.FunctionComponent = () => {
 	const history = useHistory();
 
 	return (
-		<Page title={formatMessage({ id: 'wallets.create_wallet.title' })} titleSize="medium" noHorizontalContentPadding>
+		<Page
+			title={formatMessage({ id: 'wallets.create_wallet.title' })}
+			className={classes.page}
+			titleSize="medium"
+			noHorizontalContentPadding
+		>
 			<Text className={classes.description}>{formatMessage({ id: 'wallets.create_wallet.description' })}</Text>
 			<Box className={classes.descriptionContent}>
 				<Box className={classes.descriptionImageWrapper}>
