@@ -3,7 +3,6 @@ import { Dialog, GreenButton, IconButton, Page, Text, TextField } from 'componen
 import { RulerButton } from '../../components';
 import { rulerPriceBonusData } from '../../Wallets.data';
 import { styles } from './Send.styles';
-import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
 import clsx from 'clsx';
@@ -12,7 +11,6 @@ const useStyles = makeStyles(styles);
 
 export const Send: React.FunctionComponent = () => {
 	const classes = useStyles();
-	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [amount, setAmount] = React.useState<string>('');

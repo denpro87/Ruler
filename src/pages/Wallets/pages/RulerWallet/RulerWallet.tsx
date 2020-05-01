@@ -24,7 +24,7 @@ export const RulerWallet: React.FunctionComponent = () => {
 	};
 
 	const handleReceiveClick = (): void => {
-		console.log('receive');
+		history.push('/wallets/receive');
 	};
 
 	const handleQrClick = (): void => {
