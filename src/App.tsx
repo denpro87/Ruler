@@ -64,6 +64,7 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/wallets/confirmation" component={Wallets.Confirmation} exact />
 						<Route path="/wallets/ruler-wallet" component={Wallets.RulerWallet} exact />
 						<Route path="/wallets/send" component={Wallets.Send} exact />
+						<Route path="/wallets/qr-code" component={Wallets.QrCode} exact />
 						<Route exact path="/" render={() => <Redirect to="/splash" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>
