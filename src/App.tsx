@@ -2,6 +2,7 @@ import * as DriverLicence from 'pages/DriverLicence';
 import * as GetHelp from 'pages/GetHelp';
 import * as News from 'pages/News';
 import * as Settings from 'pages/Settings';
+import * as Wallets from 'pages/Wallets';
 import { Home, ServiceProviders, Splash, Welcome } from 'pages';
 
 import { CssBaseline } from '@material-ui/core';
@@ -51,6 +52,20 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/get-help/regulations-scooter" component={GetHelp.SafetyScooter} exact />
 						<Route path="/get-help/my-reports" component={GetHelp.MyReports} exact />
 						<Route path="/get-help/how-to-ride" component={GetHelp.HowToRide} exact />
+						<Route path="/wallets" component={Wallets.Wallets} exact />
+						<Route path="/wallets/create-wallet" component={Wallets.CreateWallet} exact />
+						<Route path="/wallets/create-wallet-description" component={Wallets.CreateWalletDescription} exact />
+						<Route path="/wallets/create-wallet-store" component={Wallets.CreateWalletStore} exact />
+						<Route path="/wallets/create-wallet-place" component={Wallets.CreateWalletPlace} exact />
+						<Route path="/wallets/add-funds" component={Wallets.AddFunds} exact />
+						<Route path="/wallets/add-funds/add-credit-card" component={Wallets.AddCreditCard} exact />
+						<Route path="/wallets/template" component={Wallets.Template} exact />
+						<Route path="/wallets/transfer" component={Wallets.Transfer} exact />
+						<Route path="/wallets/confirmation" component={Wallets.Confirmation} exact />
+						<Route path="/wallets/ruler-wallet" component={Wallets.RulerWallet} exact />
+						<Route path="/wallets/send" component={Wallets.Send} exact />
+						<Route path="/wallets/qr-code" component={Wallets.QrCode} exact />
+						<Route path="/wallets/receive" component={Wallets.Receive} exact />
 						<Route exact path="/" render={() => <Redirect to="/splash" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>

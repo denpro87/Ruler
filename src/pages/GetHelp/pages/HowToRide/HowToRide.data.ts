@@ -23,6 +23,7 @@ import {
 	WATCH_AREAS_BACKGROUND_INITIAL_WIDTH
 } from './HowToRide.variables';
 import { ISlide } from 'components';
+import { percentage } from 'styles';
 
 export const slides: Array<ISlide> = [
 	{
@@ -30,9 +31,9 @@ export const slides: Array<ISlide> = [
 		title: 'get_help.how_to_ride.scan_qr.title',
 		description: 'get_help.how_to_ride.scan_qr.description',
 		style: {
-			right: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_POSITION_RIGHT / HOW_TO_RIDE_PAGE_INITIAL_WIDTH) * 100}vw`,
+			right: percentage(SCAN_QR_CODE_BACKGROUND_INITIAL_POSITION_RIGHT / HOW_TO_RIDE_PAGE_INITIAL_WIDTH),
 			top: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_POSITION_TOP / HOW_TO_RIDE_PAGE_INITIAL_HEIGHT) * 100}vh`,
-			width: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_WIDTH / HOW_TO_RIDE_PAGE_INITIAL_WIDTH) * 100}vw`,
+			width: percentage(SCAN_QR_CODE_BACKGROUND_INITIAL_WIDTH / HOW_TO_RIDE_PAGE_INITIAL_WIDTH),
 			height: `${(SCAN_QR_CODE_BACKGROUND_INITIAL_HEIGHT / HOW_TO_RIDE_PAGE_INITIAL_HEIGHT) * 100}vh`
 		}
 	},
@@ -41,9 +42,9 @@ export const slides: Array<ISlide> = [
 		title: 'get_help.how_to_ride.payment_method.title',
 		description: 'get_help.how_to_ride.payment_method.description',
 		style: {
-			right: `${(PAYMENT_METHOD_BACKGROUND_INITIAL_POSITION_RIGHT / HOW_TO_RIDE_PAGE_INITIAL_WIDTH) * 100}vw`,
+			right: percentage(PAYMENT_METHOD_BACKGROUND_INITIAL_POSITION_RIGHT / HOW_TO_RIDE_PAGE_INITIAL_WIDTH),
 			top: `${(PAYMENT_METHOD_BACKGROUND_INITIAL_POSITION_TOP / HOW_TO_RIDE_PAGE_INITIAL_HEIGHT) * 100}vh`,
-			width: `${(PAYMENT_METHOD_BACKGROUND_INITIAL_WIDTH / HOW_TO_RIDE_PAGE_INITIAL_WIDTH) * 100}vw`,
+			width: percentage(PAYMENT_METHOD_BACKGROUND_INITIAL_WIDTH / HOW_TO_RIDE_PAGE_INITIAL_WIDTH),
 			height: `${(PAYMENT_METHOD_BACKGROUND_INITIAL_HEIGHT / HOW_TO_RIDE_PAGE_INITIAL_HEIGHT) * 100}vh`
 		}
 	},
@@ -52,9 +53,9 @@ export const slides: Array<ISlide> = [
 		title: 'get_help.how_to_ride.start_trip.title',
 		description: 'get_help.how_to_ride.start_trip.description',
 		style: {
-			right: `${(START_TRIP_BACKGROUND_INITIAL_POSITION_RIGHT / HOW_TO_RIDE_PAGE_INITIAL_WIDTH) * 100}vw`,
+			right: percentage(START_TRIP_BACKGROUND_INITIAL_POSITION_RIGHT / HOW_TO_RIDE_PAGE_INITIAL_WIDTH),
 			top: `${(START_TRIP_BACKGROUND_INITIAL_POSITION_TOP / HOW_TO_RIDE_PAGE_INITIAL_HEIGHT) * 100}vh`,
-			width: `${(START_TRIP_BACKGROUND_INITIAL_WIDTH / HOW_TO_RIDE_PAGE_INITIAL_WIDTH) * 100}vw`,
+			width: percentage(START_TRIP_BACKGROUND_INITIAL_WIDTH / HOW_TO_RIDE_PAGE_INITIAL_WIDTH),
 			height: `${(START_TRIP_BACKGROUND_INITIAL_HEIGHT / HOW_TO_RIDE_PAGE_INITIAL_HEIGHT) * 100}vh`
 		}
 	},
@@ -63,9 +64,9 @@ export const slides: Array<ISlide> = [
 		title: 'get_help.how_to_ride.watch_areas.title',
 		description: 'get_help.how_to_ride.watch_areas.description',
 		style: {
-			right: `${(WATCH_AREAS_BACKGROUND_INITIAL_POSITION_RIGHT / HOW_TO_RIDE_PAGE_INITIAL_WIDTH) * 100}vw`,
+			right: percentage(WATCH_AREAS_BACKGROUND_INITIAL_POSITION_RIGHT / HOW_TO_RIDE_PAGE_INITIAL_WIDTH),
 			top: `${(WATCH_AREAS_BACKGROUND_INITIAL_POSITION_TOP / HOW_TO_RIDE_PAGE_INITIAL_HEIGHT) * 100}vh`,
-			width: `${(WATCH_AREAS_BACKGROUND_INITIAL_WIDTH / HOW_TO_RIDE_PAGE_INITIAL_WIDTH) * 100}vw`,
+			width: percentage(WATCH_AREAS_BACKGROUND_INITIAL_WIDTH / HOW_TO_RIDE_PAGE_INITIAL_WIDTH),
 			height: `${(WATCH_AREAS_BACKGROUND_INITIAL_HEIGHT / HOW_TO_RIDE_PAGE_INITIAL_HEIGHT) * 100}vh`
 		}
 	},
@@ -74,9 +75,9 @@ export const slides: Array<ISlide> = [
 		title: 'get_help.how_to_ride.trip_status.title',
 		description: 'get_help.how_to_ride.trip_status.description',
 		style: {
-			right: `${(TRIP_STATUS_BACKGROUND_INITIAL_POSITION_RIGHT / HOW_TO_RIDE_PAGE_INITIAL_WIDTH) * 100}vw`,
+			right: percentage(TRIP_STATUS_BACKGROUND_INITIAL_POSITION_RIGHT / HOW_TO_RIDE_PAGE_INITIAL_WIDTH),
 			top: `${(TRIP_STATUS_BACKGROUND_INITIAL_POSITION_TOP / HOW_TO_RIDE_PAGE_INITIAL_HEIGHT) * 100}vh`,
-			width: `${(TRIP_STATUS_BACKGROUND_INITIAL_WIDTH / HOW_TO_RIDE_PAGE_INITIAL_WIDTH) * 100}vw`,
+			width: percentage(TRIP_STATUS_BACKGROUND_INITIAL_WIDTH / HOW_TO_RIDE_PAGE_INITIAL_WIDTH),
 			height: `${(TRIP_STATUS_BACKGROUND_INITIAL_HEIGHT / HOW_TO_RIDE_PAGE_INITIAL_HEIGHT) * 100}vh`
 		}
 	}
