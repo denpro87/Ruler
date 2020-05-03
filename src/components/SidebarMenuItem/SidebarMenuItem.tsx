@@ -19,7 +19,9 @@ export const SidebarMenuItem: React.FunctionComponent<ISidebarMenuItemProps> = (
 		>
 			<Box className={classes.li}>
 				{image}
-				<Typography className={className} variant="h6">{title}</Typography>
+				<Typography className={className} variant="h6">
+					{title}
+				</Typography>
 			</Box>
 			<Box className={classes.text}>{children}</Box>
 		</Box>
