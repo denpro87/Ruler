@@ -21,7 +21,6 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 	const [backPhoto, setBackPhoto] = React.useState('');
 	const [side, setSide] = React.useState();
 	const [photos, setPhotos] = React.useState<string[]>([]);
-	const [isSubmitDisabled, setSubmitDisabled] = React.useState(true);
 	const [isSubmitSuccessModal, setSubmitSuccessModal] = React.useState(false);
 	const [showTakePhoto, setShowTakePhoto] = React.useState(false);
 	const [selectedImageIndex, setSelectedImageIndex] = React.useState(-1);
@@ -30,11 +29,6 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 	React.useEffect(() => {
 		defineCustomElements(window);
 	}, []);
-	React.useEffect(() => {
-		if (frontPhoto && backPhoto) {
-			setSubmitDisabled(false);
-		}
-	}, [frontPhoto, backPhoto]);
 
 	const takePhoto = async (type: 'front' | 'back') => {
 		const image = await Camera.getPhoto({
@@ -64,8 +58,6 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 	};
 
 	const removePhoto = (type: 'front' | 'back') => {
-		setSubmitDisabled(true);
-
 		if (type === 'front') setFrontPhoto('');
 		else setBackPhoto('');
 	};
@@ -154,7 +146,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 					iconName="submit-report"
 					compact
 					className={classes.submitButton}
-					disabled={isSubmitDisabled}
+					disabled={!frontPhoto || !backPhoto}
 					onClick={() => submit()}
 				>
 					{formatMessage({ id: 'driver_licence.submit_for_validation' })}
