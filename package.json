@@ -20,6 +20,7 @@
 		"material-ui-bottom-sheet": "^0.5.1",
 		"qrcode-react": "^0.1.16",
 		"react": "^16.12.0",
+		"react-backdrop-filter": "^2.1.0",
 		"react-custom-scrollbars": "^4.2.1",
 		"react-dom": "^16.12.0",
 		"react-intl": "^4.5.0",

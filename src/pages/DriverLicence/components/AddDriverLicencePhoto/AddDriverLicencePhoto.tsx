@@ -6,6 +6,7 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './AddDriverLicencePhoto.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import BackdropFilter from 'react-backdrop-filter';
 import React from 'react';
 import clsx from 'clsx';
 const useStyles = makeStyles(styles);
@@ -44,10 +45,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 		});
 		const imageUrl = image.webPath ?? '';
 		setPhoto(imageUrl);
-		let imageGallery = [];
-		imageGallery = photos;
-		imageGallery.push(imageUrl);
-		setPhotos([...imageGallery]);
+		setPhotos(prevPhotos => [...prevPhotos, imageUrl]);
 	};
 
 	const handlePhotoClick = (index: number): void => {
@@ -99,7 +97,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 	const handleFlashLightClick = (): void => {};
 
 	return (
-		<Box>
+		<Box className={classes.AddDriverLicenceContainer}>
 			<Box className={classes.buttonContainer}>
 				<Box className={classes.cardBox}>
 					<Box className={classes.photoAspectRatioBox}>
@@ -180,19 +178,19 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 				darkMode
 				onBottomSheetChange={handleBottomSheetChange}
 			>
-				<Box>
-					<Box className={classes.driverLicencePhotoContainer}>
-						<Box className={classes.driverLicencePhotoAspectRatioBox}>
-							<Box className={classes.photoAspectRatioBoxInside}>
-								{photo && (
-									<Box className={classes.cardImageContainer}>
-										<IonImg className={classes.cardImage} src={photo} />
-									</Box>
-								)}
-							</Box>
+				<Box className={classes.driverLicencePhotoContainer}>
+					<Box className={classes.driverLicencePhotoAspectRatioBox}>
+						<Box className={classes.photoAspectRatioBoxInside}>
+							{photo && (
+								<Box className={classes.cardImageContainer}>
+									<IonImg className={classes.cardImage} src={photo} />
+								</Box>
+							)}
 						</Box>
 					</Box>
-					<Box className={classes.footerContainer}>
+				</Box>
+				<Box className={classes.footerContainer}>
+					<BackdropFilter filter="blur(4px)">
 						<Box className={classes.imageGallery}>
 							<Box className={classes.imageGalleryInside}>
 								{photos.length > 0 &&
@@ -227,7 +225,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 								onClick={() => (selectedImageIndex >= 0 ? handleRevertClick(selectedImageIndex) : handleFlashLightClick())}
 							/>
 						</Box>
-					</Box>
+					</BackdropFilter>
 				</Box>
 			</BottomSheet>
 		</Box>

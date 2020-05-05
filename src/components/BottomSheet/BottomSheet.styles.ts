@@ -10,9 +10,7 @@ const sheetContainer: CSSProperties = {
 };
 
 const sheetWrapper: CreateCSSProperties = {
-	zIndex: 9999,
 	backgroundColor: (props: any) => (props.darkMode ? 'rgba(24, 28, 25, 0.5)' : undefined),
-	backdropFilter: (props: any) => (props.darkMode ? `blur(${pxToRem(40)})` : undefined),
 	padding: (props: any) => (props.darkMode ? `${pxToRem(10)} 0 0 0` : `${pxToRem(15)} ${pxToRem(20)} ${pxToRem(5)} ${pxToRem(25)}`)
 	// display: 'flex',
 	// flexDirection: 'column',

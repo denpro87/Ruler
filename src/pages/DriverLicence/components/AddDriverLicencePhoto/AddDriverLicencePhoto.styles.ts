@@ -126,12 +126,11 @@ const imageCover: CSSProperties = {
 	display: 'flex',
 	justifyContent: 'center',
 	flexDirection: 'column',
-	alignItems: 'center',
-	zIndex: 2
+	alignItems: 'center'
 };
 
 const cardImageContainer: CSSProperties = {
-	position: 'relative',
+	// position: 'relative',
 	width: '100%',
 	height: '100%',
 	borderRadius: pxToRem(15),
@@ -145,8 +144,7 @@ const closeIcon: CSSProperties = {
 	padding: 0,
 	boxShadow: 'none',
 	color: '#ffffff',
-	backgroundColor: 'transparent',
-	zIndex: 3
+	backgroundColor: 'transparent'
 };
 
 const dialogContentText: CSSProperties = {
@@ -158,18 +156,15 @@ const dialogContentText: CSSProperties = {
 };
 
 const driverLicencePhotoContainer: CSSProperties = {
-	display: 'flex',
-	flexDirection: 'row',
-	justifyContent: 'center',
-	alignItems: 'center',
-	padding: `${pxToRem(30)} ${pxToRem(25)} ${pxToRem(30)} ${pxToRem(25)}`
+	padding: `${pxToRem(30)} ${pxToRem(25)} ${pxToRem(30)} ${pxToRem(25)}`,
+	width: pxToRem(375),
+	margin: '0 auto'
 };
 
 const footerContainer: CSSProperties = {
 	borderTopLeftRadius: pxToRem(15),
 	borderTopRightRadius: pxToRem(15),
-	backgroundColor: 'rgba(255, 255, 255, 0.85)',
-	backdropFilter: `blur(${pxToRem(4)})`
+	backgroundColor: 'rgba(255, 255, 255, 0.85)'
 };
 
 const imageGallery: CSSProperties = {
@@ -216,7 +211,7 @@ const takenImage: CSSProperties = {
 	marginRight: pxToRem(15),
 	objectFit: 'cover',
 	minWidth: pxToRem(50),
-	borderRadius: pxToRem(10)
+	borderRadius: pxToRem(15)
 };
 
 const takenImageActive: CSSProperties = {
@@ -234,6 +229,11 @@ const leftRightIconButton: CSSProperties = {
 	}
 };
 
+const AddDriverLicenceContainer: CSSProperties = {
+	flex: 1,
+	display: 'flex',
+	flexDirection: 'column'
+};
 export const styles = createStyles({
 	description,
 	footer,
@@ -260,5 +260,6 @@ export const styles = createStyles({
 	leftRightIconButton,
 	takenImage,
 	takenImageActive,
-	imageGalleryInside
+	imageGalleryInside,
+	AddDriverLicenceContainer
 });
