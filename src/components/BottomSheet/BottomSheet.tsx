@@ -7,8 +7,15 @@ import SwipeableBottomSheet from 'react-swipeable-bottom-sheet';
 
 const useStyles = makeStyles(styles);
 
-export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({ open, onBottomSheetChange, children, title }) => {
-	const classes = useStyles();
+export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
+	open,
+	darkMode,
+	onBottomSheetChange,
+	children,
+	title,
+	description
+}) => {
+	const classes = useStyles({ darkMode });
 
 	return (
 		<div className={classes.sheetContainer}>
@@ -19,8 +26,11 @@ export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({ open, 
 				onChange={onBottomSheetChange}
 			>
 				<div className={classes.sheetWrapper}>
-					<div className={classes.blackBar}></div>
-					{title && <Typography className={classes.sheetTitle}>Anything wrong?</Typography>}
+					<div className={classes.topWrapper}>
+						<div className={classes.blackBar} />
+						{title && <Typography className={classes.sheetTitle}>{title}</Typography>}
+						{description && <Typography className={classes.sheetDescription}>{description}</Typography>}
+					</div>
 					{children}
 				</div>
 			</SwipeableBottomSheet>

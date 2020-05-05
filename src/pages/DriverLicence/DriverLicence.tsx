@@ -1,5 +1,6 @@
+import { AddDriverLicencePhoto } from './components/AddDriverLicencePhoto';
+import { BottomSheet, Button, Page, Text } from 'components';
 import { Box, makeStyles } from '@material-ui/core';
-import { Button, Page, Text } from 'components';
 import { IDriverLicenceProps } from './DriverLicence.types';
 import { LicenceItem } from './components';
 import { styles } from './DriverLicence.styles';
@@ -15,6 +16,7 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 	const [state, setState] = React.useState<'success' | 'progress' | 'invalid' | ''>('');
 	const [data, setData] = React.useState<string[]>([]);
 	const [isFirstLoading, setFirstLoading] = React.useState(true);
+	const [showAddDriverLicence, setAddDriverLicence] = React.useState(false);
 	const classes = useStyles({ state });
 
 	React.useEffect(() => {
@@ -29,25 +31,38 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 	}, [props.location.state]);
 
 	React.useEffect(() => {
-		if (state === 'progress') {
-			setTimeout(() => {
-				const success = true;
-				setState(success ? 'success' : 'invalid');
-			}, 1500);
-		}
+		// if (state === 'progress') {
+		// 	setTimeout(() => {
+		const success = true;
+		setState(success ? 'success' : 'invalid');
+		// 	}, 1500);
+		// }
 	}, [state]);
 
-	React.useEffect(() => {
-		if (!isFirstLoading && data.length === 0) history.push('/driver-licence/add');
-	}, [data, history, isFirstLoading]);
+	// React.useEffect(() => {
+	// 	if (!isFirstLoading && data.length === 0) history.push('/driver-licence/add');
+	// }, [data, history, isFirstLoading]);
 
 	const handleRemoveClick = (index: number) => {
 		console.log(index);
 	};
 
+	const handleAddDriverLicenceClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+		setAddDriverLicence(true);
+
+		// if (!isFirstLoading && data.length > 0) setAddDriverLicence(true);
+		// else setAddDriverLicence(false);
+	};
+
+	const handleBottomSheetChange = (isOpen: boolean) => {
+		setAddDriverLicence(isOpen);
+	};
+
 	return (
 		<Page title={formatMessage({ id: 'driver_licence.title' })} titleSize="large">
-			{state !== 'success' && <Text className={classes.description}>{formatMessage({ id: 'driver_licence.description' })}</Text>}
+			{state !== 'success' && state !== '' && (
+				<Text className={classes.description}>{formatMessage({ id: 'driver_licence.description' })}</Text>
+			)}
 			{state === 'progress' && (
 				<Box className={classes.submitWrapper}>
 					<Box className={classes.bannerBox}>
@@ -78,12 +93,19 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 						<LicenceItem key={index} imageSrc={item} handleRemoveClick={() => handleRemoveClick(index)} />
 					))}
 					<Box className={classes.buttonWrapper}>
-						<Button iconName="add" compact className={classes.addButton} href="/driver-licence/add">
+						<Button iconName="add" compact className={classes.addButton} onClick={handleAddDriverLicenceClick}>
 							{formatMessage({ id: 'driver_licence.add' })}
 						</Button>
 					</Box>
 				</Box>
 			)}
+			<BottomSheet
+				title={formatMessage({ id: 'driver_licence.add' })}
+				open={showAddDriverLicence}
+				onBottomSheetChange={handleBottomSheetChange}
+			>
+				<AddDriverLicencePhoto />
+			</BottomSheet>
 		</Page>
 	);
 };
