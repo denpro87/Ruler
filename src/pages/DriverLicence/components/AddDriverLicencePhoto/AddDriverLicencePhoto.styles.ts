@@ -122,6 +122,7 @@ const imageCover: CSSProperties = {
 	left: 0,
 	right: 0,
 	bottom: 0,
+	borderRadius: pxToRem(15),
 	backgroundColor: 'rgba(0, 181, 89, 0.8)',
 	display: 'flex',
 	justifyContent: 'center',
@@ -211,7 +212,8 @@ const takenImage: CSSProperties = {
 	marginRight: pxToRem(15),
 	objectFit: 'cover',
 	minWidth: pxToRem(50),
-	borderRadius: pxToRem(15)
+	borderRadius: pxToRem(15),
+	overflow: 'hidden'
 };
 
 const takenImageActive: CSSProperties = {
