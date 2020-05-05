@@ -162,7 +162,6 @@ const driverLicencePhotoContainer: CSSProperties = {
 	flexDirection: 'row',
 	justifyContent: 'center',
 	alignItems: 'center',
-	// maxWidth: pxToRem(375),
 	padding: `${pxToRem(30)} ${pxToRem(25)} ${pxToRem(30)} ${pxToRem(25)}`
 };
 
@@ -171,14 +170,17 @@ const footerContainer: CSSProperties = {
 	borderTopRightRadius: pxToRem(15),
 	backgroundColor: 'rgba(255, 255, 255, 0.85)',
 	backdropFilter: `blur(${pxToRem(4)})`
-	// width: '100%'
 };
 
 const imageGallery: CSSProperties = {
+	padding: `${pxToRem(30)} 0 0 ${pxToRem(30)}`
+};
+
+const imageGalleryInside: CSSProperties = {
+	minHeight: pxToRem(50),
 	display: 'flex',
 	flexDirection: 'row',
-	marginRight: pxToRem(15),
-	padding: `${pxToRem(30)} 0 0 ${pxToRem(30)}`
+	flexWrap: 'nowrap'
 };
 
 const iconButtonGroup: CSSProperties = {
@@ -190,8 +192,6 @@ const iconButtonGroup: CSSProperties = {
 };
 
 const midIconButton: CSSProperties = {
-	// marginRight: pxToRem(42),
-	// marginLeft: pxToRem(42),
 	borderRadius: pxToRem(20),
 	backgroundColor: '#ffffff',
 	padding: pxToRem(20),
@@ -202,12 +202,25 @@ const midIconButton: CSSProperties = {
 	}
 };
 
+const midIconButtonActive: CSSProperties = {
+	backgroundColor: '#00b559',
+	'&:hover': {
+		backgroundColor: '#00b559',
+		opacity: 0.7
+	}
+};
+
 const takenImage: CSSProperties = {
 	width: pxToRem(50),
 	height: pxToRem(50),
-	objectFit: 'contain',
+	marginRight: pxToRem(15),
+	objectFit: 'cover',
 	minWidth: pxToRem(50),
 	borderRadius: pxToRem(10)
+};
+
+const takenImageActive: CSSProperties = {
+	border: `solid ${pxToRem(2)} #00b559`
 };
 
 const leftRightIconButton: CSSProperties = {
@@ -243,6 +256,9 @@ export const styles = createStyles({
 	imageGallery,
 	iconButtonGroup,
 	midIconButton,
+	midIconButtonActive,
 	leftRightIconButton,
-	takenImage
+	takenImage,
+	takenImageActive,
+	imageGalleryInside
 });

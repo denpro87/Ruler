@@ -1,4 +1,4 @@
-import { BottomSheet, Button, Dialog, Icon, IconButton, Page, Text } from 'components';
+import { BottomSheet, Button, Dialog, Icon, IconButton, Text } from 'components';
 import { Box, makeStyles } from '@material-ui/core';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { IonImg } from '@ionic/react';
@@ -7,7 +7,7 @@ import { styles } from './AddDriverLicencePhoto.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
-
+import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 const { Camera } = Plugins;
@@ -15,12 +15,15 @@ const { Camera } = Plugins;
 export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const history = useHistory();
+	const [photo, setPhoto] = React.useState('');
 	const [frontPhoto, setFrontPhoto] = React.useState('');
 	const [backPhoto, setBackPhoto] = React.useState('');
-	const [photos, setPhotos] = React.useState(['']);
+	const [side, setSide] = React.useState();
+	const [photos, setPhotos] = React.useState<string[]>([]);
 	const [isSubmitDisabled, setSubmitDisabled] = React.useState(true);
 	const [isSubmitSuccessModal, setSubmitSuccessModal] = React.useState(false);
 	const [showTakePhoto, setShowTakePhoto] = React.useState(false);
+	const [selectedImageIndex, setSelectedImageIndex] = React.useState(-1);
 	const { formatMessage } = useIntl();
 
 	React.useEffect(() => {
@@ -40,12 +43,26 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 			source: CameraSource.Camera
 		});
 		const imageUrl = image.webPath ?? '';
-		const imageGallery: string[] = [];
-
-		if (type === 'front') setFrontPhoto(imageUrl);
-		else setBackPhoto(imageUrl);
+		setPhoto(imageUrl);
+		let imageGallery = [];
+		imageGallery = photos;
 		imageGallery.push(imageUrl);
 		setPhotos([...imageGallery]);
+	};
+
+	const handlePhotoClick = (index: number): void => {
+		setSelectedImageIndex(index);
+		setPhoto(photos[index]);
+	};
+
+	const savePhoto = (type: 'front' | 'back', selectedImageIndex: number) => {
+		setShowTakePhoto(false);
+
+		if (type === 'front') {
+			setFrontPhoto(photos[selectedImageIndex]);
+		} else {
+			setBackPhoto(photos[selectedImageIndex]);
+		}
 	};
 
 	const removePhoto = (type: 'front' | 'back') => {
@@ -59,16 +76,27 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 
 	const handleDialogClose = () => {
 		setSubmitSuccessModal(false);
-		history.push('/driver-licence', { data: [frontPhoto], state: 'progress' });
+		setFrontPhoto('');
+		setBackPhoto('');
+		history.push('/driver-licence', { data: [frontPhoto], state: 'progress', showAddDriverLicence: false });
 	};
 
-	const handleTakePhotoClick = (type: string) => {
+	const handleTakePhotoClick = (type: 'front' | 'back') => {
 		setShowTakePhoto(true);
+
+		if (type === 'front') setSide('front');
+		else setSide('back');
 	};
 
 	const handleBottomSheetChange = (isOpen: boolean) => {
 		setShowTakePhoto(isOpen);
 	};
+
+	const handleRevertClick = (index: number): void => {
+		setSelectedImageIndex(-1);
+	};
+
+	const handleFlashLightClick = (): void => {};
 
 	return (
 		<Box>
@@ -88,7 +116,6 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 									<IconButton className={classes.closeIcon} onClick={() => removePhoto('front')} iconName="close" />
 								</Box>
 							) : (
-								// <Box className={classes.cardButton} onClick={() => takePhoto('front')}>
 								<Box className={classes.cardButton} onClick={() => handleTakePhotoClick('front')}>
 									<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
 									<Text className={classes.cardText}>{formatMessage({ id: 'driver_licence.front_side' })}</Text>
@@ -113,7 +140,6 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 									<IconButton className={classes.closeIcon} onClick={() => removePhoto('back')} iconName="close" />
 								</Box>
 							) : (
-								// <Box className={classes.cardButton} onClick={() => takePhoto('back')}>
 								<Box className={classes.cardButton} onClick={() => handleTakePhotoClick('back')}>
 									<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
 									<Text className={classes.cardText}>{formatMessage({ id: 'driver_licence.back_side' })}</Text>
@@ -148,7 +174,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 				<Text className={classes.dialogContentText}>{formatMessage({ id: 'driver_licence.submit_success.dialog.description' })}</Text>
 			</Dialog>
 			<BottomSheet
-				title={formatMessage({ id: 'driver_licence.front_side' })}
+				title={formatMessage({ id: side === 'front' ? 'driver_licence.front_side' : 'driver_licence.back_side' })}
 				description={formatMessage({ id: 'driver_licence.driver.photograph' })}
 				open={showTakePhoto}
 				darkMode
@@ -158,43 +184,48 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 					<Box className={classes.driverLicencePhotoContainer}>
 						<Box className={classes.driverLicencePhotoAspectRatioBox}>
 							<Box className={classes.photoAspectRatioBoxInside}>
-								{frontPhoto && (
+								{photo && (
 									<Box className={classes.cardImageContainer}>
-										<IonImg className={classes.cardImage} src={frontPhoto} />
-										{/* <Box className={classes.imageCover}>
-										<Icon iconName="well-done-checked" color="#ffffff" />
-										<Text className={classes.cardText} color="#ffffff">
-											{formatMessage({ id: 'driver_licence.front_side' })}
-										</Text>
-									</Box> */}
-										<IconButton className={classes.closeIcon} onClick={() => removePhoto('front')} iconName="close" />
+										<IonImg className={classes.cardImage} src={photo} />
 									</Box>
-								)
-								// : (
-								// 	<Box className={classes.cardButton} onClick={() => takePhoto('front')}>
-								// 		{/* <Box className={classes.cardButton} onClick={handleTakeFrontPhotoClick}> */}
-								// 		<Icon iconName="photo" color="#00b559" fillColor="#ffffff" />
-								// 		<Text className={classes.cardText}>{formatMessage({ id: 'driver_licence.front_side' })}</Text>
-								// 	</Box>
-								// )
-								}
+								)}
 							</Box>
 						</Box>
 					</Box>
 					<Box className={classes.footerContainer}>
 						<Box className={classes.imageGallery}>
-							{photos.map((photo, index) => {
-								return <IonImg className={classes.takenImage} key={index} src={photo} />;
-							})}
+							<Box className={classes.imageGalleryInside}>
+								{photos.length > 0 &&
+									photos.map((photo, index) => {
+										return (
+											<IonImg
+												className={clsx({ [classes.takenImage]: true }, { [classes.takenImageActive]: index === selectedImageIndex })}
+												key={index}
+												src={photo}
+												onClick={() => handlePhotoClick(index)}
+											/>
+										);
+									})}
+							</Box>
 						</Box>
 						<Box className={classes.iconButtonGroup}>
-							<IconButton iconProps={{ iconName: 'trash', color: '#181c19' }} className={classes.leftRightIconButton} />
 							<IconButton
-								iconProps={{ iconName: 'photo', color: '#181c19' }}
-								className={classes.midIconButton}
-								onClick={() => takePhoto('front')}
+								iconProps={{ iconName: selectedImageIndex < 0 ? 'gallery' : 'trash', color: '#181c19' }}
+								className={classes.leftRightIconButton}
 							/>
-							<IconButton iconProps={{ iconName: 'flashlight', color: '#181c19' }} className={classes.leftRightIconButton} />
+							<IconButton
+								iconProps={{
+									iconName: selectedImageIndex < 0 ? 'photo' : 'save-photo',
+									color: selectedImageIndex < 0 ? '#181c19' : '#ffffff'
+								}}
+								className={clsx({ [classes.midIconButton]: true }, { [classes.midIconButtonActive]: selectedImageIndex >= 0 })}
+								onClick={() => (selectedImageIndex < 0 ? takePhoto(side) : savePhoto(side, selectedImageIndex))}
+							/>
+							<IconButton
+								iconProps={{ iconName: selectedImageIndex < 0 ? 'flashlight' : 'revert', color: '#181c19' }}
+								className={classes.leftRightIconButton}
+								onClick={() => (selectedImageIndex >= 0 ? handleRevertClick(selectedImageIndex) : handleFlashLightClick())}
+							/>
 						</Box>
 					</Box>
 				</Box>

@@ -23,35 +23,36 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 		const params: any = props.location.state;
 		const urls = params && params.data ? params.data : null;
 		const state = params && params.state ? params.state : null;
+		const showAddDriverLicence = params && params.showAddDriverLicence;
 
 		if (state) setState(state);
+
+		setAddDriverLicence(showAddDriverLicence);
 
 		if (urls) setData(urls);
 		setFirstLoading(false);
 	}, [props.location.state]);
 
 	React.useEffect(() => {
-		// if (state === 'progress') {
-		// 	setTimeout(() => {
-		const success = true;
-		setState(success ? 'success' : 'invalid');
-		// 	}, 1500);
-		// }
+		if (state === 'progress') {
+			setTimeout(() => {
+				const success = true;
+				setState(success ? 'success' : 'invalid');
+			}, 2000);
+		}
 	}, [state]);
 
-	// React.useEffect(() => {
-	// 	if (!isFirstLoading && data.length === 0) history.push('/driver-licence/add');
-	// }, [data, history, isFirstLoading]);
+	React.useEffect(() => {
+		if (!isFirstLoading && data.length === 0) history.push('/driver-licence/add');
+	}, [data, history, isFirstLoading]);
 
 	const handleRemoveClick = (index: number) => {
 		console.log(index);
 	};
 
 	const handleAddDriverLicenceClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
-		setAddDriverLicence(true);
-
-		// if (!isFirstLoading && data.length > 0) setAddDriverLicence(true);
-		// else setAddDriverLicence(false);
+		if (!isFirstLoading && data.length > 0) setAddDriverLicence(true);
+		else setAddDriverLicence(false);
 	};
 
 	const handleBottomSheetChange = (isOpen: boolean) => {
