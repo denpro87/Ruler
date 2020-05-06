@@ -30,7 +30,7 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/news/:social?" component={News.NewsDetail} exact />
 						<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
 						<Route path="/driver-licence" component={DriverLicence.DriverLicence} exact />
-						<Route path="/driver-licence/add" component={DriverLicence.AddDriveLicence} exact />
+						<Route path="/driver-licence/add" component={DriverLicence.AddDriverLicence} exact />
 						<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
 						<Route path="/settings/notifications" component={Settings.Notifications} exact />
 						<Route path="/settings/languages" component={Settings.Languages} exact />
@@ -66,7 +66,7 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/wallets/send" component={Wallets.Send} exact />
 						<Route path="/wallets/qr-code" component={Wallets.QrCode} exact />
 						<Route path="/wallets/receive" component={Wallets.Receive} exact />
-						<Route exact path="/" render={() => <Redirect to="/splash" />} />
+						<Route exact path="/" render={() => <Redirect to="/driver-licence" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>
 			</IonApp>
