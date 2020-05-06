@@ -27,6 +27,14 @@ const vehicleButtonGroup: CSSProperties = {
 	left: pxToRem(20)
 };
 
+const vehicleButtonGroupWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	borderRadius: pxToRem(15),
+	backgroundColor: 'rgb(255, 255, 255)',
+	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 0, 0, 0.1)`
+};
+
 const findMeButton: CSSProperties = {
 	position: 'absolute',
 	bottom: pxToRem(30),
@@ -40,10 +48,23 @@ const homeButtons: CSSProperties = {
 	transform: 'translate(-50%, 0%)',
 	height: pxToRem(50),
 	borderRadius: pxToRem(15),
-	boxShadow: '0 10px 40px 0 rgba(0, 0, 0, 0.1)',
-	backgroundColor: '#ffffff',
+	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 0, 0, 0.1)`,
+	backgroundColor: 'rgb(255, 255, 255)',
 	display: 'flex',
+	justifyContent: 'center',
 	alignItems: 'center'
+};
+
+const homeButtonsText: CSSProperties = {
+	position: 'absolute',
+	bottom: pxToRem(8),
+	left: '50%',
+	transform: 'translate(-50%, 0%)',
+	minWidth: pxToRem(185),
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-between',
+	padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
 };
 
 const qrButton: CSSProperties = {
@@ -52,7 +73,7 @@ const qrButton: CSSProperties = {
 	border: `solid ${pxToRem(5)} #ffffff`,
 	backgroundColor: '#00b559',
 	boxShadow: 'none',
-	margin: `0 ${pxToRem(6)}`
+	margin: `0 ${pxToRem(6)} 0 ${pxToRem(7)}`
 };
 
 const menuButton: CSSProperties = {
@@ -62,6 +83,44 @@ const menuButton: CSSProperties = {
 const filterButton: CSSProperties = {
 	marginRight: pxToRem(10)
 };
+
+const firstIconButton: CSSProperties = {
+	padding: `${pxToRem(8)} ${pxToRem(10)} 0 ${pxToRem(10)}`
+};
+
+const lastIconButton: CSSProperties = {
+	padding: `${pxToRem(10)}`
+};
+
+const midIconButton: CSSProperties = {
+	padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
+};
+
+const vehicleIconButton: CSSProperties = {
+	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 0, 0, 0.1)`
+};
+
+const iconButtonText: CSSProperties = {
+	minWidth: pxToRem(50),
+	textAlign: 'center',
+	fontSize: pxToRem(10),
+	color: '#181c19',
+	fontWeight: 600,
+	lineHeight: 1.5,
+	opacity: 0.5
+};
+
+const positionVehicleText: CSSProperties = {
+	position: 'absolute',
+	bottom: pxToRem(8),
+	left: pxToRem(20)
+};
+
+const positionLocationText: CSSProperties = {
+	position: 'absolute',
+	bottom: pxToRem(8),
+	right: pxToRem(20)
+};
 export const styles = createStyles({
 	reportButton,
 	zonesButton,
@@ -70,5 +129,14 @@ export const styles = createStyles({
 	homeButtons,
 	qrButton,
 	menuButton,
-	filterButton
+	filterButton,
+	vehicleButtonGroupWrapper,
+	firstIconButton,
+	lastIconButton,
+	midIconButton,
+	vehicleIconButton,
+	iconButtonText,
+	positionVehicleText,
+	positionLocationText,
+	homeButtonsText
 });

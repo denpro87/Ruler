@@ -1,16 +1,19 @@
 import { Box } from '@material-ui/core';
-import { FullPage, Icon, IconButton } from 'components';
+import { FullPage, Icon, IconButton, Text } from 'components';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
+import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { ViewState } from 'react-map-gl';
 import React, { useState } from 'react';
+import clsx from 'clsx';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const useStyles = makeStyles(styles);
 
 export const Home: React.FunctionComponent = () => {
 	const classes = useStyles();
+	const { formatMessage } = useIntl();
 	const [viewport, setViewport] = useState<ViewState>({
 		latitude: 37.8,
 		longitude: -122.4,
@@ -35,25 +38,65 @@ export const Home: React.FunctionComponent = () => {
 				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" />
 				<Box className={classes.vehicleButtonGroup}>
 					{vehicleSelectionExpanded ? (
-						<Box display="flex" flexDirection="column" bgcolor="white" borderRadius={15}>
-							<IconButton noShadow label="All" key="vehicle" iconName="vehicle" colorType="black" />
-							<IconButton noShadow label="Car" key="car" iconName="car" colorType="black" />
-							<IconButton noShadow label="Bike" key="bike" iconName="bike" colorType="black" />
-							<IconButton noShadow label="Scooter" key="scooter" iconName="scooter" colorType="black" />
-							<IconButton key="close" iconName="close" colorType="black" onClick={(): void => setVehicleSelectionExpanded(false)} />
+						<Box className={classes.vehicleButtonGroupWrapper}>
+							<IconButton
+								noShadow
+								label={formatMessage({ id: 'home.text.all' })}
+								iconName="vehicle"
+								colorType="black"
+								className={classes.firstIconButton}
+							/>
+							<IconButton
+								noShadow
+								label={formatMessage({ id: 'home.text.car' })}
+								iconName="car"
+								colorType="black"
+								className={classes.midIconButton}
+							/>
+							<IconButton
+								noShadow
+								label={formatMessage({ id: 'home.text.bike' })}
+								iconName="bike"
+								colorType="black"
+								className={classes.midIconButton}
+							/>
+							<IconButton
+								noShadow
+								label={formatMessage({ id: 'home.text.scooter' })}
+								iconName="scooter"
+								colorType="black"
+								className={classes.midIconButton}
+							/>
+							<IconButton
+								iconName="close"
+								colorType="black"
+								className={classes.lastIconButton}
+								onClick={(): void => setVehicleSelectionExpanded(false)}
+							/>
 						</Box>
 					) : (
-						<IconButton iconName="vehicle" colorType="black" onClick={(): void => setVehicleSelectionExpanded(true)} />
+						<IconButton
+							iconName="vehicle"
+							className={classes.vehicleIconButton}
+							colorType="black"
+							onClick={(): void => setVehicleSelectionExpanded(true)}
+						/>
 					)}
 				</Box>
+				<Text className={clsx(classes.iconButtonText, classes.positionVehicleText)}>{formatMessage({ id: 'home.text.vehicle' })}</Text>
 				<IconButton className={classes.findMeButton} iconName="find-me" colorType="black" />
-				<div className={classes.homeButtons}>
+				<Text className={clsx(classes.iconButtonText, classes.positionLocationText)}>{formatMessage({ id: 'home.text.location' })}</Text>
+				<Box className={classes.homeButtons}>
 					<IconButton className={classes.menuButton} iconName="menu" colorType="black" noShadow />
 					<Fab aria-label="add" className={classes.qrButton}>
 						<Icon colorType="black" iconName="qr" primaryColor="white" secondaryColor="white" />
 					</Fab>
 					<IconButton className={classes.filterButton} iconName="filter" colorType="black" noShadow />
-				</div>
+				</Box>
+				<Box className={classes.homeButtonsText}>
+					<Text className={classes.iconButtonText}>{formatMessage({ id: 'home.text.menu' })}</Text>
+					<Text className={classes.iconButtonText}>{formatMessage({ id: 'home.text.filter' })}</Text>
+				</Box>
 			</MapGL>
 		</FullPage>
 	);
