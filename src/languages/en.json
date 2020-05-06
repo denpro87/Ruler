@@ -215,5 +215,13 @@
 	"wallets.receive.request_amount": "Request an amount",
 	"wallets.receive.share_qr_code": "Or share QR code",
 	"wallets.receive.dialog.title": "Request\nhas been sent!",
-	"wallets.receive.dialog.description": "Thank you for using our application!"
+	"wallets.receive.dialog.description": "Thank you for using our application!",
+	"home.text.all": "All",
+	"home.text.car": "Car",
+	"home.text.bike": "Bike",
+	"home.text.scooter": "Scooter",
+	"home.text.vehicle": "Vehicle",
+	"home.text.menu": "Menu",
+	"home.text.filter": "Filter",
+	"home.text.location": "Location"
 }
