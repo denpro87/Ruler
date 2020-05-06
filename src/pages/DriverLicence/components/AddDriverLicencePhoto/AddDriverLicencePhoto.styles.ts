@@ -169,7 +169,8 @@ const footerContainer: CSSProperties = {
 };
 
 const imageGallery: CSSProperties = {
-	padding: `${pxToRem(30)} 0 0 ${pxToRem(30)}`
+	padding: `${pxToRem(30)} 0 0 ${pxToRem(30)}`,
+	overflow: 'auto'
 };
 
 const imageGalleryInside: CSSProperties = {
