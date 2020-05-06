@@ -12,15 +12,11 @@ const sheetContainer: CSSProperties = {
 const sheetWrapper: CreateCSSProperties = {
 	backgroundColor: (props: any) => (props.darkMode ? 'rgba(24, 28, 25, 0.5)' : undefined),
 	padding: (props: any) => (props.darkMode ? `${pxToRem(10)} 0 0 0` : `${pxToRem(15)} ${pxToRem(20)} ${pxToRem(5)} ${pxToRem(25)}`)
-	// display: 'flex',
-	// flexDirection: 'column',
-	// justifyContent: 'center',
-	// alignItems: 'center'
 };
 
 const outsideWrapper: CSSProperties = {
 	position: 'absolute',
-	top: -10,
+	top: pxToRem(-10),
 	left: pxToRem(16),
 	backgroundColor: 'rgba(255, 255, 255, 0.6)',
 	width: `calc(100% - ${pxToRem(32)})`,
