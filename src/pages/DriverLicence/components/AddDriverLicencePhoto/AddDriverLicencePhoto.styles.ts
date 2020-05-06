@@ -190,19 +190,14 @@ const iconButtonGroup: CSSProperties = {
 const midIconButton: CSSProperties = {
 	borderRadius: pxToRem(20),
 	backgroundColor: '#ffffff',
-	padding: pxToRem(20),
-	boxShadow: 'none',
-	'&:hover': {
-		backgroundColor: '#ffffff',
-		opacity: 0.7
-	}
+	padding: pxToRem(20)
 };
 
 const midIconButtonActive: CSSProperties = {
 	backgroundColor: '#00b559',
+	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 181, 89, 0.3)`,
 	'&:hover': {
-		backgroundColor: '#00b559',
-		opacity: 0.7
+		backgroundColor: 'rgb(0, 171, 85)'
 	}
 };
 
@@ -226,8 +221,7 @@ const leftRightIconButton: CSSProperties = {
 	padding: pxToRem(10),
 	boxShadow: 'none',
 	'&:hover': {
-		backgroundColor: '#ffffff',
-		opacity: 0.7
+		boxShadow: '0 10px 20px 0 rgba(0, 0, 0, 0.07)'
 	}
 };
 
