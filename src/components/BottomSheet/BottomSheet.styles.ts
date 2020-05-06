@@ -18,6 +18,17 @@ const sheetWrapper: CreateCSSProperties = {
 	// alignItems: 'center'
 };
 
+const outsideWrapper: CSSProperties = {
+	position: 'absolute',
+	top: -10,
+	left: pxToRem(16),
+	backgroundColor: 'rgba(255, 255, 255, 0.6)',
+	width: `calc(100% - ${pxToRem(32)})`,
+	minHeight: pxToRem(10),
+	borderTopLeftRadius: pxToRem(15),
+	borderTopRightRadius: pxToRem(15)
+};
+
 const topWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
@@ -56,5 +67,6 @@ export const styles = createStyles({
 	blackBar,
 	sheetTitle,
 	sheetDescription,
-	topWrapper
+	topWrapper,
+	outsideWrapper
 });

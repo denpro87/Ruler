@@ -26,6 +26,7 @@ export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
 					open={open}
 					onChange={onBottomSheetChange}
 				>
+					<div className={classes.outsideWrapper} />
 					<BackdropFilter filter="blur(40px)">
 						<div className={classes.sheetWrapper}>
 							<div className={classes.topWrapper}>
