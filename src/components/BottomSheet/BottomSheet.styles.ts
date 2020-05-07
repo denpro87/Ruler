@@ -25,6 +25,12 @@ const outsideWrapper: CSSProperties = {
 	borderTopRightRadius: pxToRem(15)
 };
 
+const closeButton: CSSProperties = {
+	position: 'absolute',
+	top: pxToRem(-60),
+	right: pxToRem(20)
+};
+
 const topWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
@@ -64,5 +70,6 @@ export const styles = createStyles({
 	sheetTitle,
 	sheetDescription,
 	topWrapper,
-	outsideWrapper
+	outsideWrapper,
+	closeButton
 });

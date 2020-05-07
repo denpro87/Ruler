@@ -3,5 +3,7 @@ export interface IBottomSheetProps {
 	title?: string;
 	description?: string;
 	darkMode?: boolean;
+	hasCloseButton?: boolean;
 	onBottomSheetChange: (isOpen: boolean) => void;
+	onCloseButtonClick?: React.ReactEventHandler<{}>;
 }

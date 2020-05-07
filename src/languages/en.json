@@ -239,5 +239,6 @@
 	"home.rate_ruler.dialog.description": "Your feedback is important to us. Please rate our app so that we can make it even better when you visit us next time!",
 	"home.invite_friends_sheet.title": "Earn free rides ",
 	"home.invite_friends_sheet.description": "Invite 5 friends to sign up Ruler and earn $30 in Ruler Tokens. Here is your unique referral link",
-	"home.invite_friends_sheet.button.text": "1 2 3 M B R U L E R"
+	"home.invite_friends_sheet.button.text": "1 2 3 M B R U L E R",
+	"home.add_report_sheet.button.badly_parked_vehicle": "Badly parked vehicle"
 }
