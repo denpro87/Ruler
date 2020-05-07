@@ -1,5 +1,5 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { pxToRem } from 'styles';
+import { percentage, pxToRem } from 'styles';
 
 export const mapViewer: CSSProperties = {
 	position: 'absolute',
@@ -121,6 +121,25 @@ const positionLocationText: CSSProperties = {
 	bottom: pxToRem(8),
 	right: pxToRem(20)
 };
+
+const dialogContentText: CSSProperties = {
+	fontSize: pxToRem(10),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: 'rgba(24, 28, 25, 0.5)',
+	padding: `${pxToRem(10)} 0 0 0`
+};
+
+const rateImage: CSSProperties = {
+	width: percentage(1),
+	height: percentage(1),
+	objectFit: 'cover'
+};
+
+const rateImageWrapper: CSSProperties = {
+	padding: `${pxToRem(15)} ${pxToRem(50)} 0 ${pxToRem(50)}`
+};
+
 export const styles = createStyles({
 	reportButton,
 	zonesButton,
@@ -138,5 +157,8 @@ export const styles = createStyles({
 	iconButtonText,
 	positionVehicleText,
 	positionLocationText,
-	homeButtonsText
+	homeButtonsText,
+	dialogContentText,
+	rateImage,
+	rateImageWrapper
 });

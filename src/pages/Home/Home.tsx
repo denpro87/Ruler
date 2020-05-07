@@ -1,12 +1,14 @@
 import { Box } from '@material-ui/core';
-import { FullPage, Icon, IconButton, Text } from 'components';
+import { Dialog, FullPage, Icon, IconButton, Menu, Text } from 'components';
+import { IonImg } from '@ionic/react';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { ViewState } from 'react-map-gl';
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
+import rateImage from './images/rate.svg';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const useStyles = makeStyles(styles);
@@ -14,14 +16,20 @@ const useStyles = makeStyles(styles);
 export const Home: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
-	const [viewport, setViewport] = useState<ViewState>({
+	const [viewport, setViewport] = React.useState<ViewState>({
 		latitude: 37.8,
 		longitude: -122.4,
 		zoom: 14,
 		bearing: 0,
 		pitch: 0
 	});
-	const [vehicleSelectionExpanded, setVehicleSelectionExpanded] = useState(false);
+	const [vehicleSelectionExpanded, setVehicleSelectionExpanded] = React.useState(false);
+	const [rateRulerModal, setRateRulerModal] = React.useState(true);
+	const [leftSwipeableDrawer, setLeftSwipeableDrawer] = React.useState(false);
+
+	const handleDialogClose = () => {
+		setRateRulerModal(false);
+	};
 
 	return (
 		<FullPage>
@@ -87,7 +95,13 @@ export const Home: React.FunctionComponent = () => {
 				<IconButton className={classes.findMeButton} iconName="find-me" colorType="black" />
 				<Text className={clsx(classes.iconButtonText, classes.positionLocationText)}>{formatMessage({ id: 'home.text.location' })}</Text>
 				<Box className={classes.homeButtons}>
-					<IconButton className={classes.menuButton} iconName="menu" colorType="black" noShadow />
+					<IconButton
+						className={classes.menuButton}
+						iconName="menu"
+						colorType="black"
+						noShadow
+						onClick={(): void => setLeftSwipeableDrawer(true)}
+					/>
 					<Fab aria-label="add" className={classes.qrButton}>
 						<Icon colorType="black" iconName="qr" primaryColor="white" secondaryColor="white" />
 					</Fab>
@@ -98,6 +112,20 @@ export const Home: React.FunctionComponent = () => {
 					<Text className={classes.iconButtonText}>{formatMessage({ id: 'home.text.filter' })}</Text>
 				</Box>
 			</MapGL>
+			<Dialog
+				title={formatMessage({ id: 'home.rate_ruler.dialog.title' })}
+				open={rateRulerModal}
+				hasClose
+				illustrationName="rate"
+				onClose={handleDialogClose}
+				aria-labelledby="form-dialog-title"
+			>
+				<Text className={classes.dialogContentText}>{formatMessage({ id: 'home.rate_ruler.dialog.description' })}</Text>
+				<Box className={classes.rateImageWrapper}>
+					<IonImg className={classes.rateImage} src={rateImage} />
+				</Box>
+			</Dialog>
+			{leftSwipeableDrawer && <Menu />}
 		</FullPage>
 	);
 };

@@ -223,5 +223,7 @@
 	"home.text.vehicle": "Vehicle",
 	"home.text.menu": "Menu",
 	"home.text.filter": "Filter",
-	"home.text.location": "Location"
+	"home.text.location": "Location",
+	"home.rate_ruler.dialog.title": "Let’s rate the Ruler app!",
+	"home.rate_ruler.dialog.description": "Your feedback is important to us. Please rate our app so that we can make it even better when you visit us next time!"
 }
