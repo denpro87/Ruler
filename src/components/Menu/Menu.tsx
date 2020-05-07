@@ -16,7 +16,13 @@ export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClos
 		<Box className={classes.menu} role="presentation" onClick={onClose} onKeyDown={onClose}>
 			<List className={classes.list}>
 				{menuItems.map((item, index) => (
-					<ListItem key={item.text} button className={classes.listItem} component={RouterLink} to={`/${item.href}`}>
+					<ListItem
+						key={item.text}
+						button
+						className={classes.listItem}
+						component={RouterLink}
+						to={{ pathname: `/${item.href}`, state: { state: true } }}
+					>
 						{/* ListItemIcon classname doesn't work??? */}
 						<ListItemIcon className={classes.listItemIcon} style={listItemIcon}>
 							<Icon {...item.iconProps} />

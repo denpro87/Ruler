@@ -140,6 +140,9 @@ const rateImageWrapper: CSSProperties = {
 	padding: `${pxToRem(15)} ${pxToRem(50)} 0 ${pxToRem(50)}`
 };
 
+const shareButton: CSSProperties = {
+	margin: `${pxToRem(20)} 0 ${pxToRem(15)} 0 `
+};
 export const styles = createStyles({
 	reportButton,
 	zonesButton,
@@ -160,5 +163,6 @@ export const styles = createStyles({
 	homeButtonsText,
 	dialogContentText,
 	rateImage,
-	rateImageWrapper
+	rateImageWrapper,
+	shareButton
 });

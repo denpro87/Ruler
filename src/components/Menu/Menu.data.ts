@@ -55,7 +55,7 @@ export const menuItems = [
 	},
 	{
 		text: 'menu.invite_friends',
-		href: 'invite-friends',
+		href: 'home',
 		iconProps: {
 			iconName: 'invite',
 			primaryColor: 'black',
