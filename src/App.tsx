@@ -29,6 +29,7 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/welcome" component={Welcome.Welcome} exact />
 						<Route path="/welcome/login" component={Welcome.Login} exact />
 						<Route path="/welcome/forgot-password" component={Welcome.ForgotPassword} exact />
+						<Route path="/welcome/create-account" component={Welcome.CreateAccount} exact />
 						<Route path="/news" component={News.News} exact />
 						<Route path="/news/:social?" component={News.NewsDetail} exact />
 						<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
