@@ -131,7 +131,6 @@ const imageCover: CSSProperties = {
 };
 
 const cardImageContainer: CSSProperties = {
-	// position: 'relative',
 	width: '100%',
 	height: '100%',
 	borderRadius: pxToRem(15),
@@ -222,7 +221,7 @@ const leftRightIconButton: CSSProperties = {
 	padding: pxToRem(10),
 	boxShadow: 'none',
 	'&:hover': {
-		boxShadow: '0 10px 20px 0 rgba(0, 0, 0, 0.07)'
+		boxShadow: `0 ${pxToRem(10)} ${pxToRem(20)} 0 rgba(0, 0, 0, 0.07)`
 	}
 };
 

@@ -25,10 +25,21 @@ export const Home: React.FunctionComponent = () => {
 	});
 	const [vehicleSelectionExpanded, setVehicleSelectionExpanded] = React.useState(false);
 	const [rateRulerModal, setRateRulerModal] = React.useState(true);
-	const [leftSwipeableDrawer, setLeftSwipeableDrawer] = React.useState(false);
+	const [open, setOpen] = React.useState(false);
 
-	const handleDialogClose = () => {
+	const handleDialogClose = (): void => {
 		setRateRulerModal(false);
+	};
+
+	const handleDrawerClick = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent): void => {
+		if (
+			event &&
+			event.type === 'keydown' &&
+			((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
+		) {
+			return;
+		}
+		setOpen(open);
 	};
 
 	return (
@@ -95,13 +106,7 @@ export const Home: React.FunctionComponent = () => {
 				<IconButton className={classes.findMeButton} iconName="find-me" colorType="black" />
 				<Text className={clsx(classes.iconButtonText, classes.positionLocationText)}>{formatMessage({ id: 'home.text.location' })}</Text>
 				<Box className={classes.homeButtons}>
-					<IconButton
-						className={classes.menuButton}
-						iconName="menu"
-						colorType="black"
-						noShadow
-						onClick={(): void => setLeftSwipeableDrawer(true)}
-					/>
+					<IconButton className={classes.menuButton} iconName="menu" colorType="black" noShadow onClick={handleDrawerClick(true)} />
 					<Fab aria-label="add" className={classes.qrButton}>
 						<Icon colorType="black" iconName="qr" primaryColor="white" secondaryColor="white" />
 					</Fab>
@@ -125,7 +130,7 @@ export const Home: React.FunctionComponent = () => {
 					<IonImg className={classes.rateImage} src={rateImage} />
 				</Box>
 			</Dialog>
-			{leftSwipeableDrawer && <Menu />}
+			<Menu open={open} onOpen={handleDrawerClick(true)} onClose={handleDrawerClick(false)} />
 		</FullPage>
 	);
 };
