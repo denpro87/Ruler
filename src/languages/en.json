@@ -13,6 +13,7 @@
 	"menu.my_rides": "My rides",
 	"menu.invite_friends": "Invite friends",
 	"menu.get_help": "Get help",
+	"menu.settings": "Settings",
 	"settings.title": "Settings",
 	"settings.menu.profile": "Profile",
 	"settings.menu.notifications": "Notification",
@@ -223,5 +224,10 @@
 	"home.text.vehicle": "Vehicle",
 	"home.text.menu": "Menu",
 	"home.text.filter": "Filter",
-	"home.text.location": "Location"
+	"home.text.location": "Location",
+	"home.rate_ruler.dialog.title": "Let’s rate the Ruler app!",
+	"home.rate_ruler.dialog.description": "Your feedback is important to us. Please rate our app so that we can make it even better when you visit us next time!",
+	"home.invite_friends_sheet.title": "Earn free rides ",
+	"home.invite_friends_sheet.description": "Invite 5 friends to sign up Ruler and earn $30 in Ruler Tokens. Here is your unique referral link",
+	"home.invite_friends_sheet.button.text": "1 2 3 M B R U L E R"
 }

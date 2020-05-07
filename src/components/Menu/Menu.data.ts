@@ -1,6 +1,7 @@
 export const menuItems = [
 	{
 		text: 'menu.news',
+		href: 'news',
 		iconProps: {
 			iconName: 'news',
 			primaryColor: 'black',
@@ -9,6 +10,7 @@ export const menuItems = [
 	},
 	{
 		text: 'menu.wallet',
+		href: 'wallets',
 		iconProps: {
 			iconName: 'wallet',
 			primaryColor: 'black',
@@ -17,6 +19,7 @@ export const menuItems = [
 	},
 	{
 		text: 'menu.payment_methods',
+		href: 'payment-methods',
 		iconProps: {
 			iconName: 'add-payment',
 			primaryColor: 'black',
@@ -25,6 +28,7 @@ export const menuItems = [
 	},
 	{
 		text: 'menu.driver_licence',
+		href: 'driver-licence',
 		iconProps: {
 			iconName: 'driver-licence',
 			primaryColor: 'black',
@@ -33,6 +37,7 @@ export const menuItems = [
 	},
 	{
 		text: 'menu.service_provider',
+		href: 'service-providers/:provider?',
 		iconProps: {
 			iconName: 'wallet',
 			primaryColor: 'black',
@@ -41,6 +46,7 @@ export const menuItems = [
 	},
 	{
 		text: 'menu.my_rides',
+		href: 'my-rides',
 		iconProps: {
 			iconName: 'ride-history',
 			primaryColor: 'black',
@@ -49,6 +55,7 @@ export const menuItems = [
 	},
 	{
 		text: 'menu.invite_friends',
+		href: 'home',
 		iconProps: {
 			iconName: 'invite',
 			primaryColor: 'black',
@@ -57,6 +64,7 @@ export const menuItems = [
 	},
 	{
 		text: 'menu.get_help',
+		href: 'get-help',
 		iconProps: {
 			iconName: 'support',
 			primaryColor: 'black',
@@ -65,6 +73,7 @@ export const menuItems = [
 	},
 	{
 		text: 'menu.settings',
+		href: 'settings',
 		iconProps: {
 			iconName: 'settings',
 			primaryColor: 'black',

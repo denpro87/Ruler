@@ -48,13 +48,13 @@ const sheetTitle: CreateCSSProperties = {
 	padding: (props: any) => (props.darkMode ? `${pxToRem(31)} 0 ${pxToRem(10)} 0` : `${pxToRem(10)} 0 ${pxToRem(5)} 0`)
 };
 
-const sheetDescription: CSSProperties = {
+const sheetDescription: CreateCSSProperties = {
 	fontFamily: DEFAULT_FONT_FAMILY,
 	fontSize: pxToRem(15),
 	fontWeight: 600,
 	lineHeight: 1.67,
-	color: 'rgba(255, 255, 255, 0.5)',
-	maxWidth: pxToRem(230),
+	color: (props: any) => (props.darkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)'),
+	maxWidth: (props: any) => (props.darkMode ? `${pxToRem(230)}` : undefined),
 	textAlign: 'center'
 };
 export const styles = createStyles({

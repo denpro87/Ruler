@@ -47,7 +47,6 @@ const listItemTextPrimary: CSSProperties = {
 const list: CSSProperties = {
 	paddingTop: pxToRem(27.5)
 };
-
 export const styles = createStyles({
 	footer,
 	menu,
