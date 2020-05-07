@@ -43,7 +43,7 @@ export const Welcome: React.FunctionComponent = () => {
 					<Stack.Item>
 						<Text className={classes.alreadyHaveAnAccountText} block>
 							<FormattedMessage id="welcome.text.already_have_an_account" />
-							<Link>
+							<Link href="/welcome/login">
 								<FormattedMessage id="welcome.text.login" />
 							</Link>
 						</Text>

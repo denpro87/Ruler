@@ -3,7 +3,8 @@ import * as GetHelp from 'pages/GetHelp';
 import * as News from 'pages/News';
 import * as Settings from 'pages/Settings';
 import * as Wallets from 'pages/Wallets';
-import { Home, ServiceProviders, Splash, Welcome } from 'pages';
+import * as Welcome from 'pages/Welcome';
+import { Home, ServiceProviders, Splash } from 'pages';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
@@ -25,7 +26,9 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/splash" component={Splash} exact />
 						<Route path="/settings" component={Settings.Settings} exact />
 						<Route path="/service-providers/:provider?" component={ServiceProviders} exact />
-						<Route path="/welcome" component={Welcome} exact />
+						<Route path="/welcome" component={Welcome.Welcome} exact />
+						<Route path="/welcome/login" component={Welcome.Login} exact />
+						<Route path="/welcome/forgot-password" component={Welcome.ForgotPassword} exact />
 						<Route path="/news" component={News.News} exact />
 						<Route path="/news/:social?" component={News.NewsDetail} exact />
 						<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
