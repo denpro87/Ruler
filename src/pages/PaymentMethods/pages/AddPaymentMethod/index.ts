@@ -1,2 +1,2 @@
 export * from './AddPaymentMethod';
-export * from './DebitCreditCard';
+export * from './AddDebitCreditCard';
