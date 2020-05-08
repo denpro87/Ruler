@@ -6,6 +6,7 @@
 	"button.receive": "Receive",
 	"button.save_changes": "Save changes",
 	"button.login": "Log In",
+	"button.to_home": "To home",
 	"button.add_payment_method": "Add payment method",
 	"menu.news": "News",
 	"menu.wallet": "Wallet",
@@ -249,5 +250,7 @@
 	"payment_methods.add_payment_method.title": "Add payment method",
 	"payment_methods.delete_card_dialog.title": "Delete card?",
 	"payment_methods.delete_card_dialog.description": "Are you sure you want delete the card?",
-	"payment_methods.delete_card_dialog.delete_card": "Yes, delete card"
+	"payment_methods.delete_card_dialog.delete_card": "Yes, delete card",
+	"my_rides.text.description": "There are no recent rides documented",
+	"my_rides.title": "My rides"
 }
