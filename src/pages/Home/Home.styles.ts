@@ -1,5 +1,5 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
-import { percentage, pxToRem } from 'styles';
+import { DEFAULT_FONT_FAMILY, percentage, pxToRem } from 'styles';
 
 export const mapViewer: CSSProperties = {
 	position: 'absolute',
@@ -143,6 +143,22 @@ const rateImageWrapper: CSSProperties = {
 const shareButton: CSSProperties = {
 	margin: `${pxToRem(20)} 0 ${pxToRem(15)} 0 `
 };
+
+const sheetButton: CSSProperties = {
+	marginBottom: pxToRem(15),
+	fontWeight: 'bold'
+};
+
+const sheetText: CSSProperties = {
+	fontFamily: DEFAULT_FONT_FAMILY,
+	fontSize: pxToRem(15),
+	fontWeight: 600,
+	lineHeight: 1.67,
+	color: '#181c19',
+	opacity: 0.5,
+	padding: `0 0 ${pxToRem(20)} 0`
+};
+
 export const styles = createStyles({
 	reportButton,
 	zonesButton,
@@ -164,5 +180,7 @@ export const styles = createStyles({
 	dialogContentText,
 	rateImage,
 	rateImageWrapper,
-	shareButton
+	shareButton,
+	sheetButton,
+	sheetText
 });

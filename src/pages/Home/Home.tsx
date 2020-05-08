@@ -1,5 +1,5 @@
-import { BottomSheet, Dialog, FullPage, GreenButton, Icon, IconButton, Menu, Text } from 'components';
-import { Box } from '@material-ui/core';
+import { BottomSheet, Dialog, FullPage, GreenButton, Icon, IconButton, LightGreenButton, Menu, Text } from 'components';
+import { Box, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg } from '@ionic/react';
 import { makeStyles } from '@material-ui/styles';
@@ -11,7 +11,7 @@ import React from 'react';
 import clsx from 'clsx';
 import rateImage from './images/rate.svg';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
-
+console.log('asdfasdf', MAPBOX_TOKEN);
 const useStyles = makeStyles(styles);
 
 export const Home: React.FunctionComponent<IHomeProps> = props => {
@@ -27,12 +27,13 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [vehicleSelectionExpanded, setVehicleSelectionExpanded] = React.useState(false);
 	const [rateRulerModal, setRateRulerModal] = React.useState(true);
 	const [open, setOpen] = React.useState(false);
-	const [state, setState] = React.useState(false);
+	const [showInviteFriends, setShowInviteFriends] = React.useState(false);
+	const [showReport, setShowReport] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
 
-		if (state) setState(state);
+		if (state) setShowInviteFriends(state);
 	}, [props.location.state]);
 
 	const handleDialogClose = (): void => {
@@ -50,8 +51,24 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setOpen(open);
 	};
 
-	const handleBottomSheetChange = (isOpen: boolean) => {
-		setState(isOpen);
+	const handleReportBottomSheetChange = (isOpen: boolean) => {
+		setShowReport(isOpen);
+	};
+
+	const handleInviteFriendsBottomSheetChange = (isOpen: boolean) => {
+		setShowInviteFriends(isOpen);
+	};
+
+	const handleBadlyClick = () => {
+		setShowReport(false);
+	};
+
+	const handleDamagedClick = () => {
+		setShowReport(false);
+	};
+
+	const handleContactClick = () => {
+		setShowReport(false);
 	};
 
 	return (
@@ -65,7 +82,11 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				onViewportChange={setViewport}
 				mapboxApiAccessToken={MAPBOX_TOKEN}
 			>
-				<IconButton className={classes.reportButton} iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }} />
+				<IconButton
+					className={classes.reportButton}
+					iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }}
+					onClick={(): void => setShowReport(true)}
+				/>
 				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" />
 				<Box className={classes.vehicleButtonGroup}>
 					{vehicleSelectionExpanded ? (
@@ -146,12 +167,30 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			<BottomSheet
 				title={formatMessage({ id: 'home.invite_friends_sheet.title' })}
 				description={formatMessage({ id: 'home.invite_friends_sheet.description' })}
-				open={state}
-				onBottomSheetChange={handleBottomSheetChange}
+				open={showInviteFriends}
+				onBottomSheetChange={handleInviteFriendsBottomSheetChange}
 			>
 				<GreenButton className={classes.shareButton} iconName="share">
 					{formatMessage({ id: 'home.invite_friends_sheet.button.text' })}
 				</GreenButton>
+			</BottomSheet>
+			<BottomSheet
+				hasCloseButton
+				onCloseButtonClick={(): void => setShowReport(false)}
+				title={formatMessage({ id: 'get_help.add_report_sheet.title' })}
+				open={showReport}
+				onBottomSheetChange={handleReportBottomSheetChange}
+			>
+				<Typography className={classes.sheetText}>{formatMessage({ id: 'get_help.add_report_sheet.description' })}</Typography>
+				<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
+					{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
+				</LightGreenButton>
+				<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
+					{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
+				</LightGreenButton>
+				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
+					{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
+				</LightGreenButton>
 			</BottomSheet>
 		</FullPage>
 	);

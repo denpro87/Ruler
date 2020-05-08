@@ -1,9 +1,11 @@
 import * as DriverLicence from 'pages/DriverLicence';
 import * as GetHelp from 'pages/GetHelp';
 import * as News from 'pages/News';
+import * as PaymentMethods from 'pages/PaymentMethods';
 import * as Settings from 'pages/Settings';
 import * as Wallets from 'pages/Wallets';
-import { Home, ServiceProviders, Splash, Welcome } from 'pages';
+import * as Welcome from 'pages/Welcome';
+import { Home, ServiceProviders, Splash } from 'pages';
 
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
@@ -25,7 +27,10 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/splash" component={Splash} exact />
 						<Route path="/settings" component={Settings.Settings} exact />
 						<Route path="/service-providers/:provider?" component={ServiceProviders} exact />
-						<Route path="/welcome" component={Welcome} exact />
+						<Route path="/welcome" component={Welcome.Welcome} exact />
+						<Route path="/welcome/login" component={Welcome.Login} exact />
+						<Route path="/welcome/forgot-password" component={Welcome.ForgotPassword} exact />
+						<Route path="/welcome/create-account" component={Welcome.CreateAccount} exact />
 						<Route path="/news" component={News.News} exact />
 						<Route path="/news/:social?" component={News.NewsDetail} exact />
 						<Route path="/settings/change-password" component={Settings.ChangePassword} exact />
@@ -66,6 +71,9 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/wallets/send" component={Wallets.Send} exact />
 						<Route path="/wallets/qr-code" component={Wallets.QrCode} exact />
 						<Route path="/wallets/receive" component={Wallets.Receive} exact />
+						<Route path="/payment-methods" component={PaymentMethods.PaymentMethods} exact />
+						<Route path="/payment-methods/add-payment-method" component={PaymentMethods.AddPaymentMethod} exact />
+						<Route path="/payment-methods/add-payment-method/card" component={PaymentMethods.AddDebitCreditCard} exact />
 						<Route exact path="/" render={() => <Redirect to="/splash" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>

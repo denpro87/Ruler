@@ -3,15 +3,16 @@ import { Box, makeStyles } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 import { Stack } from '@fluentui/react';
 import { styles } from './Welcome.styles';
+import { useHistory } from 'react-router-dom';
+import Background from './images/bg.svg';
 import React from 'react';
 import clsx from 'clsx';
-
-import Background from './images/bg.svg';
 
 const useStyles = makeStyles(styles);
 
 export const Welcome: React.FunctionComponent = () => {
 	const classes = useStyles();
+	const history = useHistory();
 
 	return (
 		<FullPage canGoBack className={classes.page} goBackIconButtonProps={{ noShadow: false }}>
@@ -24,7 +25,7 @@ export const Welcome: React.FunctionComponent = () => {
 						<Text className={classes.welcomeText} block>
 							<FormattedMessage id="welcome.text.welcome_to_ruler" />
 						</Text>
-						<BlackButton iconName="create-account" compact>
+						<BlackButton iconName="create-account" compact onClick={(): void => history.push('/welcome/create-account')}>
 							<FormattedMessage id="welcome.button.create_account" />
 						</BlackButton>
 					</Stack.Item>
@@ -43,7 +44,7 @@ export const Welcome: React.FunctionComponent = () => {
 					<Stack.Item>
 						<Text className={classes.alreadyHaveAnAccountText} block>
 							<FormattedMessage id="welcome.text.already_have_an_account" />
-							<Link>
+							<Link href="/welcome/login">
 								<FormattedMessage id="welcome.text.login" />
 							</Link>
 						</Text>

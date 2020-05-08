@@ -21,7 +21,7 @@ export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClos
 						button
 						className={classes.listItem}
 						component={RouterLink}
-						to={{ pathname: `/${item.href}`, state: { state: true } }}
+						to={{ pathname: `/${item.href}`, state: item.href === 'home' ? { state: true } : { state: false } }}
 					>
 						{/* ListItemIcon classname doesn't work??? */}
 						<ListItemIcon className={classes.listItemIcon} style={listItemIcon}>

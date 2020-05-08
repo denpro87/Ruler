@@ -1,4 +1,5 @@
 import { IBottomSheetProps } from './BottomSheet.types';
+import { IconButton } from 'components';
 import { Typography, makeStyles } from '@material-ui/core';
 import { pxToRem } from 'styles';
 import { styles } from './BottomSheet.styles';
@@ -13,7 +14,9 @@ export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
 	onBottomSheetChange,
 	children,
 	title,
-	description
+	description,
+	hasCloseButton,
+	onCloseButtonClick
 }) => {
 	const classes = useStyles({ darkMode });
 
@@ -26,7 +29,7 @@ export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
 					open={open}
 					onChange={onBottomSheetChange}
 				>
-					<div className={classes.outsideWrapper} />
+					{open && <div className={classes.outsideWrapper} />}
 					<BackdropFilter filter="blur(40px)">
 						<div className={classes.sheetWrapper}>
 							<div className={classes.topWrapper}>
@@ -45,6 +48,9 @@ export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
 					open={open}
 					onChange={onBottomSheetChange}
 				>
+					{hasCloseButton && open && (
+						<IconButton className={classes.closeButton} iconName="close" colorType="black" onClick={onCloseButtonClick} />
+					)}
 					<div className={classes.sheetWrapper}>
 						<div className={classes.topWrapper}>
 							<div className={classes.blackBar} />
