@@ -42,7 +42,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 			<Box className={classes.walletsLogoContainer}>
 				<Box className={classes.walletsLogo}>
 					<IconButton iconProps={{ iconName: 'trash', color: '#ffffff' }} className={classes.trashIcon} />
-					<Link className={classes.rulerWalletText} onClick={() => history.push('/wallets/ruler-wallet')}>
+					<Link className={classes.rulerWalletText} href="/wallets/ruler-wallet">
 						{formatMessage({ id: 'wallets.logo_title' })}
 					</Link>
 					<Text className={classes.rulerPriceText}>€ 110 = 250 Ruler</Text>
@@ -85,7 +85,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 			</Box>
 			<Dialog
 				open={showDialog}
-				hasClose={true}
+				hasClose
 				illustrationName="superman"
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"

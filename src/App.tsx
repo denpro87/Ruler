@@ -1,6 +1,7 @@
 import * as DriverLicence from 'pages/DriverLicence';
 import * as GetHelp from 'pages/GetHelp';
 import * as News from 'pages/News';
+import * as PaymentMethods from 'pages/PaymentMethods';
 import * as Settings from 'pages/Settings';
 import * as Wallets from 'pages/Wallets';
 import * as Welcome from 'pages/Welcome';
@@ -70,6 +71,9 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/wallets/send" component={Wallets.Send} exact />
 						<Route path="/wallets/qr-code" component={Wallets.QrCode} exact />
 						<Route path="/wallets/receive" component={Wallets.Receive} exact />
+						<Route path="/payment-methods" component={PaymentMethods.PaymentMethods} exact />
+						<Route path="/payment-methods/add-payment-method" component={PaymentMethods.AddPaymentMethod} exact />
+						<Route path="/payment-methods/add-payment-method/card" component={PaymentMethods.AddDebitCreditCard} exact />
 						<Route exact path="/" render={() => <Redirect to="/splash" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>
