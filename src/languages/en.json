@@ -252,5 +252,6 @@
 	"payment_methods.delete_card_dialog.description": "Are you sure you want delete the card?",
 	"payment_methods.delete_card_dialog.delete_card": "Yes, delete card",
 	"my_rides.text.description": "There are no recent rides documented",
-	"my_rides.title": "My rides"
+	"my_rides.title": "My rides",
+	"my_rides.text.loading": "Give us a sec..."
 }

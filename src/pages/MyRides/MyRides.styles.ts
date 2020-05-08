@@ -1,5 +1,9 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
 import {
+	LOADING_BACKGROUND_INITIAL_HEIGHT,
+	LOADING_BACKGROUND_INITIAL_POSITION_RIGHT,
+	LOADING_BACKGROUND_INITIAL_POSITION_TOP,
+	LOADING_BACKGROUND_INITIAL_WIDTH,
 	MY_RIDES_PAGE_BACKGROUND_INITIAL_HEIGHT,
 	MY_RIDES_PAGE_BACKGROUND_INITIAL_POSITION_LEFT,
 	MY_RIDES_PAGE_BACKGROUND_INITIAL_POSITION_TOP,
@@ -16,14 +20,10 @@ const backgroundContainer: CSSProperties = {
 	position: 'absolute',
 	whiteSpace: 'nowrap',
 	overflow: 'visible',
-	left: percentage(MY_RIDES_PAGE_BACKGROUND_INITIAL_POSITION_LEFT / MY_RIDES_PAGE_INITIAL_WIDTH),
-	top: `${(MY_RIDES_PAGE_BACKGROUND_INITIAL_POSITION_TOP / MY_RIDES_PAGE_INITIAL_HEIGHT) * 100}vh`,
-	width: percentage(MY_RIDES_PAGE_BACKGROUND_INITIAL_WIDTH / MY_RIDES_PAGE_INITIAL_WIDTH),
-	height: `${(MY_RIDES_PAGE_BACKGROUND_INITIAL_HEIGHT / MY_RIDES_PAGE_INITIAL_HEIGHT) * 100}vh`,
+
 	'& img': {
 		position: 'absolute',
 		bottom: 0,
-		right: 0,
 		width: '100%',
 		height: '100%',
 		maxWidth: '100%',
@@ -32,6 +32,20 @@ const backgroundContainer: CSSProperties = {
 		userDrag: 'none',
 		imageRendering: 'optimizeQuality' as any
 	}
+};
+
+const backgroundArea: CSSProperties = {
+	left: percentage(MY_RIDES_PAGE_BACKGROUND_INITIAL_POSITION_LEFT / MY_RIDES_PAGE_INITIAL_WIDTH),
+	top: `${(MY_RIDES_PAGE_BACKGROUND_INITIAL_POSITION_TOP / MY_RIDES_PAGE_INITIAL_HEIGHT) * 100}vh`,
+	width: percentage(MY_RIDES_PAGE_BACKGROUND_INITIAL_WIDTH / MY_RIDES_PAGE_INITIAL_WIDTH),
+	height: `${(MY_RIDES_PAGE_BACKGROUND_INITIAL_HEIGHT / MY_RIDES_PAGE_INITIAL_HEIGHT) * 100}vh`
+};
+
+const loadingBackgroundArea: CSSProperties = {
+	right: percentage(LOADING_BACKGROUND_INITIAL_POSITION_RIGHT / MY_RIDES_PAGE_INITIAL_WIDTH),
+	top: `${(LOADING_BACKGROUND_INITIAL_POSITION_TOP / MY_RIDES_PAGE_INITIAL_HEIGHT) * 100}vh`,
+	width: percentage(LOADING_BACKGROUND_INITIAL_WIDTH / MY_RIDES_PAGE_INITIAL_WIDTH),
+	height: `${(LOADING_BACKGROUND_INITIAL_HEIGHT / MY_RIDES_PAGE_INITIAL_HEIGHT) * 100}vh`
 };
 
 const content: CSSProperties = {
@@ -61,5 +75,7 @@ export const styles = createStyles({
 	descriptionText,
 	backgroundContainer,
 	content,
-	toHomeButton
+	toHomeButton,
+	backgroundArea,
+	loadingBackgroundArea
 });
