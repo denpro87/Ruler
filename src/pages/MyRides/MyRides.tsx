@@ -31,8 +31,6 @@ export const MyRides: React.FunctionComponent = () => {
 
 	const handleBadlyClick = () => {};
 
-	const handleDamagedClick = () => {};
-
 	const handleContactClick = () => {};
 
 	return (
@@ -78,7 +76,11 @@ export const MyRides: React.FunctionComponent = () => {
 				<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
 					{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
 				</LightGreenButton>
-				<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
+				<LightGreenButton
+					className={classes.sheetButton}
+					iconName="damaged-vehicle"
+					onClick={(): void => history.push('/my-rides/damaged-vehicle')}
+				>
 					{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
 				</LightGreenButton>
 				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>

@@ -8,6 +8,8 @@
 	"button.login": "Log In",
 	"button.to_home": "To home",
 	"button.add_payment_method": "Add payment method",
+	"button.add_photos": "Add photos",
+	"button.submit_report": "Submit report",
 	"menu.news": "News",
 	"menu.wallet": "Wallet",
 	"menu.payment_methods": "Payment methods",
@@ -263,5 +265,12 @@
 	"my_rides.total_amount": "$ 26",
 	"my_rides.ride_type": "scooter",
 	"my_rides.text.report_trip": "Report trip",
-	"my_rides.add_report_sheet.description": "If problems occurred during a trip, we try to reclaim and refund your travel money from the provider"
+	"my_rides.add_report_sheet.description": "If problems occurred during a trip, we try to reclaim and refund your travel money from the provider",
+	"my_rides.damaged_vehicle.title": "Damaged vehicle",
+	"my_rides.damaged_vehicle.text.bike": "Bike",
+	"my_rides.damaged_vehicle.text.car": "Car",
+	"my_rides.damaged_vehicle.text.scooter": "Scooter",
+	"my_rides.damaged_vehicle.location": "Enter location of the incident",
+	"my_rides.damaged_vehicle.code": "Enter the QR code",
+	"my_rides.damaged_vehicle.description": "Description of the incident"
 }
