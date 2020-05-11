@@ -110,7 +110,10 @@ const amountText: CSSProperties = {
 const reportIconButton: CSSProperties = {
 	padding: `0 ${pxToRem(5)} 0 0`,
 	backgroundColor: '#f8ca06',
-	boxShadow: 'none'
+	boxShadow: 'none',
+	'&:hover': {
+		backgroundColor: '#f8ca06'
+	}
 };
 
 const endPoint: CSSProperties = {

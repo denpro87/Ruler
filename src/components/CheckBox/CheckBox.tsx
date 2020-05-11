@@ -6,7 +6,7 @@ import React from 'react';
 
 const useStyles = makeStyles(styles);
 
-export const CheckBox: React.FunctionComponent<ICheckBoxProps> = ({ checked, label = '', onValueChange }) => {
+export const Checkbox: React.FunctionComponent<ICheckBoxProps> = ({ checked, label = '', onValueChange }) => {
 	const classes = useStyles({ checked });
 
 	return (

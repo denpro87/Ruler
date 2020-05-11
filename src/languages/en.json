@@ -262,5 +262,6 @@
 	"my_rides.text.total_amount": "Total amount",
 	"my_rides.total_amount": "$ 26",
 	"my_rides.ride_type": "scooter",
-	"my_rides.text.report_trip": "Report trip"
+	"my_rides.text.report_trip": "Report trip",
+	"my_rides.add_report_sheet.description": "If problems occurred during a trip, we try to reclaim and refund your travel money from the provider"
 }

@@ -9,7 +9,6 @@ const useStyles = makeStyles(styles);
 
 export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 	const classes = useStyles();
-
 	const { formatMessage } = useIntl();
 
 	return (
@@ -55,7 +54,11 @@ export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 			</Box>
 			<Box className={classes.historyFooter}>
 				<Box>
-					<IconButton className={classes.reportIconButton} iconName="report" />
+					<IconButton
+						className={classes.reportIconButton}
+						iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }}
+						onClick={props.onReportIconButtonClick}
+					/>
 					<Text className={classes.largeText}>{formatMessage({ id: 'my_rides.text.report_trip' })}</Text>
 				</Box>
 				<Box>

@@ -1,5 +1,5 @@
 import { Box, makeStyles } from '@material-ui/core';
-import { CheckBox, GreenButton, Page, TextField } from 'components';
+import { Checkbox, GreenButton, Page, TextField } from 'components';
 import { ICreditCardProps } from './AddFunds.types';
 import { styles } from './AddFunds.styles';
 import { useHistory } from 'react-router-dom';
@@ -73,7 +73,7 @@ export const AddCreditCard: React.FunctionComponent = () => {
 				/>
 			</Box>
 			<Box className={classes.footer}>
-				<CheckBox
+				<Checkbox
 					checked={checked}
 					label={formatMessage({ id: 'wallets.add_credit_card.save_payment_method' })}
 					onValueChange={handleCheckChange}

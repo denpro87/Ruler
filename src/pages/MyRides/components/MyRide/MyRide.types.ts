@@ -5,4 +5,5 @@ export interface IMyRideProps {
 	travelTime?: string;
 	type: string;
 	totalAmount?: string;
+	onReportIconButtonClick: () => void;
 }

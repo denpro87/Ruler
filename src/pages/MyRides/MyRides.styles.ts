@@ -1,4 +1,5 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
+import { DEFAULT_FONT_FAMILY, percentage, pxToRem } from 'styles';
 import {
 	LOADING_BACKGROUND_INITIAL_HEIGHT,
 	LOADING_BACKGROUND_INITIAL_POSITION_RIGHT,
@@ -13,7 +14,6 @@ import {
 	MY_RIDES_PAGE_INITIAL_HEIGHT,
 	MY_RIDES_PAGE_INITIAL_WIDTH
 } from './MyRides.variables';
-import { percentage, pxToRem } from 'styles';
 
 const backgroundContainer: CSSProperties = {
 	zIndex: -1,
@@ -75,6 +75,21 @@ const toHomeButton: CSSProperties = {
 const myRidesHistoryContainer: CSSProperties = {
 	paddingTop: pxToRem(15)
 };
+
+const sheetButton: CSSProperties = {
+	marginBottom: pxToRem(15),
+	fontWeight: 'bold'
+};
+
+const sheetText: CSSProperties = {
+	fontFamily: DEFAULT_FONT_FAMILY,
+	fontSize: pxToRem(10),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: 'rgba(24, 28, 25, 0.5)',
+	padding: `0 0 ${pxToRem(20)} 0`
+};
+
 export const styles = createStyles({
 	descriptionText,
 	backgroundContainer,
@@ -82,5 +97,7 @@ export const styles = createStyles({
 	toHomeButton,
 	backgroundArea,
 	loadingBackgroundArea,
-	myRidesHistoryContainer
+	myRidesHistoryContainer,
+	sheetText,
+	sheetButton
 });

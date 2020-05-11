@@ -1,5 +1,5 @@
 import { IMyRideProps } from './components/MyRide/MyRide.types';
-export const myRidesHistoryData: Array<IMyRideProps> = [
+export const myRidesHistoryData: Array<Omit<IMyRideProps, 'onReportIconButtonClick'>> = [
 	{
 		startPosition: 'my_rides.text.start_position',
 		startTime: 'my_rides.start_time',
