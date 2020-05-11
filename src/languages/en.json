@@ -253,5 +253,14 @@
 	"payment_methods.delete_card_dialog.delete_card": "Yes, delete card",
 	"my_rides.text.description": "There are no recent rides documented",
 	"my_rides.title": "My rides",
-	"my_rides.text.loading": "Give us a sec..."
+	"my_rides.text.loading": "Give us a sec...",
+	"my_rides.text.start_position": "Old Town ST, NY",
+	"my_rides.start_time": "Nov 24, 15:30",
+	"my_rides.text.end_position": "Central Park, NY",
+	"my_rides.text.travel_time": "Travel time: ",
+	"my_rides.travel_time": "4h 5min",
+	"my_rides.text.total_amount": "Total amount",
+	"my_rides.total_amount": "$ 26",
+	"my_rides.ride_type": "scooter",
+	"my_rides.text.report_trip": "Report trip"
 }

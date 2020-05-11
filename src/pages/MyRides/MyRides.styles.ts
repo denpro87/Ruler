@@ -71,11 +71,16 @@ const toHomeButton: CSSProperties = {
 	maxWidth: pxToRem(175),
 	margin: `${pxToRem(30)} auto 0`
 };
+
+const myRidesHistoryContainer: CSSProperties = {
+	paddingTop: pxToRem(15)
+};
 export const styles = createStyles({
 	descriptionText,
 	backgroundContainer,
 	content,
 	toHomeButton,
 	backgroundArea,
-	loadingBackgroundArea
+	loadingBackgroundArea,
+	myRidesHistoryContainer
 });
