@@ -29,10 +29,6 @@ export const MyRides: React.FunctionComponent = () => {
 		setShowReport(isOpen);
 	};
 
-	const handleBadlyClick = () => {};
-
-	const handleContactClick = () => {};
-
 	return (
 		<Page canGoBack title={loading ? '' : formatMessage({ id: 'my_rides.title' })} titleSize="large">
 			<Box
@@ -73,7 +69,11 @@ export const MyRides: React.FunctionComponent = () => {
 				onBottomSheetChange={handleReportBottomSheetChange}
 			>
 				<Typography className={classes.sheetText}>{formatMessage({ id: 'my_rides.add_report_sheet.description' })}</Typography>
-				<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
+				<LightGreenButton
+					className={classes.sheetButton}
+					iconName="badly-parked-vehicle"
+					onClick={(): void => history.push('/my-rides/badly-parked-vehicle')}
+				>
 					{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
 				</LightGreenButton>
 				<LightGreenButton
@@ -83,7 +83,7 @@ export const MyRides: React.FunctionComponent = () => {
 				>
 					{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
 				</LightGreenButton>
-				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
+				<LightGreenButton className={classes.sheetButton} iconName="support">
 					{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
 				</LightGreenButton>
 			</BottomSheet>

@@ -274,5 +274,6 @@
 	"my_rides.damaged_vehicle.code": "Enter the QR code",
 	"my_rides.damaged_vehicle.description": "Description of the incident",
 	"my_rides.damaged_vehicle.submit_report.dialog.title": "Report submitted!",
-	"my_rides.damaged_vehicle.submit_report.dialog.description": "Thank you for reporting the incident, this will help us solve the problem faster"
+	"my_rides.damaged_vehicle.submit_report.dialog.description": "Thank you for reporting the incident, this will help us solve the problem faster",
+	"my_rides.badly_parked_vehicle.title": "Badly parked vehicle"
 }

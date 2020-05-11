@@ -1,6 +1,7 @@
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
 import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Page, Text, TextField } from 'components';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
+import { IDamagedVehicleProps } from './DamagedVehicle.types';
 import { IonImg } from '@ionic/react';
 import { damagedVehicleTypes } from './DamagedVehicle.data';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
@@ -11,7 +12,7 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 const { Camera } = Plugins;
 
-export const DamagedVehicle: React.FunctionComponent = () => {
+export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = props => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
 	const [buttonLabel, setButtonLabel] = React.useState('Car');
@@ -19,18 +20,33 @@ export const DamagedVehicle: React.FunctionComponent = () => {
 	const [code, setCode] = React.useState('');
 	const [submitReportModal, setSubmitReportModal] = React.useState(false);
 	const [description, setDescription] = React.useState('');
+	const [photoModal, setPhotoModal] = React.useState(false);
+	const [imageUrl, setImageUrl] = React.useState('');
 	const [photos, setPhotos] = React.useState<string[]>([]);
+	const [title, setTitle] = React.useState('');
 	React.useEffect(() => {
 		defineCustomElements(window);
 	}, []);
+
+	React.useEffect(() => {
+		const url: string = props.match.url;
+
+		if (url.includes('badly-parked-vehicle')) setTitle(formatMessage({ id: 'my_rides.badly_parked_vehicle.title' }));
+		else setTitle(formatMessage({ id: 'my_rides.damaged_vehicle.title' }));
+	}, [props.match.url]);
+
 	const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>): void => setLocation(event.target.value);
 
 	const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>): void => setCode(event.target.value);
 
 	const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>): void => setDescription(event.target.value);
 
-	const handlePhotoClick = (index: number): void => {};
 	const handleDialogClose = (): void => setSubmitReportModal(false);
+
+	const handlePhotoClick = (index: number): void => {
+		setImageUrl(photos[index]);
+		setPhotoModal(true);
+	};
 
 	const takePhoto = async () => {
 		const image = await Camera.getPhoto({
@@ -44,7 +60,7 @@ export const DamagedVehicle: React.FunctionComponent = () => {
 	};
 
 	return (
-		<Page canGoBack title={formatMessage({ id: 'my_rides.damaged_vehicle.title' })} titleSize="large">
+		<Page canGoBack title={title} titleSize="medium">
 			<Box className={classes.damagedVehicleContainer}>
 				<Box className={classes.buttonGroupWrapper}>
 					{damagedVehicleTypes.map((damagedVehicleType, index) => {
@@ -121,6 +137,7 @@ export const DamagedVehicle: React.FunctionComponent = () => {
 					</GreenButton>
 				</Box>
 			</Box>
+
 			<Dialog
 				title={formatMessage({ id: 'my_rides.damaged_vehicle.submit_report.dialog.title' })}
 				open={submitReportModal}
