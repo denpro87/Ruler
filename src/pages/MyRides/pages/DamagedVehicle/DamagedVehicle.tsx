@@ -1,5 +1,5 @@
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
-import { Button, GreenButton, Icon, IconButton, LightGreenButton, Page, Text, TextField } from 'components';
+import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Page, Text, TextField } from 'components';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { IonImg } from '@ionic/react';
 import { damagedVehicleTypes } from './DamagedVehicle.data';
@@ -17,6 +17,7 @@ export const DamagedVehicle: React.FunctionComponent = () => {
 	const [buttonLabel, setButtonLabel] = React.useState('Car');
 	const [location, setLocation] = React.useState('');
 	const [code, setCode] = React.useState('');
+	const [submitReportModal, setSubmitReportModal] = React.useState(false);
 	const [description, setDescription] = React.useState('');
 	const [photos, setPhotos] = React.useState<string[]>([]);
 	React.useEffect(() => {
@@ -29,6 +30,7 @@ export const DamagedVehicle: React.FunctionComponent = () => {
 	const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>): void => setDescription(event.target.value);
 
 	const handlePhotoClick = (index: number): void => {};
+	const handleDialogClose = (): void => setSubmitReportModal(false);
 
 	const takePhoto = async () => {
 		const image = await Camera.getPhoto({
@@ -114,9 +116,23 @@ export const DamagedVehicle: React.FunctionComponent = () => {
 					<LightGreenButton className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
 						{formatMessage({ id: 'button.add_photos' })}
 					</LightGreenButton>
-					<GreenButton iconName="submit-report">{formatMessage({ id: 'button.submit_report' })}</GreenButton>
+					<GreenButton iconName="submit-report" onClick={(): void => setSubmitReportModal(true)}>
+						{formatMessage({ id: 'button.submit_report' })}
+					</GreenButton>
 				</Box>
 			</Box>
+			<Dialog
+				title={formatMessage({ id: 'my_rides.damaged_vehicle.submit_report.dialog.title' })}
+				open={submitReportModal}
+				hasClose
+				illustrationName="sent"
+				onClose={handleDialogClose}
+				aria-labelledby="form-dialog-title"
+			>
+				<Text className={classes.dialogContentText}>
+					{formatMessage({ id: 'my_rides.damaged_vehicle.submit_report.dialog.description' })}
+				</Text>
+			</Dialog>
 		</Page>
 	);
 };

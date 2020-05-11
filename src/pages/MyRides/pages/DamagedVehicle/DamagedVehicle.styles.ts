@@ -82,6 +82,14 @@ const takenImage: CSSProperties = {
 	overflow: 'hidden'
 };
 
+const dialogContentText: CSSProperties = {
+	fontSize: pxToRem(10),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	fontColor: '#181c19',
+	opacity: 0.5,
+	padding: `${pxToRem(15)} 0 0 0`
+};
 export const styles = createStyles({
 	buttonGroupWrapper,
 	button,
@@ -93,5 +101,6 @@ export const styles = createStyles({
 	damagedVehicleContainer,
 	imageGallery,
 	imageGalleryInside,
-	takenImage
+	takenImage,
+	dialogContentText
 });
