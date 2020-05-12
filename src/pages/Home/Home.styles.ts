@@ -159,6 +159,9 @@ const sheetText: CSSProperties = {
 	padding: `0 0 ${pxToRem(20)} 0`
 };
 
+const areasList: CSSProperties = {
+	padding: ` 0 0 ${pxToRem(30)} 0`
+};
 export const styles = createStyles({
 	reportButton,
 	zonesButton,
@@ -182,5 +185,6 @@ export const styles = createStyles({
 	rateImageWrapper,
 	shareButton,
 	sheetButton,
-	sheetText
+	sheetText,
+	areasList
 });

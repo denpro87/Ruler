@@ -1,9 +1,12 @@
+import { AreasListItem } from './components';
 import { BottomSheet, Dialog, FullPage, GreenButton, Icon, IconButton, LightGreenButton, Menu, Text } from 'components';
-import { Box, Typography } from '@material-ui/core';
+import { Box, List, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg } from '@ionic/react';
+import { areasListItems } from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
+import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { ViewState } from 'react-map-gl';
@@ -11,11 +14,11 @@ import React from 'react';
 import clsx from 'clsx';
 import rateImage from './images/rate.svg';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
-console.log('asdfasdf', MAPBOX_TOKEN);
 const useStyles = makeStyles(styles);
 
 export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const classes = useStyles();
+	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [viewport, setViewport] = React.useState<ViewState>({
 		latitude: 37.8,
@@ -29,6 +32,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [open, setOpen] = React.useState(false);
 	const [showInviteFriends, setShowInviteFriends] = React.useState(false);
 	const [showReport, setShowReport] = React.useState(false);
+	const [showAreas, setShowAreas] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
@@ -55,20 +59,27 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowReport(isOpen);
 	};
 
+	const handleAreasBottomSheetChange = (isOpen: boolean) => {
+		setShowAreas(isOpen);
+	};
+
 	const handleInviteFriendsBottomSheetChange = (isOpen: boolean) => {
 		setShowInviteFriends(isOpen);
 	};
 
 	const handleBadlyClick = () => {
 		setShowReport(false);
+		history.push('/my-rides/badly-parked-vehicle');
 	};
 
 	const handleDamagedClick = () => {
 		setShowReport(false);
+		history.push('/my-rides/damaged-vehicle');
 	};
 
 	const handleContactClick = () => {
 		setShowReport(false);
+		history.push('/my-rides/report');
 	};
 
 	return (
@@ -87,7 +98,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }}
 					onClick={(): void => setShowReport(true)}
 				/>
-				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" />
+				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" onClick={(): void => setShowAreas(true)} />
 				<Box className={classes.vehicleButtonGroup}>
 					{vehicleSelectionExpanded ? (
 						<Box className={classes.vehicleButtonGroupWrapper}>
@@ -191,6 +202,19 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
 					{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
 				</LightGreenButton>
+			</BottomSheet>
+			<BottomSheet
+				hasCloseButton
+				onCloseButtonClick={(): void => setShowAreas(false)}
+				title={formatMessage({ id: 'home.areas_sheet.title' })}
+				open={showAreas}
+				onBottomSheetChange={handleAreasBottomSheetChange}
+			>
+				<List className={classes.areasList}>
+					{areasListItems.map((listItem, index) => {
+						return <AreasListItem key={index} {...listItem} />;
+					})}
+				</List>
 			</BottomSheet>
 		</FullPage>
 	);
