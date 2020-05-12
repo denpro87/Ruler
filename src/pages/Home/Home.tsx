@@ -13,7 +13,7 @@ import {
 	SwitchListItem,
 	Text
 } from 'components';
-import { Box, List, Typography } from '@material-ui/core';
+import { Box, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg } from '@ionic/react';
 import { areasListItems, damagedVehicleTypes } from './Home.data';
@@ -64,6 +64,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [showFilter, setShowFilter] = React.useState(false);
 	const [buttonLabel, setButtonLabel] = React.useState('Car');
 	const [switchState, setSwitchState] = React.useState(initialState);
+	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
@@ -149,6 +150,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		} else {
 			setSwitchState(prevState => ({ ...prevState, [event.target.name]: event.target.checked }));
 		}
+	};
+
+	const handleBatteryLevelChange = (event: any, newValue: number | number[]) => {
+		setBatteryLevel(newValue as number[]);
 	};
 
 	return (
@@ -366,6 +371,21 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					/>
 					<Box className={classes.batteryLevelText}>
 						<Text className={classes.smallText}>{formatMessage({ id: 'home.filter_sheet.text.battery_level' })}</Text>
+					</Box>
+					<Slider
+						value={batteryLevel}
+						onChange={handleBatteryLevelChange}
+						aria-labelledby="battery-level-slider"
+						ThumbComponent={(props: any) => (
+							<span {...props}>
+								<Icon iconName="buble" colorType="green" />
+							</span>
+						)}
+						classes={{ root: classes.sliderContainer, rail: classes.railPart, track: classes.trackPart }}
+					/>
+					<Box className={classes.percentageTextWrapper}>
+						<Text className={classes.percentageText}>{`${batteryLevel[0]}%`}</Text>
+						<Text className={classes.percentageText}>{`${batteryLevel[1]}%`}</Text>
 					</Box>
 					<Box className={classes.engineTypeText}>
 						<Text className={classes.smallText}>{formatMessage({ id: 'home.filter_sheet.text.engine_type' })}</Text>

@@ -236,7 +236,46 @@ const resetButton: CSSProperties = {
 	}
 };
 
+const sliderContainer: CSSProperties = {
+	padding: `${pxToRem(30)} 0 ${pxToRem(16)} 0`,
+	'& > .MuiSlider-active': {
+		boxShadow: 'none'
+	},
+	'& > .MuiSlider-thumb::after': {
+		display: 'none'
+	}
+};
+
+const railPart: CSSProperties = {
+	height: pxToRem(4),
+	borderRadius: pxToRem(10),
+	backgroundColor: 'rgba(24, 28, 25, 0.4)'
+};
+
+const trackPart: CSSProperties = {
+	height: pxToRem(4),
+	borderRadius: pxToRem(10),
+	backgroundColor: '#00b559'
+};
+
+const percentageTextWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-between'
+};
+
+const percentageText: CSSProperties = {
+	fontSize: pxToRem(15),
+	fontWeight: 600,
+	lineHeight: 1.67,
+	color: '#181c19'
+};
 export const styles = createStyles({
+	percentageTextWrapper,
+	percentageText,
+	sliderContainer,
+	railPart,
+	trackPart,
 	reportButton,
 	zonesButton,
 	vehicleButtonGroup,
