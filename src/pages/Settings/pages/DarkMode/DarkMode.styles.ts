@@ -2,8 +2,8 @@ import { CSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const providersList: CSSProperties = {
-	marginTop: '6px',
-	padding: '0px'
+	marginTop: pxToRem(6),
+	padding: 0
 };
 
 const subText: CSSProperties = {

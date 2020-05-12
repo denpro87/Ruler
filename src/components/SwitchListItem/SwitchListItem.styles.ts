@@ -1,13 +1,9 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { font, pxToRem } from 'styles';
-const li: CSSProperties = {
-	display: 'flex',
-	alignItems: 'flex-start',
-	padding: `${pxToRem(10)} 0`
-};
 
-const deactivated: CSSProperties = {
-	opacity: 0.5
+const li: CreateCSSProperties = {
+	alignItems: (props: any) => (props.hasIcon ? 'center' : 'flex-start'),
+	padding: `${pxToRem(10)} 0`
 };
 
 const switchLabel: CreateCSSProperties = {
@@ -25,8 +21,19 @@ const switchLabel: CreateCSSProperties = {
 	},
 	margin: 0
 };
+
+const iconContainer: CSSProperties = {
+	minWidth: pxToRem(40)
+};
+
+const image: CSSProperties = {
+	marginRight: 'auto',
+	padding: pxToRem(5),
+	boxSizing: 'content-box'
+};
 export const styles = createStyles({
 	li,
 	switchLabel,
-	deactivated
+	iconContainer,
+	image
 });

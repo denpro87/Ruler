@@ -5,4 +5,6 @@ export interface ISwitchListItemProps extends Pick<SwitchProps, 'onChange' | 'ch
 	checked: boolean;
 	disabled?: boolean;
 	name?: string;
+	iconName?: string;
+	imageUrl?: string;
 }

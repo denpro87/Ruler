@@ -11,17 +11,11 @@ const iconContainer: CSSProperties = {
 };
 
 const areasIconContainer: CSSProperties = {
-	minWidth: pxToRem(30)
-};
-
-const providerIcon: CSSProperties = {
-	marginRight: 'auto',
-	padding: pxToRem(5),
-	boxSizing: 'content-box'
+	minWidth: pxToRem(40)
 };
 
 const areasTextContainer: CSSProperties = {
-	marginTop: 0,
+	marginTop: pxToRem(3),
 	marginBottom: 0
 };
 
@@ -47,7 +41,6 @@ export const styles = createStyles({
 	iconContainer,
 	areasListItem,
 	areasIconContainer,
-	providerIcon,
 	areasTextContainer,
 	areasText,
 	areasSubtext
