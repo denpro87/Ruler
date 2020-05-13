@@ -1,10 +1,10 @@
 import { Box, DialogContent, DialogTitle, Dialog as MuiDialog } from '@material-ui/core';
 import { IDialogProps } from './Dialog.types';
 import { IconButton, Image, Text } from 'components';
+import { IonImg } from '@ionic/react';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Dialog.styles';
 import React from 'react';
-
 const useStyles = makeStyles(styles);
 
 export const Dialog: React.FunctionComponent<IDialogProps> = ({
@@ -16,9 +16,10 @@ export const Dialog: React.FunctionComponent<IDialogProps> = ({
 	onClose,
 	children,
 	className,
+	onImageDelete,
 	...restProps
 }) => {
-	const classes = useStyles();
+	const classes = useStyles({ image });
 	const [imagePath, setImagePath] = React.useState(image);
 
 	React.useEffect(() => {
@@ -38,18 +39,33 @@ export const Dialog: React.FunctionComponent<IDialogProps> = ({
 	};
 
 	return (
-		<MuiDialog open={open} onClose={handleDeleteAccountClose} classes={{ paper: classes.modalPaper }}>
-			<Box className={classes.imgWrapper}>{imagePath && <Image src={imagePath} />}</Box>
-			<DialogTitle classes={{ root: classes.dialogTitle }}>
-				<Text color="primary" className={classes.titleTextStyle} block>
-					{title}
-				</Text>
-			</DialogTitle>
-
-			<DialogContent className={classes.dialogContent}>
-				{hasClose && <IconButton iconName="close" classes={{ root: classes.closeBtn }} noShadow onClick={handleDeleteAccountClose} />}
-				{children}
-			</DialogContent>
+		<MuiDialog open={open} onClose={handleDeleteAccountClose} classes={{ paper: image ? classes.imagePaper : classes.modalPaper }}>
+			{image && (
+				<Box className={classes.imageWrapper}>
+					{imagePath && (
+						<Box className={classes.imageAspectRatioBox}>
+							<Box className={classes.imageAspectRatioBoxInside}>
+								<IonImg src={imagePath} className={classes.image} />
+							</Box>
+						</Box>
+					)}
+					<IconButton className={classes.trashIcon} iconProps={{ iconName: 'trash', colorType: 'green' }} onClick={onImageDelete} />
+				</Box>
+			)}
+			{!image && (
+				<Box>
+					<Box className={classes.imgWrapper}>{imagePath && <Image src={imagePath} />}</Box>
+					<DialogTitle classes={{ root: classes.dialogTitle }}>
+						<Text color="primary" className={classes.titleTextStyle} block>
+							{title}
+						</Text>
+					</DialogTitle>
+					<DialogContent className={classes.dialogContent}>
+						{hasClose && <IconButton iconName="close" classes={{ root: classes.closeBtn }} noShadow onClick={handleDeleteAccountClose} />}
+						{children}
+					</DialogContent>
+				</Box>
+			)}
 		</MuiDialog>
 	);
 };

@@ -8,6 +8,7 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './DamagedVehicle.styles';
 import { useIntl } from 'react-intl';
 import React from 'react';
+import background from './background.jpg';
 import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 const { Camera } = Plugins;
@@ -20,10 +21,12 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 	const [code, setCode] = React.useState('');
 	const [submitReportModal, setSubmitReportModal] = React.useState(false);
 	const [description, setDescription] = React.useState('');
-	const [photoModal, setPhotoModal] = React.useState(false);
-	const [imageUrl, setImageUrl] = React.useState('');
 	const [photos, setPhotos] = React.useState<string[]>([]);
 	const [title, setTitle] = React.useState('');
+	const [imageModal, setImageModal] = React.useState(false);
+	const [imageUrl, setImageUrl] = React.useState('');
+	const [selectedImageIndex, setSelectedImageIndex] = React.useState(-1);
+
 	React.useEffect(() => {
 		defineCustomElements(window);
 	}, []);
@@ -41,11 +44,25 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 
 	const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>): void => setDescription(event.target.value);
 
-	const handleDialogClose = (): void => setSubmitReportModal(false);
+	const handleDialogClose = (): void => {
+		if (submitReportModal) {
+			setSubmitReportModal(false);
+		} else if (imageModal) {
+			setImageModal(false);
+		}
+	};
 
-	const handlePhotoClick = (index: number): void => {
-		setImageUrl(photos[index]);
-		setPhotoModal(true);
+	const handleImageClick = (index: number) => (event: any): void => {
+		setImageUrl(event.target.src);
+		setSelectedImageIndex(index);
+		setImageModal(true);
+	};
+
+	const handleImageDeleteClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+		const temp = photos;
+		temp.splice(index, 1);
+		setPhotos([...temp]);
+		setImageModal(false);
 	};
 
 	const takePhoto = async () => {
@@ -116,15 +133,7 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 					<Box className={classes.imageGalleryInside}>
 						{photos.length > 0 &&
 							photos.map((photo, index) => {
-								return (
-									<IonImg
-										// className={clsx({ [classes.takenImage]: true }, { [classes.takenImageActive]: index === selectedImageIndex })}
-										className={classes.takenImage}
-										key={index}
-										src={photo}
-										onClick={() => handlePhotoClick(index)}
-									/>
-								);
+								return <IonImg className={classes.takenImage} key={index} src={photo} onClick={handleImageClick(index)} />;
 							})}
 					</Box>
 				</Box>
@@ -137,7 +146,6 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 					</GreenButton>
 				</Box>
 			</Box>
-
 			<Dialog
 				title={formatMessage({ id: 'my_rides.damaged_vehicle.submit_report.dialog.title' })}
 				open={submitReportModal}
@@ -150,6 +158,15 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 					{formatMessage({ id: 'my_rides.damaged_vehicle.submit_report.dialog.description' })}
 				</Text>
 			</Dialog>
+			{imageUrl && (
+				<Dialog
+					onClose={handleDialogClose}
+					onImageDelete={handleImageDeleteClick(selectedImageIndex)}
+					aria-labelledby="form-dialog-title"
+					image={imageUrl}
+					open={imageModal}
+				/>
+			)}
 		</Page>
 	);
 };
