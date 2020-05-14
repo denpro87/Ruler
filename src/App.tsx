@@ -77,6 +77,7 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/my-rides" component={MyRides.MyRides} exact />
 						<Route path="/my-rides/damaged-vehicle" component={MyRides.DamagedVehicle} exact />
 						<Route path="/my-rides/badly-parked-vehicle" component={MyRides.DamagedVehicle} exact />
+						<Route path="/my-rides/report" component={MyRides.Report} exact />
 						<Route exact path="/" render={() => <Redirect to="/splash" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>

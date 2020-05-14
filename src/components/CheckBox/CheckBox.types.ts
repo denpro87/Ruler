@@ -1,4 +1,4 @@
-import { CheckboxProps, InputProps } from '@material-ui/core';
+import { CheckboxProps } from '@material-ui/core';
 export interface ICheckBoxProps extends Pick<CheckboxProps, 'onChange'> {
 	className?: string;
 	checked: boolean;

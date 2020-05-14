@@ -8,7 +8,6 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './DamagedVehicle.styles';
 import { useIntl } from 'react-intl';
 import React from 'react';
-import background from './background.jpg';
 import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 const { Camera } = Plugins;
