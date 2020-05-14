@@ -4,16 +4,18 @@ import { IonImg } from '@ionic/react';
 import { getTopPosition, styles } from './Report.styles';
 import { useIntl } from 'react-intl';
 import React from 'react';
+import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Report: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
-	const [message, setMessage] = React.useState('');
+	const [msgs, setMsgs] = React.useState<string[]>([]);
+	const [msg, setMsg] = React.useState('');
 	const [sentMsg, setSentMsg] = React.useState(false);
 	const [rowsNum, setRowsNum] = React.useState(0);
 	const [selectedFiles, setSelectedFiles] = React.useState<(string | ArrayBuffer | null)[]>([]);
-	const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>): void => setMessage(event.target.value);
+	const handleMsgChange = (event: React.ChangeEvent<HTMLInputElement>): void => setMsg(event.target.value);
 
 	const handleUploadClick = (event: any) => {
 		const files = event.target.files;
@@ -38,54 +40,66 @@ export const Report: React.FunctionComponent = () => {
 		}
 	}, [selectedFiles]);
 
-	const removeImage = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+	const removeImage = (index: number) => (): void => {
 		const temp = selectedFiles;
 		temp.splice(index, 1);
 		setSelectedFiles([...temp]);
+	};
+
+	const handleSendButtonClick = (): void => {
+		setMsgs(prevMsgs => [...prevMsgs, msg]);
+		setSentMsg(true);
+		setMsg('');
 	};
 
 	return (
 		<Page title={formatMessage({ id: 'my_rides.report.title' })} titleSize="medium">
 			<Box className={classes.reportContainer}>
 				<Box className={classes.reportContent}>
-					{sentMsg && (
-						<Box className={classes.sentImagesWrapper}>
-							{selectedFiles &&
-								selectedFiles.map((file: any, index: number) => {
-									return (
-										<Box key={index} className={classes.sentImageWrapper}>
-											<IonImg className={classes.image} src={file} />
-										</Box>
-									);
-								})}
-						</Box>
-					)}
+					{sentMsg &&
+						selectedFiles &&
+						selectedFiles.map((file: any, index: number) => {
+							return (
+								<Box key={index} className={classes.sentImagesWrapper}>
+									<Box className={classes.sentImageWrapper}>
+										<IonImg className={classes.image} src={file} />
+									</Box>
+								</Box>
+							);
+						})}
+					{sentMsg &&
+						msgs &&
+						msgs.map((msg: string, index: number) => {
+							return (
+								<Box key={index} className={classes.sentMsgWrapper}>
+									<Text className={classes.msgText}>{msg}</Text>
+								</Box>
+							);
+						})}
 				</Box>
 				<Box className={classes.footer}>
-					{!sentMsg && (
-						<Box
-							className={classes.nonSentImagesWrapper}
-							style={{
-								top: getTopPosition(rowsNum)
-							}}
-						>
-							{selectedFiles &&
-								selectedFiles.map((file: any, index: number) => {
-									return (
-										<Box key={index} className={classes.nonSentImageWrapper}>
-											<IonImg className={classes.image} src={file} />
-											<IconButton className={classes.closeIcon} onClick={removeImage(index)} iconName="close" />
-										</Box>
-									);
-								})}
-						</Box>
-					)}
+					<Box
+						className={classes.nonSentImagesWrapper}
+						style={{
+							top: getTopPosition(rowsNum)
+						}}
+					>
+						{selectedFiles &&
+							selectedFiles.map((file: any, index: number) => {
+								return (
+									<Box key={index} className={classes.nonSentImageWrapper}>
+										<IonImg className={classes.image} src={file} />
+										<IconButton className={classes.closeIcon} onClick={removeImage(index)} iconName="close" />
+									</Box>
+								);
+							})}
+					</Box>
 					<Input
 						disableUnderline
 						multiline
 						placeholder={formatMessage({ id: 'my_rides.report.message' })}
-						value={message}
-						onChange={handleMessageChange}
+						value={msg}
+						onChange={handleMsgChange}
 						startAdornment={
 							<InputAdornment position="start">
 								<InputLabel htmlFor="file-upload">
@@ -101,14 +115,14 @@ export const Report: React.FunctionComponent = () => {
 								/>
 							</InputAdornment>
 						}
-						className={classes.messageInput}
+						className={clsx({ [classes.messageInput]: true }, { [classes.attachIcon]: msg !== '' })}
 					/>
 					<IconButton
-						disabled={selectedFiles.length === 0 && message === ''}
+						disabled={selectedFiles.length === 0 && msg === ''}
 						className={classes.sendButton}
 						iconName="submit-report"
 						iconProps={{ iconName: 'submit-report', color: '#ffffff' }}
-						onClick={(): void => setSentMsg(true)}
+						onClick={handleSendButtonClick}
 					/>
 				</Box>
 			</Box>

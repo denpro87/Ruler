@@ -9,7 +9,10 @@ const reportContainer: CSSProperties = {
 
 const reportContent: CSSProperties = {
 	overflow: 'auto',
-	paddingTop: pxToRem(15)
+	paddingTop: pxToRem(15),
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'flex-end'
 };
 
 const footer: CSSProperties = {
@@ -17,7 +20,8 @@ const footer: CSSProperties = {
 	marginTop: 'auto',
 	display: 'flex',
 	flexDirection: 'row',
-	justifyContent: 'space-between'
+	justifyContent: 'space-between',
+	alignItems: 'flex-end'
 };
 
 const fileInput: CSSProperties = {
@@ -25,6 +29,7 @@ const fileInput: CSSProperties = {
 };
 
 const sendButton: CSSProperties = {
+	maxHeight: pxToRem(50),
 	marginLeft: pxToRem(10),
 	'&:hover': {
 		color: '#ffffff',
@@ -113,7 +118,35 @@ const nonSentImagesWrapper: CSSProperties = {
 export const getTopPosition = (rowsNum: number) => {
 	return -100 * rowsNum;
 };
+
+const sentMsgWrapper: CSSProperties = {
+	position: 'relative',
+	padding: `${pxToRem(15)} ${pxToRem(20)}`,
+	backgroundColor: '#f3f3f3',
+	borderRadius: pxToRem(15),
+	width: 'fit-content',
+	wordWrap: 'break-word',
+	display: 'flex',
+	flexDirection: 'row-reverse',
+	alignItems: 'center'
+};
+
+const msgText: CSSProperties = {
+	fontWeight: 600,
+	lineHeight: 1.67,
+	color: '#181c19',
+	fontSize: pxToRem(15)
+};
+
+const attachIcon: CSSProperties = {
+	'&>.MuiInputAdornment-positionStart': {
+		display: 'none'
+	}
+};
 export const styles = createStyles({
+	attachIcon,
+	msgText,
+	sentMsgWrapper,
 	image,
 	messageInput,
 	fileInput,
