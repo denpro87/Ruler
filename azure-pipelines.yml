@@ -4,6 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
+- master
 - develop
 
 variables:
@@ -55,7 +56,10 @@ stages:
     strategy:
       runOnce:
         deploy:
-          steps:            
+          steps:
+          - checkout: self
+            submodules: true
+            persistCredentials: true            
           - task: AzureRmWebAppDeployment@4
             displayName: 'Azure App Service Deploy: ruler-app'
             inputs:
