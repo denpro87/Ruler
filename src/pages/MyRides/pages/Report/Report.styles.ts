@@ -4,11 +4,16 @@ import { percentage, pxToRem } from 'styles';
 const reportContainer: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
-	flex: 1,
-	overflow: 'auto'
+	flex: 1
+};
+
+const reportContent: CSSProperties = {
+	overflow: 'auto',
+	paddingTop: pxToRem(15)
 };
 
 const footer: CSSProperties = {
+	position: 'relative',
 	marginTop: 'auto',
 	display: 'flex',
 	flexDirection: 'row',
@@ -52,10 +57,73 @@ const messageInput: CSSProperties = {
 	color: 'rgba(24, 28, 25, 0.5)'
 };
 
+const closeIcon: CSSProperties = {
+	position: 'absolute',
+	right: pxToRem(0),
+	top: pxToRem(0),
+	padding: 0,
+	boxShadow: 'none',
+	color: '#ffffff',
+	backgroundColor: 'transparent',
+	'&:hover': {
+		color: '#ffffff',
+		backgroundColor: 'transparent'
+	}
+};
+
+const sentImagesWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row-reverse',
+	flexWrap: 'wrap',
+	borderRadius: 15,
+	overflow: 'hidden'
+};
+
+const sentImageWrapper: CSSProperties = {
+	width: pxToRem(100),
+	height: pxToRem(100),
+	marginLeft: pxToRem(1),
+	marginBottom: pxToRem(1)
+};
+
+const nonSentImageWrapper: CSSProperties = {
+	width: pxToRem(100),
+	height: pxToRem(100),
+	position: 'relative'
+};
+
+const image: CSSProperties = {
+	width: percentage(1),
+	height: percentage(1),
+	objectFit: 'cover'
+};
+
+const nonSentImagesWrapper: CSSProperties = {
+	position: 'absolute',
+	left: 0,
+	right: 60,
+	display: 'flex',
+	flexDirection: 'row',
+	flexWrap: 'wrap',
+	backgroundColor: '#f3f3f3',
+	borderRadius: 15,
+	overflow: 'hidden'
+};
+
+export const getTopPosition = (rowsNum: number) => {
+	return -100 * rowsNum;
+};
 export const styles = createStyles({
+	image,
 	messageInput,
 	fileInput,
 	reportContainer,
 	footer,
-	sendButton
+	sendButton,
+	reportContent,
+	closeIcon,
+	sentImagesWrapper,
+	sentImageWrapper,
+	nonSentImagesWrapper,
+	nonSentImageWrapper
 });
