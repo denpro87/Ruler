@@ -10,14 +10,15 @@ const useStyles = makeStyles(styles);
 export const Report: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
-	const [msgs, setMsgs] = React.useState<string[]>([]);
 	const [msg, setMsg] = React.useState('');
-	const [sentMsg, setSentMsg] = React.useState(false);
 	const [rowsNum, setRowsNum] = React.useState(0);
+	const [imagesReady, setImagesReady] = React.useState(false);
 	const [selectedFiles, setSelectedFiles] = React.useState<(string | ArrayBuffer | null)[]>([]);
+	const [messages, setMessages] = React.useState<any[]>([]);
 	const handleMsgChange = (event: React.ChangeEvent<HTMLInputElement>): void => setMsg(event.target.value);
 
 	const handleUploadClick = (event: any) => {
+		setImagesReady(true);
 		const files = event.target.files;
 
 		for (const file of files) {
@@ -46,54 +47,75 @@ export const Report: React.FunctionComponent = () => {
 		setSelectedFiles([...temp]);
 	};
 
-	const handleSendButtonClick = (): void => {
-		setMsgs(prevMsgs => [...prevMsgs, msg]);
-		setSentMsg(true);
+	const handleSendButtonClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+		const temp = messages;
+
+		if (selectedFiles.length > 0) {
+			temp.push(selectedFiles);
+			setMessages([...temp]);
+		}
+
+		if (msg !== '') {
+			temp.push(msg);
+			setMessages([...temp]);
+		}
+
 		setMsg('');
+		setSelectedFiles([]);
+		setImagesReady(false);
 	};
+
+	React.useEffect(() => {
+		console.log('asdfasdfasdf', messages);
+	}, [messages]);
 
 	return (
 		<Page title={formatMessage({ id: 'my_rides.report.title' })} titleSize="medium">
 			<Box className={classes.reportContainer}>
 				<Box className={classes.reportContent}>
-					{sentMsg &&
-						selectedFiles &&
-						selectedFiles.map((file: any, index: number) => {
-							return (
-								<Box key={index} className={classes.sentImagesWrapper}>
-									<Box className={classes.sentImageWrapper}>
-										<IonImg className={classes.image} src={file} />
+					{messages &&
+						messages.map((message, index) => {
+							if (typeof message === 'string') {
+								return (
+									<Box key={index} className={classes.sentMsgWrapper}>
+										<Text className={classes.msgText}>{message}</Text>
 									</Box>
-								</Box>
-							);
-						})}
-					{sentMsg &&
-						msgs &&
-						msgs.map((msg: string, index: number) => {
-							return (
-								<Box key={index} className={classes.sentMsgWrapper}>
-									<Text className={classes.msgText}>{msg}</Text>
-								</Box>
-							);
+								);
+							} else {
+								return (
+									<Box className={classes.sentImagesWrapper}>
+										{message.map((file: any, index: number) => {
+											return (
+												<Box key={index} className={classes.sentImageWrapper}>
+													<IonImg className={classes.image} src={file} />
+												</Box>
+											);
+										})}
+									</Box>
+								);
+							}
 						})}
 				</Box>
 				<Box className={classes.footer}>
-					<Box
-						className={classes.nonSentImagesWrapper}
-						style={{
-							top: getTopPosition(rowsNum)
-						}}
-					>
-						{selectedFiles &&
-							selectedFiles.map((file: any, index: number) => {
-								return (
-									<Box key={index} className={classes.nonSentImageWrapper}>
-										<IonImg className={classes.image} src={file} />
-										<IconButton className={classes.closeIcon} onClick={removeImage(index)} iconName="close" />
-									</Box>
-								);
-							})}
-					</Box>
+					{imagesReady && (
+						<Box
+							className={classes.nonSentImagesWrapper}
+							style={{
+								top: getTopPosition(rowsNum)
+							}}
+						>
+							{selectedFiles &&
+								selectedFiles.map((file: any, index: number) => {
+									return (
+										<Box key={index} className={classes.nonSentImageWrapper}>
+											<IonImg className={classes.image} src={file} />
+											<IconButton className={classes.closeIcon} onClick={removeImage(index)} iconName="close" />
+										</Box>
+									);
+								})}
+						</Box>
+					)}
+
 					<Input
 						disableUnderline
 						multiline
@@ -115,7 +137,7 @@ export const Report: React.FunctionComponent = () => {
 								/>
 							</InputAdornment>
 						}
-						className={clsx({ [classes.messageInput]: true }, { [classes.attachIcon]: msg !== '' })}
+						className={clsx({ [classes.messageInput]: true }, { [classes.attachIcon]: msg !== '' || selectedFiles.length > 0 })}
 					/>
 					<IconButton
 						disabled={selectedFiles.length === 0 && msg === ''}

@@ -125,10 +125,10 @@ const sentMsgWrapper: CSSProperties = {
 	backgroundColor: '#f3f3f3',
 	borderRadius: pxToRem(15),
 	width: 'fit-content',
-	wordWrap: 'break-word',
-	display: 'flex',
-	flexDirection: 'row-reverse',
-	alignItems: 'center'
+	wordWrap: 'break-word'
+	// display: 'flex',
+	// flexDirection: 'row-reverse',
+	// alignItems: 'center'
 };
 
 const msgText: CSSProperties = {
