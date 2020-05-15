@@ -76,6 +76,7 @@ const closeIcon: CSSProperties = {
 };
 
 const sentImagesWrapper: CSSProperties = {
+	position: 'relative',
 	display: 'flex',
 	flexDirection: 'row-reverse',
 	flexWrap: 'wrap',
@@ -130,6 +131,12 @@ export const getTopPosition = (rowsNum: number) => {
 	return -100 * rowsNum;
 };
 
+const timeTextWrapper: CSSProperties = {
+	position: 'absolute',
+	bottom: -20,
+	left: 20
+};
+
 const sentMsgWrapper: CSSProperties = {
 	position: 'relative',
 	padding: `${pxToRem(15)} ${pxToRem(20)}`,
@@ -153,6 +160,19 @@ const attachIcon: CSSProperties = {
 		display: 'none'
 	}
 };
+
+const writerTextWrapper: CSSProperties = {
+	position: 'absolute',
+	bottom: -20,
+	right: 20
+};
+
+const smallText: CSSProperties = {
+	fontWeight: 600,
+	lineHeight: 1.5,
+	fontSize: pxToRem(10),
+	color: 'rgba(24, 28, 25, 0.5)'
+};
 export const styles = createStyles({
 	attachIcon,
 	msgText,
@@ -169,5 +189,8 @@ export const styles = createStyles({
 	sentImageWrapper,
 	nonSentImagesWrapper,
 	nonSentImageWrapper,
-	supportMsgWrapper
+	supportMsgWrapper,
+	timeTextWrapper,
+	writerTextWrapper,
+	smallText
 });

@@ -1,5 +1,5 @@
 import { Box, Input, InputAdornment, InputLabel, makeStyles } from '@material-ui/core';
-import { Icon, IconButton, Image, Page, Text } from 'components';
+import { Icon, IconButton, Page, Text } from 'components';
 import { IonImg } from '@ionic/react';
 import { getTopPosition, styles } from './Report.styles';
 import { useIntl } from 'react-intl';
@@ -65,6 +65,48 @@ export const Report: React.FunctionComponent = () => {
 		setImagesReady(false);
 	};
 
+	const renderSupportMessage = (): JSX.Element => {
+		return (
+			<Box className={classes.supportMsgWrapper}>
+				<Text className={classes.msgText}>{formatMessage({ id: 'my_rides.report.support_message' })}</Text>
+				<Box className={classes.timeTextWrapper}>
+					<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.support_time' })}</Text>
+				</Box>
+				<Box className={classes.writerTextWrapper}>
+					<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.support' })}</Text>
+				</Box>
+			</Box>
+		);
+	};
+
+	const renderSentMessage = (message: string, index: number): JSX.Element => {
+		return (
+			<Box key={index} className={classes.sentMsgWrapper}>
+				<Text className={classes.msgText}>{message}</Text>
+				<Box className={classes.timeTextWrapper}>
+					<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.your_time' })}</Text>
+				</Box>
+				<Box className={classes.writerTextWrapper}>
+					<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.you' })}</Text>
+				</Box>
+			</Box>
+		);
+	};
+
+	const renderSentImages = (message: any[], index: number): JSX.Element => {
+		return (
+			<Box key={index} className={classes.sentImagesWrapper}>
+				{message.map((file: any, index: number) => {
+					return (
+						<Box key={index} className={classes.sentImageWrapper}>
+							<IonImg className={classes.image} src={file} />
+						</Box>
+					);
+				})}
+			</Box>
+		);
+	};
+
 	return (
 		<Page title={formatMessage({ id: 'my_rides.report.title' })} titleSize="medium">
 			<Box className={classes.reportContainer}>
@@ -72,54 +114,26 @@ export const Report: React.FunctionComponent = () => {
 					{messages &&
 						messages.map((message, index) => {
 							if (typeof message === 'string') {
-								if (index === 0)
+								if (index === 0) {
 									return (
 										<>
-											<Box key={index} className={classes.sentMsgWrapper}>
-												<Text className={classes.msgText}>{message}</Text>
-											</Box>
-											<Box className={classes.supportMsgWrapper}>
-												<Text className={classes.msgText}>{formatMessage({ id: 'my_rides.report.support_message' })}</Text>
-											</Box>
+											{renderSentMessage(message, index)}
+											{renderSupportMessage()}
 										</>
 									);
-								else {
-									return (
-										<Box key={index} className={classes.sentMsgWrapper}>
-											<Text className={classes.msgText}>{message}</Text>
-										</Box>
-									);
+								} else {
+									return renderSentMessage(message, index);
 								}
 							} else {
 								if (index === 0) {
 									return (
 										<>
-											<Box key={index} className={classes.sentImagesWrapper}>
-												{message.map((file: any, index: number) => {
-													return (
-														<Box key={index} className={classes.sentImageWrapper}>
-															<IonImg className={classes.image} src={file} />
-														</Box>
-													);
-												})}
-											</Box>
-											<Box className={classes.supportMsgWrapper}>
-												<Text className={classes.msgText}>{formatMessage({ id: 'my_rides.report.support_message' })}</Text>
-											</Box>
+											{renderSentImages(message, index)}
+											{renderSupportMessage()}
 										</>
 									);
 								} else {
-									return (
-										<Box key={index} className={classes.sentImagesWrapper}>
-											{message.map((file: any, index: number) => {
-												return (
-													<Box key={index} className={classes.sentImageWrapper}>
-														<IonImg className={classes.image} src={file} />
-													</Box>
-												);
-											})}
-										</Box>
-									);
+									return renderSentImages(message, index);
 								}
 							}
 						})}
