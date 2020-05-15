@@ -21,6 +21,18 @@ const footer: CSSProperties = {
 	alignItems: 'flex-end'
 };
 
+const backButton: CSSProperties = {
+	position: 'absolute',
+	top: pxToRem(-90),
+	right: 0,
+	maxHeight: pxToRem(50),
+	'&:hover': {
+		backgroundColor: '#ffffff'
+	},
+	borderRadius: percentage(0.5),
+	backgroundColor: '#ffffff'
+};
+
 const fileInput: CSSProperties = {
 	display: 'none'
 };
@@ -205,6 +217,7 @@ export const styles = createStyles({
 	reportContainer,
 	footer,
 	sendButton,
+	backButton,
 	reportContent,
 	closeIcon,
 	sentImagesWrapper,

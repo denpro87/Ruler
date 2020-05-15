@@ -15,6 +15,7 @@ export const Report: React.FunctionComponent = () => {
 	const [imagesReady, setImagesReady] = React.useState(false);
 	const [selectedFiles, setSelectedFiles] = React.useState<(string | ArrayBuffer | null)[]>([]);
 	const [messages, setMessages] = React.useState<any[]>([]);
+	const [heightDifference, setHeightDifference] = React.useState(0);
 	const handleMsgChange = (event: React.ChangeEvent<HTMLInputElement>): void => setMsg(event.target.value);
 
 	const handleUploadClick = (event: any) => {
@@ -48,6 +49,13 @@ export const Report: React.FunctionComponent = () => {
 	};
 
 	const handleSendButtonClick = (): void => {
+		const sHeight = document.querySelector('#report-content')?.scrollHeight;
+		const cHeight = document.querySelector('#report-content')?.clientHeight;
+
+		if (sHeight !== undefined && cHeight !== undefined) {
+			setHeightDifference(sHeight - cHeight);
+		}
+
 		const temp = messages;
 
 		if (selectedFiles.length > 0) {
@@ -116,10 +124,14 @@ export const Report: React.FunctionComponent = () => {
 		);
 	};
 
+	const handleBackButtonClick = (): void => {
+		document.querySelector('#report-content')?.scrollTo(0, heightDifference);
+	};
+
 	return (
 		<Page title={formatMessage({ id: 'my_rides.report.title' })} titleSize="medium">
 			<Box className={classes.reportContainer}>
-				<Box className={classes.reportContent}>
+				<Box className={classes.reportContent} id="report-content">
 					{messages &&
 						messages.map((message, index) => {
 							if (typeof message === 'string') {
@@ -193,10 +205,10 @@ export const Report: React.FunctionComponent = () => {
 					<IconButton
 						disabled={selectedFiles.length === 0 && msg === ''}
 						className={classes.sendButton}
-						iconName="submit-report"
 						iconProps={{ iconName: 'submit-report', color: '#ffffff' }}
 						onClick={handleSendButtonClick}
 					/>
+					{heightDifference > 0 && <IconButton className={classes.backButton} iconName="down" onClick={handleBackButtonClick} />}
 				</Box>
 			</Box>
 		</Page>
