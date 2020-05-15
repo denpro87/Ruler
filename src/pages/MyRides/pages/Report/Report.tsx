@@ -47,7 +47,7 @@ export const Report: React.FunctionComponent = () => {
 		setSelectedFiles([...temp]);
 	};
 
-	const handleSendButtonClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+	const handleSendButtonClick = (): void => {
 		const temp = messages;
 
 		if (selectedFiles.length > 0) {
@@ -65,10 +65,6 @@ export const Report: React.FunctionComponent = () => {
 		setImagesReady(false);
 	};
 
-	React.useEffect(() => {
-		console.log('asdfasdfasdf', messages);
-	}, [messages]);
-
 	return (
 		<Page title={formatMessage({ id: 'my_rides.report.title' })} titleSize="medium">
 			<Box className={classes.reportContainer}>
@@ -76,23 +72,55 @@ export const Report: React.FunctionComponent = () => {
 					{messages &&
 						messages.map((message, index) => {
 							if (typeof message === 'string') {
-								return (
-									<Box key={index} className={classes.sentMsgWrapper}>
-										<Text className={classes.msgText}>{message}</Text>
-									</Box>
-								);
+								if (index === 0)
+									return (
+										<>
+											<Box key={index} className={classes.sentMsgWrapper}>
+												<Text className={classes.msgText}>{message}</Text>
+											</Box>
+											<Box className={classes.supportMsgWrapper}>
+												<Text className={classes.msgText}>{formatMessage({ id: 'my_rides.report.support_message' })}</Text>
+											</Box>
+										</>
+									);
+								else {
+									return (
+										<Box key={index} className={classes.sentMsgWrapper}>
+											<Text className={classes.msgText}>{message}</Text>
+										</Box>
+									);
+								}
 							} else {
-								return (
-									<Box className={classes.sentImagesWrapper}>
-										{message.map((file: any, index: number) => {
-											return (
-												<Box key={index} className={classes.sentImageWrapper}>
-													<IonImg className={classes.image} src={file} />
-												</Box>
-											);
-										})}
-									</Box>
-								);
+								if (index === 0) {
+									return (
+										<>
+											<Box key={index} className={classes.sentImagesWrapper}>
+												{message.map((file: any, index: number) => {
+													return (
+														<Box key={index} className={classes.sentImageWrapper}>
+															<IonImg className={classes.image} src={file} />
+														</Box>
+													);
+												})}
+											</Box>
+											<Box className={classes.supportMsgWrapper}>
+												<Text className={classes.msgText}>{formatMessage({ id: 'my_rides.report.support_message' })}</Text>
+											</Box>
+										</>
+									);
+								} else {
+									return (
+										<Box key={index} className={classes.sentImagesWrapper}>
+											{message.map((file: any, index: number) => {
+												return (
+													<Box key={index} className={classes.sentImageWrapper}>
+														<IonImg className={classes.image} src={file} />
+													</Box>
+												);
+											})}
+										</Box>
+									);
+								}
 							}
 						})}
 				</Box>

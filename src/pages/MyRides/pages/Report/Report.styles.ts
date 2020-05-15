@@ -11,8 +11,7 @@ const reportContent: CSSProperties = {
 	overflow: 'auto',
 	paddingTop: pxToRem(15),
 	display: 'flex',
-	flexDirection: 'column',
-	alignItems: 'flex-end'
+	flexDirection: 'column'
 };
 
 const footer: CSSProperties = {
@@ -81,7 +80,19 @@ const sentImagesWrapper: CSSProperties = {
 	flexDirection: 'row-reverse',
 	flexWrap: 'wrap',
 	borderRadius: 15,
-	overflow: 'hidden'
+	overflow: 'hidden',
+	marginBottom: pxToRem(40)
+};
+
+const supportMsgWrapper: CSSProperties = {
+	position: 'relative',
+	padding: `${pxToRem(15)} ${pxToRem(20)}`,
+	backgroundColor: '#f8ca06',
+	borderRadius: `${pxToRem(15)} ${pxToRem(15)} ${pxToRem(15)} 0`,
+	width: 'fit-content',
+	wordWrap: 'break-word',
+	alignSelf: 'flex-start',
+	marginBottom: pxToRem(40)
 };
 
 const sentImageWrapper: CSSProperties = {
@@ -123,12 +134,11 @@ const sentMsgWrapper: CSSProperties = {
 	position: 'relative',
 	padding: `${pxToRem(15)} ${pxToRem(20)}`,
 	backgroundColor: '#f3f3f3',
-	borderRadius: pxToRem(15),
+	borderRadius: `${pxToRem(15)} ${pxToRem(15)} 0 ${pxToRem(15)}`,
 	width: 'fit-content',
-	wordWrap: 'break-word'
-	// display: 'flex',
-	// flexDirection: 'row-reverse',
-	// alignItems: 'center'
+	wordWrap: 'break-word',
+	alignSelf: 'flex-end',
+	marginBottom: pxToRem(40)
 };
 
 const msgText: CSSProperties = {
@@ -158,5 +168,6 @@ export const styles = createStyles({
 	sentImagesWrapper,
 	sentImageWrapper,
 	nonSentImagesWrapper,
-	nonSentImageWrapper
+	nonSentImageWrapper,
+	supportMsgWrapper
 });

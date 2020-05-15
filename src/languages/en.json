@@ -293,5 +293,10 @@
 	"my_rides.damaged_vehicle.submit_report.dialog.description": "Thank you for reporting the incident, this will help us solve the problem faster",
 	"my_rides.badly_parked_vehicle.title": "Badly parked vehicle",
 	"my_rides.report.title": "Report #1804",
-	"my_rides.report.message": "Your message..."
+	"my_rides.report.message": "Your message...",
+	"my_rides.report.support_message": "Your report has ben reviewed and we need more information. Do you have some photos?",
+	"my_rides.report.support": "Support",
+	"my_rides.report.support_time": "7:03 pm, Nov 24",
+	"my_rides.report.your_time": "10:56 pm, Nov 23",
+	"my_rides.report.you": "You"
 }
