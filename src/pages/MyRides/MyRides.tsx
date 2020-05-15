@@ -83,7 +83,7 @@ export const MyRides: React.FunctionComponent = () => {
 				>
 					{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
 				</LightGreenButton>
-				<LightGreenButton className={classes.sheetButton} iconName="support">
+				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={(): void => history.push('/my-rides/report')}>
 					{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
 				</LightGreenButton>
 			</BottomSheet>

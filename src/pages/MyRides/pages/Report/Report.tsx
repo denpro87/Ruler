@@ -98,9 +98,16 @@ export const Report: React.FunctionComponent = () => {
 			<Box key={index} className={classes.sentImagesWrapper}>
 				{message.map((file: any, index: number) => {
 					return (
-						<Box key={index} className={classes.sentImageWrapper}>
-							<IonImg className={classes.image} src={file} />
-						</Box>
+						index < 6 && (
+							<Box key={index} className={classes.sentImageWrapper}>
+								<IonImg className={classes.image} src={file} />
+								{message.length > 6 && index === 5 && (
+									<Box className={classes.imagesNumTextWrapper}>
+										<Text className={classes.imagesNumText}>{`${index + 1} / ${message.length}`}</Text>
+									</Box>
+								)}
+							</Box>
+						)
 					);
 				})}
 			</Box>

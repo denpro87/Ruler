@@ -173,7 +173,26 @@ const smallText: CSSProperties = {
 	fontSize: pxToRem(10),
 	color: 'rgba(24, 28, 25, 0.5)'
 };
+
+const imagesNumText: CSSProperties = {
+	fontWeight: 600,
+	lineHeight: 2,
+	fontSize: pxToRem(10),
+	color: 'rgba(24, 28, 25, 0.5)'
+};
+
+const imagesNumTextWrapper: CSSProperties = {
+	minWidth: pxToRem(44),
+	position: 'absolute',
+	bottom: pxToRem(10),
+	right: pxToRem(10),
+	backgroundColor: 'rgba(255, 255, 255, 0.6)',
+	borderRadius: pxToRem(20),
+	textAlign: 'center'
+};
 export const styles = createStyles({
+	imagesNumTextWrapper,
+	imagesNumText,
 	attachIcon,
 	msgText,
 	sentMsgWrapper,
