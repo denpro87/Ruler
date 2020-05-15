@@ -82,12 +82,14 @@ export const Report: React.FunctionComponent = () => {
 	const renderSentMessage = (message: string, index: number): JSX.Element => {
 		return (
 			<Box key={index} className={classes.sentMsgWrapper}>
-				<Text className={classes.msgText}>{message}</Text>
-				<Box className={classes.timeTextWrapper}>
-					<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.your_time' })}</Text>
-				</Box>
-				<Box className={classes.writerTextWrapper}>
-					<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.you' })}</Text>
+				<Box className={classes.msgWrapper}>
+					<Text className={classes.msgText}>{message}</Text>
+					<Box className={classes.timeTextWrapper}>
+						<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.your_time' })}</Text>
+					</Box>
+					<Box className={classes.writerTextWrapper}>
+						<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.you' })}</Text>
+					</Box>
 				</Box>
 			</Box>
 		);

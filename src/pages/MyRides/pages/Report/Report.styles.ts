@@ -4,19 +4,17 @@ import { percentage, pxToRem } from 'styles';
 const reportContainer: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
-	flex: 1
+	height: `calc(100vh - ${pxToRem(145)})`
 };
 
 const reportContent: CSSProperties = {
 	overflow: 'auto',
 	paddingTop: pxToRem(15),
-	display: 'flex',
-	flexDirection: 'column'
+	flex: 1
 };
 
 const footer: CSSProperties = {
 	position: 'relative',
-	marginTop: 'auto',
 	display: 'flex',
 	flexDirection: 'row',
 	justifyContent: 'space-between',
@@ -127,7 +125,7 @@ const nonSentImagesWrapper: CSSProperties = {
 	overflow: 'hidden'
 };
 
-export const getTopPosition = (rowsNum: number) => {
+export const getTopPosition = (rowsNum: number): number => {
 	return -100 * rowsNum;
 };
 
@@ -138,14 +136,19 @@ const timeTextWrapper: CSSProperties = {
 };
 
 const sentMsgWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row-reverse',
+	flexWrap: 'wrap',
+	marginBottom: pxToRem(40)
+};
+
+const msgWrapper: CSSProperties = {
 	position: 'relative',
 	padding: `${pxToRem(15)} ${pxToRem(20)}`,
-	backgroundColor: '#f3f3f3',
 	borderRadius: `${pxToRem(15)} ${pxToRem(15)} 0 ${pxToRem(15)}`,
-	width: 'fit-content',
 	wordWrap: 'break-word',
-	alignSelf: 'flex-end',
-	marginBottom: pxToRem(40)
+	width: 'fit-content',
+	backgroundColor: '#f3f3f3'
 };
 
 const msgText: CSSProperties = {
@@ -211,5 +214,6 @@ export const styles = createStyles({
 	supportMsgWrapper,
 	timeTextWrapper,
 	writerTextWrapper,
-	smallText
+	smallText,
+	msgWrapper
 });
