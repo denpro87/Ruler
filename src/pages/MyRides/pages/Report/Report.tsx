@@ -56,16 +56,12 @@ export const Report: React.FunctionComponent = () => {
 			setHeightDifference(sHeight - cHeight);
 		}
 
-		const temp = messages;
-
 		if (selectedFiles.length > 0) {
-			temp.push(selectedFiles);
-			setMessages([...temp]);
+			setMessages(prevMessages => [...prevMessages, selectedFiles]);
 		}
 
 		if (msg !== '') {
-			temp.push(msg);
-			setMessages([...temp]);
+			setMessages(prevMessages => [...prevMessages, msg]);
 		}
 
 		setMsg('');
