@@ -3,6 +3,8 @@ export interface ITextFieldProps extends Pick<TextFieldProps, 'onChange'> {
 	className?: string;
 	value: string;
 	name?: string;
+	multiline?: boolean;
+	disableUnderline?: boolean;
 	label?: string;
 	type?: string;
 	select?: boolean;

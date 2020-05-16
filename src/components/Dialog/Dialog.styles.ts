@@ -1,39 +1,6 @@
-import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
+import { CSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
-import { font, pxToRem } from 'styles';
-
-const button: CreateCSSProperties = {
-	...font({
-		fontSize: 15,
-		fontWeight: 600,
-		fontStretch: 'normal',
-		fontStyle: 'normal',
-		lineHeight: pxToRem(30),
-		letterSpacing: 'normal'
-	}),
-	display: 'flex',
-	borderRadius: pxToRem(15),
-	padding: `${pxToRem(10)} ${pxToRem(15)}`,
-	backgroundColor: (props: any) => props.backgroundColor,
-	color: (props: any) => props.textColor,
-	textAlign: 'center',
-	textTransform: 'none',
-	'&:hover': {
-		color: (props: any) => props.hoveredTextColor,
-		backgroundColor: (props: any) => props.hoveredBackgroundColor
-	},
-	'&:active': {
-		color: (props: any) => props.pressedTextColor,
-		backgroundColor: (props: any) => props.pressedBackgroundColor
-	},
-	'&:disabled': {
-		color: (props: any) => props.disabledTextColor,
-		backgroundColor: (props: any) => props.disabledBackgroundColor
-	},
-	'& .MuiTouchRipple-child': {
-		borderRadius: pxToRem(15)
-	}
-};
+import { font, percentage, pxToRem } from 'styles';
 
 const titleTextStyle: CSSProperties = {
 	...font({
@@ -60,8 +27,15 @@ const modalPaper: CSSProperties = {
 	textAlign: 'center',
 	padding: `${pxToRem(30)} 0`
 };
+
+const imagePaper: CSSProperties = {
+	width: percentage(1),
+	backgroundColor: '#ffffff',
+	borderRadius: pxToRem(15),
+	padding: `${pxToRem(10)} ${pxToRem(10)} ${pxToRem(20)} ${pxToRem(10)}`
+};
 const imgWrapper: CSSProperties = {
-	margin: `${pxToRem(-114)} 53.3px 0 auto`,
+	margin: `${pxToRem(-114)} ${pxToRem(53.3)} 0 auto`,
 	width: 'fit-content',
 	height: 'fit-content'
 };
@@ -86,9 +60,48 @@ const dialogTitle: CSSProperties = {
 const dialogContent: CSSProperties = {
 	padding: `0 ${pxToRem(30)}`
 };
+
+const imageWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignItems: 'center'
+};
+
+const trashIcon: CSSProperties = {
+	marginTop: pxToRem(20)
+};
+
+const imageAspectRatioBox: CSSProperties = {
+	height: 0,
+	width: percentage(1),
+	paddingTop: percentage(1),
+	position: 'relative'
+};
+
+const imageAspectRatioBoxInside: CSSProperties = {
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	width: percentage(1),
+	height: percentage(1)
+};
+
+const image: CSSProperties = {
+	width: percentage(1),
+	height: percentage(1),
+	objectFit: 'cover',
+	borderRadius: pxToRem(15),
+	overflow: 'hidden'
+};
 export const styles = createStyles({
+	imageAspectRatioBox,
+	imageAspectRatioBoxInside,
+	image,
+	trashIcon,
+	imagePaper,
+	imageWrapper,
 	dialogContent,
-	button,
 	dialogTitle,
 	modalPaper,
 	titleTextStyle,

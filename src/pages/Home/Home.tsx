@@ -1,22 +1,53 @@
-import { BottomSheet, Dialog, FullPage, GreenButton, Icon, IconButton, LightGreenButton, Menu, Text } from 'components';
-import { Box, Typography } from '@material-ui/core';
+import { AreasListItem } from './components';
+import {
+	BottomSheet,
+	Button,
+	Dialog,
+	Divider,
+	FullPage,
+	GreenButton,
+	Icon,
+	IconButton,
+	LightGreenButton,
+	Menu,
+	SwitchListItem,
+	Text
+} from 'components';
+import { Box, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg } from '@ionic/react';
+import { areasListItems, damagedVehicleTypes } from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
+import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { ViewState } from 'react-map-gl';
 import React from 'react';
+import bird from './images/bird.png';
+import circ from './images/circ.png';
 import clsx from 'clsx';
+import lime from './images/lime.png';
 import rateImage from './images/rate.svg';
+import spin from './images/spin.png';
+import tier from './images/tier.png';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
-console.log('asdfasdf', MAPBOX_TOKEN);
 const useStyles = makeStyles(styles);
 
 export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const classes = useStyles();
+	const history = useHistory();
 	const { formatMessage } = useIntl();
+	const initialState = {
+		selectAll: false,
+		lime: true,
+		bird: false,
+		spin: true,
+		circ: false,
+		tier: false,
+		electrical: false,
+		internalCombustion: false
+	};
 	const [viewport, setViewport] = React.useState<ViewState>({
 		latitude: 37.8,
 		longitude: -122.4,
@@ -29,6 +60,11 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [open, setOpen] = React.useState(false);
 	const [showInviteFriends, setShowInviteFriends] = React.useState(false);
 	const [showReport, setShowReport] = React.useState(false);
+	const [showAreas, setShowAreas] = React.useState(false);
+	const [showFilter, setShowFilter] = React.useState(false);
+	const [buttonLabel, setButtonLabel] = React.useState('Car');
+	const [switchState, setSwitchState] = React.useState(initialState);
+	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
@@ -55,20 +91,69 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowReport(isOpen);
 	};
 
+	const handleAreasBottomSheetChange = (isOpen: boolean) => {
+		setShowAreas(isOpen);
+	};
+
 	const handleInviteFriendsBottomSheetChange = (isOpen: boolean) => {
 		setShowInviteFriends(isOpen);
 	};
 
+	const handleFilterBottomSheetChange = (isOpen: boolean) => {
+		setShowFilter(isOpen);
+	};
+
 	const handleBadlyClick = () => {
 		setShowReport(false);
+		history.push('/my-rides/badly-parked-vehicle');
 	};
 
 	const handleDamagedClick = () => {
 		setShowReport(false);
+		history.push('/my-rides/damaged-vehicle');
 	};
 
 	const handleContactClick = () => {
 		setShowReport(false);
+		history.push('/my-rides/report');
+	};
+
+	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		event.persist();
+
+		if (event.target.name === 'selectAll') {
+			if (event.target.checked) {
+				const temp = {
+					selectAll: true,
+					lime: true,
+					bird: true,
+					spin: true,
+					circ: true,
+					tier: true,
+					electrical: true,
+					internalCombustion: true
+				};
+				setSwitchState(temp);
+			} else {
+				const temp = {
+					selectAll: false,
+					lime: false,
+					bird: false,
+					spin: false,
+					circ: false,
+					tier: false,
+					electrical: false,
+					internalCombustion: false
+				};
+				setSwitchState(temp);
+			}
+		} else {
+			setSwitchState(prevState => ({ ...prevState, [event.target.name]: event.target.checked }));
+		}
+	};
+
+	const handleBatteryLevelChange = (event: any, newValue: number | number[]) => {
+		setBatteryLevel(newValue as number[]);
 	};
 
 	return (
@@ -87,7 +172,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }}
 					onClick={(): void => setShowReport(true)}
 				/>
-				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" />
+				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" onClick={(): void => setShowAreas(true)} />
 				<Box className={classes.vehicleButtonGroup}>
 					{vehicleSelectionExpanded ? (
 						<Box className={classes.vehicleButtonGroupWrapper}>
@@ -143,7 +228,13 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					<Fab aria-label="add" className={classes.qrButton}>
 						<Icon colorType="black" iconName="qr" primaryColor="white" secondaryColor="white" />
 					</Fab>
-					<IconButton className={classes.filterButton} iconName="filter" colorType="black" noShadow />
+					<IconButton
+						className={classes.filterButton}
+						iconName="filter"
+						colorType="black"
+						noShadow
+						onClick={(): void => setShowFilter(true)}
+					/>
 				</Box>
 				<Box className={classes.homeButtonsText}>
 					<Text className={classes.iconButtonText}>{formatMessage({ id: 'home.text.menu' })}</Text>
@@ -191,6 +282,131 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
 					{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
 				</LightGreenButton>
+			</BottomSheet>
+			<BottomSheet
+				hasCloseButton
+				onCloseButtonClick={(): void => setShowAreas(false)}
+				title={formatMessage({ id: 'home.areas_sheet.title' })}
+				open={showAreas}
+				onBottomSheetChange={handleAreasBottomSheetChange}
+			>
+				<List className={classes.areasList}>
+					{areasListItems.map((listItem, index) => {
+						return <AreasListItem key={index} {...listItem} />;
+					})}
+				</List>
+			</BottomSheet>
+			<BottomSheet
+				outDecorator
+				onCloseButtonClick={(): void => setShowFilter(false)}
+				open={showFilter}
+				onBottomSheetChange={handleFilterBottomSheetChange}
+			>
+				<Box className={classes.buttonGroupWrapper}>
+					{damagedVehicleTypes.map((damagedVehicleType, index) => {
+						return (
+							<Button
+								className={clsx(
+									{ [classes.button]: true },
+									{ [classes.activeBackground]: buttonLabel === formatMessage({ id: damagedVehicleType.label }) },
+									{ [classes.inActiveBackground]: buttonLabel !== formatMessage({ id: damagedVehicleType.label }) }
+								)}
+								key={index}
+								onClick={(): void => setButtonLabel(formatMessage({ id: damagedVehicleType.label }))}
+							>
+								<Icon iconName={damagedVehicleType.iconName} colorType="black" />
+								<Text className={classes.smallText}>{formatMessage({ id: damagedVehicleType.label })}</Text>
+							</Button>
+						);
+					})}
+				</Box>
+				<Text className={classes.smallText}>{formatMessage({ id: 'home.filter_sheet.text.companies' })}</Text>
+				<List className={classes.filterList}>
+					<SwitchListItem
+						title={formatMessage({ id: 'home.text.all' })}
+						iconName="well-done-checked"
+						name="selectAll"
+						checked={switchState.selectAll}
+						onChange={handleStateChange}
+					/>
+					<Divider />
+					<SwitchListItem
+						title={formatMessage({ id: 'service_providers.lime.name' })}
+						imageUrl={lime}
+						name="lime"
+						checked={switchState.lime}
+						onChange={handleStateChange}
+					/>
+					<Divider />
+					<SwitchListItem
+						title={formatMessage({ id: 'service_providers.bird.name' })}
+						imageUrl={bird}
+						name="bird"
+						checked={switchState.bird}
+						onChange={handleStateChange}
+					/>
+					<Divider />
+					<SwitchListItem
+						title={formatMessage({ id: 'service_providers.spin.name' })}
+						imageUrl={spin}
+						name="spin"
+						checked={switchState.spin}
+						onChange={handleStateChange}
+					/>
+					<Divider />
+					<SwitchListItem
+						title={formatMessage({ id: 'service_providers.circ.name' })}
+						imageUrl={circ}
+						name="circ"
+						checked={switchState.circ}
+						onChange={handleStateChange}
+					/>
+					<Divider />
+					<SwitchListItem
+						title={formatMessage({ id: 'service_providers.tier.name' })}
+						imageUrl={tier}
+						name="tier"
+						checked={switchState.tier}
+						onChange={handleStateChange}
+					/>
+					<Box className={classes.batteryLevelText}>
+						<Text className={classes.smallText}>{formatMessage({ id: 'home.filter_sheet.text.battery_level' })}</Text>
+					</Box>
+					<Slider
+						value={batteryLevel}
+						onChange={handleBatteryLevelChange}
+						aria-labelledby="battery-level-slider"
+						ThumbComponent={(props: any) => (
+							<span {...props}>
+								<Icon iconName="buble" colorType="green" />
+							</span>
+						)}
+						classes={{ root: classes.sliderContainer, rail: classes.railPart, track: classes.trackPart }}
+					/>
+					<Box className={classes.percentageTextWrapper}>
+						<Text className={classes.percentageText}>{`${batteryLevel[0]}%`}</Text>
+						<Text className={classes.percentageText}>{`${batteryLevel[1]}%`}</Text>
+					</Box>
+					<Box className={classes.engineTypeText}>
+						<Text className={classes.smallText}>{formatMessage({ id: 'home.filter_sheet.text.engine_type' })}</Text>
+					</Box>
+					<SwitchListItem
+						title={formatMessage({ id: 'home.filter_sheet.text.electrical' })}
+						name="electrical"
+						checked={switchState.electrical}
+						onChange={handleStateChange}
+					/>
+					<Divider />
+					<SwitchListItem
+						title={formatMessage({ id: 'home.filter_sheet.text.internal_combustion' })}
+						name="internalCombustion"
+						checked={switchState.internalCombustion}
+						onChange={handleStateChange}
+					/>
+				</List>
+				<Button iconName="reset" compact className={classes.resetButton} onClick={(): void => setSwitchState(initialState)}>
+					{formatMessage({ id: 'button.reset' })}
+				</Button>
 			</BottomSheet>
 		</FullPage>
 	);

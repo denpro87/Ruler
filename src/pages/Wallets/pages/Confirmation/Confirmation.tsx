@@ -1,5 +1,5 @@
 import { Box, makeStyles } from '@material-ui/core';
-import { CheckBox, Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
+import { Checkbox, Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { styles } from './Confirmation.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -76,7 +76,7 @@ export const Confirmation: React.FunctionComponent = () => {
 			</Box>
 			<Box className={classes.footer}>
 				<Box className={classes.templateWrapper}>
-					<CheckBox
+					<Checkbox
 						checked={checked}
 						label={formatMessage({ id: 'wallets.confirmation.save_payment_template' })}
 						onValueChange={handleCheckChange}
@@ -95,7 +95,7 @@ export const Confirmation: React.FunctionComponent = () => {
 			</Box>
 			<Dialog
 				open={showDialog}
-				hasClose={true}
+				hasClose
 				illustrationName="superman"
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"

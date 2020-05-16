@@ -7,3 +7,4 @@ export * from './Welcome';
 export * from './Home';
 export * from './Wallets';
 export * from './PaymentMethods';
+export * from './MyRides';

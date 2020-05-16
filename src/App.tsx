@@ -1,14 +1,14 @@
 import * as DriverLicence from 'pages/DriverLicence';
 import * as GetHelp from 'pages/GetHelp';
+import * as MyRides from 'pages/MyRides';
 import * as News from 'pages/News';
 import * as PaymentMethods from 'pages/PaymentMethods';
 import * as Settings from 'pages/Settings';
 import * as Wallets from 'pages/Wallets';
 import * as Welcome from 'pages/Welcome';
-import { Home, ServiceProviders, Splash } from 'pages';
-
 import { CssBaseline } from '@material-ui/core';
 import { GlobalCss } from './App.styles';
+import { Home, ServiceProviders, Splash } from 'pages';
 import { IntlProvider, Theming } from 'components';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
@@ -74,6 +74,10 @@ export const App: React.FunctionComponent = () => (
 						<Route path="/payment-methods" component={PaymentMethods.PaymentMethods} exact />
 						<Route path="/payment-methods/add-payment-method" component={PaymentMethods.AddPaymentMethod} exact />
 						<Route path="/payment-methods/add-payment-method/card" component={PaymentMethods.AddDebitCreditCard} exact />
+						<Route path="/my-rides" component={MyRides.MyRides} exact />
+						<Route path="/my-rides/damaged-vehicle" component={MyRides.DamagedVehicle} exact />
+						<Route path="/my-rides/badly-parked-vehicle" component={MyRides.DamagedVehicle} exact />
+						<Route path="/my-rides/report" component={MyRides.Report} exact />
 						<Route exact path="/" render={() => <Redirect to="/splash" />} />
 					</IonRouterOutlet>
 				</IonReactRouter>

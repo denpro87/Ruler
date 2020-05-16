@@ -1,4 +1,5 @@
-export const paymentMethodTypes = [
+import { IPaymentMethodProps } from './PaymentMethods.types';
+export const paymentMethodTypes: Array<IPaymentMethodProps> = [
 	{
 		iconName: 'add-payment',
 		buttonText: 'payment_methods.add_payment_method.card'

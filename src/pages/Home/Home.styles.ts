@@ -158,8 +158,124 @@ const sheetText: CSSProperties = {
 	opacity: 0.5,
 	padding: `0 0 ${pxToRem(20)} 0`
 };
+const buttonGroupWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	backgroundColor: 'rgba(255, 255, 255, 0.05)',
+	padding: `${pxToRem(24)} 0 ${pxToRem(30)} 0`
+};
 
+const button: CSSProperties = {
+	padding: `${pxToRem(4)} 0`,
+	'& .MuiButton-label > span': {
+		padding: 0,
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	'& .MuiButton-label:after': {
+		content: '""',
+		width: 0,
+		height: 0,
+		flex: 'unset'
+	},
+	'&:active': {
+		backgroundColor: '#f8ca06'
+	},
+	'&:hover': {
+		backgroundColor: '#f8ca06'
+	}
+};
+
+const activeBackground: CSSProperties = {
+	backgroundColor: '#f8ca06'
+};
+
+const inActiveBackground: CSSProperties = {
+	backgroundColor: '#ffffff'
+};
+
+const smallText: CSSProperties = {
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: 'rgba(24, 28, 25, 0.5)',
+	fontSize: pxToRem(10)
+};
+const areasList: CSSProperties = {
+	padding: ` 0 0 ${pxToRem(30)} 0`
+};
+
+const filterList: CSSProperties = {
+	paddingTop: pxToRem(10),
+	paddingBottom: 0
+};
+
+const batteryLevelText: CSSProperties = {
+	paddingTop: pxToRem(25)
+};
+
+const engineTypeText: CSSProperties = {
+	paddingTop: pxToRem(35),
+	paddingBottom: pxToRem(14)
+};
+
+const resetButton: CSSProperties = {
+	backgroundColor: '#ffffff',
+	fontSize: pxToRem(15),
+	color: '#00b559',
+	fontWeight: 'bold',
+	lineHeight: 1.67,
+	padding: `${pxToRem(12)} 0 ${pxToRem(13)} 0`,
+	textTransform: 'none',
+	margin: `${pxToRem(22)} 0`,
+	borderRadius: pxToRem(15),
+	'&:hover': {
+		color: '#00b559',
+		backgroundColor: 'rgba(0, 0, 0, 0.04)'
+	}
+};
+
+const sliderContainer: CSSProperties = {
+	padding: `${pxToRem(30)} 0 ${pxToRem(16)} 0`,
+	'& > .MuiSlider-active': {
+		boxShadow: 'none'
+	},
+	'& > .MuiSlider-thumb::after': {
+		display: 'none'
+	}
+};
+
+const railPart: CSSProperties = {
+	height: pxToRem(4),
+	borderRadius: pxToRem(10),
+	backgroundColor: 'rgba(24, 28, 25, 0.4)'
+};
+
+const trackPart: CSSProperties = {
+	height: pxToRem(4),
+	borderRadius: pxToRem(10),
+	backgroundColor: '#00b559'
+};
+
+const percentageTextWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-between'
+};
+
+const percentageText: CSSProperties = {
+	fontSize: pxToRem(15),
+	fontWeight: 600,
+	lineHeight: 1.67,
+	color: '#181c19'
+};
 export const styles = createStyles({
+	percentageTextWrapper,
+	percentageText,
+	sliderContainer,
+	railPart,
+	trackPart,
 	reportButton,
 	zonesButton,
 	vehicleButtonGroup,
@@ -182,5 +298,15 @@ export const styles = createStyles({
 	rateImageWrapper,
 	shareButton,
 	sheetButton,
-	sheetText
+	sheetText,
+	areasList,
+	button,
+	activeBackground,
+	buttonGroupWrapper,
+	inActiveBackground,
+	smallText,
+	filterList,
+	batteryLevelText,
+	engineTypeText,
+	resetButton
 });

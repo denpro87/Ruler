@@ -11,6 +11,7 @@ const useStyles = makeStyles(styles);
 export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
 	open,
 	darkMode,
+	outDecorator,
 	onBottomSheetChange,
 	children,
 	title,
@@ -51,6 +52,7 @@ export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
 					{hasCloseButton && open && (
 						<IconButton className={classes.closeButton} iconName="close" colorType="black" onClick={onCloseButtonClick} />
 					)}
+					{outDecorator && open && <div className={classes.outsideWrapper} />}
 					<div className={classes.sheetWrapper}>
 						<div className={classes.topWrapper}>
 							<div className={classes.blackBar} />

@@ -5,4 +5,5 @@ export interface IDialogProps extends Omit<DialogProps, 'disableElevation' | 'cl
 	image?: string;
 	hasClose?: boolean;
 	illustrationName?: string;
+	onImageDelete?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
