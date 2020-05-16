@@ -53,7 +53,8 @@ export const Report: React.FunctionComponent = () => {
 		const cHeight = document.querySelector('#report-content')?.clientHeight;
 
 		if (sHeight !== undefined && cHeight !== undefined) {
-			setHeightDifference(sHeight - cHeight);
+			const heightDifference = sHeight - cHeight;
+			setHeightDifference(heightDifference);
 		}
 
 		if (selectedFiles.length > 0) {
