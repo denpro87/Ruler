@@ -58,7 +58,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		pitch: 0
 	});
 	const [vehicleSelectionExpanded, setVehicleSelectionExpanded] = React.useState(false);
-	const [rateRulerModal, setRateRulerModal] = React.useState(false);
+	const [rateRulerModal, setRateRulerModal] = React.useState(true);
 	const [open, setOpen] = React.useState(false);
 	const [showInviteFriends, setShowInviteFriends] = React.useState(false);
 	const [showReport, setShowReport] = React.useState(false);
