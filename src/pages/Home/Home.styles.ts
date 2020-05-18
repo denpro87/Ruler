@@ -392,7 +392,45 @@ const wrongCodeText: CSSProperties = {
 	fontSize: pxToRem(10),
 	color: '#f46c63'
 };
+
+const navControl: CSSProperties = {
+	position: 'absolute',
+	top: pxToRem(100),
+	left: pxToRem(30)
+};
+
+const iconWrapper: CSSProperties = {
+	width: pxToRem(50),
+	height: pxToRem(50),
+	borderRadius: percentage(0.5),
+	backgroundColor: '#ffffff',
+	border: `solid ${pxToRem(2)} #000000`,
+	position: 'relative',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center'
+};
+
+const iconDecorator: CSSProperties = {
+	position: 'absolute',
+	top: pxToRem(-5),
+	left: pxToRem(-5),
+	width: pxToRem(20),
+	height: pxToRem(20)
+	// backgroundImage: `url(${birdLogo})`
+};
+const markerNumberText: CSSProperties = {
+	fontSize: pxToRem(15),
+	fontWeight: 'bold',
+	lineHeight: 1.67,
+	color: '#181c19'
+};
+
 export const styles = createStyles({
+	markerNumberText,
+	iconWrapper,
+	iconDecorator,
+	navControl,
 	inputWrapperSmallMarin,
 	inputWrapperLargeMargin,
 	inputWrapper,

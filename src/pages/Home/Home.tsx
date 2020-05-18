@@ -17,13 +17,13 @@ import {
 import { Box, Input, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg } from '@ionic/react';
-import { areasListItems, damagedVehicleTypes } from './Home.data';
+import { areasListItems, damagedVehicleTypes, markerList } from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
-import MapGL, { ViewState } from 'react-map-gl';
+import MapGL, { GeolocateControl, Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
 import React from 'react';
 import bird from './images/bird.png';
 import circ from './images/circ.png';
@@ -51,8 +51,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		internalCombustion: false
 	};
 	const [viewport, setViewport] = React.useState<ViewState>({
-		latitude: 37.8,
-		longitude: -122.4,
+		// latitude: 37.8,
+		// longitude: -122.4,
+		latitude: 17.44212,
+		longitude: 78.391384,
 		zoom: 14,
 		bearing: 0,
 		pitch: 0
@@ -223,6 +225,27 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }}
 					onClick={(): void => setShowReport(true)}
 				/>
+				<Box className={classes.navControl}>
+					<NavigationControl onViewportChange={setViewport} />
+				</Box>
+				{markerList.map((marker, index) => {
+					return (
+						<Marker longitude={marker.long} key={index} latitude={marker.lat}>
+							{marker.iconName ? (
+								<Box className={classes.iconWrapper}>
+									<Icon iconName={marker.iconName} colorType="black" />
+									<Box className={classes.iconDecorator}>
+										<img src={marker.decoratorName} alt={marker.decoratorName} />
+									</Box>
+								</Box>
+							) : (
+								<Box className={classes.iconWrapper}>
+									<Text className={classes.markerNumberText}>{marker.markerNumber}</Text>
+								</Box>
+							)}
+						</Marker>
+					);
+				})}
 				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" onClick={(): void => setShowAreas(true)} />
 				<Box className={classes.vehicleButtonGroup}>
 					{vehicleSelectionExpanded ? (
