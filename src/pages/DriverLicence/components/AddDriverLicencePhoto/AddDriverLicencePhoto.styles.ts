@@ -157,7 +157,7 @@ const dialogContentText: CSSProperties = {
 
 const driverLicencePhotoContainer: CSSProperties = {
 	padding: `${pxToRem(30)} ${pxToRem(25)} ${pxToRem(30)} ${pxToRem(25)}`,
-	width: pxToRem(375),
+	maxWidth: pxToRem(375),
 	margin: '0 auto'
 };
 

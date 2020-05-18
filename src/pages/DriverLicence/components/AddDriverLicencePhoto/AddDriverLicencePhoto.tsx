@@ -30,7 +30,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 		defineCustomElements(window);
 	}, []);
 
-	const takePhoto = async (type: 'front' | 'back') => {
+	const takePhoto = async () => {
 		const image = await Camera.getPhoto({
 			quality: 100,
 			allowEditing: false,
@@ -47,7 +47,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 		setPhoto(photos[index]);
 	};
 
-	const savePhoto = (type: 'front' | 'back', selectedImageIndex: number) => {
+	const savePhoto = (type: 'front' | 'back', selectedImageIndex: number): void => {
 		setShowTakePhoto(false);
 
 		if (type === 'front') {
@@ -209,7 +209,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 									color: selectedImageIndex < 0 ? '#181c19' : '#ffffff'
 								}}
 								className={clsx({ [classes.midIconButton]: true }, { [classes.midIconButtonActive]: selectedImageIndex >= 0 })}
-								onClick={() => (selectedImageIndex < 0 ? takePhoto(side) : savePhoto(side, selectedImageIndex))}
+								onClick={() => (selectedImageIndex < 0 ? takePhoto() : savePhoto(side, selectedImageIndex))}
 							/>
 							<IconButton
 								iconProps={{ iconName: selectedImageIndex < 0 ? 'flashlight' : 'revert', color: '#181c19' }}
