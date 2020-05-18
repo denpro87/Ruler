@@ -1,4 +1,5 @@
 import { AreasListItem } from './components';
+import { BarcodeScanResult, BarcodeScanner } from '@ionic-native/barcode-scanner';
 import {
 	BottomSheet,
 	Button,
@@ -13,7 +14,7 @@ import {
 	SwitchListItem,
 	Text
 } from 'components';
-import { Box, List, Slider, Typography } from '@material-ui/core';
+import { Box, Input, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg } from '@ionic/react';
 import { areasListItems, damagedVehicleTypes } from './Home.data';
@@ -33,6 +34,7 @@ import spin from './images/spin.png';
 import tier from './images/tier.png';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 const useStyles = makeStyles(styles);
+const QRCode = require('qrcode-react');
 
 export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const classes = useStyles();
@@ -56,15 +58,22 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		pitch: 0
 	});
 	const [vehicleSelectionExpanded, setVehicleSelectionExpanded] = React.useState(false);
-	const [rateRulerModal, setRateRulerModal] = React.useState(true);
+	const [rateRulerModal, setRateRulerModal] = React.useState(false);
 	const [open, setOpen] = React.useState(false);
 	const [showInviteFriends, setShowInviteFriends] = React.useState(false);
 	const [showReport, setShowReport] = React.useState(false);
 	const [showAreas, setShowAreas] = React.useState(false);
 	const [showFilter, setShowFilter] = React.useState(false);
+	const [showWrongCode, setShowWrongCode] = React.useState(false);
+	const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
+	const [placeHolder, setPlaceHolder] = React.useState('');
 	const [buttonLabel, setButtonLabel] = React.useState('Car');
+	const [qrCode, setQrCode] = React.useState();
+	const [qrCodeInput, setQrCodeInput] = React.useState('');
+	const [scanEnterButtonLabel, setScanEnterButtonLabel] = React.useState('Scan code');
 	const [switchState, setSwitchState] = React.useState(initialState);
 	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
+	const [showScanEnterCode, sentShowScanEnterCode] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
@@ -87,20 +96,24 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setOpen(open);
 	};
 
-	const handleReportBottomSheetChange = (isOpen: boolean) => {
+	const handleReportBottomSheetChange = (isOpen: boolean): void => {
 		setShowReport(isOpen);
 	};
 
-	const handleAreasBottomSheetChange = (isOpen: boolean) => {
+	const handleAreasBottomSheetChange = (isOpen: boolean): void => {
 		setShowAreas(isOpen);
 	};
 
-	const handleInviteFriendsBottomSheetChange = (isOpen: boolean) => {
+	const handleInviteFriendsBottomSheetChange = (isOpen: boolean): void => {
 		setShowInviteFriends(isOpen);
 	};
 
-	const handleFilterBottomSheetChange = (isOpen: boolean) => {
+	const handleFilterBottomSheetChange = (isOpen: boolean): void => {
 		setShowFilter(isOpen);
+	};
+
+	const handleScanEnterCodeBottomSheetChange = (isOpen: boolean): void => {
+		sentShowScanEnterCode(isOpen);
 	};
 
 	const handleBadlyClick = () => {
@@ -155,6 +168,44 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const handleBatteryLevelChange = (event: any, newValue: number | number[]) => {
 		setBatteryLevel(newValue as number[]);
 	};
+
+	const handleFlashButtonClick = (): void => {};
+
+	const handleScanButtonClick = async () => {
+		setScanEnterButtonLabel(formatMessage({ id: 'button.scan_code' }));
+
+		const barCodeData: BarcodeScanResult = await BarcodeScanner.scan({
+			resultDisplayDuration: 3000
+		});
+		const barCodeText = barCodeData.text ?? '';
+		setQrCode(barCodeText);
+	};
+
+	const handleEnterButtonClick = (): void => {
+		setScanEnterButtonLabel(formatMessage({ id: 'button.enter_code' }));
+		setQrCodeInput('');
+	};
+
+	const handleQrCodeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		if (qrCode === event.target.value) {
+			setShowWrongCode(false);
+			setShowDischargedVehicle(true);
+		} else {
+			setShowWrongCode(true);
+		}
+		const qrCodeInputValue = event.target.value;
+		setQrCodeInput(qrCodeInputValue);
+	};
+	React.useEffect(() => {
+		let placeHolderStr = '';
+
+		if (qrCode !== undefined) {
+			for (let i = 0; i < qrCode.length; i++) {
+				placeHolderStr += '_';
+			}
+			setPlaceHolder(placeHolderStr);
+		}
+	}, [qrCode]);
 
 	return (
 		<FullPage>
@@ -225,7 +276,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<Text className={clsx(classes.iconButtonText, classes.positionLocationText)}>{formatMessage({ id: 'home.text.location' })}</Text>
 				<Box className={classes.homeButtons}>
 					<IconButton className={classes.menuButton} iconName="menu" colorType="black" noShadow onClick={handleDrawerClick(true)} />
-					<Fab aria-label="add" className={classes.qrButton}>
+					<Fab aria-label="add" className={classes.qrButton} onClick={(): void => sentShowScanEnterCode(true)}>
 						<Icon colorType="black" iconName="qr" primaryColor="white" secondaryColor="white" />
 					</Fab>
 					<IconButton
@@ -407,6 +458,95 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<Button iconName="reset" compact className={classes.resetButton} onClick={(): void => setSwitchState(initialState)}>
 					{formatMessage({ id: 'button.reset' })}
 				</Button>
+			</BottomSheet>
+			<BottomSheet
+				title={
+					scanEnterButtonLabel === formatMessage({ id: 'button.scan_code' })
+						? formatMessage({ id: 'home.qr_code_sheet.scan_title' })
+						: formatMessage({ id: 'home.qr_code_sheet.enter_title' })
+				}
+				description={
+					scanEnterButtonLabel === formatMessage({ id: 'button.scan_code' })
+						? formatMessage({ id: 'home.qr_code_sheet.scan_description' })
+						: formatMessage({ id: 'home.qr_code_sheet.enter_description' })
+				}
+				open={showScanEnterCode}
+				darkMode
+				onBottomSheetChange={handleScanEnterCodeBottomSheetChange}
+			>
+				{scanEnterButtonLabel === formatMessage({ id: 'button.scan_code' }) ? (
+					<Box className={classes.QRcodePhotoContainer}>
+						<Box className={classes.QRcodePhotoAspectRatioBox}>
+							<Box className={classes.QRcodePhotoAspectRatioBoxInside}>
+								{qrCode !== undefined && (
+									<Box className={classes.QRcodeImageContainer}>
+										<QRCode value={qrCode} size={255} />
+									</Box>
+								)}
+							</Box>
+						</Box>
+					</Box>
+				) : (
+					<Box
+						className={clsx(
+							{ [classes.inputWrapper]: true },
+							{ [classes.inputWrapperSmallMarin]: showWrongCode },
+							{ [classes.inputWrapperLargeMargin]: !showWrongCode }
+						)}
+					>
+						<Box className={classes.wrongCodeTextWrapper}>
+							{showWrongCode && (
+								<Text className={classes.wrongCodeText}>{formatMessage({ id: 'home.qr_code_sheet.text.wrong_code' })}</Text>
+							)}
+							{showDischargedVehicle && (
+								<Text className={classes.wrongCodeText}>{formatMessage({ id: 'home.qr_code_sheet.text.discharged_vehicle' })}</Text>
+							)}
+						</Box>
+						<Input
+							disableUnderline
+							placeholder={placeHolder}
+							value={qrCodeInput}
+							onChange={handleQrCodeChange}
+							className={classes.qrCodeInput}
+						/>
+					</Box>
+				)}
+				<Box
+					className={clsx(
+						{ [classes.footer]: true },
+						{ [classes.scanPadding]: scanEnterButtonLabel === formatMessage({ id: 'button.scan_code' }) },
+						{ [classes.enterPadding]: scanEnterButtonLabel !== formatMessage({ id: 'button.scan_code' }) }
+					)}
+				>
+					<Box className={classes.scanEnterbuttonGroupWrapper}>
+						<Button
+							className={clsx(
+								{ [classes.scanEnterCodebutton]: true },
+								{ [classes.scanEnterCodebuttonActive]: scanEnterButtonLabel === formatMessage({ id: 'button.scan_code' }) },
+								{ [classes.scanEnterCodebuttonInActive]: scanEnterButtonLabel !== formatMessage({ id: 'button.scan_code' }) }
+							)}
+							onClick={handleScanButtonClick}
+						>
+							{formatMessage({ id: 'button.scan_code' })}
+						</Button>
+						<Button
+							disabled={qrCode === undefined}
+							className={clsx(
+								{ [classes.scanEnterCodebutton]: true },
+								{ [classes.scanEnterCodebuttonActive]: scanEnterButtonLabel === formatMessage({ id: 'button.enter_code' }) },
+								{ [classes.scanEnterCodebuttonInActive]: scanEnterButtonLabel !== formatMessage({ id: 'button.enter_code' }) }
+							)}
+							onClick={handleEnterButtonClick}
+						>
+							{formatMessage({ id: 'button.enter_code' })}
+						</Button>
+					</Box>
+					<IconButton
+						className={classes.flashButton}
+						iconProps={{ iconName: 'flashlight', color: '#181c19' }}
+						onClick={handleFlashButtonClick}
+					/>
+				</Box>
 			</BottomSheet>
 		</FullPage>
 	);

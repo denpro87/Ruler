@@ -165,26 +165,45 @@ const buttonGroupWrapper: CSSProperties = {
 	padding: `${pxToRem(24)} 0 ${pxToRem(30)} 0`
 };
 
+const scanEnterbuttonGroupWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	borderRadius: pxToRem(15),
+	backgroundColor: 'rgba(255, 255, 255, 0.5)',
+	padding: `${pxToRem(5)}`,
+	width: percentage(1)
+};
+
 const button: CSSProperties = {
 	padding: `${pxToRem(4)} 0`,
 	'& .MuiButton-label > span': {
-		padding: 0,
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
-	'& .MuiButton-label:after': {
-		content: '""',
-		width: 0,
-		height: 0,
-		flex: 'unset'
-	},
-	'&:active': {
-		backgroundColor: '#f8ca06'
-	},
 	'&:hover': {
 		backgroundColor: '#f8ca06'
+	}
+};
+
+const scanEnterCodebutton: CSSProperties = {
+	fontSize: pxToRem(10),
+	color: '#181c19',
+	fontWeight: 600,
+	lineHeight: 1.5,
+	padding: `${pxToRem(13)} 0 ${pxToRem(12)} 0`,
+	borderRadius: pxToRem(10),
+	'&:hover': {
+		color: '#181c19',
+		backgroundColor: '#ffffff'
+	},
+	'& .MuiButton-label': {
+		minHeight: pxToRem(15)
+	},
+	'&.Mui-disabled': {
+		backgroundColor: 'transparent',
+		color: '#181c19'
 	}
 };
 
@@ -202,6 +221,7 @@ const smallText: CSSProperties = {
 	color: 'rgba(24, 28, 25, 0.5)',
 	fontSize: pxToRem(10)
 };
+
 const areasList: CSSProperties = {
 	padding: ` 0 0 ${pxToRem(30)} 0`
 };
@@ -264,13 +284,133 @@ const percentageTextWrapper: CSSProperties = {
 	justifyContent: 'space-between'
 };
 
+const QRcodePhotoContainer: CSSProperties = {
+	padding: `${pxToRem(30)} ${pxToRem(60)} ${pxToRem(60)} ${pxToRem(60)}`,
+	maxWidth: pxToRem(375),
+	margin: '0 auto'
+};
+
+const QRcodePhotoAspectRatioBox: CSSProperties = {
+	height: 0,
+	width: '100%',
+	paddingTop: '100%',
+	position: 'relative'
+};
+
+const QRcodePhotoAspectRatioBoxInside: CSSProperties = {
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	width: '100%',
+	height: '100%'
+};
+
+const QRcodeImageContainer: CSSProperties = {
+	width: '100%',
+	height: '100%',
+	borderRadius: pxToRem(15),
+	overflow: 'hidden'
+};
+
 const percentageText: CSSProperties = {
 	fontSize: pxToRem(15),
 	fontWeight: 600,
 	lineHeight: 1.67,
 	color: '#181c19'
 };
+
+const footer: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-between',
+	alignItems: 'center'
+};
+
+const scanPadding: CSSProperties = {
+	padding: `0 ${pxToRem(60)} ${pxToRem(85)} ${pxToRem(60)}`
+};
+
+const enterPadding: CSSProperties = {
+	padding: `0 ${pxToRem(60)} ${pxToRem(31)} ${pxToRem(60)}`
+};
+
+const flashButton: CSSProperties = {
+	marginLeft: pxToRem(15),
+	'&:hover': {
+		color: '#181c19',
+		backgroundColor: 'rgba(255, 255, 255, 0.5)'
+	},
+	borderRadius: pxToRem(15),
+	backgroundColor: 'rgba(255, 255, 255, 0.5)',
+	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 0, 0, 0.1)`
+};
+
+const scanEnterCodebuttonActive: CSSProperties = {
+	backgroundColor: '#ffffff'
+};
+
+const scanEnterCodebuttonInActive: CSSProperties = {
+	backgroundColor: 'transparent'
+};
+
+const qrCodeInput: CSSProperties = {
+	width: percentage(1),
+	backgroundColor: '#ffffff',
+	borderRadius: pxToRem(15),
+	'&>.MuiInputBase-input': {
+		minHeight: pxToRem(25),
+		letterSpacing: pxToRem(22),
+		padding: `${pxToRem(12)} ${pxToRem(35)} ${pxToRem(13)} ${pxToRem(37)}`
+	},
+	lineHeight: 1.67,
+	fontWeight: 600,
+	fontSize: pxToRem(15),
+	color: '#181c19'
+};
+
+const inputWrapper: CSSProperties = {
+	backgroundColor: 'rgba(255, 255, 255, 0.8)',
+	borderRadius: pxToRem(15),
+	maxWidth: pxToRem(255)
+};
+const inputWrapperSmallMarin: CSSProperties = {
+	margin: `${pxToRem(7)} auto ${pxToRem(25)}`
+};
+
+const inputWrapperLargeMargin: CSSProperties = {
+	margin: `${pxToRem(30)} auto ${pxToRem(25)}`
+};
+
+const wrongCodeTextWrapper: CSSProperties = {
+	textAlign: 'center'
+};
+
+const wrongCodeText: CSSProperties = {
+	padding: `${pxToRem(4)} 0`,
+	lineHeight: 1.5,
+	fontWeight: 600,
+	fontSize: pxToRem(10),
+	color: '#f46c63'
+};
 export const styles = createStyles({
+	inputWrapperSmallMarin,
+	inputWrapperLargeMargin,
+	inputWrapper,
+	wrongCodeTextWrapper,
+	wrongCodeText,
+	qrCodeInput,
+	scanPadding,
+	enterPadding,
+	scanEnterCodebuttonInActive,
+	scanEnterCodebuttonActive,
+	scanEnterCodebutton,
+	scanEnterbuttonGroupWrapper,
+	flashButton,
+	footer,
+	QRcodeImageContainer,
+	QRcodePhotoContainer,
+	QRcodePhotoAspectRatioBox,
+	QRcodePhotoAspectRatioBoxInside,
 	percentageTextWrapper,
 	percentageText,
 	sliderContainer,
