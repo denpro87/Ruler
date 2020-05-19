@@ -400,15 +400,24 @@ const navControl: CSSProperties = {
 };
 
 const iconWrapper: CSSProperties = {
-	width: pxToRem(50),
-	height: pxToRem(50),
 	borderRadius: percentage(0.5),
 	backgroundColor: '#ffffff',
-	border: `solid ${pxToRem(2)} #000000`,
 	position: 'relative',
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center'
+};
+
+const iconInActiveArea: CSSProperties = {
+	width: pxToRem(40),
+	height: pxToRem(40),
+	border: `solid ${pxToRem(2)} #000000`
+};
+
+const iconActiveArea: CSSProperties = {
+	width: pxToRem(52),
+	height: pxToRem(52),
+	border: `solid ${pxToRem(2)} #00b559`
 };
 
 const iconDecorator: CSSProperties = {
@@ -426,8 +435,61 @@ const markerNumberText: CSSProperties = {
 	color: '#181c19'
 };
 
+const vehicleInfo: CSSProperties = {
+	padding: `${pxToRem(20)} 0 ${pxToRem(25)} 0`,
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-between',
+	alignItems: 'center'
+};
+
+const infoWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center'
+};
+
+const propertyText: CSSProperties = {
+	marginTop: 10,
+	fontSize: pxToRem(15),
+	lineHeight: 1.67,
+	fontWeight: 600,
+	color: '#181c19'
+};
+
+const descriptionText: CSSProperties = {
+	fontSize: pxToRem(10),
+	lineHeight: 1.67,
+	fontWeight: 600,
+	color: 'rgba(24, 28, 25, 0.5)'
+};
+
+const vehicleInfofooter: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	'&> span': {
+		padding: `${pxToRem(7)} 0 ${pxToRem(8)} 0`
+	}
+};
+
+const swipeText: CSSProperties = {
+	fontSize: pxToRem(10),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: 'rgba(24, 28, 25, 0.5)',
+	textAlign: 'center'
+};
+
 export const styles = createStyles({
+	swipeText,
+	vehicleInfofooter,
+	descriptionText,
+	propertyText,
+	infoWrapper,
+	vehicleInfo,
 	markerNumberText,
+	iconActiveArea,
+	iconInActiveArea,
 	iconWrapper,
 	iconDecorator,
 	navControl,

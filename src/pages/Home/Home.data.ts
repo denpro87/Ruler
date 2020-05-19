@@ -73,3 +73,44 @@ export const markerList = [
 		decoratorName: ''
 	}
 ];
+
+export const vehicleInfo = [
+	{
+		iconName: './images/lime.png',
+		property: 'Lime',
+		description: 'electric car'
+	},
+	{
+		iconName: 'charge',
+		property: '79%',
+		description: 'battery level'
+	},
+	{
+		iconName: 'wallet',
+		property: '0.15 /min',
+		description: '$ 1 to unlock'
+	}
+];
+
+export const vehicleDetailInfo = [
+	{
+		iconName: './images/lime.png',
+		property: 'Lime',
+		description: 'electric car'
+	},
+	{
+		iconName: 'charge',
+		property: '79%',
+		description: 'battery level'
+	},
+	{
+		iconName: 'distance',
+		property: '1 km',
+		description: 'distance'
+	},
+	{
+		iconName: 'wallet',
+		property: '0.15 /min',
+		description: '$ 1 to unlock'
+	}
+];

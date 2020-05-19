@@ -9,6 +9,7 @@ import {
 	GreenButton,
 	Icon,
 	IconButton,
+	Image,
 	LightGreenButton,
 	Menu,
 	SwitchListItem,
@@ -17,7 +18,7 @@ import {
 import { Box, Input, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg } from '@ionic/react';
-import { areasListItems, damagedVehicleTypes, markerList } from './Home.data';
+import { areasListItems, damagedVehicleTypes, markerList, vehicleDetailInfo, vehicleInfo } from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
@@ -50,6 +51,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		electrical: false,
 		internalCombustion: false
 	};
+	const hasAccount = true;
+	const hasValidatedDriverLicence = true;
 	const [viewport, setViewport] = React.useState<ViewState>({
 		// latitude: 37.8,
 		// longitude: -122.4,
@@ -67,15 +70,18 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [showAreas, setShowAreas] = React.useState(false);
 	const [showFilter, setShowFilter] = React.useState(false);
 	const [showWrongCode, setShowWrongCode] = React.useState(false);
+	const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
 	const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
 	const [placeHolder, setPlaceHolder] = React.useState('');
 	const [buttonLabel, setButtonLabel] = React.useState('Car');
-	const [qrCode, setQrCode] = React.useState();
+	const [qrCode, setQrCode] = React.useState('12345678');
 	const [qrCodeInput, setQrCodeInput] = React.useState('');
 	const [scanEnterButtonLabel, setScanEnterButtonLabel] = React.useState('Scan code');
 	const [switchState, setSwitchState] = React.useState(initialState);
 	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
-	const [showScanEnterCode, sentShowScanEnterCode] = React.useState(false);
+	const [showScanEnterCode, setShowScanEnterCode] = React.useState(false);
+	const [showVehicleInfo, setShowVehicleInfo] = React.useState(false);
+	const [showVehicleDetailInfo, setShowVehicleDetailInfo] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
@@ -115,7 +121,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	};
 
 	const handleScanEnterCodeBottomSheetChange = (isOpen: boolean): void => {
-		sentShowScanEnterCode(isOpen);
+		setShowScanEnterCode(isOpen);
 	};
 
 	const handleBadlyClick = () => {
@@ -192,12 +198,28 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		if (qrCode === event.target.value) {
 			setShowWrongCode(false);
 			setShowDischargedVehicle(true);
+			setShowScanEnterCode(false);
+
+			if (selectedVehicleIndex > -1) {
+				setShowVehicleDetailInfo(true);
+			} else {
+				setShowVehicleInfo(true);
+			}
 		} else {
 			setShowWrongCode(true);
 		}
 		const qrCodeInputValue = event.target.value;
 		setQrCodeInput(qrCodeInputValue);
 	};
+
+	const handleVehicleInfoBottomSheetChange = (isOpen: boolean): void => {
+		setShowVehicleInfo(isOpen);
+	};
+
+	const handleVehicleDetailInfoBottomSheetChange = (isOpen: boolean): void => {
+		setShowVehicleDetailInfo(isOpen);
+	};
+
 	React.useEffect(() => {
 		let placeHolderStr = '';
 
@@ -231,18 +253,27 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				{markerList.map((marker, index) => {
 					return (
 						<Marker longitude={marker.long} key={index} latitude={marker.lat}>
-							{marker.iconName ? (
-								<Box className={classes.iconWrapper}>
-									<Icon iconName={marker.iconName} colorType="black" />
-									<Box className={classes.iconDecorator}>
-										<img src={marker.decoratorName} alt={marker.decoratorName} />
+							<Box
+								className={clsx(
+									{ [classes.iconWrapper]: true },
+									{ [classes.iconActiveArea]: selectedVehicleIndex === index },
+									{ [classes.iconInActiveArea]: selectedVehicleIndex !== index }
+								)}
+								onClick={() => setSelectedVehicleIndex(index)}
+							>
+								{marker.iconName ? (
+									<>
+										<Icon iconName={marker.iconName} colorType="black" />
+										<Box className={classes.iconDecorator}>
+											<Image src={require(`${marker.decoratorName}`)} />
+										</Box>
+									</>
+								) : (
+									<Box className={classes.iconWrapper}>
+										<Text className={classes.markerNumberText}>{marker.markerNumber}</Text>
 									</Box>
-								</Box>
-							) : (
-								<Box className={classes.iconWrapper}>
-									<Text className={classes.markerNumberText}>{marker.markerNumber}</Text>
-								</Box>
-							)}
+								)}
+							</Box>
 						</Marker>
 					);
 				})}
@@ -299,7 +330,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<Text className={clsx(classes.iconButtonText, classes.positionLocationText)}>{formatMessage({ id: 'home.text.location' })}</Text>
 				<Box className={classes.homeButtons}>
 					<IconButton className={classes.menuButton} iconName="menu" colorType="black" noShadow onClick={handleDrawerClick(true)} />
-					<Fab aria-label="add" className={classes.qrButton} onClick={(): void => sentShowScanEnterCode(true)}>
+					<Fab aria-label="add" className={classes.qrButton} onClick={(): void => setShowScanEnterCode(true)}>
 						<Icon colorType="black" iconName="qr" primaryColor="white" secondaryColor="white" />
 					</Fab>
 					<IconButton
@@ -571,6 +602,33 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					/>
 				</Box>
 			</BottomSheet>
+			<BottomSheet
+				open={showVehicleInfo}
+				hasCloseButton
+				onCloseButtonClick={(): void => setShowVehicleInfo(false)}
+				onBottomSheetChange={handleVehicleInfoBottomSheetChange}
+			>
+				<Box className={classes.vehicleInfo}>
+					{vehicleInfo.map((info, index) => {
+						return (
+							<Box className={classes.infoWrapper}>
+								{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
+								<Text className={classes.propertyText}>{info.property}</Text>
+								<Text className={classes.descriptionText}>{info.description}</Text>
+							</Box>
+						);
+					})}
+				</Box>
+				{hasAccount && hasValidatedDriverLicence && (
+					<Box className={classes.vehicleInfofooter}>
+						<GreenButton iconName="add-payment" compact>
+							{formatMessage({ id: 'button.add_payment_method' })}
+						</GreenButton>
+						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_payment_method' })}</Text>
+					</Box>
+				)}
+			</BottomSheet>
+			{/* <BottomSheet open={showVehicleDetailInfo} onBottomSheetChange={handleVehicleDetailInfoBottomSheetChange} /> */}
 		</FullPage>
 	);
 };

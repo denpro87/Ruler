@@ -269,6 +269,7 @@
 	"home.qr_code_sheet.enter_description": "Enter the 6 digit code written below the QR code",
 	"home.qr_code_sheet.text.wrong_code": "Wrong Code",
 	"home.qr_code_sheet.text.discharged_vehicle": "The vehicle is discharged",
+	"home.vehicle_info_sheet.text.swipe_payment_method": "Swipe to know more",
 	"payment_methods.title": "Payment methods",
 	"payment_methods.text.wallet": "Wallet",
 	"payment_methods.add_payment_method.card": "Debit / Credit Card",
