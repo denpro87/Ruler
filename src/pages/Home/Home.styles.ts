@@ -1,6 +1,6 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, percentage, pxToRem } from 'styles';
-
+import walletsLogoImage from './images/card-img.svg';
 export const mapViewer: CSSProperties = {
 	position: 'absolute',
 	top: 0,
@@ -464,11 +464,20 @@ const descriptionText: CSSProperties = {
 	color: 'rgba(24, 28, 25, 0.5)'
 };
 
-const vehicleInfofooter: CSSProperties = {
+const vehicleInfoFooter: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
 	'&> span': {
 		padding: `${pxToRem(7)} 0 ${pxToRem(8)} 0`
+	}
+};
+
+const paymentMethodFooter: CSSProperties = {
+	margin: `${pxToRem(65)} auto 0 auto`,
+	display: 'flex',
+	flexDirection: 'column',
+	'&> span': {
+		padding: `${pxToRem(7)} 0 ${pxToRem(3)} 0`
 	}
 };
 
@@ -479,10 +488,96 @@ const swipeText: CSSProperties = {
 	color: 'rgba(24, 28, 25, 0.5)',
 	textAlign: 'center'
 };
+const payButton: CSSProperties = {
+	marginTop: 'auto',
+	fontWeight: 'bold'
+};
+
+const walletsLogoContainer: CSSProperties = {
+	padding: `${pxToRem(35)} 0 ${pxToRem(30)} 0`,
+	maxWidth: pxToRem(325),
+	margin: '0 auto'
+};
+
+const walletsLogo: CSSProperties = {
+	backgroundImage: `url(${walletsLogoImage})`,
+	// minWidth: pxToRem(275),
+	// minHeight: pxToRem(82),
+	position: 'relative',
+	padding: `${pxToRem(25)}`,
+	display: 'flex',
+	flexDirection: 'column'
+};
+
+const wellDoneIcon: CSSProperties = {
+	position: 'absolute',
+	top: pxToRem(5),
+	right: pxToRem(5),
+	backgroundColor: 'transparent',
+	padding: 0,
+	boxShadow: 'none',
+	'&:hover': {
+		backgroundColor: 'transparent',
+		opacity: 0.7
+	}
+};
+
+const rulerWalletText: CSSProperties = {
+	fontWeight: 600,
+	lineHeight: 1.67,
+	color: '#ffffff',
+	fontSize: pxToRem(15)
+};
+
+const rulerPriceText: CSSProperties = {
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: 'rgba(255, 255, 255, 0.5)',
+	fontSize: pxToRem(10),
+	paddingTop: pxToRem(12)
+};
+
+const rulerNumberText: CSSProperties = {
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: '#ffffff',
+	fontSize: pxToRem(20)
+};
+
+const creditCardsText: CSSProperties = {
+	color: 'rgba(24, 28, 25, 0.5)',
+	lineHeight: 1.5,
+	fontWeight: 600,
+	fontSize: pxToRem(10)
+};
+
+const addPaymentMethodButton: CSSProperties = {
+	backgroundColor: '#ffffff',
+	fontSize: pxToRem(15),
+	color: '#00b559',
+	fontWeight: 'bold',
+	lineHeight: 1.67,
+	padding: `${pxToRem(12)} 0 ${pxToRem(13)} 0`,
+	textTransform: 'none',
+	'&:hover': {
+		color: '#00b559',
+		backgroundColor: 'rgba(0, 0, 0, 0.04)'
+	}
+};
 
 export const styles = createStyles({
+	paymentMethodFooter,
+	creditCardsText,
+	addPaymentMethodButton,
+	rulerNumberText,
+	rulerPriceText,
+	wellDoneIcon,
+	rulerWalletText,
+	walletsLogo,
+	walletsLogoContainer,
+	payButton,
 	swipeText,
-	vehicleInfofooter,
+	vehicleInfoFooter,
 	descriptionText,
 	propertyText,
 	infoWrapper,

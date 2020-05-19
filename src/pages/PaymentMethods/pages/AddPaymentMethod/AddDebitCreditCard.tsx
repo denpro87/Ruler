@@ -1,6 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Checkbox, GreenButton, Page, TextField } from 'components';
-import { ICreditCardProps } from './AddPaymentMethod.types';
+import { IAddPaymentMethodProps, ICreditCardProps } from './AddPaymentMethod.types';
 import { styles } from './AddPaymentMethod.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -16,24 +16,37 @@ const initialCardState: ICreditCardProps = {
 	zipCode: ''
 };
 
-export const AddDebitCreditCard: React.FunctionComponent = () => {
+export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps> = props => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [cardState, setCardState] = React.useState<ICreditCardProps>(initialCardState);
 	const [checked, setChecked] = React.useState<boolean>(false);
+	const [pageName, setPageName] = React.useState('');
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
 		setCardState(prevState => ({ ...prevState, [event.target.name]: event.target.value }));
 	};
 
-	const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
 		setChecked(event.target.checked);
 	};
 
-	const handleNextClick = (): void => history.push('/payment-methods', { data: [cardState] });
+	const handleNextClick = (): void => {
+		if (pageName) {
+			history.push('/home', { showPaymentMethod: true, paymentMethodData: [cardState] });
+		} else {
+			history.push('/payment-methods', { data: [cardState] });
+		}
+	};
+	React.useEffect(() => {
+		const params: any = props.location.state;
+		const pageName = params && params.pageName ? params.pageName : null;
+
+		if (pageName) setPageName(pageName);
+	}, [props.location.state]);
 
 	return (
 		<Page title={formatMessage({ id: 'payment_methods.add_payment_method.card' })} titleSize="medium">

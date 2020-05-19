@@ -1,4 +1,4 @@
-import { AreasListItem } from './components';
+import { AreasListItem, PaymentMethodItem } from './components';
 import { BarcodeScanResult, BarcodeScanner } from '@ionic-native/barcode-scanner';
 import {
 	BottomSheet,
@@ -11,6 +11,7 @@ import {
 	IconButton,
 	Image,
 	LightGreenButton,
+	Link,
 	Menu,
 	SwitchListItem,
 	Text
@@ -52,7 +53,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		internalCombustion: false
 	};
 	const hasAccount = true;
-	const hasValidatedDriverLicence = false;
+	const hasValidatedDriverLicence = true;
 	const [viewport, setViewport] = React.useState<ViewState>({
 		// latitude: 37.8,
 		// longitude: -122.4,
@@ -81,16 +82,32 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
 	const [showScanEnterCode, setShowScanEnterCode] = React.useState(false);
 	const [showVehicleInfo, setShowVehicleInfo] = React.useState(false);
+	const [showPaymentMethod, setShowPaymentMethod] = React.useState(false);
+	const [paymentMethodData, setPaymentMethodData] = React.useState<string[]>([]);
+	const [paidSuccessModal, setPaidSuccessModal] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
+		const paymentMethodData = params && params.paymentMethodData ? params.paymentMethodData : null;
+		const showPaymentMethod = params && params.showPaymentMethod ? params.showPaymentMethod : null;
 
 		if (state) setShowInviteFriends(state);
+
+		if (paymentMethodData) setPaymentMethodData(paymentMethodData);
+
+		if (showPaymentMethod) setShowPaymentMethod(showPaymentMethod);
 	}, [props.location.state]);
 
-	const handleDialogClose = (): void => {
-		setRateRulerModal(false);
-	};
+	React.useEffect(() => {
+		let placeHolderStr = '';
+
+		if (qrCode !== undefined) {
+			for (let i = 0; i < qrCode.length; i++) {
+				placeHolderStr += '_';
+			}
+			setPlaceHolder(placeHolderStr);
+		}
+	}, [qrCode]);
 
 	const handleDrawerClick = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent): void => {
 		if (
@@ -123,19 +140,27 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowScanEnterCode(isOpen);
 	};
 
-	const handleBadlyClick = () => {
+	const handleBadlyClick = (): void => {
 		setShowReport(false);
 		history.push('/my-rides/badly-parked-vehicle');
 	};
 
-	const handleDamagedClick = () => {
+	const handleDamagedClick = (): void => {
 		setShowReport(false);
 		history.push('/my-rides/damaged-vehicle');
 	};
 
-	const handleContactClick = () => {
+	const handleContactClick = (): void => {
 		setShowReport(false);
 		history.push('/my-rides/report');
+	};
+
+	const handleDialogClose = (): void => {
+		setRateRulerModal(false);
+	};
+
+	const handlePaidDialogClose = (): void => {
+		setPaidSuccessModal(false);
 	};
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -212,6 +237,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowVehicleInfo(isOpen);
 	};
 
+	const handlePaymentMethodBottomSheetChange = (isOpen: boolean): void => {
+		setShowPaymentMethod(isOpen);
+	};
+
 	const handleVehicleClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		setSelectedVehicleIndex(index);
 		setShowVehicleInfo(true);
@@ -221,16 +250,17 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowVehicleInfo(false);
 		setSelectedVehicleIndex(-1);
 	};
-	React.useEffect(() => {
-		let placeHolderStr = '';
 
-		if (qrCode !== undefined) {
-			for (let i = 0; i < qrCode.length; i++) {
-				placeHolderStr += '_';
-			}
-			setPlaceHolder(placeHolderStr);
-		}
-	}, [qrCode]);
+	const handleAddPaymentMethodClick = (): void => {
+		setShowVehicleInfo(false);
+
+		if (showPaymentMethod) setShowPaymentMethod(false);
+		history.push('/payment-methods/add-payment-method', { pageName: 'home' });
+	};
+
+	const handleRemoveClick = (): void => {
+		setPaymentMethodData([]);
+	};
 
 	return (
 		<FullPage>
@@ -612,50 +642,96 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			>
 				<Box className={classes.vehicleInfo}>
 					{selectedVehicleIndex === -1
-						? vehicleInfo.map((info, index) => {
-								return (
-									<Box key={index} className={classes.infoWrapper}>
-										{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
-										<Text className={classes.propertyText}>{info.property}</Text>
-										<Text className={classes.descriptionText}>{info.description}</Text>
-									</Box>
-								);
-						  })
-						: vehicleDetailInfo.map((info, index) => {
-								return (
-									<Box key={index} className={classes.infoWrapper}>
-										{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
-										<Text className={classes.propertyText}>{info.property}</Text>
-										<Text className={classes.descriptionText}>{info.description}</Text>
-									</Box>
-								);
-						  })}
+						? vehicleInfo.map(
+								(info, index): JSX.Element => {
+									return (
+										<Box key={index} className={classes.infoWrapper}>
+											{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
+											<Text className={classes.propertyText}>{info.property}</Text>
+											<Text className={classes.descriptionText}>{info.description}</Text>
+										</Box>
+									);
+								}
+						  )
+						: vehicleDetailInfo.map(
+								(info, index): JSX.Element => {
+									return (
+										<Box key={index} className={classes.infoWrapper}>
+											{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
+											<Text className={classes.propertyText}>{info.property}</Text>
+											<Text className={classes.descriptionText}>{info.description}</Text>
+										</Box>
+									);
+								}
+						  )}
 				</Box>
 				{!hasAccount && (
-					<Box className={classes.vehicleInfofooter}>
-						<GreenButton iconName="create-account" compact>
+					<Box className={classes.vehicleInfoFooter}>
+						<GreenButton iconName="create-account" compact onClick={(): void => history.push('/welcome/create-account')}>
 							{formatMessage({ id: 'welcome.button.create_account' })}
 						</GreenButton>
 						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.description_create_account' })}</Text>
 					</Box>
 				)}
 				{hasAccount && hasValidatedDriverLicence && (
-					<Box className={classes.vehicleInfofooter}>
-						<GreenButton iconName="add-payment" compact>
+					<Box className={classes.vehicleInfoFooter}>
+						<GreenButton iconName="add-payment" compact onClick={handleAddPaymentMethodClick}>
 							{formatMessage({ id: 'button.add_payment_method' })}
 						</GreenButton>
 						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.description_payment_method' })}</Text>
 					</Box>
 				)}
 				{hasAccount && !hasValidatedDriverLicence && (
-					<Box className={classes.vehicleInfofooter}>
-						<GreenButton iconName="driver-licence" compact>
+					<Box className={classes.vehicleInfoFooter}>
+						<GreenButton iconName="driver-licence" compact onClick={(): void => history.push('/driver-licence')}>
 							{formatMessage({ id: 'button.add_driver_licence' })}
 						</GreenButton>
 						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.description_driver_licence' })}</Text>
 					</Box>
 				)}
 			</BottomSheet>
+			<BottomSheet
+				open={showPaymentMethod}
+				outDecorator
+				title={formatMessage({ id: 'home.payment_method_sheet.title' })}
+				onBottomSheetChange={handlePaymentMethodBottomSheetChange}
+			>
+				<Box className={classes.walletsLogoContainer}>
+					<Box className={classes.walletsLogo}>
+						<IconButton iconProps={{ iconName: 'well-done-checked', color: '#ffffff' }} className={classes.wellDoneIcon} />
+						<Link className={classes.rulerWalletText} href="/wallets/ruler-wallet">
+							{formatMessage({ id: 'home.payment_method_sheet.logo_title' })}
+						</Link>
+						<Text className={classes.rulerPriceText}>€ 110 = 250 Ruler</Text>
+						<Text className={classes.rulerNumberText}>65 Rulers</Text>
+					</Box>
+				</Box>
+				<Text className={classes.creditCardsText}>{formatMessage({ id: 'home.payment_method_sheet.text.credit_cards' })}</Text>
+				{paymentMethodData?.map(
+					(item: string, index: number): JSX.Element => {
+						return <PaymentMethodItem key={index} handleRemoveClick={(): void => handleRemoveClick()} />;
+					}
+				)}
+				<Button iconName="add" compact className={classes.addPaymentMethodButton} onClick={handleAddPaymentMethodClick}>
+					{formatMessage({ id: 'button.add_payment_method' })}
+				</Button>
+				<Box className={classes.paymentMethodFooter}>
+					<GreenButton iconName="add-payment" className={classes.payButton} compact onClick={(): void => setPaidSuccessModal(true)}>
+						{formatMessage({ id: 'button.pay' })}
+					</GreenButton>
+					<Text className={classes.swipeText}>{formatMessage({ id: 'home.payment_method_sheet.text.description_pay' })}</Text>
+				</Box>
+			</BottomSheet>
+			<Dialog
+				title={formatMessage({ id: 'home.payment_method_sheet.pay.dialog.title' })}
+				open={paidSuccessModal}
+				hasClose
+				illustrationName="superman"
+				onClose={handlePaidDialogClose}
+				aria-labelledby="form-dialog-title"
+			>
+				<Text className={classes.dialogContentText}>{formatMessage({ id: 'home.payment_method_sheet.pay.dialog.description' })}</Text>
+			</Dialog>
 		</FullPage>
 	);
 };
