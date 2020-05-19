@@ -52,7 +52,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		internalCombustion: false
 	};
 	const hasAccount = true;
-	const hasValidatedDriverLicence = true;
+	const hasValidatedDriverLicence = false;
 	const [viewport, setViewport] = React.useState<ViewState>({
 		// latitude: 37.8,
 		// longitude: -122.4,
@@ -81,7 +81,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
 	const [showScanEnterCode, setShowScanEnterCode] = React.useState(false);
 	const [showVehicleInfo, setShowVehicleInfo] = React.useState(false);
-	const [showVehicleDetailInfo, setShowVehicleDetailInfo] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
@@ -199,12 +198,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			setShowWrongCode(false);
 			setShowDischargedVehicle(true);
 			setShowScanEnterCode(false);
-
-			if (selectedVehicleIndex > -1) {
-				setShowVehicleDetailInfo(true);
-			} else {
-				setShowVehicleInfo(true);
-			}
+			setScanEnterButtonLabel(formatMessage({ id: 'button.scan_code' }));
+			setShowDischargedVehicle(false);
+			setShowVehicleInfo(true);
 		} else {
 			setShowWrongCode(true);
 		}
@@ -216,10 +212,15 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowVehicleInfo(isOpen);
 	};
 
-	const handleVehicleDetailInfoBottomSheetChange = (isOpen: boolean): void => {
-		setShowVehicleDetailInfo(isOpen);
+	const handleVehicleClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+		setSelectedVehicleIndex(index);
+		setShowVehicleInfo(true);
 	};
 
+	const handleCloseButtonClick = (): void => {
+		setShowVehicleInfo(false);
+		setSelectedVehicleIndex(-1);
+	};
 	React.useEffect(() => {
 		let placeHolderStr = '';
 
@@ -259,7 +260,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 									{ [classes.iconActiveArea]: selectedVehicleIndex === index },
 									{ [classes.iconInActiveArea]: selectedVehicleIndex !== index }
 								)}
-								onClick={() => setSelectedVehicleIndex(index)}
+								onClick={handleVehicleClick(index)}
 							>
 								{marker.iconName ? (
 									<>
@@ -605,30 +606,56 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			<BottomSheet
 				open={showVehicleInfo}
 				hasCloseButton
-				onCloseButtonClick={(): void => setShowVehicleInfo(false)}
+				hasFindMeButton
+				onCloseButtonClick={handleCloseButtonClick}
 				onBottomSheetChange={handleVehicleInfoBottomSheetChange}
 			>
 				<Box className={classes.vehicleInfo}>
-					{vehicleInfo.map((info, index) => {
-						return (
-							<Box className={classes.infoWrapper}>
-								{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
-								<Text className={classes.propertyText}>{info.property}</Text>
-								<Text className={classes.descriptionText}>{info.description}</Text>
-							</Box>
-						);
-					})}
+					{selectedVehicleIndex === -1
+						? vehicleInfo.map((info, index) => {
+								return (
+									<Box key={index} className={classes.infoWrapper}>
+										{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
+										<Text className={classes.propertyText}>{info.property}</Text>
+										<Text className={classes.descriptionText}>{info.description}</Text>
+									</Box>
+								);
+						  })
+						: vehicleDetailInfo.map((info, index) => {
+								return (
+									<Box key={index} className={classes.infoWrapper}>
+										{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
+										<Text className={classes.propertyText}>{info.property}</Text>
+										<Text className={classes.descriptionText}>{info.description}</Text>
+									</Box>
+								);
+						  })}
 				</Box>
+				{!hasAccount && (
+					<Box className={classes.vehicleInfofooter}>
+						<GreenButton iconName="create-account" compact>
+							{formatMessage({ id: 'welcome.button.create_account' })}
+						</GreenButton>
+						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.description_create_account' })}</Text>
+					</Box>
+				)}
 				{hasAccount && hasValidatedDriverLicence && (
 					<Box className={classes.vehicleInfofooter}>
 						<GreenButton iconName="add-payment" compact>
 							{formatMessage({ id: 'button.add_payment_method' })}
 						</GreenButton>
-						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_payment_method' })}</Text>
+						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.description_payment_method' })}</Text>
+					</Box>
+				)}
+				{hasAccount && !hasValidatedDriverLicence && (
+					<Box className={classes.vehicleInfofooter}>
+						<GreenButton iconName="driver-licence" compact>
+							{formatMessage({ id: 'button.add_driver_licence' })}
+						</GreenButton>
+						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.description_driver_licence' })}</Text>
 					</Box>
 				)}
 			</BottomSheet>
-			{/* <BottomSheet open={showVehicleDetailInfo} onBottomSheetChange={handleVehicleDetailInfoBottomSheetChange} /> */}
 		</FullPage>
 	);
 };
