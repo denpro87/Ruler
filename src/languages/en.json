@@ -16,6 +16,8 @@
 	"button.ride": "Let's ride",
 	"button.scan": "Scan",
 	"button.reserve": "Reserve",
+	"button.finish": "Finish",
+	"button.pause": "Pause",
 	"button.add_driver_licence": "Add driver licence",
 	"menu.news": "News",
 	"menu.wallet": "Wallet",

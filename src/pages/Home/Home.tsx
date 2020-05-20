@@ -78,6 +78,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [showAreas, setShowAreas] = React.useState(false);
 	const [showFilter, setShowFilter] = React.useState(false);
 	const [showWrongCode, setShowWrongCode] = React.useState(false);
+	const [rideStart, setRideStart] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
 	// const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
 	const [selectedVehicle, setSelectedVehicle] = React.useState('');
@@ -275,6 +276,11 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setVehicleSelectionExpanded(false);
 		setShowVehicleInfo(true);
 		setSelectedVehicle(iconName);
+	};
+
+	const handleReserveClick = (): void => {
+		setReservation(true);
+		setShowVehicleInfo(false);
 	};
 
 	return (
@@ -733,15 +739,26 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						)}
 						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length > 0 && reservation && (
 							<Box className={classes.vehicleInfoFooter}>
-								<GreenButton iconName="start" compact>
-									{formatMessage({ id: 'button.ride' })}
-								</GreenButton>
+								{rideStart ? (
+									<Box className={classes.scanAndReserveButtonGroupWrapper}>
+										<LightGreenButton iconName="point" compact>
+											{formatMessage({ id: 'button.finish' })}
+										</LightGreenButton>
+										<GreenButton iconName="pause" compact>
+											{formatMessage({ id: 'button.pause' })}
+										</GreenButton>
+									</Box>
+								) : (
+									<GreenButton iconName="start" compact onClick={(): void => setRideStart(true)}>
+										{formatMessage({ id: 'button.ride' })}
+									</GreenButton>
+								)}
 								<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_more' })}</Text>
 							</Box>
 						)}
 					</IonSlide>
 					<IonSlide className={classes.slide}>
-						{!reservation && (
+						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length > 0 && !reservation && (
 							<>
 								<Box>
 									<IonSlides options={slideOpts}>
@@ -840,7 +857,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										</Box>
 									</Box>
 									<Box className={classes.reserveButtonWrapper}>
-										<GreenButton iconName="lock" compact>
+										<GreenButton iconName="lock" compact onClick={handleReserveClick}>
 											{formatMessage({ id: 'button.reserve' })}
 										</GreenButton>
 										<Box className={classes.iconButtonTextWrapper}>
@@ -850,6 +867,76 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 									</Box>
 								</Box>
 							</>
+						)}
+						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length > 0 && reservation && (
+							<IonSlide className={classes.slide}>
+								<Box className={classes.vehicleInfo}>
+									{vehicleSummary.map(
+										(info, index): JSX.Element => {
+											return (
+												<Box key={index} className={classes.infoWrapper}>
+													{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
+													<Text className={classes.propertyText}>{info.property}</Text>
+													<Text className={classes.descriptionText}>{info.description}</Text>
+												</Box>
+											);
+										}
+									)}
+								</Box>
+								<Box className={classes.imageWrapper}>
+									<Image src={car} />
+								</Box>
+								<Box className={classes.vehicleDetailInfoRow}>
+									<Box className={classes.vehicleDetailInfoColumn}>
+										<Icon iconName="seats" colorType="green" />
+										<Text className={classes.iconText}>4 seats</Text>
+									</Box>
+									<Box className={classes.vehicleDetailInfoColumn}>
+										<Icon iconName="engine" colorType="green" />
+										<Text className={classes.iconText}>electric</Text>
+									</Box>
+								</Box>
+								<Box className={classes.vehicleDetailInfoRow}>
+									<Box className={classes.vehicleDetailInfoColumn}>
+										<Icon iconName="transmission" colorType="green" />
+										<Text className={classes.iconText}>automatic</Text>
+									</Box>
+									<Box className={classes.vehicleDetailInfoColumn}>
+										<Icon iconName="color" colorType="green" />
+										<Text className={classes.iconText}>white</Text>
+									</Box>
+								</Box>
+								<Box className={classes.vehicleDetailInfoColumn}>
+									<Icon iconName="point" colorType="green" />
+									<Text className={classes.iconText}>Na Hřebenkách 2, 150 00 Praha 5</Text>
+								</Box>
+								<Box className={classes.rideFooter}>
+									{rideStart ? (
+										<Box className={classes.scanAndReserveButtonGroupWrapper}>
+											<LightGreenButton iconName="point" compact>
+												{formatMessage({ id: 'button.finish' })}
+											</LightGreenButton>
+											<GreenButton iconName="pause" compact>
+												{formatMessage({ id: 'button.pause' })}
+											</GreenButton>
+										</Box>
+									) : (
+										<GreenButton iconName="start" compact onClick={(): void => setRideStart(true)}>
+											{formatMessage({ id: 'button.ride' })}
+										</GreenButton>
+									)}
+									<Box className={classes.iconButtonTextContainer}>
+										<Box className={classes.iconButtonTextWrapper}>
+											<IconButton iconName="how-to-ride" colorType="green" onClick={(): void => history.push('/get-help/how-to-ride')} />
+											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.how_to_ride' })}</Text>
+										</Box>
+										<Box className={classes.iconButtonTextWrapper}>
+											<IconButton iconName="report" colorType="green" onClick={(): void => history.push('/get-help/how-to-ride')} />
+											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.report' })}</Text>
+										</Box>
+									</Box>
+								</Box>
+							</IonSlide>
 						)}
 					</IonSlide>
 				</IonSlides>

@@ -579,7 +579,10 @@ const iconButtonTextWrapper: CSSProperties = {
 	flexDirection: 'row',
 	justifyContent: 'center',
 	alignItems: 'center',
-	marginTop: pxToRem(15)
+	marginTop: pxToRem(25),
+	'& button': {
+		padding: 0
+	}
 };
 
 const vehicleDetailInfoColumn: CSSProperties = {
@@ -635,7 +638,18 @@ const iconText: CSSProperties = {
 const vehicleDetailInfoRow: CSSProperties = {
 	display: 'flex'
 };
+
+const iconButtonTextContainer: CSSProperties = {
+	display: 'flex',
+	justifyContent: 'space-between'
+};
+
+const rideFooter: CSSProperties = {
+	padding: `${pxToRem(50)} 0 ${pxToRem(25)}`
+};
 export const styles = createStyles({
+	rideFooter,
+	iconButtonTextContainer,
 	vehicleDetailInfoColumn,
 	vehicleDetailInfoRow,
 	iconText,
