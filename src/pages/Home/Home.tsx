@@ -1,6 +1,7 @@
 import { AreasListItem, PaymentMethodItem } from './components';
 import { BarcodeScanResult, BarcodeScanner } from '@ionic-native/barcode-scanner';
 import {
+	BlackButton,
 	BottomSheet,
 	Button,
 	Dialog,
@@ -79,6 +80,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [showFilter, setShowFilter] = React.useState(false);
 	const [showWrongCode, setShowWrongCode] = React.useState(false);
 	const [rideStart, setRideStart] = React.useState(false);
+	const [ridingStart, setRidingStart] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
 	// const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
 	const [selectedVehicle, setSelectedVehicle] = React.useState('');
@@ -95,6 +97,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [showPaymentMethod, setShowPaymentMethod] = React.useState(false);
 	const [paymentMethodData, setPaymentMethodData] = React.useState<string[]>([]);
 	const [paidSuccessModal, setPaidSuccessModal] = React.useState(false);
+	const [finishRidingModal, setFinishRidingModal] = React.useState(false);
+	const [finishRiding, setFinishRiding] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
@@ -730,7 +734,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 									<LightGreenButton iconName="qr" compact>
 										{formatMessage({ id: 'button.scan' })}
 									</LightGreenButton>
-									<GreenButton iconName="lock" compact>
+									<GreenButton iconName="lock" compact onClick={handleReserveClick}>
 										{formatMessage({ id: 'button.reserve' })}
 									</GreenButton>
 								</Box>
@@ -741,12 +745,18 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 							<Box className={classes.vehicleInfoFooter}>
 								{rideStart ? (
 									<Box className={classes.scanAndReserveButtonGroupWrapper}>
-										<LightGreenButton iconName="point" compact>
+										<LightGreenButton iconName="point" compact onClick={(): void => setFinishRidingModal(true)}>
 											{formatMessage({ id: 'button.finish' })}
 										</LightGreenButton>
-										<GreenButton iconName="pause" compact>
-											{formatMessage({ id: 'button.pause' })}
-										</GreenButton>
+										{ridingStart ? (
+											<GreenButton iconName="pause" compact onClick={() => setRidingStart(false)}>
+												{formatMessage({ id: 'button.pause' })}
+											</GreenButton>
+										) : (
+											<GreenButton iconName="start" compact onClick={() => setRidingStart(true)}>
+												{formatMessage({ id: 'button.start' })}
+											</GreenButton>
+										)}
 									</Box>
 								) : (
 									<GreenButton iconName="start" compact onClick={(): void => setRideStart(true)}>
@@ -913,12 +923,18 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								<Box className={classes.rideFooter}>
 									{rideStart ? (
 										<Box className={classes.scanAndReserveButtonGroupWrapper}>
-											<LightGreenButton iconName="point" compact>
+											<LightGreenButton iconName="point" compact onClick={(): void => setFinishRidingModal(true)}>
 												{formatMessage({ id: 'button.finish' })}
 											</LightGreenButton>
-											<GreenButton iconName="pause" compact>
-												{formatMessage({ id: 'button.pause' })}
-											</GreenButton>
+											{ridingStart ? (
+												<GreenButton iconName="pause" compact onClick={() => setRidingStart(false)}>
+													{formatMessage({ id: 'button.pause' })}
+												</GreenButton>
+											) : (
+												<GreenButton iconName="start" compact onClick={() => setRidingStart(true)}>
+													{formatMessage({ id: 'button.start' })}
+												</GreenButton>
+											)}
 										</Box>
 									) : (
 										<GreenButton iconName="start" compact onClick={(): void => setRideStart(true)}>
@@ -982,6 +998,21 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				aria-labelledby="form-dialog-title"
 			>
 				<Text className={classes.dialogContentText}>{formatMessage({ id: 'home.payment_method_sheet.pay.dialog.description' })}</Text>
+			</Dialog>
+			<Dialog
+				title={formatMessage({ id: 'home.vehicle_info_sheet.finish.dialog.title' })}
+				open={finishRidingModal}
+				hasClose
+				illustrationName="question"
+				onClose={(): void => setFinishRidingModal(false)}
+				aria-labelledby="form-dialog-title"
+			>
+				<Typography className={classes.finishRidingDialogContentText}>
+					{formatMessage({ id: 'home.vehicle_info_sheet.finish.dialog.description' })}
+				</Typography>
+				<BlackButton onClick={(): void => setFinishRiding(true)} className={classes.notRecommendedButton}>
+					{formatMessage({ id: 'home.vehicle_info_sheet.finish.dialog.button_text' })}
+				</BlackButton>
 			</Dialog>
 		</FullPage>
 	);

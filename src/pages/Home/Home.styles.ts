@@ -647,8 +647,24 @@ const iconButtonTextContainer: CSSProperties = {
 const rideFooter: CSSProperties = {
 	padding: `${pxToRem(50)} 0 ${pxToRem(25)}`
 };
+
+const notRecommendedButton: CSSProperties = {
+	fontWeight: 'bold'
+};
+
+const finishRidingDialogContentText: CSSProperties = {
+	fontSize: pxToRem(10),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: 'rgba(24, 28, 25, 0.5)',
+	padding: `${pxToRem(10)}  0 ${pxToRem(20)} 0`,
+	maxWidth: pxToRem(160),
+	margin: '0 auto'
+};
 export const styles = createStyles({
+	finishRidingDialogContentText,
 	rideFooter,
+	notRecommendedButton,
 	iconButtonTextContainer,
 	vehicleDetailInfoColumn,
 	vehicleDetailInfoRow,
