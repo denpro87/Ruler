@@ -18,8 +18,9 @@ import {
 } from 'components';
 import { Box, Input, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
-import { IonImg } from '@ionic/react';
-import { areasListItems, damagedVehicleTypes, markerList, vehicleDetailInfo, vehicleInfo } from './Home.data';
+import { IonImg, IonSlide, IonSlides } from '@ionic/react';
+
+import { areasListItems, damagedVehicleTypes, markerList, vehicleButtons, vehicleSummary, vehicleTypes } from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
@@ -27,7 +28,9 @@ import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { GeolocateControl, Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
 import React from 'react';
+import bike from './images/bike.png';
 import bird from './images/bird.png';
+import car from './images/car.png';
 import circ from './images/circ.png';
 import clsx from 'clsx';
 import lime from './images/lime.png';
@@ -37,6 +40,10 @@ import tier from './images/tier.png';
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 const useStyles = makeStyles(styles);
 const QRCode = require('qrcode-react');
+const slideOpts = {
+	initialSlide: 0,
+	speed: 1000
+};
 
 export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const classes = useStyles();
@@ -64,14 +71,16 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		pitch: 0
 	});
 	const [vehicleSelectionExpanded, setVehicleSelectionExpanded] = React.useState(false);
-	const [rateRulerModal, setRateRulerModal] = React.useState(true);
+	const [rateRulerModal, setRateRulerModal] = React.useState(false);
 	const [open, setOpen] = React.useState(false);
 	const [showInviteFriends, setShowInviteFriends] = React.useState(false);
 	const [showReport, setShowReport] = React.useState(false);
 	const [showAreas, setShowAreas] = React.useState(false);
 	const [showFilter, setShowFilter] = React.useState(false);
 	const [showWrongCode, setShowWrongCode] = React.useState(false);
-	const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
+	const [reservation, setReservation] = React.useState(false);
+	// const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
+	const [selectedVehicle, setSelectedVehicle] = React.useState('');
 	const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
 	const [placeHolder, setPlaceHolder] = React.useState('');
 	const [buttonLabel, setButtonLabel] = React.useState('Car');
@@ -241,14 +250,14 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowPaymentMethod(isOpen);
 	};
 
-	const handleVehicleClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-		setSelectedVehicleIndex(index);
-		setShowVehicleInfo(true);
-	};
+	// const handleVehicleClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+	// 	setSelectedVehicleIndex(index);
+	// 	setShowVehicleInfo(true);
+	// };
 
 	const handleCloseButtonClick = (): void => {
 		setShowVehicleInfo(false);
-		setSelectedVehicleIndex(-1);
+		// setSelectedVehicleIndex(-1);
 	};
 
 	const handleAddPaymentMethodClick = (): void => {
@@ -260,6 +269,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 
 	const handleRemoveClick = (): void => {
 		setPaymentMethodData([]);
+	};
+
+	const handleVehicleClick = (iconName: string) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+		setVehicleSelectionExpanded(false);
+		setShowVehicleInfo(true);
+		setSelectedVehicle(iconName);
 	};
 
 	return (
@@ -281,16 +296,18 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<Box className={classes.navControl}>
 					<NavigationControl onViewportChange={setViewport} />
 				</Box>
+				{/* <GeolocateControl positionOptions={{ enableHighAccuracy: true }} trackUserLocation /> */}
 				{markerList.map((marker, index) => {
 					return (
 						<Marker longitude={marker.long} key={index} latitude={marker.lat}>
 							<Box
-								className={clsx(
-									{ [classes.iconWrapper]: true },
-									{ [classes.iconActiveArea]: selectedVehicleIndex === index },
-									{ [classes.iconInActiveArea]: selectedVehicleIndex !== index }
-								)}
-								onClick={handleVehicleClick(index)}
+								className={classes.iconWrapper}
+								// className={clsx(
+								// 	{ [classes.iconWrapper]: true },
+								// 	{ [classes.iconActiveArea]: selectedVehicleIndex === index },
+								// 	{ [classes.iconInActiveArea]: selectedVehicleIndex !== index }
+								// )}
+								// onClick={handleVehicleClick(index)}
 							>
 								{marker.iconName ? (
 									<>
@@ -312,7 +329,22 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<Box className={classes.vehicleButtonGroup}>
 					{vehicleSelectionExpanded ? (
 						<Box className={classes.vehicleButtonGroupWrapper}>
-							<IconButton
+							<>
+								{vehicleButtons.map(
+									(button, index): JSX.Element => {
+										return (
+											<IconButton
+												key={index}
+												label={formatMessage({ id: button.label })}
+												iconName={button.iconName}
+												colorType="black"
+												style={button.style}
+												onClick={handleVehicleClick(button.iconName)}
+											/>
+										);
+									}
+								)}
+								{/* <IconButton
 								noShadow
 								label={formatMessage({ id: 'home.text.all' })}
 								iconName="vehicle"
@@ -339,13 +371,14 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								iconName="scooter"
 								colorType="black"
 								className={classes.midIconButton}
-							/>
-							<IconButton
-								iconName="close"
-								colorType="black"
-								className={classes.lastIconButton}
-								onClick={(): void => setVehicleSelectionExpanded(false)}
-							/>
+							/> */}
+								<IconButton
+									iconName="close"
+									colorType="black"
+									className={classes.closeIconButton}
+									onClick={(): void => setVehicleSelectionExpanded(false)}
+								/>
+							</>
 						</Box>
 					) : (
 						<IconButton
@@ -640,9 +673,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				onCloseButtonClick={handleCloseButtonClick}
 				onBottomSheetChange={handleVehicleInfoBottomSheetChange}
 			>
-				<Box className={classes.vehicleInfo}>
-					{selectedVehicleIndex === -1
-						? vehicleInfo.map(
+				<IonSlides options={slideOpts}>
+					<IonSlide className={classes.slide}>
+						<Box className={classes.vehicleInfo}>
+							{vehicleSummary.map(
 								(info, index): JSX.Element => {
 									return (
 										<Box key={index} className={classes.infoWrapper}>
@@ -652,43 +686,173 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										</Box>
 									);
 								}
-						  )
-						: vehicleDetailInfo.map(
-								(info, index): JSX.Element => {
-									return (
-										<Box key={index} className={classes.infoWrapper}>
-											{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
-											<Text className={classes.propertyText}>{info.property}</Text>
-											<Text className={classes.descriptionText}>{info.description}</Text>
+							)}
+						</Box>
+						{!hasAccount && (
+							<Box className={classes.vehicleInfoFooter}>
+								<GreenButton iconName="create-account" compact onClick={(): void => history.push('/welcome/create-account')}>
+									{formatMessage({ id: 'welcome.button.create_account' })}
+								</GreenButton>
+								<Text className={classes.swipeText}>
+									{formatMessage({ id: 'home.vehicle_info_sheet.text.description_create_account' })}
+								</Text>
+							</Box>
+						)}
+						{hasAccount && !hasValidatedDriverLicence && (
+							<Box className={classes.vehicleInfoFooter}>
+								<GreenButton iconName="driver-licence" compact onClick={(): void => history.push('/driver-licence')}>
+									{formatMessage({ id: 'button.add_driver_licence' })}
+								</GreenButton>
+								<Text className={classes.swipeText}>
+									{formatMessage({ id: 'home.vehicle_info_sheet.text.description_driver_licence' })}
+								</Text>
+							</Box>
+						)}
+						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length === 0 && (
+							<Box className={classes.vehicleInfoFooter}>
+								<GreenButton iconName="add-payment" compact onClick={handleAddPaymentMethodClick}>
+									{formatMessage({ id: 'button.add_payment_method' })}
+								</GreenButton>
+								<Text className={classes.swipeText}>
+									{formatMessage({ id: 'home.vehicle_info_sheet.text.description_payment_method' })}
+								</Text>
+							</Box>
+						)}
+						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length > 0 && !reservation && (
+							<Box className={classes.vehicleInfoFooter}>
+								<Box className={classes.scanAndReserveButtonGroupWrapper}>
+									<LightGreenButton iconName="qr" compact>
+										{formatMessage({ id: 'button.scan' })}
+									</LightGreenButton>
+									<GreenButton iconName="lock" compact>
+										{formatMessage({ id: 'button.reserve' })}
+									</GreenButton>
+								</Box>
+								<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_more' })}</Text>
+							</Box>
+						)}
+						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length > 0 && reservation && (
+							<Box className={classes.vehicleInfoFooter}>
+								<GreenButton iconName="start" compact>
+									{formatMessage({ id: 'button.ride' })}
+								</GreenButton>
+								<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_more' })}</Text>
+							</Box>
+						)}
+					</IonSlide>
+					<IonSlide className={classes.slide}>
+						{!reservation && (
+							<>
+								<Box>
+									<IonSlides options={slideOpts}>
+										<IonSlide className={classes.slide}>
+											<Box className={classes.vehicleInfo}>
+												{vehicleSummary.map(
+													(info, index): JSX.Element => {
+														return (
+															<Box key={index} className={classes.infoWrapper}>
+																{index === 0 ? (
+																	<img src={require(`${info.iconName}`)} />
+																) : (
+																	<Icon iconName={info.iconName} colorType="green" />
+																)}
+																<Text className={classes.propertyText}>{info.property}</Text>
+																<Text className={classes.descriptionText}>{info.description}</Text>
+															</Box>
+														);
+													}
+												)}
+											</Box>
+											<Box className={classes.imageWrapper}>
+												<Image src={car} />
+											</Box>
+											<Box className={classes.vehicleDetailInfoRow}>
+												<Box className={classes.vehicleDetailInfoColumn}>
+													<Icon iconName="seats" colorType="green" />
+													<Text className={classes.iconText}>4 seats</Text>
+												</Box>
+												<Box className={classes.vehicleDetailInfoColumn}>
+													<Icon iconName="engine" colorType="green" />
+													<Text className={classes.iconText}>electric</Text>
+												</Box>
+											</Box>
+											<Box className={classes.vehicleDetailInfoRow}>
+												<Box className={classes.vehicleDetailInfoColumn}>
+													<Icon iconName="transmission" colorType="green" />
+													<Text className={classes.iconText}>automatic</Text>
+												</Box>
+												<Box className={classes.vehicleDetailInfoColumn}>
+													<Icon iconName="color" colorType="green" />
+													<Text className={classes.iconText}>white</Text>
+												</Box>
+											</Box>
+											<Box className={classes.vehicleDetailInfoColumn}>
+												<Icon iconName="point" colorType="green" />
+												<Text className={classes.iconText}>Na Hřebenkách 2, 150 00 Praha 5</Text>
+											</Box>
+										</IonSlide>
+										<IonSlide className={classes.slide}>
+											<Box className={classes.vehicleInfo}>
+												{vehicleSummary.map(
+													(info, index): JSX.Element => {
+														return (
+															<Box key={index} className={classes.infoWrapper}>
+																{index === 0 ? (
+																	<img src={require(`${info.iconName}`)} />
+																) : (
+																	<Icon iconName={info.iconName} colorType="green" />
+																)}
+																<Text className={classes.propertyText}>{info.property}</Text>
+																<Text className={classes.descriptionText}>{info.description}</Text>
+															</Box>
+														);
+													}
+												)}
+											</Box>
+											<Box className={classes.imageWrapper}>
+												<Image src={bike} />
+											</Box>
+											<Box className={classes.vehicleDetailInfoRow}>
+												<Box className={classes.vehicleDetailInfoColumn}>
+													<Icon iconName="transmission" colorType="green" />
+													<Text className={classes.iconText}>43 km / h</Text>
+												</Box>
+												<Box className={classes.vehicleDetailInfoColumn}>
+													<Icon iconName="color" colorType="green" />
+													<Text className={classes.iconText}>white</Text>
+												</Box>
+											</Box>
+											<Box className={classes.vehicleDetailInfoColumn}>
+												<Icon iconName="point" colorType="green" />
+												<Text className={classes.iconText}>Na Hřebenkách 2, 150 00 Praha 5</Text>
+											</Box>
+										</IonSlide>
+									</IonSlides>
+								</Box>
+								<Box className={classes.scanAndReserveButtonGroupContainer}>
+									<Box className={classes.scanButtonWrapper}>
+										<LightGreenButton iconName="qr" compact>
+											{formatMessage({ id: 'button.scan' })}
+										</LightGreenButton>
+										<Box className={classes.iconButtonTextWrapper}>
+											<IconButton iconName="how-to-ride" colorType="green" />
+											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.how_to_ride' })}</Text>
 										</Box>
-									);
-								}
-						  )}
-				</Box>
-				{!hasAccount && (
-					<Box className={classes.vehicleInfoFooter}>
-						<GreenButton iconName="create-account" compact onClick={(): void => history.push('/welcome/create-account')}>
-							{formatMessage({ id: 'welcome.button.create_account' })}
-						</GreenButton>
-						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.description_create_account' })}</Text>
-					</Box>
-				)}
-				{hasAccount && hasValidatedDriverLicence && (
-					<Box className={classes.vehicleInfoFooter}>
-						<GreenButton iconName="add-payment" compact onClick={handleAddPaymentMethodClick}>
-							{formatMessage({ id: 'button.add_payment_method' })}
-						</GreenButton>
-						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.description_payment_method' })}</Text>
-					</Box>
-				)}
-				{hasAccount && !hasValidatedDriverLicence && (
-					<Box className={classes.vehicleInfoFooter}>
-						<GreenButton iconName="driver-licence" compact onClick={(): void => history.push('/driver-licence')}>
-							{formatMessage({ id: 'button.add_driver_licence' })}
-						</GreenButton>
-						<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.description_driver_licence' })}</Text>
-					</Box>
-				)}
+									</Box>
+									<Box className={classes.reserveButtonWrapper}>
+										<GreenButton iconName="lock" compact>
+											{formatMessage({ id: 'button.reserve' })}
+										</GreenButton>
+										<Box className={classes.iconButtonTextWrapper}>
+											<IconButton iconName="report" colorType="green" />
+											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.report' })}</Text>
+										</Box>
+									</Box>
+								</Box>
+							</>
+						)}
+					</IonSlide>
+				</IonSlides>
 			</BottomSheet>
 			<BottomSheet
 				open={showPaymentMethod}

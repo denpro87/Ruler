@@ -84,16 +84,8 @@ const filterButton: CSSProperties = {
 	marginRight: pxToRem(10)
 };
 
-const firstIconButton: CSSProperties = {
-	padding: `${pxToRem(8)} ${pxToRem(10)} 0 ${pxToRem(10)}`
-};
-
-const lastIconButton: CSSProperties = {
+const closeIconButton: CSSProperties = {
 	padding: `${pxToRem(10)}`
-};
-
-const midIconButton: CSSProperties = {
-	padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
 };
 
 const vehicleIconButton: CSSProperties = {
@@ -400,6 +392,9 @@ const navControl: CSSProperties = {
 };
 
 const iconWrapper: CSSProperties = {
+	width: pxToRem(50),
+	height: pxToRem(50),
+	border: `solid ${pxToRem(2)} #000000`,
 	borderRadius: percentage(0.5),
 	backgroundColor: '#ffffff',
 	position: 'relative',
@@ -408,17 +403,17 @@ const iconWrapper: CSSProperties = {
 	alignItems: 'center'
 };
 
-const iconInActiveArea: CSSProperties = {
-	width: pxToRem(40),
-	height: pxToRem(40),
-	border: `solid ${pxToRem(2)} #000000`
-};
+// const iconInActiveArea: CSSProperties = {
+// 	width: pxToRem(40),
+// 	height: pxToRem(40),
+// 	border: `solid ${pxToRem(2)} #000000`
+// };
 
-const iconActiveArea: CSSProperties = {
-	width: pxToRem(52),
-	height: pxToRem(52),
-	border: `solid ${pxToRem(2)} #00b559`
-};
+// const iconActiveArea: CSSProperties = {
+// 	width: pxToRem(52),
+// 	height: pxToRem(52),
+// 	border: `solid ${pxToRem(2)} #00b559`
+// };
 
 const iconDecorator: CSSProperties = {
 	position: 'absolute',
@@ -468,7 +463,7 @@ const vehicleInfoFooter: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
 	'&> span': {
-		padding: `${pxToRem(7)} 0 ${pxToRem(8)} 0`
+		padding: `${pxToRem(7)} 0 ${pxToRem(3)} 0`
 	}
 };
 
@@ -565,7 +560,93 @@ const addPaymentMethodButton: CSSProperties = {
 	}
 };
 
+const slide: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignItems: 'stretch'
+};
+
+const scanAndReserveButtonGroupWrapper: CSSProperties = {
+	display: 'flex',
+	'& button:first-child': {
+		marginRight: pxToRem(15)
+	}
+};
+
+const iconButtonTextWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'center',
+	alignItems: 'center',
+	marginTop: pxToRem(15)
+};
+
+const vehicleDetailInfoColumn: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'flex-start',
+	alignItems: 'center',
+	marginTop: pxToRem(10),
+	flex: 1
+};
+
+const scanButtonWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	paddingBottom: pxToRem(25),
+	paddingRight: pxToRem(7.5),
+	flex: 1
+};
+
+const reserveButtonWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	paddingBottom: pxToRem(25),
+	paddingLeft: pxToRem(7.5),
+	flex: 1
+};
+
+const scanAndReserveButtonGroupContainer: CSSProperties = {
+	marginTop: pxToRem(50),
+	display: 'flex'
+};
+
+const greenText: CSSProperties = {
+	fontSize: pxToRem(15),
+	color: '#00b559',
+	fontWeight: 'bold',
+	lineHeight: 1.67
+};
+
+const imageWrapper: CSSProperties = {
+	maxWidth: pxToRem(325),
+	margin: `0 auto ${pxToRem(25)}`
+};
+
+const iconText: CSSProperties = {
+	fontSize: pxToRem(15),
+	color: '#181c19',
+	fontWeight: 'bold',
+	lineHeight: 1.67,
+	marginLeft: pxToRem(10)
+};
+
+const vehicleDetailInfoRow: CSSProperties = {
+	display: 'flex'
+};
 export const styles = createStyles({
+	vehicleDetailInfoColumn,
+	vehicleDetailInfoRow,
+	iconText,
+	imageWrapper,
+	scanButtonWrapper,
+	reserveButtonWrapper,
+	greenText,
+	scanAndReserveButtonGroupContainer,
+	iconButtonTextWrapper,
+	scanAndReserveButtonGroupWrapper,
+	slide,
 	paymentMethodFooter,
 	creditCardsText,
 	addPaymentMethodButton,
@@ -583,8 +664,8 @@ export const styles = createStyles({
 	infoWrapper,
 	vehicleInfo,
 	markerNumberText,
-	iconActiveArea,
-	iconInActiveArea,
+	// iconActiveArea,
+	// iconInActiveArea,
 	iconWrapper,
 	iconDecorator,
 	navControl,
@@ -620,9 +701,7 @@ export const styles = createStyles({
 	menuButton,
 	filterButton,
 	vehicleButtonGroupWrapper,
-	firstIconButton,
-	lastIconButton,
-	midIconButton,
+	closeIconButton,
 	vehicleIconButton,
 	iconButtonText,
 	positionVehicleText,

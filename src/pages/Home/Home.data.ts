@@ -1,5 +1,6 @@
 import { IAreasListItemProps } from './components/AreasListItem/AreasListItem.types';
 import { IDamagedVehicleType } from '../MyRides/pages/DamagedVehicle/DamagedVehicle.types';
+import { pxToRem } from 'styles';
 export const areasListItems: Array<IAreasListItemProps> = [
 	{
 		iconName: 'out-of-business',
@@ -92,7 +93,7 @@ export const vehicleInfo = [
 	}
 ];
 
-export const vehicleDetailInfo = [
+export const vehicleSummary = [
 	{
 		iconName: './images/lime.png',
 		property: 'Lime',
@@ -112,5 +113,125 @@ export const vehicleDetailInfo = [
 		iconName: 'wallet',
 		property: '0.15 /min',
 		description: '$ 1 to unlock'
+	}
+];
+
+export const vehicleButtons = [
+	{
+		label: 'home.text.all',
+		iconName: 'vehicle',
+		style: {
+			padding: `${pxToRem(8)} ${pxToRem(10)} 0 ${pxToRem(10)}`
+		}
+	},
+	{
+		label: 'home.text.car',
+		iconName: 'car',
+		style: {
+			padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
+		}
+	},
+	{
+		label: 'home.text.bike',
+		iconName: 'bike',
+		style: {
+			padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
+		}
+	},
+	{
+		label: 'home.text.scooter',
+		iconName: 'scooter',
+		style: {
+			padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
+		}
+	}
+];
+
+export const vehicleTypes = [
+	{
+		vehicleSummary: [
+			{
+				iconName: './images/lime.png',
+				property: 'Lime',
+				description: 'electric car'
+			},
+			{
+				iconName: 'charge',
+				property: '79%',
+				description: 'battery level'
+			},
+			{
+				iconName: 'distance',
+				property: '1 km',
+				description: 'distance'
+			},
+			{
+				iconName: 'wallet',
+				property: '0.15 /min',
+				description: '$ 1 to unlock'
+			}
+		],
+		imageUrl: './images/car.png',
+		vehicleDetail: [
+			{
+				iconName: 'seats',
+				property: '4 seats'
+			},
+			{
+				iconName: 'engine',
+				property: 'electric'
+			},
+			{
+				iconName: 'transmission	',
+				property: 'automatic'
+			},
+			{
+				iconName: 'color',
+				property: 'white'
+			},
+			{
+				iconName: 'point',
+				property: 'Na Hřebenkách 2, 150 00 Praha 5'
+			}
+		]
+	},
+	{
+		vehicleSummary: [
+			{
+				iconName: './images/lime.png',
+				property: 'Lime',
+				description: 'electric car'
+			},
+			{
+				iconName: 'charge',
+				property: '79%',
+				description: 'battery level'
+			},
+			{
+				iconName: 'distance',
+				property: '1 km',
+				description: 'distance'
+			},
+			{
+				iconName: 'wallet',
+				property: '0.15 /min',
+				description: '$ 1 to unlock'
+			}
+		],
+		imageUrl: './images/bike.png',
+		vehicleDetail: [
+			{
+				iconName: 'seats',
+				property: '43 km / h'
+			},
+			{
+				iconName: 'color',
+				property: 'white'
+			},
+			{
+				iconName: 'point',
+				property: 'Na Hřebenkách 2, 150 00 Praha 5'
+			}
+		]
 	}
 ];
