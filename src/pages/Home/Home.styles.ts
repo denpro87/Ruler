@@ -157,7 +157,7 @@ const buttonGroupWrapper: CSSProperties = {
 	padding: `${pxToRem(24)} 0 ${pxToRem(30)} 0`
 };
 
-const scanEnterbuttonGroupWrapper: CSSProperties = {
+const scanEnterButtonGroupWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	borderRadius: pxToRem(15),
@@ -179,7 +179,7 @@ const button: CSSProperties = {
 	}
 };
 
-const scanEnterCodebutton: CSSProperties = {
+const scanEnterCodeButton: CSSProperties = {
 	fontSize: pxToRem(10),
 	color: '#181c19',
 	fontWeight: 600,
@@ -337,11 +337,11 @@ const flashButton: CSSProperties = {
 	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 0, 0, 0.1)`
 };
 
-const scanEnterCodebuttonActive: CSSProperties = {
+const scanEnterCodeButtonActive: CSSProperties = {
 	backgroundColor: '#ffffff'
 };
 
-const scanEnterCodebuttonInActive: CSSProperties = {
+const scanEnterCodeButtonInActive: CSSProperties = {
 	backgroundColor: 'transparent'
 };
 
@@ -403,17 +403,38 @@ const iconWrapper: CSSProperties = {
 	alignItems: 'center'
 };
 
-// const iconInActiveArea: CSSProperties = {
-// 	width: pxToRem(40),
-// 	height: pxToRem(40),
-// 	border: `solid ${pxToRem(2)} #000000`
-// };
+const circleWithVehicleNumber: CSSProperties = {
+	width: pxToRem(50),
+	height: pxToRem(50),
+	border: `solid ${pxToRem(2)} #000000`,
+	borderRadius: percentage(0.5),
+	backgroundColor: '#ffffff',
+	position: 'relative',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center'
+};
 
-// const iconActiveArea: CSSProperties = {
-// 	width: pxToRem(52),
-// 	height: pxToRem(52),
-// 	border: `solid ${pxToRem(2)} #00b559`
-// };
+const circleWithVehicleIcon: CSSProperties = {
+	borderRadius: percentage(0.5),
+	backgroundColor: '#ffffff',
+	position: 'relative',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center'
+};
+
+const vehicleIconInActive: CSSProperties = {
+	width: pxToRem(40),
+	height: pxToRem(40),
+	border: `solid ${pxToRem(2)} #000000`
+};
+
+const vehicleIconActive: CSSProperties = {
+	width: pxToRem(52),
+	height: pxToRem(52),
+	border: `solid ${pxToRem(2)} #00b559`
+};
 
 const iconDecorator: CSSProperties = {
 	position: 'absolute',
@@ -421,7 +442,6 @@ const iconDecorator: CSSProperties = {
 	left: pxToRem(-5),
 	width: pxToRem(20),
 	height: pxToRem(20)
-	// backgroundImage: `url(${birdLogo})`
 };
 const markerNumberText: CSSProperties = {
 	fontSize: pxToRem(15),
@@ -576,6 +596,7 @@ const scanAndReserveButtonGroupWrapper: CSSProperties = {
 
 const iconButtonTextWrapper: CSSProperties = {
 	display: 'flex',
+	flex: 1,
 	flexDirection: 'row',
 	justifyContent: 'center',
 	alignItems: 'center',
@@ -592,27 +613,6 @@ const vehicleDetailInfoColumn: CSSProperties = {
 	alignItems: 'center',
 	marginTop: pxToRem(10),
 	flex: 1
-};
-
-const scanButtonWrapper: CSSProperties = {
-	display: 'flex',
-	flexDirection: 'column',
-	paddingBottom: pxToRem(25),
-	paddingRight: pxToRem(7.5),
-	flex: 1
-};
-
-const reserveButtonWrapper: CSSProperties = {
-	display: 'flex',
-	flexDirection: 'column',
-	paddingBottom: pxToRem(25),
-	paddingLeft: pxToRem(7.5),
-	flex: 1
-};
-
-const scanAndReserveButtonGroupContainer: CSSProperties = {
-	marginTop: pxToRem(50),
-	display: 'flex'
 };
 
 const greenText: CSSProperties = {
@@ -640,8 +640,7 @@ const vehicleDetailInfoRow: CSSProperties = {
 };
 
 const iconButtonTextContainer: CSSProperties = {
-	display: 'flex',
-	justifyContent: 'space-between'
+	display: 'flex'
 };
 
 const rideFooter: CSSProperties = {
@@ -698,7 +697,14 @@ const rateRideText: CSSProperties = {
 const rateActiveIcon: CSSProperties = {
 	marginRight: pxToRem(10)
 };
+
+const reserveFooter: CSSProperties = {
+	padding: `${pxToRem(93)} 0 ${pxToRem(25)}`
+};
 export const styles = createStyles({
+	circleWithVehicleNumber,
+	circleWithVehicleIcon,
+	reserveFooter,
 	rateActiveIcon,
 	rateRideText,
 	rateRideWrapper,
@@ -713,10 +719,7 @@ export const styles = createStyles({
 	vehicleDetailInfoRow,
 	iconText,
 	imageWrapper,
-	scanButtonWrapper,
-	reserveButtonWrapper,
 	greenText,
-	scanAndReserveButtonGroupContainer,
 	iconButtonTextWrapper,
 	scanAndReserveButtonGroupWrapper,
 	slide,
@@ -737,8 +740,8 @@ export const styles = createStyles({
 	infoWrapper,
 	vehicleInfo,
 	markerNumberText,
-	// iconActiveArea,
-	// iconInActiveArea,
+	vehicleIconInActive,
+	vehicleIconActive,
 	iconWrapper,
 	iconDecorator,
 	navControl,
@@ -750,10 +753,10 @@ export const styles = createStyles({
 	qrCodeInput,
 	scanPadding,
 	enterPadding,
-	scanEnterCodebuttonInActive,
-	scanEnterCodebuttonActive,
-	scanEnterCodebutton,
-	scanEnterbuttonGroupWrapper,
+	scanEnterCodeButtonInActive,
+	scanEnterCodeButtonActive,
+	scanEnterCodeButton,
+	scanEnterButtonGroupWrapper,
 	flashButton,
 	footer,
 	QRcodeImageContainer,

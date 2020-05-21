@@ -49,29 +49,29 @@ export const markerList = [
 		lat: 17.441013,
 		long: 78.383896,
 		iconName: 'scooter',
-		markerNumber: 0,
-		decoratorName: './images/bird.png'
+		vehicleNumber: 0,
+		decorator: './images/bird.png'
 	},
 	{
 		lat: 17.452512,
 		long: 78.396873,
 		iconName: 'car',
-		markerNumber: 0,
-		decoratorName: './images/lime.png'
+		vehicleNumber: 0,
+		decorator: './images/lime.png'
 	},
 	{
 		lat: 17.447562,
 		long: 78.384357,
 		iconName: '',
-		markerNumber: 7,
-		decoratorName: ''
+		vehicleNumber: 7,
+		decorator: ''
 	},
 	{
 		lat: 17.440298,
 		long: 78.392345,
 		iconName: '',
-		markerNumber: 25,
-		decoratorName: ''
+		vehicleNumber: 25,
+		decorator: ''
 	}
 ];
 

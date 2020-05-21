@@ -84,7 +84,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [rideStart, setRideStart] = React.useState(false);
 	const [ridingStart, setRidingStart] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
-	// const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
+	const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
 	const [selectedVehicle, setSelectedVehicle] = React.useState('');
 	const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
 	const [placeHolder, setPlaceHolder] = React.useState('');
@@ -97,20 +97,20 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [showScanEnterCode, setShowScanEnterCode] = React.useState(false);
 	const [showVehicleInfo, setShowVehicleInfo] = React.useState(false);
 	const [showPaymentMethod, setShowPaymentMethod] = React.useState(false);
-	const [paymentMethodData, setPaymentMethodData] = React.useState<string[]>([]);
-	const [paidSuccessModal, setPaidSuccessModal] = React.useState(false);
+	const [paymentMethod, setPaymentMethod] = React.useState<string[]>([]);
+	const [paidModal, setPaidModal] = React.useState(false);
 	const [finishRidingModal, setFinishRidingModal] = React.useState(false);
 	const [showFinishedRide, setShowFinishedRide] = React.useState(false);
 	const [rideReview, setRideReview] = React.useState('');
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
-		const paymentMethodData = params && params.paymentMethodData ? params.paymentMethodData : null;
+		const data = params && params.paymentMethodData ? params.paymentMethodData : null;
 		const showPaymentMethod = params && params.showPaymentMethod ? params.showPaymentMethod : null;
 
 		if (state) setShowInviteFriends(state);
 
-		if (paymentMethodData) setPaymentMethodData(paymentMethodData);
+		if (data) setPaymentMethod(data);
 
 		if (showPaymentMethod) setShowPaymentMethod(showPaymentMethod);
 	}, [props.location.state]);
@@ -172,12 +172,14 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		history.push('/my-rides/report');
 	};
 
-	const handleDialogClose = (): void => {
+	const handleRateRulerDialogClose = (): void => {
 		setRateRulerModal(false);
 	};
 
 	const handlePaidDialogClose = (): void => {
-		setPaidSuccessModal(false);
+		setPaidModal(false);
+		setShowPaymentMethod(false);
+		setShowVehicleInfo(true);
 	};
 
 	const handleRideReivewChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -266,14 +268,17 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowPaymentMethod(isOpen);
 	};
 
-	// const handleVehicleClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-	// 	setSelectedVehicleIndex(index);
-	// 	setShowVehicleInfo(true);
-	// };
+	const handleMarkerClick = (index: number, vehicleNumber: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+		if (vehicleNumber === 0) {
+			setShowVehicleInfo(true);
+		} else {
+		}
+		setSelectedVehicleIndex(index);
+	};
 
 	const handleCloseButtonClick = (): void => {
 		setShowVehicleInfo(false);
-		// setSelectedVehicleIndex(-1);
+		setSelectedVehicleIndex(-1);
 	};
 
 	const handleAddPaymentMethodClick = (): void => {
@@ -284,22 +289,17 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	};
 
 	const handleRemoveClick = (): void => {
-		setPaymentMethodData([]);
+		setPaymentMethod([]);
 	};
 
 	const handleReportSubmitDialogClose = (): void => {
 		setReportSubmitModal(false);
 	};
 
-	const handleVehicleClick = (iconName: string) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-		setVehicleSelectionExpanded(false);
-		setShowVehicleInfo(true);
-		setSelectedVehicle(iconName);
-	};
-
-	const handleReserveClick = (): void => {
-		setReservation(true);
-		setShowVehicleInfo(false);
+	const handleVehicleTypeClick = (iconName: string) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+		// setVehicleSelectionExpanded(false);
+		// setShowVehicleInfo(true);
+		// setSelectedVehicle(iconName);
 	};
 
 	const handleFinishRidingClick = (): void => {
@@ -332,25 +332,27 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					return (
 						<Marker longitude={marker.long} key={index} latitude={marker.lat}>
 							<Box
-								className={classes.iconWrapper}
-								// className={clsx(
-								// 	{ [classes.iconWrapper]: true },
-								// 	{ [classes.iconActiveArea]: selectedVehicleIndex === index },
-								// 	{ [classes.iconInActiveArea]: selectedVehicleIndex !== index }
-								// )}
-								// onClick={handleVehicleClick(index)}
+								className={clsx(
+									{ [classes.circleWithVehicleNumber]: marker.vehicleNumber > 0 },
+									{ [clsx(classes.circleWithVehicleIcon, classes.vehicleIconInActive)]: marker.vehicleNumber === 0 },
+									{
+										[clsx(classes.circleWithVehicleIcon, classes.vehicleIconActive)]:
+											marker.vehicleNumber === 0 && index === selectedVehicleIndex
+									}
+								)}
+								onClick={handleMarkerClick(index, marker.vehicleNumber)}
 							>
 								{marker.iconName ? (
 									<>
 										<Icon iconName={marker.iconName} colorType="black" />
 										<Box className={classes.iconDecorator}>
-											<Image src={require(`${marker.decoratorName}`)} />
+											<Image src={require(`${marker.decorator}`)} />
 										</Box>
 									</>
 								) : (
-									<Box className={classes.iconWrapper}>
-										<Text className={classes.markerNumberText}>{marker.markerNumber}</Text>
-									</Box>
+									// <Box className={classes.iconWrapper}>
+									<Text className={classes.markerNumberText}>{marker.vehicleNumber}</Text>
+									// </Box>
 								)}
 							</Box>
 						</Marker>
@@ -370,7 +372,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 												iconName={button.iconName}
 												colorType="black"
 												style={button.style}
-												onClick={handleVehicleClick(button.iconName)}
+												onClick={handleVehicleTypeClick(button.iconName)}
 											/>
 										);
 									}
@@ -418,7 +420,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				open={rateRulerModal}
 				hasClose
 				illustrationName="rate"
-				onClose={handleDialogClose}
+				onClose={handleRateRulerDialogClose}
 				aria-labelledby="form-dialog-title"
 			>
 				<Text className={classes.dialogContentText}>{formatMessage({ id: 'home.rate_ruler.dialog.description' })}</Text>
@@ -639,12 +641,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						{ [classes.enterPadding]: scanEnterButtonLabel !== formatMessage({ id: 'button.scan_code' }) }
 					)}
 				>
-					<Box className={classes.scanEnterbuttonGroupWrapper}>
+					<Box className={classes.scanEnterButtonGroupWrapper}>
 						<Button
 							className={clsx(
-								{ [classes.scanEnterCodebutton]: true },
-								{ [classes.scanEnterCodebuttonActive]: scanEnterButtonLabel === formatMessage({ id: 'button.scan_code' }) },
-								{ [classes.scanEnterCodebuttonInActive]: scanEnterButtonLabel !== formatMessage({ id: 'button.scan_code' }) }
+								{ [classes.scanEnterCodeButton]: true },
+								{ [classes.scanEnterCodeButtonActive]: scanEnterButtonLabel === formatMessage({ id: 'button.scan_code' }) },
+								{ [classes.scanEnterCodeButtonInActive]: scanEnterButtonLabel !== formatMessage({ id: 'button.scan_code' }) }
 							)}
 							onClick={handleScanButtonClick}
 						>
@@ -653,9 +655,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						<Button
 							disabled={qrCode === undefined}
 							className={clsx(
-								{ [classes.scanEnterCodebutton]: true },
-								{ [classes.scanEnterCodebuttonActive]: scanEnterButtonLabel === formatMessage({ id: 'button.enter_code' }) },
-								{ [classes.scanEnterCodebuttonInActive]: scanEnterButtonLabel !== formatMessage({ id: 'button.enter_code' }) }
+								{ [classes.scanEnterCodeButton]: true },
+								{ [classes.scanEnterCodeButtonActive]: scanEnterButtonLabel === formatMessage({ id: 'button.enter_code' }) },
+								{ [classes.scanEnterCodeButtonInActive]: scanEnterButtonLabel !== formatMessage({ id: 'button.enter_code' }) }
 							)}
 							onClick={handleEnterButtonClick}
 						>
@@ -683,7 +685,11 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								(info, index): JSX.Element => {
 									return (
 										<Box key={index} className={classes.infoWrapper}>
-											{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
+											{index === 0 ? (
+												<Image src={require(`${info.iconName}`)} width={30} height={30} />
+											) : (
+												<Icon iconName={info.iconName} colorType="green" />
+											)}
 											<Text className={classes.propertyText}>{info.property}</Text>
 											<Text className={classes.descriptionText}>{info.description}</Text>
 										</Box>
@@ -711,7 +717,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								</Text>
 							</Box>
 						)}
-						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length === 0 && (
+						{hasAccount && hasValidatedDriverLicence && paymentMethod.length === 0 && (
 							<Box className={classes.vehicleInfoFooter}>
 								<GreenButton iconName="add-payment" compact onClick={handleAddPaymentMethodClick}>
 									{formatMessage({ id: 'button.add_payment_method' })}
@@ -721,20 +727,26 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								</Text>
 							</Box>
 						)}
-						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length > 0 && !reservation && (
+						{hasAccount && hasValidatedDriverLicence && paymentMethod.length > 0 && !reservation && (
 							<Box className={classes.vehicleInfoFooter}>
-								<Box className={classes.scanAndReserveButtonGroupWrapper}>
-									<LightGreenButton iconName="qr" compact>
-										{formatMessage({ id: 'button.scan' })}
-									</LightGreenButton>
-									<GreenButton iconName="lock" compact onClick={handleReserveClick}>
-										{formatMessage({ id: 'button.reserve' })}
+								{reservation ? (
+									<GreenButton iconName="start" compact onClick={(): void => setRideStart(true)}>
+										{formatMessage({ id: 'button.ride' })}
 									</GreenButton>
-								</Box>
+								) : (
+									<Box className={classes.scanAndReserveButtonGroupWrapper}>
+										<LightGreenButton iconName="qr" compact>
+											{formatMessage({ id: 'button.scan' })}
+										</LightGreenButton>
+										<GreenButton iconName="lock" compact onClick={(): void => setReservation(true)}>
+											{formatMessage({ id: 'button.reserve' })}
+										</GreenButton>
+									</Box>
+								)}
 								<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_more' })}</Text>
 							</Box>
 						)}
-						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length > 0 && reservation && (
+						{hasAccount && hasValidatedDriverLicence && paymentMethod.length > 0 && reservation && (
 							<Box className={classes.vehicleInfoFooter}>
 								{rideStart ? (
 									<Box className={classes.scanAndReserveButtonGroupWrapper}>
@@ -742,12 +754,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 											{formatMessage({ id: 'button.finish' })}
 										</LightGreenButton>
 										{ridingStart ? (
-											<GreenButton iconName="pause" compact onClick={() => setRidingStart(false)}>
-												{formatMessage({ id: 'button.pause' })}
+											<GreenButton iconName="start" compact onClick={(): void => setRidingStart(false)}>
+												{formatMessage({ id: 'button.start' })}
 											</GreenButton>
 										) : (
-											<GreenButton iconName="start" compact onClick={() => setRidingStart(true)}>
-												{formatMessage({ id: 'button.start' })}
+											<GreenButton iconName="pause" compact onClick={(): void => setRidingStart(true)}>
+												{formatMessage({ id: 'button.pause' })}
 											</GreenButton>
 										)}
 									</Box>
@@ -761,7 +773,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						)}
 					</IonSlide>
 					<IonSlide className={classes.slide}>
-						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length > 0 && !reservation && (
+						{hasAccount && hasValidatedDriverLicence && paymentMethod.length > 0 && !reservation && (
 							<>
 								<Box>
 									<IonSlides options={slideOpts}>
@@ -772,7 +784,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 														return (
 															<Box key={index} className={classes.infoWrapper}>
 																{index === 0 ? (
-																	<img src={require(`${info.iconName}`)} />
+																	<Image src={require(`${info.iconName}`)} width={30} height={30} />
 																) : (
 																	<Icon iconName={info.iconName} colorType="green" />
 																)}
@@ -818,7 +830,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 														return (
 															<Box key={index} className={classes.infoWrapper}>
 																{index === 0 ? (
-																	<img src={require(`${info.iconName}`)} />
+																	<Image src={require(`${info.iconName}`)} width={30} height={30} />
 																) : (
 																	<Icon iconName={info.iconName} colorType="green" />
 																)}
@@ -849,36 +861,47 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										</IonSlide>
 									</IonSlides>
 								</Box>
-								<Box className={classes.scanAndReserveButtonGroupContainer}>
-									<Box className={classes.scanButtonWrapper}>
-										<LightGreenButton iconName="qr" compact>
-											{formatMessage({ id: 'button.scan' })}
-										</LightGreenButton>
+								<Box className={classes.reserveFooter}>
+									{reservation ? (
+										<GreenButton iconName="start" compact onClick={(): void => setRideStart(true)}>
+											{formatMessage({ id: 'button.ride' })}
+										</GreenButton>
+									) : (
+										<Box className={classes.scanAndReserveButtonGroupWrapper}>
+											<LightGreenButton iconName="qr" compact>
+												{formatMessage({ id: 'button.scan' })}
+											</LightGreenButton>
+											<GreenButton iconName="lock" compact onClick={(): void => setReservation(true)}>
+												{formatMessage({ id: 'button.reserve' })}
+											</GreenButton>
+										</Box>
+									)}
+
+									<Box className={classes.iconButtonTextContainer}>
 										<Box className={classes.iconButtonTextWrapper}>
-											<IconButton iconName="how-to-ride" colorType="green" />
+											<IconButton iconName="how-to-ride" colorType="green" onClick={(): void => history.push('/get-help/how-to-ride')} />
 											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.how_to_ride' })}</Text>
 										</Box>
-									</Box>
-									<Box className={classes.reserveButtonWrapper}>
-										<GreenButton iconName="lock" compact onClick={handleReserveClick}>
-											{formatMessage({ id: 'button.reserve' })}
-										</GreenButton>
 										<Box className={classes.iconButtonTextWrapper}>
-											<IconButton iconName="report" colorType="green" />
+											<IconButton iconName="report" colorType="green" onClick={(): void => history.push('/get-help/how-to-ride')} />
 											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.report' })}</Text>
 										</Box>
 									</Box>
 								</Box>
 							</>
 						)}
-						{hasAccount && hasValidatedDriverLicence && paymentMethodData.length > 0 && reservation && (
+						{hasAccount && hasValidatedDriverLicence && paymentMethod.length > 0 && reservation && (
 							<IonSlide className={classes.slide}>
 								<Box className={classes.vehicleInfo}>
 									{vehicleSummary.map(
 										(info, index): JSX.Element => {
 											return (
 												<Box key={index} className={classes.infoWrapper}>
-													{index === 0 ? <img src={require(`${info.iconName}`)} /> : <Icon iconName={info.iconName} colorType="green" />}
+													{index === 0 ? (
+														<Image src={require(`${info.iconName}`)} width={30} height={30} />
+													) : (
+														<Icon iconName={info.iconName} colorType="green" />
+													)}
 													<Text className={classes.propertyText}>{info.property}</Text>
 													<Text className={classes.descriptionText}>{info.description}</Text>
 												</Box>
@@ -920,12 +943,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 												{formatMessage({ id: 'button.finish' })}
 											</LightGreenButton>
 											{ridingStart ? (
-												<GreenButton iconName="pause" compact onClick={() => setRidingStart(false)}>
-													{formatMessage({ id: 'button.pause' })}
+												<GreenButton iconName="start" compact onClick={(): void => setRidingStart(false)}>
+													{formatMessage({ id: 'button.start' })}
 												</GreenButton>
 											) : (
-												<GreenButton iconName="start" compact onClick={() => setRidingStart(true)}>
-													{formatMessage({ id: 'button.start' })}
+												<GreenButton iconName="pause" compact onClick={(): void => setRidingStart(true)}>
+													{formatMessage({ id: 'button.pause' })}
 												</GreenButton>
 											)}
 										</Box>
@@ -967,7 +990,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					</Box>
 				</Box>
 				<Text className={classes.creditCardsText}>{formatMessage({ id: 'home.payment_method_sheet.text.credit_cards' })}</Text>
-				{paymentMethodData?.map(
+				{paymentMethod?.map(
 					(item: string, index: number): JSX.Element => {
 						return <PaymentMethodItem key={index} handleRemoveClick={(): void => handleRemoveClick()} />;
 					}
@@ -976,7 +999,13 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					{formatMessage({ id: 'button.add_payment_method' })}
 				</Button>
 				<Box className={classes.paymentMethodFooter}>
-					<GreenButton iconName="add-payment" className={classes.payButton} compact onClick={(): void => setPaidSuccessModal(true)}>
+					<GreenButton
+						iconName="add-payment"
+						className={classes.payButton}
+						compact
+						onClick={(): void => setPaidModal(true)}
+						disabled={paymentMethod.length === 0}
+					>
 						{formatMessage({ id: 'button.pay' })}
 					</GreenButton>
 					<Text className={classes.swipeText}>{formatMessage({ id: 'home.payment_method_sheet.text.description_pay' })}</Text>
@@ -1024,7 +1053,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			</BottomSheet>
 			<Dialog
 				title={formatMessage({ id: 'home.payment_method_sheet.pay.dialog.title' })}
-				open={paidSuccessModal}
+				open={paidModal}
 				hasClose
 				illustrationName="superman"
 				onClose={handlePaidDialogClose}
