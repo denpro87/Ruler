@@ -116,6 +116,24 @@ export const vehicleSummary = [
 	}
 ];
 
+export const finishedRideVehicleInfo = [
+	{
+		iconName: 'charge',
+		property: '79 %',
+		description: 'battery level'
+	},
+	{
+		iconName: 'distance',
+		property: '11 km',
+		description: 'traveled'
+	},
+	{
+		iconName: 'ride-history',
+		property: '45 min',
+		description: 'duration'
+	}
+];
+
 export const vehicleButtons = [
 	{
 		label: 'home.text.all',
@@ -147,91 +165,91 @@ export const vehicleButtons = [
 	}
 ];
 
-export const vehicleTypes = [
-	{
-		vehicleSummary: [
-			{
-				iconName: './images/lime.png',
-				property: 'Lime',
-				description: 'electric car'
-			},
-			{
-				iconName: 'charge',
-				property: '79%',
-				description: 'battery level'
-			},
-			{
-				iconName: 'distance',
-				property: '1 km',
-				description: 'distance'
-			},
-			{
-				iconName: 'wallet',
-				property: '0.15 /min',
-				description: '$ 1 to unlock'
-			}
-		],
-		imageUrl: './images/car.png',
-		vehicleDetail: [
-			{
-				iconName: 'seats',
-				property: '4 seats'
-			},
-			{
-				iconName: 'engine',
-				property: 'electric'
-			},
-			{
-				iconName: 'transmission	',
-				property: 'automatic'
-			},
-			{
-				iconName: 'color',
-				property: 'white'
-			},
-			{
-				iconName: 'point',
-				property: 'Na Hřebenkách 2, 150 00 Praha 5'
-			}
-		]
-	},
-	{
-		vehicleSummary: [
-			{
-				iconName: './images/lime.png',
-				property: 'Lime',
-				description: 'electric car'
-			},
-			{
-				iconName: 'charge',
-				property: '79%',
-				description: 'battery level'
-			},
-			{
-				iconName: 'distance',
-				property: '1 km',
-				description: 'distance'
-			},
-			{
-				iconName: 'wallet',
-				property: '0.15 /min',
-				description: '$ 1 to unlock'
-			}
-		],
-		imageUrl: './images/bike.png',
-		vehicleDetail: [
-			{
-				iconName: 'seats',
-				property: '43 km / h'
-			},
-			{
-				iconName: 'color',
-				property: 'white'
-			},
-			{
-				iconName: 'point',
-				property: 'Na Hřebenkách 2, 150 00 Praha 5'
-			}
-		]
-	}
-];
+// export const vehicleTypes = [
+// 	{
+// 		vehicleSummary: [
+// 			{
+// 				iconName: './images/lime.png',
+// 				property: 'Lime',
+// 				description: 'electric car'
+// 			},
+// 			{
+// 				iconName: 'charge',
+// 				property: '79%',
+// 				description: 'battery level'
+// 			},
+// 			{
+// 				iconName: 'distance',
+// 				property: '1 km',
+// 				description: 'distance'
+// 			},
+// 			{
+// 				iconName: 'wallet',
+// 				property: '0.15 /min',
+// 				description: '$ 1 to unlock'
+// 			}
+// 		],
+// 		imageUrl: './images/car.png',
+// 		vehicleDetail: [
+// 			{
+// 				iconName: 'seats',
+// 				property: '4 seats'
+// 			},
+// 			{
+// 				iconName: 'engine',
+// 				property: 'electric'
+// 			},
+// 			{
+// 				iconName: 'transmission	',
+// 				property: 'automatic'
+// 			},
+// 			{
+// 				iconName: 'color',
+// 				property: 'white'
+// 			},
+// 			{
+// 				iconName: 'point',
+// 				property: 'Na Hřebenkách 2, 150 00 Praha 5'
+// 			}
+// 		]
+// 	},
+// 	{
+// 		vehicleSummary: [
+// 			{
+// 				iconName: './images/lime.png',
+// 				property: 'Lime',
+// 				description: 'electric car'
+// 			},
+// 			{
+// 				iconName: 'charge',
+// 				property: '79%',
+// 				description: 'battery level'
+// 			},
+// 			{
+// 				iconName: 'distance',
+// 				property: '1 km',
+// 				description: 'distance'
+// 			},
+// 			{
+// 				iconName: 'wallet',
+// 				property: '0.15 /min',
+// 				description: '$ 1 to unlock'
+// 			}
+// 		],
+// 		imageUrl: './images/bike.png',
+// 		vehicleDetail: [
+// 			{
+// 				iconName: 'seats',
+// 				property: '43 km / h'
+// 			},
+// 			{
+// 				iconName: 'color',
+// 				property: 'white'
+// 			},
+// 			{
+// 				iconName: 'point',
+// 				property: 'Na Hřebenkách 2, 150 00 Praha 5'
+// 			}
+// 		]
+// 	}
+// ];

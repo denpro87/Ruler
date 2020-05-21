@@ -15,20 +15,21 @@ import {
 	Link,
 	Menu,
 	SwitchListItem,
-	Text
+	Text,
+	TextField
 } from 'components';
 import { Box, Input, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg, IonSlide, IonSlides } from '@ionic/react';
 
-import { areasListItems, damagedVehicleTypes, markerList, vehicleButtons, vehicleSummary, vehicleTypes } from './Home.data';
+import { areasListItems, damagedVehicleTypes, finishedRideVehicleInfo, markerList, vehicleButtons, vehicleSummary } from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { GeolocateControl, Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import bike from './images/bike.png';
 import bird from './images/bird.png';
 import car from './images/car.png';
@@ -79,6 +80,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [showAreas, setShowAreas] = React.useState(false);
 	const [showFilter, setShowFilter] = React.useState(false);
 	const [showWrongCode, setShowWrongCode] = React.useState(false);
+	const [reportSubmitModal, setReportSubmitModal] = React.useState(false);
 	const [rideStart, setRideStart] = React.useState(false);
 	const [ridingStart, setRidingStart] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
@@ -98,7 +100,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [paymentMethodData, setPaymentMethodData] = React.useState<string[]>([]);
 	const [paidSuccessModal, setPaidSuccessModal] = React.useState(false);
 	const [finishRidingModal, setFinishRidingModal] = React.useState(false);
-	const [finishRiding, setFinishRiding] = React.useState(false);
+	const [showFinishedRide, setShowFinishedRide] = React.useState(false);
+	const [rideReview, setRideReview] = React.useState('');
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
@@ -177,6 +180,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setPaidSuccessModal(false);
 	};
 
+	const handleRideReivewChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		setRideReview(event?.target.value);
+	};
+
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
 
@@ -251,6 +258,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowVehicleInfo(isOpen);
 	};
 
+	const handleFinishRideBottomSheetChange = (isOpen: boolean): void => {
+		setShowFinishedRide(isOpen);
+	};
+
 	const handlePaymentMethodBottomSheetChange = (isOpen: boolean): void => {
 		setShowPaymentMethod(isOpen);
 	};
@@ -276,6 +287,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setPaymentMethodData([]);
 	};
 
+	const handleReportSubmitDialogClose = (): void => {
+		setReportSubmitModal(false);
+	};
+
 	const handleVehicleClick = (iconName: string) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
 		setVehicleSelectionExpanded(false);
 		setShowVehicleInfo(true);
@@ -285,6 +300,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const handleReserveClick = (): void => {
 		setReservation(true);
 		setShowVehicleInfo(false);
+	};
+
+	const handleFinishRidingClick = (): void => {
+		setFinishRidingModal(false);
+		setShowVehicleInfo(false);
+		setShowFinishedRide(true);
 	};
 
 	return (
@@ -354,34 +375,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										);
 									}
 								)}
-								{/* <IconButton
-								noShadow
-								label={formatMessage({ id: 'home.text.all' })}
-								iconName="vehicle"
-								colorType="black"
-								className={classes.firstIconButton}
-							/>
-							<IconButton
-								noShadow
-								label={formatMessage({ id: 'home.text.car' })}
-								iconName="car"
-								colorType="black"
-								className={classes.midIconButton}
-							/>
-							<IconButton
-								noShadow
-								label={formatMessage({ id: 'home.text.bike' })}
-								iconName="bike"
-								colorType="black"
-								className={classes.midIconButton}
-							/>
-							<IconButton
-								noShadow
-								label={formatMessage({ id: 'home.text.scooter' })}
-								iconName="scooter"
-								colorType="black"
-								className={classes.midIconButton}
-							/> */}
 								<IconButton
 									iconName="close"
 									colorType="black"
@@ -841,7 +834,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 											</Box>
 											<Box className={classes.vehicleDetailInfoRow}>
 												<Box className={classes.vehicleDetailInfoColumn}>
-													<Icon iconName="transmission" colorType="green" />
+													<Icon iconName="speed" colorType="green" />
 													<Text className={classes.iconText}>43 km / h</Text>
 												</Box>
 												<Box className={classes.vehicleDetailInfoColumn}>
@@ -989,6 +982,46 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					<Text className={classes.swipeText}>{formatMessage({ id: 'home.payment_method_sheet.text.description_pay' })}</Text>
 				</Box>
 			</BottomSheet>
+			<BottomSheet
+				onCloseButtonClick={(): void => setShowFinishedRide(false)}
+				open={showFinishedRide}
+				hasBlackBar={false}
+				onBottomSheetChange={handleFinishRideBottomSheetChange}
+			>
+				<Box className={classes.totalAmountTextWrapper}>
+					<Text className={classes.totalAmountText}>{formatMessage({ id: 'home.finished_ride_sheet.text.total_amount' })}</Text>
+					<Text className={classes.totalAmountNumber}>$7.00</Text>
+				</Box>
+				<Box className={classes.vehicleInfo}>
+					{finishedRideVehicleInfo.map(
+						(info, index): JSX.Element => {
+							return (
+								<Box key={index} className={classes.infoWrapper}>
+									<Icon iconName={info.iconName} colorType="green" />
+									<Text className={classes.propertyText}>{info.property}</Text>
+									<Text className={classes.descriptionText}>{info.description}</Text>
+								</Box>
+							);
+						}
+					)}
+				</Box>
+				<Box className={classes.rateRideWrapper}>
+					<Text className={classes.rateRideText}>{formatMessage({ id: 'home.finished_ride_sheet.text.rate_ride' })}</Text>
+					<Box>
+						{[0, 1, 2, 3].map(index => {
+							return <Icon key={index} iconName="rate-active" className={classes.rateActiveIcon} />;
+						})}
+						<Icon iconName="rate-inactive" />
+					</Box>
+				</Box>
+				<TextField
+					label={formatMessage({ id: 'home.finished_ride_sheet.text.last_ride' })}
+					name="rideReview"
+					value={rideReview}
+					onValueChange={handleRideReivewChange}
+				/>
+				<GreenButton onClick={(): void => setReportSubmitModal(true)}>{formatMessage({ id: 'button.done' })}</GreenButton>
+			</BottomSheet>
 			<Dialog
 				title={formatMessage({ id: 'home.payment_method_sheet.pay.dialog.title' })}
 				open={paidSuccessModal}
@@ -998,6 +1031,18 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				aria-labelledby="form-dialog-title"
 			>
 				<Text className={classes.dialogContentText}>{formatMessage({ id: 'home.payment_method_sheet.pay.dialog.description' })}</Text>
+			</Dialog>
+			<Dialog
+				title={formatMessage({ id: 'home.finished_ride_sheet.report_submit.dialog.title' })}
+				open={reportSubmitModal}
+				hasClose
+				illustrationName="sent"
+				onClose={handleReportSubmitDialogClose}
+				aria-labelledby="form-dialog-title"
+			>
+				<Text className={classes.dialogContentText}>
+					{formatMessage({ id: 'home.finished_ride_sheet.report_submit.dialog.description' })}
+				</Text>
 			</Dialog>
 			<Dialog
 				title={formatMessage({ id: 'home.vehicle_info_sheet.finish.dialog.title' })}
@@ -1010,7 +1055,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<Typography className={classes.finishRidingDialogContentText}>
 					{formatMessage({ id: 'home.vehicle_info_sheet.finish.dialog.description' })}
 				</Typography>
-				<BlackButton onClick={(): void => setFinishRiding(true)} className={classes.notRecommendedButton}>
+				<BlackButton onClick={handleFinishRidingClick} className={classes.notRecommendedButton}>
 					{formatMessage({ id: 'home.vehicle_info_sheet.finish.dialog.button_text' })}
 				</BlackButton>
 			</Dialog>

@@ -661,8 +661,51 @@ const finishRidingDialogContentText: CSSProperties = {
 	maxWidth: pxToRem(160),
 	margin: '0 auto'
 };
+
+const totalAmountTextWrapper: CSSProperties = {
+	paddingTop: pxToRem(15),
+	display: 'flex',
+	justifyContent: 'space-between'
+};
+
+const totalAmountText: CSSProperties = {
+	fontSize: pxToRem(20),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: '#181c19'
+};
+
+const totalAmountNumber: CSSProperties = {
+	fontSize: pxToRem(15),
+	fontWeight: 'bold',
+	color: '#181c19'
+};
+
+const rateRideWrapper: CSSProperties = {
+	padding: `${pxToRem(40)} 0 ${pxToRem(20)} 0`,
+	display: 'flex',
+	justifyContent: 'space-between',
+	alignItems: 'center'
+};
+
+const rateRideText: CSSProperties = {
+	fontSize: pxToRem(15),
+	fontWeight: 600,
+	lineHeight: 1.67,
+	color: '#181c19'
+};
+
+const rateActiveIcon: CSSProperties = {
+	marginRight: pxToRem(10)
+};
 export const styles = createStyles({
+	rateActiveIcon,
+	rateRideText,
+	rateRideWrapper,
+	totalAmountNumber,
+	totalAmountText,
 	finishRidingDialogContentText,
+	totalAmountTextWrapper,
 	rideFooter,
 	notRecommendedButton,
 	iconButtonTextContainer,

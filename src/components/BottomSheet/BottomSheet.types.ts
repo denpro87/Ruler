@@ -6,6 +6,7 @@ export interface IBottomSheetProps {
 	hasCloseButton?: boolean;
 	hasFindMeButton?: boolean;
 	outDecorator?: boolean;
+	hasBlackBar?: boolean;
 	onBottomSheetChange: (isOpen: boolean) => void;
 	onCloseButtonClick?: React.ReactEventHandler<{}>;
 }
