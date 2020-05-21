@@ -22,7 +22,15 @@ import { Box, Input, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg, IonSlide, IonSlides } from '@ionic/react';
 
-import { areasListItems, damagedVehicleTypes, finishedRideVehicleInfo, markerList, vehicleButtons, vehicleSummary } from './Home.data';
+import {
+	areasListItems,
+	damagedVehicleTypes,
+	finishedRideVehicleInfo,
+	markerList,
+	vehicleButtons,
+	vehicleSimpleInfo,
+	vehicleSummary
+} from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
@@ -83,6 +91,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [reportSubmitModal, setReportSubmitModal] = React.useState(false);
 	const [rideStart, setRideStart] = React.useState(false);
 	const [ridingStart, setRidingStart] = React.useState(false);
+	const [enteredQrCode, setEnteredQrCode] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
 	const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
 	const [selectedVehicle, setSelectedVehicle] = React.useState('');
@@ -244,6 +253,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const handleQrCodeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		if (qrCode === event.target.value) {
 			setShowWrongCode(false);
+			setEnteredQrCode(true);
 			setShowDischargedVehicle(true);
 			setShowScanEnterCode(false);
 			setScanEnterButtonLabel(formatMessage({ id: 'button.scan_code' }));
@@ -681,21 +691,37 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<IonSlides options={slideOpts}>
 					<IonSlide className={classes.slide}>
 						<Box className={classes.vehicleInfo}>
-							{vehicleSummary.map(
-								(info, index): JSX.Element => {
-									return (
-										<Box key={index} className={classes.infoWrapper}>
-											{index === 0 ? (
-												<Image src={require(`${info.iconName}`)} width={30} height={30} />
-											) : (
-												<Icon iconName={info.iconName} colorType="green" />
-											)}
-											<Text className={classes.propertyText}>{info.property}</Text>
-											<Text className={classes.descriptionText}>{info.description}</Text>
-										</Box>
-									);
-								}
-							)}
+							{enteredQrCode
+								? vehicleSummary.map(
+										(info, index): JSX.Element => {
+											return (
+												<Box key={index} className={classes.infoWrapper}>
+													{index === 0 ? (
+														<Image src={require(`${info.iconName}`)} width={30} height={30} />
+													) : (
+														<Icon iconName={info.iconName} colorType="green" />
+													)}
+													<Text className={classes.propertyText}>{info.property}</Text>
+													<Text className={classes.descriptionText}>{info.description}</Text>
+												</Box>
+											);
+										}
+								  )
+								: vehicleSimpleInfo.map(
+										(info, index): JSX.Element => {
+											return (
+												<Box key={index} className={classes.infoWrapper}>
+													{index === 0 ? (
+														<Image src={require(`${info.iconName}`)} width={30} height={30} />
+													) : (
+														<Icon iconName={info.iconName} colorType="green" />
+													)}
+													<Text className={classes.propertyText}>{info.property}</Text>
+													<Text className={classes.descriptionText}>{info.description}</Text>
+												</Box>
+											);
+										}
+								  )}
 						</Box>
 						{!hasAccount && (
 							<Box className={classes.vehicleInfoFooter}>
@@ -773,6 +799,41 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						)}
 					</IonSlide>
 					<IonSlide className={classes.slide}>
+						{hasAccount && hasValidatedDriverLicence && paymentMethod.length === 0 && (
+							<>
+								<Box className={classes.walletsLogoContainer}>
+									<Box className={classes.walletsLogo}>
+										<IconButton iconProps={{ iconName: 'well-done-checked', color: '#ffffff' }} className={classes.wellDoneIcon} />
+										<Link className={classes.rulerWalletText} href="/wallets/ruler-wallet">
+											{formatMessage({ id: 'home.payment_method_sheet.logo_title' })}
+										</Link>
+										<Text className={classes.rulerPriceText}>€ 110 = 250 Ruler</Text>
+										<Text className={classes.rulerNumberText}>65 Rulers</Text>
+									</Box>
+								</Box>
+								<Text className={classes.creditCardsText}>{formatMessage({ id: 'home.payment_method_sheet.text.credit_cards' })}</Text>
+								{paymentMethod?.map(
+									(item: string, index: number): JSX.Element => {
+										return <PaymentMethodItem key={index} handleRemoveClick={(): void => handleRemoveClick()} />;
+									}
+								)}
+								<Button iconName="add" compact className={classes.addPaymentMethodButton} onClick={handleAddPaymentMethodClick}>
+									{formatMessage({ id: 'button.add_payment_method' })}
+								</Button>
+								<Box className={classes.paymentMethodFooter}>
+									<GreenButton
+										iconName="add-payment"
+										className={classes.payButton}
+										compact
+										onClick={(): void => setPaidModal(true)}
+										disabled={paymentMethod.length === 0}
+									>
+										{formatMessage({ id: 'button.pay' })}
+									</GreenButton>
+									<Text className={classes.swipeText}>{formatMessage({ id: 'home.payment_method_sheet.text.description_pay' })}</Text>
+								</Box>
+							</>
+						)}
 						{hasAccount && hasValidatedDriverLicence && paymentMethod.length > 0 && !reservation && (
 							<>
 								<Box>
@@ -891,7 +952,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 							</>
 						)}
 						{hasAccount && hasValidatedDriverLicence && paymentMethod.length > 0 && reservation && (
-							<IonSlide className={classes.slide}>
+							<>
 								<Box className={classes.vehicleInfo}>
 									{vehicleSummary.map(
 										(info, index): JSX.Element => {
@@ -968,48 +1029,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										</Box>
 									</Box>
 								</Box>
-							</IonSlide>
+							</>
 						)}
 					</IonSlide>
 				</IonSlides>
-			</BottomSheet>
-			<BottomSheet
-				open={showPaymentMethod}
-				outDecorator
-				title={formatMessage({ id: 'home.payment_method_sheet.title' })}
-				onBottomSheetChange={handlePaymentMethodBottomSheetChange}
-			>
-				<Box className={classes.walletsLogoContainer}>
-					<Box className={classes.walletsLogo}>
-						<IconButton iconProps={{ iconName: 'well-done-checked', color: '#ffffff' }} className={classes.wellDoneIcon} />
-						<Link className={classes.rulerWalletText} href="/wallets/ruler-wallet">
-							{formatMessage({ id: 'home.payment_method_sheet.logo_title' })}
-						</Link>
-						<Text className={classes.rulerPriceText}>€ 110 = 250 Ruler</Text>
-						<Text className={classes.rulerNumberText}>65 Rulers</Text>
-					</Box>
-				</Box>
-				<Text className={classes.creditCardsText}>{formatMessage({ id: 'home.payment_method_sheet.text.credit_cards' })}</Text>
-				{paymentMethod?.map(
-					(item: string, index: number): JSX.Element => {
-						return <PaymentMethodItem key={index} handleRemoveClick={(): void => handleRemoveClick()} />;
-					}
-				)}
-				<Button iconName="add" compact className={classes.addPaymentMethodButton} onClick={handleAddPaymentMethodClick}>
-					{formatMessage({ id: 'button.add_payment_method' })}
-				</Button>
-				<Box className={classes.paymentMethodFooter}>
-					<GreenButton
-						iconName="add-payment"
-						className={classes.payButton}
-						compact
-						onClick={(): void => setPaidModal(true)}
-						disabled={paymentMethod.length === 0}
-					>
-						{formatMessage({ id: 'button.pay' })}
-					</GreenButton>
-					<Text className={classes.swipeText}>{formatMessage({ id: 'home.payment_method_sheet.text.description_pay' })}</Text>
-				</Box>
 			</BottomSheet>
 			<BottomSheet
 				onCloseButtonClick={(): void => setShowFinishedRide(false)}
