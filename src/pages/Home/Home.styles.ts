@@ -488,11 +488,11 @@ const vehicleInfoFooter: CSSProperties = {
 };
 
 const paymentMethodFooter: CSSProperties = {
-	margin: `${pxToRem(65)} auto 0 auto`,
+	marginTop: pxToRem(65),
 	display: 'flex',
 	flexDirection: 'column',
 	'&> span': {
-		padding: `${pxToRem(7)} 0 ${pxToRem(3)} 0`
+		padding: `${pxToRem(7)} 0 ${pxToRem(3)}`
 	}
 };
 
@@ -509,19 +509,19 @@ const payButton: CSSProperties = {
 };
 
 const walletsLogoContainer: CSSProperties = {
-	padding: `${pxToRem(35)} 0 ${pxToRem(30)} 0`,
-	maxWidth: pxToRem(325),
-	margin: '0 auto'
+	padding: `${pxToRem(35)} 0 ${pxToRem(30)} 0`
 };
 
 const walletsLogo: CSSProperties = {
+	margin: '0 auto',
 	backgroundImage: `url(${walletsLogoImage})`,
-	// minWidth: pxToRem(275),
-	// minHeight: pxToRem(82),
+	width: pxToRem(325),
+	height: pxToRem(132),
 	position: 'relative',
-	padding: `${pxToRem(25)}`,
+	padding: `${pxToRem(25)} ${pxToRem(30)}`,
 	display: 'flex',
-	flexDirection: 'column'
+	flexDirection: 'column',
+	textAlign: 'left'
 };
 
 const wellDoneIcon: CSSProperties = {
@@ -559,11 +559,14 @@ const rulerNumberText: CSSProperties = {
 	fontSize: pxToRem(20)
 };
 
-const creditCardsText: CSSProperties = {
-	color: 'rgba(24, 28, 25, 0.5)',
-	lineHeight: 1.5,
-	fontWeight: 600,
-	fontSize: pxToRem(10)
+const creditCardsTextWrapper: CSSProperties = {
+	textAlign: 'left',
+	'& span': {
+		color: 'rgba(24, 28, 25, 0.5)',
+		lineHeight: 1.5,
+		fontWeight: 600,
+		fontSize: pxToRem(10)
+	}
 };
 
 const addPaymentMethodButton: CSSProperties = {
@@ -572,8 +575,6 @@ const addPaymentMethodButton: CSSProperties = {
 	color: '#00b559',
 	fontWeight: 'bold',
 	lineHeight: 1.67,
-	padding: `${pxToRem(12)} 0 ${pxToRem(13)} 0`,
-	textTransform: 'none',
 	'&:hover': {
 		color: '#00b559',
 		backgroundColor: 'rgba(0, 0, 0, 0.04)'
@@ -581,10 +582,7 @@ const addPaymentMethodButton: CSSProperties = {
 };
 
 const slide: CSSProperties = {
-	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'center',
-	alignItems: 'stretch'
+	display: 'block'
 };
 
 const scanAndReserveButtonGroupWrapper: CSSProperties = {
@@ -701,7 +699,18 @@ const rateActiveIcon: CSSProperties = {
 const reserveFooter: CSSProperties = {
 	padding: `${pxToRem(93)} 0 ${pxToRem(25)}`
 };
+
+const paymentMethodTitleTextWrapper: CSSProperties = {
+	paddingTop: pxToRem(20),
+	'& span': {
+		fontSize: pxToRem(20),
+		fontWeight: 'bold',
+		lineHeight: 1.5,
+		color: '#181c19'
+	}
+};
 export const styles = createStyles({
+	paymentMethodTitleTextWrapper,
 	circleWithVehicleNumber,
 	circleWithVehicleIcon,
 	reserveFooter,
@@ -724,7 +733,7 @@ export const styles = createStyles({
 	scanAndReserveButtonGroupWrapper,
 	slide,
 	paymentMethodFooter,
-	creditCardsText,
+	creditCardsTextWrapper,
 	addPaymentMethodButton,
 	rulerNumberText,
 	rulerPriceText,

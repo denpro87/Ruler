@@ -295,6 +295,7 @@
 	"home.payment_method_sheet.pay.dialog.title": "Paid successfully!",
 	"home.payment_method_sheet.pay.dialog.description": "You are all set to start the trip!",
 	"home.payment_method_sheet.logo_title": "My Ruler wallet",
+	"home.payment_method_sheet.text.select_payment_method": "Select payment method",
 	"home.payment_method_sheet.text.credit_cards": "Credit cards",
 	"home.payment_method_sheet.text.description_pay": "No debit would be done until completion of the trip",
 	"payment_methods.title": "Payment methods",

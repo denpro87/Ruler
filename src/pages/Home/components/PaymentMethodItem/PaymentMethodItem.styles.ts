@@ -38,7 +38,8 @@ const cardNumberText: CSSProperties = {
 		color: 'rgba(255, 255, 255, 0.5)'
 	}),
 	fontSize: pxToRem(15),
-	paddingTop: pxToRem(12)
+	paddingTop: pxToRem(12),
+	textAlign: 'left'
 };
 
 const cardTypeText: CSSProperties = {

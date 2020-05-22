@@ -22,15 +22,7 @@ import { Box, Input, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg, IonSlide, IonSlides } from '@ionic/react';
 
-import {
-	areasListItems,
-	damagedVehicleTypes,
-	finishedRideVehicleInfo,
-	markerList,
-	vehicleButtons,
-	vehicleSimpleInfo,
-	vehicleSummary
-} from './Home.data';
+import { areasListItems, damagedVehicleTypes, finishedRideVehicleInfo, markerList, vehicleButtons, vehicleInfo } from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
@@ -87,6 +79,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [showReport, setShowReport] = React.useState(false);
 	const [showAreas, setShowAreas] = React.useState(false);
 	const [showFilter, setShowFilter] = React.useState(false);
+	const [paidSuccess, setPaidSuccess] = React.useState(false);
 	const [showWrongCode, setShowWrongCode] = React.useState(false);
 	const [reportSubmitModal, setReportSubmitModal] = React.useState(false);
 	const [rideStart, setRideStart] = React.useState(false);
@@ -105,7 +98,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
 	const [showScanEnterCode, setShowScanEnterCode] = React.useState(false);
 	const [showVehicleInfo, setShowVehicleInfo] = React.useState(false);
-	const [showPaymentMethod, setShowPaymentMethod] = React.useState(false);
 	const [paymentMethod, setPaymentMethod] = React.useState<string[]>([]);
 	const [paidModal, setPaidModal] = React.useState(false);
 	const [finishRidingModal, setFinishRidingModal] = React.useState(false);
@@ -121,7 +113,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 
 		if (data) setPaymentMethod(data);
 
-		if (showPaymentMethod) setShowPaymentMethod(showPaymentMethod);
+		if (showPaymentMethod) setShowVehicleInfo(showPaymentMethod);
 	}, [props.location.state]);
 
 	React.useEffect(() => {
@@ -187,8 +179,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 
 	const handlePaidDialogClose = (): void => {
 		setPaidModal(false);
-		setShowPaymentMethod(false);
-		setShowVehicleInfo(true);
+		setPaidSuccess(true);
 	};
 
 	const handleRideReivewChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -274,10 +265,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowFinishedRide(isOpen);
 	};
 
-	const handlePaymentMethodBottomSheetChange = (isOpen: boolean): void => {
-		setShowPaymentMethod(isOpen);
-	};
-
 	const handleMarkerClick = (index: number, vehicleNumber: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		if (vehicleNumber === 0) {
 			setShowVehicleInfo(true);
@@ -293,8 +280,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 
 	const handleAddPaymentMethodClick = (): void => {
 		setShowVehicleInfo(false);
-
-		if (showPaymentMethod) setShowPaymentMethod(false);
 		history.push('/payment-methods/add-payment-method', { pageName: 'home' });
 	};
 
@@ -691,37 +676,23 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<IonSlides options={slideOpts}>
 					<IonSlide className={classes.slide}>
 						<Box className={classes.vehicleInfo}>
-							{enteredQrCode
-								? vehicleSummary.map(
-										(info, index): JSX.Element => {
-											return (
-												<Box key={index} className={classes.infoWrapper}>
-													{index === 0 ? (
-														<Image src={require(`${info.iconName}`)} width={30} height={30} />
-													) : (
-														<Icon iconName={info.iconName} colorType="green" />
-													)}
-													<Text className={classes.propertyText}>{info.property}</Text>
-													<Text className={classes.descriptionText}>{info.description}</Text>
-												</Box>
-											);
-										}
-								  )
-								: vehicleSimpleInfo.map(
-										(info, index): JSX.Element => {
-											return (
-												<Box key={index} className={classes.infoWrapper}>
-													{index === 0 ? (
-														<Image src={require(`${info.iconName}`)} width={30} height={30} />
-													) : (
-														<Icon iconName={info.iconName} colorType="green" />
-													)}
-													<Text className={classes.propertyText}>{info.property}</Text>
-													<Text className={classes.descriptionText}>{info.description}</Text>
-												</Box>
-											);
-										}
-								  )}
+							{vehicleInfo.map(
+								(info, index): JSX.Element => {
+									if (enteredQrCode && index === 2) return <></>;
+
+									return (
+										<Box key={index} className={classes.infoWrapper}>
+											{index === 0 ? (
+												<Image src={require(`${info.iconName}`)} width={30} height={30} />
+											) : (
+												<Icon iconName={info.iconName} colorType="green" />
+											)}
+											<Text className={classes.propertyText}>{info.property}</Text>
+											<Text className={classes.descriptionText}>{info.description}</Text>
+										</Box>
+									);
+								}
+							)}
 						</Box>
 						{!hasAccount && (
 							<Box className={classes.vehicleInfoFooter}>
@@ -743,7 +714,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								</Text>
 							</Box>
 						)}
-						{hasAccount && hasValidatedDriverLicence && paymentMethod.length === 0 && (
+						{hasAccount && hasValidatedDriverLicence && !paidSuccess && (
 							<Box className={classes.vehicleInfoFooter}>
 								<GreenButton iconName="add-payment" compact onClick={handleAddPaymentMethodClick}>
 									{formatMessage({ id: 'button.add_payment_method' })}
@@ -753,7 +724,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								</Text>
 							</Box>
 						)}
-						{hasAccount && hasValidatedDriverLicence && paymentMethod.length > 0 && !reservation && (
+						{hasAccount && hasValidatedDriverLicence && paidSuccess && !reservation && (
 							<Box className={classes.vehicleInfoFooter}>
 								{reservation ? (
 									<GreenButton iconName="start" compact onClick={(): void => setRideStart(true)}>
@@ -772,7 +743,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_more' })}</Text>
 							</Box>
 						)}
-						{hasAccount && hasValidatedDriverLicence && paymentMethod.length > 0 && reservation && (
+						{hasAccount && hasValidatedDriverLicence && paidSuccess && reservation && (
 							<Box className={classes.vehicleInfoFooter}>
 								{rideStart ? (
 									<Box className={classes.scanAndReserveButtonGroupWrapper}>
@@ -799,8 +770,11 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						)}
 					</IonSlide>
 					<IonSlide className={classes.slide}>
-						{hasAccount && hasValidatedDriverLicence && paymentMethod.length === 0 && (
+						{hasAccount && hasValidatedDriverLicence && !paidSuccess && (
 							<>
+								<Box className={classes.paymentMethodTitleTextWrapper}>
+									<Text>{formatMessage({ id: 'home.payment_method_sheet.text.select_payment_method' })}</Text>
+								</Box>
 								<Box className={classes.walletsLogoContainer}>
 									<Box className={classes.walletsLogo}>
 										<IconButton iconProps={{ iconName: 'well-done-checked', color: '#ffffff' }} className={classes.wellDoneIcon} />
@@ -811,7 +785,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										<Text className={classes.rulerNumberText}>65 Rulers</Text>
 									</Box>
 								</Box>
-								<Text className={classes.creditCardsText}>{formatMessage({ id: 'home.payment_method_sheet.text.credit_cards' })}</Text>
+								<Box className={classes.creditCardsTextWrapper}>
+									<Text>{formatMessage({ id: 'home.payment_method_sheet.text.credit_cards' })}</Text>
+								</Box>
 								{paymentMethod?.map(
 									(item: string, index: number): JSX.Element => {
 										return <PaymentMethodItem key={index} handleRemoveClick={(): void => handleRemoveClick()} />;
@@ -834,14 +810,16 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								</Box>
 							</>
 						)}
-						{hasAccount && hasValidatedDriverLicence && paymentMethod.length > 0 && !reservation && (
+						{hasAccount && hasValidatedDriverLicence && paidSuccess && !reservation && (
 							<>
 								<Box>
 									<IonSlides options={slideOpts}>
 										<IonSlide className={classes.slide}>
 											<Box className={classes.vehicleInfo}>
-												{vehicleSummary.map(
+												{vehicleInfo.map(
 													(info, index): JSX.Element => {
+														if (enteredQrCode && index === 2) return <></>;
+
 														return (
 															<Box key={index} className={classes.infoWrapper}>
 																{index === 0 ? (
@@ -886,8 +864,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										</IonSlide>
 										<IonSlide className={classes.slide}>
 											<Box className={classes.vehicleInfo}>
-												{vehicleSummary.map(
+												{vehicleInfo.map(
 													(info, index): JSX.Element => {
+														if (enteredQrCode && index === 2) return <></>;
+
 														return (
 															<Box key={index} className={classes.infoWrapper}>
 																{index === 0 ? (
@@ -951,11 +931,13 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								</Box>
 							</>
 						)}
-						{hasAccount && hasValidatedDriverLicence && paymentMethod.length > 0 && reservation && (
+						{hasAccount && hasValidatedDriverLicence && paidSuccess && reservation && (
 							<>
 								<Box className={classes.vehicleInfo}>
-									{vehicleSummary.map(
+									{vehicleInfo.map(
 										(info, index): JSX.Element => {
+											if (enteredQrCode && index === 2) return <></>;
+
 											return (
 												<Box key={index} className={classes.infoWrapper}>
 													{index === 0 ? (
