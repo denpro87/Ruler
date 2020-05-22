@@ -48,6 +48,11 @@ const slideOpts = {
 	autoHeight: true
 };
 
+const reserveSlideOpts = {
+	initialSlide: 0,
+	speed: 1000
+};
+
 export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const classes = useStyles();
 	const history = useHistory();
@@ -814,7 +819,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						{hasAccount && hasValidatedDriverLicence && paidSuccess && !reservation && (
 							<>
 								<Box>
-									<IonSlides options={slideOpts}>
+									<IonSlides options={reserveSlideOpts}>
 										<IonSlide className={classes.slide}>
 											<Box className={classes.vehicleInfo}>
 												{vehicleInfo.map(
@@ -904,21 +909,14 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 									</IonSlides>
 								</Box>
 								<Box className={classes.reserveFooter}>
-									{reservation ? (
-										<GreenButton iconName="start" compact onClick={(): void => setRideStart(true)}>
-											{formatMessage({ id: 'button.ride' })}
+									<Box className={classes.scanAndReserveButtonGroupWrapper}>
+										<LightGreenButton iconName="qr" compact>
+											{formatMessage({ id: 'button.scan' })}
+										</LightGreenButton>
+										<GreenButton iconName="lock" compact onClick={(): void => setReservation(true)}>
+											{formatMessage({ id: 'button.reserve' })}
 										</GreenButton>
-									) : (
-										<Box className={classes.scanAndReserveButtonGroupWrapper}>
-											<LightGreenButton iconName="qr" compact>
-												{formatMessage({ id: 'button.scan' })}
-											</LightGreenButton>
-											<GreenButton iconName="lock" compact onClick={(): void => setReservation(true)}>
-												{formatMessage({ id: 'button.reserve' })}
-											</GreenButton>
-										</Box>
-									)}
-
+									</Box>
 									<Box className={classes.iconButtonTextContainer}>
 										<Box className={classes.iconButtonTextWrapper}>
 											<IconButton iconName="how-to-ride" colorType="green" onClick={(): void => history.push('/get-help/how-to-ride')} />
