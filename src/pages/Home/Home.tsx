@@ -44,7 +44,8 @@ const useStyles = makeStyles(styles);
 const QRCode = require('qrcode-react');
 const slideOpts = {
 	initialSlide: 0,
-	speed: 1000
+	speed: 1000,
+	autoHeight: true
 };
 
 export const Home: React.FunctionComponent<IHomeProps> = props => {
@@ -87,8 +88,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [enteredQrCode, setEnteredQrCode] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
 	const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
-	const [selectedVehicle, setSelectedVehicle] = React.useState('');
-	const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
+	// const [selectedVehicle, setSelectedVehicle] = React.useState('');
+	// const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
 	const [placeHolder, setPlaceHolder] = React.useState('');
 	const [buttonLabel, setButtonLabel] = React.useState('Car');
 	const [qrCode, setQrCode] = React.useState('12345678');
@@ -245,10 +246,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		if (qrCode === event.target.value) {
 			setShowWrongCode(false);
 			setEnteredQrCode(true);
-			setShowDischargedVehicle(true);
+			// setShowDischargedVehicle(true);
 			setShowScanEnterCode(false);
 			setScanEnterButtonLabel(formatMessage({ id: 'button.scan_code' }));
-			setShowDischargedVehicle(false);
+			// setShowDischargedVehicle(false);
 			setShowVehicleInfo(true);
 		} else {
 			setShowWrongCode(true);
@@ -616,9 +617,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 							{showWrongCode && (
 								<Text className={classes.wrongCodeText}>{formatMessage({ id: 'home.qr_code_sheet.text.wrong_code' })}</Text>
 							)}
-							{showDischargedVehicle && (
+							{/* {showDischargedVehicle && (
 								<Text className={classes.wrongCodeText}>{formatMessage({ id: 'home.qr_code_sheet.text.discharged_vehicle' })}</Text>
-							)}
+							)} */}
 						</Box>
 						<Input
 							disableUnderline
