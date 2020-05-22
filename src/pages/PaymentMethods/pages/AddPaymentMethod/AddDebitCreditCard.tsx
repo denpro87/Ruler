@@ -36,7 +36,7 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 
 	const handleNextClick = (): void => {
 		if (pageName) {
-			history.push('/home', { showPaymentMethod: true, paymentMethodData: [cardState] });
+			history.push('/home', { showVehicleRide: true, data: [cardState] });
 		} else {
 			history.push('/payment-methods', { data: [cardState] });
 		}

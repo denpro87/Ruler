@@ -103,7 +103,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [switchState, setSwitchState] = React.useState(initialState);
 	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
 	const [showScanEnterCode, setShowScanEnterCode] = React.useState(false);
-	const [showVehicleInfo, setShowVehicleInfo] = React.useState(false);
+	const [showVehicleRide, setShowVehicleRide] = React.useState(false);
 	const [paymentMethod, setPaymentMethod] = React.useState<string[]>([]);
 	const [paidModal, setPaidModal] = React.useState(false);
 	const [finishRidingModal, setFinishRidingModal] = React.useState(false);
@@ -112,14 +112,14 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const state = params && params.state ? params.state : null;
-		const data = params && params.paymentMethodData ? params.paymentMethodData : null;
-		const showPaymentMethod = params && params.showPaymentMethod ? params.showPaymentMethod : null;
+		const data = params && params.data ? params.data : null;
+		const showVehicleRide = params && params.showVehicleRide ? params.showVehicleRide : null;
 
 		if (state) setShowInviteFriends(state);
 
 		if (data) setPaymentMethod(data);
 
-		if (showPaymentMethod) setShowVehicleInfo(showPaymentMethod);
+		if (showVehicleRide) setShowVehicleRide(showVehicleRide);
 	}, [props.location.state]);
 
 	React.useEffect(() => {
@@ -255,7 +255,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			setShowScanEnterCode(false);
 			setScanEnterButtonLabel(formatMessage({ id: 'button.scan_code' }));
 			// setShowDischargedVehicle(false);
-			setShowVehicleInfo(true);
+			setShowVehicleRide(true);
 		} else {
 			setShowWrongCode(true);
 		}
@@ -263,8 +263,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setQrCodeInput(qrCodeInputValue);
 	};
 
-	const handleVehicleInfoBottomSheetChange = (isOpen: boolean): void => {
-		setShowVehicleInfo(isOpen);
+	const handleVehicleRideBottomSheetChange = (isOpen: boolean): void => {
+		setShowVehicleRide(isOpen);
 	};
 
 	const handleFinishRideBottomSheetChange = (isOpen: boolean): void => {
@@ -273,19 +273,19 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 
 	const handleMarkerClick = (index: number, vehicleNumber: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		if (vehicleNumber === 0) {
-			setShowVehicleInfo(true);
+			setShowVehicleRide(true);
 		} else {
 		}
 		setSelectedVehicleIndex(index);
 	};
 
-	const handleCloseButtonClick = (): void => {
-		setShowVehicleInfo(false);
+	const handleVehicleRideCloseButtonClick = (): void => {
+		setShowVehicleRide(false);
 		setSelectedVehicleIndex(-1);
 	};
 
 	const handleAddPaymentMethodClick = (): void => {
-		setShowVehicleInfo(false);
+		setShowVehicleRide(false);
 		history.push('/payment-methods/add-payment-method', { pageName: 'home' });
 	};
 
@@ -305,7 +305,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 
 	const handleFinishRidingClick = (): void => {
 		setFinishRidingModal(false);
-		setShowVehicleInfo(false);
+		setShowVehicleRide(false);
 		setShowFinishedRide(true);
 	};
 
@@ -673,11 +673,11 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				</Box>
 			</BottomSheet>
 			<BottomSheet
-				open={showVehicleInfo}
+				open={showVehicleRide}
 				hasCloseButton
 				hasFindMeButton
-				onCloseButtonClick={handleCloseButtonClick}
-				onBottomSheetChange={handleVehicleInfoBottomSheetChange}
+				onCloseButtonClick={handleVehicleRideCloseButtonClick}
+				onBottomSheetChange={handleVehicleRideBottomSheetChange}
 			>
 				<IonSlides options={slideOpts}>
 					<IonSlide className={classes.slide}>
@@ -1019,6 +1019,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				onCloseButtonClick={(): void => setShowFinishedRide(false)}
 				open={showFinishedRide}
 				hasBlackBar={false}
+				hasCloseButton
 				onBottomSheetChange={handleFinishRideBottomSheetChange}
 			>
 				<Box className={classes.totalAmountTextWrapper}>
