@@ -35,7 +35,7 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 	};
 
 	return (
-		<Page title={formatMessage({ id: 'wallets.qr_code.title' })} titleSize="medium">
+		<Page title={formatMessage({ id: 'wallets.receive.title' })} titleSize="medium">
 			<Box className={classes.formWrapper}>
 				<TextField
 					name="from"
@@ -53,6 +53,7 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 				/>
 				<TextField
 					name="amount"
+					type="number"
 					className={classes.textField}
 					label={formatMessage({ id: 'wallets.receive.request_amount' })}
 					inputProps={{
@@ -74,7 +75,7 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 			</Box>
 			<Dialog
 				open={showDialog}
-				hasClose={true}
+				hasClose
 				illustrationName="sent"
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"

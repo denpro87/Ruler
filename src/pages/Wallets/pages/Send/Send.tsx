@@ -64,6 +64,7 @@ export const Send: React.FunctionComponent = () => {
 				</Box>
 				<TextField
 					name="insertAmount"
+					type="number"
 					className={classes.insertAmount}
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					inputProps={{
@@ -78,7 +79,7 @@ export const Send: React.FunctionComponent = () => {
 			</GreenButton>
 			<Dialog
 				open={showDialog}
-				hasClose={true}
+				hasClose
 				illustrationName="superman"
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"

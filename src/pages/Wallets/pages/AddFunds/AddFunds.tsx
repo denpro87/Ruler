@@ -59,6 +59,7 @@ export const AddFunds: React.FunctionComponent = () => {
 				</Box>
 				<TextField
 					name="insertAmount"
+					type="number"
 					className={classes.insertAmount}
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					inputProps={{

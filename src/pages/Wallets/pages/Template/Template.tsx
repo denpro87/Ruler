@@ -53,6 +53,7 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 				/>
 				<TextField
 					name="insertAmount"
+					type="number"
 					className={classes.textField}
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					value={amount}

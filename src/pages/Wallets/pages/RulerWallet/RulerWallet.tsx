@@ -67,10 +67,10 @@ export const RulerWallet: React.FunctionComponent = () => {
 				</Box>
 				<Box className={classes.footer}>
 					<LightGreenButton iconName="submit-report" compact onClick={handleSendClick}>
-						send
+						{formatMessage({ id: 'button.send' })}
 					</LightGreenButton>
 					<LightGreenButton iconName="receive" compact onClick={handleReceiveClick}>
-						Receive
+						{formatMessage({ id: 'button.receive' })}
 					</LightGreenButton>
 				</Box>
 			</Box>
