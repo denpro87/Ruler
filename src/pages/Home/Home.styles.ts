@@ -1,6 +1,6 @@
 import { CSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, percentage, pxToRem } from 'styles';
-
+import walletsLogoImage from './images/card-img.svg';
 export const mapViewer: CSSProperties = {
 	position: 'absolute',
 	top: 0,
@@ -84,16 +84,8 @@ const filterButton: CSSProperties = {
 	marginRight: pxToRem(10)
 };
 
-const firstIconButton: CSSProperties = {
-	padding: `${pxToRem(8)} ${pxToRem(10)} 0 ${pxToRem(10)}`
-};
-
-const lastIconButton: CSSProperties = {
+const closeIconButton: CSSProperties = {
 	padding: `${pxToRem(10)}`
-};
-
-const midIconButton: CSSProperties = {
-	padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
 };
 
 const vehicleIconButton: CSSProperties = {
@@ -165,7 +157,7 @@ const buttonGroupWrapper: CSSProperties = {
 	padding: `${pxToRem(24)} 0 ${pxToRem(30)} 0`
 };
 
-const scanEnterbuttonGroupWrapper: CSSProperties = {
+const scanEnterButtonGroupWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	borderRadius: pxToRem(15),
@@ -187,7 +179,7 @@ const button: CSSProperties = {
 	}
 };
 
-const scanEnterCodebutton: CSSProperties = {
+const scanEnterCodeButton: CSSProperties = {
 	fontSize: pxToRem(10),
 	color: '#181c19',
 	fontWeight: 600,
@@ -345,11 +337,11 @@ const flashButton: CSSProperties = {
 	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 0, 0, 0.1)`
 };
 
-const scanEnterCodebuttonActive: CSSProperties = {
+const scanEnterCodeButtonActive: CSSProperties = {
 	backgroundColor: '#ffffff'
 };
 
-const scanEnterCodebuttonInActive: CSSProperties = {
+const scanEnterCodeButtonInActive: CSSProperties = {
 	backgroundColor: 'transparent'
 };
 
@@ -392,7 +384,376 @@ const wrongCodeText: CSSProperties = {
 	fontSize: pxToRem(10),
 	color: '#f46c63'
 };
+
+const navControl: CSSProperties = {
+	position: 'absolute',
+	top: pxToRem(100),
+	left: pxToRem(30)
+};
+
+const iconWrapper: CSSProperties = {
+	width: pxToRem(50),
+	height: pxToRem(50),
+	border: `solid ${pxToRem(2)} #000000`,
+	borderRadius: percentage(0.5),
+	backgroundColor: '#ffffff',
+	position: 'relative',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center'
+};
+
+const circleWithVehicleNumber: CSSProperties = {
+	width: pxToRem(50),
+	height: pxToRem(50),
+	border: `solid ${pxToRem(2)} #000000`,
+	borderRadius: percentage(0.5),
+	backgroundColor: '#ffffff',
+	position: 'relative',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center'
+};
+
+const circleWithVehicleIcon: CSSProperties = {
+	borderRadius: percentage(0.5),
+	backgroundColor: '#ffffff',
+	position: 'relative',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center'
+};
+
+const vehicleIconInActive: CSSProperties = {
+	width: pxToRem(40),
+	height: pxToRem(40),
+	border: `solid ${pxToRem(2)} #000000`
+};
+
+const vehicleIconActive: CSSProperties = {
+	width: pxToRem(52),
+	height: pxToRem(52),
+	border: `solid ${pxToRem(2)} #00b559`
+};
+
+const iconDecorator: CSSProperties = {
+	position: 'absolute',
+	top: pxToRem(-5),
+	left: pxToRem(-5),
+	width: pxToRem(20),
+	height: pxToRem(20)
+};
+const markerNumberText: CSSProperties = {
+	fontSize: pxToRem(15),
+	fontWeight: 'bold',
+	lineHeight: 1.67,
+	color: '#181c19'
+};
+
+const vehicleInfo: CSSProperties = {
+	padding: `${pxToRem(20)} 0 ${pxToRem(25)} 0`,
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-between',
+	alignItems: 'center'
+};
+
+const infoWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center'
+};
+
+const propertyText: CSSProperties = {
+	marginTop: 10,
+	fontSize: pxToRem(15),
+	lineHeight: 1.67,
+	fontWeight: 600,
+	color: '#181c19'
+};
+
+const descriptionText: CSSProperties = {
+	fontSize: pxToRem(10),
+	lineHeight: 1.67,
+	fontWeight: 600,
+	color: 'rgba(24, 28, 25, 0.5)'
+};
+
+const vehicleInfoFooter: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	'&> span': {
+		padding: `${pxToRem(7)} 0 ${pxToRem(3)} 0`
+	}
+};
+
+const paymentMethodFooter: CSSProperties = {
+	marginTop: pxToRem(65),
+	display: 'flex',
+	flexDirection: 'column',
+	'&> span': {
+		padding: `${pxToRem(7)} 0 ${pxToRem(3)}`
+	}
+};
+
+const swipeText: CSSProperties = {
+	fontSize: pxToRem(10),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: 'rgba(24, 28, 25, 0.5)',
+	textAlign: 'center'
+};
+const payButton: CSSProperties = {
+	marginTop: 'auto',
+	fontWeight: 'bold'
+};
+
+const walletsLogoContainer: CSSProperties = {
+	padding: `${pxToRem(35)} 0 ${pxToRem(30)} 0`
+};
+
+const walletsLogo: CSSProperties = {
+	margin: '0 auto',
+	backgroundImage: `url(${walletsLogoImage})`,
+	width: pxToRem(325),
+	height: pxToRem(132),
+	position: 'relative',
+	padding: `${pxToRem(25)} ${pxToRem(30)}`,
+	display: 'flex',
+	flexDirection: 'column',
+	textAlign: 'left'
+};
+
+const wellDoneIcon: CSSProperties = {
+	position: 'absolute',
+	top: pxToRem(5),
+	right: pxToRem(5),
+	backgroundColor: 'transparent',
+	padding: 0,
+	boxShadow: 'none',
+	'&:hover': {
+		backgroundColor: 'transparent',
+		opacity: 0.7
+	}
+};
+
+const rulerWalletText: CSSProperties = {
+	fontWeight: 600,
+	lineHeight: 1.67,
+	color: '#ffffff',
+	fontSize: pxToRem(15)
+};
+
+const rulerPriceText: CSSProperties = {
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: 'rgba(255, 255, 255, 0.5)',
+	fontSize: pxToRem(10),
+	paddingTop: pxToRem(12)
+};
+
+const rulerNumberText: CSSProperties = {
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: '#ffffff',
+	fontSize: pxToRem(20)
+};
+
+const creditCardsTextWrapper: CSSProperties = {
+	textAlign: 'left',
+	'& span': {
+		color: 'rgba(24, 28, 25, 0.5)',
+		lineHeight: 1.5,
+		fontWeight: 600,
+		fontSize: pxToRem(10)
+	}
+};
+
+const addPaymentMethodButton: CSSProperties = {
+	backgroundColor: '#ffffff',
+	fontSize: pxToRem(15),
+	color: '#00b559',
+	fontWeight: 'bold',
+	lineHeight: 1.67,
+	'&:hover': {
+		color: '#00b559',
+		backgroundColor: 'rgba(0, 0, 0, 0.04)'
+	}
+};
+
+const slide: CSSProperties = {
+	display: 'block'
+};
+
+const scanAndReserveButtonGroupWrapper: CSSProperties = {
+	display: 'flex',
+	'& button:first-child': {
+		marginRight: pxToRem(15)
+	}
+};
+
+const iconButtonTextWrapper: CSSProperties = {
+	display: 'flex',
+	flex: 1,
+	flexDirection: 'row',
+	justifyContent: 'center',
+	alignItems: 'center',
+	marginTop: pxToRem(25),
+	'& button': {
+		padding: 0
+	}
+};
+
+const vehicleDetailInfoColumn: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'flex-start',
+	alignItems: 'center',
+	marginTop: pxToRem(10),
+	flex: 1
+};
+
+const greenText: CSSProperties = {
+	fontSize: pxToRem(15),
+	color: '#00b559',
+	fontWeight: 'bold',
+	lineHeight: 1.67
+};
+
+const imageWrapper: CSSProperties = {
+	maxWidth: pxToRem(325),
+	margin: `0 auto ${pxToRem(25)}`
+};
+
+const iconText: CSSProperties = {
+	fontSize: pxToRem(15),
+	color: '#181c19',
+	fontWeight: 'bold',
+	lineHeight: 1.67,
+	marginLeft: pxToRem(10)
+};
+
+const vehicleDetailInfoRow: CSSProperties = {
+	display: 'flex'
+};
+
+const iconButtonTextContainer: CSSProperties = {
+	display: 'flex'
+};
+
+const rideFooter: CSSProperties = {
+	padding: `${pxToRem(50)} 0 ${pxToRem(25)}`
+};
+
+const notRecommendedButton: CSSProperties = {
+	fontWeight: 'bold'
+};
+
+const finishRidingDialogContentText: CSSProperties = {
+	fontSize: pxToRem(10),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: 'rgba(24, 28, 25, 0.5)',
+	padding: `${pxToRem(10)}  0 ${pxToRem(20)} 0`,
+	maxWidth: pxToRem(160),
+	margin: '0 auto'
+};
+
+const totalAmountTextWrapper: CSSProperties = {
+	paddingTop: pxToRem(15),
+	display: 'flex',
+	justifyContent: 'space-between'
+};
+
+const totalAmountText: CSSProperties = {
+	fontSize: pxToRem(20),
+	fontWeight: 600,
+	lineHeight: 1.5,
+	color: '#181c19'
+};
+
+const totalAmountNumber: CSSProperties = {
+	fontSize: pxToRem(15),
+	fontWeight: 'bold',
+	color: '#181c19'
+};
+
+const rateRideWrapper: CSSProperties = {
+	padding: `${pxToRem(40)} 0 ${pxToRem(20)} 0`,
+	display: 'flex',
+	justifyContent: 'space-between',
+	alignItems: 'center'
+};
+
+const rateRideText: CSSProperties = {
+	fontSize: pxToRem(15),
+	fontWeight: 600,
+	lineHeight: 1.67,
+	color: '#181c19'
+};
+
+const rateActiveIcon: CSSProperties = {
+	marginRight: pxToRem(10)
+};
+
+const reserveFooter: CSSProperties = {
+	padding: `${pxToRem(93)} 0 ${pxToRem(25)}`
+};
+
+const paymentMethodTitleTextWrapper: CSSProperties = {
+	paddingTop: pxToRem(20),
+	'& span': {
+		fontSize: pxToRem(20),
+		fontWeight: 'bold',
+		lineHeight: 1.5,
+		color: '#181c19'
+	}
+};
 export const styles = createStyles({
+	paymentMethodTitleTextWrapper,
+	circleWithVehicleNumber,
+	circleWithVehicleIcon,
+	reserveFooter,
+	rateActiveIcon,
+	rateRideText,
+	rateRideWrapper,
+	totalAmountNumber,
+	totalAmountText,
+	finishRidingDialogContentText,
+	totalAmountTextWrapper,
+	rideFooter,
+	notRecommendedButton,
+	iconButtonTextContainer,
+	vehicleDetailInfoColumn,
+	vehicleDetailInfoRow,
+	iconText,
+	imageWrapper,
+	greenText,
+	iconButtonTextWrapper,
+	scanAndReserveButtonGroupWrapper,
+	slide,
+	paymentMethodFooter,
+	creditCardsTextWrapper,
+	addPaymentMethodButton,
+	rulerNumberText,
+	rulerPriceText,
+	wellDoneIcon,
+	rulerWalletText,
+	walletsLogo,
+	walletsLogoContainer,
+	payButton,
+	swipeText,
+	vehicleInfoFooter,
+	descriptionText,
+	propertyText,
+	infoWrapper,
+	vehicleInfo,
+	markerNumberText,
+	vehicleIconInActive,
+	vehicleIconActive,
+	iconWrapper,
+	iconDecorator,
+	navControl,
 	inputWrapperSmallMarin,
 	inputWrapperLargeMargin,
 	inputWrapper,
@@ -401,10 +762,10 @@ export const styles = createStyles({
 	qrCodeInput,
 	scanPadding,
 	enterPadding,
-	scanEnterCodebuttonInActive,
-	scanEnterCodebuttonActive,
-	scanEnterCodebutton,
-	scanEnterbuttonGroupWrapper,
+	scanEnterCodeButtonInActive,
+	scanEnterCodeButtonActive,
+	scanEnterCodeButton,
+	scanEnterButtonGroupWrapper,
 	flashButton,
 	footer,
 	QRcodeImageContainer,
@@ -425,9 +786,7 @@ export const styles = createStyles({
 	menuButton,
 	filterButton,
 	vehicleButtonGroupWrapper,
-	firstIconButton,
-	lastIconButton,
-	midIconButton,
+	closeIconButton,
 	vehicleIconButton,
 	iconButtonText,
 	positionVehicleText,

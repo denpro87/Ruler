@@ -1,3 +1,6 @@
+import { RouteComponentProps } from 'react-router';
+
+export type IAddPaymentMethodProps = RouteComponentProps;
 export interface ICreditCardProps {
 	name: string;
 	cardNumber: string;

@@ -16,10 +16,12 @@ export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
 	children,
 	title,
 	description,
+	hasBlackBar,
 	hasCloseButton,
+	hasFindMeButton,
 	onCloseButtonClick
 }) => {
-	const classes = useStyles({ darkMode });
+	const classes = useStyles({ darkMode, hasCloseButton });
 
 	return (
 		<div className={classes.sheetContainer}>
@@ -52,10 +54,11 @@ export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
 					{hasCloseButton && open && (
 						<IconButton className={classes.closeButton} iconName="close" colorType="black" onClick={onCloseButtonClick} />
 					)}
+					{hasFindMeButton && open && <IconButton className={classes.findMeButton} iconName="find-me" colorType="black" />}
 					{outDecorator && open && <div className={classes.outsideWrapper} />}
 					<div className={classes.sheetWrapper}>
 						<div className={classes.topWrapper}>
-							<div className={classes.blackBar} />
+							{hasBlackBar && <div className={classes.blackBar} />}
 							{title && <Typography className={classes.sheetTitle}>{title}</Typography>}
 							{description && <Typography className={classes.sheetDescription}>{description}</Typography>}
 						</div>
@@ -65,4 +68,7 @@ export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
 			)}
 		</div>
 	);
+};
+BottomSheet.defaultProps = {
+	hasBlackBar: true
 };

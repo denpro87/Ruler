@@ -63,7 +63,15 @@ const sheetDescription: CreateCSSProperties = {
 	maxWidth: (props: any) => (props.darkMode ? `${pxToRem(230)}` : undefined),
 	textAlign: 'center'
 };
+
+const findMeButton: CreateCSSProperties = {
+	position: 'absolute',
+	top: (props: any) => (props.hasCloseButton ? `${pxToRem(-120)}` : `${pxToRem(-60)}`),
+	right: pxToRem(20)
+};
+
 export const styles = createStyles({
+	findMeButton,
 	sheetContainer,
 	sheetWrapper,
 	blackBar,

@@ -1,5 +1,6 @@
 import { IAreasListItemProps } from './components/AreasListItem/AreasListItem.types';
 import { IDamagedVehicleType } from '../MyRides/pages/DamagedVehicle/DamagedVehicle.types';
+import { pxToRem } from 'styles';
 export const areasListItems: Array<IAreasListItemProps> = [
 	{
 		iconName: 'out-of-business',
@@ -40,5 +41,125 @@ export const damagedVehicleTypes: Array<IDamagedVehicleType> = [
 	{
 		iconName: 'scooter',
 		label: 'my_rides.damaged_vehicle.text.scooter'
+	}
+];
+
+export const markerList = [
+	{
+		lat: 17.441013,
+		long: 78.383896,
+		iconName: 'scooter',
+		vehicleNumber: 0,
+		decorator: './images/bird.png'
+	},
+	{
+		lat: 17.452512,
+		long: 78.396873,
+		iconName: 'car',
+		vehicleNumber: 0,
+		decorator: './images/lime.png'
+	},
+	{
+		lat: 17.447562,
+		long: 78.384357,
+		iconName: '',
+		vehicleNumber: 7,
+		decorator: ''
+	},
+	{
+		lat: 17.440298,
+		long: 78.392345,
+		iconName: '',
+		vehicleNumber: 25,
+		decorator: ''
+	}
+];
+
+export const vehicleInfo = [
+	{
+		iconName: './images/lime.png',
+		property: 'Lime',
+		description: 'electric car'
+	},
+	{
+		iconName: 'charge',
+		property: '79%',
+		description: 'battery level'
+	},
+	{
+		iconName: 'distance',
+		property: '1 km',
+		description: 'distance'
+	},
+	{
+		iconName: 'wallet',
+		property: '0.15 /min',
+		description: '$ 1 to unlock'
+	}
+];
+
+export const vehicleSimpleInfo = [
+	{
+		iconName: './images/lime.png',
+		property: 'Lime',
+		description: 'electric car'
+	},
+	{
+		iconName: 'charge',
+		property: '79%',
+		description: 'battery level'
+	},
+	{
+		iconName: 'wallet',
+		property: '0.15 /min',
+		description: '$ 1 to unlock'
+	}
+];
+export const finishedRideVehicleInfo = [
+	{
+		iconName: 'charge',
+		property: '79 %',
+		description: 'battery level'
+	},
+	{
+		iconName: 'distance',
+		property: '11 km',
+		description: 'traveled'
+	},
+	{
+		iconName: 'ride-history',
+		property: '45 min',
+		description: 'duration'
+	}
+];
+
+export const vehicleButtons = [
+	{
+		label: 'home.text.all',
+		iconName: 'vehicle',
+		style: {
+			padding: `${pxToRem(8)} ${pxToRem(10)} 0 ${pxToRem(10)}`
+		}
+	},
+	{
+		label: 'home.text.car',
+		iconName: 'car',
+		style: {
+			padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
+		}
+	},
+	{
+		label: 'home.text.bike',
+		iconName: 'bike',
+		style: {
+			padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
+		}
+	},
+	{
+		label: 'home.text.scooter',
+		iconName: 'scooter',
+		style: {
+			padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
+		}
 	}
 ];
