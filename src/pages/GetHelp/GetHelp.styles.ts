@@ -26,7 +26,7 @@ const text: CSSProperties = {
 };
 
 const buttonWrapper: CSSProperties = {
-	padding: `${pxToRem(30)} ${pxToRem(20)} ${pxToRem(20)} ${pxToRem(20)}`
+	padding: `${pxToRem(30)} ${pxToRem(20)} 0 `
 };
 
 const backButton: CSSProperties = {
@@ -40,12 +40,16 @@ const sheetText: CSSProperties = {
 	lineHeight: 1.67,
 	color: '#181c19',
 	opacity: 0.5,
-	padding: `0 0 ${pxToRem(20)} 0`
+	padding: `0 0 ${pxToRem(20)} 0`,
+	textAlign: 'center'
 };
 
 const sheetButton: CSSProperties = {
 	marginBottom: pxToRem(15),
-	fontWeight: 'bold'
+	fontWeight: 'bold',
+	'& span>span': {
+		padding: 0
+	}
 };
 
 export const styles = createStyles({

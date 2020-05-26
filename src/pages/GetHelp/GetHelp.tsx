@@ -1,5 +1,5 @@
 import { BottomSheet, Divider, LightGreenButton, Page } from 'components';
-import { List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
+import { Box, List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
 
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './GetHelp.styles';
@@ -52,16 +52,19 @@ export const GetHelp: React.FunctionComponent = () => {
 		setShowAddReport(isOpen);
 	};
 
-	const handleBadlyClick = () => {
+	const handleBadlyClick = (): void => {
 		setShowAddReport(false);
+		history.push('/my-rides/badly-parked-vehicle');
 	};
 
-	const handleDamagedClick = () => {
+	const handleDamagedClick = (): void => {
 		setShowAddReport(false);
+		history.push('/my-rides/damaged-vehicle');
 	};
 
-	const handleContactClick = () => {
+	const handleContactClick = (): void => {
 		setShowAddReport(false);
+		history.push('/my-rides/report');
 	};
 
 	return (
@@ -81,11 +84,11 @@ export const GetHelp: React.FunctionComponent = () => {
 					)
 				)}
 			</List>
-			<div className={classes.buttonWrapper}>
-				<LightGreenButton className={classes.backButton} onClick={() => history.goBack()}>
-					Back
+			<Box className={classes.buttonWrapper}>
+				<LightGreenButton className={classes.backButton} onClick={(): void => history.goBack()}>
+					{formatMessage({ id: 'button.back' })}
 				</LightGreenButton>
-			</div>
+			</Box>
 			<BottomSheet
 				title={formatMessage({ id: 'get_help.add_report_sheet.title' })}
 				open={showAddReport}

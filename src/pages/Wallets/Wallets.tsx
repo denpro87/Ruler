@@ -22,17 +22,17 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 		setShowDialog(showDialog);
 	}, [props.location.state]);
 
-	const handleCreateWallet = () => history.push('/wallets/create-wallet');
+	const handleCreateWallet = (): void => history.push('/wallets/create-wallet');
 
-	const handleAddFunds = () => history.push('/wallets/add-funds');
+	const handleAddFunds = (): void => history.push('/wallets/add-funds');
 
-	const handleTransfer = () => history.push('/wallets/transfer');
+	const handleTransfer = (): void => history.push('/wallets/transfer');
 
-	const handleTemplate = () => history.push('/wallets/template');
+	const handleTemplate = (): void => history.push('/wallets/template');
 
-	const handleTemplateClick = (template: ITemplateDataProps) => history.push('/wallets/template', { data: template });
+	const handleTemplateClick = (template: ITemplateDataProps): void => history.push('/wallets/template', { data: template });
 
-	const handleDialogClose = () => {
+	const handleDialogClose = (): void => {
 		setShowDialog(false);
 		history.replace('/wallets');
 	};
@@ -63,7 +63,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 							compact
 							iconName="edit"
 							iconPosition="right"
-							onClick={() => handleTemplateClick(template)}
+							onClick={(): void => handleTemplateClick(template)}
 						>
 							{formatMessage({ id: template.templateName })}
 						</Button>

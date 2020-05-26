@@ -69,7 +69,8 @@ const TemplateButtonsWrapper: CSSProperties = {
 	padding: `${pxToRem(10)} 0 0 0`,
 	display: 'flex',
 	flexDirection: 'row',
-	alignItems: 'center'
+	alignItems: 'center',
+	overflow: 'auto'
 };
 
 const addFabButton: CSSProperties = {
@@ -91,10 +92,10 @@ const paymentTemplateButton: CSSProperties = {
 	minWidth: 'fit-content',
 	'&:hover': {
 		backgroundColor: 'rgba(0, 0, 0, 0.2)'
-	},
-	'& .MuiButton-label> span': {
-		whiteSpace: 'nowrap'
 	}
+	// '& .MuiButton-label> span': {
+	// 	whiteSpace: 'nowrap'
+	// }
 };
 
 const paymentTemplateText: CSSProperties = {

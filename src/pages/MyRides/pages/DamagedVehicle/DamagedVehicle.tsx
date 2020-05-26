@@ -75,6 +75,14 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 		setPhotos(prevPhotos => [...prevPhotos, imageUrl]);
 	};
 
+	const handleSubmitReportClick = (): void => {
+		setDescription('');
+		setCode('');
+		setLocation('');
+		setPhotos([]);
+		setSubmitReportModal(true);
+	};
+
 	return (
 		<Page canGoBack title={title} titleSize="medium">
 			<Box className={classes.damagedVehicleContainer}>
@@ -140,7 +148,7 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 					<LightGreenButton className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
 						{formatMessage({ id: 'button.add_photos' })}
 					</LightGreenButton>
-					<GreenButton iconName="submit-report" onClick={(): void => setSubmitReportModal(true)}>
+					<GreenButton iconName="submit-report" onClick={handleSubmitReportClick} disabled={!code || !description || !location}>
 						{formatMessage({ id: 'button.submit_report' })}
 					</GreenButton>
 				</Box>
