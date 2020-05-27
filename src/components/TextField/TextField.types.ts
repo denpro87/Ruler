@@ -9,6 +9,8 @@ export interface ITextFieldProps extends Pick<TextFieldProps, 'onChange'> {
 	type?: string;
 	select?: boolean;
 	disabled?: boolean;
+	error?: boolean;
+	helperText?: string;
 	inputProps?: InputProps;
 	selectProps?: SelectProps;
 	onValueChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;

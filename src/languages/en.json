@@ -149,6 +149,8 @@
 	"welcome.create_account.title": "Create account",
 	"welcome.create_account.password": "Create a password",
 	"welcome.create_password.text": "We will send a confirmation letter to your mail",
+	"welcome.create_account.password_helper_text": "minimum 6 characters with 2 digits and 1 capital letter at least",
+	"welcome.create_account.email_helper_text": "Enter a valid email",
 	"news.title": "News",
 	"news-detail.text.open_in_browser": "Open in browser",
 	"service_providers.title": "Service Providers",

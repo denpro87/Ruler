@@ -13,6 +13,8 @@ export const TextField: React.FunctionComponent<ITextFieldProps> = ({
 	value,
 	label,
 	type,
+	error,
+	helperText,
 	select,
 	children,
 	onValueChange,
@@ -26,6 +28,8 @@ export const TextField: React.FunctionComponent<ITextFieldProps> = ({
 		<MuiTextField
 			classes={{ root: clsx(classes.textFieldRoot, className) }}
 			type={type}
+			error={error}
+			helperText={helperText}
 			fullWidth
 			select={select}
 			label={label}
