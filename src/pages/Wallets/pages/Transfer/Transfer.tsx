@@ -31,7 +31,8 @@ export const Transfer: React.FunctionComponent = () => {
 
 	const handleQrClick = (): void => {};
 
-	const handleNextClick = (): void => history.push('/wallets/confirmation');
+	const handleNextClick = (): void =>
+		history.push('/wallets/confirmation', { walletType: walletType, amount: amount, walletAddress: walletAddress });
 
 	const handleTemplateClick = (template: ITemplateDataProps): void => {
 		setTemplateName(template.templateName);

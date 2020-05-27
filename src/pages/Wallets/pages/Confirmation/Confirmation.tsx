@@ -1,5 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Checkbox, Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
+import { IConfirmationProps } from './Confirmation.types';
 import { styles } from './Confirmation.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -9,23 +10,25 @@ import clsx from 'clsx';
 const copy = require('clipboard-copy');
 const useStyles = makeStyles(styles);
 
-export const Confirmation: React.FunctionComponent = () => {
+export const Confirmation: React.FunctionComponent<IConfirmationProps> = props => {
 	const history = useHistory();
 	const { formatMessage } = useIntl();
+	const params: any = props.location.state;
 	const [checked, setChecked] = React.useState<boolean>(false);
 	const classes = useStyles({ checked });
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [templateName, setTemplateName] = React.useState<string>('');
 	const transactionHash = 'a1075db55d416d3ca199f55b1BvBM3sdelkfdjsl';
-	const from = 'wallets.create_wallet.ruler_token';
-	const to = 'dsdslfdslfjldksfjlsdjdfsdfsdfsdfsdfsdfsdfsdfsd';
+	const from = params?.walletType ? params.walletType : '';
+	const to = params?.walletAddress ? params.walletAddress : '';
+	const amount = params?.amount ? params.amount : null;
 
-	const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
 		setChecked(event.target.checked);
 	};
 
-	const handleTemplateNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleTemplateNameChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		setTemplateName(event.target.value);
 	};
 
@@ -51,7 +54,7 @@ export const Confirmation: React.FunctionComponent = () => {
 				<Box className={classes.amountWrapper}>
 					<Box className={classes.amountBox}>
 						<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.credited' })}</Text>
-						<Text className={classes.amountText}>€ 10.00</Text>
+						<Text className={classes.amountText}>€ {amount}.00</Text>
 					</Box>
 					<Box className={classes.amountBox}>
 						<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.transaction_fee' })}</Text>
@@ -67,7 +70,7 @@ export const Confirmation: React.FunctionComponent = () => {
 			<Box className={classes.infoWrapper}>
 				<Box className={classes.infoBox}>
 					<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.from' })}</Text>
-					<Text className={classes.amountHelperText}>{formatMessage({ id: from })}</Text>
+					<Text className={classes.amountHelperText}>{from}</Text>
 				</Box>
 				<Box className={classes.infoBox}>
 					<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.to' })}</Text>

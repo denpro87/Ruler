@@ -3,7 +3,6 @@ import { pxToRem } from 'styles';
 
 const innerContent: CSSProperties = {
 	paddingTop: pxToRem(13),
-	textAlign: 'left',
 	display: 'flex',
 	flexDirection: 'column',
 	flex: 1
@@ -33,8 +32,7 @@ const textFieldRoot: CSSProperties = {
 	}
 };
 const saveBtn: CSSProperties = {
-	marginTop: 'auto',
-	marginBottom: pxToRem(20)
+	marginTop: 'auto'
 };
 const dialogContentText: CSSProperties = {
 	fontSize: pxToRem(10),
@@ -45,7 +43,16 @@ const dialogContentText: CSSProperties = {
 	padding: `${pxToRem(10)} ${pxToRem(10)} ${pxToRem(5)} ${pxToRem(10)}`
 };
 
+const confirmationText: CSSProperties = {
+	fontSize: pxToRem(10),
+	lineHeight: 1.5,
+	fontWeight: 600,
+	color: 'rgba(24, 28, 25, 0.5)',
+	padding: `${pxToRem(7)} 0 ${pxToRem(8)}`,
+	textAlign: 'center'
+};
 export const styles = createStyles({
+	confirmationText,
 	saveBtn,
 	textFieldRoot,
 	innerContent,
