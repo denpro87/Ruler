@@ -81,7 +81,9 @@ export const AddFunds: React.FunctionComponent = () => {
 					))}
 				</Select>
 			</Box>
-			<GreenButton onClick={handleNextClick}>{formatMessage({ id: 'button.next' })}</GreenButton>
+			<GreenButton onClick={handleNextClick} disabled={!rulerPrice}>
+				{formatMessage({ id: 'button.next' })}
+			</GreenButton>
 		</Page>
 	);
 };
