@@ -12,34 +12,51 @@ const useStyles = makeStyles(styles);
 export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = props => {
 	const history = useHistory();
 	const { formatMessage } = useIntl();
-	const [data, setData] = React.useState<string[]>([]);
+	const [cardData, setCardData] = React.useState<object[]>([]);
 	const [deleteCard, setDeleteCard] = React.useState(false);
+	const [selectedIndex, setSelectedIndex] = React.useState(-1);
 	const [isFirstLoading, setFirstLoading] = React.useState(true);
 	const classes = useStyles();
 
 	React.useEffect(() => {
 		const params: any = props.location.state;
-		const urls = params && params.data ? params.data : null;
+		const data = params && params.data ? params.data : null;
+		const index = params && params.index > -1 ? params.index : null;
 
-		if (urls) setData(urls);
+		if (data) {
+			if (index !== null) {
+				const temp = cardData;
+				temp[index] = data;
+				setCardData([...temp]);
+			} else {
+				setCardData(prevData => [...prevData, data]);
+			}
+		}
 		setFirstLoading(false);
 	}, [props.location.state]);
 
 	React.useEffect(() => {
-		if (!isFirstLoading && data.length === 0) history.push('/payment-methods/add-payment-method');
-	}, [data, history, isFirstLoading]);
+		if (!isFirstLoading && cardData.length === 0) history.push('/payment-methods/add-payment-method');
+	}, [cardData, history, isFirstLoading]);
 
-	const handleRemoveClick = (): void => {
+	const handleTrashButtonClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		setDeleteCard(true);
+		setSelectedIndex(index);
 	};
 
-	const handleDeleteCard = (event: React.MouseEvent<HTMLButtonElement>): void => {
-		setData([]);
+	const handleDeleteCard = (): void => {
+		const temp = cardData;
+		temp.splice(selectedIndex, 1);
+		setCardData([...temp]);
 		setDeleteCard(false);
 	};
 
-	const handleDeleteCardClose = () => {
+	const handleDeleteCardClose = (): void => {
 		setDeleteCard(false);
+	};
+
+	const handleItemClick = (selectedIndex: number, cardData: any) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+		history.push('/payment-methods/add-payment-method/card', { data: cardData, index: selectedIndex });
 	};
 
 	return (
@@ -50,9 +67,18 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 			headerLinkProps={{ href: '/wallets' }}
 		>
 			<Box className={classes.submitWrapper}>
-				{data?.map((item: string, index: number) => (
-					<PaymentMethodItem key={index} handleRemoveClick={(): void => handleRemoveClick()} />
-				))}
+				{cardData?.map(
+					(data: any, index: number): JSX.Element => {
+						return (
+							<PaymentMethodItem
+								key={index}
+								cardData={data}
+								handleShowClick={handleItemClick(index, data)}
+								handleRemoveClick={handleTrashButtonClick(index)}
+							/>
+						);
+					}
+				)}
 				<GreenButton
 					iconName="add"
 					className={classes.addPaymentMethodButton}

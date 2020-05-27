@@ -5,17 +5,17 @@ import { styles } from './PaymentMethodItem.styles';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
-export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps> = ({ handleRemoveClick }) => {
+export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps> = ({ handleShowClick, handleRemoveClick, cardData }) => {
 	const classes = useStyles();
 
 	return (
 		<Box className={classes.paymentMethodItemContainer}>
 			<Box className={classes.paymentMethodItem}>
 				<IconButton iconProps={{ iconName: 'trash', color: '#ffffff' }} className={classes.trashIcon} onClick={handleRemoveClick} />
-				<Link className={classes.cardTypeText} href="/payment-methods/add-payment-method/card">
+				<Link className={classes.cardTypeText} onClick={handleShowClick}>
 					MasterCard
 				</Link>
-				<Text className={classes.cardNumberText}>**** **** **** 1650</Text>
+				{cardData && <Text className={classes.cardNumberText}>{Number(cardData.cardNumber)}</Text>}
 			</Box>
 		</Box>
 	);

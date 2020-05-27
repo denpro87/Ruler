@@ -27,7 +27,7 @@ export const AddPaymentMethod: React.FunctionComponent<IAddPaymentMethodProps> =
 			if (pageName) {
 				history.push('/payment-methods/add-payment-method/card', { pageName: pageName });
 			} else {
-				history.push('/payment-methods/add-payment-method/card');
+				history.push('/payment-methods/add-payment-method/card', { data: null, index: null });
 			}
 		}
 	};
@@ -40,7 +40,7 @@ export const AddPaymentMethod: React.FunctionComponent<IAddPaymentMethodProps> =
 						key={index}
 						className={clsx({ [classes.listItem]: true }, { [classes.activeListItem]: index === selectedTypeIndex })}
 						button
-						onClick={() => setSelectedTypeIndex(index)}
+						onClick={(): void => setSelectedTypeIndex(index)}
 					>
 						<ListItemIcon>
 							<Icon iconName={paymentMethodType.iconName} color="#181c19" colorType="black" />

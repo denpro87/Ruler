@@ -3,7 +3,7 @@ import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
 const paymentMethodItemContainer: CSSProperties = {
-	padding: `${pxToRem(15)} ${pxToRem(20)} ${pxToRem(20)} ${pxToRem(20)}`,
+	padding: `${pxToRem(15)} 0 ${pxToRem(5)}`,
 	display: 'flex',
 	flexDirection: 'column',
 	alignItems: 'center'
@@ -38,7 +38,7 @@ const cardNumberText: CSSProperties = {
 		fontWeight: 600,
 		lineHeight: 1.33,
 		letterSpacing: pxToRem(6.3),
-		color: 'rgba(255, 255, 255, 0.5)'
+		color: '#ffffff'
 	}),
 	fontSize: pxToRem(15),
 	paddingTop: pxToRem(12)

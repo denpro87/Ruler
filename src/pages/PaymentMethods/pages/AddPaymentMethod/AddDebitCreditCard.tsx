@@ -23,6 +23,7 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 	const [cardState, setCardState] = React.useState<ICreditCardProps>(initialCardState);
 	const [checked, setChecked] = React.useState<boolean>(false);
 	const [pageName, setPageName] = React.useState('');
+	const [selectedIndex, setSelectedIndex] = React.useState(-1);
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
@@ -35,17 +36,47 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 	};
 
 	const handleNextClick = (): void => {
+		setCardState({
+			name: '',
+			cardNumber: '',
+			expireDate: '',
+			cvc: '',
+			cardCountry: '',
+			zipCode: ''
+		});
+
 		if (pageName) {
 			history.push('/home', { showVehicleRide: true, data: [cardState] });
 		} else {
-			history.push('/payment-methods', { data: [cardState] });
+			history.push('/payment-methods', { data: cardState, index: selectedIndex });
 		}
 	};
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const pageName = params && params.pageName ? params.pageName : null;
+		const data = params && params.data ? params.data : null;
+		const index = params && params.index > -1 ? params.index : null;
 
 		if (pageName) setPageName(pageName);
+
+		if (data !== null) {
+			setCardState(data);
+		} else {
+			setCardState({
+				name: '',
+				cardNumber: '',
+				expireDate: '',
+				cvc: '',
+				cardCountry: '',
+				zipCode: ''
+			});
+		}
+
+		if (index !== null) {
+			setSelectedIndex(index);
+		} else {
+			setSelectedIndex(-1);
+		}
 	}, [props.location.state]);
 
 	return (
@@ -59,6 +90,7 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 				/>
 				<TextField
 					name="cardNumber"
+					type="number"
 					label={formatMessage({ id: 'wallets.add_credit_card.card_number' })}
 					value={cardState.cardNumber}
 					onValueChange={handleStateChange}
@@ -80,6 +112,7 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 				/>
 				<TextField
 					name="zipCode"
+					type="number"
 					label={formatMessage({ id: 'wallets.add_credit_card.zip_code' })}
 					value={cardState.zipCode}
 					onValueChange={handleStateChange}
