@@ -91,7 +91,19 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 					label={formatMessage({ id: 'wallets.add_credit_card.save_payment_method' })}
 					onValueChange={handleCheckChange}
 				/>
-				<GreenButton iconName="add" compact onClick={handleNextClick}>
+				<GreenButton
+					iconName="add"
+					compact
+					onClick={handleNextClick}
+					disabled={
+						!cardState.name ||
+						!cardState.cardNumber ||
+						!cardState.expireDate ||
+						!cardState.cvc ||
+						!cardState.cardCountry ||
+						!cardState.zipCode
+					}
+				>
 					{formatMessage({ id: 'button.add_payment_method' })}
 				</GreenButton>
 			</Box>

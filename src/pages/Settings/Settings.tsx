@@ -1,12 +1,12 @@
-import { BlackButton, BlackIcon, Dialog, Page } from 'components';
+import { BlackButton, BlackIcon, Dialog, Page, TextField } from 'components';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { List, ListItem, ListItemIcon, ListItemText, TextField, Typography, makeStyles } from '@material-ui/core';
+import { List, ListItem, ListItemIcon, ListItemText, Typography, makeStyles } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { menuList } from './Settings.data';
 import { styles } from './Settings.styles';
+import { validateEmail } from 'utils';
 import React from 'react';
 import clsx from 'clsx';
-
 const useStyles = makeStyles(styles);
 
 export const Settings: React.FunctionComponent = () => {
@@ -15,6 +15,7 @@ export const Settings: React.FunctionComponent = () => {
 	const [logout, setLogout] = React.useState(false);
 	const [deleteAccount, setDeleteAccount] = React.useState(false);
 	const [email, setEmail] = React.useState('');
+	const [emailValid, setEmailValid] = React.useState(true);
 	const { formatMessage } = useIntl();
 
 	const handleLogoutClickOpen = () => {
@@ -30,8 +31,9 @@ export const Settings: React.FunctionComponent = () => {
 		setDeleteAccount(true);
 	};
 
-	const handleEmailInputChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value);
+		setEmailValid(validateEmail(event.target.value));
 	};
 
 	const handleDeleteAccountClose = () => {
@@ -82,7 +84,7 @@ export const Settings: React.FunctionComponent = () => {
 			<Dialog
 				title={formatMessage({ id: 'settings.logout_dialog.title' })}
 				open={logout}
-				hasClose={true}
+				hasClose
 				illustrationName="question"
 				onClose={handleLogoutClose}
 				aria-labelledby="form-dialog-title"
@@ -95,21 +97,22 @@ export const Settings: React.FunctionComponent = () => {
 			<Dialog
 				title={formatMessage({ id: 'settings.delete_account_dialog.title' })}
 				open={deleteAccount}
-				hasClose={true}
+				hasClose
 				illustrationName="question"
 				onClose={handleDeleteAccountClose}
 			>
 				<Typography className={classes.dialogContentText}>{formatMessage({ id: 'settings.delete_account_dialog.description' })}</Typography>
 				<TextField
-					id="name"
-					placeholder={formatMessage({ id: 'settings.delete_account_dialog.email_address' })}
-					type="email"
-					fullWidth
+					label={formatMessage({ id: 'welcome.login.email_address' })}
+					name="email"
+					error={!emailValid}
+					helperText={!emailValid ? formatMessage({ id: 'welcome.create_account.email_helper_text' }) : ''}
 					value={email}
-					classes={{ root: classes.emailRoot }}
-					onChange={handleEmailInputChanges}
+					onValueChange={handleEmailChange}
 				/>
-				<BlackButton onClick={handleSendEmail}>{formatMessage({ id: 'settings.delete_account_dialog.send' })}</BlackButton>
+				<BlackButton onClick={handleSendEmail} disabled={!email || !emailValid}>
+					{formatMessage({ id: 'settings.delete_account_dialog.send' })}
+				</BlackButton>
 			</Dialog>
 		</Page>
 	);

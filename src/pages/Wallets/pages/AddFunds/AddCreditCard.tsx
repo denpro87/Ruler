@@ -1,6 +1,7 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Checkbox, GreenButton, Page, TextField } from 'components';
 import { ICreditCardProps } from './AddFunds.types';
+import { State } from '@ionic/core/dist/types/stencil-public-runtime';
 import { styles } from './AddFunds.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -78,7 +79,19 @@ export const AddCreditCard: React.FunctionComponent = () => {
 					label={formatMessage({ id: 'wallets.add_credit_card.save_payment_method' })}
 					onValueChange={handleCheckChange}
 				/>
-				<GreenButton iconName="add-payment" compact onClick={handleNextClick}>
+				<GreenButton
+					iconName="add-payment"
+					compact
+					onClick={handleNextClick}
+					disabled={
+						!cardState.name ||
+						!cardState.cardNumber ||
+						!cardState.expireDate ||
+						!cardState.cvc ||
+						!cardState.cardCountry ||
+						!cardState.zipCode
+					}
+				>
 					{formatMessage({ id: 'wallets.add_credit_card.add_pay' })}
 				</GreenButton>
 			</Box>
