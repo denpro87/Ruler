@@ -68,7 +68,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 		setSubmitSuccessModal(false);
 		setFrontPhoto('');
 		setBackPhoto('');
-		history.push('/driver-licence', { data: frontPhoto, state: 'progress', showAddDriverLicence: false });
+		history.replace('/driver-licence', { data: frontPhoto, state: 'progress', showAddDriverLicence: false });
 	};
 
 	const handleTakePhotoClick = (type: 'front' | 'back'): void => {
@@ -214,7 +214,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 							<IconButton
 								iconProps={{ iconName: selectedImageIndex < 0 ? 'flashlight' : 'revert', color: '#181c19' }}
 								className={classes.leftRightIconButton}
-								onClick={() => (selectedImageIndex >= 0 ? handleRevertClick(selectedImageIndex) : handleFlashLightClick())}
+								onClick={(): void => (selectedImageIndex >= 0 ? handleRevertClick(selectedImageIndex) : handleFlashLightClick())}
 							/>
 						</Box>
 					</BackdropFilter>
