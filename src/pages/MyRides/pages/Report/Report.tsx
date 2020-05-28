@@ -1,17 +1,17 @@
 import { Box, Input, InputAdornment, InputLabel, makeStyles } from '@material-ui/core';
 import { Icon, IconButton, Page, Text } from 'components';
 import { IonImg } from '@ionic/react';
-import { getTopPosition, styles } from './Report.styles';
+import { styles } from './Report.styles';
 import { useIntl } from 'react-intl';
 import React from 'react';
 import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Report: React.FunctionComponent = () => {
-	const classes = useStyles();
 	const { formatMessage } = useIntl();
 	const [msg, setMsg] = React.useState('');
 	const [rowsNum, setRowsNum] = React.useState(0);
+	const classes = useStyles({ rowsNum });
 	const [imagesReady, setImagesReady] = React.useState(false);
 	const [selectedFiles, setSelectedFiles] = React.useState<(string | ArrayBuffer | null)[]>([]);
 	const [messages, setMessages] = React.useState<any[]>([]);
@@ -158,12 +158,7 @@ export const Report: React.FunctionComponent = () => {
 				</Box>
 				<Box className={classes.footer}>
 					{imagesReady && (
-						<Box
-							className={classes.nonSentImagesWrapper}
-							style={{
-								top: getTopPosition(rowsNum)
-							}}
-						>
+						<Box className={classes.nonSentImagesWrapper}>
 							{selectedFiles &&
 								selectedFiles.map((file: any, index: number) => {
 									return (

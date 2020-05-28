@@ -2,8 +2,8 @@ import { Box, makeStyles } from '@material-ui/core';
 import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Link, Page, Text } from 'components';
 import { ITemplateDataProps } from './pages/Template/Template.types';
 import { IWalletsProps } from './Wallets.types';
+import { paymentTemplate } from './Wallets.data';
 import { styles } from './Wallets.styles';
-import { templateData } from './Wallets.data';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
@@ -16,10 +16,29 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
+	const [paymentTemplateData, setPaymentTemplateData] = React.useState(paymentTemplate);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const showDialog = params && params.showDialog ? params.showDialog : false;
+		const data = params && params.data ? params.data : null;
+		const selectedIndex = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
 		setShowDialog(showDialog);
+
+		if (data) {
+			if (selectedIndex > -1) {
+				const temp = paymentTemplateData;
+				temp[selectedIndex] = data;
+				setPaymentTemplateData([...temp]);
+			} else {
+				setPaymentTemplateData(prevData => [...prevData, data]);
+			}
+		} else {
+			if (selectedIndex > -1) {
+				const temp = paymentTemplateData;
+				temp.splice(selectedIndex, 1);
+				setPaymentTemplateData([...temp]);
+			}
+		}
 	}, [props.location.state]);
 
 	const handleCreateWallet = (): void => history.push('/wallets/create-wallet');
@@ -30,7 +49,8 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 
 	const handleTemplate = (): void => history.push('/wallets/template');
 
-	const handleTemplateClick = (template: ITemplateDataProps): void => history.push('/wallets/template', { data: template });
+	const handleTemplateClick = (index: number, template: ITemplateDataProps): void =>
+		history.push('/wallets/template', { data: template, selectedIndex: index });
 
 	const handleDialogClose = (): void => {
 		setShowDialog(false);
@@ -55,7 +75,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 					<Fab aria-label="add" className={classes.addFabButton} onClick={handleTemplate}>
 						<Icon iconName="add-without-circle" primaryColor="white" secondaryColor="white" />
 					</Fab>
-					{templateData.map((template, index) => (
+					{paymentTemplateData.map((template, index) => (
 						<Button
 							key={index}
 							fullWidth={false}
@@ -63,9 +83,9 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 							compact
 							iconName="edit"
 							iconPosition="right"
-							onClick={(): void => handleTemplateClick(template)}
+							onClick={(): void => handleTemplateClick(index, template)}
 						>
-							{formatMessage({ id: template.templateName })}
+							{template.templateName}
 						</Button>
 					))}
 				</Box>

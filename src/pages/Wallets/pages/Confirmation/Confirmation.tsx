@@ -1,12 +1,12 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Checkbox, Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { IConfirmationProps } from './Confirmation.types';
+import { ITemplateDataProps } from '../Template/Template.types';
 import { styles } from './Confirmation.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
 import clsx from 'clsx';
-
 const copy = require('clipboard-copy');
 const useStyles = makeStyles(styles);
 
@@ -32,15 +32,27 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 		setTemplateName(event.target.value);
 	};
 
-	const handleCopyClick = () => copy(transactionHash);
+	const handleCopyClick = (): void => copy(transactionHash);
 
-	const handlePayClick = () => {
+	const handlePayClick = (): void => {
 		setShowDialog(true);
 	};
 
-	const handleDialogClose = () => {
+	const handleDialogClose = (): void => {
 		setShowDialog(false);
-		history.replace('/wallets');
+
+		if (checked) {
+			const paymentTemplate: ITemplateDataProps = {
+				templateName: templateName,
+				amount: amount,
+				walletType: from,
+				paymentType: 'credit_card',
+				walletAddress: to
+			};
+			history.replace('/wallets', { data: paymentTemplate });
+		} else {
+			history.replace('/wallets');
+		}
 	};
 
 	return (

@@ -1,6 +1,7 @@
 import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, IconButton, Page, Select, TextField } from 'components';
-import { ITemplateProps } from './Template.types';
+import { ITemplateDataProps, ITemplateProps } from './Template.types';
+
 import { paymentMethodTypes, walletTypes } from '../../Wallets.data';
 import { styles } from './Template.styles';
 import { useHistory } from 'react-router-dom';
@@ -16,9 +17,8 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	const [walletType, setWalletType] = React.useState<string>(params?.data?.walletType ? params.data.walletType : '');
 	const [paymentMethodType, setPaymentMethodType] = React.useState<string>(params?.data?.paymentType ? params.data.paymentType : '');
 	const [amount, setAmount] = React.useState<string>(params?.data?.amount ? params.data.amount : '');
-	const [templateName, setTemplateName] = React.useState<string>(
-		params?.data?.templateName ? formatMessage({ id: params.data.templateName }) : ''
-	);
+	const [templateName, setTemplateName] = React.useState<string>(params?.data?.templateName ? params.data.templateName : '');
+	const selectedIndex: number = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
 
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setWalletType(event.target.value);
@@ -31,17 +31,24 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	const handleTemplateChange = (event: React.ChangeEvent<HTMLInputElement>): void => setTemplateName(event.target.value);
 
 	const handleTrashClick = (): void => {
-		console.log('remove');
+		history.push('/wallets', { selectedIndex: selectedIndex });
 	};
 
-	const handleSaveClick = (): void => history.push('/wallets');
+	const handleSaveChangeClick = (): void => {
+		const paymentTemplate: ITemplateDataProps = {
+			templateName: templateName,
+			amount: amount,
+			walletType: walletType,
+			paymentType: paymentMethodType,
+			walletAddress: ''
+		};
+		history.push('/wallets', { data: paymentTemplate, selectedIndex: selectedIndex });
+	};
 
 	return (
 		<Page
 			title={formatMessage({ id: 'wallets.template.title' })}
-			headerLink={
-				<IconButton className={classes.trashIcon} iconProps={{ iconName: 'trash', colorType: 'green' }} onClick={handleTrashClick} />
-			}
+			headerLink={<IconButton iconProps={{ iconName: 'trash', colorType: 'green' }} onClick={handleTrashClick} />}
 			titleSize="medium"
 		>
 			<Box className={classes.templateWrapper}>
@@ -89,7 +96,7 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 					))}
 				</Select>
 			</Box>
-			<GreenButton className={classes.saveButton} iconName="well-done-checked" compact onClick={handleSaveClick}>
+			<GreenButton className={classes.saveButton} iconName="well-done-checked" compact onClick={handleSaveChangeClick}>
 				{formatMessage({ id: 'button.save_changes' })}
 			</GreenButton>
 		</Page>

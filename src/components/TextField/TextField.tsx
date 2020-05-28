@@ -69,7 +69,10 @@ export const PasswordInput: React.FunctionComponent<ITextFieldProps> = props => 
 
 export const Select: React.FunctionComponent<ITextFieldProps> = ({ children, ...rest }) => {
 	const classes = useStyles();
-	const iconComponent = () => <Icon className={classes.selectIcon} iconName="down" />;
+
+	const iconComponent = (): JSX.Element => {
+		return <Icon className={classes.selectIcon} iconName="down" />;
+	};
 
 	return (
 		<TextField {...rest} select selectProps={{ IconComponent: iconComponent }}>

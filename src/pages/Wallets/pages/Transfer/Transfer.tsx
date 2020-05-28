@@ -2,7 +2,7 @@ import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, IconButton, Page, Select, Text, TextField } from 'components';
 import { ITemplateDataProps } from '../Template/Template.types';
 import { RulerButton } from '../../components';
-import { rulerPriceBonusData, templateData, walletTypes } from '../../Wallets.data';
+import { paymentTemplate, rulerPriceBonusData, walletTypes } from '../../Wallets.data';
 import { styles } from './Transfer.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -46,13 +46,13 @@ export const Transfer: React.FunctionComponent = () => {
 			<Box className={classes.addFundsWrapper}>
 				<Text className={classes.helperText}>{formatMessage({ id: 'wallets.payment_templates' })}</Text>
 				<Box className={classes.TemplateButtonsWrapper}>
-					{templateData.map((template, index) => (
+					{paymentTemplate.map((template, index) => (
 						<Button
 							className={clsx({ active: template.templateName === templateName })}
 							key={index}
 							onClick={() => handleTemplateClick(template)}
 						>
-							{formatMessage({ id: template.templateName })}
+							{template.templateName}
 						</Button>
 					))}
 				</Box>

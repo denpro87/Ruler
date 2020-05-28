@@ -15,7 +15,7 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 	const [cardData, setCardData] = React.useState<object[]>([]);
 	const [deleteCard, setDeleteCard] = React.useState(false);
 	const [selectedIndex, setSelectedIndex] = React.useState(-1);
-	const [isFirstLoading, setFirstLoading] = React.useState(true);
+	// const [isFirstLoading, setFirstLoading] = React.useState(true);
 	const classes = useStyles();
 
 	React.useEffect(() => {
@@ -32,12 +32,11 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 				setCardData(prevData => [...prevData, data]);
 			}
 		}
-		setFirstLoading(false);
+		// setFirstLoading(false);
 	}, [props.location.state]);
-
-	React.useEffect(() => {
-		if (!isFirstLoading && cardData.length === 0) history.push('/payment-methods/add-payment-method');
-	}, [cardData, history, isFirstLoading]);
+	// React.useEffect(() => {
+	// 	if (!isFirstLoading && cardData.length === 0) history.push('/payment-methods/add-payment-method');
+	// }, [cardData, history, isFirstLoading]);
 
 	const handleTrashButtonClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		setDeleteCard(true);
@@ -67,18 +66,19 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 			headerLinkProps={{ href: '/wallets' }}
 		>
 			<Box className={classes.submitWrapper}>
-				{cardData?.map(
-					(data: any, index: number): JSX.Element => {
-						return (
-							<PaymentMethodItem
-								key={index}
-								cardData={data}
-								handleShowClick={handleItemClick(index, data)}
-								handleRemoveClick={handleTrashButtonClick(index)}
-							/>
-						);
-					}
-				)}
+				{cardData !== undefined &&
+					cardData.map(
+						(data: any, index: number): JSX.Element => {
+							return (
+								<PaymentMethodItem
+									key={index}
+									cardData={data}
+									handleShowClick={handleItemClick(index, data)}
+									handleRemoveClick={handleTrashButtonClick(index)}
+								/>
+							);
+						}
+					)}
 				<GreenButton
 					iconName="add"
 					className={classes.addPaymentMethodButton}

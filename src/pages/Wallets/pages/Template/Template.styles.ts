@@ -26,12 +26,9 @@ const saveButton: CSSProperties = {
 	fontWeight: 'bold'
 };
 
-const trashIcon: CSSProperties = {};
-
 export const styles = createStyles({
 	templateWrapper,
 	textField,
 	selectItem,
-	saveButton,
-	trashIcon
+	saveButton
 });

@@ -68,16 +68,16 @@ export const paymentMethodTypes: Array<IOptionType> = [
 	}
 ];
 
-export const templateData: Array<ITemplateDataProps> = [
+export const paymentTemplate: Array<ITemplateDataProps> = [
 	{
-		templateName: 'wallets.to_my_friend',
+		templateName: 'To my friend',
 		amount: '10',
 		walletType: 'ruler_token',
 		paymentType: 'credit_card',
 		walletAddress: '1BvBMSEYstWetqTFn5Au4m4GFg5Au4m4GFg'
 	},
 	{
-		templateName: 'wallets.to_wife',
+		templateName: 'To wife',
 		amount: '15',
 		walletType: 'bitcoin',
 		paymentType: 'credit_card',

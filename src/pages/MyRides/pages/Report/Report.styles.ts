@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { percentage, pxToRem } from 'styles';
 
 const reportContainer: CSSProperties = {
@@ -125,8 +125,9 @@ const image: CSSProperties = {
 	objectFit: 'cover'
 };
 
-const nonSentImagesWrapper: CSSProperties = {
+const nonSentImagesWrapper: CreateCSSProperties = {
 	position: 'absolute',
+	top: (props: any) => (props.rowsNum ? -100 * props.rowsNum : 0),
 	left: 0,
 	right: 60,
 	display: 'flex',
@@ -135,10 +136,6 @@ const nonSentImagesWrapper: CSSProperties = {
 	backgroundColor: '#f3f3f3',
 	borderRadius: 15,
 	overflow: 'hidden'
-};
-
-export const getTopPosition = (rowsNum: number): number => {
-	return -100 * rowsNum;
 };
 
 const timeTextWrapper: CSSProperties = {
