@@ -39,7 +39,7 @@ export const RulerWallet: React.FunctionComponent = () => {
 						<Box className={classes.imageWrapper}>
 							<img alt="description" src={bgImage} className={classes.image} />
 						</Box>
-						<GoBackIconButton className={classes.goBackIcon} onClick={() => history.goBack()} />
+						<GoBackIconButton className={classes.goBackIcon} onClick={(): void => history.goBack()} />
 						<Box className={classes.titleWrapper}>
 							<Text className={classes.titleText}>{formatMessage({ id: 'wallets.ruler_wallet.title' })}</Text>
 							<IconButton iconProps={{ iconName: 'qr', color: '#00b559' }} onClick={handleQrClick} />

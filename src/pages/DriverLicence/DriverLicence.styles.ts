@@ -58,13 +58,6 @@ const bannerText: CreateCSSProperties = {
 	padding: `0 ${pxToRem(35)}`
 };
 
-const description: CSSProperties = {
-	fontSize: pxToRem(15),
-	color: 'rgba(24, 28, 25, 0.5)',
-	fontWeight: 600,
-	lineHeight: 1.67
-};
-
 const buttonWrapper: CSSProperties = {
 	margin: `auto 0 ${pxToRem(20)} 0`
 };
@@ -82,6 +75,12 @@ const submitButton: CSSProperties = {
 	}
 };
 
+const description: CSSProperties = {
+	fontSize: pxToRem(15),
+	color: 'rgba(24, 28, 25, 0.5)',
+	fontWeight: 600,
+	lineHeight: 1.67
+};
 export const styles = createStyles({
 	bannerBox,
 	addButton,

@@ -47,7 +47,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 
 	const handleTransfer = (): void => history.push('/wallets/transfer');
 
-	const handleTemplate = (): void => history.push('/wallets/template');
+	const handleTemplate = (): void => history.push('/wallets/template', { data: null });
 
 	const handleTemplateClick = (index: number, template: ITemplateDataProps): void =>
 		history.push('/wallets/template', { data: template, selectedIndex: index });

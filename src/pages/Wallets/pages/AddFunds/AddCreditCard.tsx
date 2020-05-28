@@ -47,6 +47,7 @@ export const AddCreditCard: React.FunctionComponent = () => {
 				/>
 				<TextField
 					name="cardNumber"
+					type="number"
 					label={formatMessage({ id: 'wallets.add_credit_card.card_number' })}
 					value={cardState.cardNumber}
 					onValueChange={handleStateChange}
@@ -68,6 +69,7 @@ export const AddCreditCard: React.FunctionComponent = () => {
 				/>
 				<TextField
 					name="zipCode"
+					type="number"
 					label={formatMessage({ id: 'wallets.add_credit_card.zip_code' })}
 					value={cardState.zipCode}
 					onValueChange={handleStateChange}

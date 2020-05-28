@@ -57,28 +57,28 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 		}
 	};
 
-	const removePhoto = (type: 'front' | 'back') => {
+	const removePhoto = (type: 'front' | 'back'): void => {
 		if (type === 'front') setFrontPhoto('');
 		else setBackPhoto('');
 	};
 
-	const submit = () => setSubmitSuccessModal(true);
+	const submit = (): void => setSubmitSuccessModal(true);
 
-	const handleDialogClose = () => {
+	const handleDialogClose = (): void => {
 		setSubmitSuccessModal(false);
 		setFrontPhoto('');
 		setBackPhoto('');
-		history.push('/driver-licence', { data: [frontPhoto], state: 'progress', showAddDriverLicence: false });
+		history.push('/driver-licence', { data: frontPhoto, state: 'progress', showAddDriverLicence: false });
 	};
 
-	const handleTakePhotoClick = (type: 'front' | 'back') => {
+	const handleTakePhotoClick = (type: 'front' | 'back'): void => {
 		setShowTakePhoto(true);
 
 		if (type === 'front') setSide('front');
 		else setSide('back');
 	};
 
-	const handleBottomSheetChange = (isOpen: boolean) => {
+	const handleBottomSheetChange = (isOpen: boolean): void => {
 		setShowTakePhoto(isOpen);
 	};
 
@@ -147,7 +147,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 					compact
 					className={classes.submitButton}
 					disabled={!frontPhoto || !backPhoto}
-					onClick={() => submit()}
+					onClick={submit}
 				>
 					{formatMessage({ id: 'driver_licence.submit_for_validation' })}
 				</Button>

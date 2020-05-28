@@ -1,4 +1,4 @@
 export interface ILicenceItemProps {
 	imageSrc: string;
-	handleRemoveClick: () => void;
+	handleRemoveClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }

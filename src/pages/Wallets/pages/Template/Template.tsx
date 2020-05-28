@@ -13,12 +13,20 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { formatMessage } = useIntl();
+	const [walletType, setWalletType] = React.useState<string>('');
+	const [paymentMethodType, setPaymentMethodType] = React.useState<string>('');
+	const [amount, setAmount] = React.useState<string>('');
+	const [templateName, setTemplateName] = React.useState<string>('');
 	const params: any = props.location.state;
-	const [walletType, setWalletType] = React.useState<string>(params?.data?.walletType ? params.data.walletType : '');
-	const [paymentMethodType, setPaymentMethodType] = React.useState<string>(params?.data?.paymentType ? params.data.paymentType : '');
-	const [amount, setAmount] = React.useState<string>(params?.data?.amount ? params.data.amount : '');
-	const [templateName, setTemplateName] = React.useState<string>(params?.data?.templateName ? params.data.templateName : '');
-	const selectedIndex: number = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
+	const selectedIndex = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
+	React.useEffect(() => {
+		const params: any = props.location.state;
+		const data = params && params.data ? params.data : null;
+		setWalletType(data ? params.data.walletType : '');
+		setPaymentMethodType(data ? params.data.paymentType : '');
+		setAmount(data ? params.data.amount : '');
+		setTemplateName(data ? params.data.templateName : '');
+	}, [props.location.state]);
 
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setWalletType(event.target.value);

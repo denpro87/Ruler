@@ -14,14 +14,14 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [state, setState] = React.useState<'success' | 'progress' | 'invalid' | ''>('');
-	const [data, setData] = React.useState<string[]>([]);
-	const [isFirstLoading, setFirstLoading] = React.useState(true);
+	const [driverLicenceData, setDriverLicenceData] = React.useState<string[]>([]);
+	// const [isFirstLoading, setFirstLoading] = React.useState(true);
 	const [showAddDriverLicence, setAddDriverLicence] = React.useState(false);
 	const classes = useStyles({ state });
 
 	React.useEffect(() => {
 		const params: any = props.location.state;
-		const urls = params && params.data ? params.data : null;
+		const data = params && params.data ? params.data : null;
 		const state = params && params.state ? params.state : null;
 		const showAddDriverLicence = params && params.showAddDriverLicence;
 
@@ -29,8 +29,10 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 
 		setAddDriverLicence(showAddDriverLicence);
 
-		if (urls) setData(urls);
-		setFirstLoading(false);
+		if (data) {
+			setDriverLicenceData(prevData => [...prevData, data]);
+		}
+		// setFirstLoading(false);
 	}, [props.location.state]);
 
 	React.useEffect(() => {
@@ -42,25 +44,33 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 		}
 	}, [state]);
 
-	React.useEffect(() => {
-		if (!isFirstLoading && data.length === 0) history.push('/driver-licence/add');
-	}, [data, history, isFirstLoading]);
+	// React.useEffect(() => {
+	// 	if (!isFirstLoading && data.length === 0) history.push('/driver-licence/add');
+	// }, [data, history, isFirstLoading]);
 
-	const handleRemoveClick = (index: number) => {
-		console.log(index);
+	const handleRemoveButtonClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+		const temp = driverLicenceData;
+		temp.splice(index, 1);
+		setDriverLicenceData([...temp]);
 	};
 
 	const handleAddDriverLicenceClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
-		if (!isFirstLoading && data.length > 0) setAddDriverLicence(true);
+		if (driverLicenceData.length > 0) setAddDriverLicence(true);
 		else setAddDriverLicence(false);
 	};
 
-	const handleBottomSheetChange = (isOpen: boolean) => {
+	const handleBottomSheetChange = (isOpen: boolean): void => {
 		setAddDriverLicence(isOpen);
 	};
 
 	return (
 		<Page title={formatMessage({ id: 'driver_licence.title' })} titleSize="large">
+			{driverLicenceData.length === 0 && (
+				<>
+					<Text className={classes.description}>{formatMessage({ id: 'driver_licence.description' })}</Text>
+					<AddDriverLicencePhoto />
+				</>
+			)}
 			{state !== 'success' && state !== '' && (
 				<Text className={classes.description}>{formatMessage({ id: 'driver_licence.description' })}</Text>
 			)}
@@ -90,8 +100,8 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 					<Box className={classes.bannerBox}>
 						<Text className={classes.bannerText}>{formatMessage({ id: 'driver_licence.validation.success.title' })}</Text>
 					</Box>
-					{data?.map((item: string, index: number) => (
-						<LicenceItem key={index} imageSrc={item} handleRemoveClick={() => handleRemoveClick(index)} />
+					{driverLicenceData?.map((item: string, index: number) => (
+						<LicenceItem key={index} imageSrc={item} handleRemoveClick={handleRemoveButtonClick(index)} />
 					))}
 					<Box className={classes.buttonWrapper}>
 						<Button iconName="add" compact className={classes.addButton} onClick={handleAddDriverLicenceClick}>
