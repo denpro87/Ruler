@@ -16,24 +16,24 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 	const [state, setState] = React.useState<'success' | 'progress' | 'invalid' | ''>('');
 	const [driverLicenceData, setDriverLicenceData] = React.useState<string[]>([]);
 	// const [isFirstLoading, setFirstLoading] = React.useState(true);
-	const [showAddDriverLicence, setAddDriverLicence] = React.useState(false);
+	const [showAddDriverLicence, setShowAddDriverLicence] = React.useState(false);
 	const classes = useStyles({ state });
 
-	React.useEffect(() => {
-		const params: any = props.location.state;
-		const data = params && params.data ? params.data : null;
-		const state = params && params.state ? params.state : null;
-		const showAddDriverLicence = params && params.showAddDriverLicence;
+	// React.useEffect(() => {
+	// const params: any = props.location.state;
+	// const data = params && params.data ? params.data : null;
+	// const state = params && params.state ? params.state : null;
+	// const showAddDriverLicence = params && params.showAddDriverLicence;
 
-		if (state) setState(state);
+	// if (state) setState(state);
 
-		setAddDriverLicence(showAddDriverLicence);
+	// setAddDriverLicence(showAddDriverLicence);
 
-		if (data) {
-			setDriverLicenceData(prevData => [...prevData, data]);
-		}
-		// setFirstLoading(false);
-	}, [props.location.state]);
+	// if (data) {
+	// 	setDriverLicenceData(prevData => [...prevData, data]);
+	// }
+	// setFirstLoading(false);
+	// }, [props.location.state]);
 
 	React.useEffect(() => {
 		if (state === 'progress') {
@@ -54,13 +54,18 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 		setDriverLicenceData([...temp]);
 	};
 
-	const handleAddDriverLicenceClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
-		if (driverLicenceData.length > 0) setAddDriverLicence(true);
-		else setAddDriverLicence(false);
+	const handleBottomSheetChange = (isOpen: boolean): void => {
+		setShowAddDriverLicence(isOpen);
 	};
 
-	const handleBottomSheetChange = (isOpen: boolean): void => {
-		setAddDriverLicence(isOpen);
+	const handleDialogClose = (frontPhoto: string): void => {
+		setDriverLicenceData(prevData => [...prevData, frontPhoto]);
+		setShowAddDriverLicence(false);
+		setState('progress');
+	};
+
+	const handleTryAgainClick = (): void => {
+		setState('');
 	};
 
 	return (
@@ -68,43 +73,42 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 			{driverLicenceData.length === 0 && (
 				<>
 					<Text className={classes.description}>{formatMessage({ id: 'driver_licence.description' })}</Text>
-					<AddDriverLicencePhoto />
+					<AddDriverLicencePhoto handleDialogCloseButtonClick={handleDialogClose} />
 				</>
 			)}
-			{state !== 'success' && state !== '' && (
-				<Text className={classes.description}>{formatMessage({ id: 'driver_licence.description' })}</Text>
-			)}
-			{state === 'progress' && (
+			{driverLicenceData.length > 0 && state === 'progress' && (
 				<Box className={classes.submitWrapper}>
+					<Text className={classes.description}>{formatMessage({ id: 'driver_licence.description' })}</Text>
 					<Box className={classes.bannerBox}>
 						<Text className={classes.bannerText}>{formatMessage({ id: 'driver_licence.validation.progress.title' })}</Text>
 					</Box>
 					<Text className={classes.description}>{formatMessage({ id: 'driver_licence.validation.progress.description' })}</Text>
 				</Box>
 			)}
-			{state === 'invalid' && (
+			{driverLicenceData.length > 0 && state === 'invalid' && (
 				<Box className={classes.submitWrapper}>
+					<Text className={classes.description}>{formatMessage({ id: 'driver_licence.description' })}</Text>
 					<Box className={classes.bannerBox}>
 						<Text className={classes.bannerText}>{formatMessage({ id: 'driver_licence.validation.invalid.title' })}</Text>
 					</Box>
 					<Text className={classes.description}>{formatMessage({ id: 'driver_licence.invalid.description' })}</Text>
 					<Box className={classes.buttonWrapper}>
-						<Button iconName="reset" compact fullWidth className={classes.submitButton} href="/driver-licence/add">
+						<Button iconName="reset" compact fullWidth className={classes.submitButton} onClick={handleTryAgainClick}>
 							{formatMessage({ id: 'driver_licence.try_again' })}
 						</Button>
 					</Box>
 				</Box>
 			)}
-			{state === 'success' && (
+			{driverLicenceData.length > 0 && state === 'success' && (
 				<Box className={classes.submitWrapper}>
 					<Box className={classes.bannerBox}>
 						<Text className={classes.bannerText}>{formatMessage({ id: 'driver_licence.validation.success.title' })}</Text>
 					</Box>
-					{driverLicenceData?.map((item: string, index: number) => (
+					{driverLicenceData.map((item: string, index: number) => (
 						<LicenceItem key={index} imageSrc={item} handleRemoveClick={handleRemoveButtonClick(index)} />
 					))}
 					<Box className={classes.buttonWrapper}>
-						<Button iconName="add" compact className={classes.addButton} onClick={handleAddDriverLicenceClick}>
+						<Button iconName="add" compact className={classes.addButton} onClick={(): void => setShowAddDriverLicence(true)}>
 							{formatMessage({ id: 'driver_licence.add' })}
 						</Button>
 					</Box>
@@ -115,7 +119,7 @@ export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props
 				open={showAddDriverLicence}
 				onBottomSheetChange={handleBottomSheetChange}
 			>
-				<AddDriverLicencePhoto />
+				<AddDriverLicencePhoto handleDialogCloseButtonClick={handleDialogClose} />
 			</BottomSheet>
 		</Page>
 	);

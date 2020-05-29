@@ -1,10 +1,10 @@
 import { BottomSheet, Button, Dialog, Icon, IconButton, Text } from 'components';
 import { Box, makeStyles } from '@material-ui/core';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
+import { IAddDriverLicencePhotoProps } from './AddDriverLicencePhoto.types';
 import { IonImg } from '@ionic/react';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './AddDriverLicencePhoto.styles';
-import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import BackdropFilter from 'react-backdrop-filter';
 import React from 'react';
@@ -13,9 +13,8 @@ const useStyles = makeStyles(styles);
 
 const { Camera } = Plugins;
 
-export const AddDriverLicencePhoto: React.FunctionComponent = () => {
+export const AddDriverLicencePhoto: React.FunctionComponent<IAddDriverLicencePhotoProps> = ({ handleDialogCloseButtonClick }) => {
 	const classes = useStyles();
-	const history = useHistory();
 	const [photo, setPhoto] = React.useState('');
 	const [frontPhoto, setFrontPhoto] = React.useState('');
 	const [backPhoto, setBackPhoto] = React.useState('');
@@ -65,10 +64,10 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 	const submit = (): void => setSubmitSuccessModal(true);
 
 	const handleDialogClose = (): void => {
+		handleDialogCloseButtonClick(frontPhoto);
 		setSubmitSuccessModal(false);
 		setFrontPhoto('');
 		setBackPhoto('');
-		history.replace('/driver-licence', { data: frontPhoto, state: 'progress', showAddDriverLicence: false });
 	};
 
 	const handleTakePhotoClick = (type: 'front' | 'back'): void => {
@@ -82,7 +81,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 		setShowTakePhoto(isOpen);
 	};
 
-	const handleRevertClick = (index: number): void => {
+	const handleRevertClick = (): void => {
 		setSelectedImageIndex(-1);
 	};
 
@@ -192,7 +191,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 												className={clsx({ [classes.takenImage]: true }, { [classes.takenImageActive]: index === selectedImageIndex })}
 												key={index}
 												src={photo}
-												onClick={() => handlePhotoClick(index)}
+												onClick={(): void => handlePhotoClick(index)}
 											/>
 										);
 									})}
@@ -214,7 +213,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent = () => {
 							<IconButton
 								iconProps={{ iconName: selectedImageIndex < 0 ? 'flashlight' : 'revert', color: '#181c19' }}
 								className={classes.leftRightIconButton}
-								onClick={(): void => (selectedImageIndex >= 0 ? handleRevertClick(selectedImageIndex) : handleFlashLightClick())}
+								onClick={(): void => (selectedImageIndex >= 0 ? handleRevertClick() : handleFlashLightClick())}
 							/>
 						</Box>
 					</BackdropFilter>
