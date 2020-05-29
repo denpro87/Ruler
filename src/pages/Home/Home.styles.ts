@@ -351,7 +351,7 @@ const qrCodeInput: CSSProperties = {
 	borderRadius: pxToRem(15),
 	'&>.MuiInputBase-input': {
 		minHeight: pxToRem(25),
-		letterSpacing: pxToRem(22),
+		letterSpacing: pxToRem(27),
 		padding: `${pxToRem(12)} ${pxToRem(35)} ${pxToRem(13)} ${pxToRem(37)}`
 	},
 	lineHeight: 1.67,

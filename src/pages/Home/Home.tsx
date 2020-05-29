@@ -29,7 +29,7 @@ import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { GeolocateControl, Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import bike from './images/bike.png';
 import bird from './images/bird.png';
 import car from './images/car.png';
@@ -97,7 +97,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	// const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
 	const [placeHolder, setPlaceHolder] = React.useState('');
 	const [buttonLabel, setButtonLabel] = React.useState('Car');
-	const [qrCode, setQrCode] = React.useState('12345678');
+	const [qrCode, setQrCode] = React.useState('123456');
 	const [qrCodeInput, setQrCodeInput] = React.useState('');
 	const [scanEnterButtonLabel, setScanEnterButtonLabel] = React.useState('Scan code');
 	const [switchState, setSwitchState] = React.useState(initialState);
