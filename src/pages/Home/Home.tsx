@@ -81,7 +81,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [vehicleSelectionExpanded, setVehicleSelectionExpanded] = React.useState(false);
 	const [rateRulerModal, setRateRulerModal] = React.useState(false);
 	const [open, setOpen] = React.useState(false);
-	const [showInviteFriends, setShowInviteFriends] = React.useState(false);
+	const [showInviteFriends, setShowInviteFriends] = React.useState<boolean>(false);
 	const [showReport, setShowReport] = React.useState(false);
 	const [showAreas, setShowAreas] = React.useState(false);
 	const [showFilter, setShowFilter] = React.useState(false);
@@ -111,11 +111,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [rideReview, setRideReview] = React.useState('');
 	React.useEffect(() => {
 		const params: any = props.location.state;
-		const state = params && params.state ? params.state : null;
+		// console.log('########', params);
+		// const state = params?.state ? params.state : false;
 		const data = params && params.data ? params.data : null;
 		const showVehicleRide = params && params.showVehicleRide ? params.showVehicleRide : null;
-
-		if (state) setShowInviteFriends(state);
+		// console.log('!!!!!!!!', state);
+		// setShowInviteFriends(state);
 
 		if (data) setPaymentMethod(data);
 
@@ -308,6 +309,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowVehicleRide(false);
 		setShowFinishedRide(true);
 	};
+	console.log('ASdfasdfasdfasdf', showInviteFriends);
 
 	return (
 		<FullPage>
