@@ -2,10 +2,9 @@ import { Box, makeStyles } from '@material-ui/core';
 import { FullPage } from 'components';
 import { styles } from './Splash.styles';
 import { useHistory } from 'react-router-dom';
-import React from 'react';
-
 import BottomBackgroundElement from './images/bottom-bg-element.svg';
 import Logo from './images/logo.svg';
+import React from 'react';
 import TopBackgroundElement from './images/top-bg-element.svg';
 import clsx from 'clsx';
 
@@ -15,12 +14,13 @@ export const Splash: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const history = useHistory();
 
-	const handleOnClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-		e.preventDefault();
-		history.push('/welcome');
-	};
+	React.useEffect(() => {
+		window.onload = (): void => {
+			history.push('/welcome');
+		};
+	});
 
-	const handleRenderBackground = () => (
+	const handleRenderBackground = (): JSX.Element => (
 		<>
 			<Box className={classes.logoContainer}>
 				<img className={classes.image} src={Logo} alt="logo" />
@@ -38,5 +38,5 @@ export const Splash: React.FunctionComponent = () => {
 		</>
 	);
 
-	return <FullPage backgroundColor="#000" onRenderBackground={handleRenderBackground} onClick={handleOnClick} />;
+	return <FullPage backgroundColor="#000" onRenderBackground={handleRenderBackground} />;
 };
