@@ -2,13 +2,12 @@ import { Box, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemTex
 import { GreenButton, Icon, IconButton } from 'components';
 import { IMenuProps } from './Menu.types';
 import { IntlShape, useIntl } from 'react-intl';
-import { Link as RouterLink } from 'react-router-dom';
 import { listItemIcon, styles } from './Menu.styles';
 import { menuItems } from './Menu.data';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
-export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClose }) => {
+export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClose, menuItemClick }) => {
 	const classes = useStyles();
 	const { formatMessage }: IntlShape = useIntl();
 
@@ -16,13 +15,7 @@ export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClos
 		<Box className={classes.menu} role="presentation" onClick={onClose} onKeyDown={onClose}>
 			<List className={classes.list}>
 				{menuItems.map((item, index) => (
-					<ListItem
-						key={item.text}
-						button
-						className={classes.listItem}
-						component={RouterLink}
-						to={{ pathname: `/${item.href}`, state: item.href === 'home' ? { state: true } : { state: false } }}
-					>
+					<ListItem key={item.text} button className={classes.listItem} onClick={(): void => menuItemClick(item.href)}>
 						{/* ListItemIcon classname doesn't work??? */}
 						<ListItemIcon className={classes.listItemIcon} style={listItemIcon}>
 							<Icon {...item.iconProps} />

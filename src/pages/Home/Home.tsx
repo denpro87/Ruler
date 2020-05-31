@@ -21,7 +21,6 @@ import {
 import { Box, Input, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg, IonSlide, IonSlides } from '@ionic/react';
-
 import { areasListItems, damagedVehicleTypes, finishedRideVehicleInfo, markerList, vehicleButtons, vehicleInfo } from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
@@ -70,8 +69,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const hasAccount = true;
 	const hasValidatedDriverLicence = true;
 	const [viewport, setViewport] = React.useState<ViewState>({
-		// latitude: 37.8,
-		// longitude: -122.4,
 		latitude: 17.44212,
 		longitude: 78.391384,
 		zoom: 14,
@@ -111,12 +108,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [rideReview, setRideReview] = React.useState('');
 	React.useEffect(() => {
 		const params: any = props.location.state;
-		// console.log('########', params);
-		// const state = params?.state ? params.state : false;
 		const data = params && params.data ? params.data : null;
 		const showVehicleRide = params && params.showVehicleRide ? params.showVehicleRide : null;
-		// console.log('!!!!!!!!', state);
-		// setShowInviteFriends(state);
 
 		if (data) setPaymentMethod(data);
 
@@ -309,7 +302,14 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowVehicleRide(false);
 		setShowFinishedRide(true);
 	};
-	console.log('ASdfasdfasdfasdf', showInviteFriends);
+
+	const handleMenuItemClick = (href: string): void => {
+		if (href === 'home') {
+			setShowInviteFriends(true);
+		} else {
+			history.push(`/${href}`);
+		}
+	};
 
 	return (
 		<FullPage>
@@ -431,7 +431,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					<IonImg className={classes.rateImage} src={rateImage} />
 				</Box>
 			</Dialog>
-			<Menu open={open} onOpen={handleDrawerClick(true)} onClose={handleDrawerClick(false)} />
+			<Menu open={open} onOpen={handleDrawerClick(true)} onClose={handleDrawerClick(false)} menuItemClick={handleMenuItemClick} />
 			<BottomSheet
 				title={formatMessage({ id: 'home.invite_friends_sheet.title' })}
 				description={formatMessage({ id: 'home.invite_friends_sheet.description' })}
