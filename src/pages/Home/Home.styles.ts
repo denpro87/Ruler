@@ -23,16 +23,15 @@ const zonesButton: CSSProperties = {
 
 const vehicleButtonGroup: CSSProperties = {
 	position: 'absolute',
-	bottom: pxToRem(30),
+	bottom: pxToRem(80),
 	left: pxToRem(20)
 };
 
 const vehicleButtonGroupWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
-	borderRadius: pxToRem(15),
-	backgroundColor: 'rgb(255, 255, 255)',
-	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 0, 0, 0.1)`
+	borderRadius: `${pxToRem(15)} ${pxToRem(15)} 0 0`,
+	backgroundColor: 'rgb(255, 255, 255)'
 };
 
 const findMeButton: CSSProperties = {
@@ -85,11 +84,22 @@ const filterButton: CSSProperties = {
 };
 
 const closeIconButton: CSSProperties = {
-	padding: `${pxToRem(10)}`
+	position: 'absolute',
+	bottom: pxToRem(30),
+	left: pxToRem(20),
+	borderRadius: `0 0 ${pxToRem(15)} ${pxToRem(15)}`,
+	'&:hover': {
+		backgroundColor: '#ffffff'
+	}
 };
 
 const vehicleIconButton: CSSProperties = {
-	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 0, 0, 0.1)`
+	position: 'absolute',
+	bottom: pxToRem(30),
+	left: pxToRem(20),
+	'&:hover': {
+		backgroundColor: '#ffffff'
+	}
 };
 
 const iconButtonText: CSSProperties = {

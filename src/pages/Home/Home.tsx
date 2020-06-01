@@ -18,7 +18,7 @@ import {
 	Text,
 	TextField
 } from 'components';
-import { Box, Input, List, Slider, Typography } from '@material-ui/core';
+import { Box, Collapse, Input, List, Slider, Typography } from '@material-ui/core';
 import { IHomeProps } from './Home.types';
 import { IonImg, IonSlide, IonSlides } from '@ionic/react';
 import { areasListItems, damagedVehicleTypes, finishedRideVehicleInfo, markerList, vehicleButtons, vehicleInfo } from './Home.data';
@@ -363,40 +363,36 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				})}
 				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" onClick={(): void => setShowAreas(true)} />
 				<Box className={classes.vehicleButtonGroup}>
-					{vehicleSelectionExpanded ? (
+					<Collapse in={vehicleSelectionExpanded}>
 						<Box className={classes.vehicleButtonGroupWrapper}>
-							<>
-								{vehicleButtons.map(
-									(button, index): JSX.Element => {
-										return (
-											<IconButton
-												key={index}
-												label={formatMessage({ id: button.label })}
-												iconName={button.iconName}
-												colorType="black"
-												style={button.style}
-												onClick={handleVehicleTypeClick(button.iconName)}
-											/>
-										);
-									}
-								)}
-								<IconButton
-									iconName="close"
-									colorType="black"
-									className={classes.closeIconButton}
-									onClick={(): void => setVehicleSelectionExpanded(false)}
-								/>
-							</>
+							{vehicleButtons.map(
+								(button, index): JSX.Element => {
+									return (
+										<IconButton
+											noShadow
+											key={index}
+											label={formatMessage({ id: button.label })}
+											iconName={button.iconName}
+											colorType="black"
+											style={button.style}
+											onClick={handleVehicleTypeClick(button.iconName)}
+										/>
+									);
+								}
+							)}
 						</Box>
-					) : (
-						<IconButton
-							iconName="vehicle"
-							className={classes.vehicleIconButton}
-							colorType="black"
-							onClick={(): void => setVehicleSelectionExpanded(true)}
-						/>
-					)}
+					</Collapse>
 				</Box>
+				<IconButton
+					noShadow
+					iconName={vehicleSelectionExpanded ? 'close' : 'vehicle'}
+					className={clsx(
+						{ [classes.closeIconButton]: vehicleSelectionExpanded },
+						{ [classes.vehicleIconButton]: !vehicleSelectionExpanded }
+					)}
+					colorType="black"
+					onClick={(): void => setVehicleSelectionExpanded(!vehicleSelectionExpanded)}
+				/>
 				<Text className={clsx(classes.iconButtonText, classes.positionVehicleText)}>{formatMessage({ id: 'home.text.vehicle' })}</Text>
 				<IconButton className={classes.findMeButton} iconName="find-me" colorType="black" />
 				<Text className={clsx(classes.iconButtonText, classes.positionLocationText)}>{formatMessage({ id: 'home.text.location' })}</Text>
