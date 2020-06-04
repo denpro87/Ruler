@@ -11,7 +11,7 @@ export const validateEmail = (email: string): boolean => {
 };
 
 export const validatePassword = (password: string): boolean => {
-	const regExpForPassword = /^(?=.*\d{2,})(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}$/;
+	const regExpForPassword = /^(?=(?:.*?[0-9]){2})(?=.*[A-Z])(?=.*\W)(?=.{6,}$)/;
 
 	return regExpForPassword.test(password);
 };
