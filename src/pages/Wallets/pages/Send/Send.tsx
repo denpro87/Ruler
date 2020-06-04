@@ -4,9 +4,9 @@ import { RulerButton } from '../../components';
 import { rulerPriceBonusData } from '../../Wallets.data';
 import { styles } from './Send.styles';
 import { useIntl } from 'react-intl';
+import { validateNumber } from 'utils';
 import React from 'react';
 import clsx from 'clsx';
-
 const useStyles = makeStyles(styles);
 
 export const Send: React.FunctionComponent = () => {
@@ -14,11 +14,20 @@ export const Send: React.FunctionComponent = () => {
 	const { formatMessage } = useIntl();
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [amount, setAmount] = React.useState<string>('');
+	const [numberValid, setNumberValid] = React.useState(true);
 	const [walletAddress, setWalletAddress] = React.useState<string>('');
 
 	const handleRulerButtonClick = (amount: string): void => setAmount(amount);
 
-	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => setAmount(event.target.value);
+	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		setNumberValid(validateNumber(event.target.value));
+
+		if (isNaN(Number(event.target.value))) {
+			setAmount('');
+		} else {
+			setAmount(event.target.value);
+		}
+	};
 
 	const handleWalletAddressChange = (event: React.ChangeEvent<HTMLInputElement>): void => setWalletAddress(event.target.value);
 
@@ -64,7 +73,8 @@ export const Send: React.FunctionComponent = () => {
 				</Box>
 				<TextField
 					name="insertAmount"
-					type="number"
+					error={!numberValid}
+					helperText={!numberValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
 					className={classes.insertAmount}
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					inputProps={{

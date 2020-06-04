@@ -15,3 +15,9 @@ export const validatePassword = (password: string): boolean => {
 
 	return regExpForPassword.test(password);
 };
+
+export const validateNumber = (num: string): boolean => {
+	const regExpForNumber = /^(?=.*[0-9])/;
+
+	return regExpForNumber.test(num);
+};
