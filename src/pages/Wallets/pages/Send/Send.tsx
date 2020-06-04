@@ -20,13 +20,8 @@ export const Send: React.FunctionComponent = () => {
 	const handleRulerButtonClick = (amount: string): void => setAmount(amount);
 
 	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		setAmount(event.target.value);
 		setNumberValid(validateNumber(event.target.value));
-
-		if (isNaN(Number(event.target.value))) {
-			setAmount('');
-		} else {
-			setAmount(event.target.value);
-		}
 	};
 
 	const handleWalletAddressChange = (event: React.ChangeEvent<HTMLInputElement>): void => setWalletAddress(event.target.value);
@@ -37,7 +32,7 @@ export const Send: React.FunctionComponent = () => {
 		setShowDialog(true);
 	};
 
-	const handleDialogClose = () => {
+	const handleDialogClose = (): void => {
 		setShowDialog(false);
 	};
 
@@ -84,7 +79,7 @@ export const Send: React.FunctionComponent = () => {
 					onValueChange={handleAmountChange}
 				/>
 			</Box>
-			<GreenButton iconName="submit-report" compact disabled={!amount || !walletAddress} onClick={handleSendClick}>
+			<GreenButton iconName="submit-report" compact disabled={!amount || !walletAddress || !numberValid} onClick={handleSendClick}>
 				{formatMessage({ id: 'button.send' })}
 			</GreenButton>
 			<Dialog

@@ -17,7 +17,7 @@ export const validatePassword = (password: string): boolean => {
 };
 
 export const validateNumber = (num: string): boolean => {
-	const regExpForNumber = /^(?=.*[0-9])/;
+	const regExpForNumber = /^[0-9]*$/;
 
 	return regExpForNumber.test(num);
 };
