@@ -6,9 +6,9 @@ import { paymentTemplate, rulerPriceBonusData, walletTypes } from '../../Wallets
 import { styles } from './Transfer.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import { validateNumber } from 'utils';
 import React from 'react';
 import clsx from 'clsx';
-
 const useStyles = makeStyles(styles);
 
 export const Transfer: React.FunctionComponent = () => {
@@ -18,6 +18,7 @@ export const Transfer: React.FunctionComponent = () => {
 	const [walletType, setWalletType] = React.useState<string>('');
 	const [amount, setAmount] = React.useState<string>('');
 	const [walletAddress, setWalletAddress] = React.useState<string>('');
+	const [numberValid, setNumberValid] = React.useState(true);
 	const [templateName, setTemplateName] = React.useState<string>('');
 
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
@@ -25,7 +26,10 @@ export const Transfer: React.FunctionComponent = () => {
 
 	const handleRulerButtonClick = (amount: string): void => setAmount(amount);
 
-	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => setAmount(event.target.value);
+	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		setAmount(event.target.value);
+		setNumberValid(validateNumber(event.target.value));
+	};
 
 	const handleWalletAddressChange = (event: React.ChangeEvent<HTMLInputElement>): void => setWalletAddress(event.target.value);
 
@@ -85,7 +89,8 @@ export const Transfer: React.FunctionComponent = () => {
 				</Box>
 				<TextField
 					name="insertAmount"
-					type="number"
+					error={!numberValid}
+					helperText={!numberValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
 					className={classes.insertAmount}
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					inputProps={{
@@ -108,7 +113,7 @@ export const Transfer: React.FunctionComponent = () => {
 					onValueChange={handleWalletAddressChange}
 				/>
 			</Box>
-			<GreenButton disabled={!walletType || !amount || !walletAddress} onClick={handleNextClick}>
+			<GreenButton disabled={!walletType || !amount || !walletAddress || !numberValid} onClick={handleNextClick}>
 				{formatMessage({ id: 'button.next' })}
 			</GreenButton>
 		</Page>
