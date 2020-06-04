@@ -5,6 +5,7 @@ import { paymentMethodTypes, rulerPriceBonusData, walletTypes } from '../../Wall
 import { styles } from './AddFunds.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import { validateNumber } from 'utils';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
@@ -15,7 +16,8 @@ export const AddFunds: React.FunctionComponent = () => {
 	const { formatMessage } = useIntl();
 	const [walletType, setWalletType] = React.useState<string>('ruler_token');
 	const [paymentMethodType, setPaymentMethodType] = React.useState<string>('credit_card');
-	const [rulerPrice, setRulerPrice] = React.useState<string>('10');
+	const [amount, setAmount] = React.useState<string>('10');
+	const [numberValid, setNumberValid] = React.useState(true);
 
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setWalletType(event.target.value);
@@ -23,9 +25,12 @@ export const AddFunds: React.FunctionComponent = () => {
 	const handlePaymentMethodTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setPaymentMethodType(event.target.value);
 
-	const handleRulerButtonClick = (price: string): void => setRulerPrice(price);
+	const handleRulerButtonClick = (amount: string): void => setAmount(amount);
 
-	const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>): void => setRulerPrice(event.target.value);
+	const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		setAmount(event.target.value);
+		setNumberValid(validateNumber(event.target.value));
+	};
 
 	const handleNextClick = (): void => history.push('/wallets/add-funds/add-credit-card');
 
@@ -52,20 +57,21 @@ export const AddFunds: React.FunctionComponent = () => {
 							key={index}
 							price={data.rulerPrice}
 							bonus={data.rulerBonus}
-							active={data.rulerPrice === rulerPrice}
+							active={data.rulerPrice === amount}
 							onRulerButtonClick={handleRulerButtonClick}
 						/>
 					))}
 				</Box>
 				<TextField
 					name="insertAmount"
-					type="number"
+					error={!numberValid}
+					helperText={!numberValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
 					className={classes.insertAmount}
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					inputProps={{
 						startAdornment: <InputAdornment position="start">€</InputAdornment>
 					}}
-					value={rulerPrice}
+					value={amount}
 					onValueChange={handlePriceChange}
 				/>
 				<Select
@@ -81,7 +87,7 @@ export const AddFunds: React.FunctionComponent = () => {
 					))}
 				</Select>
 			</Box>
-			<GreenButton onClick={handleNextClick} disabled={!rulerPrice}>
+			<GreenButton onClick={handleNextClick} disabled={!amount || !numberValid}>
 				{formatMessage({ id: 'button.next' })}
 			</GreenButton>
 		</Page>
