@@ -6,6 +6,7 @@ import { paymentMethodTypes, walletTypes } from '../../Wallets.data';
 import { styles } from './Template.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import { validateNumber } from 'utils';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
@@ -16,6 +17,7 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	const [walletType, setWalletType] = React.useState<string>('');
 	const [paymentMethodType, setPaymentMethodType] = React.useState<string>('');
 	const [amount, setAmount] = React.useState<string>('');
+	const [numberValid, setNumberValid] = React.useState(true);
 	const [templateName, setTemplateName] = React.useState<string>('');
 	const params: any = props.location.state;
 	const selectedIndex = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
@@ -34,7 +36,10 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	const handlePaymentMethodTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setPaymentMethodType(event.target.value);
 
-	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => setAmount(event.target.value);
+	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		setAmount(event.target.value);
+		setNumberValid(validateNumber(event.target.value));
+	};
 
 	const handleTemplateChange = (event: React.ChangeEvent<HTMLInputElement>): void => setTemplateName(event.target.value);
 
@@ -68,7 +73,8 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 				/>
 				<TextField
 					name="insertAmount"
-					type="number"
+					error={!numberValid}
+					helperText={!numberValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
 					className={classes.textField}
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					value={amount}
@@ -104,7 +110,13 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 					))}
 				</Select>
 			</Box>
-			<GreenButton className={classes.saveButton} iconName="well-done-checked" compact onClick={handleSaveChangeClick}>
+			<GreenButton
+				className={classes.saveButton}
+				disabled={!templateName || !amount || !numberValid}
+				iconName="well-done-checked"
+				compact
+				onClick={handleSaveChangeClick}
+			>
 				{formatMessage({ id: 'button.save_changes' })}
 			</GreenButton>
 		</Page>
