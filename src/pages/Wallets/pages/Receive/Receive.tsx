@@ -3,8 +3,8 @@ import { Dialog, GreenButton, IconButton, Page, Text, TextField } from 'componen
 import { IReceiveProps } from './Receive.types';
 import { styles } from './Receive.styles';
 import { useIntl } from 'react-intl';
+import { validateNumber } from 'utils';
 import React from 'react';
-
 const QRCode = require('qrcode-react');
 
 const useStyles = makeStyles(styles);
@@ -16,6 +16,7 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 	const { formatMessage } = useIntl();
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [from, setFrom] = React.useState<string>('');
+	const [numberValid, setNumberValid] = React.useState(true);
 	const [amount, setAmount] = React.useState<string>('');
 
 	const handleShareClick = (): void => {};
@@ -24,7 +25,10 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 		setShowDialog(true);
 	};
 
-	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => setAmount(event.target.value);
+	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		setAmount(event.target.value);
+		setNumberValid(validateNumber(event.target.value));
+	};
 
 	const handleFromChange = (event: React.ChangeEvent<HTMLInputElement>): void => setFrom(event.target.value);
 
@@ -53,7 +57,8 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 				/>
 				<TextField
 					name="amount"
-					type="number"
+					error={!numberValid}
+					helperText={!numberValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
 					className={classes.textField}
 					label={formatMessage({ id: 'wallets.receive.request_amount' })}
 					inputProps={{
@@ -62,7 +67,7 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 					value={amount}
 					onValueChange={handleAmountChange}
 				/>
-				<GreenButton iconName="receive" compact disabled={!from || !amount} onClick={handleReceiveClick}>
+				<GreenButton iconName="receive" compact disabled={!from || !amount || !numberValid} onClick={handleReceiveClick}>
 					{formatMessage({ id: 'button.receive' })}
 				</GreenButton>
 			</Box>
