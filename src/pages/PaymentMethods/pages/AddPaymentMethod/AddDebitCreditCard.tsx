@@ -4,6 +4,7 @@ import { IAddPaymentMethodProps, ICreditCardProps } from './AddPaymentMethod.typ
 import { styles } from './AddPaymentMethod.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import { validateNumber } from 'utils';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
@@ -13,7 +14,9 @@ const initialCardState: ICreditCardProps = {
 	expireDate: '',
 	cvc: '',
 	cardCountry: '',
-	zipCode: ''
+	zipCode: '',
+	cardNumberValid: true,
+	zipCodeValid: true
 };
 
 export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps> = props => {
@@ -27,7 +30,25 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
-		setCardState(prevState => ({ ...prevState, [event.target.name]: event.target.value }));
+
+		if (event.target.name === 'cardNumber') {
+			setCardState(prevState => ({
+				...prevState,
+				[event.target.name]: event.target.value,
+				cardNumberValid: validateNumber(event.target.value)
+			}));
+		} else if (event.target.name === 'zipCode') {
+			setCardState(prevState => ({
+				...prevState,
+				[event.target.name]: event.target.value,
+				zipCodeValid: validateNumber(event.target.value)
+			}));
+		} else {
+			setCardState(prevState => ({
+				...prevState,
+				[event.target.name]: event.target.value
+			}));
+		}
 	};
 
 	const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -42,7 +63,9 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 			expireDate: '',
 			cvc: '',
 			cardCountry: '',
-			zipCode: ''
+			zipCode: '',
+			cardNumberValid: true,
+			zipCodeValid: true
 		});
 
 		if (pageName) {
@@ -68,7 +91,9 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 				expireDate: '',
 				cvc: '',
 				cardCountry: '',
-				zipCode: ''
+				zipCode: '',
+				cardNumberValid: true,
+				zipCodeValid: true
 			});
 		}
 
@@ -90,7 +115,8 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 				/>
 				<TextField
 					name="cardNumber"
-					type="number"
+					error={!cardState.cardNumberValid}
+					helperText={!cardState.cardNumberValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
 					label={formatMessage({ id: 'wallets.add_credit_card.card_number' })}
 					value={cardState.cardNumber}
 					onValueChange={handleStateChange}
@@ -112,7 +138,8 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 				/>
 				<TextField
 					name="zipCode"
-					type="number"
+					error={!cardState.zipCodeValid}
+					helperText={!cardState.zipCodeValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
 					label={formatMessage({ id: 'wallets.add_credit_card.zip_code' })}
 					value={cardState.zipCode}
 					onValueChange={handleStateChange}
@@ -134,7 +161,9 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 						!cardState.expireDate ||
 						!cardState.cvc ||
 						!cardState.cardCountry ||
-						!cardState.zipCode
+						!cardState.zipCode ||
+						!cardState.cardNumberValid ||
+						!cardState.zipCodeValid
 					}
 				>
 					{formatMessage({ id: 'button.add_payment_method' })}
