@@ -18,14 +18,16 @@ export const AddPaymentMethod: React.FunctionComponent<IAddPaymentMethodProps> =
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const pageName = params && params.pageName ? params.pageName : null;
+		const selectedIndex = params && params.selectedIndex;
 
 		if (pageName) setPageName(pageName);
+		setSelectedTypeIndex(selectedIndex);
 	}, [props.location.state]);
 
 	const handleAddPaymentMethodButtonClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		if (selectedTypeIndex === 0) {
 			if (pageName) {
-				history.push('/payment-methods/add-payment-method/card', { pageName: pageName });
+				history.push('/payment-methods/add-payment-method/card', { pageName: pageName, data: null, index: null });
 			} else {
 				history.push('/payment-methods/add-payment-method/card', { data: null, index: null });
 			}

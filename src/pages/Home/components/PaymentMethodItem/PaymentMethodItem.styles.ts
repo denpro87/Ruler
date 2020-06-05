@@ -3,7 +3,7 @@ import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
 const paymentMethodItemContainer: CSSProperties = {
-	padding: `${pxToRem(20)} 0 ${pxToRem(15)} 0`,
+	padding: `${pxToRem(20)} 0 ${pxToRem(15)}`,
 	maxWidth: pxToRem(325),
 	margin: '0 auto'
 };
@@ -50,6 +50,7 @@ const cardTypeText: CSSProperties = {
 	}),
 	fontSize: pxToRem(15)
 };
+
 export const styles = createStyles({
 	paymentMethodItemContainer,
 	paymentMethodItem,

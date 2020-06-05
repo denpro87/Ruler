@@ -89,6 +89,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [ridingStart, setRidingStart] = React.useState(false);
 	const [enteredQrCode, setEnteredQrCode] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
+	const [selectedIndex, setSelectedIndex] = React.useState(-1);
 	const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
 	// const [selectedVehicle, setSelectedVehicle] = React.useState('');
 	// const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
@@ -101,19 +102,28 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
 	const [showScanEnterCode, setShowScanEnterCode] = React.useState(false);
 	const [showVehicleRide, setShowVehicleRide] = React.useState(false);
-	const [paymentMethod, setPaymentMethod] = React.useState<string[]>([]);
+	const [cardData, setCardData] = React.useState<object[]>([]);
 	const [paidModal, setPaidModal] = React.useState(false);
 	const [finishRidingModal, setFinishRidingModal] = React.useState(false);
 	const [showFinishedRide, setShowFinishedRide] = React.useState(false);
 	const [rideReview, setRideReview] = React.useState('');
 	React.useEffect(() => {
 		const params: any = props.location.state;
+		// const showVehicleRide = params && params.showVehicleRide ? params.showVehicleRide : null;
 		const data = params && params.data ? params.data : null;
-		const showVehicleRide = params && params.showVehicleRide ? params.showVehicleRide : null;
+		const index = params && params.index > -1 ? params.index : null;
 
-		if (data) setPaymentMethod(data);
+		// if (showVehicleRide) setShowVehicleRide(showVehicleRide);
 
-		if (showVehicleRide) setShowVehicleRide(showVehicleRide);
+		if (data) {
+			if (index !== null) {
+				const temp = cardData;
+				temp[index] = data;
+				setCardData([...temp]);
+			} else {
+				setCardData(prevData => [...prevData, data]);
+			}
+		}
 	}, [props.location.state]);
 
 	React.useEffect(() => {
@@ -126,6 +136,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			setPlaceHolder(placeHolderStr);
 		}
 	}, [qrCode]);
+
+	const handleItemClick = (selectedIndex: number, cardData: any) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+		history.push('/payment-methods/add-payment-method/card', { data: cardData, index: selectedIndex });
+	};
 
 	const handleDrawerClick = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent): void => {
 		if (
@@ -279,12 +293,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	};
 
 	const handleAddPaymentMethodClick = (): void => {
-		setShowVehicleRide(false);
-		history.push('/payment-methods/add-payment-method', { pageName: 'home' });
-	};
-
-	const handleRemoveClick = (): void => {
-		setPaymentMethod([]);
+		// setShowVehicleRide(false);
+		history.push('/payment-methods/add-payment-method', { pageName: 'home', selectedIndex: -1 });
 	};
 
 	const handleReportSubmitDialogClose = (): void => {
@@ -309,6 +319,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		} else {
 			history.push(`/${href}`);
 		}
+	};
+
+	const handleTrashButtonClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+		const temp = cardData;
+		temp.splice(index, 1);
+		setCardData([...temp]);
 	};
 
 	return (
@@ -792,11 +808,19 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								<Box className={classes.creditCardsTextWrapper}>
 									<Text>{formatMessage({ id: 'home.payment_method_sheet.text.credit_cards' })}</Text>
 								</Box>
-								{paymentMethod?.map(
-									(item: string, index: number): JSX.Element => {
-										return <PaymentMethodItem key={index} handleRemoveClick={(): void => handleRemoveClick()} />;
-									}
-								)}
+								{cardData !== undefined &&
+									cardData.map(
+										(data: any, index: number): JSX.Element => {
+											return (
+												<PaymentMethodItem
+													key={index}
+													cardData={data}
+													handleShowClick={handleItemClick(index, data)}
+													handleRemoveClick={handleTrashButtonClick(index)}
+												/>
+											);
+										}
+									)}
 								<Button iconName="add" compact className={classes.addPaymentMethodButton} onClick={handleAddPaymentMethodClick}>
 									{formatMessage({ id: 'button.add_payment_method' })}
 								</Button>
@@ -806,7 +830,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										className={classes.payButton}
 										compact
 										onClick={(): void => setPaidModal(true)}
-										disabled={paymentMethod.length === 0}
+										disabled={cardData.length === 0}
 									>
 										{formatMessage({ id: 'button.pay' })}
 									</GreenButton>

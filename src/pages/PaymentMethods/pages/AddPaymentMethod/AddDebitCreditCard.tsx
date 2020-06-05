@@ -57,19 +57,11 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 	};
 
 	const handleNextClick = (): void => {
-		setCardState({
-			name: '',
-			cardNumber: '',
-			expireDate: '',
-			cvc: '',
-			cardCountry: '',
-			zipCode: '',
-			cardNumberValid: true,
-			zipCodeValid: true
-		});
+		setCardState(initialCardState);
 
 		if (pageName) {
-			history.push('/home', { showVehicleRide: true, data: [cardState] });
+			// history.push('/home', { showVehicleRide: true, data: cardState, index: selectedIndex });
+			history.push('/home', { data: cardState, index: selectedIndex });
 		} else {
 			history.push('/payment-methods', { data: cardState, index: selectedIndex });
 		}
@@ -85,16 +77,7 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 		if (data !== null) {
 			setCardState(data);
 		} else {
-			setCardState({
-				name: '',
-				cardNumber: '',
-				expireDate: '',
-				cvc: '',
-				cardCountry: '',
-				zipCode: '',
-				cardNumberValid: true,
-				zipCodeValid: true
-			});
+			setCardState(initialCardState);
 		}
 
 		if (index !== null) {
