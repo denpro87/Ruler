@@ -15,4 +15,6 @@ export interface ICreditCardProps {
 	cvc: string;
 	cardCountry: string;
 	zipCode: string;
+	cardNumberValid: boolean;
+	zipCodeValid: boolean;
 }

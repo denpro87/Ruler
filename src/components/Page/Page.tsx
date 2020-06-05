@@ -25,7 +25,8 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	className,
 	noHorizontalContentPadding,
 	pageHeaderClassName,
-	children
+	children,
+	mainPage
 }) => {
 	const hasPageHeader = Boolean(canGoBack || title);
 	const classes = useStyles({
@@ -38,9 +39,14 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	});
 	const history = useHistory();
 
-	const handleGoBack = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+	const handleBackButtonClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		e.preventDefault();
-		history.goBack();
+
+		if (mainPage) {
+			history.push('/home');
+		} else {
+			history.goBack();
+		}
 	};
 
 	const backgroundElement = onRenderBackground?.();
@@ -50,7 +56,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 			{hasPageHeader && (
 				<Box className={clsx(classes.pageHeader, pageHeaderClassName)}>
 					<Box className={classes.toolbarWrapper}>
-						{canGoBack && <GoBackIconButton onClick={handleGoBack} {...goBackIconButtonProps} />}
+						{canGoBack && <GoBackIconButton onClick={handleBackButtonClick} {...goBackIconButtonProps} />}
 						{headerLink && (
 							<Link className={classes.headerLink} {...headerLinkProps}>
 								{headerLink}

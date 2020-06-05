@@ -58,7 +58,14 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 	};
 
 	return (
-		<Page title={formatMessage({ id: 'wallets.title' })} titleSize="large" headerLink="Payment methods" noHorizontalContentPadding>
+		<Page
+			title={formatMessage({ id: 'wallets.title' })}
+			titleSize="large"
+			headerLink="Payment methods"
+			headerLinkProps={{ href: '/payment-methods' }}
+			mainPage
+			noHorizontalContentPadding
+		>
 			<Box className={classes.walletsLogoContainer}>
 				<Box className={classes.walletsLogo}>
 					<IconButton iconProps={{ iconName: 'trash', color: '#ffffff' }} className={classes.trashIcon} />

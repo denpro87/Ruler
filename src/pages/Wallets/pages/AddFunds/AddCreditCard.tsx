@@ -5,8 +5,8 @@ import { State } from '@ionic/core/dist/types/stencil-public-runtime';
 import { styles } from './AddFunds.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import { validateNumber } from 'utils';
 import React from 'react';
-
 const useStyles = makeStyles(styles);
 const initialCardState: ICreditCardProps = {
 	name: '',
@@ -14,7 +14,9 @@ const initialCardState: ICreditCardProps = {
 	expireDate: '',
 	cvc: '',
 	cardCountry: '',
-	zipCode: ''
+	zipCode: '',
+	cardNumberValid: true,
+	zipCodeValid: true
 };
 
 export const AddCreditCard: React.FunctionComponent = () => {
@@ -26,7 +28,25 @@ export const AddCreditCard: React.FunctionComponent = () => {
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
-		setCardState(prevState => ({ ...prevState, [event.target.name]: event.target.value }));
+
+		if (event.target.name === 'cardNumber') {
+			setCardState(prevState => ({
+				...prevState,
+				[event.target.name]: event.target.value,
+				cardNumberValid: validateNumber(event.target.value)
+			}));
+		} else if (event.target.name === 'zipCode') {
+			setCardState(prevState => ({
+				...prevState,
+				[event.target.name]: event.target.value,
+				zipCodeValid: validateNumber(event.target.value)
+			}));
+		} else {
+			setCardState(prevState => ({
+				...prevState,
+				[event.target.name]: event.target.value
+			}));
+		}
 	};
 
 	const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +67,8 @@ export const AddCreditCard: React.FunctionComponent = () => {
 				/>
 				<TextField
 					name="cardNumber"
-					type="number"
+					error={!cardState.cardNumberValid}
+					helperText={!cardState.cardNumberValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
 					label={formatMessage({ id: 'wallets.add_credit_card.card_number' })}
 					value={cardState.cardNumber}
 					onValueChange={handleStateChange}
@@ -69,7 +90,8 @@ export const AddCreditCard: React.FunctionComponent = () => {
 				/>
 				<TextField
 					name="zipCode"
-					type="number"
+					error={!cardState.zipCodeValid}
+					helperText={!cardState.zipCodeValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
 					label={formatMessage({ id: 'wallets.add_credit_card.zip_code' })}
 					value={cardState.zipCode}
 					onValueChange={handleStateChange}
@@ -85,14 +107,7 @@ export const AddCreditCard: React.FunctionComponent = () => {
 					iconName="add-payment"
 					compact
 					onClick={handleNextClick}
-					disabled={
-						!cardState.name ||
-						!cardState.cardNumber ||
-						!cardState.expireDate ||
-						!cardState.cvc ||
-						!cardState.cardCountry ||
-						!cardState.zipCode
-					}
+					disabled={Object.values(cardState).findIndex(value => !value) > -1}
 				>
 					{formatMessage({ id: 'wallets.add_credit_card.add_pay' })}
 				</GreenButton>

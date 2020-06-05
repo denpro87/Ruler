@@ -18,4 +18,5 @@ export interface IPageProps extends Pick<BoxProps, 'onClick'> {
 	noHorizontalContentPadding?: boolean;
 	goBackIconButtonProps?: GoBackIconButtonProps;
 	onRenderBackground?: () => React.ReactElement;
+	mainPage?: boolean;
 }

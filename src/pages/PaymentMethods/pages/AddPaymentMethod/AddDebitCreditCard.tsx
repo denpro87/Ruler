@@ -60,7 +60,6 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 		setCardState(initialCardState);
 
 		if (pageName) {
-			// history.push('/home', { showVehicleRide: true, data: cardState, index: selectedIndex });
 			history.push('/home', { data: cardState, index: selectedIndex });
 		} else {
 			history.push('/payment-methods', { data: cardState, index: selectedIndex });
@@ -134,21 +133,7 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 					label={formatMessage({ id: 'wallets.add_credit_card.save_payment_method' })}
 					onValueChange={handleCheckChange}
 				/>
-				<GreenButton
-					iconName="add"
-					compact
-					onClick={handleNextClick}
-					disabled={
-						!cardState.name ||
-						!cardState.cardNumber ||
-						!cardState.expireDate ||
-						!cardState.cvc ||
-						!cardState.cardCountry ||
-						!cardState.zipCode ||
-						!cardState.cardNumberValid ||
-						!cardState.zipCodeValid
-					}
-				>
+				<GreenButton iconName="add" compact onClick={handleNextClick} disabled={Object.values(cardState).findIndex(value => !value) > -1}>
 					{formatMessage({ id: 'button.add_payment_method' })}
 				</GreenButton>
 			</Box>

@@ -89,7 +89,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [ridingStart, setRidingStart] = React.useState(false);
 	const [enteredQrCode, setEnteredQrCode] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
-	const [selectedIndex, setSelectedIndex] = React.useState(-1);
 	const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
 	// const [selectedVehicle, setSelectedVehicle] = React.useState('');
 	// const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
@@ -109,11 +108,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [rideReview, setRideReview] = React.useState('');
 	React.useEffect(() => {
 		const params: any = props.location.state;
-		// const showVehicleRide = params && params.showVehicleRide ? params.showVehicleRide : null;
 		const data = params && params.data ? params.data : null;
 		const index = params && params.index > -1 ? params.index : null;
-
-		// if (showVehicleRide) setShowVehicleRide(showVehicleRide);
 
 		if (data) {
 			if (index !== null) {
@@ -293,7 +289,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	};
 
 	const handleAddPaymentMethodClick = (): void => {
-		// setShowVehicleRide(false);
 		history.push('/payment-methods/add-payment-method', { pageName: 'home', selectedIndex: -1 });
 	};
 
