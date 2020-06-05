@@ -63,6 +63,7 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 			title={formatMessage({ id: 'payment_methods.title' })}
 			titleSize="large"
 			headerLink={formatMessage({ id: 'payment_methods.text.wallet' })}
+			mainPage
 			headerLinkProps={{ href: '/wallets' }}
 		>
 			<Box className={classes.submitWrapper}>
