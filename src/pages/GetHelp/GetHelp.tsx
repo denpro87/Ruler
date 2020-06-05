@@ -1,10 +1,8 @@
 import { BottomSheet, Divider, LightGreenButton, Page } from 'components';
 import { Box, List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
-
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './GetHelp.styles';
-
-import { FormattedMessage, useIntl } from 'react-intl';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
@@ -44,11 +42,11 @@ export const GetHelp: React.FunctionComponent = () => {
 	const [showAddReport, setShowAddReport] = React.useState(false);
 	const { formatMessage } = useIntl();
 
-	const handleAddReportClick = () => {
+	const handleAddReportClick = (): void => {
 		setShowAddReport(true);
 	};
 
-	const handleBottomSheetChange = (isOpen: boolean) => {
+	const handleBottomSheetChange = (isOpen: boolean): void => {
 		setShowAddReport(isOpen);
 	};
 

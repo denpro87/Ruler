@@ -1,6 +1,6 @@
+import { Box, Paper, makeStyles } from '@material-ui/core';
 import { Footer, Image, Page, Text } from 'components';
 import { INewsDetailProps } from './NewsDetail.types';
-import { Paper, makeStyles } from '@material-ui/core';
 import { sampleNews } from './NewsDetail.data';
 import { styles } from './NewsDetail.styles';
 import { useIntl } from 'react-intl';
@@ -16,9 +16,9 @@ export const NewsDetail: React.FunctionComponent<INewsDetailProps> = props => {
 		<Page className={classes.detailContainer} headerLink={formatMessage({ id: 'news-detail.text.open_in_browser' })}>
 			<Paper elevation={0} className={classes.detailContainer}>
 				<Image src={sampleNews.imageUrl} alt="vehicleImage" className={classes.vehicleImage} rounded fullWidth />
-				<div className={classes.title}>
+				<Box className={classes.title}>
 					<Text className={classes.titleTxt}>{sampleNews.title}</Text>
-				</div>
+				</Box>
 				<Text className={classes.descriptionText}>{sampleNews.description}</Text>
 			</Paper>
 			<Footer leftIcon="instagram" leftText={sampleNews.socialName} rightIcon="ride-history" rightText={sampleNews.timeHistory} />
