@@ -7,7 +7,7 @@ import { menuItems } from './Menu.data';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
-export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClose, menuItemClick }) => {
+export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClose, menuItemClick, loggedIn }) => {
 	const classes = useStyles();
 	const { formatMessage }: IntlShape = useIntl();
 
@@ -35,12 +35,13 @@ export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClos
 					</ListItem>
 				))}
 			</List>
-
-			<Box className={classes.footer}>
-				<GreenButton iconName="create-account" compact>
-					{formatMessage({ id: 'welcome.button.create_account' })}
-				</GreenButton>
-			</Box>
+			{!loggedIn && (
+				<Box className={classes.footer}>
+					<GreenButton iconName="create-account" compact>
+						{formatMessage({ id: 'welcome.button.create_account' })}
+					</GreenButton>
+				</Box>
+			)}
 		</Box>
 	);
 

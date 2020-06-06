@@ -61,7 +61,7 @@ export const Login: React.FunctionComponent = () => {
 					className={classes.logInBtn}
 					iconName="log-in"
 					disabled={!state.email || !state.password || !state.emailValid || !state.passwordValid}
-					onClick={(): void => history.push('/home')}
+					onClick={(): void => history.push('/home', { loggedIn: true })}
 				>
 					{formatMessage({ id: 'button.login' })}
 				</GreenButton>

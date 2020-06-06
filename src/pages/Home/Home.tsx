@@ -106,10 +106,13 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [finishRidingModal, setFinishRidingModal] = React.useState(false);
 	const [showFinishedRide, setShowFinishedRide] = React.useState(false);
 	const [rideReview, setRideReview] = React.useState('');
+	const params: any = props.location.state;
+	const loggedIn = params && params.loggedIn;
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const data = params && params.data ? params.data : null;
 		const index = params && params.index > -1 ? params.index : null;
+		// const loggedIn = params && params.loggedIn;
 
 		if (data) {
 			if (index !== null) {
@@ -438,7 +441,13 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					<IonImg className={classes.rateImage} src={rateImage} />
 				</Box>
 			</Dialog>
-			<Menu open={open} onOpen={handleDrawerClick(true)} onClose={handleDrawerClick(false)} menuItemClick={handleMenuItemClick} />
+			<Menu
+				open={open}
+				onOpen={handleDrawerClick(true)}
+				onClose={handleDrawerClick(false)}
+				menuItemClick={handleMenuItemClick}
+				loggedIn={loggedIn}
+			/>
 			<BottomSheet
 				title={formatMessage({ id: 'home.invite_friends_sheet.title' })}
 				description={formatMessage({ id: 'home.invite_friends_sheet.description' })}
