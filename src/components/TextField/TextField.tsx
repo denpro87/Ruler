@@ -48,7 +48,7 @@ export const TextField: React.FunctionComponent<ITextFieldProps> = ({
 export const PasswordInput: React.FunctionComponent<ITextFieldProps> = props => {
 	const [passwordIsMasked, setPasswordIsMasked] = React.useState(true);
 
-	const togglePasswordMask = () => {
+	const togglePasswordMask = (): void => {
 		setPasswordIsMasked(!passwordIsMasked);
 	};
 
