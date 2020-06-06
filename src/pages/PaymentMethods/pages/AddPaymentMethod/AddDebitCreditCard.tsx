@@ -4,7 +4,7 @@ import { IAddPaymentMethodProps, ICreditCardProps } from './AddPaymentMethod.typ
 import { styles } from './AddPaymentMethod.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import { validateNumber } from 'utils';
+import { validateDate, validateNumber } from 'utils';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
@@ -16,7 +16,8 @@ const initialCardState: ICreditCardProps = {
 	cardCountry: '',
 	zipCode: '',
 	cardNumberValid: true,
-	zipCodeValid: true
+	zipCodeValid: true,
+	dateValid: true
 };
 
 export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps> = props => {
@@ -42,6 +43,12 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 				...prevState,
 				[event.target.name]: event.target.value,
 				zipCodeValid: validateNumber(event.target.value)
+			}));
+		} else if (event.target.name === 'expireDate') {
+			setCardState(prevState => ({
+				...prevState,
+				[event.target.name]: event.target.value,
+				dateValid: validateDate(event.target.value)
 			}));
 		} else {
 			setCardState(prevState => ({
@@ -104,7 +111,14 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 					onValueChange={handleStateChange}
 				/>
 				<Box className={classes.cardCredentialWrapper}>
-					<TextField name="expireDate" label="MM / YY" value={cardState.expireDate} onValueChange={handleStateChange} />
+					<TextField
+						name="expireDate"
+						label="DD/MM/YYYY"
+						error={!cardState.dateValid}
+						helperText={!cardState.dateValid ? formatMessage({ id: 'wallets.add_credit_card.expire_date.helper_text' }) : ''}
+						value={cardState.expireDate}
+						onValueChange={handleStateChange}
+					/>
 					<TextField
 						name="cvc"
 						label={formatMessage({ id: 'wallets.add_credit_card.cvc' })}

@@ -17,4 +17,5 @@ export interface ICreditCardProps {
 	zipCode: string;
 	cardNumberValid: boolean;
 	zipCodeValid: boolean;
+	dateValid: boolean;
 }
