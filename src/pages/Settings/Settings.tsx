@@ -18,35 +18,35 @@ export const Settings: React.FunctionComponent = () => {
 	const [emailValid, setEmailValid] = React.useState(true);
 	const { formatMessage } = useIntl();
 
-	const handleLogoutClickOpen = () => {
-		console.log();
+	const handleLogoutClickOpen = (): void => {
 		setLogout(true);
 	};
 
-	const handleLogoutClose = () => {
+	const handleLogoutClose = (): void => {
 		setLogout(false);
 	};
 
-	const handleDeleteAccountOpen = () => {
+	const handleDeleteAccountOpen = (): void => {
 		setDeleteAccount(true);
 	};
 
-	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		setEmail(event.target.value);
 		setEmailValid(validateEmail(event.target.value));
 	};
 
-	const handleDeleteAccountClose = () => {
+	const handleDeleteAccountClose = (): void => {
 		setDeleteAccount(false);
 	};
 
-	const handleSendEmail = (event: React.MouseEvent<HTMLElement>) => {
+	const handleSendEmail = (event: React.MouseEvent<HTMLElement>): void => {
 		setDeleteAccount(false);
 	};
 
-	const handleLogoutOk = (event: React.MouseEvent<HTMLElement>) => {
-		history.push('/welcome');
+	const handleLogoutOk = (event: React.MouseEvent<HTMLElement>): void => {
 		setLogout(false);
+		history.push('/welcome');
+		localStorage.removeItem('authToken');
 	};
 
 	return (

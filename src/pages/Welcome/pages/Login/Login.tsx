@@ -32,6 +32,11 @@ export const Login: React.FunctionComponent = () => {
 		}
 	};
 
+	const handleLoginButtonClick = (): void => {
+		localStorage.setItem('authToken', '1');
+		history.push('/home');
+	};
+
 	return (
 		<Page
 			title={formatMessage({ id: 'welcome.login.title' })}
@@ -61,7 +66,7 @@ export const Login: React.FunctionComponent = () => {
 					className={classes.logInBtn}
 					iconName="log-in"
 					disabled={!state.email || !state.password || !state.emailValid || !state.passwordValid}
-					onClick={(): void => history.push('/home', { loggedIn: true })}
+					onClick={handleLoginButtonClick}
 				>
 					{formatMessage({ id: 'button.login' })}
 				</GreenButton>

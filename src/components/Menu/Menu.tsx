@@ -1,16 +1,14 @@
 import { Box, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, SwipeableDrawer, makeStyles } from '@material-ui/core';
-import { GreenButton, Icon, IconButton } from 'components';
 import { IMenuProps } from './Menu.types';
+import { Icon, IconButton } from 'components';
 import { IntlShape, useIntl } from 'react-intl';
 import { listItemIcon, styles } from './Menu.styles';
 import { menuItems } from './Menu.data';
-import { useHistory } from 'react-router-dom';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
-export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClose, menuItemClick, loggedIn }) => {
+export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClose, menuItemClick }) => {
 	const classes = useStyles();
-	const history = useHistory();
 	const { formatMessage }: IntlShape = useIntl();
 
 	const renderMenuList = (): JSX.Element => (
@@ -37,13 +35,13 @@ export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClos
 					</ListItem>
 				))}
 			</List>
-			{!loggedIn && (
+			{/* {!loggedIn && (
 				<Box className={classes.footer}>
 					<GreenButton iconName="create-account" compact onClick={(): void => history.push('/welcome/create-account')}>
 						{formatMessage({ id: 'welcome.button.create_account' })}
 					</GreenButton>
 				</Box>
-			)}
+			)} */}
 		</Box>
 	);
 

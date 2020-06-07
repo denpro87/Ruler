@@ -6,5 +6,4 @@ export interface IMenuProps extends SwipeableDrawerProps {
 	onOpen: React.ReactEventHandler<{}>;
 	onClose: React.ReactEventHandler<{}>;
 	menuItemClick: (href: string) => void;
-	loggedIn: boolean;
 }
