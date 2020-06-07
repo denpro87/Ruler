@@ -252,19 +252,28 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	};
 
 	const handleQrCodeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		if (qrCode === event.target.value) {
-			setShowWrongCode(false);
-			setEnteredQrCode(true);
-			// setShowDischargedVehicle(true);
-			setShowScanEnterCode(false);
-			setScanEnterButtonLabel(formatMessage({ id: 'button.scan_code' }));
-			// setShowDischargedVehicle(false);
-			setShowVehicleRide(true);
+		if (qrCode.includes(event.target.value)) {
+			const qrCodeInputValue = event.target.value;
+			setQrCodeInput(qrCodeInputValue);
+
+			if (qrCode === event.target.value) {
+				setEnteredQrCode(true);
+				// setShowDischargedVehicle(true);
+				setShowScanEnterCode(false);
+				setScanEnterButtonLabel(formatMessage({ id: 'button.scan_code' }));
+				// setShowDischargedVehicle(false);
+				setShowVehicleRide(true);
+			}
 		} else {
+			const qrCodeInputValue = event.target.value;
+			setQrCodeInput(qrCodeInputValue);
 			setShowWrongCode(true);
+
+			if (event.target.value.length === 6) {
+				setShowWrongCode(false);
+				setQrCodeInput('');
+			}
 		}
-		const qrCodeInputValue = event.target.value;
-		setQrCodeInput(qrCodeInputValue);
 	};
 
 	const handleVehicleRideBottomSheetChange = (isOpen: boolean): void => {

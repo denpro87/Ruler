@@ -1,4 +1,4 @@
-import { Redirect, Route, RouteComponentProps } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import React from 'react';
 
 export const PrivateRoute = ({ component, ...restProps }: any) => (
