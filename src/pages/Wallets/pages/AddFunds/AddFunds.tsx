@@ -14,8 +14,8 @@ export const AddFunds: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { formatMessage } = useIntl();
-	const [walletType, setWalletType] = React.useState<string>('ruler_token');
-	const [paymentMethodType, setPaymentMethodType] = React.useState<string>('credit_card');
+	const [walletType, setWalletType] = React.useState<string>('');
+	const [paymentMethodType, setPaymentMethodType] = React.useState<string>('');
 	const [amount, setAmount] = React.useState<string>('');
 	const [numberValid, setNumberValid] = React.useState(true);
 

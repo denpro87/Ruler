@@ -15,6 +15,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { formatMessage } = useIntl();
+	const [from, setFrom] = React.useState(false);
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [paymentTemplateData, setPaymentTemplateData] = React.useState(paymentTemplate);
 	React.useEffect(() => {
@@ -22,6 +23,8 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 		const showDialog = params && params.showDialog ? params.showDialog : false;
 		const data = params && params.data ? params.data : null;
 		const selectedIndex = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
+		const from = params && params.from;
+		setFrom(from);
 		setShowDialog(showDialog);
 
 		if (data) {
@@ -57,13 +60,18 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 		history.replace('/wallets');
 	};
 
+	const handleLinkClick = (): void => {
+		history.push('/payment-methods', { from: true });
+	};
+
 	return (
 		<Page
 			title={formatMessage({ id: 'wallets.title' })}
 			titleSize="large"
 			headerLink="Payment methods"
-			headerLinkProps={{ href: '/payment-methods' }}
+			headerLinkProps={{ onClick: handleLinkClick }}
 			mainPage
+			from={from}
 			noHorizontalContentPadding
 		>
 			<Box className={classes.walletsLogoContainer}>

@@ -14,6 +14,7 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 	const { formatMessage } = useIntl();
 	const [cardData, setCardData] = React.useState<object[]>([]);
 	const [deleteCard, setDeleteCard] = React.useState(false);
+	const [from, setFrom] = React.useState(false);
 	const [selectedIndex, setSelectedIndex] = React.useState(-1);
 	// const [isFirstLoading, setFirstLoading] = React.useState(true);
 	const classes = useStyles();
@@ -22,6 +23,8 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 		const params: any = props.location.state;
 		const data = params && params.data ? params.data : null;
 		const index = params && params.index > -1 ? params.index : null;
+		const from = params && params.from;
+		setFrom(from);
 
 		if (data) {
 			if (index !== null) {
@@ -58,13 +61,18 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 		history.push('/payment-methods/add-payment-method/card', { data: cardData, index: selectedIndex });
 	};
 
+	const handleLinkClick = (): void => {
+		history.push('/wallets', { from: true });
+	};
+
 	return (
 		<Page
 			title={formatMessage({ id: 'payment_methods.title' })}
 			titleSize="large"
 			headerLink={formatMessage({ id: 'payment_methods.text.wallet' })}
+			headerLinkProps={{ onClick: handleLinkClick }}
 			mainPage
-			headerLinkProps={{ href: '/wallets' }}
+			from
 		>
 			<Box className={classes.submitWrapper}>
 				{cardData !== undefined &&

@@ -27,7 +27,8 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	noHorizontalContentPadding,
 	pageHeaderClassName,
 	children,
-	mainPage
+	mainPage,
+	from
 }) => {
 	const hasPageHeader = Boolean(canGoBack || title);
 	const classes = useStyles({
@@ -43,7 +44,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	const handleBackButtonClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		e.preventDefault();
 
-		if (mainPage) {
+		if (mainPage && !from) {
 			history.push('/home');
 		} else {
 			history.goBack();

@@ -54,7 +54,7 @@ export const Transfer: React.FunctionComponent = () => {
 						<Button
 							className={clsx({ active: template.templateName === templateName })}
 							key={index}
-							onClick={() => handleTemplateClick(template)}
+							onClick={(): void => handleTemplateClick(template)}
 						>
 							{template.templateName}
 						</Button>

@@ -19,4 +19,5 @@ export interface IPageProps extends Pick<BoxProps, 'onClick'> {
 	goBackIconButtonProps?: GoBackIconButtonProps;
 	onRenderBackground?: () => React.ReactElement;
 	mainPage?: boolean;
+	from?: boolean;
 }
