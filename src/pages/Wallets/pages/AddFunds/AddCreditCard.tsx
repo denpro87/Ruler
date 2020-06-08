@@ -16,7 +16,8 @@ const initialCardState: ICreditCardProps = {
 	zipCode: '',
 	cardNumberValid: true,
 	zipCodeValid: true,
-	dateValid: true
+	dateValid: true,
+	cvcValid: true
 };
 
 export const AddCreditCard: React.FunctionComponent = () => {
@@ -28,29 +29,30 @@ export const AddCreditCard: React.FunctionComponent = () => {
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
+		setCardState(prevState => ({
+			...prevState,
+			[event.target.name]: event.target.value
+		}));
 
 		if (event.target.name === 'cardNumber') {
 			setCardState(prevState => ({
 				...prevState,
-				[event.target.name]: event.target.value,
 				cardNumberValid: validateNumber(event.target.value)
 			}));
 		} else if (event.target.name === 'zipCode') {
 			setCardState(prevState => ({
 				...prevState,
-				[event.target.name]: event.target.value,
 				zipCodeValid: validateNumber(event.target.value)
 			}));
 		} else if (event.target.name === 'expireDate') {
 			setCardState(prevState => ({
 				...prevState,
-				[event.target.name]: event.target.value,
 				dateValid: validateDate(event.target.value)
 			}));
-		} else {
+		} else if (event.target.name === 'cvc') {
 			setCardState(prevState => ({
 				...prevState,
-				[event.target.name]: event.target.value
+				cvcValid: validateNumber(event.target.value)
 			}));
 		}
 	};
@@ -90,6 +92,8 @@ export const AddCreditCard: React.FunctionComponent = () => {
 					/>
 					<TextField
 						name="cvc"
+						error={!cardState.cvcValid}
+						helperText={!cardState.cvcValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
 						label={formatMessage({ id: 'wallets.add_credit_card.cvc' })}
 						value={cardState.cvc}
 						onValueChange={handleStateChange}

@@ -29,14 +29,17 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 
 		if (data) {
 			if (selectedIndex > -1) {
+				// update
 				const temp = paymentTemplateData;
-				temp[selectedIndex] = data;
+				temp.splice(selectedIndex, 1, data);
 				setPaymentTemplateData([...temp]);
 			} else {
+				// add
 				setPaymentTemplateData(prevData => [...prevData, data]);
 			}
 		} else {
 			if (selectedIndex > -1) {
+				// delete
 				const temp = paymentTemplateData;
 				temp.splice(selectedIndex, 1);
 				setPaymentTemplateData([...temp]);

@@ -16,9 +16,7 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 	const [deleteCard, setDeleteCard] = React.useState(false);
 	const [from, setFrom] = React.useState(false);
 	const [selectedIndex, setSelectedIndex] = React.useState(-1);
-	// const [isFirstLoading, setFirstLoading] = React.useState(true);
 	const classes = useStyles();
-
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const data = params && params.data ? params.data : null;
@@ -29,17 +27,13 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 		if (data) {
 			if (index !== null) {
 				const temp = cardData;
-				temp[index] = data;
+				temp.splice(index, 1, data);
 				setCardData([...temp]);
 			} else {
 				setCardData(prevData => [...prevData, data]);
 			}
 		}
-		// setFirstLoading(false);
 	}, [props.location.state]);
-	// React.useEffect(() => {
-	// 	if (!isFirstLoading && cardData.length === 0) history.push('/payment-methods/add-payment-method');
-	// }, [cardData, history, isFirstLoading]);
 
 	const handleTrashButtonClick = (index: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		setDeleteCard(true);

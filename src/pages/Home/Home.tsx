@@ -114,9 +114,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		if (data) {
 			if (index !== null) {
 				const temp = cardData;
-				temp[index] = data;
+				temp.splice(index, 1, data);
 				setCardData([...temp]);
-				// setCardData(prevData => [...prevData, (prevData[index] = data)]);
 			} else {
 				setCardData(prevData => [...prevData, data]);
 			}
