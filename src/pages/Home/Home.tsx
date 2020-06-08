@@ -27,7 +27,7 @@ import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
-import MapGL, { GeolocateControl, Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
+import MapGL, { Marker, NavigationControl, ViewState } from 'react-map-gl';
 import React from 'react';
 import bike from './images/bike.png';
 import bird from './images/bird.png';
@@ -116,6 +116,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				const temp = cardData;
 				temp[index] = data;
 				setCardData([...temp]);
+				// setCardData(prevData => [...prevData, (prevData[index] = data)]);
 			} else {
 				setCardData(prevData => [...prevData, data]);
 			}
@@ -230,7 +231,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		}
 	};
 
-	const handleBatteryLevelChange = (event: any, newValue: number | number[]) => {
+	const handleBatteryLevelChange = (event: any, newValue: number | number[]): void => {
 		setBatteryLevel(newValue as number[]);
 	};
 

@@ -2,7 +2,6 @@ import { Box } from '@material-ui/core';
 import { DEFAULT_PAGE_BACKGROUND_COLOR, GoBackIconButton, Link, Text } from 'components';
 import { FullPageProps, IPageProps } from './Page.types';
 import { IonContent, IonPage } from '@ionic/react';
-import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Page.styles';
 import { useHistory } from 'react-router';

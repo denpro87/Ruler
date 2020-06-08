@@ -72,7 +72,7 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 			headerLink={formatMessage({ id: 'payment_methods.text.wallet' })}
 			headerLinkProps={{ onClick: handleLinkClick }}
 			mainPage
-			from
+			from={from}
 		>
 			<Box className={classes.submitWrapper}>
 				{cardData !== undefined &&

@@ -18,15 +18,15 @@ export const Report: React.FunctionComponent = () => {
 	const [heightDifference, setHeightDifference] = React.useState(0);
 	const handleMsgChange = (event: React.ChangeEvent<HTMLInputElement>): void => setMsg(event.target.value);
 
-	const handleUploadClick = (event: any) => {
+	const handleUploadClick = (event: any): void => {
 		setImagesReady(true);
 		const files = event.target.files;
 
 		for (const file of files) {
 			const reader = new FileReader();
-			const url = reader.readAsDataURL(file);
+			reader.readAsDataURL(file);
 
-			reader.onloadend = () => {
+			reader.onloadend = (): void => {
 				setSelectedFiles(prevFiles => [...prevFiles, reader.result]);
 			};
 		}

@@ -1,7 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Checkbox, GreenButton, Page, TextField } from 'components';
 import { ICreditCardProps } from './AddFunds.types';
-import { State } from '@ionic/core/dist/types/stencil-public-runtime';
 import { styles } from './AddFunds.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';

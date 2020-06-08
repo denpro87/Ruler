@@ -47,7 +47,7 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 		children
 	} = props;
 
-	const _makeStyles = React.useCallback((inheritStyles: boolean = false) => makeStyles(styles(inheritStyles)), [inheritStyles]);
+	const _makeStyles = React.useCallback(() => makeStyles(styles(inheritStyles)), [inheritStyles]);
 	const useStyles = _makeStyles();
 
 	const classes = useStyles({

@@ -35,7 +35,7 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 
 		if (url.includes('badly-parked-vehicle')) setTitle(formatMessage({ id: 'my_rides.badly_parked_vehicle.title' }));
 		else setTitle(formatMessage({ id: 'my_rides.damaged_vehicle.title' }));
-	}, [props.match.url]);
+	}, [props.match.url, formatMessage]);
 
 	const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>): void => setLocation(event.target.value);
 

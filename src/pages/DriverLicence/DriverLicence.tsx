@@ -4,14 +4,14 @@ import { Box, makeStyles } from '@material-ui/core';
 import { IDriverLicenceProps } from './DriverLicence.types';
 import { LicenceItem } from './components';
 import { styles } from './DriverLicence.styles';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
 
 export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props => {
-	const history = useHistory();
+	// const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [state, setState] = React.useState<'success' | 'progress' | 'invalid' | ''>('');
 	const [driverLicenceData, setDriverLicenceData] = React.useState<string[]>([]);
