@@ -41,6 +41,8 @@ export const Settings: React.FunctionComponent = () => {
 
 	const handleSendEmail = (event: React.MouseEvent<HTMLElement>): void => {
 		setDeleteAccount(false);
+		history.push('/welcome');
+		localStorage.removeItem('authToken');
 	};
 
 	const handleLogoutOk = (event: React.MouseEvent<HTMLElement>): void => {
