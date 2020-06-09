@@ -9,37 +9,42 @@ const addFundsWrapper: CSSProperties = {
 	paddingTop: pxToRem(15)
 };
 
+const paymentTemplateButton: CSSProperties = {
+	...font({
+		fontWeight: 600,
+		lineHeight: 1.5,
+		color: '#00b559'
+	}),
+	fontSize: pxToRem(10),
+	width: 'fit-content',
+	backgroundColor: 'transparent',
+	borderRadius: pxToRem(200),
+	padding: `${pxToRem(8)} ${pxToRem(15)} ${pxToRem(7)} ${pxToRem(15)}`,
+	border: `solid ${pxToRem(2)} #f3f3f3`,
+	marginRight: pxToRem(10),
+	'& .MuiButton-label': {
+		minHeight: 'unset'
+	},
+	'&.active': {
+		backgroundColor: 'transparent !important',
+		color: '#00b559',
+		borderColor: '#00b559'
+	},
+	'&:hover': {
+		backgroundColor: 'rgba(0, 0, 0, 0.2)',
+		color: '#00b559'
+	},
+	'& .MuiButton-label> span': {
+		whiteSpace: 'nowrap'
+	}
+};
+
 const TemplateButtonsWrapper: CSSProperties = {
 	padding: `${pxToRem(10)} 0 ${pxToRem(35)} 0`,
 	display: 'flex',
 	flexDirection: 'row',
 	alignItems: 'center',
-	'& button': {
-		...font({
-			fontWeight: 600,
-			lineHeight: 1.5,
-			color: '#00b559'
-		}),
-		fontSize: pxToRem(10),
-		width: 'fit-content',
-		backgroundColor: 'transparent',
-		borderRadius: pxToRem(200),
-		padding: `${pxToRem(8)} ${pxToRem(15)} ${pxToRem(7)} ${pxToRem(15)}`,
-		border: `solid ${pxToRem(2)} #f3f3f3`,
-		marginRight: pxToRem(10),
-		'& .MuiButton-label': {
-			minHeight: 'unset'
-		},
-		'&.active': {
-			backgroundColor: 'transparent !important',
-			color: '#00b559',
-			borderColor: '#00b559'
-		},
-		'&:hover': {
-			backgroundColor: 'rgba(0, 0, 0, 0.2)',
-			color: '#00b559'
-		}
-	}
+	overflow: 'auto'
 };
 
 const walletType: CSSProperties = {
@@ -107,6 +112,7 @@ const footer: CSSProperties = {
 };
 
 export const styles = createStyles({
+	paymentTemplateButton,
 	addFundsWrapper,
 	TemplateButtonsWrapper,
 	walletType,

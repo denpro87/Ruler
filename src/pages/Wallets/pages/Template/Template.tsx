@@ -23,11 +23,11 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	const selectedIndex = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
 	React.useEffect(() => {
 		const params: any = props.location.state;
-		const data = params && params.data ? params.data : null;
-		setWalletType(data ? params.data.walletType : '');
-		setPaymentMethodType(data ? params.data.paymentType : '');
-		setAmount(data ? params.data.amount : '');
-		setTemplateName(data ? params.data.templateName : '');
+		const data = params && params.template ? params.template : null;
+		setWalletType(data ? params.template.walletType : '');
+		setPaymentMethodType(data ? params.template.paymentType : '');
+		setAmount(data ? params.template.amount : '');
+		setTemplateName(data ? params.template.templateName : '');
 	}, [props.location.state]);
 
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
@@ -44,7 +44,7 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	const handleTemplateChange = (event: React.ChangeEvent<HTMLInputElement>): void => setTemplateName(event.target.value);
 
 	const handleTrashClick = (): void => {
-		history.push('/wallets', { selectedIndex: selectedIndex });
+		history.push('/wallets', { index: selectedIndex });
 	};
 
 	const handleSaveChangeClick = (): void => {
@@ -55,7 +55,7 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 			paymentType: paymentMethodType,
 			walletAddress: ''
 		};
-		history.push('/wallets', { data: paymentTemplate, selectedIndex: selectedIndex });
+		history.push('/wallets', { paymentTemplate: paymentTemplate, index: selectedIndex });
 	};
 
 	return (

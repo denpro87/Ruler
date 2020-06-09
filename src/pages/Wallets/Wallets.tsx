@@ -21,8 +21,8 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const showDialog = params && params.showDialog ? params.showDialog : false;
-		const data = params && params.data ? params.data : null;
-		const selectedIndex = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
+		const data = params && params.paymentTemplate ? params.paymentTemplate : null;
+		const selectedIndex = params && params.index > -1 ? params.index : -1;
 		const from = params && params.from;
 		setFrom(from);
 		setShowDialog(showDialog);
@@ -35,7 +35,16 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 				setPaymentTemplateData([...temp]);
 			} else {
 				// add
-				setPaymentTemplateData(prevData => [...prevData, data]);
+				const temp = paymentTemplateData;
+				const index = temp.findIndex(dt => dt.templateName === data.templateName);
+
+				if (index > -1) {
+					// if newly created template name already exists... please replace
+					temp.splice(index, 1, data);
+					setPaymentTemplateData([...temp]);
+				} else {
+					setPaymentTemplateData(prevData => [...prevData, data]);
+				}
 			}
 		} else {
 			if (selectedIndex > -1) {
@@ -51,12 +60,13 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 
 	const handleAddFunds = (): void => history.push('/wallets/add-funds');
 
-	const handleTransfer = (): void => history.push('/wallets/transfer');
+	const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData });
 
-	const handleTemplate = (): void => history.push('/wallets/template', { data: null });
+	const handleAddTemplate = (): void => history.push('/wallets/template');
 
-	const handleTemplateClick = (index: number, template: ITemplateDataProps): void =>
-		history.push('/wallets/template', { data: template, selectedIndex: index });
+	const handleTemplateClick = (index: number, template: ITemplateDataProps): void => {
+		history.push('/wallets/template', { template: template, selectedIndex: index });
+	};
 
 	const handleDialogClose = (): void => {
 		setShowDialog(false);
@@ -90,7 +100,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 			<Box className={classes.paymentTemplateContainer}>
 				<Text className={classes.paymentTemplateText}>{formatMessage({ id: 'wallets.payment_templates' })}</Text>
 				<Box className={classes.TemplateButtonsWrapper}>
-					<Fab aria-label="add" className={classes.addFabButton} onClick={handleTemplate}>
+					<Fab aria-label="add" className={classes.addFabButton} onClick={handleAddTemplate}>
 						<Icon iconName="add-without-circle" primaryColor="white" secondaryColor="white" />
 					</Fab>
 					{paymentTemplateData.map((template, index) => (

@@ -22,6 +22,9 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 	const from = params?.walletType ? params.walletType : '';
 	const to = params?.walletAddress ? params.walletAddress : '';
 	const amount = params?.amount ? params.amount : null;
+	React.useEffect(() => {
+		setTemplateName('');
+	}, [props.location.state]);
 
 	const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
@@ -49,7 +52,7 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 				paymentType: 'credit_card',
 				walletAddress: to
 			};
-			history.push('/wallets', { data: paymentTemplate });
+			history.push('/wallets', { paymentTemplate: paymentTemplate });
 		} else {
 			history.push('/wallets');
 		}
@@ -104,7 +107,7 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 						onValueChange={handleTemplateNameChange}
 					/>
 				</Box>
-				<GreenButton iconName="add-payment" compact onClick={handlePayClick}>
+				<GreenButton iconName="add-payment" compact onClick={handlePayClick} disabled={!templateName && checked}>
 					{formatMessage({ id: 'button.pay' })}
 				</GreenButton>
 			</Box>
