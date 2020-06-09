@@ -1,18 +1,18 @@
 import { BlackButton, Dialog, GreenButton, Page } from 'components';
 import { Box, Typography, makeStyles } from '@material-ui/core';
+import { ICreditCardProps } from './pages/AddPaymentMethod/AddPaymentMethod.types';
 import { IPaymentMethodsProps } from './PaymentMethods.types';
 import { PaymentMethodItem } from './components';
 import { styles } from './PaymentMethods.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
-
 const useStyles = makeStyles(styles);
 
 export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = props => {
 	const history = useHistory();
 	const { formatMessage } = useIntl();
-	const [cardData, setCardData] = React.useState<object[]>([]);
+	const [cardData, setCardData] = React.useState<ICreditCardProps[]>([]);
 	const [deleteCard, setDeleteCard] = React.useState(false);
 	const [from, setFrom] = React.useState(false);
 	const [selectedIndex, setSelectedIndex] = React.useState(-1);
@@ -20,17 +20,27 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const data = params && params.data ? params.data : null;
-		const index = params && params.index > -1 ? params.index : null;
+		const index = params && params.index > -1 ? params.index : -1;
 		const from = params && params.from;
 		setFrom(from);
 
 		if (data) {
-			if (index !== null) {
+			if (index > -1) {
 				const temp = cardData;
 				temp.splice(index, 1, data);
 				setCardData([...temp]);
 			} else {
-				setCardData(prevData => [...prevData, data]);
+				// add
+				const temp = cardData;
+				const foundIndex = temp.findIndex(dt => dt.name === data.name);
+
+				if (foundIndex > -1) {
+					// if newly created card owner name already exists... please replace
+					temp.splice(foundIndex, 1, data);
+					setCardData([...temp]);
+				} else {
+					setCardData(prevData => [...prevData, data]);
+				}
 			}
 		}
 	}, [props.location.state]);
@@ -51,8 +61,8 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 		setDeleteCard(false);
 	};
 
-	const handleItemClick = (selectedIndex: number, cardData: any) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-		history.push('/payment-methods/add-payment-method/card', { data: cardData, index: selectedIndex });
+	const handleItemClick = (index: number, cardData: any) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+		history.push('/payment-methods/add-payment-method/card', { data: cardData, selectedIndex: index });
 	};
 
 	const handleLinkClick = (): void => {

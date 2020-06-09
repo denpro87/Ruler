@@ -68,28 +68,23 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 
 	const handleNextClick = (): void => {
 		setCardState(initialCardState);
-
-		if (pageName) {
-			history.push('/home', { data: cardState, index: selectedIndex });
-		} else {
-			history.push('/payment-methods', { data: cardState, index: selectedIndex });
-		}
+		history.push(pageName ? '/home' : '/payment-methods', { data: cardState, index: selectedIndex > -1 ? selectedIndex : -1 });
 	};
 	React.useEffect(() => {
 		const params: any = props.location.state;
-		const pageName = params && params.pageName ? params.pageName : null;
+		const pageName = params && params.pageName ? params.pageName : '';
 		const data = params && params.data ? params.data : null;
-		const index = params && params.index > -1 ? params.index : null;
+		const index = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
 
 		if (pageName) setPageName(pageName);
 
-		if (data !== null) {
+		if (data) {
 			setCardState(data);
 		} else {
 			setCardState(initialCardState);
 		}
 
-		if (index !== null) {
+		if (index > -1) {
 			setSelectedIndex(index);
 		} else {
 			setSelectedIndex(-1);

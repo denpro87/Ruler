@@ -19,6 +19,7 @@ import {
 	TextField
 } from 'components';
 import { Box, Collapse, Input, List, Slider, Typography } from '@material-ui/core';
+import { ICreditCardProps } from '../PaymentMethods/pages/AddPaymentMethod/AddPaymentMethod.types';
 import { IHomeProps } from './Home.types';
 import { IonImg, IonSlide, IonSlides } from '@ionic/react';
 import { areasListItems, damagedVehicleTypes, finishedRideVehicleInfo, markerList, vehicleButtons, vehicleInfo } from './Home.data';
@@ -101,27 +102,37 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
 	const [showScanEnterCode, setShowScanEnterCode] = React.useState(false);
 	const [showVehicleRide, setShowVehicleRide] = React.useState(false);
-	const [cardData, setCardData] = React.useState<object[]>([]);
+	const [cardData, setCardData] = React.useState<ICreditCardProps[]>([]);
 	const [paidModal, setPaidModal] = React.useState(false);
 	const [finishRidingModal, setFinishRidingModal] = React.useState(false);
 	const [showFinishedRide, setShowFinishedRide] = React.useState(false);
 	const [rideReview, setRideReview] = React.useState('');
+
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const data = params && params.data ? params.data : null;
-		const index = params && params.index > -1 ? params.index : null;
+		const index = params && params.index > -1 ? params.index : -1;
 
 		if (data) {
-			if (index !== null) {
+			if (index > -1) {
 				const temp = cardData;
 				temp.splice(index, 1, data);
 				setCardData([...temp]);
 			} else {
-				setCardData(prevData => [...prevData, data]);
+				// add
+				const temp = cardData;
+				const foundIndex = temp.findIndex(dt => dt.name === data.name);
+
+				if (foundIndex > -1) {
+					// if newly created card owner name already exists... please replace
+					temp.splice(foundIndex, 1, data);
+					setCardData([...temp]);
+				} else {
+					setCardData(prevData => [...prevData, data]);
+				}
 			}
 		}
 	}, [props.location.state]);
-
 	React.useEffect(() => {
 		let placeHolderStr = '';
 
@@ -133,8 +144,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		}
 	}, [qrCode]);
 
-	const handleItemClick = (selectedIndex: number, cardData: any) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-		history.push('/payment-methods/add-payment-method/card', { data: cardData, index: selectedIndex });
+	const handleItemClick = (index: number, cardData: any) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+		history.push('/payment-methods/add-payment-method/card', { data: cardData, selectedIndex: index });
 	};
 
 	const handleDrawerClick = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent): void => {
