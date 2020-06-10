@@ -16,13 +16,16 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 	const [deleteCard, setDeleteCard] = React.useState(false);
 	const [from, setFrom] = React.useState(false);
 	const [selectedIndex, setSelectedIndex] = React.useState(-1);
+	const [checked, setChecked] = React.useState(false);
 	const classes = useStyles();
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const data = params && params.data ? params.data : null;
 		const index = params && params.index > -1 ? params.index : -1;
+		const checked = params && params.checked;
 		const from = params && params.from;
 		setFrom(from);
+		setChecked(checked);
 
 		if (data) {
 			if (index > -1) {
@@ -62,7 +65,7 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 	};
 
 	const handleItemClick = (index: number, cardData: any) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-		history.push('/payment-methods/add-payment-method/card', { data: cardData, selectedIndex: index });
+		history.push('/payment-methods/add-payment-method/card', { data: cardData, selectedIndex: index, checked: checked });
 	};
 
 	const handleLinkClick = (): void => {

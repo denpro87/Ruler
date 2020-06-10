@@ -18,6 +18,7 @@ export const Checkbox: React.FunctionComponent<ICheckBoxProps> = ({ checked, lab
 					checkedIcon={<Icon iconName="save" />}
 					icon={<Icon iconName="save-blank" />}
 					onChange={onValueChange}
+					checked={checked}
 				/>
 			}
 			label={label}
