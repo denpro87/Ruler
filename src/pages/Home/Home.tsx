@@ -107,11 +107,13 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [finishRidingModal, setFinishRidingModal] = React.useState(false);
 	const [showFinishedRide, setShowFinishedRide] = React.useState(false);
 	const [rideReview, setRideReview] = React.useState('');
-
+	const [checked, setChecked] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const data = params && params.data ? params.data : null;
 		const index = params && params.index > -1 ? params.index : -1;
+		const checked = params && params.checked;
+		setChecked(checked);
 
 		if (data) {
 			if (index > -1) {
@@ -145,7 +147,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	}, [qrCode]);
 
 	const handleItemClick = (index: number, cardData: any) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-		history.push('/payment-methods/add-payment-method/card', { data: cardData, selectedIndex: index });
+		history.push('/payment-methods/add-payment-method/card', { data: cardData, selectedIndex: index, checked: checked });
 	};
 
 	const handleDrawerClick = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent): void => {
