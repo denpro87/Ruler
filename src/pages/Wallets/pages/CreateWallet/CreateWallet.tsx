@@ -23,7 +23,7 @@ export const CreateWallet: React.FunctionComponent = () => {
 						key={index}
 						className={clsx({ [classes.listItem]: true }, { [classes.activeListItem]: index === selectedTypeIndex })}
 						button
-						onClick={() => setSelectedTypeIndex(index)}
+						onClick={(): void => setSelectedTypeIndex(index)}
 					>
 						<ListItemIcon>
 							<Icon iconName={createWalletType.iconName} color="#181c19" />
@@ -35,7 +35,7 @@ export const CreateWallet: React.FunctionComponent = () => {
 			<GreenButton
 				className={classes.nextButton}
 				disabled={selectedTypeIndex < 0}
-				onClick={() => history.push('/wallets/create-wallet-description')}
+				onClick={(): void => history.push('/wallets/create-wallet-description')}
 			>
 				{formatMessage({ id: 'button.next' })}
 			</GreenButton>

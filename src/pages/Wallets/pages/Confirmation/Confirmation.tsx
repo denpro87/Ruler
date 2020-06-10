@@ -24,6 +24,7 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 	const amount = params?.amount ? params.amount : null;
 	React.useEffect(() => {
 		setTemplateName('');
+		setChecked(false);
 	}, [props.location.state]);
 
 	const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
