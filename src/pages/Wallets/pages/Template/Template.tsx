@@ -61,7 +61,7 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	return (
 		<Page
 			title={formatMessage({ id: 'wallets.template.title' })}
-			headerLink={<IconButton iconProps={{ iconName: 'trash', colorType: 'green' }} onClick={handleTrashClick} />}
+			headerLink={selectedIndex > -1 ? <IconButton iconProps={{ iconName: 'trash', colorType: 'green' }} onClick={handleTrashClick} /> : ''}
 			titleSize="medium"
 		>
 			<Box className={classes.templateWrapper}>
@@ -113,11 +113,11 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 			<GreenButton
 				className={classes.saveButton}
 				disabled={!templateName || !amount || !numberValid}
-				iconName="well-done-checked"
+				iconName={selectedIndex > -1 ? 'well-done-checked' : 'add'}
 				compact
 				onClick={handleSaveChangeClick}
 			>
-				{formatMessage({ id: 'button.save_changes' })}
+				{selectedIndex > -1 ? formatMessage({ id: 'button.save_changes' }) : formatMessage({ id: 'button.add_new_template' })}
 			</GreenButton>
 		</Page>
 	);
