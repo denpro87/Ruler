@@ -96,7 +96,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [reportSubmitModal, setReportSubmitModal] = React.useState(false);
 	const [rideStart, setRideStart] = React.useState(false);
 	const [ridingStart, setRidingStart] = React.useState(false);
-	const [enteredQrCode, setEnteredQrCode] = React.useState(false);
+	// const [enteredQrCode, setEnteredQrCode] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
 	// const [selectedVehicle, setSelectedVehicle] = React.useState('');
 	// const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
@@ -278,7 +278,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			setQrCodeInput(qrCodeInputValue);
 
 			if (qrCode === event.target.value) {
-				setEnteredQrCode(true);
+				// setEnteredQrCode(true);
 				// setShowDischargedVehicle(true);
 				setShowScanEnterCode(false);
 				setScanEnterButtonLabel(formatMessage({ id: 'button.scan_code' }));

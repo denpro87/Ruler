@@ -13,7 +13,7 @@ import { IntlProvider, Theming } from 'components';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { PrivateRoute } from './helpers/PrivateRoute';
-import { Redirect, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import React from 'react';
 export const App: React.FunctionComponent = () => (
 	<IntlProvider>

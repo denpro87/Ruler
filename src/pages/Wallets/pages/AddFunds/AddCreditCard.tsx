@@ -29,30 +29,37 @@ export const AddCreditCard: React.FunctionComponent = () => {
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
-		setCardState(prevState => ({
-			...prevState,
-			[event.target.name]: event.target.value
-		}));
+		const value = event.target.value;
+		const trimValue = value.replace(/\s/g, '');
 
 		if (event.target.name === 'cardNumber') {
 			setCardState(prevState => ({
 				...prevState,
-				cardNumberValid: validateNumber(event.target.value)
+				[event.target.name]: value.includes(' ') ? trimValue : value,
+				cardNumberValid: validateNumber(value.includes(' ') ? trimValue : value)
 			}));
 		} else if (event.target.name === 'zipCode') {
 			setCardState(prevState => ({
 				...prevState,
-				zipCodeValid: validateNumber(event.target.value)
+				[event.target.name]: value.includes(' ') ? trimValue : value,
+				zipCodeValid: validateNumber(value.includes(' ') ? trimValue : value)
 			}));
 		} else if (event.target.name === 'expireDate') {
 			setCardState(prevState => ({
 				...prevState,
+				[event.target.name]: event.target.value,
 				dateValid: validateDate(event.target.value)
 			}));
 		} else if (event.target.name === 'cvc') {
 			setCardState(prevState => ({
 				...prevState,
-				cvcValid: validateNumber(event.target.value)
+				[event.target.name]: value.includes(' ') ? trimValue : value,
+				cvcValid: validateNumber(value.includes(' ') ? trimValue : value)
+			}));
+		} else {
+			setCardState(prevState => ({
+				...prevState,
+				[event.target.name]: event.target.value
 			}));
 		}
 	};
