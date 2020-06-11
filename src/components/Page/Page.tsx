@@ -47,6 +47,10 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 			history.push('/home');
 		} else {
 			history.goBack();
+
+			if (!localStorage.getItem('authToken')) {
+				window.location.reload();
+			}
 		}
 	};
 
