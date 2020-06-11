@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 import Background from './images/bg.svg';
 import React from 'react';
 import clsx from 'clsx';
-
 const useStyles = makeStyles(styles);
 
 export const Welcome: React.FunctionComponent = () => {
