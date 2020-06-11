@@ -23,11 +23,17 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 	const [templateName, setTemplateName] = React.useState<string>('');
 	const params: any = props.location.state;
 	const paymentTemplate = params && params.data ? params.data : null;
+	console.log('paymentTemplate', paymentTemplate);
 	React.useEffect(() => {
 		setWalletType('');
 		setAmount('');
 		setTemplateName('');
 		setWalletAddress('');
+		// const params: any = props.location.state;
+		// const data = params && params.data ? params.data : null;
+		// console.log('ddddd', data);
+		// setAmount(data && '');
+		// setTemplateName(data ? params.data.templateName : '');
 	}, [props.location.state]);
 
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>

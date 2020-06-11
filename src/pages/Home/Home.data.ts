@@ -75,7 +75,30 @@ export const markerList = [
 	}
 ];
 
-export const vehicleInfo = [
+export const scooterInfo = [
+	{
+		iconName: './images/bird.png',
+		property: 'Bird',
+		description: 'scooter'
+	},
+	{
+		iconName: 'charge',
+		property: '70%',
+		description: 'battery level'
+	},
+	{
+		iconName: 'distance',
+		property: '450 m',
+		description: 'distance'
+	},
+	{
+		iconName: 'wallet',
+		property: '0.13 /min',
+		description: '$ 0.5 to unlock'
+	}
+];
+
+export const carInfo = [
 	{
 		iconName: './images/lime.png',
 		property: 'Lime',
@@ -97,7 +120,6 @@ export const vehicleInfo = [
 		description: '$ 1 to unlock'
 	}
 ];
-
 export const vehicleSimpleInfo = [
 	{
 		iconName: './images/lime.png',

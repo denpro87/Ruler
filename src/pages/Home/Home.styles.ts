@@ -513,6 +513,7 @@ const swipeText: CSSProperties = {
 	color: 'rgba(24, 28, 25, 0.5)',
 	textAlign: 'center'
 };
+
 const payButton: CSSProperties = {
 	marginTop: 'auto',
 	fontWeight: 'bold'
@@ -651,10 +652,6 @@ const iconButtonTextContainer: CSSProperties = {
 	display: 'flex'
 };
 
-const rideFooter: CSSProperties = {
-	padding: `${pxToRem(50)} 0 ${pxToRem(25)}`
-};
-
 const notRecommendedButton: CSSProperties = {
 	fontWeight: 'bold'
 };
@@ -731,7 +728,6 @@ export const styles = createStyles({
 	totalAmountText,
 	finishRidingDialogContentText,
 	totalAmountTextWrapper,
-	rideFooter,
 	notRecommendedButton,
 	iconButtonTextContainer,
 	vehicleDetailInfoColumn,

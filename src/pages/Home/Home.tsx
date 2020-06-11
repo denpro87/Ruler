@@ -22,7 +22,15 @@ import { Box, Collapse, Input, List, Slider, Typography } from '@material-ui/cor
 import { ICreditCardProps } from '../PaymentMethods/pages/AddPaymentMethod/AddPaymentMethod.types';
 import { IHomeProps } from './Home.types';
 import { IonImg, IonSlide, IonSlides } from '@ionic/react';
-import { areasListItems, damagedVehicleTypes, finishedRideVehicleInfo, markerList, vehicleButtons, vehicleInfo } from './Home.data';
+import {
+	areasListItems,
+	carInfo,
+	damagedVehicleTypes,
+	finishedRideVehicleInfo,
+	markerList,
+	scooterInfo,
+	vehicleButtons
+} from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
@@ -90,9 +98,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [ridingStart, setRidingStart] = React.useState(false);
 	const [enteredQrCode, setEnteredQrCode] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
-	const [selectedVehicleIndex, setSelectedVehicleIndex] = React.useState(-1);
 	// const [selectedVehicle, setSelectedVehicle] = React.useState('');
 	// const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
+	const [activeVehicle, setActiveVehicle] = React.useState('');
 	const [placeHolder, setPlaceHolder] = React.useState('');
 	const [buttonLabel, setButtonLabel] = React.useState('Car');
 	const [qrCode, setQrCode] = React.useState('123456');
@@ -297,17 +305,18 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setShowFinishedRide(isOpen);
 	};
 
-	const handleMarkerClick = (index: number, vehicleNumber: number) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+	const handleMarkerClick = (index: number, vehicleNumber: number, iconName: string) => (
+		event: React.MouseEvent<HTMLElement, MouseEvent>
+	): void => {
 		if (vehicleNumber === 0) {
 			setShowVehicleRide(true);
-		} else {
+			setActiveVehicle(iconName);
 		}
-		setSelectedVehicleIndex(index);
 	};
 
 	const handleVehicleRideCloseButtonClick = (): void => {
 		setShowVehicleRide(false);
-		setSelectedVehicleIndex(-1);
+		setActiveVehicle('');
 	};
 
 	const handleAddPaymentMethodClick = (): void => {
@@ -373,10 +382,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 									{ [clsx(classes.circleWithVehicleIcon, classes.vehicleIconInActive)]: marker.vehicleNumber === 0 },
 									{
 										[clsx(classes.circleWithVehicleIcon, classes.vehicleIconActive)]:
-											marker.vehicleNumber === 0 && index === selectedVehicleIndex
+											marker.vehicleNumber === 0 && marker.iconName === activeVehicle
 									}
 								)}
-								onClick={handleMarkerClick(index, marker.vehicleNumber)}
+								onClick={handleMarkerClick(index, marker.vehicleNumber, marker.iconName)}
 							>
 								{marker.iconName ? (
 									<>
@@ -713,9 +722,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<IonSlides options={slideOpts}>
 					<IonSlide className={classes.slide}>
 						<Box className={classes.vehicleInfo}>
-							{vehicleInfo.map(
+							{(activeVehicle === 'car' ? carInfo : scooterInfo).map(
 								(info, index): JSX.Element => {
-									if (enteredQrCode && index === 2) return <></>;
+									// if (enteredQrCode && index === 2) return <></>;
 
 									return (
 										<Box key={index} className={classes.infoWrapper}>
@@ -855,15 +864,15 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								</Box>
 							</>
 						)}
-						{hasAccount && hasValidatedDriverLicence && paidSuccess && !reservation && (
+						{hasAccount && hasValidatedDriverLicence && paidSuccess && (
 							<>
 								<Box>
 									<IonSlides options={reserveSlideOpts}>
 										<IonSlide className={classes.slide}>
 											<Box className={classes.vehicleInfo}>
-												{vehicleInfo.map(
+												{carInfo.map(
 													(info, index): JSX.Element => {
-														if (enteredQrCode && index === 2) return <></>;
+														// if (enteredQrCode && index === 2) return <Box />;
 
 														return (
 															<Box key={index} className={classes.infoWrapper}>
@@ -909,9 +918,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										</IonSlide>
 										<IonSlide className={classes.slide}>
 											<Box className={classes.vehicleInfo}>
-												{vehicleInfo.map(
+												{scooterInfo.map(
 													(info, index): JSX.Element => {
-														if (enteredQrCode && index === 2) return <></>;
+														// if (enteredQrCode && index === 2) return <Box />;
 
 														return (
 															<Box key={index} className={classes.infoWrapper}>
@@ -948,96 +957,40 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 									</IonSlides>
 								</Box>
 								<Box className={classes.reserveFooter}>
-									<Box className={classes.scanAndReserveButtonGroupWrapper}>
-										<LightGreenButton iconName="qr" compact>
-											{formatMessage({ id: 'button.scan' })}
-										</LightGreenButton>
-										<GreenButton iconName="lock" compact onClick={(): void => setReservation(true)}>
-											{formatMessage({ id: 'button.reserve' })}
-										</GreenButton>
-									</Box>
-									<Box className={classes.iconButtonTextContainer}>
-										<Box className={classes.iconButtonTextWrapper}>
-											<IconButton iconName="how-to-ride" colorType="green" onClick={(): void => history.push('/get-help/how-to-ride')} />
-											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.how_to_ride' })}</Text>
-										</Box>
-										<Box className={classes.iconButtonTextWrapper}>
-											<IconButton iconName="report" colorType="green" onClick={(): void => history.push('/get-help/how-to-ride')} />
-											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.report' })}</Text>
-										</Box>
-									</Box>
-								</Box>
-							</>
-						)}
-						{hasAccount && hasValidatedDriverLicence && paidSuccess && reservation && (
-							<>
-								<Box className={classes.vehicleInfo}>
-									{vehicleInfo.map(
-										(info, index): JSX.Element => {
-											if (enteredQrCode && index === 2) return <></>;
-
-											return (
-												<Box key={index} className={classes.infoWrapper}>
-													{index === 0 ? (
-														<Image src={require(`${info.iconName}`)} width={30} height={30} />
+									{reservation ? (
+										<Box>
+											{rideStart ? (
+												<Box className={classes.scanAndReserveButtonGroupWrapper}>
+													<LightGreenButton iconName="point" compact onClick={(): void => setFinishRidingModal(true)}>
+														{formatMessage({ id: 'button.finish' })}
+													</LightGreenButton>
+													{ridingStart ? (
+														<GreenButton iconName="start" compact onClick={(): void => setRidingStart(false)}>
+															{formatMessage({ id: 'button.start' })}
+														</GreenButton>
 													) : (
-														<Icon iconName={info.iconName} colorType="green" />
+														<GreenButton iconName="pause" compact onClick={(): void => setRidingStart(true)}>
+															{formatMessage({ id: 'button.pause' })}
+														</GreenButton>
 													)}
-													<Text className={classes.propertyText}>{info.property}</Text>
-													<Text className={classes.descriptionText}>{info.description}</Text>
 												</Box>
-											);
-										}
-									)}
-								</Box>
-								<Box className={classes.imageWrapper}>
-									<Image src={car} />
-								</Box>
-								<Box className={classes.vehicleDetailInfoRow}>
-									<Box className={classes.vehicleDetailInfoColumn}>
-										<Icon iconName="seats" colorType="green" />
-										<Text className={classes.iconText}>4 seats</Text>
-									</Box>
-									<Box className={classes.vehicleDetailInfoColumn}>
-										<Icon iconName="engine" colorType="green" />
-										<Text className={classes.iconText}>electric</Text>
-									</Box>
-								</Box>
-								<Box className={classes.vehicleDetailInfoRow}>
-									<Box className={classes.vehicleDetailInfoColumn}>
-										<Icon iconName="transmission" colorType="green" />
-										<Text className={classes.iconText}>automatic</Text>
-									</Box>
-									<Box className={classes.vehicleDetailInfoColumn}>
-										<Icon iconName="color" colorType="green" />
-										<Text className={classes.iconText}>white</Text>
-									</Box>
-								</Box>
-								<Box className={classes.vehicleDetailInfoColumn}>
-									<Icon iconName="point" colorType="green" />
-									<Text className={classes.iconText}>Na Hřebenkách 2, 150 00 Praha 5</Text>
-								</Box>
-								<Box className={classes.rideFooter}>
-									{rideStart ? (
-										<Box className={classes.scanAndReserveButtonGroupWrapper}>
-											<LightGreenButton iconName="point" compact onClick={(): void => setFinishRidingModal(true)}>
-												{formatMessage({ id: 'button.finish' })}
-											</LightGreenButton>
-											{ridingStart ? (
-												<GreenButton iconName="start" compact onClick={(): void => setRidingStart(false)}>
-													{formatMessage({ id: 'button.start' })}
-												</GreenButton>
 											) : (
-												<GreenButton iconName="pause" compact onClick={(): void => setRidingStart(true)}>
-													{formatMessage({ id: 'button.pause' })}
+												<GreenButton iconName="start" compact onClick={(): void => setRideStart(true)}>
+													{formatMessage({ id: 'button.ride' })}
 												</GreenButton>
 											)}
 										</Box>
 									) : (
-										<GreenButton iconName="start" compact onClick={(): void => setRideStart(true)}>
-											{formatMessage({ id: 'button.ride' })}
-										</GreenButton>
+										<Box className={classes.scanAndReserveButtonGroupWrapper}>
+											<LightGreenButton iconName="qr" compact>
+												{formatMessage({ id: 'button.scan' })}
+											</LightGreenButton>
+											<GreenButton iconName="lock" compact onClick={(): void => setReservation(true)}>
+												{formatMessage({ id: 'button.reserve' })}
+											</GreenButton>
+										</Box>
 									)}
+
 									<Box className={classes.iconButtonTextContainer}>
 										<Box className={classes.iconButtonTextWrapper}>
 											<IconButton iconName="how-to-ride" colorType="green" onClick={(): void => history.push('/get-help/how-to-ride')} />
