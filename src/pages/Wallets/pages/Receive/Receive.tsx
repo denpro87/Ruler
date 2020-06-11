@@ -26,8 +26,16 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 	};
 
 	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		setAmount(event.target.value);
-		setNumberValid(validateNumber(event.target.value));
+		const amount = event.target.value;
+
+		if (amount.includes(' ')) {
+			const trimAmount = amount.replace(/\s/g, '');
+			setAmount(trimAmount);
+			setNumberValid(validateNumber(trimAmount));
+		} else {
+			setAmount(amount);
+			setNumberValid(validateNumber(amount));
+		}
 	};
 
 	const handleFromChange = (event: React.ChangeEvent<HTMLInputElement>): void => setFrom(event.target.value);

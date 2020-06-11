@@ -28,8 +28,16 @@ export const AddFunds: React.FunctionComponent = () => {
 	const handleRulerButtonClick = (amount: string): void => setAmount(amount);
 
 	const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		setAmount(event.target.value);
-		setNumberValid(validateNumber(event.target.value));
+		const amount = event.target.value;
+
+		if (amount.includes(' ')) {
+			const trimAmount = amount.replace(/\s/g, '');
+			setAmount(trimAmount);
+			setNumberValid(validateNumber(trimAmount));
+		} else {
+			setAmount(amount);
+			setNumberValid(validateNumber(amount));
+		}
 	};
 
 	const handleNextClick = (): void => history.push('/wallets/add-funds/add-credit-card');
@@ -87,7 +95,7 @@ export const AddFunds: React.FunctionComponent = () => {
 					))}
 				</Select>
 			</Box>
-			<GreenButton onClick={handleNextClick} disabled={!amount || !numberValid}>
+			<GreenButton onClick={handleNextClick} disabled={!amount || !numberValid || !walletType || !paymentMethodType}>
 				{formatMessage({ id: 'button.next' })}
 			</GreenButton>
 		</Page>

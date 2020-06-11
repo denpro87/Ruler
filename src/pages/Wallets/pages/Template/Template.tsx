@@ -37,8 +37,16 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 		setPaymentMethodType(event.target.value);
 
 	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		setAmount(event.target.value);
-		setNumberValid(validateNumber(event.target.value));
+		const amount = event.target.value;
+
+		if (amount.includes(' ')) {
+			const trimAmount = amount.replace(/\s/g, '');
+			setAmount(trimAmount);
+			setNumberValid(validateNumber(trimAmount));
+		} else {
+			setAmount(amount);
+			setNumberValid(validateNumber(amount));
+		}
 	};
 
 	const handleTemplateChange = (event: React.ChangeEvent<HTMLInputElement>): void => setTemplateName(event.target.value);

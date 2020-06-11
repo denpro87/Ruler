@@ -36,8 +36,16 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 	const handleRulerButtonClick = (amount: string): void => setAmount(amount);
 
 	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		setAmount(event.target.value);
-		setNumberValid(validateNumber(event.target.value));
+		const amount = event.target.value;
+
+		if (amount.includes(' ')) {
+			const trimAmount = amount.replace(/\s/g, '');
+			setAmount(trimAmount);
+			setNumberValid(validateNumber(trimAmount));
+		} else {
+			setAmount(amount);
+			setNumberValid(validateNumber(amount));
+		}
 	};
 
 	const handleWalletAddressChange = (event: React.ChangeEvent<HTMLInputElement>): void => setWalletAddress(event.target.value);
