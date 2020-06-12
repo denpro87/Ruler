@@ -77,7 +77,7 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 		setCardState(initialCardState);
 
 		if (checked) setChecked(!checked);
-		history.push(pageName ? '/home' : '/payment-methods', {
+		history.replace(pageName ? '/home' : '/payment-methods', {
 			data: cardState,
 			index: selectedIndex > -1 ? selectedIndex : -1,
 			checked: checked

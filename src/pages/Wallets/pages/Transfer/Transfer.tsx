@@ -1,6 +1,7 @@
 import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, IconButton, Page, Select, Text, TextField } from 'components';
 import { ITemplateDataProps } from '../Template/Template.types';
+
 import { ITransferProps } from './Transfer.types';
 import { RulerButton } from '../../components';
 import { rulerPriceBonusData, walletTypes } from '../../Wallets.data';
@@ -21,19 +22,16 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 	const [walletAddress, setWalletAddress] = React.useState<string>('');
 	const [numberValid, setNumberValid] = React.useState(true);
 	const [templateName, setTemplateName] = React.useState<string>('');
-	const params: any = props.location.state;
-	const paymentTemplate = params && params.data ? params.data : null;
-	console.log('paymentTemplate', paymentTemplate);
+	const [paymentTemplateData, setPaymentTemplateData] = React.useState<ITemplateDataProps[]>([]);
 	React.useEffect(() => {
 		setWalletType('');
 		setAmount('');
 		setTemplateName('');
 		setWalletAddress('');
-		// const params: any = props.location.state;
-		// const data = params && params.data ? params.data : null;
-		// console.log('ddddd', data);
-		// setAmount(data && '');
-		// setTemplateName(data ? params.data.templateName : '');
+		const params: any = props.location.state;
+		const paymentTemplate = params && params.data ? params.data : null;
+
+		if (paymentTemplate) setPaymentTemplateData(paymentTemplate);
 	}, [props.location.state]);
 
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
@@ -73,7 +71,7 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 			<Box className={classes.addFundsWrapper}>
 				<Text className={classes.helperText}>{formatMessage({ id: 'wallets.payment_templates' })}</Text>
 				<Box className={classes.TemplateButtonsWrapper}>
-					{paymentTemplate?.map((template: ITemplateDataProps, index: number) => (
+					{paymentTemplateData?.map((template: ITemplateDataProps, index: number) => (
 						<Button
 							className={clsx({ active: template.templateName === templateName }, { [classes.paymentTemplateButton]: true })}
 							key={index}

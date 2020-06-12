@@ -17,14 +17,13 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 	const { formatMessage } = useIntl();
 	const [from, setFrom] = React.useState(false);
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
-	const [paymentTemplateData, setPaymentTemplateData] = React.useState(paymentTemplate);
+	// const [paymentTemplateData, setPaymentTemplateData] = React.useState(paymentTemplate);
+	const [paymentTemplateData, setPaymentTemplateData] = React.useState<ITemplateDataProps[]>([]);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const showDialog = params && params.showDialog ? params.showDialog : false;
 		const data = params && params.paymentTemplate ? params.paymentTemplate : null;
-		console.log('data', data);
 		const selectedIndex = params && params.index > -1 ? params.index : -1;
-		console.log('selectedIndex', selectedIndex);
 		const from = params && params.from;
 		setFrom(from);
 		setShowDialog(showDialog);
@@ -38,7 +37,6 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 			} else {
 				// add
 				const temp = paymentTemplateData;
-				console.log('temp', temp);
 				const index = temp.findIndex(dt => dt.templateName === data.templateName);
 
 				if (index > -1) {
@@ -51,7 +49,6 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 			}
 		} else {
 			if (selectedIndex > -1) {
-				console.log('3333', selectedIndex);
 				// delete
 				const temp = paymentTemplateData;
 				temp.splice(selectedIndex, 1);
@@ -64,7 +61,8 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 
 	const handleAddFunds = (): void => history.push('/wallets/add-funds');
 
-	const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData });
+	// const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData });
+	const handleTransfer = (): void => history.push('/wallets/transfer');
 
 	const handleAddTemplate = (): void => history.push('/wallets/template');
 

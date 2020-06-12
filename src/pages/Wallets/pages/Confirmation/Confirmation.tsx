@@ -53,9 +53,9 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 				paymentType: 'credit_card',
 				walletAddress: to
 			};
-			history.push('/wallets', { paymentTemplate: paymentTemplate });
+			history.replace('/wallets', { paymentTemplate: paymentTemplate });
 		} else {
-			history.push('/wallets');
+			history.replace('/wallets');
 		}
 	};
 
