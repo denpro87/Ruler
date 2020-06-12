@@ -17,8 +17,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 	const { formatMessage } = useIntl();
 	const [from, setFrom] = React.useState(false);
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
-	// const [paymentTemplateData, setPaymentTemplateData] = React.useState(paymentTemplate);
-	const [paymentTemplateData, setPaymentTemplateData] = React.useState<ITemplateDataProps[]>([]);
+	const [paymentTemplateData, setPaymentTemplateData] = React.useState(paymentTemplate);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const showDialog = params && params.showDialog ? params.showDialog : false;
@@ -61,8 +60,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 
 	const handleAddFunds = (): void => history.push('/wallets/add-funds');
 
-	// const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData });
-	const handleTransfer = (): void => history.push('/wallets/transfer');
+	const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData, from: props.location });
 
 	const handleAddTemplate = (): void => history.push('/wallets/template');
 
