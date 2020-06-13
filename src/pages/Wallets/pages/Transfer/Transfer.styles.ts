@@ -16,7 +16,7 @@ const paymentTemplateButton: CSSProperties = {
 		color: '#00b559'
 	}),
 	fontSize: pxToRem(10),
-	width: 'fit-content',
+	minWidth: 'fit-content !important',
 	backgroundColor: 'transparent',
 	borderRadius: pxToRem(200),
 	padding: `${pxToRem(8)} ${pxToRem(15)} ${pxToRem(7)} ${pxToRem(15)}`,
@@ -33,9 +33,6 @@ const paymentTemplateButton: CSSProperties = {
 	'&:hover': {
 		backgroundColor: 'rgba(0, 0, 0, 0.2)',
 		color: '#00b559'
-	},
-	'& .MuiButton-label> span': {
-		whiteSpace: 'nowrap'
 	}
 };
 

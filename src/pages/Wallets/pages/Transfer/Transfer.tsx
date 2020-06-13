@@ -71,6 +71,7 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 						<Button
 							className={clsx({ active: template.templateName === templateName }, { [classes.paymentTemplateButton]: true })}
 							key={index}
+							fullWidth={false}
 							onClick={(): void => handleTemplateClick(template)}
 						>
 							{template.templateName}
