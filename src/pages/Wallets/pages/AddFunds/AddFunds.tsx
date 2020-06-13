@@ -18,7 +18,6 @@ export const AddFunds: React.FunctionComponent = () => {
 	const [paymentMethodType, setPaymentMethodType] = React.useState<string>('');
 	const [amount, setAmount] = React.useState<string>('');
 	const [numberValid, setNumberValid] = React.useState(true);
-
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setWalletType(event.target.value);
 
@@ -40,7 +39,9 @@ export const AddFunds: React.FunctionComponent = () => {
 		}
 	};
 
-	const handleNextClick = (): void => history.push('/wallets/add-funds/add-credit-card');
+	const handleNextClick = (): void => {
+		history.push('/wallets/add-funds/add-credit-card');
+	};
 
 	return (
 		<Page title={formatMessage({ id: 'wallets.add_funds.title' })} titleSize="large">

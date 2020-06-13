@@ -60,7 +60,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 
 	const handleAddFunds = (): void => history.push('/wallets/add-funds');
 
-	const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData, from: props.location });
+	const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData });
 
 	const handleAddTemplate = (): void => history.push('/wallets/template');
 
