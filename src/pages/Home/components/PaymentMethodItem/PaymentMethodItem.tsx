@@ -11,7 +11,7 @@ export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps>
 	return (
 		<Box className={classes.paymentMethodItemContainer}>
 			<Box className={classes.paymentMethodItem}>
-				<IconButton iconProps={{ iconName: 'trash', color: '#ffffff' }} className={classes.trashIcon} onClick={handleRemoveClick} />
+				<IconButton iconProps={{ iconName: 'white-trash', color: '#ffffff' }} className={classes.trashIcon} onClick={handleRemoveClick} />
 				<Link className={classes.cardTypeText} onClick={handleShowClick}>
 					MasterCard
 				</Link>

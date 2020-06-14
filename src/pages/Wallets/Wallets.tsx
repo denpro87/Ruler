@@ -89,7 +89,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 		>
 			<Box className={classes.walletsLogoContainer}>
 				<Box className={classes.walletsLogo}>
-					<IconButton iconProps={{ iconName: 'trash', color: '#ffffff' }} className={classes.trashIcon} />
+					<IconButton iconProps={{ iconName: 'white-trash', color: '#ffffff' }} className={classes.trashIcon} />
 					<Link className={classes.rulerWalletText} href="/wallets/ruler-wallet">
 						{formatMessage({ id: 'wallets.logo_title' })}
 					</Link>
