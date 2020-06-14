@@ -28,6 +28,8 @@ import {
 	damagedVehicleTypes,
 	finishedRideVehicleInfo,
 	markerList,
+	pausedCarInfo,
+	pausedScooterInfo,
 	scooterInfo,
 	vehicleButtons
 } from './Home.data';
@@ -95,7 +97,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [showWrongCode, setShowWrongCode] = React.useState(false);
 	const [reportSubmitModal, setReportSubmitModal] = React.useState(false);
 	const [rideStart, setRideStart] = React.useState(false);
-	const [ridingStart, setRidingStart] = React.useState(false);
+	const [ridingStart, setRidingStart] = React.useState(true);
 	// const [enteredQrCode, setEnteredQrCode] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
 	// const [selectedVehicle, setSelectedVehicle] = React.useState('');
@@ -351,6 +353,20 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		const temp = cardData;
 		temp.splice(index, 1);
 		setCardData([...temp]);
+	};
+
+	const renderVehicleInfo = (info: any, index: number): JSX.Element => {
+		return (
+			<Box key={index} className={classes.infoWrapper}>
+				{index === 0 ? (
+					<Image src={require(`${info.iconName}`)} width={30} height={30} />
+				) : (
+					<Icon iconName={info.iconName} colorType="green" />
+				)}
+				<Text className={classes.propertyText}>{info.property}</Text>
+				<Text className={classes.descriptionText}>{info.description}</Text>
+			</Box>
+		);
 	};
 
 	return (
@@ -722,7 +738,35 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<IonSlides options={slideOpts}>
 					<IonSlide className={classes.slide}>
 						<Box className={classes.vehicleInfo}>
-							{(activeVehicle === 'car' ? carInfo : scooterInfo).map(
+							{activeVehicle === 'car' &&
+								ridingStart &&
+								carInfo.map(
+									(info, index): JSX.Element => {
+										return <>{renderVehicleInfo(info, index)}</>;
+									}
+								)}
+							{activeVehicle === 'car' &&
+								!ridingStart &&
+								pausedCarInfo.map(
+									(info, index): JSX.Element => {
+										return <>{renderVehicleInfo(info, index)}</>;
+									}
+								)}
+							{activeVehicle === 'scooter' &&
+								ridingStart &&
+								scooterInfo.map(
+									(info, index): JSX.Element => {
+										return <>{renderVehicleInfo(info, index)}</>;
+									}
+								)}
+							{activeVehicle === 'scooter' &&
+								!ridingStart &&
+								pausedScooterInfo.map(
+									(info, index): JSX.Element => {
+										return <>{renderVehicleInfo(info, index)}</>;
+									}
+								)}
+							{/* {(activeVehicle === 'car').map(
 								(info, index): JSX.Element => {
 									// if (enteredQrCode && index === 2) return <></>;
 
@@ -738,7 +782,24 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										</Box>
 									);
 								}
-							)}
+							)} */}
+							{/* {(activeVehicle === 'scooter' && ridingStart ? scooterInfo : pausedScooterInfo).map(
+								(info, index): JSX.Element => {
+									// if (enteredQrCode && index === 2) return <></>;
+
+									return (
+										<Box key={index} className={classes.infoWrapper}>
+											{index === 0 ? (
+												<Image src={require(`${info.iconName}`)} width={30} height={30} />
+											) : (
+												<Icon iconName={info.iconName} colorType="green" />
+											)}
+											<Text className={classes.propertyText}>{info.property}</Text>
+											<Text className={classes.descriptionText}>{info.description}</Text>
+										</Box>
+									);
+								}
+							)} */}
 						</Box>
 						{!hasAccount && (
 							<Box className={classes.vehicleInfoFooter}>
@@ -797,12 +858,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 											{formatMessage({ id: 'button.finish' })}
 										</LightGreenButton>
 										{ridingStart ? (
-											<GreenButton iconName="start" compact onClick={(): void => setRidingStart(false)}>
-												{formatMessage({ id: 'button.start' })}
+											<GreenButton iconName="pause" compact onClick={(): void => setRidingStart(false)}>
+												{formatMessage({ id: 'button.pause' })}
 											</GreenButton>
 										) : (
-											<GreenButton iconName="pause" compact onClick={(): void => setRidingStart(true)}>
-												{formatMessage({ id: 'button.pause' })}
+											<GreenButton iconName="start" compact onClick={(): void => setRidingStart(true)}>
+												{formatMessage({ id: 'button.start' })}
 											</GreenButton>
 										)}
 									</Box>
@@ -866,96 +927,141 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						)}
 						{hasAccount && hasValidatedDriverLicence && paidSuccess && (
 							<>
-								<Box>
-									<IonSlides options={reserveSlideOpts}>
-										<IonSlide className={classes.slide}>
-											<Box className={classes.vehicleInfo}>
-												{carInfo.map(
-													(info, index): JSX.Element => {
-														// if (enteredQrCode && index === 2) return <Box />;
+								{/* <Box> */}
+								{/* <IonSlides options={reserveSlideOpts}>
+										<IonSlide className={classes.slide}> */}
+								<Box className={classes.vehicleInfo}>
+									{(activeVehicle === 'car' ? carInfo : scooterInfo).map(
+										(info, index): JSX.Element => {
+											// if (enteredQrCode && index === 2) return <Box />;
 
-														return (
-															<Box key={index} className={classes.infoWrapper}>
-																{index === 0 ? (
-																	<Image src={require(`${info.iconName}`)} width={30} height={30} />
-																) : (
-																	<Icon iconName={info.iconName} colorType="green" />
-																)}
-																<Text className={classes.propertyText}>{info.property}</Text>
-																<Text className={classes.descriptionText}>{info.description}</Text>
-															</Box>
-														);
-													}
-												)}
-											</Box>
-											<Box className={classes.imageWrapper}>
-												<Image src={car} />
-											</Box>
-											<Box className={classes.vehicleDetailInfoRow}>
-												<Box className={classes.vehicleDetailInfoColumn}>
-													<Icon iconName="seats" colorType="green" />
-													<Text className={classes.iconText}>4 seats</Text>
+											return (
+												<Box key={index} className={classes.infoWrapper}>
+													{index === 0 ? (
+														<Image src={require(`${info.iconName}`)} width={30} height={30} />
+													) : (
+														<Icon iconName={info.iconName} colorType="green" />
+													)}
+													<Text className={classes.propertyText}>{info.property}</Text>
+													<Text className={classes.descriptionText}>{info.description}</Text>
 												</Box>
-												<Box className={classes.vehicleDetailInfoColumn}>
-													<Icon iconName="engine" colorType="green" />
-													<Text className={classes.iconText}>electric</Text>
-												</Box>
-											</Box>
-											<Box className={classes.vehicleDetailInfoRow}>
-												<Box className={classes.vehicleDetailInfoColumn}>
-													<Icon iconName="transmission" colorType="green" />
-													<Text className={classes.iconText}>automatic</Text>
-												</Box>
-												<Box className={classes.vehicleDetailInfoColumn}>
-													<Icon iconName="color" colorType="green" />
-													<Text className={classes.iconText}>white</Text>
-												</Box>
-											</Box>
-											<Box className={classes.vehicleDetailInfoColumn}>
-												<Icon iconName="point" colorType="green" />
-												<Text className={classes.iconText}>Na Hřebenkách 2, 150 00 Praha 5</Text>
-											</Box>
-										</IonSlide>
-										<IonSlide className={classes.slide}>
-											<Box className={classes.vehicleInfo}>
-												{scooterInfo.map(
-													(info, index): JSX.Element => {
-														// if (enteredQrCode && index === 2) return <Box />;
-
-														return (
-															<Box key={index} className={classes.infoWrapper}>
-																{index === 0 ? (
-																	<Image src={require(`${info.iconName}`)} width={30} height={30} />
-																) : (
-																	<Icon iconName={info.iconName} colorType="green" />
-																)}
-																<Text className={classes.propertyText}>{info.property}</Text>
-																<Text className={classes.descriptionText}>{info.description}</Text>
-															</Box>
-														);
-													}
-												)}
-											</Box>
-											<Box className={classes.imageWrapper}>
-												<Image src={bike} />
-											</Box>
-											<Box className={classes.vehicleDetailInfoRow}>
-												<Box className={classes.vehicleDetailInfoColumn}>
-													<Icon iconName="speed" colorType="green" />
-													<Text className={classes.iconText}>43 km / h</Text>
-												</Box>
-												<Box className={classes.vehicleDetailInfoColumn}>
-													<Icon iconName="color" colorType="green" />
-													<Text className={classes.iconText}>white</Text>
-												</Box>
-											</Box>
-											<Box className={classes.vehicleDetailInfoColumn}>
-												<Icon iconName="point" colorType="green" />
-												<Text className={classes.iconText}>Na Hřebenkách 2, 150 00 Praha 5</Text>
-											</Box>
-										</IonSlide>
-									</IonSlides>
+											);
+										}
+									)}
 								</Box>
+								<Box className={classes.imageWrapper}>
+									<Image src={activeVehicle === 'car' ? car : bike} />
+								</Box>
+								{activeVehicle === 'car' ? (
+									<>
+										<Box className={classes.vehicleDetailInfoRow}>
+											<Box className={classes.vehicleDetailInfoColumn}>
+												<Icon iconName="seats" colorType="green" />
+												<Text className={classes.iconText}>4 seats</Text>
+											</Box>
+											<Box className={classes.vehicleDetailInfoColumn}>
+												<Icon iconName="engine" colorType="green" />
+												<Text className={classes.iconText}>electric</Text>
+											</Box>
+										</Box>
+										<Box className={classes.vehicleDetailInfoRow}>
+											<Box className={classes.vehicleDetailInfoColumn}>
+												<Icon iconName="transmission" colorType="green" />
+												<Text className={classes.iconText}>automatic</Text>
+											</Box>
+											<Box className={classes.vehicleDetailInfoColumn}>
+												<Icon iconName="color" colorType="green" />
+												<Text className={classes.iconText}>white</Text>
+											</Box>
+										</Box>
+										<Box className={classes.vehicleDetailInfoColumn}>
+											<Icon iconName="point" colorType="green" />
+											<Text className={classes.iconText}>Na Hřebenkách 2, 150 00 Praha 5</Text>
+										</Box>
+									</>
+								) : (
+									<>
+										<Box className={classes.vehicleDetailInfoRow}>
+											<Box className={classes.vehicleDetailInfoColumn}>
+												<Icon iconName="speed" colorType="green" />
+												<Text className={classes.iconText}>43 km / h</Text>
+											</Box>
+											<Box className={classes.vehicleDetailInfoColumn}>
+												<Icon iconName="color" colorType="green" />
+												<Text className={classes.iconText}>white</Text>
+											</Box>
+										</Box>
+										<Box className={classes.vehicleDetailInfoColumn}>
+											<Icon iconName="point" colorType="green" />
+											<Text className={classes.iconText}>Na Hřebenkách 2, 150 00 Praha 5</Text>
+										</Box>
+									</>
+								)}
+								{/* <Box className={classes.vehicleDetailInfoRow}>
+									<Box className={classes.vehicleDetailInfoColumn}>
+										<Icon iconName="seats" colorType="green" />
+										<Text className={classes.iconText}>4 seats</Text>
+									</Box>
+									<Box className={classes.vehicleDetailInfoColumn}>
+										<Icon iconName="engine" colorType="green" />
+										<Text className={classes.iconText}>electric</Text>
+									</Box>
+								</Box>
+								<Box className={classes.vehicleDetailInfoRow}>
+									<Box className={classes.vehicleDetailInfoColumn}>
+										<Icon iconName="transmission" colorType="green" />
+										<Text className={classes.iconText}>automatic</Text>
+									</Box>
+									<Box className={classes.vehicleDetailInfoColumn}>
+										<Icon iconName="color" colorType="green" />
+										<Text className={classes.iconText}>white</Text>
+									</Box>
+								</Box>
+								<Box className={classes.vehicleDetailInfoColumn}>
+									<Icon iconName="point" colorType="green" />
+									<Text className={classes.iconText}>Na Hřebenkách 2, 150 00 Praha 5</Text>
+								</Box> */}
+								{/* </IonSlide> */}
+								{/* <IonSlide className={classes.slide}> */}
+								{/* <Box className={classes.vehicleInfo}>
+									{scooterInfo.map(
+										(info, index): JSX.Element => {
+											// if (enteredQrCode && index === 2) return <Box />;
+
+											return (
+												<Box key={index} className={classes.infoWrapper}>
+													{index === 0 ? (
+														<Image src={require(`${info.iconName}`)} width={30} height={30} />
+													) : (
+														<Icon iconName={info.iconName} colorType="green" />
+													)}
+													<Text className={classes.propertyText}>{info.property}</Text>
+													<Text className={classes.descriptionText}>{info.description}</Text>
+												</Box>
+											);
+										}
+									)}
+								</Box> */}
+								{/* <Box className={classes.imageWrapper}>
+									<Image src={bike} />
+								</Box> */}
+								{/* <Box className={classes.vehicleDetailInfoRow}>
+									<Box className={classes.vehicleDetailInfoColumn}>
+										<Icon iconName="speed" colorType="green" />
+										<Text className={classes.iconText}>43 km / h</Text>
+									</Box>
+									<Box className={classes.vehicleDetailInfoColumn}>
+										<Icon iconName="color" colorType="green" />
+										<Text className={classes.iconText}>white</Text>
+									</Box>
+								</Box>
+								<Box className={classes.vehicleDetailInfoColumn}>
+									<Icon iconName="point" colorType="green" />
+									<Text className={classes.iconText}>Na Hřebenkách 2, 150 00 Praha 5</Text>
+								</Box> */}
+								{/* </IonSlide>
+									</IonSlides> */}
+								{/* </Box> */}
 								<Box className={classes.reserveFooter}>
 									{reservation ? (
 										<Box>
@@ -965,12 +1071,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 														{formatMessage({ id: 'button.finish' })}
 													</LightGreenButton>
 													{ridingStart ? (
-														<GreenButton iconName="start" compact onClick={(): void => setRidingStart(false)}>
-															{formatMessage({ id: 'button.start' })}
+														<GreenButton iconName="pause" compact onClick={(): void => setRidingStart(false)}>
+															{formatMessage({ id: 'button.pause' })}
 														</GreenButton>
 													) : (
-														<GreenButton iconName="pause" compact onClick={(): void => setRidingStart(true)}>
-															{formatMessage({ id: 'button.pause' })}
+														<GreenButton iconName="start" compact onClick={(): void => setRidingStart(true)}>
+															{formatMessage({ id: 'button.start' })}
 														</GreenButton>
 													)}
 												</Box>

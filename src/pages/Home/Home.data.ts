@@ -98,6 +98,29 @@ export const scooterInfo = [
 	}
 ];
 
+export const pausedScooterInfo = [
+	{
+		iconName: './images/bird.png',
+		property: 'Bird',
+		description: 'scooter'
+	},
+	{
+		iconName: 'charge',
+		property: '25%',
+		description: 'battery level'
+	},
+	{
+		iconName: 'distance',
+		property: '1.1 km',
+		description: 'traveled'
+	},
+	{
+		iconName: 'wallet',
+		property: '$30.5',
+		description: 'total cost'
+	}
+];
+
 export const carInfo = [
 	{
 		iconName: './images/lime.png',
@@ -120,7 +143,8 @@ export const carInfo = [
 		description: '$ 1 to unlock'
 	}
 ];
-export const vehicleSimpleInfo = [
+
+export const pausedCarInfo = [
 	{
 		iconName: './images/lime.png',
 		property: 'Lime',
@@ -128,15 +152,37 @@ export const vehicleSimpleInfo = [
 	},
 	{
 		iconName: 'charge',
-		property: '79%',
+		property: '29%',
 		description: 'battery level'
 	},
 	{
+		iconName: 'distance',
+		property: '1.3 km',
+		description: 'traveled'
+	},
+	{
 		iconName: 'wallet',
-		property: '0.15 /min',
-		description: '$ 1 to unlock'
+		property: '$30.9',
+		description: 'total cost'
 	}
 ];
+// export const vehicleSimpleInfo = [
+// 	{
+// 		iconName: './images/lime.png',
+// 		property: 'Lime',
+// 		description: 'electric car'
+// 	},
+// 	{
+// 		iconName: 'charge',
+// 		property: '79%',
+// 		description: 'battery level'
+// 	},
+// 	{
+// 		iconName: 'wallet',
+// 		property: '0.15 /min',
+// 		description: '$ 1 to unlock'
+// 	}
+// ];
 export const finishedRideVehicleInfo = [
 	{
 		iconName: 'charge',
