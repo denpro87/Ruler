@@ -931,7 +931,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								{/* <IonSlides options={reserveSlideOpts}>
 										<IonSlide className={classes.slide}> */}
 								<Box className={classes.vehicleInfo}>
-									{(activeVehicle === 'car' ? carInfo : scooterInfo).map(
+									{/* {(activeVehicle === 'car' ? carInfo : scooterInfo).map(
 										(info, index): JSX.Element => {
 											// if (enteredQrCode && index === 2) return <Box />;
 
@@ -947,7 +947,35 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 												</Box>
 											);
 										}
-									)}
+									)} */}
+									{activeVehicle === 'car' &&
+										ridingStart &&
+										carInfo.map(
+											(info, index): JSX.Element => {
+												return <>{renderVehicleInfo(info, index)}</>;
+											}
+										)}
+									{activeVehicle === 'car' &&
+										!ridingStart &&
+										pausedCarInfo.map(
+											(info, index): JSX.Element => {
+												return <>{renderVehicleInfo(info, index)}</>;
+											}
+										)}
+									{activeVehicle === 'scooter' &&
+										ridingStart &&
+										scooterInfo.map(
+											(info, index): JSX.Element => {
+												return <>{renderVehicleInfo(info, index)}</>;
+											}
+										)}
+									{activeVehicle === 'scooter' &&
+										!ridingStart &&
+										pausedScooterInfo.map(
+											(info, index): JSX.Element => {
+												return <>{renderVehicleInfo(info, index)}</>;
+											}
+										)}
 								</Box>
 								<Box className={classes.imageWrapper}>
 									<Image src={activeVehicle === 'car' ? car : bike} />
