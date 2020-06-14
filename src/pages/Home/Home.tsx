@@ -58,10 +58,10 @@ const slideOpts = {
 	autoHeight: true
 };
 
-const reserveSlideOpts = {
-	initialSlide: 0,
-	speed: 1000
-};
+// const reserveSlideOpts = {
+// 	initialSlide: 0,
+// 	speed: 1000
+// };
 
 export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const classes = useStyles();
@@ -742,28 +742,28 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								ridingStart &&
 								carInfo.map(
 									(info, index): JSX.Element => {
-										return <>{renderVehicleInfo(info, index)}</>;
+										return renderVehicleInfo(info, index);
 									}
 								)}
 							{activeVehicle === 'car' &&
 								!ridingStart &&
 								pausedCarInfo.map(
 									(info, index): JSX.Element => {
-										return <>{renderVehicleInfo(info, index)}</>;
+										return renderVehicleInfo(info, index);
 									}
 								)}
 							{activeVehicle === 'scooter' &&
 								ridingStart &&
 								scooterInfo.map(
 									(info, index): JSX.Element => {
-										return <>{renderVehicleInfo(info, index)}</>;
+										return renderVehicleInfo(info, index);
 									}
 								)}
 							{activeVehicle === 'scooter' &&
 								!ridingStart &&
 								pausedScooterInfo.map(
 									(info, index): JSX.Element => {
-										return <>{renderVehicleInfo(info, index)}</>;
+										return renderVehicleInfo(info, index);
 									}
 								)}
 							{/* {(activeVehicle === 'car').map(
@@ -952,28 +952,28 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										ridingStart &&
 										carInfo.map(
 											(info, index): JSX.Element => {
-												return <>{renderVehicleInfo(info, index)}</>;
+												return renderVehicleInfo(info, index);
 											}
 										)}
 									{activeVehicle === 'car' &&
 										!ridingStart &&
 										pausedCarInfo.map(
 											(info, index): JSX.Element => {
-												return <>{renderVehicleInfo(info, index)}</>;
+												return renderVehicleInfo(info, index);
 											}
 										)}
 									{activeVehicle === 'scooter' &&
 										ridingStart &&
 										scooterInfo.map(
 											(info, index): JSX.Element => {
-												return <>{renderVehicleInfo(info, index)}</>;
+												return renderVehicleInfo(info, index);
 											}
 										)}
 									{activeVehicle === 'scooter' &&
 										!ridingStart &&
 										pausedScooterInfo.map(
 											(info, index): JSX.Element => {
-												return <>{renderVehicleInfo(info, index)}</>;
+												return renderVehicleInfo(info, index);
 											}
 										)}
 								</Box>
