@@ -669,7 +669,8 @@ const finishRidingDialogContentText: CSSProperties = {
 const totalAmountTextWrapper: CSSProperties = {
 	paddingTop: pxToRem(15),
 	display: 'flex',
-	justifyContent: 'space-between'
+	justifyContent: 'space-between',
+	alignItems: 'center'
 };
 
 const totalAmountText: CSSProperties = {
@@ -680,6 +681,12 @@ const totalAmountText: CSSProperties = {
 };
 
 const totalAmountNumber: CSSProperties = {
+	fontSize: pxToRem(20),
+	fontWeight: 'bold',
+	color: '#181c19'
+};
+
+const totalAmountDecimal: CSSProperties = {
 	fontSize: pxToRem(15),
 	fontWeight: 'bold',
 	color: '#181c19'
@@ -717,6 +724,7 @@ const paymentMethodTitleTextWrapper: CSSProperties = {
 	}
 };
 export const styles = createStyles({
+	totalAmountDecimal,
 	paymentMethodTitleTextWrapper,
 	circleWithVehicleNumber,
 	circleWithVehicleIcon,

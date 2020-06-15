@@ -388,7 +388,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<Box className={classes.navControl}>
 					<NavigationControl onViewportChange={setViewport} />
 				</Box>
-				{/* <GeolocateControl positionOptions={{ enableHighAccuracy: true }} trackUserLocation /> */}
 				{markerList.map((marker, index) => {
 					return (
 						<Marker longitude={marker.long} key={index} latitude={marker.lat}>
@@ -766,40 +765,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										return renderVehicleInfo(info, index);
 									}
 								)}
-							{/* {(activeVehicle === 'car').map(
-								(info, index): JSX.Element => {
-									// if (enteredQrCode && index === 2) return <></>;
-
-									return (
-										<Box key={index} className={classes.infoWrapper}>
-											{index === 0 ? (
-												<Image src={require(`${info.iconName}`)} width={30} height={30} />
-											) : (
-												<Icon iconName={info.iconName} colorType="green" />
-											)}
-											<Text className={classes.propertyText}>{info.property}</Text>
-											<Text className={classes.descriptionText}>{info.description}</Text>
-										</Box>
-									);
-								}
-							)} */}
-							{/* {(activeVehicle === 'scooter' && ridingStart ? scooterInfo : pausedScooterInfo).map(
-								(info, index): JSX.Element => {
-									// if (enteredQrCode && index === 2) return <></>;
-
-									return (
-										<Box key={index} className={classes.infoWrapper}>
-											{index === 0 ? (
-												<Image src={require(`${info.iconName}`)} width={30} height={30} />
-											) : (
-												<Icon iconName={info.iconName} colorType="green" />
-											)}
-											<Text className={classes.propertyText}>{info.property}</Text>
-											<Text className={classes.descriptionText}>{info.description}</Text>
-										</Box>
-									);
-								}
-							)} */}
 						</Box>
 						{!hasAccount && (
 							<Box className={classes.vehicleInfoFooter}>
@@ -931,47 +896,14 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								{/* <IonSlides options={reserveSlideOpts}>
 										<IonSlide className={classes.slide}> */}
 								<Box className={classes.vehicleInfo}>
-									{/* {(activeVehicle === 'car' ? carInfo : scooterInfo).map(
-										(info, index): JSX.Element => {
-											// if (enteredQrCode && index === 2) return <Box />;
-
-											return (
-												<Box key={index} className={classes.infoWrapper}>
-													{index === 0 ? (
-														<Image src={require(`${info.iconName}`)} width={30} height={30} />
-													) : (
-														<Icon iconName={info.iconName} colorType="green" />
-													)}
-													<Text className={classes.propertyText}>{info.property}</Text>
-													<Text className={classes.descriptionText}>{info.description}</Text>
-												</Box>
-											);
-										}
-									)} */}
 									{activeVehicle === 'car' &&
-										ridingStart &&
-										carInfo.map(
-											(info, index): JSX.Element => {
-												return renderVehicleInfo(info, index);
-											}
-										)}
-									{activeVehicle === 'car' &&
-										!ridingStart &&
-										pausedCarInfo.map(
+										(ridingStart ? carInfo : pausedCarInfo).map(
 											(info, index): JSX.Element => {
 												return renderVehicleInfo(info, index);
 											}
 										)}
 									{activeVehicle === 'scooter' &&
-										ridingStart &&
-										scooterInfo.map(
-											(info, index): JSX.Element => {
-												return renderVehicleInfo(info, index);
-											}
-										)}
-									{activeVehicle === 'scooter' &&
-										!ridingStart &&
-										pausedScooterInfo.map(
+										(ridingStart ? scooterInfo : pausedScooterInfo).map(
 											(info, index): JSX.Element => {
 												return renderVehicleInfo(info, index);
 											}
@@ -1150,7 +1082,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			>
 				<Box className={classes.totalAmountTextWrapper}>
 					<Text className={classes.totalAmountText}>{formatMessage({ id: 'home.finished_ride_sheet.text.total_amount' })}</Text>
-					<Text className={classes.totalAmountNumber}>$7.00</Text>
+					<Box>
+						<Text className={classes.totalAmountNumber}>$7</Text>
+						<Text className={classes.totalAmountDecimal}>.00</Text>
+					</Box>
 				</Box>
 				<Box className={classes.vehicleInfo}>
 					{finishedRideVehicleInfo.map(
