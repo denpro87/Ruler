@@ -324,7 +324,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	};
 
 	const handleFinishedRideCloseButtonClick = (): void => {
-		setShowVehicleRide(false);
+		setShowFinishedRide(false);
 		setActiveVehicle('');
 	};
 
@@ -1051,12 +1051,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 									)}
 
 									<Box className={classes.iconButtonTextContainer}>
-										<Box className={classes.iconButtonTextWrapper}>
-											<IconButton iconName="how-to-ride" colorType="green" onClick={(): void => history.push('/get-help/how-to-ride')} />
+										<Box className={classes.iconButtonTextWrapper} onClick={(): void => history.push('/get-help/how-to-ride')}>
+											<IconButton iconName="how-to-ride" colorType="green" />
 											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.how_to_ride' })}</Text>
 										</Box>
-										<Box className={classes.iconButtonTextWrapper}>
-											<IconButton iconName="report" colorType="green" onClick={(): void => history.push('/get-help/how-to-ride')} />
+										<Box className={classes.iconButtonTextWrapper} onClick={(): void => history.push('/my-rides/report')}>
+											<IconButton iconName="report" colorType="green" />
 											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.report' })}</Text>
 										</Box>
 									</Box>
