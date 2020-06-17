@@ -1,5 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
-import { Checkbox, GreenButton, Page, TextField } from 'components';
+// import { Checkbox, GreenButton, Page, TextField } from 'components';
+import { GreenButton, Page, TextField } from 'components';
 import { IAddPaymentMethodProps, ICreditCardProps } from './AddPaymentMethod.types';
 import { styles } from './AddPaymentMethod.styles';
 import { useHistory } from 'react-router-dom';
@@ -68,10 +69,10 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 		}
 	};
 
-	const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		event.persist();
-		setChecked(event.target.checked);
-	};
+	// const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+	// 	event.persist();
+	// 	setChecked(event.target.checked);
+	// };
 
 	const handleNextClick = (): void => {
 		history.replace(pageName ? '/home' : '/payment-methods', {
@@ -146,11 +147,11 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 				/>
 			</Box>
 			<Box className={classes.footer}>
-				<Checkbox
+				{/* <Checkbox
 					checked={checked}
 					label={formatMessage({ id: 'wallets.add_credit_card.save_payment_method' })}
 					onValueChange={handleCheckChange}
-				/>
+				/> */}
 				<GreenButton
 					className={classes.addPaymentMethodButton}
 					disabled={Object.values(cardState).findIndex(value => !value) > -1}
