@@ -12,10 +12,9 @@ const paymentMethodItemContainer: CSSProperties = {
 const paymentMethodItem: CSSProperties = {
 	borderRadius: pxToRem(15),
 	backgroundColor: '#181c19',
-	width: pxToRem(275),
-	height: pxToRem(57),
 	position: 'relative',
-	padding: `${pxToRem(25)} ${pxToRem(30)} ${pxToRem(25)} ${pxToRem(30)}`,
+	width: `calc(100% - ${pxToRem(40)})`,
+	padding: `${pxToRem(25)} 0 ${pxToRem(25)} ${pxToRem(30)}`,
 	display: 'flex',
 	flexDirection: 'column'
 };

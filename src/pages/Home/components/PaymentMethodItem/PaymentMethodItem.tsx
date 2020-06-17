@@ -15,7 +15,7 @@ export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps>
 				<Link className={classes.cardTypeText} onClick={handleShowClick}>
 					MasterCard
 				</Link>
-				{cardData && <Text className={classes.cardNumberText}>{cardData.cardNumber}</Text>}
+				<Text className={classes.cardNumberText}>{cardData.cardNumber}</Text>
 			</Box>
 		</Box>
 	);
