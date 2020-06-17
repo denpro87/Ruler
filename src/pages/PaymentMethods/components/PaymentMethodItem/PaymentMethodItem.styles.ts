@@ -3,18 +3,14 @@ import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
 const paymentMethodItemContainer: CSSProperties = {
-	padding: `${pxToRem(15)} 0 ${pxToRem(5)}`,
-	display: 'flex',
-	flexDirection: 'column',
-	alignItems: 'center'
+	padding: `${pxToRem(15)} 0 ${pxToRem(5)}`
 };
 
 const paymentMethodItem: CSSProperties = {
 	borderRadius: pxToRem(15),
 	backgroundColor: '#181c19',
 	position: 'relative',
-	width: `calc(100% - ${pxToRem(40)})`,
-	padding: `${pxToRem(25)} 0 ${pxToRem(25)} ${pxToRem(30)}`,
+	padding: `${pxToRem(25)} ${pxToRem(30)}`,
 	display: 'flex',
 	flexDirection: 'column'
 };

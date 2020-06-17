@@ -27,7 +27,7 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [cardState, setCardState] = React.useState<ICreditCardProps>(initialCardState);
-	const [checked, setChecked] = React.useState<boolean>(false);
+	// const [checked, setChecked] = React.useState<boolean>(false);
 	const [pageName, setPageName] = React.useState('');
 	const [selectedIndex, setSelectedIndex] = React.useState(-1);
 
@@ -77,17 +77,17 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 	const handleNextClick = (): void => {
 		history.replace(pageName ? '/home' : '/payment-methods', {
 			data: cardState,
-			index: selectedIndex > -1 ? selectedIndex : -1,
-			checked: checked
+			index: selectedIndex > -1 ? selectedIndex : -1
+			// checked: checked
 		});
 	};
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const pageName = params && params.pageName ? params.pageName : '';
 		const data = params && params.data ? params.data : null;
-		const checked = params && params.checked;
+		// const checked = params && params.checked;
 		const index = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
-		setChecked(checked);
+		// setChecked(checked);
 
 		if (pageName) setPageName(pageName);
 

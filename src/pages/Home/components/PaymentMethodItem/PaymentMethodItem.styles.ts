@@ -3,9 +3,9 @@ import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
 const paymentMethodItemContainer: CSSProperties = {
-	padding: `${pxToRem(20)} 0 ${pxToRem(15)}`,
-	maxWidth: pxToRem(325),
-	margin: '0 auto'
+	padding: `${pxToRem(20)} 0 ${pxToRem(15)}`
+	// maxWidth: pxToRem(325),
+	// margin: '0 auto'
 };
 
 const paymentMethodItem: CSSProperties = {
