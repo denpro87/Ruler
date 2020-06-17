@@ -301,10 +301,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 
 	const handleVehicleRideBottomSheetChange = (isOpen: boolean): void => {
 		setShowVehicleRide(isOpen);
+		setActiveVehicle('');
 	};
 
 	const handleFinishRideBottomSheetChange = (isOpen: boolean): void => {
 		setShowFinishedRide(isOpen);
+		setActiveVehicle('');
 	};
 
 	const handleMarkerClick = (index: number, vehicleNumber: number, iconName: string) => (
@@ -321,12 +323,19 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setActiveVehicle('');
 	};
 
+	const handleFinishedRideCloseButtonClick = (): void => {
+		setShowVehicleRide(false);
+		setActiveVehicle('');
+	};
+
 	const handleAddPaymentMethodClick = (): void => {
 		history.push('/payment-methods/add-payment-method', { pageName: 'home', selectedIndex: -1 });
 	};
 
 	const handleReportSubmitDialogClose = (): void => {
 		setReportSubmitModal(false);
+		setShowFinishedRide(false);
+		setActiveVehicle('');
 	};
 
 	const handleVehicleTypeClick = (iconName: string) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
@@ -1058,7 +1067,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				</IonSlides>
 			</BottomSheet>
 			<BottomSheet
-				onCloseButtonClick={(): void => setShowFinishedRide(false)}
+				onCloseButtonClick={handleFinishedRideCloseButtonClick}
 				open={showFinishedRide}
 				hasBlackBar={false}
 				hasCloseButton
