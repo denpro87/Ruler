@@ -42,10 +42,10 @@ export const ContactUs: React.FunctionComponent = () => {
 				</div>
 			</Paper>
 			<div className={classes.buttonWrapper}>
-				<LightGreenButton className={classes.bigButton} iconName="support" onClick={() => console.log('contact your insureance')}>
+				<LightGreenButton className={classes.bigButton} iconName="support" onClick={()=>window.open('tel:+123 456 789 00', '_system')}>
 					<FormattedMessage id="get_help.contact_us.button.contact_your_insurance" />
 				</LightGreenButton>
-				<LightGreenButton className={classes.bigButton} iconName="invite" onClick={() => console.log('contact us via email')}>
+				<LightGreenButton className={classes.bigButton} iconName="invite" onClick={()=>window.open('mailto:ruleremail@gmail.com', '_system')}>
 					<FormattedMessage id="get_help.contact_us.button.contact_us_via_email" />
 				</LightGreenButton>
 			</div>
