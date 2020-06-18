@@ -7,16 +7,24 @@ import { useIntl } from 'react-intl';
 import { validateNumber } from 'utils';
 import React from 'react';
 import clsx from 'clsx';
+import {ISendProps} from './Send.types';
+import {useHistory, useLocation} from 'react-router-dom';
 const useStyles = makeStyles(styles);
 
-export const Send: React.FunctionComponent = () => {
+export const Send: React.FunctionComponent<ISendProps> = props => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
+	const history = useHistory();
+	const location = useLocation();
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [amount, setAmount] = React.useState<string>('');
 	const [numberValid, setNumberValid] = React.useState(true);
 	const [walletAddress, setWalletAddress] = React.useState<string>('');
-
+	React.useEffect(() => {
+		const params: any = props.location.state;
+		const code = params && params.code ? params.code : '';
+		if(code) setWalletAddress(code);
+	}, [props.location.state])
 	const handleRulerButtonClick = (amount: string): void => setAmount(amount);
 
 	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -34,7 +42,9 @@ export const Send: React.FunctionComponent = () => {
 
 	const handleWalletAddressChange = (event: React.ChangeEvent<HTMLInputElement>): void => setWalletAddress(event.target.value);
 
-	const handleQrClick = (): void => {};
+	const handleQrClick = (): void => {
+		history.push('/home', {from: location.pathname})
+	};
 
 	const handleSendClick = (): void => {
 		setShowDialog(true);

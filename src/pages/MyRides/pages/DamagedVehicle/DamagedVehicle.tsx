@@ -4,6 +4,7 @@ import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { IDamagedVehicleProps } from './DamagedVehicle.types';
 import { IonImg } from '@ionic/react';
 import { damagedVehicleTypes } from './DamagedVehicle.data';
+import {useHistory, useLocation} from 'react-router-dom';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './DamagedVehicle.styles';
 import { useIntl } from 'react-intl';
@@ -15,8 +16,10 @@ const { Camera } = Plugins;
 export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = props => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
+	const history = useHistory();
+	const location = useLocation();
 	const [buttonLabel, setButtonLabel] = React.useState('Car');
-	const [location, setLocation] = React.useState('');
+	const [locate, setLocate] = React.useState('');
 	const [code, setCode] = React.useState('');
 	const [submitReportModal, setSubmitReportModal] = React.useState(false);
 	const [description, setDescription] = React.useState('');
@@ -32,12 +35,14 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 
 	React.useEffect(() => {
 		const url: string = props.match.url;
-
+		const params: any = props.location.state;
+		const code = params && params.code ? params.code : '';
+		if(code) setCode(code);
 		if (url.includes('badly-parked-vehicle')) setTitle(formatMessage({ id: 'my_rides.badly_parked_vehicle.title' }));
 		else setTitle(formatMessage({ id: 'my_rides.damaged_vehicle.title' }));
-	}, [props.match.url, formatMessage]);
+	}, [props.match.url, props.location.state, formatMessage]);
 
-	const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>): void => setLocation(event.target.value);
+	const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>): void => setLocate(event.target.value);
 
 	const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>): void => setCode(event.target.value);
 
@@ -78,9 +83,13 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 	const handleSubmitReportClick = (): void => {
 		setDescription('');
 		setCode('');
-		setLocation('');
+		setLocate('');
 		setPhotos([]);
 		setSubmitReportModal(true);
+	};
+
+	const handleQrClick = (): void => {
+		history.push('/home', {from: location.pathname})
 	};
 
 	return (
@@ -110,11 +119,11 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 					inputProps={{
 						endAdornment: (
 							<InputAdornment position="end">
-								<IconButton iconProps={{ iconName: 'find-me', secondaryColor: '#f8ca06' }} />
+								<IconButton iconProps={{ iconName: 'find-me', secondaryColor: '#f8ca06' }} onClick={handleQrClick} />
 							</InputAdornment>
 						)
 					}}
-					value={location}
+					value={locate}
 					onValueChange={handleLocationChange}
 				/>
 				<TextField

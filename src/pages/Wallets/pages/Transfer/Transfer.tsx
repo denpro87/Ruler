@@ -6,7 +6,7 @@ import { ITransferProps } from './Transfer.types';
 import { RulerButton } from '../../components';
 import { rulerPriceBonusData, walletTypes } from '../../Wallets.data';
 import { styles } from './Transfer.styles';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateNumber } from 'utils';
 import React from 'react';
@@ -16,6 +16,7 @@ const useStyles = makeStyles(styles);
 export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 	const classes = useStyles();
 	const history = useHistory();
+	const location = useLocation();
 	const { formatMessage } = useIntl();
 	const [walletType, setWalletType] = React.useState<string>('');
 	const [amount, setAmount] = React.useState<string>('');
@@ -26,8 +27,9 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const paymentTemplate = params && params.data ? params.data : null;
-
+		const code = params && params.code ? params.code : '';
 		if (paymentTemplate) setPaymentTemplateData(paymentTemplate);
+		if(code) setWalletAddress(code);
 	}, [props.location.state]);
 
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
@@ -50,7 +52,9 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 
 	const handleWalletAddressChange = (event: React.ChangeEvent<HTMLInputElement>): void => setWalletAddress(event.target.value);
 
-	const handleQrClick = (): void => {};
+	const handleQrClick = (): void => {
+		history.push('/home', {from: location.pathname})
+	};
 
 	const handleNextClick = (): void =>
 		history.push('/wallets/confirmation', { walletType: walletType, amount: amount, walletAddress: walletAddress });

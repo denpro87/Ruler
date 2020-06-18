@@ -117,11 +117,17 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [finishRidingModal, setFinishRidingModal] = React.useState(false);
 	const [showFinishedRide, setShowFinishedRide] = React.useState(false);
 	const [rideReview, setRideReview] = React.useState('');
+	const [from, setFrom] = React.useState('');
 	// const [checked, setChecked] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const data = params && params.data ? params.data : null;
 		const index = params && params.index > -1 ? params.index : -1;
+		const from = params && params.from ? params.from : '';
+		if(from) {
+			setFrom(from);
+			setShowScanEnterCode(true);
+		}
 		// const checked = params && params.checked;
 		// setChecked(checked);
 
@@ -267,7 +273,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			resultDisplayDuration: 3000
 		});
 		const barCodeText = barCodeData.text ?? '';
-		setQrCode(barCodeText);
+		if(from){
+			setShowScanEnterCode(false);
+			history.replace(from, {code: barCodeText});
+		} else {
+			setQrCode(barCodeText);
+		}
 	};
 
 	const handleEnterButtonClick = (): void => {
