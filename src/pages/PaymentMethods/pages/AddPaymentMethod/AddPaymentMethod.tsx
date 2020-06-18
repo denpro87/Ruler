@@ -25,6 +25,8 @@ export const AddPaymentMethod: React.FunctionComponent<IAddPaymentMethodProps> =
 	const handleAddPaymentMethodButtonClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		if (selectedTypeIndex === 0) {
 			history.push('/payment-methods/add-payment-method/card', { pageName: pageName || '' });
+		} else {
+			window.location.href="https://www.paypal.com/us/signin"
 		}
 	};
 
