@@ -81,8 +81,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const hasAccount = true;
 	const hasValidatedDriverLicence = true;
 	const [viewport, setViewport] = React.useState<ViewState>({
-		latitude: 17.44212,
-		longitude: 78.391384,
+		latitude: 46.9481,
+		longitude: 7.4474,
 		zoom: 13,
 		bearing: 0,
 		pitch: 0
@@ -97,11 +97,11 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [paidSuccess, setPaidSuccess] = React.useState(false);
 	const [showWrongCode, setShowWrongCode] = React.useState(false);
 	const [reportSubmitModal, setReportSubmitModal] = React.useState(false);
+	const [markers, setMarkers] = React.useState(markerList);
 	const [rideStart, setRideStart] = React.useState(false);
 	const [ridingStart, setRidingStart] = React.useState(true);
 	// const [enteredQrCode, setEnteredQrCode] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
-	// const [selectedVehicle, setSelectedVehicle] = React.useState('');
 	// const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
 	const [activeVehicle, setActiveVehicle] = React.useState('');
 	const [placeHolder, setPlaceHolder] = React.useState('');
@@ -351,9 +351,14 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	};
 
 	const handleVehicleTypeClick = (iconName: string) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-		// setVehicleSelectionExpanded(false);
-		// setShowVehicleInfo(true);
-		// setSelectedVehicle(iconName);
+		if (iconName === 'vehicle') {
+			setMarkers(markerList);
+		} else {
+			const filteredMarkers = markers.filter(marker => marker.iconName === iconName);
+			setMarkers(filteredMarkers);
+		}
+
+		setVehicleSelectionExpanded(false);
 	};
 
 	const handleFinishRidingClick = (): void => {
@@ -392,9 +397,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 
 	const getPlace = (lng: number, lat: number): void => {
 		axios
-			.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=locality&access_token=${MAPBOX_TOKEN}`)
+			.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=address&access_token=${MAPBOX_TOKEN}`)
 			.then(res => {
 				const data = res.data;
+				console.log('asdfasdfasdf', data);
 				setPlace(data.features[0].place_name);
 			});
 	};
@@ -453,7 +459,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<Box className={classes.navControl}>
 					<NavigationControl onViewportChange={setViewport} />
 				</Box>
-				{markerList.map((marker, index) => {
+				{markers.map((marker, index) => {
 					return (
 						<Marker longitude={marker.long} key={index} latitude={marker.lat}>
 							<Box

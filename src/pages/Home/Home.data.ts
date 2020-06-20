@@ -46,29 +46,36 @@ export const damagedVehicleTypes: Array<IDamagedVehicleType> = [
 
 export const markerList = [
 	{
-		lat: 17.441013,
-		long: 78.383896,
+		lat: 46.947095,
+		long: 7.448385,
 		iconName: 'scooter',
 		vehicleNumber: 0,
 		decorator: './images/bird.png'
 	},
 	{
-		lat: 17.452512,
-		long: 78.396873,
+		lat: 46.938095,
+		long: 7.448935,
+		iconName: 'bike',
+		vehicleNumber: 0,
+		decorator: './images/spin.png'
+	},
+	{
+		lat: 46.9480961,
+		long: 7.432368,
 		iconName: 'car',
 		vehicleNumber: 0,
 		decorator: './images/lime.png'
 	},
 	{
-		lat: 17.447562,
-		long: 78.384357,
+		lat: 46.9605985,
+		long: 7.455385,
 		iconName: '',
 		vehicleNumber: 7,
 		decorator: ''
 	},
 	{
-		lat: 17.440298,
-		long: 78.392345,
+		lat: 46.963985,
+		long: 7.448512,
 		iconName: '',
 		vehicleNumber: 25,
 		decorator: ''
