@@ -4,9 +4,9 @@ import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { IDamagedVehicleProps } from './DamagedVehicle.types';
 import { IonImg } from '@ionic/react';
 import { damagedVehicleTypes } from './DamagedVehicle.data';
-import {useHistory, useLocation} from 'react-router-dom';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './DamagedVehicle.styles';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
 import clsx from 'clsx';
@@ -37,7 +37,12 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 		const url: string = props.match.url;
 		const params: any = props.location.state;
 		const code = params && params.code ? params.code : '';
-		if(code) setCode(code);
+		const address = params && params.address ? params.address : '';
+
+		if (code) setCode(code);
+
+		if (address) setLocate(address);
+
 		if (url.includes('badly-parked-vehicle')) setTitle(formatMessage({ id: 'my_rides.badly_parked_vehicle.title' }));
 		else setTitle(formatMessage({ id: 'my_rides.damaged_vehicle.title' }));
 	}, [props.match.url, props.location.state, formatMessage]);
@@ -89,7 +94,11 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 	};
 
 	const handleQrClick = (): void => {
-		history.push('/home', {from: location.pathname})
+		history.push('/home', { from: location.pathname });
+	};
+
+	const handleFindMeClick = (): void => {
+		history.push('/home', { from: location.pathname, findMe: true });
 	};
 
 	return (
@@ -119,7 +128,7 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 					inputProps={{
 						endAdornment: (
 							<InputAdornment position="end">
-								<IconButton iconProps={{ iconName: 'find-me', secondaryColor: '#f8ca06' }} onClick={handleQrClick} />
+								<IconButton iconProps={{ iconName: 'find-me', secondaryColor: '#f8ca06' }} onClick={handleFindMeClick} />
 							</InputAdornment>
 						)
 					}}
@@ -132,7 +141,7 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 					inputProps={{
 						endAdornment: (
 							<InputAdornment position="end">
-								<IconButton iconProps={{ iconName: 'qr', secondaryColor: '#f8ca06' }} />
+								<IconButton iconProps={{ iconName: 'qr', secondaryColor: '#f8ca06' }} onClick={handleQrClick} />
 							</InputAdornment>
 						)
 					}}

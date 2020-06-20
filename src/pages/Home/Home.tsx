@@ -38,8 +38,9 @@ import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
-import MapGL, { Marker, NavigationControl, ViewState } from 'react-map-gl';
+import MapGL, { Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
 import React from 'react';
+import axios from 'axios';
 import bike from './images/bike.png';
 import bird from './images/bird.png';
 import car from './images/car.png';
@@ -82,7 +83,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [viewport, setViewport] = React.useState<ViewState>({
 		latitude: 17.44212,
 		longitude: 78.391384,
-		zoom: 14,
+		zoom: 13,
 		bearing: 0,
 		pitch: 0
 	});
@@ -118,16 +119,23 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [showFinishedRide, setShowFinishedRide] = React.useState(false);
 	const [rideReview, setRideReview] = React.useState('');
 	const [from, setFrom] = React.useState('');
+	const [place, setPlace] = React.useState('');
+	const [popupInfo, setPopupInfo] = React.useState<number[]>([]);
+	const [findMe, setFindMe] = React.useState(false);
 	// const [checked, setChecked] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const data = params && params.data ? params.data : null;
 		const index = params && params.index > -1 ? params.index : -1;
 		const from = params && params.from ? params.from : '';
-		if(from) {
+		const findMe = params && params.findMe;
+
+		if (from) {
 			setFrom(from);
-			setShowScanEnterCode(true);
+
+			if (!findMe) setShowScanEnterCode(true);
 		}
+		setFindMe(findMe);
 		// const checked = params && params.checked;
 		// setChecked(checked);
 
@@ -273,9 +281,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			resultDisplayDuration: 3000
 		});
 		const barCodeText = barCodeData.text ?? '';
-		if(from){
+
+		if (from) {
 			setShowScanEnterCode(false);
-			history.replace(from, {code: barCodeText});
+			history.push(from, { code: barCodeText });
 		} else {
 			setQrCode(barCodeText);
 		}
@@ -319,15 +328,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const handleFinishRideBottomSheetChange = (isOpen: boolean): void => {
 		setShowFinishedRide(isOpen);
 		setActiveVehicle('');
-	};
-
-	const handleMarkerClick = (index: number, vehicleNumber: number, iconName: string) => (
-		event: React.MouseEvent<HTMLElement, MouseEvent>
-	): void => {
-		if (vehicleNumber === 0) {
-			setShowVehicleRide(true);
-			setActiveVehicle(iconName);
-		}
 	};
 
 	const handleVehicleRideCloseButtonClick = (): void => {
@@ -390,6 +390,49 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		);
 	};
 
+	const getPlace = (lng: number, lat: number): void => {
+		axios
+			.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=locality&access_token=${MAPBOX_TOKEN}`)
+			.then(res => {
+				const data = res.data;
+				setPlace(data.features[0].place_name);
+			});
+	};
+
+	const handleMapClick = (event: any): void => {
+		setPopupInfo(event.lngLat);
+		getPlace(event.lngLat[0], event.lngLat[1]);
+	};
+
+	const handleMarkerClick = (lng: number, lat: number, vehicleNumber: number, iconName: string) => (
+		event: React.MouseEvent<HTMLElement, MouseEvent>
+	): void => {
+		if (findMe) {
+			setPopupInfo([lng, lat]);
+			getPlace(lng, lat);
+		}
+
+		if (!findMe && vehicleNumber === 0) {
+			setShowVehicleRide(true);
+			setActiveVehicle(iconName);
+		}
+	};
+
+	const handlePopupClose = (): void => {
+		setFindMe(false);
+		setPopupInfo([]);
+		history.push(from, { address: place });
+		setPlace('');
+	};
+
+	const renderPopup = (): JSX.Element => {
+		return (
+			<Popup tipSize={3} anchor="bottom-right" longitude={popupInfo[0]} latitude={popupInfo[1]} onClose={handlePopupClose} closeOnClick>
+				{place}
+			</Popup>
+		);
+	};
+
 	return (
 		<FullPage>
 			<MapGL
@@ -397,9 +440,10 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				width="100%"
 				height="100%"
 				style={mapViewer}
-				mapStyle="mapbox://styles/mapbox/streets-v11"
+				mapStyle="mapbox://styles/mapbox/light-v8"
 				onViewportChange={setViewport}
 				mapboxApiAccessToken={MAPBOX_TOKEN}
+				onClick={findMe ? handleMapClick : undefined}
 			>
 				<IconButton
 					className={classes.reportButton}
@@ -421,7 +465,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 											marker.vehicleNumber === 0 && marker.iconName === activeVehicle
 									}
 								)}
-								onClick={handleMarkerClick(index, marker.vehicleNumber, marker.iconName)}
+								onClick={handleMarkerClick(marker.long, marker.lat, marker.vehicleNumber, marker.iconName)}
 							>
 								{marker.iconName ? (
 									<>
@@ -431,14 +475,13 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										</Box>
 									</>
 								) : (
-									// <Box className={classes.iconWrapper}>
 									<Text className={classes.markerNumberText}>{marker.vehicleNumber}</Text>
-									// </Box>
 								)}
 							</Box>
 						</Marker>
 					);
 				})}
+				{popupInfo.length > 0 && renderPopup()}
 				<IconButton className={classes.zonesButton} iconName="zones" colorType="black" onClick={(): void => setShowAreas(true)} />
 				<Box className={classes.vehicleButtonGroup}>
 					<Collapse in={vehicleSelectionExpanded}>

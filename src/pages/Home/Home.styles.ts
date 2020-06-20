@@ -401,18 +401,6 @@ const navControl: CSSProperties = {
 	left: pxToRem(30)
 };
 
-const iconWrapper: CSSProperties = {
-	width: pxToRem(50),
-	height: pxToRem(50),
-	border: `solid ${pxToRem(2)} #000000`,
-	borderRadius: percentage(0.5),
-	backgroundColor: '#ffffff',
-	position: 'relative',
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center'
-};
-
 const circleWithVehicleNumber: CSSProperties = {
 	width: pxToRem(50),
 	height: pxToRem(50),
@@ -765,7 +753,6 @@ export const styles = createStyles({
 	markerNumberText,
 	vehicleIconInActive,
 	vehicleIconActive,
-	iconWrapper,
 	iconDecorator,
 	navControl,
 	inputWrapperSmallMarin,
