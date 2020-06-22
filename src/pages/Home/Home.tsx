@@ -24,10 +24,12 @@ import { IHomeProps } from './Home.types';
 import { IonImg, IonSlide, IonSlides } from '@ionic/react';
 import {
 	areasListItems,
+	bikeInfo,
 	carInfo,
 	damagedVehicleTypes,
 	finishedRideVehicleInfo,
 	markerList,
+	pausedBikeInfo,
 	pausedCarInfo,
 	pausedScooterInfo,
 	scooterInfo,
@@ -854,6 +856,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										return renderVehicleInfo(info, index);
 									}
 								)}
+							{activeVehicle === 'bike' &&
+								(ridingStart ? bikeInfo : pausedBikeInfo).map(
+									(info, index): JSX.Element => {
+										return renderVehicleInfo(info, index);
+									}
+								)}
 						</Box>
 						{!hasAccount && (
 							<Box className={classes.vehicleInfoFooter}>
@@ -993,6 +1001,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										)}
 									{activeVehicle === 'scooter' &&
 										(ridingStart ? scooterInfo : pausedScooterInfo).map(
+											(info, index): JSX.Element => {
+												return renderVehicleInfo(info, index);
+											}
+										)}
+									{activeVehicle === 'bike' &&
+										(ridingStart ? bikeInfo : pausedBikeInfo).map(
 											(info, index): JSX.Element => {
 												return renderVehicleInfo(info, index);
 											}

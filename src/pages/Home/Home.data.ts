@@ -305,6 +305,52 @@ export const pausedCarInfo = [
 		description: 'total cost'
 	}
 ];
+
+export const bikeInfo = [
+	{
+		iconName: './images/spin.png',
+		property: 'Spin',
+		description: 'combustion'
+	},
+	{
+		iconName: 'charge',
+		property: '95%',
+		description: 'battery level'
+	},
+	{
+		iconName: 'distance',
+		property: '2 km',
+		description: 'distance'
+	},
+	{
+		iconName: 'wallet',
+		property: '0.19 /min',
+		description: '$ 5 to unlock'
+	}
+];
+
+export const pausedBikeInfo = [
+	{
+		iconName: './images/spin.png',
+		property: 'Spin',
+		description: 'combustion'
+	},
+	{
+		iconName: 'charge',
+		property: '65%',
+		description: 'battery level'
+	},
+	{
+		iconName: 'distance',
+		property: '1.9 km',
+		description: 'traveled'
+	},
+	{
+		iconName: 'wallet',
+		property: '$25.2',
+		description: 'total cost'
+	}
+];
 export const finishedRideVehicleInfo = [
 	{
 		iconName: 'charge',
