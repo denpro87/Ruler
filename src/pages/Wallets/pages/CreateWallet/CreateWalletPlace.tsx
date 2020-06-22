@@ -1,5 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, Page, Text } from 'components';
+import { ICreateWalletProps } from './CreateWallet.types';
 import { createWalletWords } from '../../Wallets.data';
 import { styles } from './CreateWallet.styles';
 import { useHistory } from 'react-router-dom';
@@ -9,15 +10,17 @@ import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
 
-export const CreateWalletPlace: React.FunctionComponent = () => {
+export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = props => {
 	const { formatMessage } = useIntl();
 	const history = useHistory();
+	const params: any = props.location.state;
+	const newWallet = params && params.newWallet ? params.newWallet : '';
 	const [isShowError, setShowError] = React.useState<boolean>(false);
 	const [words, setWords] = React.useState<string[]>([]);
 	const [shuffleWords, setShuffleWords] = React.useState<string[]>([]);
 	const classes = useStyles({ isShowError });
 
-	const handleWordClick = (word: string) => {
+	const handleWordClick = (word: string): void => {
 		if (words.length < createWalletWords.length) {
 			const newWords = isShowError ? [word] : [...words, word];
 			setWords(newWords);
@@ -82,7 +85,7 @@ export const CreateWalletPlace: React.FunctionComponent = () => {
 			<Box className={classes.footer}>
 				<GreenButton
 					className={classes.nextButton}
-					onClick={() => history.push('/wallets', { showDialog: true })}
+					onClick={(): void => history.replace('/wallets', { showDialog: true, newWallet: newWallet })}
 					disabled={createWalletWords.length !== words.length}
 				>
 					{formatMessage({ id: 'button.next' })}

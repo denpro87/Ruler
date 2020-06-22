@@ -18,14 +18,29 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 	const [from, setFrom] = React.useState(false);
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [paymentTemplateData, setPaymentTemplateData] = React.useState(paymentTemplate);
+	const [walletTypes, setWalletTypes] = React.useState<string[]>([]);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const showDialog = params && params.showDialog ? params.showDialog : false;
 		const data = params && params.paymentTemplate ? params.paymentTemplate : null;
 		const selectedIndex = params && params.index > -1 ? params.index : -1;
+		const newWallet = params && params.newWallet ? params.newWallet : '';
+		console.log('asdfasdf', newWallet);
 		const from = params && params.from;
 		setFrom(from);
 		setShowDialog(showDialog);
+
+		if (newWallet) {
+			const temp = walletTypes;
+			const index = temp.findIndex(data => data === newWallet);
+
+			if (index > -1) {
+				temp.splice(index, 1, newWallet);
+				setWalletTypes([...temp]);
+			} else {
+				setWalletTypes(prevData => [...prevData, newWallet]);
+			}
+		}
 
 		if (data) {
 			if (selectedIndex > -1) {
@@ -60,7 +75,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 
 	const handleAddFunds = (): void => history.push('/wallets/add-funds');
 
-	const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData });
+	const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData, wallets: walletTypes });
 
 	const handleAddTemplate = (): void => history.push('/wallets/template');
 

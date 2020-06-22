@@ -4,7 +4,7 @@ import { ITemplateDataProps } from '../Template/Template.types';
 
 import { ITransferProps } from './Transfer.types';
 import { RulerButton } from '../../components';
-import { rulerPriceBonusData, walletTypes } from '../../Wallets.data';
+import { rulerPriceBonusData } from '../../Wallets.data';
 import { styles } from './Transfer.styles';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -24,12 +24,18 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 	const [numberValid, setNumberValid] = React.useState(true);
 	const [templateName, setTemplateName] = React.useState<string>('');
 	const [paymentTemplateData, setPaymentTemplateData] = React.useState<ITemplateDataProps[]>([]);
+	const [walletTypes, setWalletTypes] = React.useState<string[]>([]);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const paymentTemplate = params && params.data ? params.data : null;
 		const code = params && params.code ? params.code : '';
+		const wallets = params && params.wallets ? params.wallets : null;
+
 		if (paymentTemplate) setPaymentTemplateData(paymentTemplate);
-		if(code) setWalletAddress(code);
+
+		if (wallets) setWalletTypes(wallets);
+
+		if (code) setWalletAddress(code);
 	}, [props.location.state]);
 
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
@@ -53,7 +59,7 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 	const handleWalletAddressChange = (event: React.ChangeEvent<HTMLInputElement>): void => setWalletAddress(event.target.value);
 
 	const handleQrClick = (): void => {
-		history.push('/home', {from: location.pathname})
+		history.push('/home', { from: location.pathname });
 	};
 
 	const handleNextClick = (): void =>
@@ -90,8 +96,8 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 					onValueChange={handleWalletTypeChange}
 				>
 					{walletTypes.map(type => (
-						<MenuItem key={type.value} className={classes.selectItem} value={type.value}>
-							{formatMessage({ id: type.label })}
+						<MenuItem key={type} className={classes.selectItem} value={type}>
+							{formatMessage({ id: type })}
 						</MenuItem>
 					))}
 				</Select>

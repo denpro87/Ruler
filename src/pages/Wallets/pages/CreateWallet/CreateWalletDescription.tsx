@@ -1,17 +1,19 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { GreenButton, Page, Text } from 'components';
+import { ICreateWalletProps } from './CreateWallet.types';
 import { styles } from './CreateWallet.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
-
 import descriptionImage from '../../images/create-wallet.svg';
 const useStyles = makeStyles(styles);
 
-export const CreateWalletDescription: React.FunctionComponent = () => {
+export const CreateWalletDescription: React.FunctionComponent<ICreateWalletProps> = props => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
 	const history = useHistory();
+	const params: any = props.location.state;
+	const newWallet = params && params.newWallet ? params.newWallet : '';
 
 	return (
 		<Page
@@ -27,7 +29,10 @@ export const CreateWalletDescription: React.FunctionComponent = () => {
 				</Box>
 			</Box>
 			<Box className={classes.footer}>
-				<GreenButton className={classes.nextButton} onClick={() => history.push('/wallets/create-wallet-store')}>
+				<GreenButton
+					className={classes.nextButton}
+					onClick={(): void => history.push('/wallets/create-wallet-store', { newWallet: newWallet })}
+				>
 					{formatMessage({ id: 'button.next' })}
 				</GreenButton>
 			</Box>

@@ -12,7 +12,7 @@ const useStyles = makeStyles(styles);
 export const CreateWallet: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
-	const [selectedTypeIndex, setSelectedTypeIndex] = React.useState(-1);
+	const [selectedWallet, setSelectedWallet] = React.useState('');
 	const history = useHistory();
 
 	return (
@@ -21,9 +21,12 @@ export const CreateWallet: React.FunctionComponent = () => {
 				{createWalletTypes.map((createWalletType, index) => (
 					<ListItem
 						key={index}
-						className={clsx({ [classes.listItem]: true }, { [classes.activeListItem]: index === selectedTypeIndex })}
+						className={clsx(
+							{ [classes.listItem]: true },
+							{ [classes.activeListItem]: selectedWallet === formatMessage({ id: createWalletType.buttonText }) }
+						)}
 						button
-						onClick={(): void => setSelectedTypeIndex(index)}
+						onClick={(): void => setSelectedWallet(formatMessage({ id: createWalletType.buttonText }))}
 					>
 						<ListItemIcon>
 							<Icon iconName={createWalletType.iconName} color="#181c19" />
@@ -34,8 +37,8 @@ export const CreateWallet: React.FunctionComponent = () => {
 			</List>
 			<GreenButton
 				className={classes.nextButton}
-				disabled={selectedTypeIndex < 0}
-				onClick={(): void => history.push('/wallets/create-wallet-description')}
+				disabled={!selectedWallet}
+				onClick={(): void => history.push('/wallets/create-wallet-description', { newWallet: selectedWallet })}
 			>
 				{formatMessage({ id: 'button.next' })}
 			</GreenButton>

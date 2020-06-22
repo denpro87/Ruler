@@ -1,20 +1,22 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, Page, Text } from 'components';
+import { ICreateWalletProps } from './CreateWallet.types';
 import { createWalletWords } from '../../Wallets.data';
 import { styles } from './CreateWallet.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
-
 const copy = require('clipboard-copy');
 const useStyles = makeStyles(styles);
 
-export const CreateWalletStore: React.FunctionComponent = () => {
+export const CreateWalletStore: React.FunctionComponent<ICreateWalletProps> = props => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
 	const history = useHistory();
+	const params: any = props.location.state;
+	const newWallet = params && params.newWallet ? params.newWallet : '';
 
-	const handleCopyClick = () => {
+	const handleCopyClick = (): void => {
 		const wordsOrder = createWalletWords.join(',');
 		copy(wordsOrder);
 	};
@@ -34,7 +36,10 @@ export const CreateWalletStore: React.FunctionComponent = () => {
 				{formatMessage({ id: 'wallets.create_wallet.store.copy' })}
 			</Button>
 			<Box className={classes.footer}>
-				<GreenButton className={classes.nextButton} onClick={() => history.push('/wallets/create-wallet-place')}>
+				<GreenButton
+					className={classes.nextButton}
+					onClick={(): void => history.push('/wallets/create-wallet-place', { newWallet: newWallet })}
+				>
 					{formatMessage({ id: 'button.next' })}
 				</GreenButton>
 			</Box>
