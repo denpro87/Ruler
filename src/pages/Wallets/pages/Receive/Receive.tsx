@@ -2,10 +2,10 @@ import { Box, InputAdornment, makeStyles } from '@material-ui/core';
 import { Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { IReceiveProps } from './Receive.types';
 import { styles } from './Receive.styles';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateNumber } from 'utils';
 import React from 'react';
-import {useHistory, useLocation} from 'react-router-dom';
 const QRCode = require('qrcode-react');
 
 const useStyles = makeStyles(styles);
@@ -24,8 +24,10 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const code = params && params.code ? params.code : '';
-		if(code) setFrom(code);
-	}, [props.location.state])
+
+		if (code) setFrom(code);
+	}, [props.location.state]);
+
 	const handleShareClick = (): void => {};
 
 	const handleReceiveClick = (): void => {
@@ -48,7 +50,7 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 	const handleFromChange = (event: React.ChangeEvent<HTMLInputElement>): void => setFrom(event.target.value);
 
 	const handleQrClick = (): void => {
-		history.push('/home', {from: location.pathname})
+		history.push('/home', { from: location.pathname });
 	};
 
 	const handleDialogClose = () => {

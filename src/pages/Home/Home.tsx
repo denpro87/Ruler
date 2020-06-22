@@ -59,6 +59,9 @@ const slideOpts = {
 	autoHeight: true
 };
 
+interface ISwitchState {
+	[index: string]: boolean;
+}
 // const reserveSlideOpts = {
 // 	initialSlide: 0,
 // 	speed: 1000
@@ -68,15 +71,14 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { formatMessage } = useIntl();
-	const initialState = {
-		selectAll: false,
+	const initialSwitchState = {
 		lime: true,
-		bird: false,
+		bird: true,
 		spin: true,
-		circ: false,
-		tier: false,
-		electrical: false,
-		internalCombustion: false
+		circ: true,
+		tier: true,
+		electrical: true,
+		combustion: true
 	};
 	const hasAccount = true;
 	const hasValidatedDriverLicence = true;
@@ -100,17 +102,15 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [markers, setMarkers] = React.useState(markerList);
 	const [rideStart, setRideStart] = React.useState(false);
 	const [ridingStart, setRidingStart] = React.useState(true);
-	// const [enteredQrCode, setEnteredQrCode] = React.useState(false);
 	const [reservation, setReservation] = React.useState(false);
-	// const [showDischargedVehicle, setShowDischargedVehicle] = React.useState(false);
+	const [selectedVehicle, setSelectedVehicle] = React.useState('vehicle');
 	const [activeVehicle, setActiveVehicle] = React.useState('');
 	const [placeHolder, setPlaceHolder] = React.useState('');
-	const [buttonLabel, setButtonLabel] = React.useState('Car');
 	const [qrCode, setQrCode] = React.useState('123456');
 	const [qrCodeInput, setQrCodeInput] = React.useState('');
 	const [scanEnterButtonLabel, setScanEnterButtonLabel] = React.useState('Scan code');
-	const [switchState, setSwitchState] = React.useState(initialState);
-	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([35, 100]);
+	const [switchState, setSwitchState] = React.useState<ISwitchState>(initialSwitchState);
+	const [batteryLevel, setBatteryLevel] = React.useState<number[]>([0, 100]);
 	const [showScanEnterCode, setShowScanEnterCode] = React.useState(false);
 	const [showVehicleRide, setShowVehicleRide] = React.useState(false);
 	const [cardData, setCardData] = React.useState<ICreditCardProps[]>([]);
@@ -122,6 +122,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	const [place, setPlace] = React.useState('');
 	const [popupInfo, setPopupInfo] = React.useState<number[]>([]);
 	const [findMe, setFindMe] = React.useState(false);
+	const [selectAll, setSelectAll] = React.useState(true);
 	// const [checked, setChecked] = React.useState(false);
 	React.useEffect(() => {
 		const params: any = props.location.state;
@@ -169,6 +170,47 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			setPlaceHolder(placeHolderStr);
 		}
 	}, [qrCode]);
+
+	React.useEffect(() => {
+		const temp = switchState;
+		const filteredMarkers: any[] = [];
+
+		if (selectAll && Object.values(temp).findIndex(value => !value) > -1) {
+			setSelectAll(!selectAll);
+		}
+
+		if (!selectAll && Object.values(temp).findIndex(value => !value) === -1) {
+			setSelectAll(!selectAll);
+		}
+		const keys = Object.keys(temp).filter(key => temp[key] === true);
+		markerList.map(marker => {
+			if (
+				selectedVehicle === 'vehicle' &&
+				marker.detailInfo[1].property >= batteryLevel[0] &&
+				marker.detailInfo[1].property < batteryLevel[1]
+			) {
+				keys.map(key => {
+					if (marker.decorator.includes(key)) {
+						filteredMarkers.push(marker);
+					}
+				});
+			}
+
+			if (
+				selectedVehicle !== 'vehicle' &&
+				marker.iconName === selectedVehicle &&
+				marker.detailInfo[1].property >= batteryLevel[0] &&
+				marker.detailInfo[1].property < batteryLevel[1]
+			) {
+				keys.map(key => {
+					if (marker.decorator.includes(key)) {
+						filteredMarkers.push(marker);
+					}
+				});
+			}
+		});
+		setMarkers(filteredMarkers);
+	}, [switchState, selectAll, selectedVehicle, batteryLevel]);
 
 	const handleItemClick = (index: number, cardData: any) => (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
 		// history.push('/payment-methods/add-payment-method/card', { data: cardData, selectedIndex: index, checked: checked, pageName: 'home' });
@@ -230,46 +272,17 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		setPaidSuccess(true);
 	};
 
-	const handleRideReivewChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+	const handleRideReviewChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		setRideReview(event?.target.value);
 	};
 
-	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+	const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
-
-		if (event.target.name === 'selectAll') {
-			if (event.target.checked) {
-				const temp = {
-					selectAll: true,
-					lime: true,
-					bird: true,
-					spin: true,
-					circ: true,
-					tier: true,
-					electrical: true,
-					internalCombustion: true
-				};
-				setSwitchState(temp);
-			} else {
-				const temp = {
-					selectAll: false,
-					lime: false,
-					bird: false,
-					spin: false,
-					circ: false,
-					tier: false,
-					electrical: false,
-					internalCombustion: false
-				};
-				setSwitchState(temp);
-			}
-		} else {
-			setSwitchState(prevState => ({ ...prevState, [event.target.name]: event.target.checked }));
-		}
+		setSwitchState(prevState => ({ ...prevState, [event.target.name]: event.target.checked }));
 	};
 
-	const handleBatteryLevelChange = (event: any, newValue: number | number[]): void => {
-		setBatteryLevel(newValue as number[]);
+	const handleBatteryLevelChange = (event: any, newValue: any): void => {
+		setBatteryLevel(newValue);
 	};
 
 	const handleFlashButtonClick = (): void => {};
@@ -301,11 +314,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 			setQrCodeInput(qrCodeInputValue);
 
 			if (qrCode === event.target.value) {
-				// setEnteredQrCode(true);
-				// setShowDischargedVehicle(true);
 				setShowScanEnterCode(false);
 				setScanEnterButtonLabel(formatMessage({ id: 'button.scan_code' }));
-				// setShowDischargedVehicle(false);
 				setShowVehicleRide(true);
 			}
 		} else {
@@ -354,11 +364,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		if (iconName === 'vehicle') {
 			setMarkers(markerList);
 		} else {
-			const filteredMarkers = markers.filter(marker => marker.iconName === iconName);
+			const filteredMarkers = markerList.filter(marker => marker.iconName === iconName);
 			setMarkers(filteredMarkers);
 		}
 
-		setVehicleSelectionExpanded(false);
+		// setVehicleSelectionExpanded(false);
+		setSelectedVehicle(iconName);
 	};
 
 	const handleFinishRidingClick = (): void => {
@@ -437,6 +448,30 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				{place}
 			</Popup>
 		);
+	};
+
+	const handleAllChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		const temp = switchState;
+
+		if (event.target.checked) {
+			setSelectAll(true);
+
+			for (const key in temp) {
+				temp[key] = true;
+			}
+		} else {
+			setSelectAll(false);
+
+			for (const key in temp) {
+				temp[key] = false;
+			}
+		}
+		setSwitchState(temp);
+	};
+
+	const handleResetClick = (): void => {
+		setSwitchState(initialSwitchState);
+		setBatteryLevel([0, 100]);
 	};
 
 	return (
@@ -608,11 +643,11 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 							<Button
 								className={clsx(
 									{ [classes.button]: true },
-									{ [classes.activeBackground]: buttonLabel === formatMessage({ id: damagedVehicleType.label }) },
-									{ [classes.inActiveBackground]: buttonLabel !== formatMessage({ id: damagedVehicleType.label }) }
+									{ [classes.activeBackground]: selectedVehicle === damagedVehicleType.iconName },
+									{ [classes.inActiveBackground]: selectedVehicle !== damagedVehicleType.iconName }
 								)}
 								key={index}
-								onClick={(): void => setButtonLabel(formatMessage({ id: damagedVehicleType.label }))}
+								onClick={handleVehicleTypeClick(damagedVehicleType.iconName)}
 							>
 								<Icon iconName={damagedVehicleType.iconName} colorType="black" />
 								<Text className={classes.smallText}>{formatMessage({ id: damagedVehicleType.label })}</Text>
@@ -626,8 +661,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						title={formatMessage({ id: 'home.text.all' })}
 						iconName="well-done-checked"
 						name="selectAll"
-						checked={switchState.selectAll}
-						onChange={handleStateChange}
+						checked={selectAll}
+						onChange={handleAllChange}
 					/>
 					<Divider />
 					<SwitchListItem
@@ -635,7 +670,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						imageUrl={lime}
 						name="lime"
 						checked={switchState.lime}
-						onChange={handleStateChange}
+						onChange={handleSwitchChange}
 					/>
 					<Divider />
 					<SwitchListItem
@@ -643,7 +678,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						imageUrl={bird}
 						name="bird"
 						checked={switchState.bird}
-						onChange={handleStateChange}
+						onChange={handleSwitchChange}
 					/>
 					<Divider />
 					<SwitchListItem
@@ -651,7 +686,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						imageUrl={spin}
 						name="spin"
 						checked={switchState.spin}
-						onChange={handleStateChange}
+						onChange={handleSwitchChange}
 					/>
 					<Divider />
 					<SwitchListItem
@@ -659,7 +694,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						imageUrl={circ}
 						name="circ"
 						checked={switchState.circ}
-						onChange={handleStateChange}
+						onChange={handleSwitchChange}
 					/>
 					<Divider />
 					<SwitchListItem
@@ -667,7 +702,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						imageUrl={tier}
 						name="tier"
 						checked={switchState.tier}
-						onChange={handleStateChange}
+						onChange={handleSwitchChange}
 					/>
 					<Box className={classes.batteryLevelText}>
 						<Text className={classes.smallText}>{formatMessage({ id: 'home.filter_sheet.text.battery_level' })}</Text>
@@ -694,17 +729,17 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						title={formatMessage({ id: 'home.filter_sheet.text.electrical' })}
 						name="electrical"
 						checked={switchState.electrical}
-						onChange={handleStateChange}
+						onChange={handleSwitchChange}
 					/>
 					<Divider />
 					<SwitchListItem
 						title={formatMessage({ id: 'home.filter_sheet.text.internal_combustion' })}
-						name="internalCombustion"
-						checked={switchState.internalCombustion}
-						onChange={handleStateChange}
+						name="combustion"
+						checked={switchState.combustion}
+						onChange={handleSwitchChange}
 					/>
 				</List>
-				<Button iconName="reset" compact className={classes.resetButton} onClick={(): void => setSwitchState(initialState)}>
+				<Button iconName="reset" compact className={classes.resetButton} onClick={handleResetClick}>
 					{formatMessage({ id: 'button.reset' })}
 				</Button>
 			</BottomSheet>
@@ -1167,7 +1202,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					label={formatMessage({ id: 'home.finished_ride_sheet.text.last_ride' })}
 					name="rideReview"
 					value={rideReview}
-					onValueChange={handleRideReivewChange}
+					onValueChange={handleRideReviewChange}
 				/>
 				<GreenButton onClick={(): void => setReportSubmitModal(true)}>{formatMessage({ id: 'button.done' })}</GreenButton>
 			</BottomSheet>

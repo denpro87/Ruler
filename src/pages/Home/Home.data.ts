@@ -50,36 +50,168 @@ export const markerList = [
 		long: 7.448385,
 		iconName: 'scooter',
 		vehicleNumber: 0,
-		decorator: './images/bird.png'
+		decorator: './images/bird.png',
+		detailInfo: [
+			{
+				iconName: './images/bird.png',
+				property: 'Bird',
+				description: 'combustion'
+			},
+			{
+				iconName: 'charge',
+				property: 70,
+				description: 'battery level'
+			},
+			{
+				iconName: 'distance',
+				property: '450 m',
+				description: 'distance'
+			},
+			{
+				iconName: 'wallet',
+				property: '0.13 /min',
+				description: '$ 0.5 to unlock'
+			}
+		],
+		pausedInfo: [
+			{
+				iconName: './images/bird.png',
+				property: 'Bird',
+				description: 'scooter'
+			},
+			{
+				iconName: 'charge',
+				property: '25%',
+				description: 'battery level'
+			},
+			{
+				iconName: 'distance',
+				property: '1.1 km',
+				description: 'traveled'
+			},
+			{
+				iconName: 'wallet',
+				property: '$30.5',
+				description: 'total cost'
+			}
+		]
 	},
 	{
 		lat: 46.938095,
 		long: 7.448935,
 		iconName: 'bike',
 		vehicleNumber: 0,
-		decorator: './images/spin.png'
+		decorator: './images/spin.png',
+		detailInfo: [
+			{
+				iconName: './images/spin.png',
+				property: 'Spin',
+				description: 'combustion'
+			},
+			{
+				iconName: 'charge',
+				property: 50,
+				description: 'battery level'
+			},
+			{
+				iconName: 'distance',
+				property: '800 m',
+				description: 'distance'
+			},
+			{
+				iconName: 'wallet',
+				property: '0.19 /min',
+				description: '$ 2 to unlock'
+			}
+		],
+		pausedInfo: [
+			{
+				iconName: './images/spin.png',
+				property: 'Spin',
+				description: 'bike'
+			},
+			{
+				iconName: 'charge',
+				property: '50%',
+				description: 'battery level'
+			},
+			{
+				iconName: 'distance',
+				property: '0.9 km',
+				description: 'traveled'
+			},
+			{
+				iconName: 'wallet',
+				property: '$25.8',
+				description: 'total cost'
+			}
+		]
 	},
 	{
 		lat: 46.9480961,
 		long: 7.432368,
 		iconName: 'car',
 		vehicleNumber: 0,
-		decorator: './images/lime.png'
-	},
-	{
-		lat: 46.9605985,
-		long: 7.455385,
-		iconName: '',
-		vehicleNumber: 7,
-		decorator: ''
-	},
-	{
-		lat: 46.963985,
-		long: 7.448512,
-		iconName: '',
-		vehicleNumber: 25,
-		decorator: ''
+		decorator: './images/lime.png',
+		detailInfo: [
+			{
+				iconName: './images/lime.png',
+				property: 'Lime',
+				description: 'electrical'
+			},
+			{
+				iconName: 'charge',
+				property: 90,
+				description: 'battery level'
+			},
+			{
+				iconName: 'distance',
+				property: '1 km',
+				description: 'distance'
+			},
+			{
+				iconName: 'wallet',
+				property: '0.15 /min',
+				description: '$ 1 to unlock'
+			}
+		],
+		pausedInfo: [
+			{
+				iconName: './images/lime.png',
+				property: 'Lime',
+				description: 'car'
+			},
+			{
+				iconName: 'charge',
+				property: '29%',
+				description: 'battery level'
+			},
+			{
+				iconName: 'distance',
+				property: '1.3 km',
+				description: 'traveled'
+			},
+			{
+				iconName: 'wallet',
+				property: '$30.9',
+				description: 'total cost'
+			}
+		]
 	}
+	// {
+	// 	lat: 46.9605985,
+	// 	long: 7.455385,
+	// 	iconName: '',
+	// 	vehicleNumber: 7,
+	// 	decorator: ''
+	// },
+	// {
+	// 	lat: 46.963985,
+	// 	long: 7.448512,
+	// 	iconName: '',
+	// 	vehicleNumber: 25,
+	// 	decorator: ''
+	// }
 ];
 
 export const scooterInfo = [
@@ -173,23 +305,6 @@ export const pausedCarInfo = [
 		description: 'total cost'
 	}
 ];
-// export const vehicleSimpleInfo = [
-// 	{
-// 		iconName: './images/lime.png',
-// 		property: 'Lime',
-// 		description: 'electric car'
-// 	},
-// 	{
-// 		iconName: 'charge',
-// 		property: '79%',
-// 		description: 'battery level'
-// 	},
-// 	{
-// 		iconName: 'wallet',
-// 		property: '0.15 /min',
-// 		description: '$ 1 to unlock'
-// 	}
-// ];
 export const finishedRideVehicleInfo = [
 	{
 		iconName: 'charge',
