@@ -48,7 +48,7 @@ export const AddFunds: React.FunctionComponent<IAddFundsProps> = props => {
 	};
 
 	const handleNextClick = (): void => {
-		history.push('/wallets/add-funds/add-credit-card');
+		history.push('/wallets/add-funds/add-credit-card', { amount: amount });
 	};
 
 	return (

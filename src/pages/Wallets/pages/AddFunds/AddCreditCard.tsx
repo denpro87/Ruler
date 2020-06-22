@@ -1,12 +1,14 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { Checkbox, GreenButton, Page, TextField } from 'components';
-import { ICreditCardProps } from './AddFunds.types';
+import { IAddFundsProps, ICreditCardProps } from './AddFunds.types';
+
 import { styles } from './AddFunds.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateDate, validateNumber } from 'utils';
 import React from 'react';
 const useStyles = makeStyles(styles);
+
 const initialCardState: ICreditCardProps = {
 	name: '',
 	cardNumber: '',
@@ -20,12 +22,19 @@ const initialCardState: ICreditCardProps = {
 	cvcValid: true
 };
 
-export const AddCreditCard: React.FunctionComponent = () => {
+export const AddCreditCard: React.FunctionComponent<IAddFundsProps> = props => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [cardState, setCardState] = React.useState<ICreditCardProps>(initialCardState);
 	const [checked, setChecked] = React.useState<boolean>(false);
+	const [amount, setAmount] = React.useState<string>('');
+	React.useEffect(() => {
+		const params: any = props.location.state;
+		const amount = params && params.amount ? params.amount : '';
+
+		if (amount) setAmount(amount);
+	}, [props.location.state]);
 
 	const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		event.persist();
@@ -70,7 +79,7 @@ export const AddCreditCard: React.FunctionComponent = () => {
 	};
 
 	const handleNextClick = (): void => {
-		history.replace('/wallets', { addFunds: true });
+		history.replace('/wallets', { addFunds: true, amount: amount });
 	};
 
 	return (

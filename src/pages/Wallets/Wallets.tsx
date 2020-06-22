@@ -19,16 +19,23 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [paymentTemplateData, setPaymentTemplateData] = React.useState(paymentTemplate);
 	const [walletTypes, setWalletTypes] = React.useState<string[]>([]);
+	const [amount, setAmount] = React.useState<string>('100');
+	const [ruler, setRuler] = React.useState<number>(250);
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const showDialog = params && params.showDialog ? params.showDialog : false;
 		const data = params && params.paymentTemplate ? params.paymentTemplate : null;
 		const selectedIndex = params && params.index > -1 ? params.index : -1;
 		const newWallet = params && params.newWallet ? params.newWallet : '';
-		console.log('asdfasdf', newWallet);
+		const amount = params && params.amount ? params.amount : '';
 		const from = params && params.from;
 		setFrom(from);
 		setShowDialog(showDialog);
+
+		if (amount) {
+			setAmount(amount);
+			setRuler(Math.floor((Number(amount) * 250) / 100));
+		}
 
 		if (newWallet) {
 			const temp = walletTypes;
@@ -73,7 +80,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 
 	const handleCreateWallet = (): void => history.push('/wallets/create-wallet');
 
-	const handleAddFunds = (): void => history.push('/wallets/add-funds');
+	const handleAddFunds = (): void => history.push('/wallets/add-funds', { wallets: walletTypes });
 
 	const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData, wallets: walletTypes });
 
@@ -105,11 +112,13 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 			<Box className={classes.walletsLogoContainer}>
 				<Box className={classes.walletsLogo}>
 					<IconButton iconProps={{ iconName: 'white-trash', color: '#ffffff' }} className={classes.trashIcon} />
-					<Link className={classes.rulerWalletText} href="/wallets/ruler-wallet">
+					<Link className={classes.rulerWalletText} onClick={(): void => history.push('/wallets/ruler-wallet', { amount: amount })}>
 						{formatMessage({ id: 'wallets.logo_title' })}
 					</Link>
-					<Text className={classes.rulerPriceText}>€ 110 = 250 Ruler</Text>
-					<Text className={classes.rulerNumberText}>0 Ruler</Text>
+					<Text className={classes.rulerPriceText}>
+						€ {amount} = {ruler} Ruler
+					</Text>
+					<Text className={classes.rulerNumberText}>{ruler} Ruler</Text>
 				</Box>
 			</Box>
 			<Box className={classes.paymentTemplateContainer}>

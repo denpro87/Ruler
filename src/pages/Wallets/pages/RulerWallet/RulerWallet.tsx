@@ -1,5 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { GoBackIconButton, IconButton, LightGreenButton, Page, Text } from 'components';
+import { IRulerWalletProps } from './RulerWallet.types';
 import { RulerWalletHistory } from '../../components';
 import { rulerWalletHistory } from '../../Wallets.data';
 import { styles } from './RulerWallet.styles';
@@ -7,15 +8,22 @@ import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
 import bgImage from '../../images/green-bg.svg';
-
 const useStyles = makeStyles(styles);
 const copy = require('clipboard-copy');
 
-export const RulerWallet: React.FunctionComponent = () => {
+export const RulerWallet: React.FunctionComponent<IRulerWalletProps> = props => {
 	const classes = useStyles();
 	const history = useHistory();
 	const walletAddress = 'dsfsdfsdfsdfsdfsd';
+	const [amount, setAmount] = React.useState('');
 	const { formatMessage } = useIntl();
+
+	React.useEffect(() => {
+		const params: any = props.location.state;
+		const amount = params && params.amount ? params.amount : '';
+
+		if (amount) setAmount(amount);
+	}, [props.location.state]);
 
 	const handleCopyClick = () => copy(walletAddress);
 
@@ -46,7 +54,7 @@ export const RulerWallet: React.FunctionComponent = () => {
 						</Box>
 						<Box className={classes.headerContent}>
 							<Text className={classes.headerHelperText}>{formatMessage({ id: 'wallets.ruler_wallet.balance' })}</Text>
-							<Text className={classes.amountText}>€ 110</Text>
+							<Text className={classes.amountText}>€ {amount}</Text>
 							<Text className={classes.headerHelperText}>{formatMessage({ id: 'wallets.ruler_wallet.wallet_address' })}</Text>
 							<Box className={classes.addressWrapper}>
 								<Text className={classes.addressText}>{walletAddress}</Text>

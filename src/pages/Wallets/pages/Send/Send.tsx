@@ -1,14 +1,14 @@
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
 import { Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
+import { ISendProps } from './Send.types';
 import { RulerButton } from '../../components';
 import { rulerPriceBonusData } from '../../Wallets.data';
 import { styles } from './Send.styles';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateNumber } from 'utils';
 import React from 'react';
 import clsx from 'clsx';
-import {ISendProps} from './Send.types';
-import {useHistory, useLocation} from 'react-router-dom';
 const useStyles = makeStyles(styles);
 
 export const Send: React.FunctionComponent<ISendProps> = props => {
@@ -23,8 +23,9 @@ export const Send: React.FunctionComponent<ISendProps> = props => {
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const code = params && params.code ? params.code : '';
-		if(code) setWalletAddress(code);
-	}, [props.location.state])
+
+		if (code) setWalletAddress(code);
+	}, [props.location.state]);
 	const handleRulerButtonClick = (amount: string): void => setAmount(amount);
 
 	const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -43,7 +44,7 @@ export const Send: React.FunctionComponent<ISendProps> = props => {
 	const handleWalletAddressChange = (event: React.ChangeEvent<HTMLInputElement>): void => setWalletAddress(event.target.value);
 
 	const handleQrClick = (): void => {
-		history.push('/home', {from: location.pathname})
+		history.push('/home', { from: location.pathname });
 	};
 
 	const handleSendClick = (): void => {
