@@ -97,7 +97,7 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 				>
 					{walletTypes.map(type => (
 						<MenuItem key={type} className={classes.selectItem} value={type}>
-							{formatMessage({ id: type })}
+							{type}
 						</MenuItem>
 					))}
 				</Select>

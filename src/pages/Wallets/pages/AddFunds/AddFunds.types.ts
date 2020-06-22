@@ -1,3 +1,5 @@
+import { RouteComponentProps } from 'react-router';
+export type IAddFundsProps = RouteComponentProps;
 export interface IRulerPriceBonusProps {
 	rulerPrice: string;
 	rulerBonus: string;

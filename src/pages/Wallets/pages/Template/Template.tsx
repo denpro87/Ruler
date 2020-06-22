@@ -19,11 +19,15 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	const [amount, setAmount] = React.useState<string>('');
 	const [numberValid, setNumberValid] = React.useState(true);
 	const [templateName, setTemplateName] = React.useState<string>('');
+	// const [walletTypes, setWalletTypes] = React.useState<string[]>([]);
 	const params: any = props.location.state;
 	const selectedIndex = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const data = params && params.template ? params.template : null;
+		// const wallets = params && params.wallets ? params.wallets : null;
+
+		// if (wallets) setWalletTypes(wallets);
 		setWalletType(data ? params.template.walletType : '');
 		setPaymentMethodType(data ? params.template.paymentType : '');
 		setAmount(data ? params.template.amount : '');

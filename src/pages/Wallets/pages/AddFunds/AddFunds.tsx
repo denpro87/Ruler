@@ -1,16 +1,16 @@
 import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, Page, Select, Text, TextField } from 'components';
+import { IAddFundsProps } from './AddFunds.types';
 import { RulerButton } from '../../components';
-import { paymentMethodTypes, rulerPriceBonusData, walletTypes } from '../../Wallets.data';
+import { paymentMethodTypes, rulerPriceBonusData } from '../../Wallets.data';
 import { styles } from './AddFunds.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateNumber } from 'utils';
 import React from 'react';
-
 const useStyles = makeStyles(styles);
 
-export const AddFunds: React.FunctionComponent = () => {
+export const AddFunds: React.FunctionComponent<IAddFundsProps> = props => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { formatMessage } = useIntl();
@@ -18,6 +18,14 @@ export const AddFunds: React.FunctionComponent = () => {
 	const [paymentMethodType, setPaymentMethodType] = React.useState<string>('');
 	const [amount, setAmount] = React.useState<string>('');
 	const [numberValid, setNumberValid] = React.useState(true);
+	const [walletTypes, setWalletTypes] = React.useState<string[]>([]);
+	React.useEffect(() => {
+		const params: any = props.location.state;
+		const wallets = params && params.wallets ? params.wallets : null;
+
+		if (wallets) setWalletTypes(wallets);
+	}, [props.location.state]);
+
 	const handleWalletTypeChange = (event: React.ChangeEvent<{ name?: string | undefined; value: string }>): void =>
 		setWalletType(event.target.value);
 
@@ -54,8 +62,8 @@ export const AddFunds: React.FunctionComponent = () => {
 					onValueChange={handleWalletTypeChange}
 				>
 					{walletTypes.map(type => (
-						<MenuItem key={type.value} className={classes.selectItem} value={type.value}>
-							{formatMessage({ id: type.label })}
+						<MenuItem key={type} className={classes.selectItem} value={type}>
+							{type}
 						</MenuItem>
 					))}
 				</Select>
