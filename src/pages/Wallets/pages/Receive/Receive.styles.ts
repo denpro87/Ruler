@@ -45,10 +45,17 @@ const dialogContentText: CSSProperties = {
 	padding: `${pxToRem(10)} ${pxToRem(10)} 0 ${pxToRem(10)}`
 };
 
+const shareImage: CSSProperties = {
+	width: pxToRem(150),
+	height: pxToRem(150),
+	objectFit: 'cover'
+};
+
 export const styles = createStyles({
 	formWrapper,
 	textField,
 	footer,
 	qrText,
-	dialogContentText
+	dialogContentText,
+	shareImage
 });

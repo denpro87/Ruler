@@ -25,7 +25,7 @@ export const RulerWallet: React.FunctionComponent<IRulerWalletProps> = props => 
 		if (amount) setAmount(amount);
 	}, [props.location.state]);
 
-	const handleCopyClick = () => copy(walletAddress);
+	const handleCopyClick = (): void => copy(walletAddress);
 
 	const handleSendClick = (): void => {
 		history.push('/wallets/send');

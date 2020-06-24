@@ -1,6 +1,9 @@
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
+import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { IReceiveProps } from './Receive.types';
+import { IonImg } from '@ionic/react';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './Receive.styles';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -9,26 +12,30 @@ import React from 'react';
 const QRCode = require('qrcode-react');
 
 const useStyles = makeStyles(styles);
+const { Camera } = Plugins;
 
 export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 	const classes = useStyles();
 	const history = useHistory();
 	const location = useLocation();
-	// const params: any = props.location.state;
-	// const walletAddress = params?.walletAddress ? params.walletAddress : '';
 	const { formatMessage } = useIntl();
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [from, setFrom] = React.useState<string>('');
 	const [numberValid, setNumberValid] = React.useState(true);
+	const [photo, setPhoto] = React.useState('');
 	const [amount, setAmount] = React.useState<string>('');
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const code = params && params.code ? params.code : '';
 
-		if (code) setFrom(code);
+		if (code) {
+			setFrom(code);
+			setPhoto('');
+		}
 	}, [props.location.state]);
-
-	const handleShareClick = (): void => {};
+	React.useEffect(() => {
+		defineCustomElements(window);
+	}, []);
 
 	const handleReceiveClick = (): void => {
 		setShowDialog(true);
@@ -47,7 +54,10 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 		}
 	};
 
-	const handleFromChange = (event: React.ChangeEvent<HTMLInputElement>): void => setFrom(event.target.value);
+	const handleFromChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		setFrom(event.target.value);
+		setPhoto('');
+	};
 
 	const handleQrClick = (): void => {
 		history.push('/home', { from: location.pathname });
@@ -55,6 +65,18 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 
 	const handleDialogClose = () => {
 		setShowDialog(false);
+	};
+
+	const takePhoto = async () => {
+		const image = await Camera.getPhoto({
+			quality: 100,
+			allowEditing: false,
+			resultType: CameraResultType.Uri,
+			source: CameraSource.Photos
+		});
+		const imageUrl = image.webPath ?? '';
+		setPhoto(imageUrl);
+		setFrom('');
 	};
 
 	return (
@@ -92,9 +114,9 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 			</Box>
 			<Box className={classes.footer}>
 				<Text className={classes.qrText}>{formatMessage({ id: 'wallets.receive.share_qr_code' })}</Text>
-				{/* <QRCode value={walletAddress} size={150} /> */}
-				<QRCode value={from} size={150} />
-				<GreenButton iconName="share" compact onClick={handleShareClick}>
+				{photo && <IonImg className={classes.shareImage} src={photo} />}
+				{from && <QRCode value={from} size={150} />}
+				<GreenButton iconName="share" compact onClick={() => takePhoto()}>
 					{formatMessage({ id: 'button.share' })}
 				</GreenButton>
 			</Box>
