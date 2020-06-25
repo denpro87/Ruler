@@ -108,7 +108,7 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 					value={amount}
 					onValueChange={handleAmountChange}
 				/>
-				<GreenButton iconName="receive" compact disabled={!from || !amount || !numberValid} onClick={handleReceiveClick}>
+				<GreenButton iconName="receive" compact disabled={(!from && !photo) || !amount || !numberValid} onClick={handleReceiveClick}>
 					{formatMessage({ id: 'button.receive' })}
 				</GreenButton>
 			</Box>

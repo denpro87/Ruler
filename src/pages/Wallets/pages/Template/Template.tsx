@@ -1,8 +1,8 @@
 import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, IconButton, Page, Select, TextField } from 'components';
 import { ITemplateDataProps, ITemplateProps } from './Template.types';
-
-import { paymentMethodTypes, walletTypes } from '../../Wallets.data';
+// import { paymentMethodTypes, walletTypes } from '../../Wallets.data';
+import { paymentMethodTypes } from '../../Wallets.data';
 import { styles } from './Template.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -19,15 +19,15 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	const [amount, setAmount] = React.useState<string>('');
 	const [numberValid, setNumberValid] = React.useState(true);
 	const [templateName, setTemplateName] = React.useState<string>('');
-	// const [walletTypes, setWalletTypes] = React.useState<string[]>([]);
+	const [walletTypes, setWalletTypes] = React.useState<string[]>([]);
 	const params: any = props.location.state;
 	const selectedIndex = params && params.selectedIndex > -1 ? params.selectedIndex : -1;
 	React.useEffect(() => {
 		const params: any = props.location.state;
 		const data = params && params.template ? params.template : null;
-		// const wallets = params && params.wallets ? params.wallets : null;
+		const wallets = params && params.wallets ? params.wallets : null;
 
-		// if (wallets) setWalletTypes(wallets);
+		if (wallets) setWalletTypes(wallets);
 		setWalletType(data ? params.template.walletType : '');
 		setPaymentMethodType(data ? params.template.paymentType : '');
 		setAmount(data ? params.template.amount : '');
@@ -103,8 +103,8 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 					onValueChange={handleWalletTypeChange}
 				>
 					{walletTypes.map(type => (
-						<MenuItem key={type.value} className={classes.selectItem} value={type.value}>
-							{formatMessage({ id: type.label })}
+						<MenuItem key={type} className={classes.selectItem} value={type}>
+							{type}
 						</MenuItem>
 					))}
 				</Select>

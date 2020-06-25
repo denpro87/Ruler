@@ -2,7 +2,7 @@ import { Box, makeStyles } from '@material-ui/core';
 import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Link, Page, Text } from 'components';
 import { ITemplateDataProps } from './pages/Template/Template.types';
 import { IWalletsProps } from './Wallets.types';
-import { paymentTemplate } from './Wallets.data';
+// import { paymentTemplate } from './Wallets.data';
 import { styles } from './Wallets.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -17,7 +17,8 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 	const { formatMessage } = useIntl();
 	const [from, setFrom] = React.useState(false);
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
-	const [paymentTemplateData, setPaymentTemplateData] = React.useState(paymentTemplate);
+	// const [paymentTemplateData, setPaymentTemplateData] = React.useState(paymentTemplate);
+	const [paymentTemplateData, setPaymentTemplateData] = React.useState<ITemplateDataProps[]>([]);
 	const [walletTypes, setWalletTypes] = React.useState<string[]>([]);
 	const [amount, setAmount] = React.useState<string>('100');
 	const [ruler, setRuler] = React.useState<number>(250);
@@ -84,7 +85,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 
 	const handleTransfer = (): void => history.push('/wallets/transfer', { data: paymentTemplateData, wallets: walletTypes });
 
-	const handleAddTemplate = (): void => history.push('/wallets/template');
+	const handleAddTemplate = (): void => history.push('/wallets/template', { wallets: walletTypes });
 
 	const handleTemplateClick = (index: number, template: ITemplateDataProps): void => {
 		history.push('/wallets/template', { template: template, selectedIndex: index });

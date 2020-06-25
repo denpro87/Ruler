@@ -38,24 +38,24 @@ export const rulerPriceBonusData: Array<IRulerPriceBonusProps> = [
 	}
 ];
 
-export const walletTypes: Array<IOptionType> = [
-	{
-		value: 'ruler_token',
-		label: 'wallets.create_wallet.ruler_token'
-	},
-	{
-		value: 'ethereum',
-		label: 'wallets.create_wallet.ethereum'
-	},
-	{
-		value: 'bitcoin',
-		label: 'wallets.create_wallet.bitcoin'
-	},
-	{
-		value: 'bnb_token',
-		label: 'wallets.create_wallet.bnb_token'
-	}
-];
+// export const walletTypes: Array<IOptionType> = [
+// 	{
+// 		value: 'ruler_token',
+// 		label: 'wallets.create_wallet.ruler_token'
+// 	},
+// 	{
+// 		value: 'ethereum',
+// 		label: 'wallets.create_wallet.ethereum'
+// 	},
+// 	{
+// 		value: 'bitcoin',
+// 		label: 'wallets.create_wallet.bitcoin'
+// 	},
+// 	{
+// 		value: 'bnb_token',
+// 		label: 'wallets.create_wallet.bnb_token'
+// 	}
+// ];
 
 export const paymentMethodTypes: Array<IOptionType> = [
 	{
@@ -68,22 +68,22 @@ export const paymentMethodTypes: Array<IOptionType> = [
 	}
 ];
 
-export const paymentTemplate: Array<ITemplateDataProps> = [
-	{
-		templateName: 'To my friend',
-		amount: '10',
-		walletType: 'ruler_token',
-		paymentType: 'credit_card',
-		walletAddress: '1BvBMSEYstWetqTFn5Au4m4GFg5Au4m4GFg'
-	},
-	{
-		templateName: 'To wife',
-		amount: '15',
-		walletType: 'bitcoin',
-		paymentType: 'credit_card',
-		walletAddress: '2Cs9vBMSEYstWetqTFn5Au4m4GFg5Au4m4GFg'
-	}
-];
+// export const paymentTemplate: Array<ITemplateDataProps> = [
+// 	{
+// 		templateName: 'To my friend',
+// 		amount: '10',
+// 		walletType: 'ruler_token',
+// 		paymentType: 'credit_card',
+// 		walletAddress: '1BvBMSEYstWetqTFn5Au4m4GFg5Au4m4GFg'
+// 	},
+// 	{
+// 		templateName: 'To wife',
+// 		amount: '15',
+// 		walletType: 'bitcoin',
+// 		paymentType: 'credit_card',
+// 		walletAddress: '2Cs9vBMSEYstWetqTFn5Au4m4GFg5Au4m4GFg'
+// 	}
+// ];
 
 export const rulerWalletHistory: Array<{ date: string; data: IRulerWalletHistoryProps[] }> = [
 	{
