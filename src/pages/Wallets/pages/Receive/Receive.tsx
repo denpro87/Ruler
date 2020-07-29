@@ -116,7 +116,13 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 				</Box>
 				<Box className={classes.qrCodeWrapper}>
 					<Text className={classes.qrText}>{formatMessage({ id: 'wallets.receive.share_qr_code' })}</Text>
-					{photo && <IonImg className={classes.shareImage} src={photo} />}
+					{photo && (
+						<Box className={classes.shareImageAspectRatioBox}>
+							<Box className={classes.shareImageAspectRatioBoxInside}>
+								<IonImg className={classes.shareImage} src={photo} />
+							</Box>
+						</Box>
+					)}
 					{from && <QRCode value={from} style={{ width: '40%' }} />}
 				</Box>
 				{/* <Box className={classes.footer}> */}

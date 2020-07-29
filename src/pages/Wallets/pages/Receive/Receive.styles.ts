@@ -45,10 +45,29 @@ const dialogContentText: CSSProperties = {
 	padding: `${pxToRem(10)} ${pxToRem(10)} 0 ${pxToRem(10)}`
 };
 
-const shareImage: CSSProperties = {
+const shareImageAspectRatioBox: CSSProperties = {
+	height: 0,
 	width: percentage(0.4),
-	height: percentage(0.4),
-	objectFit: 'cover'
+	paddingTop: percentage(0.4),
+	position: 'relative'
+};
+
+const shareImageAspectRatioBoxInside: CSSProperties = {
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	bottom: 0,
+	right: 0,
+	width: '100%',
+	height: '100%'
+};
+
+const shareImage: CSSProperties = {
+	width: percentage(1),
+	height: percentage(1),
+	objectFit: 'cover',
+	borderRadius: pxToRem(10),
+	overflow: 'hidden'
 };
 
 const container: CSSProperties = {
@@ -79,6 +98,8 @@ export const styles = createStyles({
 	footer,
 	qrText,
 	dialogContentText,
-	shareImage,
-	container
+	container,
+	shareImageAspectRatioBox,
+	shareImageAspectRatioBoxInside,
+	shareImage
 });

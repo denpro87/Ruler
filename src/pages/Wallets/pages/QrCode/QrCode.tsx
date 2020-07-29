@@ -7,9 +7,8 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './QrCode.styles';
 import { useIntl } from 'react-intl';
 import React from 'react';
-
-const QRCode = require('qrcode-react');
-
+// const QRCode = require('qrcode-react');
+import { QRCode } from 'react-qr-svg';
 const useStyles = makeStyles(styles);
 const { Camera } = Plugins;
 
@@ -37,7 +36,15 @@ export const QrCode: React.FunctionComponent<IQrCodeProps> = props => {
 	return (
 		<Page title={formatMessage({ id: 'wallets.qr_code.title' })} titleSize="medium">
 			<Box className={classes.qrCodeWrapper}>
-				{photo ? <IonImg className={classes.shareImage} src={photo} /> : <QRCode value={walletAddress} size={220} />}
+				{photo ? (
+					<Box className={classes.shareImageAspectRatioBox}>
+						<Box className={classes.shareImageAspectRatioBoxInside}>
+							<IonImg className={classes.shareImage} src={photo} />
+						</Box>
+					</Box>
+				) : (
+					<QRCode value={walletAddress} style={{ width: '59%' }} />
+				)}
 			</Box>
 			<GreenButton className={classes.shareButton} iconName="share" compact onClick={() => takePhoto()}>
 				{formatMessage({ id: 'button.share' })}
