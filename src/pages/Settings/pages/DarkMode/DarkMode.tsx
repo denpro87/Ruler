@@ -10,7 +10,7 @@ const useStyles = makeStyles(styles);
 
 class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 	state = {
-		automaticallyDarkMode: true,
+		automaticallyDarkMode: false,
 		dontUseDarkMode: false,
 		scheduledDarkMode: false,
 		startTimeHour: 22,
@@ -24,6 +24,9 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 	private handleAutomaticallyChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
 		if (checked) {
 			this.setState({ dontUseDarkMode: false, scheduledDarkMode: false });
+			document.body.classList.toggle('dark', true);
+		} else {
+			document.body.classList.toggle('dark', false);
 		}
 		this.setState({ automaticallyDarkMode: checked });
 	};

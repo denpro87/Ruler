@@ -1,6 +1,6 @@
 import { IOptionType, IRulerPriceBonusProps } from './pages/AddFunds/AddFunds.types';
 import { IRulerWalletHistoryProps } from './components/RulerWalletHistory/RulerWalletHistory.types';
-import { ITemplateDataProps } from './pages/Template/Template.types';
+// import { ITemplateDataProps } from './pages/Template/Template.types';
 
 export const createWalletTypes = [
 	{

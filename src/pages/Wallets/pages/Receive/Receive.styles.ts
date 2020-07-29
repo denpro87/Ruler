@@ -1,6 +1,6 @@
 import { CSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
-import { font, pxToRem } from 'styles';
+import { font, percentage, pxToRem } from 'styles';
 
 const formWrapper: CSSProperties = {
 	paddingTop: pxToRem(25),
@@ -18,7 +18,7 @@ const footer: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
 	alignItems: 'center',
-	marginTop: 'auto',
+	// marginTop: 'auto',
 	paddingTop: pxToRem(20),
 	'& button': {
 		fontWeight: 'bold',
@@ -46,16 +46,39 @@ const dialogContentText: CSSProperties = {
 };
 
 const shareImage: CSSProperties = {
-	width: pxToRem(150),
-	height: pxToRem(150),
+	width: percentage(0.4),
+	height: percentage(0.4),
 	objectFit: 'cover'
 };
 
+const container: CSSProperties = {
+	flex: 1,
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'space-between'
+	// alignItems: 'center'
+};
+
+const qrCodeWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignItems: 'center'
+};
+
+const qrCode: CSSProperties = {
+	width: '100%',
+	height: 0,
+	paddingTop: '100%'
+};
 export const styles = createStyles({
+	qrCode,
+	qrCodeWrapper,
 	formWrapper,
 	textField,
 	footer,
 	qrText,
 	dialogContentText,
-	shareImage
+	shareImage,
+	container
 });

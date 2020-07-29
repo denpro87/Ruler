@@ -8,8 +8,9 @@ export const Theming: React.FunctionComponent = ({ children }) => {
 	useStyles();
 
 	if (document.fonts?.onloadingdone) {
-		document.fonts.onloadingdone = () => console.log('Fonts are initialized.');
+		document.fonts.onloadingdone = (): void => console.log('Fonts are initialized.');
 	}
-	document.body.setAttribute('data-theme', 'light');
+	// document.body.setAttribute('data-theme', 'dark');
+
 	return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };

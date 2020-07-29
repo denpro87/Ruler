@@ -14,7 +14,8 @@ export const Welcome: React.FunctionComponent = () => {
 	const history = useHistory();
 
 	return (
-		<FullPage canGoBack className={classes.page} goBackIconButtonProps={{ noShadow: false }}>
+		// <FullPage canGoBack className={classes.page} goBackIconButtonProps={{ noShadow: false }}>
+		<FullPage className={classes.page}>
 			<Box className={classes.backgroundContainer}>
 				<img className={clsx(classes.background, classes.image)} src={Background} alt="background" />
 			</Box>

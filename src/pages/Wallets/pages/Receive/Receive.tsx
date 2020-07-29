@@ -9,7 +9,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateNumber } from 'utils';
 import React from 'react';
-const QRCode = require('qrcode-react');
+// const QRCode = require('qrcode-react');
+import { QRCode } from 'react-qr-svg';
 
 const useStyles = makeStyles(styles);
 const { Camera } = Plugins;
@@ -81,44 +82,48 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 
 	return (
 		<Page title={formatMessage({ id: 'wallets.receive.title' })} titleSize="medium">
-			<Box className={classes.formWrapper}>
-				<TextField
-					name="from"
-					className={classes.textField}
-					label={formatMessage({ id: 'wallets.receive.receive_from' })}
-					inputProps={{
-						endAdornment: (
-							<InputAdornment position="end">
-								<IconButton iconName="qr" onClick={handleQrClick} />
-							</InputAdornment>
-						)
-					}}
-					value={from}
-					onValueChange={handleFromChange}
-				/>
-				<TextField
-					name="amount"
-					error={!numberValid}
-					helperText={!numberValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
-					className={classes.textField}
-					label={formatMessage({ id: 'wallets.receive.request_amount' })}
-					inputProps={{
-						startAdornment: <InputAdornment position="start">€</InputAdornment>
-					}}
-					value={amount}
-					onValueChange={handleAmountChange}
-				/>
-				<GreenButton iconName="receive" compact disabled={(!from && !photo) || !amount || !numberValid} onClick={handleReceiveClick}>
-					{formatMessage({ id: 'button.receive' })}
-				</GreenButton>
-			</Box>
-			<Box className={classes.footer}>
-				<Text className={classes.qrText}>{formatMessage({ id: 'wallets.receive.share_qr_code' })}</Text>
-				{photo && <IonImg className={classes.shareImage} src={photo} />}
-				{from && <QRCode value={from} size={150} />}
+			<Box className={classes.container}>
+				<Box className={classes.formWrapper}>
+					<TextField
+						name="from"
+						className={classes.textField}
+						label={formatMessage({ id: 'wallets.receive.receive_from' })}
+						inputProps={{
+							endAdornment: (
+								<InputAdornment position="end">
+									<IconButton iconName="qr" onClick={handleQrClick} />
+								</InputAdornment>
+							)
+						}}
+						value={from}
+						onValueChange={handleFromChange}
+					/>
+					<TextField
+						name="amount"
+						error={!numberValid}
+						helperText={!numberValid ? formatMessage({ id: 'wallets.number_helper_text' }) : ''}
+						className={classes.textField}
+						label={formatMessage({ id: 'wallets.receive.request_amount' })}
+						inputProps={{
+							startAdornment: <InputAdornment position="start">€</InputAdornment>
+						}}
+						value={amount}
+						onValueChange={handleAmountChange}
+					/>
+					<GreenButton iconName="receive" compact disabled={(!from && !photo) || !amount || !numberValid} onClick={handleReceiveClick}>
+						{formatMessage({ id: 'button.receive' })}
+					</GreenButton>
+				</Box>
+				<Box className={classes.qrCodeWrapper}>
+					<Text className={classes.qrText}>{formatMessage({ id: 'wallets.receive.share_qr_code' })}</Text>
+					{photo && <IonImg className={classes.shareImage} src={photo} />}
+					{from && <QRCode value={from} style={{ width: '40%' }} />}
+				</Box>
+				{/* <Box className={classes.footer}> */}
 				<GreenButton iconName="share" compact onClick={() => takePhoto()}>
 					{formatMessage({ id: 'button.share' })}
 				</GreenButton>
+				{/* </Box> */}
 			</Box>
 			<Dialog
 				open={showDialog}

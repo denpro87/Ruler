@@ -135,8 +135,6 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 
 		if (from) {
 			setFrom(from);
-
-			if (!findMe) setShowScanEnterCode(true);
 		}
 		setFindMe(findMe);
 		// const checked = params && params.checked;
