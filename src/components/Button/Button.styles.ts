@@ -6,12 +6,12 @@ import { font, pxToRem } from 'styles';
 const button: CreateCSSProperties = {
 	...font({
 		fontSize: 15,
-		fontWeight: 600,
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: '30px',
 		letterSpacing: 'normal'
 	}),
+	fontWeight: (props: any) => (props.isDarkMode ? 'bold' : 600),
 	display: 'flex',
 	borderRadius: pxToRem(15),
 	padding: '10px 15px',

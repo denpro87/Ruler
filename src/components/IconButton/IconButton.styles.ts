@@ -22,18 +22,18 @@ const iconButton: CreateCSSProperties = {
 
 		return `${pxToRem(paddingY)} ${pxToRem(paddingX)}`;
 	},
-	color: '#000',
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#000'),
 	borderRadius: pxToRem(15),
-	backgroundColor: '#fff',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#fff'),
 	boxShadow: (props: any) => {
 		const shadows = [];
 
 		if (!props.noShadow) {
-			shadows.push(ICON_BUTTON_BOX_SHADOW);
+			shadows.push(props.isDarkMode ? '0 10px 20px 0 #fff' : ICON_BUTTON_BOX_SHADOW);
 		}
 
 		if (props.outlined) {
-			shadows.push(ICON_BUTTON_BOX_SHADOW_INSET);
+			shadows.push(props.isDarkMode ? 'inset 0 0 0 2px #fff' : ICON_BUTTON_BOX_SHADOW_INSET);
 		}
 
 		return shadows.join(',');

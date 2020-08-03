@@ -4,18 +4,20 @@ import { Button as MuiButton } from '@material-ui/core';
 import { getColorFromColorType } from './getColorFromColorType';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Button.styles';
+import { AppContext } from 'providers/State';
+
 import React from 'react';
 
 const useStyles = makeStyles(styles);
 
 export const Button: React.FunctionComponent<IButtonProps> = ({
 	colorType,
-	textColor = getColorFromColorType(colorType!, 'text'),
-	backgroundColor = getColorFromColorType(colorType!, 'background'),
-	hoveredTextColor = textColor,
-	hoveredBackgroundColor = getColorFromColorType(colorType!, 'hoveredBackground') || backgroundColor,
-	pressedTextColor = hoveredTextColor,
-	pressedBackgroundColor = hoveredBackgroundColor,
+	textColor,
+	backgroundColor,
+	hoveredTextColor,
+	hoveredBackgroundColor,
+	pressedTextColor,
+	pressedBackgroundColor,
 	disabledTextColor = textColor,
 	disabledBackgroundColor = getColorFromColorType(colorType!, 'disabledBackground') || backgroundColor,
 	href,
@@ -29,18 +31,27 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 }) => {
 	iconProps = Object.assign({}, iconProps, { iconName }) as IIconProps;
 	const hasIcon = iconProps?.iconName;
-
+	const { state } = React.useContext(AppContext);
+	const tempTextColor = textColor ?? getColorFromColorType(colorType!, 'text', state.settings.isDarkMode);
+	const tempBackgroundColor = backgroundColor ?? getColorFromColorType(colorType!, 'background', state.settings.isDarkMode);
+	const tempHoveredBackgroundColor =
+		hoveredBackgroundColor ?? (getColorFromColorType(colorType!, 'hoveredBackground', state.settings.isDarkMode) || tempBackgroundColor);
 	const classes = useStyles({
 		hasIcon,
 		compact,
-		textColor,
-		backgroundColor,
-		hoveredTextColor,
-		hoveredBackgroundColor,
-		pressedTextColor,
-		pressedBackgroundColor,
-		disabledTextColor,
-		disabledBackgroundColor
+		textColor: tempTextColor,
+		backgroundColor: tempBackgroundColor,
+		hoveredTextColor: hoveredTextColor ?? getColorFromColorType(colorType!, 'text', state.settings.isDarkMode),
+		hoveredBackgroundColor: tempHoveredBackgroundColor,
+		pressedTextColor: pressedTextColor ?? getColorFromColorType(colorType!, 'text', state.settings.isDarkMode),
+		pressedBackgroundColor:
+			pressedBackgroundColor ??
+			(getColorFromColorType(colorType!, 'hoveredBackground', state.settings.isDarkMode) || tempHoveredBackgroundColor),
+		disabledTextColor: disabledTextColor ?? tempTextColor,
+		disabledBackgroundColor:
+			disabledBackgroundColor ??
+			(getColorFromColorType(colorType!, 'disabledBackground', state.settings.isDarkMode) || tempBackgroundColor),
+		isDarkMode: state.settings.isDarkMode
 	});
 
 	return (

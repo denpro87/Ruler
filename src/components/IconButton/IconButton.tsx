@@ -4,6 +4,7 @@ import { IIconProps, Icon } from 'components';
 import { IconButton as MuiIconButton, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './IconButton.styles';
+import { AppContext } from 'providers/State';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -26,6 +27,7 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 	if (!(iconName || iconProps)) {
 		console.warn('`IconButton` requires `iconName` or `iconProps` to be specified.');
 	}
+	const { state } = React.useContext(AppContext);
 
 	const classes = useStyles({
 		width,
@@ -34,7 +36,8 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 		iconHeight: iconProps?.height,
 		noShadow,
 		outlined,
-		label
+		label,
+		isDarkMode: state.settings.isDarkMode
 	});
 
 	iconProps = Object.assign({}, { iconName, colorType }, iconProps) as IIconProps;

@@ -142,7 +142,7 @@
 	"get_help.how_to_ride.trip_status.description": "Changing a trip status is important as it help us track your ride. For a bike, a trip can either be Unlocked, In-ride, Finished, and Completed.",
 	"welcome.text.welcome_to_ruler": "Welcome to Ruler!",
 	"welcome.text.sign_in_with_socials": "Sign in with socials",
-	"welcome.text.already_have_an_account": "Already have an account?",
+	"welcome.text.already_have_an_account": "Already have an account? ",
 	"welcome.text.login": "Log in",
 	"welcome.button.create_account": "Create account",
 	"welcome.login.title": "Log In",

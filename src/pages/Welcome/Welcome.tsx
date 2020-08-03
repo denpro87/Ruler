@@ -4,13 +4,15 @@ import { FormattedMessage } from 'react-intl';
 import { Stack } from '@fluentui/react';
 import { styles } from './Welcome.styles';
 import { useHistory } from 'react-router-dom';
+import { AppContext } from 'providers/State';
 import Background from './images/bg.svg';
 import React from 'react';
 import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Welcome: React.FunctionComponent = () => {
-	const classes = useStyles();
+	const { state } = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
 	const history = useHistory();
 
 	return (

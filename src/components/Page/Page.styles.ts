@@ -26,14 +26,15 @@ const backgroundContainer: CreateCSSProperties = {
 	backgroundColor: (props: any) => props.backgroundColor
 };
 
-const fullPage: CSSProperties = {
+const fullPage: CreateCSSProperties = {
 	zIndex: 0,
 	position: 'absolute',
 	top: 0,
 	right: 0,
 	bottom: 0,
 	left: 0,
-	overflow: 'hidden'
+	overflow: 'hidden',
+	backgroundColor: (props: any) => props.isDarkMode ? '#181c19' : '#fff'
 };
 
 const fullPageBody: CSSProperties = {

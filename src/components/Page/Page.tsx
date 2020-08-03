@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/styles';
 import { styles } from './Page.styles';
 import { useHistory } from 'react-router';
 import React from 'react';
+import { AppContext } from 'providers/State';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
@@ -29,6 +30,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	mainPage,
 	from
 }) => {
+	const { state } = React.useContext(AppContext);
 	const hasPageHeader = Boolean(canGoBack || title);
 	const classes = useStyles({
 		hasPageHeader,
@@ -36,6 +38,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 		background,
 		backgroundColor,
 		noHorizontalContentPadding,
+		isDarkMode: state.settings.isDarkMode,
 		headerLinkIsString: !!(headerLink && typeof headerLink === 'string')
 	});
 	const history = useHistory();
@@ -82,7 +85,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	);
 
 	return (
-		<IonPage onClick={onClick}>
+		<IonPage className="ssss-sdfds" onClick={onClick}>
 			<IonContent>
 				{fullPage ? (
 					<Box className={clsx(classes.fullPage, className)}>

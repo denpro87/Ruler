@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import {
 	WELCOME_PAGE_BACKGROUND_INITIAL_HEIGHT,
 	WELCOME_PAGE_BACKGROUND_INITIAL_POSITION_RIGHT,
@@ -57,7 +57,7 @@ const content: CSSProperties = {
 	boxSizing: 'border-box'
 };
 
-const welcomeText: CSSProperties = {
+const welcomeText: CreateCSSProperties = {
 	maxWidth: pxToRem(159),
 	margin: '0 auto',
 	textAlign: 'center',
@@ -68,12 +68,12 @@ const welcomeText: CSSProperties = {
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.5,
-		letterSpacing: 'normal',
-		color: '#181c19'
-	})
+		letterSpacing: 'normal'
+	}),
+	color: (props: any) => props.isDarkMode ? '#fff' : '#181c19'
 };
 
-const signInWithSocialsText: CSSProperties = {
+const signInWithSocialsText: CreateCSSProperties = {
 	marginBottom: pxToRem(20),
 	...font({
 		fontSize: 15,
@@ -81,21 +81,22 @@ const signInWithSocialsText: CSSProperties = {
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.67,
-		letterSpacing: 'normal',
-		color: 'rgba(24, 28, 25, 0.5)'
-	})
+		letterSpacing: 'normal'
+	}),
+	color: (props: any) => (props.isDarkMode ? '#fff' : 'rgba(24, 28, 25, 0.5)'),
+	opacity: (props: any) => (props.isDarkMode ? 0.5 : 1)
 };
 
-const alreadyHaveAnAccountText: CSSProperties = {
+const alreadyHaveAnAccountText: CreateCSSProperties = {
 	...font({
 		fontSize: 15,
 		fontWeight: 600,
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.67,
-		letterSpacing: 'normal',
-		color: 'rgba(24, 28, 25, 0.5)'
-	})
+		letterSpacing: 'normal'
+	}),
+	color: (props: any) => (props.isDarkMode ? '#fff' : 'rgba(24, 28, 25, 0.5)')
 };
 
 export const styles = createStyles({
