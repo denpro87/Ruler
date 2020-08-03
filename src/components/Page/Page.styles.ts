@@ -1,7 +1,7 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { font, pxToRem } from 'styles';
 
-const pageBody: CSSProperties = {
+const pageBody: CreateCSSProperties = {
 	zIndex: 0,
 	position: 'absolute',
 	top: 0,
@@ -10,7 +10,8 @@ const pageBody: CSSProperties = {
 	minHeight: '100%',
 	display: 'flex',
 	flexDirection: 'column',
-	alignItems: 'stretch'
+	alignItems: 'stretch',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#fff')
 };
 
 const backgroundContainer: CreateCSSProperties = {

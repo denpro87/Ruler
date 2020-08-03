@@ -24,9 +24,9 @@ export const getColorFromColorType = (
 		case 'default':
 		default:
 			return {
-				linkColor: isDarkMode ? '#f8ca06' : LINK_GREEN_COLOR_TYPE_TEXT_COLOR,
-				hoveredLinkColor: isDarkMode ? '#f8ca06' : LINK_GREEN_COLOR_TYPE_HOVERED_TEXT_COLOR,
-				pressedLinkColor: isDarkMode ? '#f8ca06' : LINK_GREEN_COLOR_TYPE_PRESSED_TEXT_COLOR
+				linkColor: LINK_GREEN_COLOR_TYPE_TEXT_COLOR,
+				hoveredLinkColor: LINK_GREEN_COLOR_TYPE_HOVERED_TEXT_COLOR,
+				pressedLinkColor: LINK_GREEN_COLOR_TYPE_PRESSED_TEXT_COLOR
 			};
 	}
 };

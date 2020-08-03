@@ -4,11 +4,13 @@ import { styles } from './Login.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateEmail, validatePassword } from 'utils';
+import { AppContext } from 'providers/State';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const Login: React.FunctionComponent = () => {
-	const classes = useStyles();
+	const appState = React.useContext(AppContext).state;
+	const classes = useStyles({ isDarkMode: appState.settings.isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [state, setState] = React.useState({

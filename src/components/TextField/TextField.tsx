@@ -2,6 +2,7 @@ import { ITextFieldProps } from './TextField.types';
 import { Icon, IconButton } from 'components';
 import { InputAdornment, TextField as MuiTextField, makeStyles } from '@material-ui/core';
 import { styles } from './TextField.styles';
+import { AppContext } from 'providers/State';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -22,7 +23,8 @@ export const TextField: React.FunctionComponent<ITextFieldProps> = ({
 	selectProps,
 	...rest
 }) => {
-	const classes = useStyles();
+	const { state } = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
 
 	return (
 		<MuiTextField
