@@ -6,11 +6,14 @@ import { menuList } from './Settings.data';
 import { styles } from './Settings.styles';
 import { validateEmail } from 'utils';
 import React from 'react';
+import { AppContext } from 'providers/State';
 import clsx from 'clsx';
+
 const useStyles = makeStyles(styles);
 
 export const Settings: React.FunctionComponent = () => {
-	const classes = useStyles();
+	const { state } = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
 	const history = useHistory();
 	const [logout, setLogout] = React.useState(false);
 	const [deleteAccount, setDeleteAccount] = React.useState(false);

@@ -5,6 +5,7 @@ import { styles } from './DarkMode.styles';
 
 import { injectIntl } from 'react-intl';
 import React from 'react';
+import { AppContext } from 'providers/State';
 
 const useStyles = makeStyles(styles);
 
@@ -21,9 +22,19 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 		pickerItem: ''
 	};
 
+	static contextType = AppContext;
+
+	componentDidMount() {
+		this.setState({ dontUseDarkMode: this.context.state.settings.isDarkMode });
+	}
+
 	private handleAutomaticallyChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
 		if (checked) {
 			this.setState({ dontUseDarkMode: false, scheduledDarkMode: false });
+			this.context.dispatch({
+				type: 'UPDATE_SETTINGS',
+				payload: { isDarkMode: false }
+			});
 			// document.body.classList.toggle('dark', true);
 		} else {
 			// document.body.classList.toggle('dark', false);
@@ -36,11 +47,19 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 			this.setState({ automaticallyDarkMode: false, scheduledDarkMode: false });
 		}
 		this.setState({ dontUseDarkMode: checked });
+		this.context.dispatch({
+			type: 'UPDATE_SETTINGS',
+			payload: { isDarkMode: checked }
+		});
 	};
 
 	private handleScheduledChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
 		if (checked) {
 			this.setState({ automaticallyDarkMode: false, dontUseDarkMode: false });
+			this.context.dispatch({
+				type: 'UPDATE_SETTINGS',
+				payload: { isDarkMode: false }
+			});
 		}
 		this.setState({ scheduledDarkMode: checked });
 	};

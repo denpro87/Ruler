@@ -13,17 +13,25 @@ import { IntlProvider, Theming } from 'components';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { PrivateRoute } from './helpers/PrivateRoute';
-import { Provider } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 // import { configureStore } from './redux/Store';
-import { applyMiddleware, compose, createStore } from 'redux';
-import { rootReducer } from './redux/Reducers';
-import React, { useContext } from 'react';
-import thunk from 'redux-thunk';
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
-export const App: React.FunctionComponent = () => (
-	<Provider store={store}>
+import React from 'react';
+
+import { AppContext, getStorageData } from './providers/State';
+
+export const App: React.FunctionComponent = () => {
+	const { state } = React.useContext(AppContext);
+	const [isLoaded, setLoaded] = React.useState(state.appLoaded);
+	React.useEffect(() => {
+		getStorageData(state).then(() => {
+			setLoaded(state.appLoaded);
+		});
+	}, [state]);
+
+	React.useEffect(() => {
+		getStorageData(state);
+	}, []);
+	return !isLoaded ? null : (
 		<IntlProvider>
 			<Theming>
 				<CssBaseline />
@@ -92,5 +100,5 @@ export const App: React.FunctionComponent = () => (
 				</IonApp>
 			</Theming>
 		</IntlProvider>
-	</Provider>
-);
+	);
+};
