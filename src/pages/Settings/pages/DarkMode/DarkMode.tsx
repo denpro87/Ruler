@@ -24,9 +24,9 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 	private handleAutomaticallyChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
 		if (checked) {
 			this.setState({ dontUseDarkMode: false, scheduledDarkMode: false });
-			document.body.classList.toggle('dark', true);
+			// document.body.classList.toggle('dark', true);
 		} else {
-			document.body.classList.toggle('dark', false);
+			// document.body.classList.toggle('dark', false);
 		}
 		this.setState({ automaticallyDarkMode: checked });
 	};
