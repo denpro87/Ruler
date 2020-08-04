@@ -39,6 +39,7 @@ import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import { AppContext } from 'providers/State';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
 import React from 'react';
@@ -70,7 +71,8 @@ interface ISwitchState {
 // };
 
 export const Home: React.FunctionComponent<IHomeProps> = props => {
-	const classes = useStyles();
+	const { state } = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const initialSwitchState = {

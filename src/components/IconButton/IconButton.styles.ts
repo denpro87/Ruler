@@ -1,4 +1,4 @@
-import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
+import { CreateCSSProperties } from '@material-ui/styles';
 import {
 	DEFAULT_ICON_BUTTON_SIZE,
 	DEFAULT_ICON_LABEL_SIZE,
@@ -29,7 +29,7 @@ const iconButton: CreateCSSProperties = {
 		const shadows = [];
 
 		if (!props.noShadow) {
-			shadows.push(props.isDarkMode ? '0 10px 20px 0 #fff' : ICON_BUTTON_BOX_SHADOW);
+			shadows.push(props.isDarkMode ? '0 10px 20px 0 #000' : ICON_BUTTON_BOX_SHADOW);
 		}
 
 		if (props.outlined) {

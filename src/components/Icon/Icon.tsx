@@ -5,6 +5,7 @@ import { ReactSVG } from 'react-svg';
 import { getColorFromColorType } from './getColorFromColorType';
 import { makeStyles } from '@material-ui/core';
 import { styles } from './Icon.styles';
+import { AppContext } from 'providers/State';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -22,13 +23,15 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 		color,
 		fillColor,
 		strokeColor,
-		primaryColor = getColorFromColorType(colorType!, 'primary'),
+		primaryColor,
 		primaryFillColor,
 		primaryStrokeColor,
-		secondaryColor = getColorFromColorType(colorType!, 'secondary'),
+		secondaryColor,
 		secondaryFillColor,
 		secondaryStrokeColor
 	}) => {
+		const { state } = React.useContext(AppContext);
+
 		iconName = iconName.trim().toLowerCase();
 
 		if (iconName === CommonIcon.Forward) {
@@ -39,6 +42,11 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 			secondaryColor = BUTTON_LIGHT_GREEN_COLOR_TYPE_BACKGROUND_COLOR;
 		}
 
+		let tempPrimaryColor = primaryColor;
+		if (!primaryColor || primaryColor === 'black')
+			tempPrimaryColor = getColorFromColorType(colorType!, 'primary', state.settings.isDarkMode);
+		const tempSecondaryColor = secondaryColor ?? getColorFromColorType(colorType!, 'secondary', state.settings.isDarkMode);
+
 		const classes = useStyles({
 			width,
 			height,
@@ -46,10 +54,10 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 			color,
 			fillColor,
 			strokeColor,
-			primaryColor,
+			primaryColor: tempPrimaryColor,
 			primaryFillColor,
 			primaryStrokeColor,
-			secondaryColor,
+			secondaryColor: tempSecondaryColor,
 			secondaryFillColor,
 			secondaryStrokeColor
 		});

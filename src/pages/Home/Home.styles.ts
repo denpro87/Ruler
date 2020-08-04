@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, createStyles, CreateCSSProperties } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, percentage, pxToRem } from 'styles';
 import walletsLogoImage from './images/card-img.svg';
 export const mapViewer: CSSProperties = {
@@ -40,7 +40,7 @@ const findMeButton: CSSProperties = {
 	right: pxToRem(20)
 };
 
-const homeButtons: CSSProperties = {
+const homeButtons: CreateCSSProperties = {
 	position: 'absolute',
 	bottom: pxToRem(30),
 	left: '50%',
@@ -48,7 +48,7 @@ const homeButtons: CSSProperties = {
 	height: pxToRem(50),
 	borderRadius: pxToRem(15),
 	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 0, 0, 0.1)`,
-	backgroundColor: 'rgb(255, 255, 255)',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : 'rgb(255, 255, 255)'),
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center'
@@ -66,10 +66,10 @@ const homeButtonsText: CSSProperties = {
 	padding: `${pxToRem(7)} ${pxToRem(10)} 0 ${pxToRem(10)}`
 };
 
-const qrButton: CSSProperties = {
+const qrButton: CreateCSSProperties = {
 	width: pxToRem(72),
 	height: pxToRem(72),
-	border: `solid ${pxToRem(5)} #ffffff`,
+	border: (props: any) => (props.isDarkMode ? `solid ${pxToRem(5)} #181c19` : `solid ${pxToRem(5)} #ffffff`),
 	backgroundColor: '#00b559',
 	boxShadow: 'none',
 	margin: `0 ${pxToRem(6)} 0 ${pxToRem(7)}`
@@ -83,22 +83,22 @@ const filterButton: CSSProperties = {
 	marginRight: pxToRem(10)
 };
 
-const closeIconButton: CSSProperties = {
+const closeIconButton: CreateCSSProperties = {
 	position: 'absolute',
 	bottom: pxToRem(30),
 	left: pxToRem(20),
 	borderRadius: `0 0 ${pxToRem(15)} ${pxToRem(15)}`,
 	'&:hover': {
-		backgroundColor: '#ffffff'
+		backgroundColor: (props: any) => (props.isDarkMode ? '#000' : '#ffffff')
 	}
 };
 
-const vehicleIconButton: CSSProperties = {
+const vehicleIconButton: CreateCSSProperties = {
 	position: 'absolute',
 	bottom: pxToRem(30),
 	left: pxToRem(20),
 	'&:hover': {
-		backgroundColor: '#ffffff'
+		backgroundColor: (props: any) => (props.isDarkMode ? '#000' : '#ffffff')
 	}
 };
 
@@ -413,19 +413,19 @@ const circleWithVehicleNumber: CSSProperties = {
 	alignItems: 'center'
 };
 
-const circleWithVehicleIcon: CSSProperties = {
+const circleWithVehicleIcon: CreateCSSProperties = {
 	borderRadius: percentage(0.5),
-	backgroundColor: '#ffffff',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff'),
 	position: 'relative',
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center'
 };
 
-const vehicleIconInActive: CSSProperties = {
+const vehicleIconInActive: CreateCSSProperties = {
 	width: pxToRem(40),
 	height: pxToRem(40),
-	border: `solid ${pxToRem(2)} #000000`
+	border: (props: any) => (props.isDarkMode ? `solid ${pxToRem(2)} #fff` : `solid ${pxToRem(2)} #000`)
 };
 
 const vehicleIconActive: CSSProperties = {

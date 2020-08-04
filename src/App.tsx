@@ -28,9 +28,6 @@ export const App: React.FunctionComponent = () => {
 		});
 	}, [state]);
 
-	React.useEffect(() => {
-		getStorageData(state);
-	}, []);
 	return !isLoaded ? null : (
 		<IntlProvider>
 			<Theming>

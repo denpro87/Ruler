@@ -2,13 +2,15 @@ import { Box, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemTex
 import { IMenuProps } from './Menu.types';
 import { Icon, IconButton } from 'components';
 import { IntlShape, useIntl } from 'react-intl';
-import { listItemIcon, styles } from './Menu.styles';
+import { styles } from './Menu.styles';
 import { menuItems } from './Menu.data';
+import { AppContext } from 'providers/State';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClose, menuItemClick }) => {
-	const classes = useStyles();
+	const { state } = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
 	const { formatMessage }: IntlShape = useIntl();
 
 	const renderMenuList = (): JSX.Element => (
@@ -17,7 +19,7 @@ export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClos
 				{menuItems.map((item, index) => (
 					<ListItem key={item.text} button className={classes.listItem} onClick={(): void => menuItemClick(item.href)}>
 						{/* ListItemIcon classname doesn't work??? */}
-						<ListItemIcon className={classes.listItemIcon} style={listItemIcon}>
+						<ListItemIcon className={classes.listItemIcon}>
 							<Icon {...item.iconProps} />
 						</ListItemIcon>
 
