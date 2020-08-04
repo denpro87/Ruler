@@ -61,7 +61,7 @@ export const PasswordInput: React.FunctionComponent<ITextFieldProps> = props => 
 			inputProps={{
 				endAdornment: (
 					<InputAdornment position="end">
-						<IconButton iconName="eye" onClick={togglePasswordMask} />
+						<IconButton colorType="green" iconName="eye" onClick={togglePasswordMask} />
 					</InputAdornment>
 				)
 			}}

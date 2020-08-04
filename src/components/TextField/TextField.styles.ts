@@ -32,7 +32,8 @@ const textFieldRoot: CreateCSSProperties = {
 		fontSize: pxToRem(15),
 		fontWeight: 600,
 		lineHeight: 1.67,
-		color: 'rgba(24, 28, 25, 0.5) !important'
+		color: (props: any) => (props.isDarkMode ? '#fff' : 'rgba(24, 28, 25, 0.5) !important'),
+		opacity: (props: any) => (props.isDarkMode ? 0.5 : 1)
 	},
 	'& .MuiSelect-selectMenu:focus': {
 		backgroundColor: 'transparent'

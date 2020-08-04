@@ -39,7 +39,7 @@ const iconButton: CreateCSSProperties = {
 		return shadows.join(',');
 	},
 	'&:hover': {
-		backgroundColor: '#f2f2f2'
+		backgroundColor: (props: any) => (props.isDarkMode ? '#000' : '#f2f2f2')
 	},
 	'& .MuiTouchRipple-child': {
 		borderRadius: pxToRem(15)
@@ -50,16 +50,16 @@ const iconButton: CreateCSSProperties = {
 	}
 };
 
-const iconLabel: CSSProperties = {
+const iconLabel: CreateCSSProperties = {
 	...font({
 		fontSize: 10,
 		fontWeight: 600,
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.5,
-		letterSpacing: 'normal',
-		color: '#181c19'
+		letterSpacing: 'normal'
 	}),
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 	opacity: 0.5,
 	height: 15
 };

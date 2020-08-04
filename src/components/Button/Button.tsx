@@ -19,7 +19,7 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 	pressedTextColor,
 	pressedBackgroundColor,
 	disabledTextColor = textColor,
-	disabledBackgroundColor = getColorFromColorType(colorType!, 'disabledBackground') || backgroundColor,
+	disabledBackgroundColor,
 	href,
 	iconPosition,
 	iconName,
