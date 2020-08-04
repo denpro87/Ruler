@@ -4,6 +4,7 @@ import { IconButton, Image, Text } from 'components';
 import { IonImg } from '@ionic/react';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Dialog.styles';
+import { AppContext } from 'providers/State';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
@@ -19,7 +20,8 @@ export const Dialog: React.FunctionComponent<IDialogProps> = ({
 	onImageDelete,
 	...restProps
 }) => {
-	const classes = useStyles({ image });
+	const { state } = React.useContext(AppContext);
+	const classes = useStyles({ image, isDarkMode: state.settings.isDarkMode });
 	const [imagePath, setImagePath] = React.useState(image);
 
 	React.useEffect(() => {

@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
@@ -19,22 +19,23 @@ const areasTextContainer: CSSProperties = {
 	marginBottom: 0
 };
 
-const areasText: CSSProperties = {
+const areasText: CreateCSSProperties = {
 	...font({
 		fontSize: 15,
 		fontWeight: 600,
-		lineHeight: 1.67,
-		color: '#181c19'
-	})
+		lineHeight: 1.67
+	}),
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 };
 
-const areasSubtext: CSSProperties = {
+const areasSubtext: CreateCSSProperties = {
 	...font({
 		fontSize: 10,
 		fontWeight: 600,
-		lineHeight: 1.5,
-		color: 'rgba(24, 28, 25, 0.5)'
-	})
+		lineHeight: 1.5
+	}),
+	color: (props: any) => (props.isDarkMode ? '#fff' : 'rgba(24, 28, 25, 0.5)'),
+	opacity: (props: any) => (props.isDarkMode ? 0.5 : 1)
 };
 
 export const styles = createStyles({

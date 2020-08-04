@@ -27,11 +27,11 @@ const vehicleButtonGroup: CSSProperties = {
 	left: pxToRem(20)
 };
 
-const vehicleButtonGroupWrapper: CSSProperties = {
+const vehicleButtonGroupWrapper: CreateCSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
 	borderRadius: `${pxToRem(15)} ${pxToRem(15)} 0 0`,
-	backgroundColor: 'rgb(255, 255, 255)'
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : 'rgb(255, 255, 255)')
 };
 
 const findMeButton: CSSProperties = {
@@ -151,12 +151,12 @@ const sheetButton: CSSProperties = {
 	fontWeight: 'bold'
 };
 
-const sheetText: CSSProperties = {
+const sheetText: CreateCSSProperties = {
 	fontFamily: DEFAULT_FONT_FAMILY,
 	fontSize: pxToRem(15),
 	fontWeight: 600,
 	lineHeight: 1.67,
-	color: '#181c19',
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 	opacity: 0.5,
 	padding: `0 0 ${pxToRem(20)} 0`
 };

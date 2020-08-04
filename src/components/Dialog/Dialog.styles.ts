@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, percentage, pxToRem } from 'styles';
 
@@ -18,14 +18,15 @@ const titleTextStyle: CSSProperties = {
 	}
 };
 
-const modalPaper: CSSProperties = {
+const modalPaper: CreateCSSProperties = {
 	width: pxToRem(290),
 	boxShadow: 'none',
 	borderRadius: pxToRem(30),
 	color: 'black',
 	overflowY: 'visible',
 	textAlign: 'center',
-	padding: `${pxToRem(30)} 0`
+	padding: `${pxToRem(30)} 0`,
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : 'rgb(255, 255, 255)')
 };
 
 const imagePaper: CSSProperties = {

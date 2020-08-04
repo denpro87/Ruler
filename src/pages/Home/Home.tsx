@@ -610,15 +610,33 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				onBottomSheetChange={handleReportBottomSheetChange}
 			>
 				<Typography className={classes.sheetText}>{formatMessage({ id: 'get_help.add_report_sheet.description' })}</Typography>
-				<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
-					{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
-				</LightGreenButton>
-				<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
-					{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
-				</LightGreenButton>
-				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
-					{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
-				</LightGreenButton>
+				{state.settings.isDarkMode ? (
+					<GreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
+						{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
+					</GreenButton>
+				) : (
+					<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
+						{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
+					</LightGreenButton>
+				)}
+				{state.settings.isDarkMode ? (
+					<GreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
+						{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
+					</GreenButton>
+				) : (
+					<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
+						{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
+					</LightGreenButton>
+				)}
+				{state.settings.isDarkMode ? (
+					<GreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
+						{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
+					</GreenButton>
+				) : (
+					<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
+						{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
+					</LightGreenButton>
+				)}
 			</BottomSheet>
 			<BottomSheet
 				hasCloseButton

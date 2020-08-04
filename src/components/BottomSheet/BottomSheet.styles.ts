@@ -10,7 +10,7 @@ const sheetContainer: CSSProperties = {
 };
 
 const sheetWrapper: CreateCSSProperties = {
-	backgroundColor: (props: any) => (props.darkMode ? 'rgba(24, 28, 25, 0.5)' : undefined),
+	backgroundColor: (props: any) => (props.darkMode ? 'rgba(24, 28, 25, 0.5)' : props.isDarkMode ? '#303331' : undefined),
 	padding: (props: any) => (props.darkMode ? `${pxToRem(10)} 0 0 0` : `${pxToRem(15)} ${pxToRem(20)} ${pxToRem(5)} ${pxToRem(25)}`)
 };
 
@@ -42,7 +42,7 @@ const blackBar: CreateCSSProperties = {
 	width: pxToRem(37),
 	height: pxToRem(4),
 	borderRadius: pxToRem(5),
-	background: (props: any) => (props.darkMode ? '#ffffff' : '#181c19')
+	background: (props: any) => (props.darkMode || props.isDarkMode ? '#ffffff' : '#181c19')
 };
 
 const sheetTitle: CreateCSSProperties = {
@@ -50,7 +50,7 @@ const sheetTitle: CreateCSSProperties = {
 	fontSize: pxToRem(20),
 	fontWeight: 'bold',
 	lineHeight: 1.5,
-	color: (props: any) => (props.darkMode ? '#ffffff' : '#181c19'),
+	color: (props: any) => (props.darkMode || props.isDarkMode ? '#ffffff' : '#181c19'),
 	padding: (props: any) => (props.darkMode ? `${pxToRem(31)} 0 ${pxToRem(10)} 0` : `${pxToRem(10)} 0 ${pxToRem(5)} 0`)
 };
 
