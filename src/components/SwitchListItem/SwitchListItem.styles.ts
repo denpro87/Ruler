@@ -13,10 +13,10 @@ const switchLabel: CreateCSSProperties = {
 			fontStretch: 'normal',
 			fontStyle: 'normal',
 			lineHeight: 1.67,
-			letterSpacing: 'normal',
-			color: '#181c19'
+			letterSpacing: 'normal'
 		}),
 		fontSize: pxToRem(15),
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 		opacity: (props: any) => (props.disabled ? 0.5 : 1)
 	},
 	margin: 0

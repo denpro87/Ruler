@@ -1,6 +1,7 @@
 import { GreenIcon, Image, Switch } from 'components';
 import { ISwitchListItemProps } from './SwitchListItem.types';
 import { ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
+import { AppContext } from 'providers/State';
 import { styles } from './SwitchListItem.styles';
 import React from 'react';
 
@@ -15,8 +16,9 @@ export const SwitchListItem: React.FunctionComponent<ISwitchListItemProps> = ({
 	iconName,
 	imageUrl
 }) => {
+	const { state } = React.useContext(AppContext);
 	const hasIcon = iconName || imageUrl;
-	const classes = useStyles({ disabled, hasIcon });
+	const classes = useStyles({ disabled, hasIcon, isDarkMode: state.settings.isDarkMode });
 
 	return (
 		<ListItem className={classes.li}>

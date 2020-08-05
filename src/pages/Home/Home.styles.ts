@@ -213,14 +213,14 @@ const activeBackground: CSSProperties = {
 	backgroundColor: '#f8ca06'
 };
 
-const inActiveBackground: CSSProperties = {
-	backgroundColor: '#ffffff'
+const inActiveBackground: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff')
 };
 
-const smallText: CSSProperties = {
+const smallText: CreateCSSProperties = {
 	fontWeight: 600,
 	lineHeight: 1.5,
-	color: 'rgba(24, 28, 25, 0.5)',
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)'),
 	fontSize: pxToRem(10)
 };
 
@@ -242,8 +242,8 @@ const engineTypeText: CSSProperties = {
 	paddingBottom: pxToRem(14)
 };
 
-const resetButton: CSSProperties = {
-	backgroundColor: '#ffffff',
+const resetButton: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff'),
 	fontSize: pxToRem(15),
 	color: '#00b559',
 	fontWeight: 'bold',
@@ -254,7 +254,7 @@ const resetButton: CSSProperties = {
 	borderRadius: pxToRem(15),
 	'&:hover': {
 		color: '#00b559',
-		backgroundColor: 'rgba(0, 0, 0, 0.04)'
+		backgroundColor: (props: any) => (props.isDarkMode ? '#000' : 'rgba(0, 0, 0, 0.04)')
 	}
 };
 
@@ -314,11 +314,11 @@ const QRcodeImageContainer: CSSProperties = {
 	overflow: 'hidden'
 };
 
-const percentageText: CSSProperties = {
+const percentageText: CreateCSSProperties = {
 	fontSize: pxToRem(15),
 	fontWeight: 600,
 	lineHeight: 1.67,
-	color: '#181c19'
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 };
 
 const footer: CSSProperties = {
@@ -462,19 +462,19 @@ const infoWrapper: CSSProperties = {
 	alignItems: 'center'
 };
 
-const propertyText: CSSProperties = {
+const propertyText: CreateCSSProperties = {
 	marginTop: 10,
 	fontSize: pxToRem(15),
 	lineHeight: 1.67,
 	fontWeight: 600,
-	color: '#181c19'
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 };
 
-const descriptionText: CSSProperties = {
+const descriptionText: CreateCSSProperties = {
 	fontSize: pxToRem(10),
 	lineHeight: 1.67,
 	fontWeight: 600,
-	color: 'rgba(24, 28, 25, 0.5)'
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)')
 };
 
 const vehicleInfoFooter: CSSProperties = {
@@ -558,25 +558,25 @@ const rulerNumberText: CSSProperties = {
 	fontSize: pxToRem(20)
 };
 
-const creditCardsTextWrapper: CSSProperties = {
+const creditCardsTextWrapper: CreateCSSProperties = {
 	textAlign: 'left',
 	'& span': {
-		color: 'rgba(24, 28, 25, 0.5)',
+		color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)'),
 		lineHeight: 1.5,
 		fontWeight: 600,
 		fontSize: pxToRem(10)
 	}
 };
 
-const addPaymentMethodButton: CSSProperties = {
-	backgroundColor: '#ffffff',
+const addPaymentMethodButton: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff'),
 	fontSize: pxToRem(15),
 	color: '#00b559',
 	fontWeight: 'bold',
 	lineHeight: 1.67,
 	'&:hover': {
 		color: '#00b559',
-		backgroundColor: 'rgba(0, 0, 0, 0.04)'
+		backgroundColor: (props: any) => (props.isDarkMode ? '#000' : 'rgba(0, 0, 0, 0.04)')
 	}
 };
 
@@ -702,13 +702,13 @@ const reserveFooter: CSSProperties = {
 	padding: `${pxToRem(93)} 0 ${pxToRem(25)}`
 };
 
-const paymentMethodTitleTextWrapper: CSSProperties = {
+const paymentMethodTitleTextWrapper: CreateCSSProperties = {
 	paddingTop: pxToRem(20),
 	'& span': {
 		fontSize: pxToRem(20),
 		fontWeight: 'bold',
 		lineHeight: 1.5,
-		color: '#181c19'
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 	}
 };
 export const styles = createStyles({

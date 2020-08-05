@@ -1,5 +1,6 @@
 import { ITextProps, ParagraphProps, TextStyles, TitleProps } from './Text.types';
 import { Typography, makeStyles } from '@material-ui/core';
+import { AppContext } from 'providers/State';
 import { styles } from './Text.styles';
 import React from 'react';
 import clsx from 'clsx';
@@ -47,6 +48,7 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 		children
 	} = props;
 
+	const { state } = React.useContext(AppContext);
 	const _makeStyles = React.useCallback(() => makeStyles(styles(inheritStyles)), [inheritStyles]);
 	const useStyles = _makeStyles();
 
@@ -59,6 +61,7 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 		lineHeight,
 		fontFamily,
 		letterSpacing,
+		isDarkMode: state.settings.isDarkMode,
 		color
 	});
 
