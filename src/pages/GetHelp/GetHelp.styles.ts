@@ -1,8 +1,8 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, createStyles, CreateCSSProperties } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
-const listItem: CSSProperties = {
-	color: '#181c19',
+const listItem: CreateCSSProperties = {
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 	display: 'flex',
 	flexDirection: 'column',
 	alignItems: 'flex-start',
@@ -33,12 +33,12 @@ const backButton: CSSProperties = {
 	fontWeight: 'bold'
 };
 
-const sheetText: CSSProperties = {
+const sheetText: CreateCSSProperties = {
 	fontFamily: DEFAULT_FONT_FAMILY,
 	fontSize: pxToRem(15),
 	fontWeight: 600,
 	lineHeight: 1.67,
-	color: '#181c19',
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 	opacity: 0.5,
 	padding: `0 0 ${pxToRem(20)} 0`,
 	textAlign: 'center'
