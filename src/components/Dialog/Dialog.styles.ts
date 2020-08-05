@@ -2,16 +2,16 @@ import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, percentage, pxToRem } from 'styles';
 
-const titleTextStyle: CSSProperties = {
+const titleTextStyle: CreateCSSProperties = {
 	...font({
 		fontSize: 20,
 		fontWeight: 'bold',
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.5,
-		letterSpacing: 'normal',
-		color: '#181c19'
+		letterSpacing: 'normal'
 	}),
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 	padding: `0 ${pxToRem(30)}`,
 	'&.MuiTypography-root': {
 		whiteSpace: 'pre-wrap'

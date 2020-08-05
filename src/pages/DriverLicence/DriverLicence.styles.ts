@@ -27,8 +27,8 @@ const bannerBox: CreateCSSProperties = {
 	}
 };
 
-const addButton: CSSProperties = {
-	backgroundColor: '#ffffff',
+const addButton: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff'),
 	fontSize: pxToRem(15),
 	color: '#00b559',
 	fontWeight: 'bold',
@@ -39,7 +39,7 @@ const addButton: CSSProperties = {
 	borderRadius: pxToRem(15),
 	'&:hover': {
 		color: '#00b559',
-		backgroundColor: 'rgba(0, 0, 0, 0.04)'
+		backgroundColor: (props: any) => (props.isDarkMode ? '#000' : 'rgba(0, 0, 0, 0.04)')
 	}
 };
 
@@ -75,9 +75,9 @@ const submitButton: CSSProperties = {
 	}
 };
 
-const description: CSSProperties = {
+const description: CreateCSSProperties = {
 	fontSize: pxToRem(15),
-	color: 'rgba(24, 28, 25, 0.5)',
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5) !important' : 'rgba(24, 28, 25, 0.5) !important'),
 	fontWeight: 600,
 	lineHeight: 1.67
 };

@@ -10,15 +10,15 @@ const sheetContainer: CSSProperties = {
 };
 
 const sheetWrapper: CreateCSSProperties = {
-	backgroundColor: (props: any) => (props.darkMode ? 'rgba(24, 28, 25, 0.5)' : props.isDarkMode ? '#303331' : undefined),
+	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : props.darkMode ? 'rgba(24, 28, 25, 0.5)' : undefined),
 	padding: (props: any) => (props.darkMode ? `${pxToRem(10)} 0 0 0` : `${pxToRem(15)} ${pxToRem(20)} ${pxToRem(5)} ${pxToRem(25)}`)
 };
 
-const outsideWrapper: CSSProperties = {
+const outsideWrapper: CreateCSSProperties = {
 	position: 'absolute',
 	top: pxToRem(-10),
 	left: pxToRem(16),
-	backgroundColor: 'rgba(255, 255, 255, 0.6)',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#505652' : 'rgba(255, 255, 255, 0.6)'),
 	width: `calc(100% - ${pxToRem(32)})`,
 	minHeight: pxToRem(10),
 	borderTopLeftRadius: pxToRem(15),

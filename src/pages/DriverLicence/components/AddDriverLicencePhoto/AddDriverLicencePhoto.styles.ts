@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, createStyles, CreateCSSProperties } from '@material-ui/styles';
 import { pxToRem } from 'styles';
 
 const description: CSSProperties = {
@@ -77,14 +77,14 @@ const cardText: CSSProperties = {
 	textAlign: 'center'
 };
 
-const descriptionText: CSSProperties = {
+const descriptionText: CreateCSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,
-	color: 'rgba(24, 28, 25, 0.5)',
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5) !important' : 'rgba(24, 28, 25, 0.5) !important'),
 	textAlign: 'center'
 };
 
-const submitButton: CSSProperties = {
+const submitButton: CreateCSSProperties = {
 	borderRadius: pxToRem(15),
 	height: pxToRem(50),
 	textTransform: 'none',
@@ -93,8 +93,8 @@ const submitButton: CSSProperties = {
 	color: '#ffffff',
 	marginTop: pxToRem(20),
 	'&.Mui-disabled': {
-		backgroundColor: '#caf1dd',
-		color: '#ffffff'
+		backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : '#caf1dd'),
+		color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : '#ffffff')
 	},
 	'&:hover': {
 		backgroundColor: 'rgba(0, 181, 89, 0.8)'
@@ -161,10 +161,10 @@ const driverLicencePhotoContainer: CSSProperties = {
 	margin: '0 auto'
 };
 
-const footerContainer: CSSProperties = {
+const footerContainer: CreateCSSProperties = {
 	borderTopLeftRadius: pxToRem(15),
 	borderTopRightRadius: pxToRem(15),
-	backgroundColor: 'rgba(255, 255, 255, 0.85)'
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c1980' : 'rgba(255, 255, 255, 0.85)')
 };
 
 const imageGallery: CSSProperties = {
@@ -187,9 +187,9 @@ const iconButtonGroup: CSSProperties = {
 	alignItems: 'center'
 };
 
-const midIconButton: CSSProperties = {
+const midIconButton: CreateCSSProperties = {
 	borderRadius: pxToRem(20),
-	backgroundColor: '#ffffff',
+	backgroundColor: (props: any) => (props.isDarkMode ? '$33000000' : '#ffffff'),
 	padding: pxToRem(20)
 };
 
@@ -215,9 +215,9 @@ const takenImageActive: CSSProperties = {
 	border: `solid ${pxToRem(2)} #00b559`
 };
 
-const leftRightIconButton: CSSProperties = {
+const leftRightIconButton: CreateCSSProperties = {
 	borderRadius: pxToRem(15),
-	backgroundColor: '#ffffff',
+	backgroundColor: (props: any) => (props.isDarkMode ? '$33000000' : '#ffffff'),
 	padding: pxToRem(10),
 	boxShadow: 'none',
 	'&:hover': {
