@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
@@ -22,23 +22,23 @@ const articleListItem: CSSProperties = {
 	marginBottom: pxToRem(11)
 };
 
-const articleText: CSSProperties = {
+const articleText: CreateCSSProperties = {
 	...font({
 		fontSize: 10,
 		fontWeight: 600,
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.5,
-		letterSpacing: 'normal',
-		color: 'rgba(24, 28, 25, 0.5)'
-	})
+		letterSpacing: 'normal'
+	}),
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5) !important' : 'rgba(24, 28, 25, 0.5) !important')
 };
 
 const imageBox: CSSProperties = {
 	marginRight: pxToRem(20)
 };
 
-const articleDescription: CSSProperties = {
+const articleDescription: CreateCSSProperties = {
 	display: 'flex !important',
 	justifyContent: 'space-between',
 	flexDirection: 'row',
@@ -49,9 +49,9 @@ const articleDescription: CSSProperties = {
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.5,
-		letterSpacing: 'normal',
-		color: 'rgba(24, 28, 25, 0.5)'
-	})
+		letterSpacing: 'normal'
+	}),
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5) !important' : 'rgba(24, 28, 25, 0.5) !important')
 };
 
 const articleTime: CSSProperties = {
