@@ -79,7 +79,7 @@ export async function getStorageData(state: IState) {
 	await Storage.get({ key: 'appstorage' }).then(r => {
 		let storage = JSON.parse(r.value + '');
 		if (storage != null) {
-			state.settings = storage.settings;
+			state.settings = storage.settings ?? state.settings;
 			state.logged = storage.logged;
 			console.log('storage loaded: ', storage);
 		} else {

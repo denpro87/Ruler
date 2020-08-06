@@ -1,14 +1,20 @@
-import { BlackIcon } from 'components';
+import { BlackIcon, WhiteIcon } from 'components';
 import { ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR } from 'components/Icon';
 import { IReportProps } from './Report.types';
 import { Typography, makeStyles } from '@material-ui/core';
+import { AppContext } from 'providers/State';
 import { styles } from './Report.styles';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
 
 export const Report: React.FunctionComponent<IReportProps> = props => {
-	const classes = useStyles(props);
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ ...props, isDarkMode });
 
 	return (
 		<div className={classes.reportContainer}>
@@ -25,7 +31,11 @@ export const Report: React.FunctionComponent<IReportProps> = props => {
 					</div>
 				</div>
 				<div className={classes.reportIconWrapper}>
-					<BlackIcon iconName="notification" {...(props.type === 'new' && { secondaryColor: ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR })} />
+					{isDarkMode ? (
+						<WhiteIcon iconName="notification" {...(props.type === 'new' && { secondaryColor: ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR })} />
+					) : (
+						<BlackIcon iconName="notification" {...(props.type === 'new' && { secondaryColor: ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR })} />
+					)}
 					{props.type === 'new' && <div className={classes.reportBadge} />}
 				</div>
 			</div>

@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles, CreateCSSProperties } from '@material-ui/styles';
+import { createStyles, CreateCSSProperties } from '@material-ui/styles';
 import { pxToRem } from 'styles';
 
 const divider: CreateCSSProperties = {

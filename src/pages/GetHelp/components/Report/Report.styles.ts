@@ -1,7 +1,7 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, dropShadow, pxToRem } from 'styles';
 
-const content: CSSProperties = {
+const content: CreateCSSProperties = {
 	fontSize: pxToRem(15),
 	fontFamily: DEFAULT_FONT_FAMILY,
 	opacity: 0.5,
@@ -9,19 +9,20 @@ const content: CSSProperties = {
 	fontWeight: 600,
 	marginTop: pxToRem(5)
 };
-const reportContainer: CSSProperties = {
-	backgroundColor: '#f3f3f3',
+const reportContainer: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#242725' : '#f3f3f3'),
 	marginTop: pxToRem(20),
 	borderRadius: pxToRem(15)
 };
-const reportHeaderWrapper: CSSProperties = {
-	backgroundColor: '#ffffff',
+const reportHeaderWrapper: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#242725' : '#ffffff'),
 	padding: `${pxToRem(20)} ${pxToRem(20)} ${pxToRem(20)} ${pxToRem(10)}`,
 	display: 'flex',
 	flexDirection: 'row',
 	justifyContent: 'space-between',
 	alignItems: 'center',
 	borderRadius: pxToRem(15),
+	boxShadow: (props: any) => (props.isDarkMode ? '0 10px 40px 0 #181c19' : 'none'),
 	...dropShadow('0 10px 40px rgba(0, 0, 0, 0.1)')
 };
 const reportTitleWrapper: CreateCSSProperties = {
@@ -47,12 +48,14 @@ const reportTitleWrapper: CreateCSSProperties = {
 		'& h6': {
 			opacity: '1 !important',
 			marginTop: pxToRem(2),
-			marginBottom: pxToRem(3)
+			marginBottom: pxToRem(3),
+			color: (props: any) => (props.isDarkMode ? '#fff' : 'inherit')
 		},
 		'& p': {
 			fontSize: pxToRem(10),
 			lineHeight: 1.5,
-			marginTop: 0
+			marginTop: 0,
+			color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'inherit')
 		}
 	}
 };
@@ -65,7 +68,7 @@ const reportIconWrapper: CreateCSSProperties = {
 	alignItems: 'center',
 	position: 'relative',
 	boxShadow: '0 10px 40px 0 rgba(0, 0, 0, 0.1)',
-	backgroundColor: (props: any) => (props.type === 'new' ? '#f8ca06' : '#ffffff')
+	backgroundColor: (props: any) => (props.type === 'new' ? '#f8ca06' : props.isDarkMode ? '#303331' : '#ffffff')
 };
 const reportDataWrapper: CSSProperties = {
 	padding: `${pxToRem(5)} 0 ${pxToRem(20)} 0`,
@@ -83,12 +86,12 @@ const reportDataWrapper: CSSProperties = {
 		}
 	}
 };
-const reportDataText: CSSProperties = {
+const reportDataText: CreateCSSProperties = {
 	fontSize: pxToRem(10),
 	fontFamily: DEFAULT_FONT_FAMILY,
 	lineHeight: 1.5,
 	fontWeight: 600,
-	color: '#181c19'
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 };
 const reportBadge: CSSProperties = {
 	width: pxToRem(6),
