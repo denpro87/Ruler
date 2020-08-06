@@ -1,9 +1,21 @@
 import { DEFAULT_FONT_SIZE } from './variables';
 import { FontSize } from 'types';
+import { Plugins } from '@capacitor/core';
+const { Storage } = Plugins;
 
 export const initial = <T>(value: T | 'initial', initialValue: T): T => (value === undefined || value === 'initial' ? initialValue : value);
 
 export const percentage = (x: number): string => `${x * 100}%`;
+
+export const isDarkMode = async () => {
+	let isDarkMode = false;
+	const appData = await Storage.get({ key: 'appstorage' });
+	if (appData) {
+		let storage = JSON.parse(appData + '');
+		if (storage && storage.settings) isDarkMode = storage.settings;
+	}
+	return isDarkMode;
+}
 
 export const pxToRem = (x: number): string => (x <= 1 && x >= -1 ? (x === 0 ? '0' : '1px') : `${x / 16}rem`);
 

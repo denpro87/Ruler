@@ -1,6 +1,7 @@
 import { List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
 import { Page, SearchBox } from 'components';
 import { Link as RouterLink } from 'react-router-dom';
+import { AppContext } from 'providers/State';
 import { styles } from './Faq.styles';
 
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -61,7 +62,12 @@ const types = [
 ];
 
 export const Faq: React.FunctionComponent = () => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode });
 	const [questions, setQuestions] = React.useState(defaultQuestions);
 
 	const handleSearchBoxChange = (event: React.ChangeEvent<HTMLInputElement>) => {

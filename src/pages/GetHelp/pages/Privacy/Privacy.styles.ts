@@ -1,5 +1,5 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
-import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
+import { CSSProperties, createStyles, CreateCSSProperties } from '@material-ui/styles';
+import { DEFAULT_FONT_FAMILY, pxToRem, isDarkMode } from 'styles';
 
 const list: CSSProperties = {
 	padding: 0
@@ -25,14 +25,14 @@ const text: CSSProperties = {
 const content: CSSProperties = {
 	opacity: 0.5
 };
-const subHeader: CSSProperties = {
+const subHeader: CreateCSSProperties = {
 	fontSize: pxToRem(20),
 	fontWeight: 'bold',
 	lineHeight: 1.5,
 	marginLeft: 0,
 	marginBottom: pxToRem(11),
 	marginTop: pxToRem(15),
-	color: '#181c19',
+	color: isDarkMode ? '#fff' : '#181c19',
 	fontFamily: DEFAULT_FONT_FAMILY
 };
 export const styles = createStyles({

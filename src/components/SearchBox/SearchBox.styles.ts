@@ -1,23 +1,24 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, createStyles, CreateCSSProperties } from '@material-ui/styles';
 
-const inputWrapper: CSSProperties = {
+const inputWrapper: CreateCSSProperties = {
 	width: '100%',
 	height: '36px',
 	borderRadius: '10px',
-	backgroundColor: '#f3f3f3',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#242725' : '#f3f3f3'),
 	position: 'relative',
 	marginTop: '20px',
 	marginBottom: '20px'
 };
 
-const searchIcon: CSSProperties = {
+const searchIcon: CreateCSSProperties = {
 	height: '100%',
 	position: 'absolute',
 	left: '6px',
 	pointerEvents: 'none',
 	display: 'flex',
 	alignItems: 'center',
-	justifyContent: 'center'
+	justifyContent: 'center',
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.33)' : 'black')
 };
 
 const inputRoot: CSSProperties = {
