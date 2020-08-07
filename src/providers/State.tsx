@@ -1,8 +1,10 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 import { IAction, IState } from './IState';
+import reducer from 'redux/Reducers';
 import { Plugins } from '@capacitor/core';
 
 const { Storage } = Plugins;
+
 const initialState: IState = {
 	settings: {
 		isDarkMode: false
@@ -33,34 +35,6 @@ interface IContextProps {
 	state: IState;
 	dispatch: React.Dispatch<IAction>;
 }
-
-const reducer = (state: IState, action: IAction) => {
-	switch (action.type) {
-		case 'UPDATE_SETTINGS': {
-			return { ...state, settings: action.payload };
-		}
-		case 'LOGOUT': {
-			Storage.clear().then(() => {
-				console.log('storage cleaned');
-			});
-			return { ...state, user: null, salon: null, wizard: true, appLoaded: null, code: null, logged: null };
-		}
-	}
-	return state;
-};
-
-type Dispatch = React.Dispatch<IAction>;
-export const login = async (dispatch: Dispatch, data: { firstname: string; lastname: string; phone: string }) => {
-	dispatch({ type: 'LOGIN', payload: data });
-};
-
-export const register = async (dispatch: Dispatch, data: { firstname: string | null; lastname: string | null; phone: string | null }) => {
-	dispatch({ type: 'REGISTER', payload: data });
-};
-
-export const logout = async (dispatch: Dispatch) => {
-	dispatch({ type: 'LOGOUT' });
-};
 
 /*** reducer alternativo, che ogni volta che viene chiamato logga ***/
 const logger = (reducer: any) => {
