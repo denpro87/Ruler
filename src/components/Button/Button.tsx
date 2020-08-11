@@ -1,10 +1,10 @@
+import { AppContext } from 'providers/State';
 import { ColoredButtonProps, IButtonProps } from './Button.types';
 import { IIconProps, Icon } from 'components';
 import { Button as MuiButton } from '@material-ui/core';
 import { getColorFromColorType } from './getColorFromColorType';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Button.styles';
-import { AppContext } from 'providers/State';
 
 import React from 'react';
 

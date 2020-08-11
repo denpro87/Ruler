@@ -50,9 +50,9 @@ const iconNameText: CSSProperties = {
 const footer: CSSProperties = {
 	marginTop: 'auto'
 };
-
-const addPhotosButton: CSSProperties = {
-	marginBottom: pxToRem(15)
+const addPhotosButton: CreateCSSProperties = {
+	marginBottom: pxToRem(15),
+	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : '#caf1dd')
 };
 
 const damagedVehicleContainer: CSSProperties = {

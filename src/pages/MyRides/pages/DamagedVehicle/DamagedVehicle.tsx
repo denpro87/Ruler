@@ -1,6 +1,6 @@
 import { AppContext } from 'providers/State';
+import { BlackButton, Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Page, Text, TextField } from 'components';
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
-import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Page, Text, TextField } from 'components';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { IDamagedVehicleProps } from './DamagedVehicle.types';
 import { IonImg } from '@ionic/react';
@@ -175,9 +175,18 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 					</Box>
 				</Box>
 				<Box className={classes.footer}>
-					<LightGreenButton className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
+					{/* <LightGreenButton className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
 						{formatMessage({ id: 'button.add_photos' })}
-					</LightGreenButton>
+					</LightGreenButton> */}
+					{state.settings.isDarkMode ? (
+						<GreenButton className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
+							{formatMessage({ id: 'button.add_photos' })}
+						</GreenButton>
+					) : (
+						<LightGreenButton className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
+							{formatMessage({ id: 'button.add_photos' })}
+						</LightGreenButton>
+					)}
 					<GreenButton iconName="submit-report" onClick={handleSubmitReportClick} disabled={!code || !description || !location}>
 						{formatMessage({ id: 'button.submit_report' })}
 					</GreenButton>
