@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
 import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Page, Text, TextField } from 'components';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
@@ -14,7 +15,8 @@ const useStyles = makeStyles(styles);
 const { Camera } = Plugins;
 
 export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = props => {
-	const classes = useStyles();
+	const { state } = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
 	const { formatMessage } = useIntl();
 	const history = useHistory();
 	const location = useLocation();
@@ -116,7 +118,17 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 								key={index}
 								onClick={(): void => setButtonLabel(formatMessage({ id: damagedVehicleType.label }))}
 							>
-								<Icon iconName={damagedVehicleType.iconName} colorType="black" />
+								<Icon
+									iconName={damagedVehicleType.iconName}
+									colorType="black"
+									secondaryFillColor={
+										state.settings.isDarkMode
+											? buttonLabel === formatMessage({ id: damagedVehicleType.label })
+												? '#00b559'
+												: '#242725'
+											: 'rgb(248, 202, 6)'
+									}
+								/>
 								<Text className={classes.iconNameText}>{formatMessage({ id: damagedVehicleType.label })}</Text>
 							</Button>
 						);

@@ -13,6 +13,7 @@ export type IconColorType = 'default' | 'green' | 'black' | 'white';
 export type ColoredIconProps = Omit<IIconProps, 'colorType'>;
 
 export interface IIconProps {
+	black?: boolean;
 	iconName: IconName;
 
 	colorType?: IconColorType;

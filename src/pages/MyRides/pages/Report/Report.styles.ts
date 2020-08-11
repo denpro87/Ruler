@@ -52,9 +52,9 @@ const sendButton: CSSProperties = {
 	}
 };
 
-const messageInput: CSSProperties = {
+const messageInput: CreateCSSProperties = {
 	width: percentage(1),
-	backgroundColor: '#f3f3f3',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#242725' : '#f3f3f3'),
 	borderRadius: pxToRem(15),
 	'&.MuiInputBase-multiline': {
 		padding: `${pxToRem(10)} 0 ${pxToRem(10)} ${pxToRem(15)}`
@@ -68,7 +68,7 @@ const messageInput: CSSProperties = {
 	lineHeight: 1.67,
 	fontWeight: 600,
 	fontSize: pxToRem(15),
-	color: 'rgba(24, 28, 25, 0.5)'
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 1)' : 'rgba(24, 28, 25, 0.5)')
 };
 
 const closeIcon: CSSProperties = {
@@ -179,11 +179,11 @@ const writerTextWrapper: CSSProperties = {
 	right: 20
 };
 
-const smallText: CSSProperties = {
+const smallText: CreateCSSProperties = {
 	fontWeight: 600,
 	lineHeight: 1.5,
 	fontSize: pxToRem(10),
-	color: 'rgba(24, 28, 25, 0.5)'
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(24, 28, 25, 0.5)')
 };
 
 const imagesNumText: CSSProperties = {
@@ -202,7 +202,12 @@ const imagesNumTextWrapper: CSSProperties = {
 	borderRadius: pxToRem(20),
 	textAlign: 'center'
 };
+
+const attach: CreateCSSProperties = {
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.54)')
+};
 export const styles = createStyles({
+	attach,
 	imagesNumTextWrapper,
 	imagesNumText,
 	attachIcon,

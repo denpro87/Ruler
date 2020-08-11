@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const listItem: CSSProperties = {
@@ -10,11 +10,12 @@ const list: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column'
 };
-const text: CSSProperties = {
+const text: CreateCSSProperties = {
 	lineHeight: 1.67,
 	fontWeight: 600,
 	fontSize: pxToRem(15),
-	fontFamily: DEFAULT_FONT_FAMILY
+	fontFamily: DEFAULT_FONT_FAMILY,
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 };
 const icon: CSSProperties = {
 	marginRight: pxToRem(10),

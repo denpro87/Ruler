@@ -16,27 +16,27 @@ const itemTextRoot: CSSProperties = {
 	margin: 0,
 	padding: `${pxToRem(10)} 0`
 };
-const itemTextPrimary: CSSProperties = {
+const itemTextPrimary: CreateCSSProperties = {
 	...font({
 		fontSize: 15,
 		fontWeight: 600,
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.67,
-		letterSpacing: 'normal',
-		color: '#181c19'
-	})
+		letterSpacing: 'normal'
+	}),
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 };
-const itemTextSecondary: CSSProperties = {
+const itemTextSecondary: CreateCSSProperties = {
 	...font({
 		fontSize: 10,
 		fontWeight: 600,
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.5,
-		letterSpacing: 'normal',
-		color: 'rgba(24, 28, 25, 0.5)'
-	})
+		letterSpacing: 'normal'
+	}),
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5')
 };
 
 export const styles = createStyles({

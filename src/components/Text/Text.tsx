@@ -1,6 +1,6 @@
+import { AppContext } from 'providers/State';
 import { ITextProps, ParagraphProps, TextStyles, TitleProps } from './Text.types';
 import { Typography, makeStyles } from '@material-ui/core';
-import { AppContext } from 'providers/State';
 import { styles } from './Text.styles';
 import React from 'react';
 import clsx from 'clsx';
@@ -24,6 +24,7 @@ export const Paragraph: React.FunctionComponent<ParagraphProps> = props => <Text
 export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyles, ...restProps }) => {
 	const props = { ...textStyles, ...restProps };
 	const {
+		black,
 		component,
 		block,
 		inline,
@@ -62,7 +63,8 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 		fontFamily,
 		letterSpacing,
 		isDarkMode: state.settings.isDarkMode,
-		color
+		color,
+		black
 	});
 
 	const isParagraph = component === 'p' || paragraph;

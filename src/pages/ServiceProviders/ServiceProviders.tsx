@@ -24,7 +24,7 @@ export const ServiceProviders: React.FunctionComponent<IServiceProvidersProps> =
 		currentProviderName &&
 		providersData.providers.find(provider => unifyIdentifier(formatMessage({ id: provider.name })) === currentProviderName);
 
-	const handleProviderClick = (provider: string) => () => history.push(`/service-providers/${provider}`);
+	const handleProviderClick = (provider: string) => (): void => history.push(`/service-providers/${provider}`);
 
 	const title = currentProvider ? formatMessage({ id: currentProvider.name }) : formatMessage({ id: 'service_providers.title' });
 
@@ -32,7 +32,7 @@ export const ServiceProviders: React.FunctionComponent<IServiceProvidersProps> =
 		<Page title={title} titleSize="large" noHorizontalContentPadding>
 			<List className={classes.providerList}>
 				{currentProvider
-					? currentProvider.paragraphs.map((paragraph, i) => (
+					? currentProvider.paragraphs.map(paragraph => (
 							<ProviderListItem
 								key={paragraph.title}
 								primaryText={formatMessage({ id: paragraph.title })}
@@ -43,7 +43,7 @@ export const ServiceProviders: React.FunctionComponent<IServiceProvidersProps> =
 								}}
 							/>
 					  ))
-					: providersData.providers.map((provider, i) => (
+					: providersData.providers.map(provider => (
 							<ProviderListItem
 								key={provider.name}
 								primaryText={formatMessage({ id: provider.name })}

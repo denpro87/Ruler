@@ -10,6 +10,7 @@ export interface ITextProps extends CSSFontProperties, Omit<TypographyProps, 'co
 	inline?: boolean;
 	textStyles?: TextStyles;
 	inheritStyles?: boolean;
+	black?: boolean;
 }
 
 export type TitleProps = Omit<ITextProps, 'block'>;

@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, Input, InputAdornment, InputLabel, makeStyles } from '@material-ui/core';
 import { Icon, IconButton, Page, Text } from 'components';
 import { IonImg } from '@ionic/react';
@@ -8,10 +9,15 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Report: React.FunctionComponent = () => {
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
 	const { formatMessage } = useIntl();
 	const [msg, setMsg] = React.useState('');
 	const [rowsNum, setRowsNum] = React.useState(0);
-	const classes = useStyles({ rowsNum });
+	const classes = useStyles({ rowsNum, isDarkMode: isDarkMode });
 	const [imagesReady, setImagesReady] = React.useState(false);
 	const [selectedFiles, setSelectedFiles] = React.useState<(string | ArrayBuffer | null)[]>([]);
 	const [messages, setMessages] = React.useState<any[]>([]);
@@ -73,7 +79,9 @@ export const Report: React.FunctionComponent = () => {
 	const renderSupportMessage = (): JSX.Element => {
 		return (
 			<Box className={classes.supportMsgWrapper}>
-				<Text className={classes.msgText}>{formatMessage({ id: 'my_rides.report.support_message' })}</Text>
+				<Text className={classes.msgText} black>
+					{formatMessage({ id: 'my_rides.report.support_message' })}
+				</Text>
 				<Box className={classes.timeTextWrapper}>
 					<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.support_time' })}</Text>
 				</Box>
@@ -88,7 +96,9 @@ export const Report: React.FunctionComponent = () => {
 		return (
 			<Box key={index} className={classes.sentMsgWrapper}>
 				<Box className={classes.msgWrapper}>
-					<Text className={classes.msgText}>{message}</Text>
+					<Text className={classes.msgText} black>
+						{message}
+					</Text>
 					<Box className={classes.timeTextWrapper}>
 						<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.your_time' })}</Text>
 					</Box>
@@ -179,7 +189,7 @@ export const Report: React.FunctionComponent = () => {
 						onChange={handleMsgChange}
 						startAdornment={
 							<InputAdornment position="start">
-								<InputLabel htmlFor="file-upload">
+								<InputLabel htmlFor="file-upload" classes={{ root: classes.attach }}>
 									<Icon iconName="attach" />
 								</InputLabel>
 								<input

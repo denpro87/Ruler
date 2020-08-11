@@ -22,7 +22,7 @@ const iconButton: CreateCSSProperties = {
 
 		return `${pxToRem(paddingY)} ${pxToRem(paddingX)}`;
 	},
-	color: (props: any) => (props.isDarkMode ? '#fff' : '#000'),
+	color: (props: any) => (props.isDarkMode && props.black === undefined ? '#fff' : '#000'),
 	borderRadius: pxToRem(15),
 	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#fff'),
 	boxShadow: (props: any) => {

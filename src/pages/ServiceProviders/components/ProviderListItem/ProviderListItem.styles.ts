@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
@@ -25,7 +25,7 @@ const providerTextContainer: CSSProperties = {
 	marginBottom: 0
 };
 
-const providerText: CSSProperties = {
+const providerText: CreateCSSProperties = {
 	marginBottom: pxToRem(5),
 	...font({
 		fontSize: 20,
@@ -33,21 +33,21 @@ const providerText: CSSProperties = {
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.5,
-		letterSpacing: 'normal',
-		color: '#181c19'
-	})
+		letterSpacing: 'normal'
+	}),
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 };
 
-const providerSubtext: CSSProperties = {
+const providerSubtext: CreateCSSProperties = {
 	...font({
 		fontSize: 15,
 		fontWeight: 600,
 		fontStretch: 'normal',
 		fontStyle: 'normal',
 		lineHeight: 1.67,
-		letterSpacing: 'normal',
-		color: 'rgba(24, 28, 25, 0.5)'
-	})
+		letterSpacing: 'normal'
+	}),
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5')
 };
 
 const goToIcon: CSSProperties = {

@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { IMyRideProps } from './MyRide.types';
 import { Icon, IconButton, Text } from 'components';
@@ -10,6 +11,7 @@ const useStyles = makeStyles(styles);
 export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
+	const { state } = React.useContext(AppContext);
 
 	return (
 		<Box className={classes.historyContainer}>
@@ -22,31 +24,31 @@ export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 				<Box className={classes.historyWrapper}>
 					<Box className={classes.startPointWrapper}>
 						<Box>
-							<Text className={classes.largeText} block>
+							<Text className={classes.largeText} block black>
 								{formatMessage({ id: props.startPosition })}
 							</Text>
-							<Text className={classes.smallText} block>
+							<Text className={classes.smallText} block black>
 								{formatMessage({ id: props.startTime })}
 							</Text>
 						</Box>
 						<Box className={classes.iconWrapper}>
-							<Icon iconName={props.type} colorType="black" />
+							<Icon iconName={props.type} colorType="black" black />
 							<Box className={classes.iconDecorator} />
 						</Box>
 					</Box>
 					<Box className={clsx(classes.startPointWrapper, classes.endPoint)}>
-						<Text className={classes.largeText} block>
+						<Text className={classes.largeText} block black>
 							{formatMessage({ id: props.endPosition })}
 						</Text>
-						<Text className={classes.amountText} block>
+						<Text className={classes.amountText} block black>
 							{formatMessage({ id: props.totalAmount })}
 						</Text>
 					</Box>
 					<Box className={classes.startPointWrapper}>
-						<Text className={classes.smallText} block>
+						<Text className={classes.smallText} block black>
 							{formatMessage({ id: props.travelTime })}
 						</Text>
-						<Text className={classes.smallText} block>
+						<Text className={classes.smallText} block black>
 							{formatMessage({ id: 'my_rides.text.total_amount' })}
 						</Text>
 					</Box>
@@ -56,10 +58,13 @@ export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 				<Box>
 					<IconButton
 						className={classes.reportIconButton}
-						iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }}
+						iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: state.settings.isDarkMode ? 'black' : 'red' }}
 						onClick={props.onReportIconButtonClick}
+						black
 					/>
-					<Text className={classes.largeText}>{formatMessage({ id: 'my_rides.text.report_trip' })}</Text>
+					<Text className={classes.largeText} black>
+						{formatMessage({ id: 'my_rides.text.report_trip' })}
+					</Text>
 				</Box>
 				<Box>
 					{[0, 1, 2, 3].map(index => {

@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, percentage, pxToRem } from 'styles';
 import {
 	LOADING_BACKGROUND_INITIAL_HEIGHT,
@@ -81,12 +81,12 @@ const sheetButton: CSSProperties = {
 	fontWeight: 'bold'
 };
 
-const sheetText: CSSProperties = {
+const sheetText: CreateCSSProperties = {
 	fontFamily: DEFAULT_FONT_FAMILY,
 	fontSize: pxToRem(10),
 	fontWeight: 600,
 	lineHeight: 1.5,
-	color: 'rgba(24, 28, 25, 0.5)',
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)'),
 	padding: `0 0 ${pxToRem(20)} 0`
 };
 

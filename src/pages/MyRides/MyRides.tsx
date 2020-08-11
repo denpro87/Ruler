@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { BottomSheet, GreenButton, LightGreenButton, Page, Text } from 'components';
 import { Box, Typography, makeStyles } from '@material-ui/core';
 import { MyRide } from './components';
@@ -14,7 +15,12 @@ import loadingBackground from './images/loading-bg.svg';
 const useStyles = makeStyles(styles);
 
 export const MyRides: React.FunctionComponent = () => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [loading, setLoading] = React.useState(true);
@@ -84,15 +90,33 @@ export const MyRides: React.FunctionComponent = () => {
 				onBottomSheetChange={handleReportBottomSheetChange}
 			>
 				<Typography className={classes.sheetText}>{formatMessage({ id: 'my_rides.add_report_sheet.description' })}</Typography>
-				<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
-					{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
-				</LightGreenButton>
-				<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
-					{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
-				</LightGreenButton>
-				<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
-					{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
-				</LightGreenButton>
+				{isDarkMode ? (
+					<GreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
+						{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
+					</GreenButton>
+				) : (
+					<LightGreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
+						{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
+					</LightGreenButton>
+				)}
+				{isDarkMode ? (
+					<GreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
+						{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
+					</GreenButton>
+				) : (
+					<LightGreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
+						{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
+					</LightGreenButton>
+				)}
+				{isDarkMode ? (
+					<GreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
+						{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
+					</GreenButton>
+				) : (
+					<LightGreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
+						{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
+					</LightGreenButton>
+				)}
 			</BottomSheet>
 		</Page>
 	);

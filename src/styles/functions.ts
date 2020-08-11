@@ -10,12 +10,15 @@ export const percentage = (x: number): string => `${x * 100}%`;
 export const isDarkMode = async () => {
 	let isDarkMode = false;
 	const appData = await Storage.get({ key: 'appstorage' });
+
 	if (appData) {
-		let storage = JSON.parse(appData + '');
+		const storage = JSON.parse(appData + '');
+
 		if (storage && storage.settings) isDarkMode = storage.settings;
 	}
+
 	return isDarkMode;
-}
+};
 
 export const pxToRem = (x: number): string => (x <= 1 && x >= -1 ? (x === 0 ? '0' : '1px') : `${x / 16}rem`);
 

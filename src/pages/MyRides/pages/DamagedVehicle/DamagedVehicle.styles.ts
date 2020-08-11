@@ -1,14 +1,15 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { pxToRem } from 'styles';
 
 const buttonGroupWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	backgroundColor: 'rgba(255, 255, 255, 0.05)',
-	padding: `${pxToRem(15)} 0 ${pxToRem(30)} 0`
+	margin: `${pxToRem(15)} 0 ${pxToRem(30)} 0`,
+	borderRadius: pxToRem(15)
 };
 
-const button: CSSProperties = {
+const button: CreateCSSProperties = {
 	padding: `${pxToRem(4)} 0`,
 	'& .MuiButton-label > span': {
 		padding: 0,
@@ -24,19 +25,19 @@ const button: CSSProperties = {
 		flex: 'unset'
 	},
 	'&:active': {
-		backgroundColor: '#f8ca06'
+		backgroundColor: (props: any) => (props.isDarkMode ? '#00b559' : '#f8ca06')
 	},
 	'&:hover': {
-		backgroundColor: '#f8ca06'
+		backgroundColor: (props: any) => (props.isDarkMode ? '#00b559' : '#f8ca06')
 	}
 };
 
-const activeBackground: CSSProperties = {
-	backgroundColor: '#f8ca06'
+const activeBackground: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#00b559' : '#f8ca06')
 };
 
-const inActiveBackground: CSSProperties = {
-	backgroundColor: '#ffffff'
+const inActiveBackground: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#242725' : '#ffffff')
 };
 
 const iconNameText: CSSProperties = {

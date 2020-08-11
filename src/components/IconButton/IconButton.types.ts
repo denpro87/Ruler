@@ -6,6 +6,7 @@ export type SocialIconButtonProps = Omit<IIconButtonProps, 'noShadow' | 'outline
 export type GoBackIconButtonProps = Omit<IIconButtonProps, 'outlined' | 'iconProps'>;
 
 export interface IIconButtonProps extends Omit<IconButtonProps, 'size'> {
+	black?: boolean;
 	className?: string;
 	href?: string;
 	iconName?: IIconProps['iconName'];
