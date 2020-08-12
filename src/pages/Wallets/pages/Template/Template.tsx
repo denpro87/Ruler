@@ -79,7 +79,9 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 	return (
 		<Page
 			title={formatMessage({ id: 'wallets.template.title' })}
-			headerLink={selectedIndex > -1 ? <IconButton iconProps={{ iconName: 'trash', colorType: 'green' }} onClick={handleTrashClick} /> : ''}
+			headerLink={
+				selectedIndex > -1 ? <IconButton iconProps={{ iconName: isDarkMode ? 'white-trash' : 'trash' }} onClick={handleTrashClick} /> : ''
+			}
 			titleSize="medium"
 		>
 			<Box className={classes.templateWrapper}>

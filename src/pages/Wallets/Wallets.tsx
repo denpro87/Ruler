@@ -132,7 +132,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 				<Text className={classes.paymentTemplateText}>{formatMessage({ id: 'wallets.payment_templates' })}</Text>
 				<Box className={classes.TemplateButtonsWrapper}>
 					<Fab aria-label="add" className={classes.addFabButton} onClick={handleAddTemplate}>
-						<Icon iconName="add-without-circle" fillColor={isDarkMode ? '#fff' : '#00B559'} />
+						<Icon iconName={isDarkMode ? 'white-add' : 'add-without-circle'} />
 					</Fab>
 					{paymentTemplateData.map((template, index) => (
 						<Button

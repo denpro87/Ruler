@@ -81,11 +81,11 @@ const addFabButton: CreateCSSProperties = {
 	minWidth: pxToRem(50)
 };
 
-const paymentTemplateButton: CSSProperties = {
+const paymentTemplateButton: CreateCSSProperties = {
 	backgroundColor: 'transparent',
-	color: '#00b559',
+	color: (props: any) => (props.isDarkMode ? '#ffffff' : '#00b559'),
 	borderRadius: pxToRem(100),
-	border: `solid ${pxToRem(2)} #f3f3f3`,
+	border: (props: any) => (props.isDarkMode ? `solid ${pxToRem(2)} #303331` : `solid ${pxToRem(2)} #f3f3f3`),
 	padding: `${pxToRem(10)} ${pxToRem(20)} ${pxToRem(10)} ${pxToRem(25)}`,
 	marginLeft: pxToRem(10),
 	fontWeight: 'bold',
