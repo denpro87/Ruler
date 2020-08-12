@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 import walletsLogoImage from './images/card-img.svg';
@@ -73,10 +73,10 @@ const TemplateButtonsWrapper: CSSProperties = {
 	overflow: 'auto'
 };
 
-const addFabButton: CSSProperties = {
+const addFabButton: CreateCSSProperties = {
 	width: pxToRem(50),
 	height: pxToRem(50),
-	backgroundColor: '#caf1dd',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : '#caf1dd'),
 	boxShadow: 'none',
 	minWidth: pxToRem(50)
 };
@@ -133,7 +133,12 @@ const dialogContentText: CSSProperties = {
 	padding: `${pxToRem(10)} ${pxToRem(10)} 0 ${pxToRem(10)}`
 };
 
+const walletTransferButton: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : '#caf1dd')
+};
+
 export const styles = createStyles({
+	walletTransferButton,
 	walletsLogoContainer,
 	walletsLogo,
 	rulerWalletText,

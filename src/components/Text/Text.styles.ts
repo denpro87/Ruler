@@ -12,7 +12,14 @@ const text = (inheritStyles: boolean = false): CreateCSSProperties => ({
 	lineHeight: (props: any) => props.lineHeight,
 	fontFamily: (props: any) => props.fontFamily,
 	letterSpacing: (props: any) => props.letterSpacing,
-	color: (props: any) => (props.color ? props.color : props.isDarkMode && props.black === undefined ? '#fff' : undefined),
+	color: (props: any) =>
+		props.color
+			? props.color
+			: props.isDarkMode && props.black === undefined
+			? '#fff'
+			: props.isDarkMode && props.black
+			? 'rgba(255, 255, 255, 0.5)'
+			: undefined,
 	whiteSpace: (props: any) => (props.nowrap ? 'nowrap' : 'normal'),
 	textDecoration: 'none',
 	...fontSmoothing('antialiased'),

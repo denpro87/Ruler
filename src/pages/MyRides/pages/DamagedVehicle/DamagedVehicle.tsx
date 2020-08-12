@@ -1,6 +1,6 @@
 import { AppContext } from 'providers/State';
-import { BlackButton, Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Page, Text, TextField } from 'components';
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
+import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Page, Text, TextField } from 'components';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { IDamagedVehicleProps } from './DamagedVehicle.types';
 import { IonImg } from '@ionic/react';

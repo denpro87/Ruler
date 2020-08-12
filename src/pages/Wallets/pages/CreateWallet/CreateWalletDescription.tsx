@@ -22,7 +22,9 @@ export const CreateWalletDescription: React.FunctionComponent<ICreateWalletProps
 			titleSize="medium"
 			noHorizontalContentPadding
 		>
-			<Text className={classes.description}>{formatMessage({ id: 'wallets.create_wallet.description' })}</Text>
+			<Text className={classes.description} black>
+				{formatMessage({ id: 'wallets.create_wallet.description' })}
+			</Text>
 			<Box className={classes.descriptionContent}>
 				<Box className={classes.descriptionImageWrapper}>
 					<img alt="description" src={descriptionImage} className={classes.descriptionImage} />

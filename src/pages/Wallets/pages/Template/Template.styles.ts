@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
@@ -26,7 +26,13 @@ const saveButton: CSSProperties = {
 	fontWeight: 'bold'
 };
 
+const currencySymbol: CreateCSSProperties = {
+	'&.MuiInputAdornment-root > p': {
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+	}
+};
 export const styles = createStyles({
+	currencySymbol,
 	templateWrapper,
 	textField,
 	selectItem,

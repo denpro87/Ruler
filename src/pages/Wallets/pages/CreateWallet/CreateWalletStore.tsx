@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, Page, Text } from 'components';
 import { ICreateWalletProps } from './CreateWallet.types';
@@ -10,7 +11,12 @@ const copy = require('clipboard-copy');
 const useStyles = makeStyles(styles);
 
 export const CreateWalletStore: React.FunctionComponent<ICreateWalletProps> = props => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 	const history = useHistory();
 	const params: any = props.location.state;
@@ -23,11 +29,15 @@ export const CreateWalletStore: React.FunctionComponent<ICreateWalletProps> = pr
 
 	return (
 		<Page title={formatMessage({ id: 'wallets.create_wallet.title' })} titleSize="medium" noHorizontalContentPadding>
-			<Text className={classes.description}>{formatMessage({ id: 'wallets.create_wallet.store.description' })}</Text>
+			<Text className={classes.description} black>
+				{formatMessage({ id: 'wallets.create_wallet.store.description' })}
+			</Text>
 			<Box className={classes.wordWrapper}>
 				{createWalletWords.map((createWalletWord, index) => (
 					<Box key={index} className={classes.wordText}>
-						<Text className={classes.wordNumber}>{index + 1}.</Text>
+						<Text className={classes.wordNumber} black>
+							{index + 1}.
+						</Text>
 						<Text className={classes.wordName}>{createWalletWord.toLowerCase()}</Text>
 					</Box>
 				))}

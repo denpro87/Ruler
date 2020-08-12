@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { GreenButton, Icon, Page } from 'components';
 import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import { createWalletTypes } from '../../Wallets.data';
@@ -10,7 +11,12 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const CreateWallet: React.FunctionComponent = () => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 	const [selectedWallet, setSelectedWallet] = React.useState('');
 	const history = useHistory();
@@ -29,9 +35,9 @@ export const CreateWallet: React.FunctionComponent = () => {
 						onClick={(): void => setSelectedWallet(formatMessage({ id: createWalletType.buttonText }))}
 					>
 						<ListItemIcon>
-							<Icon iconName={createWalletType.iconName} color="#181c19" />
+							<Icon iconName={createWalletType.iconName} colorType="black" primaryColor={isDarkMode ? '#fff' : 'rgb(24, 28, 25)'} />
 						</ListItemIcon>
-						<ListItemText primary={formatMessage({ id: createWalletType.buttonText })} />
+						<ListItemText primary={formatMessage({ id: createWalletType.buttonText })} className={classes.walletTypeText} />
 					</ListItem>
 				))}
 			</List>

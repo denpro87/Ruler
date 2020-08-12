@@ -17,10 +17,10 @@ const walletItemList: CSSProperties = {
 	paddingTop: pxToRem(30)
 };
 
-const listItem: CSSProperties = {
+const listItem: CreateCSSProperties = {
 	borderRadius: pxToRem(15),
 	marginBottom: pxToRem(15),
-	border: `solid ${pxToRem(2)} #f3f3f3`,
+	border: (props: any) => `${pxToRem(2)} solid ${props.isDarkMode ? 'rgba(255, 255, 255, 0.1)' : '#f3f3f3'}`,
 	padding: pxToRem(20),
 	'& .MuiListItemIcon-root': {
 		minWidth: pxToRem(30)
@@ -39,6 +39,7 @@ const listItem: CSSProperties = {
 
 const activeListItem: CSSProperties = {
 	borderColor: '#00b559'
+	// backgroundColor: 'red'
 };
 
 const nextButton: CSSProperties = {
@@ -73,7 +74,7 @@ const descriptionImage: CSSProperties = {
 	userDrag: 'none'
 };
 
-const description: CSSProperties = {
+const description: CreateCSSProperties = {
 	...font({
 		fontWeight: 600,
 		lineHeight: 1.67,
@@ -94,11 +95,11 @@ const wordWrapper: CreateCSSProperties = {
 	padding: (props: any) => `${pxToRem(5)} ${pxToRem(10)} ${props.isShowError ? 0 : pxToRem(15)} ${pxToRem(20)}`
 };
 
-const wordText: CSSProperties = {
+const wordText: CreateCSSProperties = {
 	margin: `${pxToRem(10)} ${pxToRem(10)} 0 0`,
 	borderRadius: pxToRem(100),
 	padding: `${pxToRem(8)} ${pxToRem(20)} ${pxToRem(7)} ${pxToRem(20)}`,
-	border: `solid ${pxToRem(2)} #f3f3f3`
+	border: (props: any) => (props.isDarkMode ? `solid ${pxToRem(2)} rgba(255, 255, 255, 0.1)` : `solid ${pxToRem(2)} #f3f3f3`)
 };
 
 const unsetWordText: CSSProperties = {
@@ -132,8 +133,8 @@ const wordNumber: CSSProperties = {
 		fontWeight: 600,
 		lineHeight: 1.67
 	}),
-	fontSize: pxToRem(15),
 	color: 'rgba(24, 28, 25, 0.5)',
+	fontSize: pxToRem(15),
 	marginRight: pxToRem(5)
 };
 const wordName: CSSProperties = {
@@ -174,7 +175,14 @@ const errorText: CSSProperties = {
 	fontSize: pxToRem(10)
 };
 
+const walletTypeText: CreateCSSProperties = {
+	'& > .MuiListItemText-primary': {
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+	}
+};
+
 export const styles = createStyles({
+	walletTypeText,
 	page,
 	walletItemList,
 	listItem,

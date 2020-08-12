@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Link, Page, Text } from 'components';
 import { ITemplateDataProps } from './pages/Template/Template.types';
@@ -12,7 +13,12 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [from, setFrom] = React.useState(false);
@@ -126,7 +132,7 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 				<Text className={classes.paymentTemplateText}>{formatMessage({ id: 'wallets.payment_templates' })}</Text>
 				<Box className={classes.TemplateButtonsWrapper}>
 					<Fab aria-label="add" className={classes.addFabButton} onClick={handleAddTemplate}>
-						<Icon iconName="add-without-circle" primaryColor="white" secondaryColor="white" />
+						<Icon iconName="add-without-circle" fillColor={isDarkMode ? '#fff' : '#00B559'} />
 					</Fab>
 					{paymentTemplateData.map((template, index) => (
 						<Button
@@ -145,12 +151,24 @@ export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
 			</Box>
 			<Box className={classes.footer}>
 				<Box className={classes.buttonWrapper}>
-					<LightGreenButton compact iconName="add" onClick={handleCreateWallet}>
-						{formatMessage({ id: 'wallets.add_wallet' })}
-					</LightGreenButton>
-					<LightGreenButton compact iconName="transfer" onClick={handleTransfer}>
-						{formatMessage({ id: 'wallets.transfer' })}
-					</LightGreenButton>
+					{isDarkMode ? (
+						<GreenButton compact iconName="add" onClick={handleCreateWallet} className={classes.walletTransferButton}>
+							{formatMessage({ id: 'wallets.add_wallet' })}
+						</GreenButton>
+					) : (
+						<LightGreenButton compact iconName="add" onClick={handleCreateWallet}>
+							{formatMessage({ id: 'wallets.add_wallet' })}
+						</LightGreenButton>
+					)}
+					{isDarkMode ? (
+						<GreenButton compact iconName="transfer" onClick={handleTransfer} className={classes.walletTransferButton}>
+							{formatMessage({ id: 'wallets.transfer' })}
+						</GreenButton>
+					) : (
+						<LightGreenButton compact iconName="transfer" onClick={handleTransfer}>
+							{formatMessage({ id: 'wallets.transfer' })}
+						</LightGreenButton>
+					)}
 				</Box>
 				<GreenButton compact iconName="wallet" onClick={handleAddFunds}>
 					{formatMessage({ id: 'wallets.add_funds' })}

@@ -2,6 +2,7 @@ import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, IconButton, Page, Select, TextField } from 'components';
 import { ITemplateDataProps, ITemplateProps } from './Template.types';
 // import { paymentMethodTypes, walletTypes } from '../../Wallets.data';
+import { AppContext } from 'providers/State';
 import { paymentMethodTypes } from '../../Wallets.data';
 import { styles } from './Template.styles';
 import { useHistory } from 'react-router-dom';
@@ -11,7 +12,12 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const Template: React.FunctionComponent<ITemplateProps> = props => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [walletType, setWalletType] = React.useState<string>('');
@@ -92,7 +98,11 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 					value={amount}
 					onValueChange={handleAmountChange}
 					inputProps={{
-						startAdornment: <InputAdornment position="start">€</InputAdornment>
+						startAdornment: (
+							<InputAdornment position="start" className={classes.currencySymbol}>
+								€
+							</InputAdornment>
+						)
 					}}
 				/>
 				<Select
