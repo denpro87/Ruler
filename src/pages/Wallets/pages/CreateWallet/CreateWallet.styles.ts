@@ -42,9 +42,10 @@ const activeListItem: CSSProperties = {
 	// backgroundColor: 'red'
 };
 
-const nextButton: CSSProperties = {
+const nextButton: CreateCSSProperties = {
 	marginTop: 'auto',
-	fontWeight: 'bold'
+	fontWeight: 'bold',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : '#caf1dd')
 };
 
 const descriptionContent: CSSProperties = {
@@ -102,22 +103,22 @@ const wordText: CreateCSSProperties = {
 	border: (props: any) => (props.isDarkMode ? `solid ${pxToRem(2)} rgba(255, 255, 255, 0.1)` : `solid ${pxToRem(2)} #f3f3f3`)
 };
 
-const unsetWordText: CSSProperties = {
+const unsetWordText: CreateCSSProperties = {
 	margin: `${pxToRem(10)} ${pxToRem(10)} 0 0`,
 	borderRadius: pxToRem(100),
 	padding: `${pxToRem(8)} ${pxToRem(20)} ${pxToRem(7)} ${pxToRem(20)}`,
-	border: `dashed ${pxToRem(2)} #f3f3f3`,
+	border: (props: any) => (props.isDarkMode ? `dashed ${pxToRem(2)} rgba(255, 255, 255, 0.1)` : `dashed ${pxToRem(2)} #f3f3f3`),
 	'& span': {
-		color: '#ffffff'
+		color: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff')
 	}
 };
 
-const wordButtonWrapper: CSSProperties = {
-	backgroundColor: '#f3f3f3'
+const wordButtonWrapper: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#242725' : '#f3f3f3')
 };
 
-const wordButton: CSSProperties = {
-	backgroundColor: '#ffffff',
+const wordButton: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff'),
 	width: 'fit-content',
 	lineHeight: 1.67,
 	'& .MuiButton-label': {
@@ -163,14 +164,16 @@ const copyButton: CSSProperties = {
 const errorWrapper: CSSProperties = {
 	width: '100%',
 	padding: `${pxToRem(10)} 0`,
-	textAlign: 'center'
+	textAlign: 'center',
+	'& span': {
+		color: '#f46c63'
+	}
 };
 
 const errorText: CSSProperties = {
 	...font({
 		fontWeight: 600,
-		lineHeight: 1.5,
-		color: '#f46c63'
+		lineHeight: 1.5
 	}),
 	fontSize: pxToRem(10)
 };

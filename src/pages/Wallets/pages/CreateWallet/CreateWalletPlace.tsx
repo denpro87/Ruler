@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, Page, Text } from 'components';
 import { ICreateWalletProps } from './CreateWallet.types';
@@ -18,7 +19,12 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 	const [isShowError, setShowError] = React.useState<boolean>(false);
 	const [words, setWords] = React.useState<string[]>([]);
 	const [shuffleWords, setShuffleWords] = React.useState<string[]>([]);
-	const classes = useStyles({ isShowError });
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isShowError, isDarkMode: isDarkMode });
 
 	const handleWordClick = (word: string): void => {
 		if (words.length < createWalletWords.length) {
@@ -57,7 +63,9 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 
 	return (
 		<Page title={formatMessage({ id: 'wallets.create_wallet.title' })} titleSize="medium" noHorizontalContentPadding>
-			<Text className={classes.description}>{formatMessage({ id: 'wallets.create_wallet.place.description' })}</Text>
+			<Text className={classes.description} black>
+				{formatMessage({ id: 'wallets.create_wallet.place.description' })}
+			</Text>
 			<Box className={clsx(classes.wordWrapper, classes.wordButtonWrapper)}>
 				{shuffleWords.map((createWalletWord, index) => (
 					<Button
@@ -65,7 +73,9 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 						className={clsx(classes.wordButton, classes.wordText)}
 						onClick={() => handleWordClick(createWalletWord.toLowerCase())}
 					>
-						<Text className={classes.wordNumber}>{index + 1}.</Text>
+						<Text className={classes.wordNumber} black>
+							{index + 1}.
+						</Text>
 						<Text className={classes.wordName}>{createWalletWord.toLowerCase()}</Text>
 					</Button>
 				))}
