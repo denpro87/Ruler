@@ -143,6 +143,7 @@ export const AddCreditCard: React.FunctionComponent<IAddFundsProps> = props => {
 					compact
 					onClick={handleNextClick}
 					disabled={Object.values(cardState).findIndex(value => !value) > -1}
+					disabledBackgroundColor="#303331"
 				>
 					{formatMessage({ id: 'wallets.add_credit_card.add_pay' })}
 				</GreenButton>

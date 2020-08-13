@@ -51,8 +51,7 @@ const footer: CSSProperties = {
 	marginTop: 'auto'
 };
 const addPhotosButton: CreateCSSProperties = {
-	marginBottom: pxToRem(15),
-	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : '#caf1dd')
+	marginBottom: pxToRem(15)
 };
 
 const damagedVehicleContainer: CSSProperties = {

@@ -39,7 +39,7 @@ const iconButton: CreateCSSProperties = {
 		return shadows.join(',');
 	},
 	'&:hover': {
-		backgroundColor: (props: any) => (props.isDarkMode ? '#000' : '#f2f2f2')
+		backgroundColor: (props: any) => (props.isDarkMode && props.black === undefined ? '#000' : '#f2f2f2')
 	},
 	'& .MuiTouchRipple-child': {
 		borderRadius: pxToRem(15)

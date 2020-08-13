@@ -175,19 +175,21 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 					</Box>
 				</Box>
 				<Box className={classes.footer}>
-					{/* <LightGreenButton className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
-						{formatMessage({ id: 'button.add_photos' })}
-					</LightGreenButton> */}
 					{state.settings.isDarkMode ? (
-						<GreenButton className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
+						<Button className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
 							{formatMessage({ id: 'button.add_photos' })}
-						</GreenButton>
+						</Button>
 					) : (
 						<LightGreenButton className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
 							{formatMessage({ id: 'button.add_photos' })}
 						</LightGreenButton>
 					)}
-					<GreenButton iconName="submit-report" onClick={handleSubmitReportClick} disabled={!code || !description || !location}>
+					<GreenButton
+						iconName="submit-report"
+						onClick={handleSubmitReportClick}
+						disabled={!code || !description || !location}
+						disabledBackgroundColor="#303331"
+					>
 						{formatMessage({ id: 'button.submit_report' })}
 					</GreenButton>
 				</Box>

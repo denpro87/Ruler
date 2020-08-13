@@ -1,5 +1,6 @@
+import { AppContext } from 'providers/State';
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
-import { Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
+import { Button, Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { ISendProps } from './Send.types';
 import { RulerButton } from '../../components';
 import { rulerPriceBonusData } from '../../Wallets.data';
@@ -12,7 +13,12 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Send: React.FunctionComponent<ISendProps> = props => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 	const history = useHistory();
 	const location = useLocation();
@@ -92,15 +98,32 @@ export const Send: React.FunctionComponent<ISendProps> = props => {
 					className={classes.insertAmount}
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					inputProps={{
-						startAdornment: <InputAdornment position="start">€</InputAdornment>
+						startAdornment: (
+							<InputAdornment position="start" className={classes.currencySymbol}>
+								€
+							</InputAdornment>
+						)
 					}}
 					value={amount}
 					onValueChange={handleAmountChange}
 				/>
 			</Box>
-			<GreenButton iconName="submit-report" compact disabled={!amount || !walletAddress || !numberValid} onClick={handleSendClick}>
-				{formatMessage({ id: 'button.send' })}
-			</GreenButton>
+			{isDarkMode ? (
+				<Button
+					iconName="submit-report"
+					compact
+					disabled={!amount || !walletAddress || !numberValid}
+					onClick={handleSendClick}
+					disabledBackgroundColor="#303331"
+				>
+					{formatMessage({ id: 'button.send' })}
+				</Button>
+			) : (
+				<GreenButton iconName="submit-report" compact disabled={!amount || !walletAddress || !numberValid} onClick={handleSendClick}>
+					{formatMessage({ id: 'button.send' })}
+				</GreenButton>
+			)}
+
 			<Dialog
 				open={showDialog}
 				hasClose

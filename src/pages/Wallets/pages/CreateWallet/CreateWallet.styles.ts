@@ -20,7 +20,7 @@ const walletItemList: CSSProperties = {
 const listItem: CreateCSSProperties = {
 	borderRadius: pxToRem(15),
 	marginBottom: pxToRem(15),
-	border: (props: any) => `${pxToRem(2)} solid ${props.isDarkMode ? 'rgba(255, 255, 255, 0.1)' : '#f3f3f3'}`,
+	border: (props: any) => (props.isDarkMode ? `solid ${pxToRem(2)} rgba(255, 255, 255, 0.1)` : `solid ${pxToRem(2)} #f3f3f3`),
 	padding: pxToRem(20),
 	'& .MuiListItemIcon-root': {
 		minWidth: pxToRem(30)
@@ -34,18 +34,22 @@ const listItem: CreateCSSProperties = {
 		fontSize: pxToRem(15),
 		textAlign: 'center',
 		marginLeft: pxToRem(-30)
+	},
+	'&:active': {
+		borderColor: '#00b559'
+	},
+	'&:hover': {
+		borderColor: '#00b559'
 	}
 };
 
-const activeListItem: CSSProperties = {
-	borderColor: '#00b559'
-	// backgroundColor: 'red'
-};
+// const activeListItem: CSSProperties = {
+// 	borderColor: '#00b559'
+// };
 
-const nextButton: CreateCSSProperties = {
+const nextButton: CSSProperties = {
 	marginTop: 'auto',
-	fontWeight: 'bold',
-	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : '#caf1dd')
+	fontWeight: 'bold'
 };
 
 const descriptionContent: CSSProperties = {
@@ -189,7 +193,7 @@ export const styles = createStyles({
 	page,
 	walletItemList,
 	listItem,
-	activeListItem,
+	// activeListItem,
 	footer,
 	nextButton,
 	descriptionContent,

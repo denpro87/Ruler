@@ -36,6 +36,7 @@ export const Button: React.FunctionComponent<IButtonProps> = ({
 	const tempBackgroundColor = backgroundColor ?? getColorFromColorType(colorType!, 'background', state.settings.isDarkMode);
 	const tempHoveredBackgroundColor =
 		hoveredBackgroundColor ?? (getColorFromColorType(colorType!, 'hoveredBackground', state.settings.isDarkMode) || tempBackgroundColor);
+
 	const classes = useStyles({
 		hasIcon,
 		compact,

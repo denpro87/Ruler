@@ -29,7 +29,8 @@ export const CreateWallet: React.FunctionComponent = () => {
 						key={index}
 						className={clsx(
 							{ [classes.listItem]: true },
-							{ [classes.activeListItem]: selectedWallet === formatMessage({ id: createWalletType.buttonText }) }
+							// { [classes.activeListItem]: selectedWallet === formatMessage({ id: createWalletType.buttonText }) }
+							{ active: selectedWallet === formatMessage({ id: createWalletType.buttonText }) }
 						)}
 						button
 						onClick={(): void => setSelectedWallet(formatMessage({ id: createWalletType.buttonText }))}
@@ -44,6 +45,7 @@ export const CreateWallet: React.FunctionComponent = () => {
 			<GreenButton
 				className={classes.nextButton}
 				disabled={!selectedWallet}
+				disabledBackgroundColor="#303331"
 				onClick={(): void => history.push('/wallets/create-wallet-description', { newWallet: selectedWallet })}
 			>
 				{formatMessage({ id: 'button.next' })}

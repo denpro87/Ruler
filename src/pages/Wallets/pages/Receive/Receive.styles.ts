@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, percentage, pxToRem } from 'styles';
 
@@ -90,7 +90,14 @@ const qrCode: CSSProperties = {
 	height: 0,
 	paddingTop: '100%'
 };
+
+const currencySymbol: CreateCSSProperties = {
+	'&.MuiInputAdornment-root > p': {
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+	}
+};
 export const styles = createStyles({
+	currencySymbol,
 	qrCode,
 	qrCodeWrapper,
 	formWrapper,
