@@ -53,9 +53,9 @@ const amountText: CSSProperties = {
 	fontSize: pxToRem(32)
 };
 
-const feeText: CSSProperties = {
-	color: 'rgba(255, 255, 255, 0.5)'
-};
+// const feeText: CSSProperties = {
+// 	color: 'rgba(255, 255, 255, 0.5)'
+// };
 
 const hashWrapper: CSSProperties = {
 	display: 'flex',
@@ -99,14 +99,14 @@ const infoWrapper: CSSProperties = {
 	}
 };
 
-const infoBox: CSSProperties = {
+const infoBox: CreateCSSProperties = {
 	'& span:first-child': {
-		color: 'rgba(24, 28, 15, 0.5)',
+		color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 15, 0.5)'),
 		paddingRight: pxToRem(10)
 	},
 	'& span:last-child': {
 		whiteSpace: 'nowrap',
-		color: '#181c19'
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 	}
 };
 
@@ -142,7 +142,7 @@ export const styles = createStyles({
 	amountBox,
 	amountHelperText,
 	amountText,
-	feeText,
+	// feeText,
 	hashWrapper,
 	hashText,
 	copyButton,

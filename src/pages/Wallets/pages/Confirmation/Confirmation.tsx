@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { Checkbox, Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { IConfirmationProps } from './Confirmation.types';
@@ -15,7 +16,12 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 	const { formatMessage } = useIntl();
 	const params: any = props.location.state;
 	const [checked, setChecked] = React.useState<boolean>(false);
-	const classes = useStyles({ checked });
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ checked, isDarkMode: isDarkMode });
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [templateName, setTemplateName] = React.useState<string>('');
 	const transactionHash = 'a1075db55d416d3ca199f55b1BvBM3sdelkfdjsl';
@@ -74,7 +80,10 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 					</Box>
 					<Box className={classes.amountBox}>
 						<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.transaction_fee' })}</Text>
-						<Text className={clsx(classes.amountText, classes.feeText)}>€ 0.20</Text>
+						{/* <Text className={clsx(classes.amountText, classes.feeText)}> */}
+						<Text className={classes.amountText} color="rgba(255, 255, 255, 0.5)">
+							€ 0.20
+						</Text>
 					</Box>
 				</Box>
 				<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.transaction_hash' })}</Text>
