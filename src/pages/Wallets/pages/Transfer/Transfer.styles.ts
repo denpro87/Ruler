@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
@@ -9,7 +9,7 @@ const addFundsWrapper: CSSProperties = {
 	paddingTop: pxToRem(15)
 };
 
-const paymentTemplateButton: CSSProperties = {
+const paymentTemplateButton: CreateCSSProperties = {
 	...font({
 		fontWeight: 600,
 		lineHeight: 1.5,
@@ -20,7 +20,7 @@ const paymentTemplateButton: CSSProperties = {
 	backgroundColor: 'transparent',
 	borderRadius: pxToRem(200),
 	padding: `${pxToRem(8)} ${pxToRem(15)} ${pxToRem(7)} ${pxToRem(15)}`,
-	border: `solid ${pxToRem(2)} #f3f3f3`,
+	border: (props: any) => (props.isDarkMode ? `solid ${pxToRem(2)} #303331` : `solid ${pxToRem(2)} #f3f3f3`),
 	marginRight: pxToRem(10),
 	'& .MuiButton-label': {
 		minHeight: 'unset'
@@ -108,7 +108,13 @@ const footer: CSSProperties = {
 	}
 };
 
+const currencySymbol: CreateCSSProperties = {
+	'&.MuiInputAdornment-root > p': {
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+	}
+};
 export const styles = createStyles({
+	currencySymbol,
 	paymentTemplateButton,
 	addFundsWrapper,
 	TemplateButtonsWrapper,

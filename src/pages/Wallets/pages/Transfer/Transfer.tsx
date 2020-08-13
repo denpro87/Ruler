@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, IconButton, Page, Select, Text, TextField } from 'components';
 import { ITemplateDataProps } from '../Template/Template.types';
@@ -14,7 +15,12 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Transfer: React.FunctionComponent<ITransferProps> = props => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const location = useLocation();
 	const { formatMessage } = useIntl();
@@ -122,7 +128,11 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 					className={classes.insertAmount}
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					inputProps={{
-						startAdornment: <InputAdornment position="start">€</InputAdornment>
+						startAdornment: (
+							<InputAdornment position="start" className={classes.currencySymbol}>
+								€
+							</InputAdornment>
+						)
 					}}
 					value={amount}
 					onValueChange={handleAmountChange}
