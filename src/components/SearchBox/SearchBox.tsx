@@ -1,10 +1,10 @@
-import clsx from 'clsx';
-import { Icon } from 'components';
-import { ISearchBoxProps } from './SearchBox.types';
-import { InputBase, makeStyles } from '@material-ui/core';
 import { AppContext } from 'providers/State';
+import { ISearchBoxProps } from './SearchBox.types';
+import { Icon } from 'components';
+import { InputBase, makeStyles } from '@material-ui/core';
 import { styles } from './SearchBox.styles';
 import React from 'react';
+import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const SearchBox: React.FunctionComponent<ISearchBoxProps> = ({ onChange, className }) => {
@@ -17,7 +17,7 @@ export const SearchBox: React.FunctionComponent<ISearchBoxProps> = ({ onChange, 
 
 	return (
 		<div className={clsx(classes.inputWrapper, className)}>
-			<div className={classes.searchIcon}>{<Icon iconName="search" />}</div>
+			<Icon iconName="search" className={classes.searchIcon} />
 			<InputBase
 				placeholder="Search…"
 				classes={{
