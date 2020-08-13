@@ -24,12 +24,12 @@ const iconButton: CreateCSSProperties = {
 	},
 	color: (props: any) => (props.isDarkMode && props.black === undefined ? '#fff' : '#000'),
 	borderRadius: pxToRem(15),
-	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#fff'),
+	backgroundColor: (props: any) => (props.isDarkMode && props.black === undefined ? '#181c19' : '#fff'),
 	boxShadow: (props: any) => {
 		const shadows = [];
 
 		if (!props.noShadow) {
-			shadows.push(props.isDarkMode ? '0 10px 20px 0 #000' : ICON_BUTTON_BOX_SHADOW);
+			shadows.push(props.isDarkMode && props.black === undefined ? '0 10px 20px 0 #000' : ICON_BUTTON_BOX_SHADOW);
 		}
 
 		if (props.outlined) {

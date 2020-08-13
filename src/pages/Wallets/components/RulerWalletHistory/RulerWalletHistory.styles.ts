@@ -51,7 +51,7 @@ const amountText: CreateCSSProperties = {
 		lineHeight: 1.67
 	}),
 	fontSize: pxToRem(15),
-	color: (props: any) => (props.type === 'send' ? '#00b559' : '#f46c63'),
+	// color: (props: any) => (props.type === 'send' ? '#00b559' : '#f46c63'),
 	'&.MuiTypography-root': {
 		whiteSpace: 'nowrap',
 		overflow: 'visible'

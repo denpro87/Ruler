@@ -68,8 +68,8 @@ const headerContent: CSSProperties = {
 const headerHelperText: CSSProperties = {
 	...font({
 		fontWeight: 600,
-		lineHeight: 1.5,
-		color: 'rgba(255, 255, 255, 0.5)'
+		lineHeight: 1.5
+		// color: 'rgba(255, 255, 255, 0.5)'
 	}),
 	fontSize: pxToRem(10),
 	zIndex: 1

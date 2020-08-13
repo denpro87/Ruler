@@ -14,11 +14,17 @@ export const RulerWalletHistory: React.FunctionComponent<IRulerWalletHistoryProp
 			<Icon iconName={type === 'send' ? 'arrow-up' : 'arrow-down'} color={type === 'send' ? '#00b559' : '#f46c63'} />
 			<Box className={classes.rowWrapper}>
 				<Box className={classes.textWrapper}>
-					<Text className={classes.smallText}>{time}</Text>
+					<Text className={classes.smallText} black>
+						{time}
+					</Text>
 					<Text className={classes.text}>{description}</Text>
-					<Text className={classes.smallText}>{hash}</Text>
+					<Text className={classes.smallText} black>
+						{hash}
+					</Text>
 				</Box>
-				<Text className={classes.amountText}>{`€ ${amount} ${type === 'send' ? '+' : '-'}`}</Text>
+				<Text className={classes.amountText} color={type === 'send' ? '#00b559' : '#f46c63'}>{`€ ${amount} ${
+					type === 'send' ? '+' : '-'
+				}`}</Text>
 			</Box>
 		</Box>
 	);
