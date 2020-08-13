@@ -8,7 +8,7 @@ const button: CreateCSSProperties = {
 	height: pxToRem(70),
 	borderRadius: pxToRem(15),
 	marginRight: pxToRem(18),
-	border: (props: any) => `solid ${pxToRem(2)} ${props.active ? '#00b559' : '#f3f3f3'}`,
+	border: (props: any) => `solid ${pxToRem(2)} ${props.active ? '#00b559' : props.isDarkMode ? '#303331' : '#f3f3f3'}`,
 	'&:hover': {
 		backgroundColor: (props: any) => (props.active ? 'rgb(0, 171, 85)' : 'rgba(0, 0, 0, 0.2)')
 	}

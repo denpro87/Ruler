@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, Page, Select, Text, TextField } from 'components';
 import { IAddFundsProps } from './AddFunds.types';
@@ -11,7 +12,12 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const AddFunds: React.FunctionComponent<IAddFundsProps> = props => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [walletType, setWalletType] = React.useState<string>('');
@@ -86,7 +92,11 @@ export const AddFunds: React.FunctionComponent<IAddFundsProps> = props => {
 					className={classes.insertAmount}
 					label={formatMessage({ id: 'wallets.add_funds.helper_text.amount_description' })}
 					inputProps={{
-						startAdornment: <InputAdornment position="start">€</InputAdornment>
+						startAdornment: (
+							<InputAdornment position="start" className={classes.currencySymbol}>
+								€
+							</InputAdornment>
+						)
 					}}
 					value={amount}
 					onValueChange={handlePriceChange}

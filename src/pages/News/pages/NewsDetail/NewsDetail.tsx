@@ -1,4 +1,4 @@
-import { Box, Paper, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import { Footer, Image, Page, Text } from 'components';
 import { INewsDetailProps } from './NewsDetail.types';
 import { sampleNews } from './NewsDetail.data';

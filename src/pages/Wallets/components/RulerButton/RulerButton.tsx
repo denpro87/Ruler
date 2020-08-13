@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Button, Text } from 'components';
 import { IRulerButtonProps } from './RulerButton.types';
 import { makeStyles } from '@material-ui/core';
@@ -7,7 +8,12 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const RulerButton: React.FunctionComponent<IRulerButtonProps> = props => {
-	const classes = useStyles({ active: props.active });
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ active: props.active, isDarkMode: isDarkMode });
 
 	return (
 		<Button className={classes.button} onClick={(): void => props.onRulerButtonClick(props.price)}>
