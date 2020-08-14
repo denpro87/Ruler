@@ -483,14 +483,18 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				width="100%"
 				height="100%"
 				style={mapViewer}
-				mapStyle="mapbox://styles/mapbox/light-v8"
+				mapStyle={state.settings.isDarkMode ? 'mapbox://styles/mapbox/dark-v8' : 'mapbox://styles/mapbox/light-v8'}
 				onViewportChange={setViewport}
 				mapboxApiAccessToken={MAPBOX_TOKEN}
 				onClick={findMe ? handleMapClick : undefined}
 			>
 				<IconButton
 					className={classes.reportButton}
-					iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: 'red' }}
+					iconProps={{
+						iconName: 'report',
+						primaryColor: state.settings.isDarkMode ? '#fff' : '#181c19',
+						secondaryColor: state.settings.isDarkMode ? '#fff' : 'red'
+					}}
 					onClick={(): void => setShowReport(true)}
 				/>
 				<Box className={classes.navControl}>
@@ -512,7 +516,11 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 							>
 								{marker.iconName ? (
 									<>
-										<Icon iconName={marker.iconName} colorType="black" />
+										<Icon
+											iconName={marker.iconName}
+											colorType="black"
+											secondaryFillColor={state.settings.isDarkMode ? '#242725' : 'rgb(248, 202, 6)'}
+										/>
 										<Box className={classes.iconDecorator}>
 											<Image src={require(`${marker.decorator}`)} />
 										</Box>
@@ -597,6 +605,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				description={formatMessage({ id: 'home.invite_friends_sheet.description' })}
 				open={showInviteFriends}
 				onBottomSheetChange={handleInviteFriendsBottomSheetChange}
+				hasCloseButton
+				onCloseButtonClick={(): void => setShowInviteFriends(false)}
 			>
 				<GreenButton className={classes.shareButton} iconName="share">
 					{formatMessage({ id: 'home.invite_friends_sheet.button.text' })}

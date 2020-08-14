@@ -60,7 +60,7 @@ const sheetDescription: CreateCSSProperties = {
 	fontSize: pxToRem(15),
 	fontWeight: 600,
 	lineHeight: 1.67,
-	color: (props: any) => (props.darkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)'),
+	color: (props: any) => (props.darkMode || props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)'),
 	maxWidth: (props: any) => (props.darkMode ? `${pxToRem(230)}` : undefined),
 	textAlign: 'center'
 };

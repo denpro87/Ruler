@@ -35,7 +35,7 @@ const fullPage: CreateCSSProperties = {
 	bottom: 0,
 	left: 0,
 	overflow: 'hidden',
-	backgroundColor: (props: any) => props.isDarkMode ? '#181c19' : '#fff'
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#fff')
 };
 
 const fullPageBody: CSSProperties = {

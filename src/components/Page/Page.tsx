@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box } from '@material-ui/core';
 import { DEFAULT_PAGE_BACKGROUND_COLOR, GoBackIconButton, Link, Text } from 'components';
 import { FullPageProps, IPageProps } from './Page.types';
@@ -6,7 +7,6 @@ import { makeStyles } from '@material-ui/styles';
 import { styles } from './Page.styles';
 import { useHistory } from 'react-router';
 import React from 'react';
-import { AppContext } from 'providers/State';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);

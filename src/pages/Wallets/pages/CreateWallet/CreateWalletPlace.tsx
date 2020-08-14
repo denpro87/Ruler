@@ -33,29 +33,31 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 		}
 	};
 
+	const shuffle = (array: string[]): string[] => {
+		let currentIndex = array.length;
+		let temporaryValue;
+		let randomIndex;
+
+		while (currentIndex !== 0) {
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+		}
+
+		return array;
+	};
 	React.useEffect(() => {
-		const shuffle = (array: string[]): string[] => {
-			let currentIndex = array.length;
-			let temporaryValue;
-			let randomIndex;
-
-			while (currentIndex !== 0) {
-				randomIndex = Math.floor(Math.random() * currentIndex);
-				currentIndex -= 1;
-				temporaryValue = array[currentIndex];
-				array[currentIndex] = array[randomIndex];
-				array[randomIndex] = temporaryValue;
-			}
-
-			return array;
-		};
 		const temp = [...createWalletWords];
 		setShuffleWords(shuffle(temp));
 	}, []);
 
 	React.useEffect(() => {
 		if (!createWalletWords.toString().startsWith(words.toString())) {
+			const temp = [...createWalletWords];
 			setShowError(true);
+			setShuffleWords(shuffle(temp));
 		} else {
 			setShowError(false);
 		}
