@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
@@ -6,10 +6,10 @@ const paymentMethodItemList: CSSProperties = {
 	paddingTop: pxToRem(30)
 };
 
-const listItem: CSSProperties = {
+const listItem: CreateCSSProperties = {
 	borderRadius: pxToRem(15),
 	marginBottom: pxToRem(15),
-	border: `solid ${pxToRem(2)} #f3f3f3`,
+	border: (props: any) => (props.isDarkMode ? `solid ${pxToRem(2)} rgba(255, 255, 255, 0.1)` : `solid ${pxToRem(2)} #f3f3f3`),
 	padding: pxToRem(20),
 	'& .MuiListItemIcon-root': {
 		minWidth: pxToRem(30)
@@ -23,6 +23,12 @@ const listItem: CSSProperties = {
 		fontSize: pxToRem(15),
 		textAlign: 'center',
 		marginLeft: pxToRem(-30)
+	},
+	'&:active': {
+		borderColor: '#00b559'
+	},
+	'&:hover': {
+		borderColor: '#00b559'
 	}
 };
 
@@ -61,8 +67,13 @@ const cardInputWrapper: CSSProperties = {
 		marginBottom: pxToRem(35)
 	}
 };
-
+const paymentMethodTypeText: CreateCSSProperties = {
+	'& > .MuiListItemText-primary': {
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+	}
+};
 export const styles = createStyles({
+	paymentMethodTypeText,
 	paymentMethodItemList,
 	listItem,
 	activeListItem,

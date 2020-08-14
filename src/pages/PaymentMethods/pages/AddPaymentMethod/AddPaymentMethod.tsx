@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { GreenButton, Icon, Page } from 'components';
 import { IAddPaymentMethodProps } from './AddPaymentMethod.types';
 import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
@@ -10,7 +11,12 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const AddPaymentMethod: React.FunctionComponent<IAddPaymentMethodProps> = props => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 	const [selectedTypeIndex, setSelectedTypeIndex] = React.useState(-1);
 	const [pageName, setPageName] = React.useState('');
@@ -26,7 +32,7 @@ export const AddPaymentMethod: React.FunctionComponent<IAddPaymentMethodProps> =
 		if (selectedTypeIndex === 0) {
 			history.push('/payment-methods/add-payment-method/card', { pageName: pageName || '' });
 		} else {
-			window.location.href="https://www.paypal.com/us/signin"
+			window.location.href = 'https://www.paypal.com/us/signin';
 		}
 	};
 
@@ -36,14 +42,19 @@ export const AddPaymentMethod: React.FunctionComponent<IAddPaymentMethodProps> =
 				{paymentMethodTypes.map((paymentMethodType, index) => (
 					<ListItem
 						key={index}
-						className={clsx({ [classes.listItem]: true }, { [classes.activeListItem]: index === selectedTypeIndex })}
+						className={clsx({ [classes.listItem]: true }, { active: index === selectedTypeIndex })}
 						button
 						onClick={(): void => setSelectedTypeIndex(index)}
 					>
 						<ListItemIcon>
-							<Icon iconName={paymentMethodType.iconName} color="#181c19" colorType="black" />
+							<Icon
+								iconName={paymentMethodType.iconName}
+								colorType="black"
+								primaryFillColor={isDarkMode ? '#fff' : 'rgb(24, 28, 25)'}
+								secondaryFillColor={isDarkMode ? '#fff' : 'rgb(248, 202, 6)'}
+							/>
 						</ListItemIcon>
-						<ListItemText primary={formatMessage({ id: paymentMethodType.buttonText })} />
+						<ListItemText primary={formatMessage({ id: paymentMethodType.buttonText })} className={classes.paymentMethodTypeText} />
 					</ListItem>
 				))}
 			</List>
