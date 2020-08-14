@@ -544,8 +544,15 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 											noShadow
 											key={index}
 											label={formatMessage({ id: button.label })}
-											iconName={button.iconName}
-											colorType="black"
+											iconProps={{
+												iconName: button.iconName,
+												colorType: 'black',
+												secondaryFillColor: state.settings.isDarkMode
+													? button.iconName === 'vehicle'
+														? 'rgb(248, 202, 6)'
+														: '#242725'
+													: 'rgb(248, 202, 6)'
+											}}
 											style={button.style}
 											onClick={handleVehicleTypeClick(button.iconName)}
 										/>

@@ -29,7 +29,14 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 	const handleWordClick = (word: string): void => {
 		if (words.length < createWalletWords.length) {
 			const newWords = isShowError ? [word] : [...words, word];
-			setWords(newWords);
+
+			if (!createWalletWords.toString().startsWith(newWords.toString())) {
+				setWords([]);
+				setShowError(true);
+			} else {
+				setShowError(false);
+				setWords(newWords);
+			}
 		}
 	};
 
@@ -52,16 +59,6 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 		const temp = [...createWalletWords];
 		setShuffleWords(shuffle(temp));
 	}, []);
-
-	React.useEffect(() => {
-		if (!createWalletWords.toString().startsWith(words.toString())) {
-			const temp = [...createWalletWords];
-			setShowError(true);
-			setShuffleWords(shuffle(temp));
-		} else {
-			setShowError(false);
-		}
-	}, [words]);
 
 	return (
 		<Page title={formatMessage({ id: 'wallets.create_wallet.title' })} titleSize="medium" noHorizontalContentPadding>
