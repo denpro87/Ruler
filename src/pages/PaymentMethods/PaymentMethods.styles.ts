@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { pxToRem } from 'styles';
 
 const submitWrapper: CSSProperties = {
@@ -20,8 +20,12 @@ const dialogContentText: CSSProperties = {
 	padding: `${pxToRem(15)} 0`
 };
 
-const notRecommendedButton: CSSProperties = {
-	fontWeight: 'bold'
+const notRecommendedButton: CreateCSSProperties = {
+	fontWeight: 'bold',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
+	'& span': {
+		color: (props: any) => (props.isDarkMode ? '#181c19' : '#fff')
+	}
 };
 export const styles = createStyles({
 	submitWrapper,

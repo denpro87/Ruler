@@ -1,8 +1,8 @@
+import { AppContext } from 'providers/State';
 import { IBottomSheetProps } from './BottomSheet.types';
 import { IconButton } from 'components';
 import { Typography, makeStyles } from '@material-ui/core';
 import { pxToRem } from 'styles';
-import { AppContext } from 'providers/State';
 import { styles } from './BottomSheet.styles';
 import BackdropFilter from 'react-backdrop-filter';
 import React from 'react';

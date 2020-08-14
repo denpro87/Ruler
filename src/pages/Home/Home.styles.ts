@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles, CreateCSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, percentage, pxToRem } from 'styles';
 import walletsLogoImage from './images/card-img.svg';
 export const mapViewer: CSSProperties = {
@@ -167,11 +167,11 @@ const buttonGroupWrapper: CSSProperties = {
 	padding: `${pxToRem(24)} 0 ${pxToRem(30)} 0`
 };
 
-const scanEnterButtonGroupWrapper: CSSProperties = {
+const scanEnterButtonGroupWrapper: CreateCSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	borderRadius: pxToRem(15),
-	backgroundColor: 'rgba(255, 255, 255, 0.5)',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#3E3D36' : 'rgba(255, 255, 255, 0.5)'),
 	padding: `${pxToRem(5)}`,
 	width: percentage(1)
 };
@@ -189,16 +189,16 @@ const button: CSSProperties = {
 	}
 };
 
-const scanEnterCodeButton: CSSProperties = {
+const scanEnterCodeButton: CreateCSSProperties = {
 	fontSize: pxToRem(10),
-	color: '#181c19',
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 	fontWeight: 600,
 	lineHeight: 1.5,
 	padding: `${pxToRem(13)} 0 ${pxToRem(12)} 0`,
 	borderRadius: pxToRem(10),
 	'&:hover': {
-		color: '#181c19',
-		backgroundColor: '#ffffff'
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
+		backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff')
 	},
 	'& .MuiButton-label': {
 		minHeight: pxToRem(15)
@@ -213,8 +213,8 @@ const activeBackground: CSSProperties = {
 	backgroundColor: '#f8ca06'
 };
 
-const inActiveBackground: CreateCSSProperties = {
-	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff')
+const inActiveBackground: CSSProperties = {
+	backgroundColor: 'transparent'
 };
 
 const smallText: CreateCSSProperties = {
@@ -347,17 +347,17 @@ const flashButton: CSSProperties = {
 	boxShadow: `0 ${pxToRem(10)} ${pxToRem(40)} 0 rgba(0, 0, 0, 0.1)`
 };
 
-const scanEnterCodeButtonActive: CSSProperties = {
-	backgroundColor: '#ffffff'
+const scanEnterCodeButtonActive: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff')
 };
 
 const scanEnterCodeButtonInActive: CSSProperties = {
 	backgroundColor: 'transparent'
 };
 
-const qrCodeInput: CSSProperties = {
+const qrCodeInput: CreateCSSProperties = {
 	width: percentage(1),
-	backgroundColor: '#ffffff',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#ffffff'),
 	borderRadius: pxToRem(15),
 	'&>.MuiInputBase-input': {
 		minHeight: pxToRem(25),
@@ -367,11 +367,11 @@ const qrCodeInput: CSSProperties = {
 	lineHeight: 1.67,
 	fontWeight: 600,
 	fontSize: pxToRem(15),
-	color: '#181c19'
+	color: (props: any) => (props.isDarkMode ? '#ffffff' : '#181c19')
 };
 
-const inputWrapper: CSSProperties = {
-	backgroundColor: 'rgba(255, 255, 255, 0.8)',
+const inputWrapper: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#3E3D36' : 'rgba(255, 255, 255, 0.8)'),
 	borderRadius: pxToRem(15),
 	maxWidth: pxToRem(255)
 };
@@ -391,8 +391,8 @@ const wrongCodeText: CSSProperties = {
 	padding: `${pxToRem(4)} 0`,
 	lineHeight: 1.5,
 	fontWeight: 600,
-	fontSize: pxToRem(10),
-	color: '#f46c63'
+	fontSize: pxToRem(10)
+	// color: '#f46c63'
 };
 
 const navControl: CSSProperties = {

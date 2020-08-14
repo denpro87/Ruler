@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { AreasListItem, PaymentMethodItem } from './components';
 import { BarcodeScanResult, BarcodeScanner } from '@ionic-native/barcode-scanner';
 import {
@@ -39,7 +40,6 @@ import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import { AppContext } from 'providers/State';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
 import React from 'react';
@@ -800,7 +800,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					>
 						<Box className={classes.wrongCodeTextWrapper}>
 							{showWrongCode && (
-								<Text className={classes.wrongCodeText}>{formatMessage({ id: 'home.qr_code_sheet.text.wrong_code' })}</Text>
+								<Text className={classes.wrongCodeText} color="#f46c63">
+									{formatMessage({ id: 'home.qr_code_sheet.text.wrong_code' })}
+								</Text>
 							)}
 							{/* {showDischargedVehicle && (
 								<Text className={classes.wrongCodeText}>{formatMessage({ id: 'home.qr_code_sheet.text.discharged_vehicle' })}</Text>
