@@ -16,7 +16,6 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 	const [deleteCard, setDeleteCard] = React.useState(false);
 	const [from, setFrom] = React.useState(false);
 	const [selectedIndex, setSelectedIndex] = React.useState(-1);
-	// const [checked, setChecked] = React.useState(false);
 	const classes = useStyles();
 	React.useEffect(() => {
 		const params: any = props.location.state;
@@ -25,7 +24,6 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 		// const checked = params && params.checked;
 		const from = params && params.from;
 		setFrom(from);
-		// setChecked(checked);
 
 		if (data) {
 			if (index > -1) {

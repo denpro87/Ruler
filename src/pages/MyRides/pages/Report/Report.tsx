@@ -79,14 +79,18 @@ export const Report: React.FunctionComponent = () => {
 	const renderSupportMessage = (): JSX.Element => {
 		return (
 			<Box className={classes.supportMsgWrapper}>
-				<Text className={classes.msgText} black>
+				<Text className={classes.msgText} color="#181c19">
 					{formatMessage({ id: 'my_rides.report.support_message' })}
 				</Text>
 				<Box className={classes.timeTextWrapper}>
-					<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.support_time' })}</Text>
+					<Text className={classes.smallText} black>
+						{formatMessage({ id: 'my_rides.report.support_time' })}
+					</Text>
 				</Box>
 				<Box className={classes.writerTextWrapper}>
-					<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.support' })}</Text>
+					<Text className={classes.smallText} black>
+						{formatMessage({ id: 'my_rides.report.support' })}
+					</Text>
 				</Box>
 			</Box>
 		);
@@ -96,14 +100,18 @@ export const Report: React.FunctionComponent = () => {
 		return (
 			<Box key={index} className={classes.sentMsgWrapper}>
 				<Box className={classes.msgWrapper}>
-					<Text className={classes.msgText} black>
+					<Text className={classes.msgText} color="#181c19">
 						{message}
 					</Text>
 					<Box className={classes.timeTextWrapper}>
-						<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.your_time' })}</Text>
+						<Text className={classes.smallText} black>
+							{formatMessage({ id: 'my_rides.report.your_time' })}
+						</Text>
 					</Box>
 					<Box className={classes.writerTextWrapper}>
-						<Text className={classes.smallText}>{formatMessage({ id: 'my_rides.report.you' })}</Text>
+						<Text className={classes.smallText} black>
+							{formatMessage({ id: 'my_rides.report.you' })}
+						</Text>
 					</Box>
 				</Box>
 			</Box>

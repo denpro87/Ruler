@@ -163,7 +163,7 @@ const msgWrapper: CSSProperties = {
 const msgText: CSSProperties = {
 	fontWeight: 600,
 	lineHeight: 1.67,
-	color: '#181c19',
+	// color: '#181c19',
 	fontSize: pxToRem(15)
 };
 
@@ -182,8 +182,8 @@ const writerTextWrapper: CSSProperties = {
 const smallText: CreateCSSProperties = {
 	fontWeight: 600,
 	lineHeight: 1.5,
-	fontSize: pxToRem(10),
-	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(24, 28, 25, 0.5)')
+	fontSize: pxToRem(10)
+	// color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(24, 28, 25, 0.5)')
 };
 
 const imagesNumText: CSSProperties = {

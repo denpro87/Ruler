@@ -1,5 +1,4 @@
 import { Box, makeStyles } from '@material-ui/core';
-// import { Checkbox, GreenButton, Page, TextField } from 'components';
 import { GreenButton, Page, TextField } from 'components';
 import { IAddPaymentMethodProps, ICreditCardProps } from './AddPaymentMethod.types';
 import { styles } from './AddPaymentMethod.styles';
@@ -27,7 +26,6 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [cardState, setCardState] = React.useState<ICreditCardProps>(initialCardState);
-	// const [checked, setChecked] = React.useState<boolean>(false);
 	const [pageName, setPageName] = React.useState('');
 	const [selectedIndex, setSelectedIndex] = React.useState(-1);
 
@@ -147,11 +145,6 @@ export const AddDebitCreditCard: React.FunctionComponent<IAddPaymentMethodProps>
 				/>
 			</Box>
 			<Box className={classes.footer}>
-				{/* <Checkbox
-					checked={checked}
-					label={formatMessage({ id: 'wallets.add_credit_card.save_payment_method' })}
-					onValueChange={handleCheckChange}
-				/> */}
 				<GreenButton
 					className={classes.addPaymentMethodButton}
 					disabled={Object.values(cardState).findIndex(value => !value) > -1}
