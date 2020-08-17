@@ -29,7 +29,7 @@ const iconButton: CreateCSSProperties = {
 		const shadows = [];
 
 		if (!props.noShadow) {
-			shadows.push(props.isDarkMode && props.black === undefined ? '0 10px 20px 0 #000' : ICON_BUTTON_BOX_SHADOW);
+			shadows.push(props.isDarkMode ? '0 10px 20px 0 #000' : ICON_BUTTON_BOX_SHADOW);
 		}
 
 		if (props.outlined) {

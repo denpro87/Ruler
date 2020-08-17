@@ -19,6 +19,7 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 	const [isShowError, setShowError] = React.useState<boolean>(false);
 	const [words, setWords] = React.useState<string[]>([]);
 	const [shuffleWords, setShuffleWords] = React.useState<string[]>([]);
+	const [selectedStatus, setSelectedStatus] = React.useState<boolean[]>([]);
 	const {
 		state: {
 			settings: { isDarkMode }
@@ -26,16 +27,19 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 	} = React.useContext(AppContext);
 	const classes = useStyles({ isShowError, isDarkMode: isDarkMode });
 
-	const handleWordClick = (word: string): void => {
+	const handleWordClick = (word: string, index: number): void => {
 		if (words.length < createWalletWords.length) {
 			const newWords = isShowError ? [word] : [...words, word];
 
 			if (!createWalletWords.toString().startsWith(newWords.toString())) {
 				setWords([]);
+				setSelectedStatus([]);
 				setShowError(true);
 			} else {
 				setShowError(false);
 				setWords(newWords);
+				selectedStatus[index] = !selectedStatus[index];
+				setSelectedStatus(selectedStatus);
 			}
 		}
 	};
@@ -58,6 +62,11 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 	React.useEffect(() => {
 		const temp = [...createWalletWords];
 		setShuffleWords(shuffle(temp));
+		const selectedStatus = temp.map(data => {
+			return false;
+		});
+		console.log('DDDDDDD', selectedStatus);
+		setSelectedStatus(selectedStatus);
 	}, []);
 
 	return (
@@ -70,7 +79,9 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 					<Button
 						key={index}
 						className={clsx(classes.wordButton, classes.wordText)}
-						onClick={() => handleWordClick(createWalletWord.toLowerCase())}
+						disabled={selectedStatus[index]}
+						pressedBackgroundColor="#babbba"
+						onClick={(): void => handleWordClick(createWalletWord.toLowerCase(), index)}
 					>
 						<Text className={classes.wordNumber} black>
 							{index + 1}.

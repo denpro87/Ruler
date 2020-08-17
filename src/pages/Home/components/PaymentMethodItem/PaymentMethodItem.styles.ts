@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
@@ -8,13 +8,16 @@ const paymentMethodItemContainer: CSSProperties = {
 	// margin: '0 auto'
 };
 
-const paymentMethodItem: CSSProperties = {
+const paymentMethodItem: CreateCSSProperties = {
 	borderRadius: pxToRem(15),
-	backgroundColor: '#181c19',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 	position: 'relative',
 	padding: `${pxToRem(25)} ${pxToRem(30)}`,
 	display: 'flex',
-	flexDirection: 'column'
+	flexDirection: 'column',
+	'& span': {
+		color: (props: any) => (props.isDarkMode ? '#181c19' : '#fff')
+	}
 };
 
 const trashIcon: CSSProperties = {
@@ -34,8 +37,8 @@ const cardNumberText: CSSProperties = {
 	...font({
 		fontWeight: 600,
 		lineHeight: 1.33,
-		letterSpacing: pxToRem(6.3),
-		color: 'rgba(255, 255, 255, 0.5)'
+		letterSpacing: pxToRem(6.3)
+		// color: 'rgba(255, 255, 255, 0.5)'
 	}),
 	fontSize: pxToRem(15),
 	paddingTop: pxToRem(12),

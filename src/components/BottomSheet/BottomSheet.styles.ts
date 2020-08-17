@@ -11,7 +11,7 @@ const sheetContainer: CSSProperties = {
 
 const sheetWrapper: CreateCSSProperties = {
 	backgroundColor: (props: any) =>
-		props.darkMode ? (props.isDarkMode ? '#4E4C43' : 'rgba(24, 28, 25, 0.5)') : props.isDarkMode ? '#303331' : undefined,
+		props.darkMode ? (props.isDarkMode ? '#4E4C43' : 'rgba(24, 28, 25, 0.5)') : props.isDarkMode ? '#181c19' : undefined,
 	padding: (props: any) => (props.darkMode ? `${pxToRem(10)} 0 0 0` : `${pxToRem(15)} ${pxToRem(20)} ${pxToRem(5)} ${pxToRem(25)}`)
 };
 

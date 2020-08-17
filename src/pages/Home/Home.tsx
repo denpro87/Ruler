@@ -403,7 +403,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					<Icon iconName={info.iconName} colorType="green" />
 				)}
 				<Text className={classes.propertyText}>{info.property}</Text>
-				<Text className={classes.descriptionText}>{info.description}</Text>
+				<Text className={classes.descriptionText} black>
+					{info.description}
+				</Text>
 			</Box>
 		);
 	};
@@ -686,13 +688,25 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								key={index}
 								onClick={handleVehicleTypeClick(damagedVehicleType.iconName)}
 							>
-								<Icon iconName={damagedVehicleType.iconName} colorType="black" />
+								<Icon
+									iconName={damagedVehicleType.iconName}
+									colorType="black"
+									secondaryFillColor={
+										state.settings.isDarkMode
+											? selectedVehicle === damagedVehicleType.iconName
+												? '#00b559'
+												: '#242725'
+											: 'rgb(248, 202, 6)'
+									}
+								/>
 								<Text className={classes.smallText}>{formatMessage({ id: damagedVehicleType.label })}</Text>
 							</Button>
 						);
 					})}
 				</Box>
-				<Text className={classes.smallText}>{formatMessage({ id: 'home.filter_sheet.text.companies' })}</Text>
+				<Text className={classes.smallText} black>
+					{formatMessage({ id: 'home.filter_sheet.text.companies' })}
+				</Text>
 				<List className={classes.filterList}>
 					<SwitchListItem
 						title={formatMessage({ id: 'home.text.all' })}
@@ -742,7 +756,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						onChange={handleSwitchChange}
 					/>
 					<Box className={classes.batteryLevelText}>
-						<Text className={classes.smallText}>{formatMessage({ id: 'home.filter_sheet.text.battery_level' })}</Text>
+						<Text className={classes.smallText} black>
+							{formatMessage({ id: 'home.filter_sheet.text.battery_level' })}
+						</Text>
 					</Box>
 					<Slider
 						value={batteryLevel}
@@ -760,7 +776,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						<Text className={classes.percentageText}>{`${batteryLevel[1]}%`}</Text>
 					</Box>
 					<Box className={classes.engineTypeText}>
-						<Text className={classes.smallText}>{formatMessage({ id: 'home.filter_sheet.text.engine_type' })}</Text>
+						<Text className={classes.smallText} black>
+							{formatMessage({ id: 'home.filter_sheet.text.engine_type' })}
+						</Text>
 					</Box>
 					<SwitchListItem
 						title={formatMessage({ id: 'home.filter_sheet.text.electrical' })}
@@ -905,7 +923,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								<GreenButton iconName="create-account" compact onClick={(): void => history.push('/welcome/create-account')}>
 									{formatMessage({ id: 'welcome.button.create_account' })}
 								</GreenButton>
-								<Text className={classes.swipeText}>
+								<Text className={classes.swipeText} black>
 									{formatMessage({ id: 'home.vehicle_info_sheet.text.description_create_account' })}
 								</Text>
 							</Box>
@@ -915,7 +933,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								<GreenButton iconName="driver-licence" compact onClick={(): void => history.push('/driver-licence')}>
 									{formatMessage({ id: 'button.add_driver_licence' })}
 								</GreenButton>
-								<Text className={classes.swipeText}>
+								<Text className={classes.swipeText} black>
 									{formatMessage({ id: 'home.vehicle_info_sheet.text.description_driver_licence' })}
 								</Text>
 							</Box>
@@ -925,7 +943,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								<GreenButton iconName="add-payment" compact onClick={handleAddPaymentMethodClick}>
 									{formatMessage({ id: 'button.add_payment_method' })}
 								</GreenButton>
-								<Text className={classes.swipeText}>
+								<Text className={classes.swipeText} black>
 									{formatMessage({ id: 'home.vehicle_info_sheet.text.description_payment_method' })}
 								</Text>
 							</Box>
@@ -938,7 +956,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 									</GreenButton>
 								) : (
 									<Box className={classes.scanAndReserveButtonGroupWrapper}>
-										<LightGreenButton iconName="qr" compact>
+										<LightGreenButton iconName="qr" compact className={classes.finishAndScanButton}>
 											{formatMessage({ id: 'button.scan' })}
 										</LightGreenButton>
 										<GreenButton iconName="lock" compact onClick={(): void => setReservation(true)}>
@@ -946,14 +964,21 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										</GreenButton>
 									</Box>
 								)}
-								<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_more' })}</Text>
+								<Text className={classes.swipeText} black>
+									{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_more' })}
+								</Text>
 							</Box>
 						)}
 						{hasAccount && hasValidatedDriverLicence && paidSuccess && reservation && (
 							<Box className={classes.vehicleInfoFooter}>
 								{rideStart ? (
 									<Box className={classes.scanAndReserveButtonGroupWrapper}>
-										<LightGreenButton iconName="point" compact onClick={(): void => setFinishRidingModal(true)}>
+										<LightGreenButton
+											iconName="point"
+											compact
+											onClick={(): void => setFinishRidingModal(true)}
+											className={classes.finishAndScanButton}
+										>
 											{formatMessage({ id: 'button.finish' })}
 										</LightGreenButton>
 										{ridingStart ? (
@@ -971,7 +996,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										{formatMessage({ id: 'button.ride' })}
 									</GreenButton>
 								)}
-								<Text className={classes.swipeText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_more' })}</Text>
+								<Text className={classes.swipeText} black>
+									{formatMessage({ id: 'home.vehicle_info_sheet.text.swipe_more' })}
+								</Text>
 							</Box>
 						)}
 					</IonSlide>
@@ -1020,7 +1047,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 									>
 										{formatMessage({ id: 'button.pay' })}
 									</GreenButton>
-									<Text className={classes.swipeText}>{formatMessage({ id: 'home.payment_method_sheet.text.description_pay' })}</Text>
+									<Text className={classes.swipeText} black>
+										{formatMessage({ id: 'home.payment_method_sheet.text.description_pay' })}
+									</Text>
 								</Box>
 							</>
 						)}
@@ -1167,7 +1196,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										<Box>
 											{rideStart ? (
 												<Box className={classes.scanAndReserveButtonGroupWrapper}>
-													<LightGreenButton iconName="point" compact onClick={(): void => setFinishRidingModal(true)}>
+													<LightGreenButton
+														iconName="point"
+														compact
+														onClick={(): void => setFinishRidingModal(true)}
+														className={classes.finishAndScanButton}
+													>
 														{formatMessage({ id: 'button.finish' })}
 													</LightGreenButton>
 													{ridingStart ? (
@@ -1188,7 +1222,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 										</Box>
 									) : (
 										<Box className={classes.scanAndReserveButtonGroupWrapper}>
-											<LightGreenButton iconName="qr" compact>
+											<LightGreenButton iconName="qr" compact className={classes.finishAndScanButton}>
 												{formatMessage({ id: 'button.scan' })}
 											</LightGreenButton>
 											<GreenButton iconName="lock" compact onClick={(): void => setReservation(true)}>
@@ -1199,12 +1233,16 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 
 									<Box className={classes.iconButtonTextContainer}>
 										<Box className={classes.iconButtonTextWrapper} onClick={(): void => history.push('/get-help/how-to-ride')}>
-											<IconButton iconName="how-to-ride" colorType="green" />
-											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.how_to_ride' })}</Text>
+											<IconButton iconName="how-to-ride" colorType="green" noShadow />
+											<Text className={classes.greenText} color="#00b559">
+												{formatMessage({ id: 'home.vehicle_info_sheet.text.how_to_ride' })}
+											</Text>
 										</Box>
 										<Box className={classes.iconButtonTextWrapper} onClick={(): void => history.push('/my-rides/report')}>
-											<IconButton iconName="report" colorType="green" />
-											<Text className={classes.greenText}>{formatMessage({ id: 'home.vehicle_info_sheet.text.report' })}</Text>
+											<IconButton iconName="report" colorType="green" noShadow />
+											<Text className={classes.greenText} color="#00b559">
+												{formatMessage({ id: 'home.vehicle_info_sheet.text.report' })}
+											</Text>
 										</Box>
 									</Box>
 								</Box>
@@ -1234,7 +1272,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 								<Box key={index} className={classes.infoWrapper}>
 									<Icon iconName={info.iconName} colorType="green" />
 									<Text className={classes.propertyText}>{info.property}</Text>
-									<Text className={classes.descriptionText}>{info.description}</Text>
+									<Text className={classes.descriptionText} black>
+										{info.description}
+									</Text>
 								</Box>
 							);
 						}
@@ -1265,7 +1305,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				onClose={handlePaidDialogClose}
 				aria-labelledby="form-dialog-title"
 			>
-				<Text className={classes.dialogContentText}>{formatMessage({ id: 'home.payment_method_sheet.pay.dialog.description' })}</Text>
+				<Text className={classes.dialogContentText} black>
+					{formatMessage({ id: 'home.payment_method_sheet.pay.dialog.description' })}
+				</Text>
 			</Dialog>
 			<Dialog
 				title={formatMessage({ id: 'home.finished_ride_sheet.report_submit.dialog.title' })}
@@ -1275,7 +1317,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				onClose={handleReportSubmitDialogClose}
 				aria-labelledby="form-dialog-title"
 			>
-				<Text className={classes.dialogContentText}>
+				<Text className={classes.dialogContentText} black>
 					{formatMessage({ id: 'home.finished_ride_sheet.report_submit.dialog.description' })}
 				</Text>
 			</Dialog>

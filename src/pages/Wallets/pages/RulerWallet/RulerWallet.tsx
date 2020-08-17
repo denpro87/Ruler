@@ -56,7 +56,7 @@ export const RulerWallet: React.FunctionComponent<IRulerWalletProps> = props => 
 						<GoBackIconButton className={classes.goBackIcon} onClick={(): void => history.goBack()} />
 						<Box className={classes.titleWrapper}>
 							<Text className={classes.titleText}>{formatMessage({ id: 'wallets.ruler_wallet.title' })}</Text>
-							<IconButton iconProps={{ iconName: 'qr', color: '#00b559' }} onClick={handleQrClick} black />
+							<IconButton iconProps={{ iconName: 'qr', color: '#00b559' }} onClick={handleQrClick} black noShadow />
 						</Box>
 						<Box className={classes.headerContent}>
 							<Text className={classes.headerHelperText} color="rgba(255, 255, 255, 0.5)">

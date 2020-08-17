@@ -12,11 +12,11 @@ const addPaymentMethodButton: CSSProperties = {
 	fontWeight: 'bold'
 };
 
-const dialogContentText: CSSProperties = {
+const dialogContentText: CreateCSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,
 	lineHeight: 1.5,
-	color: 'rgba(24, 28, 25, 0.5)',
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)'),
 	padding: `${pxToRem(15)} 0`
 };
 

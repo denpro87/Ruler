@@ -161,10 +161,11 @@ const sheetText: CreateCSSProperties = {
 	padding: `0 0 ${pxToRem(20)} 0`
 };
 const buttonGroupWrapper: CSSProperties = {
+	borderRadius: pxToRem(15),
 	display: 'flex',
 	flexDirection: 'row',
 	backgroundColor: 'rgba(255, 255, 255, 0.05)',
-	padding: `${pxToRem(24)} 0 ${pxToRem(30)} 0`
+	margin: `${pxToRem(24)} 0 ${pxToRem(30)} 0`
 };
 
 const scanEnterButtonGroupWrapper: CreateCSSProperties = {
@@ -176,7 +177,7 @@ const scanEnterButtonGroupWrapper: CreateCSSProperties = {
 	width: percentage(1)
 };
 
-const button: CSSProperties = {
+const button: CreateCSSProperties = {
 	padding: `${pxToRem(4)} 0`,
 	'& .MuiButton-label > span': {
 		display: 'flex',
@@ -184,8 +185,11 @@ const button: CSSProperties = {
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
+	'&:active': {
+		backgroundColor: (props: any) => (props.isDarkMode ? '#00b559' : '#f8ca06')
+	},
 	'&:hover': {
-		backgroundColor: '#f8ca06'
+		backgroundColor: (props: any) => (props.isDarkMode ? '#00b559' : '#f8ca06')
 	}
 };
 
@@ -209,12 +213,12 @@ const scanEnterCodeButton: CreateCSSProperties = {
 	}
 };
 
-const activeBackground: CSSProperties = {
-	backgroundColor: '#f8ca06'
+const activeBackground: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#00b559' : '#f8ca06')
 };
 
-const inActiveBackground: CSSProperties = {
-	backgroundColor: 'transparent'
+const inActiveBackground: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#242725' : '#ffffff')
 };
 
 const smallText: CreateCSSProperties = {
@@ -268,10 +272,10 @@ const sliderContainer: CSSProperties = {
 	}
 };
 
-const railPart: CSSProperties = {
+const railPart: CreateCSSProperties = {
 	height: pxToRem(4),
 	borderRadius: pxToRem(10),
-	backgroundColor: 'rgba(24, 28, 25, 0.4)'
+	backgroundColor: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.4)')
 };
 
 const trackPart: CSSProperties = {
@@ -614,7 +618,7 @@ const vehicleDetailInfoColumn: CSSProperties = {
 
 const greenText: CSSProperties = {
 	fontSize: pxToRem(15),
-	color: '#00b559',
+	// color: '#00b559',
 	fontWeight: 'bold',
 	lineHeight: 1.67
 };
@@ -640,15 +644,19 @@ const iconButtonTextContainer: CSSProperties = {
 	display: 'flex'
 };
 
-const notRecommendedButton: CSSProperties = {
-	fontWeight: 'bold'
+const notRecommendedButton: CreateCSSProperties = {
+	fontWeight: 'bold',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
+	'& span': {
+		color: (props: any) => (props.isDarkMode ? '#181c19' : '#fff')
+	}
 };
 
-const finishRidingDialogContentText: CSSProperties = {
+const finishRidingDialogContentText: CreateCSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,
 	lineHeight: 1.5,
-	color: 'rgba(24, 28, 25, 0.5)',
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)'),
 	padding: `${pxToRem(10)}  0 ${pxToRem(20)} 0`,
 	maxWidth: pxToRem(160),
 	margin: '0 auto'
@@ -711,7 +719,13 @@ const paymentMethodTitleTextWrapper: CreateCSSProperties = {
 		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 	}
 };
+
+const finishAndScanButton: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : 'rgb(202, 241, 221)'),
+	color: (props: any) => (props.isDarkMode ? '#fff' : 'rgb(0, 181, 89)')
+};
 export const styles = createStyles({
+	finishAndScanButton,
 	totalAmountDecimal,
 	paymentMethodTitleTextWrapper,
 	circleWithVehicleNumber,
