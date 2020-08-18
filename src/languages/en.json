@@ -242,7 +242,7 @@
 	"wallets.send.send_to": "Send to",
 	"wallets.send.dialog.title": "Transaction completed",
 	"wallets.send.dialog.description": "Your wallet has been successfully replenished",
-	"wallets.number_helper_text": "Should be only numbers",
+	"wallets.number_helper_text": "Card number is 16 digits",
 	"wallets.qr_code.title": "QR code",
 	"wallets.receive.title": "Receive",
 	"wallets.receive.receive_from": "Receive from",

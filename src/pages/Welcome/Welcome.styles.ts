@@ -1,4 +1,5 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
+import { CreateAnimationProps } from '@ionic/react/dist/types/components/CreateAnimation';
 import {
 	WELCOME_PAGE_BACKGROUND_INITIAL_HEIGHT,
 	WELCOME_PAGE_BACKGROUND_INITIAL_POSITION_RIGHT,
@@ -70,7 +71,7 @@ const welcomeText: CreateCSSProperties = {
 		lineHeight: 1.5,
 		letterSpacing: 'normal'
 	}),
-	color: (props: any) => props.isDarkMode ? '#fff' : '#181c19'
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 };
 
 const signInWithSocialsText: CreateCSSProperties = {
@@ -99,7 +100,15 @@ const alreadyHaveAnAccountText: CreateCSSProperties = {
 	color: (props: any) => (props.isDarkMode ? '#fff' : 'rgba(24, 28, 25, 0.5)')
 };
 
+const notRecommendedButton: CreateCSSProperties = {
+	fontWeight: 'bold',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
+	'& span': {
+		color: (props: any) => (props.isDarkMode ? '#181c19' : '#fff')
+	}
+};
 export const styles = createStyles({
+	notRecommendedButton,
 	alreadyHaveAnAccountText,
 	signInWithSocialsText,
 	welcomeText,

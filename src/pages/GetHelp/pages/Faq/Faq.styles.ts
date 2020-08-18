@@ -1,5 +1,5 @@
-import { CSSProperties, createStyles, CreateCSSProperties } from '@material-ui/styles';
-import { DEFAULT_FONT_FAMILY, pxToRem, isDarkMode } from 'styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
+import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const list: CSSProperties = {
 	padding: 0
@@ -16,9 +16,10 @@ const listItem: CSSProperties = {
 	padding: `0 0 ${pxToRem(7)} 0`,
 	color: '#00b559'
 };
+
 const container: CreateCSSProperties = {
-	background: isDarkMode ? '#181c19' : '#fff',
-	color: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : '#000',
+	// backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#fff'),
+	// color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : '#000'),
 	paddingTop: pxToRem(5),
 	flex: 1
 };
@@ -53,8 +54,8 @@ export const styles = createStyles({
 	searchBox,
 	listItem,
 	text,
-	container,
 	content,
+	container,
 	subHeader,
 	faqContentItem,
 	faqLi

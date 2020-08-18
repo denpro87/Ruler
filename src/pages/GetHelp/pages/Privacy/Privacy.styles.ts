@@ -1,16 +1,16 @@
-import { CSSProperties, createStyles, CreateCSSProperties } from '@material-ui/styles';
-import { DEFAULT_FONT_FAMILY, pxToRem, isDarkMode } from 'styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
+import { DEFAULT_FONT_FAMILY, isDarkMode, pxToRem } from 'styles';
 
 const list: CSSProperties = {
 	padding: 0
 };
 const searchBox: CSSProperties = {
 	marginTop: pxToRem(5),
-	marginBottom: pxToRem(10),
-	'& input': {
-		fontWeight: 600,
-		color: '#181c19'
-	}
+	marginBottom: pxToRem(10)
+	// '& input': {
+	// 	fontWeight: 600,
+	// 	color: '#181c19'
+	// }
 };
 const listItem: CSSProperties = {
 	padding: `0 0 ${pxToRem(7)} 0`,

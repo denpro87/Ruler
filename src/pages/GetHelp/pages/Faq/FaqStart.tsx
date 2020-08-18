@@ -1,5 +1,5 @@
-import { Footer, Page } from 'components';
-import { Paper, Typography, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
+import { Footer, Page, Text } from 'components';
 import { styles } from './Faq.styles';
 import clsx from 'clsx';
 
@@ -12,13 +12,13 @@ export const FaqStart: React.FunctionComponent = () => {
 
 	return (
 		<Page title="I have unlocked the scooter. How can I start the ride?" titleSize="medium">
-			<Paper elevation={0} className={classes.container}>
-				<Typography variant="h6" className={clsx(classes.text, classes.content)}>
+			<Box className={classes.container}>
+				<Text variant="h6" className={clsx(classes.text, classes.content)}>
 					To start your scooter ride, place one foot firmly on the baseboard and use your other foot to push off against the ground a few
 					times. Once you’ve gained some speed, press on the throttle near your right thumb to accelerate. Familiarize yourself with the
 					throttle and squeeze the hand brake to slow down when needed.
-				</Typography>
-			</Paper>
+				</Text>
+			</Box>
 			<Footer leftIcon="support" leftText="Ruler Support" rightIcon="ride-history" rightText="Nov 24" />
 		</Page>
 	);

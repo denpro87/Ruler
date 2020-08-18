@@ -77,7 +77,7 @@ export const Send: React.FunctionComponent<ISendProps> = props => {
 					value={walletAddress}
 					onValueChange={handleWalletAddressChange}
 				/>
-				<Text className={clsx(classes.helperText, classes.textCenter)}>
+				<Text className={clsx(classes.helperText, classes.textCenter)} black>
 					{formatMessage({ id: 'wallets.add_funds.helper_text.ruler_bonus' })}
 				</Text>
 				<Box className={classes.rulerPriceBonusButtonGroup}>

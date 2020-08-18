@@ -1,5 +1,5 @@
-import { Footer, Page } from 'components';
-import { Paper, Typography, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
+import { Footer, Page, Text } from 'components';
 import { styles } from './Faq.styles';
 import clsx from 'clsx';
 
@@ -12,12 +12,12 @@ export const FaqFinding: React.FunctionComponent = () => {
 
 	return (
 		<Page title="Finding a bike or vehicle" titleSize="medium">
-			<Paper elevation={0} className={classes.container}>
-				<Typography variant="h6" className={clsx(classes.text, classes.content)}>
+			<Box className={classes.container}>
+				<Text variant="h6" className={clsx(classes.text, classes.content)}>
 					To find a bike or vehicle, simply open the Ruler app and you would see all available vehicles/bikes near you. Visit the respective
 					place and that’s it. You are all set to star your ride.
-				</Typography>
-			</Paper>
+				</Text>
+			</Box>
 			<Footer leftIcon="support" leftText="Ruler Support" rightIcon="ride-history" rightText="Nov 24" />
 		</Page>
 	);

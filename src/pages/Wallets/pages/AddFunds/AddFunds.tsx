@@ -73,7 +73,9 @@ export const AddFunds: React.FunctionComponent<IAddFundsProps> = props => {
 						</MenuItem>
 					))}
 				</Select>
-				<Text className={classes.helperText}>{formatMessage({ id: 'wallets.add_funds.helper_text.ruler_bonus' })}</Text>
+				<Text className={classes.helperText} black>
+					{formatMessage({ id: 'wallets.add_funds.helper_text.ruler_bonus' })}
+				</Text>
 				<Box className={classes.rulerPriceBonusButtonGroup}>
 					{rulerPriceBonusData.map((data, index) => (
 						<RulerButton

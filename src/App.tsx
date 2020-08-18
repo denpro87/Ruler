@@ -23,8 +23,9 @@ export const App: React.FunctionComponent = () => {
 	const { state } = React.useContext(AppContext);
 	const [isLoaded, setLoaded] = React.useState(state.appLoaded);
 	React.useEffect(() => {
+		// console.log('Loaded', state.appLoaded); // at first time-> false
 		getStorageData(state).then(() => {
-			setLoaded(state.appLoaded);
+			setLoaded(state.appLoaded); // true
 		});
 	}, [state]);
 

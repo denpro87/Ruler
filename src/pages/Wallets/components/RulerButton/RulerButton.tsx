@@ -18,7 +18,9 @@ export const RulerButton: React.FunctionComponent<IRulerButtonProps> = props => 
 	return (
 		<Button className={classes.button} onClick={(): void => props.onRulerButtonClick(props.price)}>
 			<Text className={classes.priceText}>{`€ ${props.price}`}</Text>
-			<Text className={classes.percentText}>{props.bonus}</Text>
+			<Text className={classes.percentText} color="#00b559">
+				{props.bonus}
+			</Text>
 		</Button>
 	);
 };

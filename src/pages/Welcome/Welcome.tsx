@@ -1,10 +1,10 @@
+import { AppContext } from 'providers/State';
 import { BlackButton, FullPage, Link, SocialIconButton, Text } from 'components';
 import { Box, makeStyles } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 import { Stack } from '@fluentui/react';
 import { styles } from './Welcome.styles';
 import { useHistory } from 'react-router-dom';
-import { AppContext } from 'providers/State';
 import Background from './images/bg.svg';
 import React from 'react';
 import clsx from 'clsx';
@@ -27,7 +27,12 @@ export const Welcome: React.FunctionComponent = () => {
 						<Text className={classes.welcomeText} block>
 							<FormattedMessage id="welcome.text.welcome_to_ruler" />
 						</Text>
-						<BlackButton iconName="create-account" compact onClick={(): void => history.push('/welcome/create-account')}>
+						<BlackButton
+							iconName="create-account"
+							compact
+							onClick={(): void => history.push('/welcome/create-account')}
+							className={classes.notRecommendedButton}
+						>
 							<FormattedMessage id="welcome.button.create_account" />
 						</BlackButton>
 					</Stack.Item>

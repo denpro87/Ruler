@@ -3,9 +3,9 @@ import { DateTimePicker, Divider, Icon, Page, Styling, SwitchListItem, Text } fr
 import { IDarkModeProps, IDarkModeState } from './DarkMode.types';
 import { styles } from './DarkMode.styles';
 
+import { AppContext } from 'providers/State';
 import { injectIntl } from 'react-intl';
 import React from 'react';
-import { AppContext } from 'providers/State';
 
 const useStyles = makeStyles(styles);
 
@@ -105,7 +105,9 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 								onChange={this.handleDontUseChange}
 							/>
 							<div className={classes.textWrapper}>
-								<Text className={classes.subText}>{formatMessage({ id: 'settings.dark_mode.set_by_time' })}</Text>
+								<Text className={classes.subText} black>
+									{formatMessage({ id: 'settings.dark_mode.set_by_time' })}
+								</Text>
 							</div>
 							<SwitchListItem
 								title={formatMessage({ id: 'settings.dark_mode.scheduled' })}

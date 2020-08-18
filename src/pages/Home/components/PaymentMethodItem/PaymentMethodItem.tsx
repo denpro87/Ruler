@@ -7,6 +7,11 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps> = ({ handleShowClick, handleRemoveClick, cardData }) => {
+	let privateCardNumber = '';
+
+	for (let i = 11; i < 15; i++) {
+		privateCardNumber += cardData.cardNumber[i];
+	}
 	const {
 		state: {
 			settings: { isDarkMode }
@@ -25,7 +30,7 @@ export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps>
 				<Link className={classes.cardTypeText} onClick={handleShowClick}>
 					MasterCard
 				</Link>
-				<Text className={classes.cardNumberText}>{cardData.cardNumber}</Text>
+				<Text className={classes.cardNumberText}>**** **** **** {privateCardNumber}</Text>
 			</Box>
 		</Box>
 	);

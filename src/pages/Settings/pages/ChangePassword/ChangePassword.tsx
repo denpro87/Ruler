@@ -8,15 +8,18 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 class ChangePasswordPage extends React.Component<IChangePasswordProps, IChangePasswordState> {
-	state = {
-		oldPassword: '',
-		oldPasswordValid: true,
-		newPassword: '',
-		newPasswordValid: true,
-		confirmedPassword: '',
-		newPasswordMatch: true,
-		showDialog: false
-	};
+	constructor(props: IChangePasswordProps) {
+		super(props);
+		this.state = {
+			oldPassword: '',
+			oldPasswordValid: true,
+			newPassword: '',
+			newPasswordValid: true,
+			confirmedPassword: '',
+			newPasswordMatch: true,
+			showDialog: false
+		};
+	}
 
 	handleSaveClick = (): void => {
 		this.setState({

@@ -24,31 +24,31 @@ export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 				<Box className={classes.historyWrapper}>
 					<Box className={classes.startPointWrapper}>
 						<Box>
-							<Text className={classes.largeText} block black>
+							<Text className={classes.largeText} block color="#181c19">
 								{formatMessage({ id: props.startPosition })}
 							</Text>
-							<Text className={classes.smallText} block black>
+							<Text className={classes.smallText} block color="#181c19">
 								{formatMessage({ id: props.startTime })}
 							</Text>
 						</Box>
 						<Box className={classes.iconWrapper}>
-							<Icon iconName={props.type} colorType="black" black />
+							<Icon iconName={props.type} colorType="black" />
 							<Box className={classes.iconDecorator} />
 						</Box>
 					</Box>
 					<Box className={clsx(classes.startPointWrapper, classes.endPoint)}>
-						<Text className={classes.largeText} block black>
+						<Text className={classes.largeText} color="#181c19">
 							{formatMessage({ id: props.endPosition })}
 						</Text>
-						<Text className={classes.amountText} block black>
+						<Text className={classes.amountText} block color="#181c19">
 							{formatMessage({ id: props.totalAmount })}
 						</Text>
 					</Box>
 					<Box className={classes.startPointWrapper}>
-						<Text className={classes.smallText} block black>
+						<Text className={classes.smallText} block color="#181c19">
 							{formatMessage({ id: props.travelTime })}
 						</Text>
-						<Text className={classes.smallText} block black>
+						<Text className={classes.smallText} block color="#181c19">
 							{formatMessage({ id: 'my_rides.text.total_amount' })}
 						</Text>
 					</Box>
@@ -62,7 +62,7 @@ export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 						onClick={props.onReportIconButtonClick}
 						black
 					/>
-					<Text className={classes.largeText} black>
+					<Text className={classes.largeText} color="#181c19">
 						{formatMessage({ id: 'my_rides.text.report_trip' })}
 					</Text>
 				</Box>

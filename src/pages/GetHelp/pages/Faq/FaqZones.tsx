@@ -1,5 +1,5 @@
-import { Footer, Page } from 'components';
-import { Paper, Typography, makeStyles } from '@material-ui/core';
+import { Box, Paper, makeStyles } from '@material-ui/core';
+import { Footer, Page, Text } from 'components';
 import { styles } from './Faq.styles';
 import clsx from 'clsx';
 
@@ -12,11 +12,11 @@ export const FaqZones: React.FunctionComponent = () => {
 
 	return (
 		<Page title="So what are the ride areas?" titleSize="medium">
-			<Paper elevation={0} className={classes.container}>
-				<Typography variant="h6" className={clsx(classes.text, classes.content)}>
+			<Box className={classes.container}>
+				<Text variant="h6" className={clsx(classes.text, classes.content)}>
 					Ride Zones appear as shaded areas outlined in red on the map in the Lime app. These zones may restrict your speed or ability to
 					end your ride. Tap on zones in the map to see what type of zone it is and the rules associated with it:
-				</Typography>
+				</Text>
 				<div className={clsx(classes.text, classes.content, classes.faqContentItem)}>
 					<span className={classes.faqLi}>•</span>
 					<span>Out of business: you can’t end a ride/trip in this zone</span>
@@ -33,7 +33,7 @@ export const FaqZones: React.FunctionComponent = () => {
 					<span className={classes.faqLi}>•</span>
 					<span>No parking: parking here is not permissible as per traffic laws</span>
 				</div>
-			</Paper>
+			</Box>
 			<Footer leftIcon="support" leftText="Ruler Support" rightIcon="ride-history" rightText="Nov 24" />
 		</Page>
 	);

@@ -81,7 +81,9 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 	return (
 		<Page title={formatMessage({ id: 'wallets.transfer.title' })} titleSize="medium">
 			<Box className={classes.addFundsWrapper}>
-				<Text className={classes.helperText}>{formatMessage({ id: 'wallets.payment_templates' })}</Text>
+				<Text className={classes.helperText} black>
+					{formatMessage({ id: 'wallets.payment_templates' })}
+				</Text>
 				<Box className={classes.TemplateButtonsWrapper}>
 					{paymentTemplateData?.map((template: ITemplateDataProps, index: number) => (
 						<Button
@@ -107,7 +109,7 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 						</MenuItem>
 					))}
 				</Select>
-				<Text className={clsx(classes.helperText, classes.textCenter)}>
+				<Text className={clsx(classes.helperText, classes.textCenter)} black>
 					{formatMessage({ id: 'wallets.add_funds.helper_text.ruler_bonus' })}
 				</Text>
 				<Box className={classes.rulerPriceBonusButtonGroup}>

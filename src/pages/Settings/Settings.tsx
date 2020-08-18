@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { BlackButton, BlackIcon, Dialog, Page, TextField } from 'components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { List, ListItem, ListItemIcon, ListItemText, Typography, makeStyles } from '@material-ui/core';
@@ -6,7 +7,6 @@ import { menuList } from './Settings.data';
 import { styles } from './Settings.styles';
 import { validateEmail } from 'utils';
 import React from 'react';
-import { AppContext } from 'providers/State';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
@@ -115,7 +115,7 @@ export const Settings: React.FunctionComponent = () => {
 					value={email}
 					onValueChange={handleEmailChange}
 				/>
-				<BlackButton onClick={handleSendEmail} disabled={!email || !emailValid}>
+				<BlackButton onClick={handleSendEmail} disabled={!email || !emailValid} className={classes.notRecommendedButton}>
 					{formatMessage({ id: 'settings.delete_account_dialog.send' })}
 				</BlackButton>
 			</Dialog>

@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { pxToRem } from 'styles';
 
 const innerContent: CSSProperties = {
@@ -34,11 +34,11 @@ const textFieldRoot: CSSProperties = {
 const saveBtn: CSSProperties = {
 	marginTop: 'auto'
 };
-const dialogContentText: CSSProperties = {
+const dialogContentText: CreateCSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,
 	lineHeight: 1.5,
-	color: '#181c19',
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 	opacity: 0.5,
 	padding: `${pxToRem(10)} ${pxToRem(10)} ${pxToRem(5)} ${pxToRem(10)}`
 };

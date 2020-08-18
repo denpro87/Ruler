@@ -26,16 +26,22 @@ const last: CSSProperties = {
 	marginTop: 'auto',
 	marginBottom: pxToRem(4)
 };
-const dialogContentText: CSSProperties = {
+const dialogContentText: CreateCSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,
 	lineHeight: 1.5,
-	color: 'rgba(24, 28, 25, 0.5)',
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)'),
 	padding: `${pxToRem(15)} 0`
 };
-const notRecommendedButton: CSSProperties = {
-	fontWeight: 'bold'
+
+const notRecommendedButton: CreateCSSProperties = {
+	fontWeight: 'bold',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
+	'& span': {
+		color: (props: any) => (props.isDarkMode ? '#181c19' : '#fff')
+	}
 };
+
 const emailRoot: CSSProperties = {
 	marginBottom: pxToRem(25),
 	'& .MuiInput-underline:before': {
