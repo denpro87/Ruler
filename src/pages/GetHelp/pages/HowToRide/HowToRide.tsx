@@ -2,6 +2,7 @@ import { Box, makeStyles } from '@material-ui/core';
 import { FullPage, GreenButton } from 'components';
 import { IonSlides } from '@ionic/react';
 import { Slide } from 'components/Slide';
+import { setFlagsFromString } from 'v8';
 import { slides } from './HowToRide.data';
 import { styles } from './HowToRide.styles';
 import React from 'react';
@@ -16,12 +17,29 @@ const useStyles = makeStyles(styles);
 
 export const HowToRide: React.FunctionComponent = () => {
 	const classes = useStyles();
-	const slidesRef = React.useRef(null);
+	const slidesRef = React.useRef<HTMLIonSlidesElement>(null);
 	const [activeIndex, setActiveIndex] = React.useState(0);
+	const [flag, setFlag] = React.useState(false);
 
 	const handleSlideChange = (event: any) => {
 		setActiveIndex(event.target.swiper.activeIndex);
 	};
+
+	const handleNextButtonClick = (event: any) => {
+		slidesRef.current?.slideNext();
+		// slidesRef.current?.slidePrev();
+	};
+
+	const handlePrevButtonClick = (event: any) => {
+		slidesRef.current?.slidePrev();
+	};
+	React.useEffect(() => {
+		if (activeIndex === 0) {
+			setFlag(false);
+		} else if (activeIndex === 4) {
+			setFlag(true);
+		}
+	}, [activeIndex]);
 
 	return (
 		<FullPage canGoBack pageHeaderClassName={classes.pageHeader}>
@@ -39,7 +57,12 @@ export const HowToRide: React.FunctionComponent = () => {
 							<span key={index} className={clsx({ [classes.stateItem]: true }, { [classes.currentStateItem]: index === activeIndex })} />
 						))}
 					</Box>
-					<GreenButton compact iconName="well-done-checked" className={classes.skipButton}>
+					<GreenButton
+						compact
+						iconName="well-done-checked"
+						className={classes.skipButton}
+						onClick={flag ? handlePrevButtonClick : handleNextButtonClick}
+					>
 						Got it
 					</GreenButton>
 				</div>
