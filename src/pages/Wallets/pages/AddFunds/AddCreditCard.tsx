@@ -5,7 +5,7 @@ import { IAddFundsProps, ICreditCardProps } from './AddFunds.types';
 import { styles } from './AddFunds.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import { validateDate, validateNumber } from 'utils';
+import { validateCardNumberLength, validateDate, validateNumber } from 'utils';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
@@ -45,7 +45,7 @@ export const AddCreditCard: React.FunctionComponent<IAddFundsProps> = props => {
 			setCardState(prevState => ({
 				...prevState,
 				[event.target.name]: value.includes(' ') ? trimValue : value,
-				cardNumberValid: validateNumber(value.includes(' ') ? trimValue : value)
+				cardNumberValid: validateCardNumberLength(value.includes(' ') ? trimValue : value)
 			}));
 		} else if (event.target.name === 'zipCode') {
 			setCardState(prevState => ({
