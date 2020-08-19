@@ -19,7 +19,8 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 		endTimeHour: 7,
 		endTimeMin: 0,
 		pickerIsOpen: false,
-		pickerItem: ''
+		pickerItem: '',
+		disabledSchedule: false
 	};
 
 	static contextType = AppContext;
@@ -30,21 +31,18 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 
 	private handleAutomaticallyChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
 		if (checked) {
-			this.setState({ dontUseDarkMode: false, scheduledDarkMode: false });
-			this.context.dispatch({
-				type: 'UPDATE_SETTINGS',
-				payload: { isDarkMode: false }
-			});
-			// document.body.classList.toggle('dark', true);
-		} else {
-			// document.body.classList.toggle('dark', false);
+			this.setState({ dontUseDarkMode: false, disabledSchedule: false });
 		}
 		this.setState({ automaticallyDarkMode: checked });
+		this.context.dispatch({
+			type: 'UPDATE_SETTINGS',
+			payload: { isDarkMode: checked }
+		});
 	};
 
 	private handleDontUseChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
 		if (checked) {
-			this.setState({ automaticallyDarkMode: false, scheduledDarkMode: false });
+			this.setState({ automaticallyDarkMode: false, disabledSchedule: checked });
 		}
 		this.setState({ dontUseDarkMode: checked });
 		this.context.dispatch({
@@ -54,14 +52,14 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 	};
 
 	private handleScheduledChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
-		if (checked) {
-			this.setState({ automaticallyDarkMode: false, dontUseDarkMode: false });
-			this.context.dispatch({
-				type: 'UPDATE_SETTINGS',
-				payload: { isDarkMode: false }
-			});
-		}
+		// if (checked) {
+		// 	this.setState({ automaticallyDarkMode: false, dontUseDarkMode: false });
+		// }
 		this.setState({ scheduledDarkMode: checked });
+		// this.context.dispatch({
+		// 	type: 'UPDATE_SETTINGS',
+		// 	payload: { isDarkMode: false }
+		// });
 	};
 
 	private handleDatePickerChange = (hour: number, min: number): void => {
@@ -114,6 +112,7 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 								name="scheduledDarkMode"
 								checked={this.state.scheduledDarkMode}
 								onChange={this.handleScheduledChange}
+								disabled={this.state.disabledSchedule}
 							/>
 
 							{this.state.scheduledDarkMode && (
@@ -132,7 +131,9 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 									</ListItem>
 									<Divider />
 									<ListItem className={classes.li}>
-										<ListItemText className={classes.itemText}>{formatMessage({ id: 'settings.dark_mode.ending' })}</ListItemText>
+										<ListItemText className={classes.itemText} classes={{ primary: classes.primaryText }}>
+											{formatMessage({ id: 'settings.dark_mode.ending' })}
+										</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
 											<Button className={classes.secondaryButton} onClick={this.onEndPickerClick}>
 												<Text className={classes.dateText}>{`${this.state.endTimeHour}:${this.state.endTimeMin

@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const providersList: CSSProperties = {
@@ -41,10 +41,10 @@ const li: CSSProperties = {
 	alignItems: 'center',
 	padding: `${pxToRem(10)} 0 ${pxToRem(15)} 0`
 };
-const itemText: CSSProperties = {
+const itemText: CreateCSSProperties = {
 	margin: 0,
 	'& span': {
-		color: '#181c19',
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 		fontSize: pxToRem(15),
 		lineHeight: 1.67,
 		fontWeight: 600,
@@ -72,7 +72,11 @@ const dateText: CSSProperties = {
 	paddingRight: pxToRem(5)
 };
 
+const primaryText: CreateCSSProperties = {
+	// color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+};
 export const styles = createStyles({
+	primaryText,
 	providersList,
 	li,
 	timePicker,

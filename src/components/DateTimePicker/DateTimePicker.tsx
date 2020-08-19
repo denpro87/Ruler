@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { GreenButton, LightGreenButton } from 'components';
 import { IDateTimePickerProps } from './DateTimePicker.types';
 import { IonBackdrop, IonPickerColumn } from '@ionic/react';
@@ -21,7 +22,8 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 	onMinuteChange,
 	onDismiss
 }) => {
-	const classes = useStyles();
+	const { state } = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
 
 	const hourPickerRef = React.useRef<HTMLIonPickerColumnElement>(null);
 	const minutePickerRef = React.useRef<HTMLIonPickerColumnElement>(null);

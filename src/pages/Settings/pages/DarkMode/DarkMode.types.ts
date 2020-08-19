@@ -1,6 +1,7 @@
 import { IntlShape } from 'react-intl';
 
 export interface IDarkModeState {
+	disabledSchedule: boolean;
 	automaticallyDarkMode: boolean;
 	dontUseDarkMode: boolean;
 	scheduledDarkMode: boolean;

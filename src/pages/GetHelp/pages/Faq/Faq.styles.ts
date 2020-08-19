@@ -6,11 +6,11 @@ const list: CSSProperties = {
 };
 const searchBox: CreateCSSProperties = {
 	marginTop: pxToRem(5),
-	marginBottom: pxToRem(15),
-	'& input': {
-		fontWeight: 600,
-		color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.3)' : '#181c19')
-	}
+	marginBottom: pxToRem(15)
+	// '& input': {
+	// 	fontWeight: 600,
+	// 	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.3)' : '#181c19')
+	// }
 };
 const listItem: CSSProperties = {
 	padding: `0 0 ${pxToRem(7)} 0`,

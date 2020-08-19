@@ -32,7 +32,7 @@ export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 							</Text>
 						</Box>
 						<Box className={classes.iconWrapper}>
-							<Icon iconName={props.type} colorType="black" />
+							<Icon iconName={props.type} colorType="black" black />
 							<Box className={classes.iconDecorator} />
 						</Box>
 					</Box>
