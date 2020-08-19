@@ -35,17 +35,13 @@ const listItem: CreateCSSProperties = {
 		textAlign: 'center',
 		marginLeft: pxToRem(-30)
 	},
-	'&:active': {
+	'&.active': {
 		borderColor: '#00b559'
 	},
 	'&:hover': {
 		borderColor: '#00b559'
 	}
 };
-
-// const activeListItem: CSSProperties = {
-// 	borderColor: '#00b559'
-// };
 
 const nextButton: CSSProperties = {
 	marginTop: 'auto',
@@ -193,7 +189,6 @@ export const styles = createStyles({
 	page,
 	walletItemList,
 	listItem,
-	// activeListItem,
 	footer,
 	nextButton,
 	descriptionContent,
