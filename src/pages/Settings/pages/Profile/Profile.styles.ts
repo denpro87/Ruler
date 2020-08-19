@@ -1,4 +1,4 @@
-import { CSSProperties, createStyles } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
 import { pxToRem } from 'styles';
 
 const innerContent: CSSProperties = {
@@ -14,11 +14,11 @@ const saveBtn: CSSProperties = {
 	marginBottom: pxToRem(20)
 };
 
-const smallText: CSSProperties = {
+const smallText: CreateCSSProperties = {
 	fontSize: pxToRem(10),
 	fontWeight: 600,
 	lineHeight: 1.5,
-	color: 'rgba(24, 28, 25, 0.5)',
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 25, 0.5)'),
 	textAlign: 'center',
 	padding: `${pxToRem(7)} 0 0 0`
 };

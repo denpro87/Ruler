@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, Typography, makeStyles } from '@material-ui/core';
 import { Dialog, GreenButton, Page, TextField } from 'components';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -7,7 +8,12 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const Profile: React.FunctionComponent = () => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const [showDialog, setShowDialog] = React.useState(false);
 	const [state, setState] = React.useState({
 		firstName: '',
@@ -49,7 +55,7 @@ export const Profile: React.FunctionComponent = () => {
 			</Box>
 			<Dialog
 				open={showDialog}
-				hasClose={true}
+				hasClose
 				illustrationName="question"
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"
