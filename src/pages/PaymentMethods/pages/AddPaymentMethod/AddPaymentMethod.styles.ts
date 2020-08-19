@@ -24,16 +24,12 @@ const listItem: CreateCSSProperties = {
 		textAlign: 'center',
 		marginLeft: pxToRem(-30)
 	},
-	'&:active': {
+	'&.active': {
 		borderColor: '#00b559'
 	},
 	'&:hover': {
 		borderColor: '#00b559'
 	}
-};
-
-const activeListItem: CSSProperties = {
-	borderColor: '#00b559'
 };
 
 const addPaymentMethodButton: CSSProperties = {
@@ -76,7 +72,6 @@ export const styles = createStyles({
 	paymentMethodTypeText,
 	paymentMethodItemList,
 	listItem,
-	activeListItem,
 	addPaymentMethodButton,
 	footer,
 	cardCredentialWrapper,
