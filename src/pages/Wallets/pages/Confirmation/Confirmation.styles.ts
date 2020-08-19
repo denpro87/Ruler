@@ -53,10 +53,6 @@ const amountText: CSSProperties = {
 	fontSize: pxToRem(32)
 };
 
-// const feeText: CSSProperties = {
-// 	color: 'rgba(255, 255, 255, 0.5)'
-// };
-
 const hashWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
@@ -142,7 +138,6 @@ export const styles = createStyles({
 	amountBox,
 	amountHelperText,
 	amountText,
-	// feeText,
 	hashWrapper,
 	hashText,
 	copyButton,
