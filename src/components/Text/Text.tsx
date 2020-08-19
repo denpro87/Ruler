@@ -24,6 +24,7 @@ export const Paragraph: React.FunctionComponent<ParagraphProps> = props => <Text
 export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyles, ...restProps }) => {
 	const props = { ...textStyles, ...restProps };
 	const {
+		active,
 		black,
 		component,
 		block,
@@ -64,7 +65,8 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 		letterSpacing,
 		isDarkMode: state.settings.isDarkMode,
 		color,
-		black
+		black,
+		active
 	});
 
 	const isParagraph = component === 'p' || paragraph;
