@@ -75,18 +75,24 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 			<Box className={classes.headerWrapper}>
 				<Box className={classes.amountWrapper}>
 					<Box className={classes.amountBox}>
-						<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.credited' })}</Text>
+						<Text className={classes.amountHelperText} color="rgba(255, 255, 255, 0.5)">
+							{formatMessage({ id: 'wallets.confirmation.credited' })}
+						</Text>
 						<Text className={classes.amountText}>€ {amount}.00</Text>
 					</Box>
 					<Box className={classes.amountBox}>
-						<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.transaction_fee' })}</Text>
+						<Text className={classes.amountHelperText} color="rgba(255, 255, 255, 0.5)">
+							{formatMessage({ id: 'wallets.confirmation.transaction_fee' })}
+						</Text>
 						{/* <Text className={clsx(classes.amountText, classes.feeText)}> */}
 						<Text className={classes.amountText} color="rgba(255, 255, 255, 0.5)">
 							€ 0.20
 						</Text>
 					</Box>
 				</Box>
-				<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.transaction_hash' })}</Text>
+				<Text className={classes.amountHelperText} color="rgba(255, 255, 255, 0.5)">
+					{formatMessage({ id: 'wallets.confirmation.transaction_hash' })}
+				</Text>
 				<Box className={classes.hashWrapper}>
 					<Text className={classes.hashText}>{transactionHash}</Text>
 					<IconButton className={classes.copyButton} iconProps={{ iconName: 'copy', color: '#ffffff' }} onClick={handleCopyClick} />

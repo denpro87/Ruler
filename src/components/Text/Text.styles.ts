@@ -14,7 +14,7 @@ const text = (inheritStyles: boolean = false): CreateCSSProperties => ({
 	letterSpacing: (props: any) => props.letterSpacing,
 	color: (props: any) =>
 		props.color
-			? props.active === false
+			? props.active === false || props.active === undefined
 				? props.color
 				: '#fff'
 			: props.isDarkMode && props.black === undefined
