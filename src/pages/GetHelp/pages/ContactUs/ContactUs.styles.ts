@@ -1,8 +1,8 @@
-import { CSSProperties, createStyles, CreateCSSProperties } from '@material-ui/styles';
-import { DEFAULT_FONT_FAMILY, pxToRem, isDarkMode } from 'styles';
+import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
+import { DEFAULT_FONT_FAMILY, isDarkMode, pxToRem } from 'styles';
 
 const container: CreateCSSProperties = {
-	background: isDarkMode ? '#181c19' : '#fff',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#fff'),
 	flex: 1
 };
 const buttonWrapper: CSSProperties = {
@@ -13,8 +13,8 @@ const buttonWrapper: CSSProperties = {
 };
 const bigButton: CreateCSSProperties = {
 	marginBottom: pxToRem(15),
-	backgroundColor: isDarkMode ? '#303331' : 'rgb(202, 241, 221)',
-	color: isDarkMode ? '#fff' : 'rgb(0, 181, 89)',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : 'rgb(202, 241, 221)'),
+	color: (props: any) => (props.isDarkMode ? '#fff' : 'rgb(0, 181, 89)'),
 	fontWeight: 'bold'
 };
 const li: CreateCSSProperties = {
@@ -27,7 +27,7 @@ const li: CreateCSSProperties = {
 	'& h6': {
 		width: '100%',
 		marginLeft: pxToRem(10),
-		color: isDarkMode ? '#fff' : '#181c19',
+		color: (props: any) => (props.isDarkMode ? '#ffffff' : '#181c19'),
 		fontWeight: 600,
 		fontSize: pxToRem(15)
 	},
@@ -43,7 +43,7 @@ const content: CreateCSSProperties = {
 	lineHeight: 1.67,
 	fontWeight: 600,
 	paddingLeft: pxToRem(40),
-	color: isDarkMode ? '#fff' : '#000'
+	color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(24, 28, 25, 1)')
 };
 
 export const styles = createStyles({

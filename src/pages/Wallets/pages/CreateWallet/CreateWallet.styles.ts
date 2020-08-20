@@ -123,10 +123,10 @@ const wordButton: CreateCSSProperties = {
 	lineHeight: 1.67,
 	'& .MuiButton-label': {
 		minHeight: 'unset'
-	},
-	'&:hover': {
-		backgroundColor: 'rgba(0, 0, 0, 0.2)'
 	}
+	// '&:hover': {
+	// 	backgroundColor: 'rgba(0, 0, 0, 0.2)'
+	// }
 };
 
 const wordNumber: CSSProperties = {

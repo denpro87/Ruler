@@ -38,8 +38,9 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 			} else {
 				setShowError(false);
 				setWords(newWords);
-				selectedStatus[index] = !selectedStatus[index];
-				setSelectedStatus(selectedStatus);
+				const selected = selectedStatus;
+				selected[index] = !selected[index];
+				setSelectedStatus(selected);
 			}
 		}
 	};
@@ -65,7 +66,6 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 		const selectedStatus = temp.map(data => {
 			return false;
 		});
-		console.log('DDDDDDD', selectedStatus);
 		setSelectedStatus(selectedStatus);
 	}, []);
 
@@ -80,7 +80,7 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 						key={index}
 						className={clsx(classes.wordButton, classes.wordText)}
 						disabled={selectedStatus[index]}
-						pressedBackgroundColor="#babbba"
+						// pressedBackgroundColor="#babbba"
 						onClick={(): void => handleWordClick(createWalletWord.toLowerCase(), index)}
 					>
 						<Text className={classes.wordNumber} black>
