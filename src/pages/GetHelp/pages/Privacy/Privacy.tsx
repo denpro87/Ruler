@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
 import { Page, SearchBox } from 'components';
 import { Link as RouterLink } from 'react-router-dom';
@@ -55,10 +56,11 @@ const types = [
 ];
 
 export const Privacy: React.FunctionComponent = () => {
-	const classes = useStyles();
+	const { state } = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
 	const [questions, setQuestions] = React.useState(defaultQuestions);
 
-	const handleSearchBoxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleSearchBoxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		const keywords = event.target.value.toLowerCase();
 		const filteredQuestions = defaultQuestions.filter(item => item.title.toLowerCase().includes(keywords.toLowerCase()));
 		setQuestions(filteredQuestions);

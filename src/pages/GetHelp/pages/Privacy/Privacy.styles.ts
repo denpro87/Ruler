@@ -1,5 +1,5 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
-import { DEFAULT_FONT_FAMILY, isDarkMode, pxToRem } from 'styles';
+import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const list: CSSProperties = {
 	padding: 0
@@ -32,7 +32,7 @@ const subHeader: CreateCSSProperties = {
 	marginLeft: 0,
 	marginBottom: pxToRem(11),
 	marginTop: pxToRem(15),
-	color: isDarkMode ? '#fff' : '#181c19',
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 	fontFamily: DEFAULT_FONT_FAMILY
 };
 export const styles = createStyles({
