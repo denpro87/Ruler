@@ -42,10 +42,10 @@ export const getColorFromColorType = (
 				return BUTTON_GREEN_COLOR_TYPE_BACKGROUND_COLOR;
 
 			case 'hoveredBackground':
-				return isDarkMode ? '#5f8471' : BUTTON_GREEN_COLOR_TYPE_HOVERED_BACKGROUND_COLOR;
+				return BUTTON_GREEN_COLOR_TYPE_HOVERED_BACKGROUND_COLOR;
 
 			case 'disabledBackground':
-				return isDarkMode ? '#5f8471' : BUTTON_GREEN_COLOR_TYPE_DISABLED_BACKGROUND_COLOR;
+				return BUTTON_GREEN_COLOR_TYPE_DISABLED_BACKGROUND_COLOR; // #5f8471
 		}
 	} else if (colorType === 'lightGreen') {
 		switch (colorSubject) {
