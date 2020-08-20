@@ -1,8 +1,8 @@
 import { Box, makeStyles } from '@material-ui/core';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { FullPage, GreenButton } from 'components';
 import { IonSlides } from '@ionic/react';
 import { Slide } from 'components/Slide';
-import { setFlagsFromString } from 'v8';
 import { slides } from './HowToRide.data';
 import { styles } from './HowToRide.styles';
 import React from 'react';
@@ -17,6 +17,7 @@ const useStyles = makeStyles(styles);
 
 export const HowToRide: React.FunctionComponent = () => {
 	const classes = useStyles();
+	const { formatMessage } = useIntl();
 	const slidesRef = React.useRef<HTMLIonSlidesElement>(null);
 	const [activeIndex, setActiveIndex] = React.useState(0);
 	const [flag, setFlag] = React.useState(false);
@@ -27,7 +28,6 @@ export const HowToRide: React.FunctionComponent = () => {
 
 	const handleNextButtonClick = (event: any) => {
 		slidesRef.current?.slideNext();
-		// slidesRef.current?.slidePrev();
 	};
 
 	const handlePrevButtonClick = (event: any) => {
@@ -63,7 +63,7 @@ export const HowToRide: React.FunctionComponent = () => {
 						className={classes.skipButton}
 						onClick={flag ? handlePrevButtonClick : handleNextButtonClick}
 					>
-						Got it
+						{formatMessage({ id: 'button.got' })}
 					</GreenButton>
 				</div>
 			</div>

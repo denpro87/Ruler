@@ -1,8 +1,8 @@
-import { BottomSheet, Divider, LightGreenButton, Page, GreenButton } from 'components';
+import { AppContext } from 'providers/State';
+import { BottomSheet, Divider, GreenButton, LightGreenButton, Page } from 'components';
 import { Box, List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
-import { AppContext } from 'providers/State';
 import { styles } from './GetHelp.styles';
 import React from 'react';
 const useStyles = makeStyles(styles);

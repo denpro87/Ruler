@@ -84,7 +84,6 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 						<Text className={classes.amountHelperText} color="rgba(255, 255, 255, 0.5)">
 							{formatMessage({ id: 'wallets.confirmation.transaction_fee' })}
 						</Text>
-						{/* <Text className={clsx(classes.amountText, classes.feeText)}> */}
 						<Text className={classes.amountText} color="rgba(255, 255, 255, 0.5)">
 							€ 0.20
 						</Text>
@@ -99,13 +98,17 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 				</Box>
 			</Box>
 			<Box className={classes.infoWrapper}>
-				<Box className={classes.infoBox}>
+				<Box className={classes.fromBox}>
 					<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.from' })}</Text>
 					<Text className={classes.amountHelperText}>{from}</Text>
 				</Box>
-				<Box className={classes.infoBox}>
-					<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.to' })}</Text>
-					<Text className={classes.amountHelperText}>{to}</Text>
+				<Box className={classes.toBox}>
+					<Box>
+						<Text className={classes.amountHelperText}>{formatMessage({ id: 'wallets.confirmation.to' })}</Text>
+					</Box>
+					<Box>
+						<Text className={classes.amountHelperText}>{to}</Text>
+					</Box>
 				</Box>
 			</Box>
 			<Box className={classes.footer}>

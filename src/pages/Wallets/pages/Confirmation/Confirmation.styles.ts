@@ -67,9 +67,7 @@ const hashText: CSSProperties = {
 		lineHeight: 1.67,
 		color: 'rgb(255, 255, 255)'
 	}),
-	fontSize: pxToRem(15),
-	overflow: 'hidden',
-	textOverflow: 'ellipsis'
+	fontSize: pxToRem(15)
 };
 
 const copyButton: CSSProperties = {
@@ -85,24 +83,43 @@ const infoWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'row',
 	alignItems: 'center',
-	padding: `${pxToRem(25)} ${pxToRem(30)} ${pxToRem(25)} ${pxToRem(30)}`,
-	'& div:first-child': {
-		marginRight: pxToRem(90)
-	},
-	'& div:last-child': {
-		overflow: 'hidden',
-		textOverflow: 'ellipsis'
-	}
+	justifyContent: 'space-between',
+	padding: `${pxToRem(25)} ${pxToRem(30)} ${pxToRem(25)} ${pxToRem(30)}`
 };
 
-const infoBox: CreateCSSProperties = {
+const fromBox: CreateCSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	alignItems: 'center',
+	justifyContent: 'space-between',
 	'& span:first-child': {
 		color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 15, 0.5)'),
 		paddingRight: pxToRem(10)
 	},
 	'& span:last-child': {
-		whiteSpace: 'nowrap',
 		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+	}
+};
+const toBox: CreateCSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	alignItems: 'center',
+	justifyContent: 'space-between',
+	'& div:last-child': {
+		maxWidth: pxToRem(100),
+		whiteSpace: 'nowrap',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+	},
+	'& div:last-child span': {
+		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+	},
+	'& div:first-child': {
+		paddingRight: pxToRem(10)
+	},
+	'& div:first-child span': {
+		color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(24, 28, 15, 0.5)')
 	}
 };
 
@@ -132,6 +149,7 @@ const dialogContentText: CSSProperties = {
 };
 
 export const styles = createStyles({
+	toBox,
 	pageHeader,
 	headerWrapper,
 	amountWrapper,
@@ -142,7 +160,7 @@ export const styles = createStyles({
 	hashText,
 	copyButton,
 	infoWrapper,
-	infoBox,
+	fromBox,
 	footer,
 	templateWrapper,
 	templateName,
