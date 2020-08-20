@@ -1,8 +1,8 @@
+import { AppContext } from 'providers/State';
 import { BlackIcon, WhiteIcon } from 'components';
 import { ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR } from 'components/Icon';
 import { IReportProps } from './Report.types';
 import { Typography, makeStyles } from '@material-ui/core';
-import { AppContext } from 'providers/State';
 import { styles } from './Report.styles';
 import React from 'react';
 
@@ -31,11 +31,10 @@ export const Report: React.FunctionComponent<IReportProps> = props => {
 					</div>
 				</div>
 				<div className={classes.reportIconWrapper}>
-					{isDarkMode ? (
-						<WhiteIcon iconName="notification" {...(props.type === 'new' && { secondaryColor: ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR })} />
-					) : (
-						<BlackIcon iconName="notification" {...(props.type === 'new' && { secondaryColor: ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR })} />
-					)}
+					<BlackIcon
+						iconName="notification"
+						{...(props.type === 'new' && { secondaryColor: ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR, black: true })}
+					/>
 					{props.type === 'new' && <div className={classes.reportBadge} />}
 				</div>
 			</div>
