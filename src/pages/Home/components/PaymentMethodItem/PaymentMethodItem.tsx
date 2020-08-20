@@ -10,7 +10,7 @@ export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps>
 	let privateCardNumber = '';
 
 	for (let i = 12; i < 16; i++) {
-		privateCardNumber += cardData.cardNumber[i];
+		privateCardNumber += cardData && cardData.cardNumber[i];
 	}
 	const {
 		state: {
