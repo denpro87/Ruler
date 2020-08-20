@@ -9,7 +9,7 @@ const useStyles = makeStyles(styles);
 export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps> = ({ handleShowClick, handleRemoveClick, cardData }) => {
 	let privateCardNumber = '';
 
-	for (let i = 11; i < 15; i++) {
+	for (let i = 12; i < 16; i++) {
 		privateCardNumber += cardData.cardNumber[i];
 	}
 	const {
@@ -30,7 +30,12 @@ export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps>
 				<Link className={classes.cardTypeText} onClick={handleShowClick}>
 					MasterCard
 				</Link>
-				<Text className={classes.cardNumberText}>**** **** **** {privateCardNumber}</Text>
+				<Box className={classes.cardNumberTextWrapper}>
+					<Text className={classes.cardNumberText}>****</Text>
+					<Text className={classes.cardNumberText}>****</Text>
+					<Text className={classes.cardNumberText}>****</Text>
+					<Text className={classes.cardNumberText}>{privateCardNumber}</Text>
+				</Box>
 			</Box>
 		</Box>
 	);

@@ -50,7 +50,15 @@ const cardTypeText: CreateCSSProperties = {
 	color: (props: any) => (props.isDarkMode ? '#181c19' : '#fff'),
 	fontSize: pxToRem(15)
 };
+
+const cardNumberTextWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-between',
+	alignItems: 'center'
+};
 export const styles = createStyles({
+	cardNumberTextWrapper,
 	paymentMethodItemContainer,
 	paymentMethodItem,
 	cardTypeText,
