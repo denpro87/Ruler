@@ -54,7 +54,14 @@ const cardTypeText: CSSProperties = {
 	fontSize: pxToRem(15)
 };
 
+const cardNumberTextWrapper: CSSProperties = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-between',
+	alignItems: 'center'
+};
 export const styles = createStyles({
+	cardNumberTextWrapper,
 	paymentMethodItemContainer,
 	paymentMethodItem,
 	cardTypeText,
