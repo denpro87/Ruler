@@ -56,7 +56,7 @@ export const Profile: React.FunctionComponent = () => {
 			<Dialog
 				open={showDialog}
 				hasClose
-				illustrationName="question"
+				illustrationName="delete"
 				onClose={handleDialogClose}
 				aria-labelledby="form-dialog-title"
 				title={formatMessage({ id: 'settings.profile.dialog.title' })}

@@ -2,8 +2,6 @@ import { AppContext } from 'providers/State';
 import { Page, Text } from 'components';
 import { Paper, Typography, makeStyles } from '@material-ui/core';
 import { styles } from './SafetyRegulations.styles';
-import clsx from 'clsx';
-
 import React from 'react';
 
 const useStyles = makeStyles(styles);
