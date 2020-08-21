@@ -125,7 +125,11 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 												<Text className={classes.dateText} black>{`${
 													this.state.startTimeHour
 												}:${this.state.startTimeMin.toString().padStart(2, '0')}`}</Text>
-												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
+												<Icon
+													iconName="forward"
+													colorType="black"
+													primaryColor={this.context.state.settings.isDarkMode ? 'rgb(255, 255, 255, 0.5)' : 'rgb(24, 28, 25, 0.5)'}
+												/>
 											</Button>
 										</ListItemSecondaryAction>
 									</ListItem>
@@ -139,7 +143,11 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 												<Text className={classes.dateText} black>{`${this.state.endTimeHour}:${this.state.endTimeMin
 													.toString()
 													.padStart(2, '0')}`}</Text>
-												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
+												<Icon
+													iconName="forward"
+													colorType="black"
+													primaryColor={this.context.state.settings.isDarkMode ? 'rgb(255, 255, 255, 0.5)' : 'rgb(24, 28, 25, 0.5)'}
+												/>
 											</Button>
 										</ListItemSecondaryAction>
 									</ListItem>
