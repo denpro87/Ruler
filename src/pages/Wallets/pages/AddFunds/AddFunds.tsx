@@ -116,11 +116,7 @@ export const AddFunds: React.FunctionComponent<IAddFundsProps> = props => {
 					))}
 				</Select>
 			</Box>
-			<GreenButton
-				onClick={handleNextClick}
-				disabled={!amount || !numberValid || !walletType || !paymentMethodType}
-				disabledBackgroundColor="#303331"
-			>
+			<GreenButton onClick={handleNextClick} disabled={!amount || !numberValid || !walletType || !paymentMethodType}>
 				{formatMessage({ id: 'button.next' })}
 			</GreenButton>
 		</Page>

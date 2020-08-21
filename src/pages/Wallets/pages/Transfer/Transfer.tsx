@@ -153,11 +153,7 @@ export const Transfer: React.FunctionComponent<ITransferProps> = props => {
 					onValueChange={handleWalletAddressChange}
 				/>
 			</Box>
-			<GreenButton
-				disabled={!walletType || !amount || !walletAddress || !numberValid}
-				onClick={handleNextClick}
-				disabledBackgroundColor="#303331"
-			>
+			<GreenButton disabled={!walletType || !amount || !walletAddress || !numberValid} onClick={handleNextClick}>
 				{formatMessage({ id: 'button.next' })}
 			</GreenButton>
 		</Page>

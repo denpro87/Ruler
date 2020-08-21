@@ -184,12 +184,7 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 							{formatMessage({ id: 'button.add_photos' })}
 						</LightGreenButton>
 					)}
-					<GreenButton
-						iconName="submit-report"
-						onClick={handleSubmitReportClick}
-						disabled={!code || !description || !location}
-						disabledBackgroundColor="#303331"
-					>
+					<GreenButton iconName="submit-report" onClick={handleSubmitReportClick} disabled={!code || !description || !location}>
 						{formatMessage({ id: 'button.submit_report' })}
 					</GreenButton>
 				</Box>

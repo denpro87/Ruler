@@ -44,7 +44,6 @@ export const CreateWallet: React.FunctionComponent = () => {
 			<GreenButton
 				className={classes.nextButton}
 				disabled={!selectedWallet}
-				disabledBackgroundColor="#303331"
 				onClick={(): void => history.push('/wallets/create-wallet-description', { newWallet: selectedWallet })}
 			>
 				{formatMessage({ id: 'button.next' })}

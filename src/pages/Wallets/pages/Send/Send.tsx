@@ -108,22 +108,9 @@ export const Send: React.FunctionComponent<ISendProps> = props => {
 					onValueChange={handleAmountChange}
 				/>
 			</Box>
-			{isDarkMode ? (
-				<Button
-					iconName="submit-report"
-					compact
-					disabled={!amount || !walletAddress || !numberValid}
-					onClick={handleSendClick}
-					disabledBackgroundColor="#303331"
-				>
-					{formatMessage({ id: 'button.send' })}
-				</Button>
-			) : (
-				<GreenButton iconName="submit-report" compact disabled={!amount || !walletAddress || !numberValid} onClick={handleSendClick}>
-					{formatMessage({ id: 'button.send' })}
-				</GreenButton>
-			)}
-
+			<GreenButton iconName="submit-report" compact disabled={!amount || !walletAddress || !numberValid} onClick={handleSendClick}>
+				{formatMessage({ id: 'button.send' })}
+			</GreenButton>
 			<Dialog
 				open={showDialog}
 				hasClose

@@ -49,7 +49,13 @@ export const Profile: React.FunctionComponent = () => {
 					value={state.lastName}
 					onValueChange={handleStateChange}
 				/>
-				<GreenButton compact className={classes.saveBtn} iconName="well-done-checked" onClick={handleSaveClick}>
+				<GreenButton
+					compact
+					className={classes.saveBtn}
+					disabled={!state.firstName || !state.lastName}
+					iconName="well-done-checked"
+					onClick={handleSaveClick}
+				>
 					<FormattedMessage id="button.save_changes" />
 				</GreenButton>
 			</Box>

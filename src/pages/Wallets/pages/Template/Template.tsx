@@ -136,7 +136,7 @@ export const Template: React.FunctionComponent<ITemplateProps> = props => {
 			</Box>
 			<GreenButton
 				className={classes.saveButton}
-				disabled={!templateName || !amount || !numberValid}
+				disabled={!templateName || !amount || !numberValid || !walletType || !paymentMethodType}
 				iconName={selectedIndex > -1 ? 'well-done-checked' : 'add'}
 				compact
 				onClick={handleSaveChangeClick}

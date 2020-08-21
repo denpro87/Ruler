@@ -125,13 +125,7 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 						onValueChange={handleTemplateNameChange}
 					/>
 				</Box>
-				<GreenButton
-					iconName="add-payment"
-					compact
-					onClick={handlePayClick}
-					disabled={!templateName && checked}
-					disabledBackgroundColor="#303331"
-				>
+				<GreenButton iconName="add-payment" compact onClick={handlePayClick} disabled={!templateName && checked}>
 					{formatMessage({ id: 'button.pay' })}
 				</GreenButton>
 			</Box>

@@ -106,7 +106,6 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 					className={classes.nextButton}
 					onClick={(): void => history.replace('/wallets', { showDialog: true, newWallet: newWallet })}
 					disabled={createWalletWords.length !== words.length}
-					// disabledBackgroundColor="#303331"
 				>
 					{formatMessage({ id: 'button.next' })}
 				</GreenButton>
