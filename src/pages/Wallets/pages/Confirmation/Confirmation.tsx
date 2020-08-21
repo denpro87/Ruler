@@ -7,7 +7,6 @@ import { styles } from './Confirmation.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
-import clsx from 'clsx';
 const copy = require('clipboard-copy');
 const useStyles = makeStyles(styles);
 

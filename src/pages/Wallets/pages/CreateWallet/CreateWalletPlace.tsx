@@ -19,7 +19,7 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 	const [isShowError, setShowError] = React.useState<boolean>(false);
 	const [words, setWords] = React.useState<string[]>([]);
 	const [shuffleWords, setShuffleWords] = React.useState<string[]>([]);
-	const [selectedStatus, setSelectedStatus] = React.useState<boolean[]>([]);
+	// const [selectedStatus, setSelectedStatus] = React.useState<boolean[]>([]);
 	const {
 		state: {
 			settings: { isDarkMode }
@@ -67,7 +67,7 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 		// 	return false;
 		// });
 		// setSelectedStatus(selectedStatus);
-	});
+	}, []);
 
 	return (
 		<Page title={formatMessage({ id: 'wallets.create_wallet.title' })} titleSize="medium" noHorizontalContentPadding>
@@ -106,7 +106,7 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 					className={classes.nextButton}
 					onClick={(): void => history.replace('/wallets', { showDialog: true, newWallet: newWallet })}
 					disabled={createWalletWords.length !== words.length}
-					disabledBackgroundColor="#303331"
+					// disabledBackgroundColor="#303331"
 				>
 					{formatMessage({ id: 'button.next' })}
 				</GreenButton>
