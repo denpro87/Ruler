@@ -7,7 +7,15 @@ import clsx from 'clsx';
 
 export const createTextStyles = (textStyles: TextStyles): TextStyles => textStyles;
 
-export const Title: React.FunctionComponent<TitleProps> = props => <Text block {...props} />;
+export const Title: React.FunctionComponent<TitleProps> = props => {
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+
+	return <Text block {...props} color={isDarkMode ? '#fff' : '#181c19'} />;
+};
 
 Title.defaultProps = {
 	component: 'h1',
@@ -15,8 +23,7 @@ Title.defaultProps = {
 	fontWeight: 'bold',
 	fontStretch: 'normal',
 	lineHeight: 1.5,
-	letterSpacing: 'normal',
-	color: '#181c19'
+	letterSpacing: 'normal'
 };
 
 export const Paragraph: React.FunctionComponent<ParagraphProps> = props => <Text component="p" block {...props} />;

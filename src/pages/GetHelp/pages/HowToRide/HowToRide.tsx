@@ -20,26 +20,18 @@ export const HowToRide: React.FunctionComponent = () => {
 	const { formatMessage } = useIntl();
 	const slidesRef = React.useRef<HTMLIonSlidesElement>(null);
 	const [activeIndex, setActiveIndex] = React.useState(0);
-	const [flag, setFlag] = React.useState(false);
 
 	const handleSlideChange = (event: any) => {
 		setActiveIndex(event.target.swiper.activeIndex);
 	};
 
 	const handleNextButtonClick = (event: any) => {
-		slidesRef.current?.slideNext();
-	};
-
-	const handlePrevButtonClick = (event: any) => {
-		slidesRef.current?.slidePrev();
-	};
-	React.useEffect(() => {
-		if (activeIndex === 0) {
-			setFlag(false);
-		} else if (activeIndex === 4) {
-			setFlag(true);
+		if (activeIndex === 4) {
+			slidesRef.current?.slideTo(0);
+		} else {
+			slidesRef.current?.slideNext();
 		}
-	}, [activeIndex]);
+	};
 
 	return (
 		<FullPage canGoBack pageHeaderClassName={classes.pageHeader}>
@@ -57,12 +49,7 @@ export const HowToRide: React.FunctionComponent = () => {
 							<span key={index} className={clsx({ [classes.stateItem]: true }, { [classes.currentStateItem]: index === activeIndex })} />
 						))}
 					</Box>
-					<GreenButton
-						compact
-						iconName="well-done-checked"
-						className={classes.skipButton}
-						onClick={flag ? handlePrevButtonClick : handleNextButtonClick}
-					>
+					<GreenButton compact iconName="well-done-checked" className={classes.skipButton} onClick={handleNextButtonClick}>
 						{formatMessage({ id: 'button.got' })}
 					</GreenButton>
 				</div>
