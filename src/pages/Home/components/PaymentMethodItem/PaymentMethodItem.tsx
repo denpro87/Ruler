@@ -9,7 +9,7 @@ const useStyles = makeStyles(styles);
 export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps> = ({ handleShowClick, handleRemoveClick, cardData }) => {
 	let privateCardNumber = '';
 
-	if (cardData) {
+	if (cardData && cardData.cardNumber) {
 		for (let i = 12; i < 16; i++) {
 			privateCardNumber += cardData.cardNumber[i];
 		}
