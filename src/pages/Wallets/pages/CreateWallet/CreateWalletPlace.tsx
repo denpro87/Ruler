@@ -33,14 +33,14 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 
 			if (!createWalletWords.toString().startsWith(newWords.toString())) {
 				setWords([]);
-				setSelectedStatus([]);
+				// setSelectedStatus([]);
 				setShowError(true);
 			} else {
 				setShowError(false);
 				setWords(newWords);
-				const selected = selectedStatus;
-				selected[index] = !selected[index];
-				setSelectedStatus(selected);
+				// const selected = selectedStatus;
+				// selected[index] = !selected[index];
+				// setSelectedStatus(selected);
 			}
 		}
 	};
@@ -63,11 +63,11 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 	React.useEffect(() => {
 		const temp = [...createWalletWords];
 		setShuffleWords(shuffle(temp));
-		const selectedStatus = temp.map(data => {
-			return false;
-		});
-		setSelectedStatus(selectedStatus);
-	}, []);
+		// const selectedStatus = temp.map(data => {
+		// 	return false;
+		// });
+		// setSelectedStatus(selectedStatus);
+	});
 
 	return (
 		<Page title={formatMessage({ id: 'wallets.create_wallet.title' })} titleSize="medium" noHorizontalContentPadding>
@@ -79,8 +79,7 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 					<Button
 						key={index}
 						className={clsx(classes.wordButton, classes.wordText)}
-						disabled={selectedStatus[index]}
-						// pressedBackgroundColor="#babbba"
+						// disabled={selectedStatus[index]}
 						onClick={(): void => handleWordClick(createWalletWord.toLowerCase(), index)}
 					>
 						<Text className={classes.wordNumber} black>

@@ -1,8 +1,8 @@
+import { AppContext } from 'providers/State';
 import { Box, ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { INewsItemProps } from './NewsItem.types';
 import { Image, Text } from 'components';
 import { Link as RouterLink } from 'react-router-dom';
-import { AppContext } from 'providers/State';
 import { styles } from './NewsItem.styles';
 import React from 'react';
 const useStyles = makeStyles(styles);

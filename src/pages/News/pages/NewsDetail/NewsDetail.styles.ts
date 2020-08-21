@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
@@ -36,8 +36,9 @@ const descriptionText: CSSProperties = {
 	fontSize: pxToRem(15)
 };
 
-const detailContainer: CSSProperties = {
-	flex: 1
+const detailContainer: CreateCSSProperties = {
+	flex: 1,
+	background: (props: any) => (props.isDarkMode ? '#181c19' : '#fff')
 };
 
 export const styles = createStyles({
