@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties, CreateCSSProperties } from '@material-ui/styles';
 import { DATE_TIME_PICKER_COLUMNS_HEIGHT, DATE_TIME_PICKER_OPTION_HEIGHT } from './DateTimePicker.variables';
 import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 import { createStyles } from '@material-ui/core';
@@ -18,7 +18,7 @@ const picker: CSSProperties = {
 	contain: 'strict'
 };
 
-const pickerWrapper: CSSProperties = {
+const pickerWrapper: CreateCSSProperties = {
 	width: '100%',
 	marginTop: 'auto',
 	padding: `${pxToRem(15)} ${pxToRem(20)} ${pxToRem(19)}`,
@@ -26,13 +26,13 @@ const pickerWrapper: CSSProperties = {
 	flexDirection: 'column',
 	overflow: 'hidden',
 	zIndex: 10,
-	backgroundColor: '#fff',
+	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : '#fff'),
 	borderTopLeftRadius: pxToRem(15),
 	borderTopRightRadius: pxToRem(15),
 	boxSizing: 'border-box'
 };
 
-const pickerColumns: CSSProperties = {
+const pickerColumns: CreateCSSProperties = {
 	height: pxToRem(DATE_TIME_PICKER_COLUMNS_HEIGHT),
 	marginTop: pxToRem(30),
 	marginBottom: pxToRem(30),
@@ -57,19 +57,27 @@ const pickerHighlight: CSSProperties = {
 	zIndex: 10
 };
 
-const pickerAboveHighlight: CSSProperties = {
+const pickerAboveHighlight: CreateCSSProperties = {
 	top: 0,
-	borderBottom: `${pxToRem(1)} solid rgba(24, 28, 25, 0.05)`,
-	background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.65), transparent)'
+	borderBottom: (props: any) =>
+		props.isDarkMode ? `${pxToRem(1)} solid rgba(255, 255, 255, 0.05)` : `${pxToRem(1)} solid rgba(24, 28, 25, 0.05)`,
+	background: (props: any) =>
+		props.isDarkMode
+			? 'linear-gradient(180deg, RGBA(48, 51, 49, 0.85), RGBA(48, 51, 49, 0.75), RGBA(48, 51, 49, 0.65), transparent)'
+			: 'linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.65), transparent)'
 };
 
-const pickerBelowHighlight: CSSProperties = {
+const pickerBelowHighlight: CreateCSSProperties = {
 	bottom: 0,
-	borderTop: `${pxToRem(1)} solid rgba(24, 28, 25, 0.05)`,
-	background: 'linear-gradient(0deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.65), transparent)'
+	borderTop: (props: any) =>
+		props.isDarkMode ? `${pxToRem(1)} solid rgba(255, 255, 255, 0.05)` : `${pxToRem(1)} solid rgba(24, 28, 25, 0.05)`,
+	background: (props: any) =>
+		props.isDarkMode
+			? 'linear-gradient(180deg, RGBA(48, 51, 49, 0.85), RGBA(48, 51, 49, 0.75), RGBA(48, 51, 49, 0.65), transparent)'
+			: 'linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.65), transparent)'
 };
 
-const pickerColumn: CSSProperties = {
+const pickerColumn: CreateCSSProperties = {
 	flex: 'unset',
 	padding: 0,
 	'& .picker-opts': {
@@ -82,10 +90,10 @@ const pickerColumn: CSSProperties = {
 			fontSize: pxToRem(20),
 			fontWeight: 600,
 			lineHeight: 1.5,
-			color: 'rgba(24, 28, 25)'
+			color: (props: any) => (props.isDarkMode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(24, 28, 25, 0.5)')
 		},
 		'& .picker-opt-selected': {
-			color: 'rgb(24, 28, 25)'
+			color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 		}
 	}
 };
@@ -95,16 +103,21 @@ const backdrop: CSSProperties = {
 	backgroundColor: '#181c19'
 };
 
-const blackBar: CSSProperties = {
+const blackBar: CreateCSSProperties = {
 	width: pxToRem(37),
 	height: pxToRem(4),
 	marginLeft: 'auto',
 	marginRight: 'auto',
 	borderRadius: 9999,
-	background: '#181c19'
+	backgroundColor: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 };
 
+const cancelButton: CreateCSSProperties = {
+	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : 'rgb(202, 241, 221)'),
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+};
 export const styles = createStyles({
+	cancelButton,
 	picker,
 	pickerWrapper,
 	pickerColumns,

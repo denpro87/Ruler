@@ -27,6 +27,10 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 
 	componentDidMount() {
 		this.setState({ dontUseDarkMode: this.context.state.settings.isDarkMode });
+
+		if (this.context.state.settings.isDarkMode) {
+			this.setState({ scheduledDarkMode: false, disabledSchedule: true });
+		}
 	}
 
 	private handleAutomaticallyChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
@@ -42,7 +46,9 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 
 	private handleDontUseChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
 		if (checked) {
-			this.setState({ automaticallyDarkMode: false, disabledSchedule: checked });
+			this.setState({ automaticallyDarkMode: false, scheduledDarkMode: false, disabledSchedule: true });
+		} else {
+			this.setState({ scheduledDarkMode: false, disabledSchedule: false });
 		}
 		this.setState({ dontUseDarkMode: checked });
 		this.context.dispatch({
@@ -52,14 +58,7 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 	};
 
 	private handleScheduledChange = (_event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void => {
-		// if (checked) {
-		// 	this.setState({ automaticallyDarkMode: false, dontUseDarkMode: false });
-		// }
 		this.setState({ scheduledDarkMode: checked });
-		// this.context.dispatch({
-		// 	type: 'UPDATE_SETTINGS',
-		// 	payload: { isDarkMode: false }
-		// });
 	};
 
 	private handleDatePickerChange = (hour: number, min: number): void => {
@@ -68,15 +67,15 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 		this.setState({ pickerIsOpen: false, pickerItem: '' });
 	};
 
-	private onClosePicker = () => {
+	private handleClosePicker = () => {
 		this.setState({ pickerIsOpen: false, pickerItem: '' });
 	};
 
-	private onFirstPickerClick = () => {
+	private handleFirstPickerClick = () => {
 		this.setState({ pickerIsOpen: true, pickerItem: 'start' });
 	};
 
-	private onEndPickerClick = () => {
+	private handleEndPickerClick = () => {
 		this.setState({ pickerIsOpen: true, pickerItem: 'end' });
 	};
 
@@ -85,7 +84,7 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 		const { formatMessage } = intl;
 
 		return (
-			<Styling useStyles={useStyles}>
+			<Styling useStyles={useStyles} props={{ isDarkMode: this.context.state.settings.isDarkMode }}>
 				{classes => (
 					<Page title={formatMessage({ id: 'settings.dark_mode.title' })} titleSize="medium">
 						<List className={classes.providersList}>
@@ -119,12 +118,14 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 								<Box>
 									<Divider />
 									<ListItem className={classes.li}>
-										<ListItemText className={classes.itemText}>{formatMessage({ id: 'settings.dark_mode.start' })}</ListItemText>
+										<ListItemText className={classes.itemText} classes={{ primary: classes.primaryText }}>
+											{formatMessage({ id: 'settings.dark_mode.start' })}
+										</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
-											<Button className={classes.secondaryButton} onClick={this.onFirstPickerClick}>
-												<Text className={classes.dateText}>{`${this.state.startTimeHour}:${this.state.startTimeMin
-													.toString()
-													.padStart(2, '0')}`}</Text>
+											<Button className={classes.secondaryButton} onClick={this.handleFirstPickerClick}>
+												<Text className={classes.dateText} black>{`${
+													this.state.startTimeHour
+												}:${this.state.startTimeMin.toString().padStart(2, '0')}`}</Text>
 												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
 											</Button>
 										</ListItemSecondaryAction>
@@ -135,8 +136,8 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 											{formatMessage({ id: 'settings.dark_mode.ending' })}
 										</ListItemText>
 										<ListItemSecondaryAction className={classes.secondaryAction}>
-											<Button className={classes.secondaryButton} onClick={this.onEndPickerClick}>
-												<Text className={classes.dateText}>{`${this.state.endTimeHour}:${this.state.endTimeMin
+											<Button className={classes.secondaryButton} onClick={this.handleEndPickerClick}>
+												<Text className={classes.dateText} black>{`${this.state.endTimeHour}:${this.state.endTimeMin
 													.toString()
 													.padStart(2, '0')}`}</Text>
 												<Icon iconName="forward" color="rgba(24, 28, 25, 0.5)" />
@@ -147,7 +148,7 @@ class DarkModePage extends React.Component<IDarkModeProps, IDarkModeState> {
 								</Box>
 							)}
 						</List>
-						<DateTimePicker open={this.state.pickerIsOpen} onChange={this.handleDatePickerChange} onDismiss={this.onClosePicker} />
+						<DateTimePicker open={this.state.pickerIsOpen} onChange={this.handleDatePickerChange} onDismiss={this.handleClosePicker} />
 					</Page>
 				)}
 			</Styling>

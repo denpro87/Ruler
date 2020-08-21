@@ -1,5 +1,5 @@
 import { AppContext } from 'providers/State';
-import { BlackIcon, WhiteIcon } from 'components';
+import { BlackIcon } from 'components';
 import { ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR } from 'components/Icon';
 import { IReportProps } from './Report.types';
 import { Typography, makeStyles } from '@material-ui/core';

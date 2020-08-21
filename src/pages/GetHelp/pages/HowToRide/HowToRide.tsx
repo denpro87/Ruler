@@ -1,10 +1,10 @@
 import { Box, makeStyles } from '@material-ui/core';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { FullPage, GreenButton } from 'components';
 import { IonSlides } from '@ionic/react';
 import { Slide } from 'components/Slide';
 import { slides } from './HowToRide.data';
 import { styles } from './HowToRide.styles';
+import { useIntl } from 'react-intl';
 import React from 'react';
 import clsx from 'clsx';
 

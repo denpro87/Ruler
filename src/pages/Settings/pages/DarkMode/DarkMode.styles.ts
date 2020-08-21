@@ -41,10 +41,10 @@ const li: CSSProperties = {
 	alignItems: 'center',
 	padding: `${pxToRem(10)} 0 ${pxToRem(15)} 0`
 };
+
 const itemText: CreateCSSProperties = {
 	margin: 0,
 	'& span': {
-		color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19'),
 		fontSize: pxToRem(15),
 		lineHeight: 1.67,
 		fontWeight: 600,
@@ -73,7 +73,7 @@ const dateText: CSSProperties = {
 };
 
 const primaryText: CreateCSSProperties = {
-	// color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
+	color: (props: any) => (props.isDarkMode ? '#fff' : '#181c19')
 };
 export const styles = createStyles({
 	primaryText,

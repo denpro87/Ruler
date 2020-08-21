@@ -1,5 +1,5 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
-import { DEFAULT_FONT_FAMILY, isDarkMode, pxToRem } from 'styles';
+import { DEFAULT_FONT_FAMILY, pxToRem } from 'styles';
 
 const container: CreateCSSProperties = {
 	backgroundColor: (props: any) => (props.isDarkMode ? '#181c19' : '#fff'),

@@ -1,5 +1,5 @@
 import { AppContext } from 'providers/State';
-import { GreenButton, LightGreenButton } from 'components';
+import { BlackButton, GreenButton, LightGreenButton } from 'components';
 import { IDateTimePickerProps } from './DateTimePicker.types';
 import { IonBackdrop, IonPickerColumn } from '@ionic/react';
 import { PickerColumnOption } from '@ionic/core';
@@ -62,44 +62,45 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 		return 0;
 	};
 
-	return (
-		<>
-			{open && (
-				<div className={classes.picker}>
-					<IonBackdrop className={classes.backdrop} onIonBackdropTap={onDismiss} visible={open} />
-					<div className={classes.pickerWrapper}>
-						<div className={classes.blackBar} />
-						<div className={classes.pickerColumns}>
-							<div className={clsx(classes.pickerHighlight, classes.pickerAboveHighlight)} />
-							<IonPickerColumn
-								{...{ mode: Platform.iOS }}
-								ref={hourPickerRef}
-								className={classes.pickerColumn}
-								col={{
-									name: 'Hours',
-									options: hourOptions,
-									selectedIndex: defaultHour
-								}}
-							/>
-							<IonPickerColumn
-								{...{ mode: Platform.iOS }}
-								ref={minutePickerRef}
-								className={classes.pickerColumn}
-								col={{
-									name: 'Minutes',
-									options: minuteOptions,
-									selectedIndex: defaultMinute
-								}}
-							/>
-							<div className={clsx(classes.pickerHighlight, classes.pickerBelowHighlight)} />
-						</div>
-						<Stack horizontal tokens={{ childrenGap: 15 }}>
-							<LightGreenButton onClick={onDismiss}>Cancel</LightGreenButton>
-							<GreenButton onClick={handleSet}>Set time</GreenButton>
-						</Stack>
-					</div>
+	return !open ? null : (
+		<div className={classes.picker}>
+			<IonBackdrop className={classes.backdrop} onIonBackdropTap={onDismiss} visible={open} />
+			<div className={classes.pickerWrapper}>
+				<div className={classes.blackBar} />
+				<div className={classes.pickerColumns}>
+					<div className={clsx(classes.pickerHighlight, classes.pickerAboveHighlight)} />
+					<IonPickerColumn
+						{...{ mode: Platform.iOS }}
+						ref={hourPickerRef}
+						className={classes.pickerColumn}
+						col={{
+							name: 'Hours',
+							options: hourOptions,
+							selectedIndex: defaultHour
+						}}
+					/>
+					<IonPickerColumn
+						{...{ mode: Platform.iOS }}
+						ref={minutePickerRef}
+						className={classes.pickerColumn}
+						col={{
+							name: 'Minutes',
+							options: minuteOptions,
+							selectedIndex: defaultMinute
+						}}
+					/>
+					<div className={clsx(classes.pickerHighlight, classes.pickerBelowHighlight)} />
 				</div>
-			)}
-		</>
+				<Stack horizontal tokens={{ childrenGap: 15 }}>
+					{state.settings.isDarkMode ? (
+						<BlackButton onClick={onDismiss}>Cancel</BlackButton>
+					) : (
+						<LightGreenButton onClick={onDismiss}>Cancel</LightGreenButton>
+					)}
+
+					<GreenButton onClick={handleSet}>Set time</GreenButton>
+				</Stack>
+			</div>
+		</div>
 	);
 };

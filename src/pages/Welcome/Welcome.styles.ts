@@ -1,5 +1,4 @@
 import { CSSProperties, CreateCSSProperties, createStyles } from '@material-ui/styles';
-import { CreateAnimationProps } from '@ionic/react/dist/types/components/CreateAnimation';
 import {
 	WELCOME_PAGE_BACKGROUND_INITIAL_HEIGHT,
 	WELCOME_PAGE_BACKGROUND_INITIAL_POSITION_RIGHT,
