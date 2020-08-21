@@ -69,7 +69,7 @@ export const ChangeEmail: React.FunctionComponent = () => {
 			<Dialog
 				open={showChangeDialog}
 				hasClose
-				illustrationName="question"
+				illustrationName="delete"
 				onClose={(): void => setShowChangeDialog(false)}
 				aria-labelledby="form-dialog-title"
 				title={formatMessage({ id: 'settings.change_email.change_dialog.title' })}

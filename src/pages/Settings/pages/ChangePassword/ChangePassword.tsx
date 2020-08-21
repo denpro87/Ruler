@@ -115,7 +115,7 @@ class ChangePasswordPage extends React.Component<IChangePasswordProps, IChangePa
 						<Dialog
 							open={this.state.showDialog}
 							hasClose
-							illustrationName="question"
+							illustrationName="delete"
 							onClose={() => this.setState({ showDialog: false })}
 							aria-labelledby="form-dialog-title"
 							title={formatMessage({ id: 'settings.change_password.dialog.title' })}
