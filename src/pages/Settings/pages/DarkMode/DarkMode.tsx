@@ -1,10 +1,9 @@
+import { AppContext } from 'providers/State';
 import { Box, Button, List, ListItem, ListItemSecondaryAction, ListItemText, makeStyles } from '@material-ui/core';
 import { DateTimePicker, Divider, Icon, Page, Styling, SwitchListItem, Text } from 'components';
 import { IDarkModeProps, IDarkModeState } from './DarkMode.types';
-import { styles } from './DarkMode.styles';
-
-import { AppContext } from 'providers/State';
 import { injectIntl } from 'react-intl';
+import { styles } from './DarkMode.styles';
 import React from 'react';
 
 const useStyles = makeStyles(styles);

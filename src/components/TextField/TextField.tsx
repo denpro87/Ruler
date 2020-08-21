@@ -1,8 +1,8 @@
+import { AppContext } from 'providers/State';
 import { ITextFieldProps } from './TextField.types';
 import { Icon, IconButton } from 'components';
 import { InputAdornment, TextField as MuiTextField, makeStyles } from '@material-ui/core';
 import { styles } from './TextField.styles';
-import { AppContext } from 'providers/State';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -23,8 +23,12 @@ export const TextField: React.FunctionComponent<ITextFieldProps> = ({
 	selectProps,
 	...rest
 }) => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 
 	return (
 		<MuiTextField
@@ -49,6 +53,11 @@ export const TextField: React.FunctionComponent<ITextFieldProps> = ({
 
 export const PasswordInput: React.FunctionComponent<ITextFieldProps> = props => {
 	const [passwordIsMasked, setPasswordIsMasked] = React.useState(true);
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
 
 	const togglePasswordMask = (): void => {
 		setPasswordIsMasked(!passwordIsMasked);
@@ -61,7 +70,14 @@ export const PasswordInput: React.FunctionComponent<ITextFieldProps> = props => 
 			inputProps={{
 				endAdornment: (
 					<InputAdornment position="end">
-						<IconButton colorType="green" iconName="eye" onClick={togglePasswordMask} />
+						<IconButton
+							onClick={togglePasswordMask}
+							iconProps={{
+								colorType: 'black',
+								iconName: 'eye',
+								primaryColor: isDarkMode ? '#fff' : '#181c19'
+							}}
+						/>
 					</InputAdornment>
 				)
 			}}

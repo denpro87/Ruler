@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, Typography, makeStyles } from '@material-ui/core';
 import { Dialog, GreenButton, Page, PasswordInput, Styling } from 'components';
 import { IChangePasswordProps, IChangePasswordState } from './ChangePassword.types';
@@ -8,6 +9,8 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 class ChangePasswordPage extends React.Component<IChangePasswordProps, IChangePasswordState> {
+	static contextType = AppContext;
+
 	constructor(props: IChangePasswordProps) {
 		super(props);
 		this.state = {
@@ -69,7 +72,7 @@ class ChangePasswordPage extends React.Component<IChangePasswordProps, IChangePa
 		const newPasswordMatch = this.state.newPasswordMatch;
 
 		return (
-			<Styling useStyles={useStyles}>
+			<Styling useStyles={useStyles} props={{ isDarkMode: this.context.state.settings.isDarkMode }}>
 				{classes => (
 					<Page title={formatMessage({ id: 'settings.change_password.title' })} titleSize="medium">
 						<Box className={classes.innerContent}>
