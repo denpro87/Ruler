@@ -12,7 +12,7 @@ import { font, percentage, pxToRem } from 'styles';
 const goBackIcon: CSSProperties = {
 	backgroundColor: '#00b559',
 	color: '#ffffff',
-	margin: `${pxToRem(20)} 0 0 ${pxToRem(20)}`,
+	margin: `${pxToRem(20)} 0 0 ${pxToRem(15)}`,
 	'&:hover': {
 		backgroundColor: 'rgb(0, 171, 85)'
 	}
