@@ -89,7 +89,7 @@ export const Select: React.FunctionComponent<ITextFieldProps> = ({ children, ...
 	const classes = useStyles();
 
 	const iconComponent = (): JSX.Element => {
-		return <Icon className={classes.selectIcon} iconName="down" />;
+		return <Icon className={classes.selectIcon} iconName="down" colorType="black" />;
 	};
 
 	return (

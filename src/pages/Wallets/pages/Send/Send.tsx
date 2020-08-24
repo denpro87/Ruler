@@ -1,6 +1,6 @@
 import { AppContext } from 'providers/State';
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
-import { Button, Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
+import { Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { ISendProps } from './Send.types';
 import { RulerButton } from '../../components';
 import { rulerPriceBonusData } from '../../Wallets.data';
