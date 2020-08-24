@@ -26,11 +26,11 @@ const backButton: CSSProperties = {
 	top: pxToRem(-90),
 	right: 0,
 	maxHeight: pxToRem(50),
-	'&:hover': {
-		backgroundColor: '#ffffff'
-	},
-	borderRadius: percentage(0.5),
-	backgroundColor: '#ffffff'
+	// '&:hover': {
+	// 	backgroundColor: '#ffffff'
+	// },
+	borderRadius: percentage(0.5)
+	// backgroundColor: '#ffffff'
 };
 
 const fileInput: CSSProperties = {
@@ -96,6 +96,7 @@ const sentImagesWrapper: CSSProperties = {
 };
 
 const supportMsgWrapper: CSSProperties = {
+	// minWidth: pxToRem(130),
 	position: 'relative',
 	padding: `${pxToRem(15)} ${pxToRem(20)}`,
 	backgroundColor: '#f8ca06',
@@ -157,7 +158,8 @@ const msgWrapper: CSSProperties = {
 	borderRadius: `${pxToRem(15)} ${pxToRem(15)} 0 ${pxToRem(15)}`,
 	wordWrap: 'break-word',
 	width: 'fit-content',
-	backgroundColor: '#f3f3f3'
+	backgroundColor: '#f3f3f3',
+	minWidth: pxToRem(110)
 };
 
 const msgText: CSSProperties = {

@@ -84,7 +84,8 @@ export const Report: React.FunctionComponent = () => {
 				</Text>
 				<Box className={classes.timeTextWrapper}>
 					<Text className={classes.smallText} black>
-						{formatMessage({ id: 'my_rides.report.support_time' })}
+						{/* {formatMessage({ id: 'my_rides.report.support_time' })} */}
+						{sentTime()}
 					</Text>
 				</Box>
 				<Box className={classes.writerTextWrapper}>
@@ -96,6 +97,54 @@ export const Report: React.FunctionComponent = () => {
 		);
 	};
 
+	const sentTime = (): string => {
+		const currentDate = new Date();
+		const month = currentDate.getMonth() + 1;
+		const date = currentDate.getDate();
+		const hour = currentDate.getHours();
+		const minute = currentDate.getMinutes();
+		let displayMonth = '';
+		let displayTime = '';
+
+		if (month === 1) {
+			displayMonth = 'Jan';
+		} else if (month === 2) {
+			displayMonth = 'Feb';
+		} else if (month === 3) {
+			displayMonth = 'Mar';
+		} else if (month === 4) {
+			displayMonth = 'Apr';
+		} else if (month === 5) {
+			displayMonth = 'May';
+		} else if (month === 6) {
+			displayMonth = 'Jun';
+		} else if (month === 7) {
+			displayMonth = 'Jul';
+		} else if (month === 8) {
+			displayMonth = 'Aug';
+		} else if (month === 9) {
+			displayMonth = 'Sep';
+		} else if (month === 10) {
+			displayMonth = 'Oct';
+		} else if (month === 11) {
+			displayMonth = 'Nov';
+		} else if (month === 11) {
+			displayMonth = 'Dec';
+		}
+
+		if (hour < 12) {
+			displayTime = hour + ':' + minute + ' am, ' + displayMonth + ' ' + date;
+		} else {
+			if (hour === 12) {
+				displayTime = hour + ':' + minute + ' pm, ' + displayMonth + ' ' + date;
+			} else {
+				displayTime = hour - 12 + ':' + minute + ' pm, ' + displayMonth + ' ' + date;
+			}
+		}
+
+		return displayTime;
+	};
+
 	const renderSentMessage = (message: string, index: number): JSX.Element => {
 		return (
 			<Box key={index} className={classes.sentMsgWrapper}>
@@ -105,7 +154,8 @@ export const Report: React.FunctionComponent = () => {
 					</Text>
 					<Box className={classes.timeTextWrapper}>
 						<Text className={classes.smallText} black>
-							{formatMessage({ id: 'my_rides.report.your_time' })}
+							{/* {formatMessage({ id: 'my_rides.report.your_time' })} */}
+							{sentTime()}
 						</Text>
 					</Box>
 					<Box className={classes.writerTextWrapper}>
