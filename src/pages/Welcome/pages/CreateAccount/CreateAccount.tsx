@@ -62,7 +62,9 @@ export const CreateAccount: React.FunctionComponent = () => {
 					>
 						{formatMessage({ id: 'button.send' })}
 					</GreenButton>
-					<Text className={classes.createAccountText}>{formatMessage({ id: 'welcome.create_password.text' })}</Text>
+					<Text className={classes.createAccountText} black>
+						{formatMessage({ id: 'welcome.create_password.text' })}
+					</Text>
 				</Box>
 			</Box>
 		</Page>
