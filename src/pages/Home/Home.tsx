@@ -356,10 +356,18 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 		history.push('/payment-methods/add-payment-method', { pageName: 'home', selectedIndex: -1 });
 	};
 
+	// const [rideStart, setRideStart] = React.useState(false);
+	// const [ridingStart, setRidingStart] = React.useState(true);
+	// const [reservation, setReservation] = React.useState(false);
 	const handleReportSubmitDialogClose = (): void => {
 		setReportSubmitModal(false);
 		setShowFinishedRide(false);
 		setActiveVehicle('');
+		setRideReview('');
+		setPaidSuccess(false);
+		setReservation(false);
+		setRidingStart(true);
+		setRideStart(false);
 	};
 
 	const handleVehicleTypeClick = (iconName: string) => (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
