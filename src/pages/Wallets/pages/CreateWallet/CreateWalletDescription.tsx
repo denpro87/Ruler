@@ -1,3 +1,4 @@
+import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { GreenButton, Page, Text } from 'components';
 import { ICreateWalletProps } from './CreateWallet.types';
@@ -5,11 +6,17 @@ import { styles } from './CreateWallet.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
-import descriptionImage from '../../images/create-wallet.svg';
+import descriptionImageForDark from '../../images/create-wallet-dark.svg';
+import descriptionImageForLight from '../../images/create-wallet-light.svg';
 const useStyles = makeStyles(styles);
 
 export const CreateWalletDescription: React.FunctionComponent<ICreateWalletProps> = props => {
-	const classes = useStyles();
+	const {
+		state: {
+			settings: { isDarkMode }
+		}
+	} = React.useContext(AppContext);
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 	const history = useHistory();
 	const params: any = props.location.state;
@@ -27,7 +34,11 @@ export const CreateWalletDescription: React.FunctionComponent<ICreateWalletProps
 			</Text>
 			<Box className={classes.descriptionContent}>
 				<Box className={classes.descriptionImageWrapper}>
-					<img alt="description" src={descriptionImage} className={classes.descriptionImage} />
+					<img
+						alt="description"
+						src={isDarkMode ? descriptionImageForDark : descriptionImageForLight}
+						className={classes.descriptionImage}
+					/>
 				</Box>
 			</Box>
 			<Box className={classes.footer}>
