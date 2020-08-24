@@ -120,21 +120,9 @@ export const Receive: React.FunctionComponent<IReceiveProps> = props => {
 						value={amount}
 						onValueChange={handleAmountChange}
 					/>
-					{isDarkMode ? (
-						<Button
-							iconName="receive"
-							compact
-							disabled={(!from && !photo) || !amount || !numberValid}
-							onClick={handleReceiveClick}
-							disabledBackgroundColor="#303331"
-						>
-							{formatMessage({ id: 'button.receive' })}
-						</Button>
-					) : (
-						<GreenButton iconName="receive" compact disabled={(!from && !photo) || !amount || !numberValid} onClick={handleReceiveClick}>
-							{formatMessage({ id: 'button.receive' })}
-						</GreenButton>
-					)}
+					<GreenButton iconName="receive" compact disabled={(!from && !photo) || !amount || !numberValid} onClick={handleReceiveClick}>
+						{formatMessage({ id: 'button.receive' })}
+					</GreenButton>
 				</Box>
 				<Box className={classes.qrCodeWrapper}>
 					<Text className={classes.qrText}>{formatMessage({ id: 'wallets.receive.share_qr_code' })}</Text>
