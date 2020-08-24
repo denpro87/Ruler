@@ -15,14 +15,14 @@ export const NewsItem: React.FunctionComponent<INewsItemProps> = props => {
 		<ListItem className={classes.articleListItem} button component={RouterLink} to={`/news/${props.socialName}`}>
 			<Image className={classes.imageBox} src={props.imageUrl} alt={props.altName} rounded width={70} />
 			<ListItemText>
-				<Text className={classes.articleDescription} block>
+				<Text className={classes.articleDescription}>
 					<Box className={classes.platformText}>{props.socialName}</Box>
 					<Box className={classes.articleTime}>{props.timeHistory}</Box>
 				</Text>
 				<Text className={classes.articleTitle} block>
 					{props.title}
 				</Text>
-				<Text className={classes.articleText} block>
+				<Text className={classes.articleContent} block>
 					{props.description}
 				</Text>
 			</ListItemText>

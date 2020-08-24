@@ -3,6 +3,12 @@ import { createStyles } from '@material-ui/core';
 import { font, pxToRem } from 'styles';
 
 const articleTitle: CSSProperties = {
+	display: '-webkit-box',
+	boxOrient: 'vertical',
+	overflow: 'hidden',
+	textOverflow: 'ellipsis',
+	width: pxToRem(245),
+	lineClamp: 2,
 	marginBottom: pxToRem(5),
 	...font({
 		fontWeight: 600,
@@ -22,7 +28,13 @@ const articleListItem: CSSProperties = {
 	marginBottom: pxToRem(11)
 };
 
-const articleText: CreateCSSProperties = {
+const articleContent: CreateCSSProperties = {
+	display: '-webkit-box',
+	boxOrient: 'vertical',
+	overflow: 'hidden',
+	textOverflow: 'ellipsis',
+	width: pxToRem(245),
+	lineClamp: 3,
 	...font({
 		fontSize: 10,
 		fontWeight: 600,
@@ -66,7 +78,7 @@ export const styles = createStyles({
 	imageBox,
 	articleListItem,
 	articleTitle,
-	articleText,
+	articleContent,
 	articleDescription,
 	articleTime,
 	platformText
