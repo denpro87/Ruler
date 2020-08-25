@@ -1,9 +1,9 @@
-import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { Checkbox, Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { IConfirmationProps } from './Confirmation.types';
 import { ITemplateDataProps } from '../Template/Template.types';
 import { styles } from './Confirmation.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
@@ -15,11 +15,7 @@ export const Confirmation: React.FunctionComponent<IConfirmationProps> = props =
 	const { formatMessage } = useIntl();
 	const params: any = props.location.state;
 	const [checked, setChecked] = React.useState<boolean>(false);
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ checked, isDarkMode: isDarkMode });
 	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [templateName, setTemplateName] = React.useState<string>('');

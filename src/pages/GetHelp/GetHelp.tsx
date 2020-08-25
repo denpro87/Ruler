@@ -1,9 +1,9 @@
-import { AppContext } from 'providers/State';
 import { BottomSheet, Divider, GreenButton, LightGreenButton, Page } from 'components';
 import { Box, List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { styles } from './GetHelp.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
@@ -38,12 +38,8 @@ const items = [
 ];
 
 export const GetHelp: React.FunctionComponent = () => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const [showAddReport, setShowAddReport] = React.useState(false);
 	const { formatMessage } = useIntl();

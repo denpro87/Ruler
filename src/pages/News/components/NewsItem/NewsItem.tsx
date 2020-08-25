@@ -1,15 +1,15 @@
-import { AppContext } from 'providers/State';
 import { Box, ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { INewsItemProps } from './NewsItem.types';
 import { Image, Text } from 'components';
 import { Link as RouterLink } from 'react-router-dom';
 import { styles } from './NewsItem.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const NewsItem: React.FunctionComponent<INewsItemProps> = props => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 
 	return (
 		<ListItem className={classes.articleListItem} button component={RouterLink} to={`/news/${props.socialName}`}>

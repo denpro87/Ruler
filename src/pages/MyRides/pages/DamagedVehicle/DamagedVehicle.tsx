@@ -1,4 +1,3 @@
-import { AppContext } from 'providers/State';
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
 import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Page, Text, TextField } from 'components';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
@@ -7,6 +6,7 @@ import { IonImg } from '@ionic/react';
 import { damagedVehicleTypes } from './DamagedVehicle.data';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './DamagedVehicle.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
@@ -15,8 +15,8 @@ const useStyles = makeStyles(styles);
 const { Camera } = Plugins;
 
 export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = props => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 	const history = useHistory();
 	const location = useLocation();
@@ -122,7 +122,7 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 									iconName={damagedVehicleType.iconName}
 									colorType="black"
 									secondaryFillColor={
-										state.settings.isDarkMode
+										isDarkMode
 											? buttonLabel === formatMessage({ id: damagedVehicleType.label })
 												? '#00b559'
 												: '#242725'
@@ -175,7 +175,7 @@ export const DamagedVehicle: React.FunctionComponent<IDamagedVehicleProps> = pro
 					</Box>
 				</Box>
 				<Box className={classes.footer}>
-					{state.settings.isDarkMode ? (
+					{isDarkMode ? (
 						<Button className={classes.addPhotosButton} iconName="photo" onClick={takePhoto}>
 							{formatMessage({ id: 'button.add_photos' })}
 						</Button>

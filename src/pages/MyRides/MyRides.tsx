@@ -1,10 +1,10 @@
-import { AppContext } from 'providers/State';
 import { BottomSheet, GreenButton, LightGreenButton, Page, Text } from 'components';
 import { Box, Typography, makeStyles } from '@material-ui/core';
 import { MyRide } from './components';
 import { Stack } from '@fluentui/react';
 import { myRidesHistoryData } from './MyRides.data';
 import { styles } from './MyRides.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Background from './images/bg.svg';
@@ -17,11 +17,7 @@ import loadingDarkBackground from './images/loading-bg-dark.svg';
 const useStyles = makeStyles(styles);
 
 export const MyRides: React.FunctionComponent = () => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();

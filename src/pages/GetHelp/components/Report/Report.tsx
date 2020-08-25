@@ -1,20 +1,16 @@
-import { AppContext } from 'providers/State';
 import { BlackIcon } from 'components';
 import { ICON_BLACK_COLOR_TYPE_PRIMARY_COLOR } from 'components/Icon';
 import { IReportProps } from './Report.types';
 import { Typography, makeStyles } from '@material-ui/core';
 import { styles } from './Report.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
 
 export const Report: React.FunctionComponent<IReportProps> = props => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
-	const classes = useStyles({ ...props, isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ ...props, isDarkMode: isDarkMode });
 
 	return (
 		<div className={classes.reportContainer}>

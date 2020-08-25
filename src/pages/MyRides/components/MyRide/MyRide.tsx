@@ -1,8 +1,8 @@
-import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { IMyRideProps } from './MyRide.types';
 import { Icon, IconButton, Text } from 'components';
 import { styles } from './MyRide.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useIntl } from 'react-intl';
 import React from 'react';
 import clsx from 'clsx';
@@ -11,7 +11,7 @@ const useStyles = makeStyles(styles);
 export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
-	const { state } = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 
 	return (
 		<Box className={classes.historyContainer}>
@@ -58,7 +58,7 @@ export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 				<Box>
 					<IconButton
 						className={classes.reportIconButton}
-						iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: state.settings.isDarkMode ? 'black' : 'red' }}
+						iconProps={{ iconName: 'report', primaryColor: 'black', secondaryColor: isDarkMode ? 'black' : 'red' }}
 						onClick={props.onReportIconButtonClick}
 						black
 					/>

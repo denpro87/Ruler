@@ -1,10 +1,10 @@
-import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { GoBackIconButton, GreenButton, IconButton, LightGreenButton, Page, Text } from 'components';
 import { IRulerWalletProps } from './RulerWallet.types';
 import { RulerWalletHistory } from '../../components';
 import { rulerWalletHistory } from '../../Wallets.data';
 import { styles } from './RulerWallet.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
@@ -13,11 +13,7 @@ const useStyles = makeStyles(styles);
 const copy = require('clipboard-copy');
 
 export const RulerWallet: React.FunctionComponent<IRulerWalletProps> = props => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const walletAddress = 'dsfsdfsdfsdfsdfsd';

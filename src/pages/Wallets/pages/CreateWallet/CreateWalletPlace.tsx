@@ -1,9 +1,9 @@
-import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, Page, Text } from 'components';
 import { ICreateWalletProps } from './CreateWallet.types';
 import { createWalletWords } from '../../Wallets.data';
 import { styles } from './CreateWallet.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
@@ -20,11 +20,7 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 	const [words, setWords] = React.useState<string[]>([]);
 	const [shuffleWords, setShuffleWords] = React.useState<string[]>([]);
 	// const [selectedStatus, setSelectedStatus] = React.useState<boolean[]>([]);
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isShowError, isDarkMode: isDarkMode });
 
 	const handleWordClick = (word: string, index: number): void => {

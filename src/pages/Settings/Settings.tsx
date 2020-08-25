@@ -1,10 +1,10 @@
-import { AppContext } from 'providers/State';
 import { BlackButton, BlackIcon, Dialog, Page, TextField } from 'components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { List, ListItem, ListItemIcon, ListItemText, Typography, makeStyles } from '@material-ui/core';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { menuList } from './Settings.data';
 import { styles } from './Settings.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { validateEmail } from 'utils';
 import React from 'react';
 import clsx from 'clsx';
@@ -12,8 +12,8 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Settings: React.FunctionComponent = () => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const [logout, setLogout] = React.useState(false);
 	const [deleteAccount, setDeleteAccount] = React.useState(false);

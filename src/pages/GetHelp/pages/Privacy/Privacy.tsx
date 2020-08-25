@@ -1,8 +1,8 @@
-import { AppContext } from 'providers/State';
 import { List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
 import { Page, SearchBox } from 'components';
 import { Link as RouterLink } from 'react-router-dom';
 import { styles } from './Privacy.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 
 import React from 'react';
 
@@ -56,8 +56,8 @@ const types = [
 ];
 
 export const Privacy: React.FunctionComponent = () => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const [questions, setQuestions] = React.useState(defaultQuestions);
 
 	const handleSearchBoxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {

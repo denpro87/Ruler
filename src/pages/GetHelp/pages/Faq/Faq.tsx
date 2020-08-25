@@ -1,8 +1,8 @@
-import { AppContext } from 'providers/State';
 import { List, ListItem, ListItemText, Typography, makeStyles } from '@material-ui/core';
 import { Page, SearchBox } from 'components';
 import { Link as RouterLink } from 'react-router-dom';
 import { styles } from './Faq.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 import React from 'react';
@@ -62,11 +62,7 @@ const types = [
 ];
 
 export const Faq: React.FunctionComponent = () => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const [questions, setQuestions] = React.useState(defaultQuestions);
 

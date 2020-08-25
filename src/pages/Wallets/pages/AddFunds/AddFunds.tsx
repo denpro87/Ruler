@@ -1,10 +1,10 @@
-import { AppContext } from 'providers/State';
 import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, Page, Select, Text, TextField } from 'components';
 import { IAddFundsProps } from './AddFunds.types';
 import { RulerButton } from '../../components';
 import { paymentMethodTypes, rulerPriceBonusData } from '../../Wallets.data';
 import { styles } from './AddFunds.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateNumber } from 'utils';
@@ -12,11 +12,7 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const AddFunds: React.FunctionComponent<IAddFundsProps> = props => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();

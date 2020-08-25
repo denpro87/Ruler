@@ -1,8 +1,8 @@
-import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { Button, Dialog, GreenButton, Icon, IconButton, LightGreenButton, Link, Page, Text } from 'components';
 import { ITemplateDataProps } from './pages/Template/Template.types';
 import { IWalletsProps } from './Wallets.types';
+import { useDarkMode } from 'hooks/UseDarkMode';
 // import { paymentTemplate } from './Wallets.data';
 import { styles } from './Wallets.styles';
 import { useHistory } from 'react-router-dom';
@@ -13,11 +13,7 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const Wallets: React.FunctionComponent<IWalletsProps> = props => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();

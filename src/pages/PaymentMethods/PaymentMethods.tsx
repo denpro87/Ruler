@@ -1,10 +1,10 @@
-import { AppContext } from 'providers/State';
 import { BlackButton, Dialog, GreenButton, Page } from 'components';
 import { Box, Typography, makeStyles } from '@material-ui/core';
 import { ICreditCardProps } from './pages/AddPaymentMethod/AddPaymentMethod.types';
 import { IPaymentMethodsProps } from './PaymentMethods.types';
 import { PaymentMethodItem } from './components';
 import { styles } from './PaymentMethods.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
@@ -17,11 +17,7 @@ export const PaymentMethods: React.FunctionComponent<IPaymentMethodsProps> = pro
 	const [deleteCard, setDeleteCard] = React.useState(false);
 	const [from, setFrom] = React.useState(false);
 	const [selectedIndex, setSelectedIndex] = React.useState(-1);
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 
 	React.useEffect(() => {

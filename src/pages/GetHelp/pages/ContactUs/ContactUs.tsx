@@ -1,7 +1,7 @@
-import { AppContext } from 'providers/State';
 import { Box, Paper, Typography, makeStyles } from '@material-ui/core';
 import { Icon, LightGreenButton, Page } from 'components';
 import { styles } from './ContactUs.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 import React from 'react';
@@ -13,8 +13,8 @@ const info = {
 };
 
 export const ContactUs: React.FunctionComponent = () => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 
 	return (

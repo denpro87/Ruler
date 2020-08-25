@@ -1,8 +1,8 @@
-import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { IPaymentMethodItemProps } from './PaymentMethodItem.types';
 import { IconButton, Link, Text } from 'components';
 import { styles } from './PaymentMethodItem.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
@@ -14,11 +14,7 @@ export const PaymentMethodItem: React.FunctionComponent<IPaymentMethodItemProps>
 			privateCardNumber += cardData.cardNumber[i];
 		}
 	}
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 
 	return (

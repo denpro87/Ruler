@@ -1,10 +1,10 @@
-import { AppContext } from 'providers/State';
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
 import { Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { ISendProps } from './Send.types';
 import { RulerButton } from '../../components';
 import { rulerPriceBonusData } from '../../Wallets.data';
 import { styles } from './Send.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateNumber } from 'utils';
@@ -13,11 +13,7 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Send: React.FunctionComponent<ISendProps> = props => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 	const history = useHistory();

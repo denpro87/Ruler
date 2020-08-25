@@ -1,8 +1,8 @@
-import { AppContext } from 'providers/State';
 import { GreenButton, Icon, Page } from 'components';
 import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import { createWalletTypes } from '../../Wallets.data';
 import { styles } from './CreateWallet.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
@@ -11,11 +11,7 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const CreateWallet: React.FunctionComponent = () => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 	const [selectedWallet, setSelectedWallet] = React.useState('');

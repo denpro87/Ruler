@@ -1,17 +1,17 @@
-import { AppContext } from 'providers/State';
 import { Box, Paper, makeStyles } from '@material-ui/core';
 import { Footer, Image, Page, Text } from 'components';
 import { INewsDetailProps } from './NewsDetail.types';
 import { sampleNews } from './NewsDetail.data';
 import { styles } from './NewsDetail.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useIntl } from 'react-intl';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
 
 export const NewsDetail: React.FunctionComponent<INewsDetailProps> = props => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 
 	return (

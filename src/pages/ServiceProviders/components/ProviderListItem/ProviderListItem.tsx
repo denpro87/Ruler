@@ -1,8 +1,8 @@
-import { AppContext } from 'providers/State';
 import { BlackIcon, Image } from 'components';
 import { IProviderListItemProps } from './ProviderListItem.types';
 import { ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import { styles } from './ProviderListItem.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 import clsx from 'clsx';
 const useStyles = makeStyles(styles);
@@ -14,8 +14,8 @@ export const ProviderListItem: React.FunctionComponent<IProviderListItemProps> =
 	canGoTo,
 	onClick
 }) => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 
 	return (
 		<ListItem className={classes.providerListItem} onClick={onClick} button={canGoTo as true}>

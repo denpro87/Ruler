@@ -3,8 +3,8 @@ import { BottomSheet, Button, Page, Text } from 'components';
 import { Box, makeStyles } from '@material-ui/core';
 import { IDriverLicenceProps } from './DriverLicence.types';
 import { LicenceItem } from './components';
-import { AppContext } from 'providers/State';
 import { styles } from './DriverLicence.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 // import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
@@ -13,13 +13,13 @@ const useStyles = makeStyles(styles);
 
 export const DriverLicence: React.FunctionComponent<IDriverLicenceProps> = props => {
 	// const history = useHistory();
-	const appState = React.useContext(AppContext).state;
+	const isDarkMode = useDarkMode();
 	const { formatMessage } = useIntl();
 	const [state, setState] = React.useState<'success' | 'progress' | 'invalid' | ''>('');
 	const [driverLicenceData, setDriverLicenceData] = React.useState<string[]>([]);
 	// const [isFirstLoading, setFirstLoading] = React.useState(true);
 	const [showAddDriverLicence, setShowAddDriverLicence] = React.useState(false);
-	const classes = useStyles({ state, isDarkMode: appState.settings.isDarkMode });
+	const classes = useStyles({ state, isDarkMode: isDarkMode });
 
 	// React.useEffect(() => {
 	// const params: any = props.location.state;

@@ -1,15 +1,15 @@
-import { AppContext } from 'providers/State';
 import { Box, Typography, makeStyles } from '@material-ui/core';
 import { Dialog, GreenButton, Page, Text, TextField } from 'components';
 import { styles } from './ChangeEmail.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useIntl } from 'react-intl';
 import { validateEmail } from 'utils';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const ChangeEmail: React.FunctionComponent = () => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const [email, setEmail] = React.useState('');
 	const [emailValid, setEmailValid] = React.useState(true);
 	const [showChangeDialog, setShowChangeDialog] = React.useState(false);

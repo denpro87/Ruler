@@ -1,4 +1,3 @@
-import { AppContext } from 'providers/State';
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
@@ -6,6 +5,7 @@ import { IReceiveProps } from './Receive.types';
 import { IonImg } from '@ionic/react';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { styles } from './Receive.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateNumber } from 'utils';
@@ -17,11 +17,7 @@ const useStyles = makeStyles(styles);
 const { Camera } = Plugins;
 
 export const Receive: React.FunctionComponent<IReceiveProps> = props => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const location = useLocation();

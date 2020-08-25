@@ -4,8 +4,8 @@ import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { IAddDriverLicencePhotoProps } from './AddDriverLicencePhoto.types';
 import { IonImg } from '@ionic/react';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
-import { AppContext } from 'providers/State';
 import { styles } from './AddDriverLicencePhoto.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useIntl } from 'react-intl';
 import BackdropFilter from 'react-backdrop-filter';
 import React from 'react';
@@ -15,8 +15,8 @@ const useStyles = makeStyles(styles);
 const { Camera } = Plugins;
 
 export const AddDriverLicencePhoto: React.FunctionComponent<IAddDriverLicencePhotoProps> = ({ handleDialogCloseButtonClick }) => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const [photo, setPhoto] = React.useState('');
 	const [frontPhoto, setFrontPhoto] = React.useState('');
 	const [backPhoto, setBackPhoto] = React.useState('');
@@ -183,7 +183,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent<IAddDriverLicencePho
 					</Box>
 				</Box>
 				<Box className={classes.footerContainer}>
-					<BackdropFilter filter={`blur(${state.settings.isDarkMode ? '0px' : '4px'})`}>
+					<BackdropFilter filter={`blur(${isDarkMode ? '0px' : '4px'})`}>
 						<Box className={classes.imageGallery}>
 							<Box className={classes.imageGalleryInside}>
 								{photos.length > 0 &&
@@ -203,14 +203,14 @@ export const AddDriverLicencePhoto: React.FunctionComponent<IAddDriverLicencePho
 							<IconButton
 								iconProps={{
 									iconName: selectedImageIndex < 0 ? 'gallery' : 'trash',
-									color: state.settings.isDarkMode ? '#fff' : '#181c19'
+									color: isDarkMode ? '#fff' : '#181c19'
 								}}
 								className={classes.leftRightIconButton}
 							/>
 							<IconButton
 								iconProps={{
 									iconName: selectedImageIndex < 0 ? 'photo' : 'save-photo',
-									color: selectedImageIndex < 0 ? (state.settings.isDarkMode ? '#fff' : '#181c19') : '#ffffff'
+									color: selectedImageIndex < 0 ? (isDarkMode ? '#fff' : '#181c19') : '#ffffff'
 								}}
 								className={clsx({ [classes.midIconButton]: true }, { [classes.midIconButtonActive]: selectedImageIndex >= 0 })}
 								onClick={() => (selectedImageIndex < 0 ? takePhoto() : savePhoto(side, selectedImageIndex))}
@@ -218,7 +218,7 @@ export const AddDriverLicencePhoto: React.FunctionComponent<IAddDriverLicencePho
 							<IconButton
 								iconProps={{
 									iconName: selectedImageIndex < 0 ? 'flashlight' : 'revert',
-									color: state.settings.isDarkMode ? '#fff' : '#181c19'
+									color: isDarkMode ? '#fff' : '#181c19'
 								}}
 								className={classes.leftRightIconButton}
 								onClick={(): void => (selectedImageIndex >= 0 ? handleRevertClick() : handleFlashLightClick())}

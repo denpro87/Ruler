@@ -1,4 +1,3 @@
-import { AppContext } from 'providers/State';
 import { AreasListItem, PaymentMethodItem } from './components';
 import { BarcodeScanResult, BarcodeScanner } from '@ionic-native/barcode-scanner';
 import {
@@ -38,6 +37,7 @@ import {
 } from './Home.data';
 import { makeStyles } from '@material-ui/styles';
 import { mapViewer, styles } from './Home.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
@@ -72,8 +72,8 @@ interface ISwitchState {
 // };
 
 export const Home: React.FunctionComponent<IHomeProps> = props => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const initialSwitchState = {
@@ -498,7 +498,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				width="100%"
 				height="100%"
 				style={mapViewer}
-				mapStyle={state.settings.isDarkMode ? 'mapbox://styles/mapbox/dark-v8' : 'mapbox://styles/mapbox/light-v8'}
+				mapStyle={isDarkMode ? 'mapbox://styles/mapbox/dark-v8' : 'mapbox://styles/mapbox/light-v8'}
 				onViewportChange={setViewport}
 				mapboxApiAccessToken={MAPBOX_TOKEN}
 				onClick={findMe ? handleMapClick : undefined}
@@ -507,8 +507,8 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 					className={classes.reportButton}
 					iconProps={{
 						iconName: 'report',
-						primaryColor: state.settings.isDarkMode ? '#fff' : '#181c19',
-						secondaryColor: state.settings.isDarkMode ? '#fff' : 'red'
+						primaryColor: isDarkMode ? '#fff' : '#181c19',
+						secondaryColor: isDarkMode ? '#fff' : 'red'
 					}}
 					onClick={(): void => setShowReport(true)}
 				/>
@@ -531,11 +531,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 							>
 								{marker.iconName ? (
 									<>
-										<Icon
-											iconName={marker.iconName}
-											colorType="black"
-											secondaryFillColor={state.settings.isDarkMode ? '#242725' : 'rgb(248, 202, 6)'}
-										/>
+										<Icon iconName={marker.iconName} colorType="black" secondaryFillColor={isDarkMode ? '#242725' : 'rgb(248, 202, 6)'} />
 										<Box className={classes.iconDecorator}>
 											<Image src={require(`${marker.decorator}`)} />
 										</Box>
@@ -562,7 +558,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 											iconProps={{
 												iconName: button.iconName,
 												colorType: 'black',
-												secondaryFillColor: state.settings.isDarkMode
+												secondaryFillColor: isDarkMode
 													? button.iconName === 'vehicle'
 														? 'rgb(248, 202, 6)'
 														: '#242725'
@@ -644,7 +640,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				onBottomSheetChange={handleReportBottomSheetChange}
 			>
 				<Typography className={classes.sheetText}>{formatMessage({ id: 'get_help.add_report_sheet.description' })}</Typography>
-				{state.settings.isDarkMode ? (
+				{isDarkMode ? (
 					<GreenButton className={classes.sheetButton} iconName="badly-parked-vehicle" onClick={handleBadlyClick}>
 						{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
 					</GreenButton>
@@ -653,7 +649,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						{formatMessage({ id: 'home.add_report_sheet.button.badly_parked_vehicle' })}
 					</LightGreenButton>
 				)}
-				{state.settings.isDarkMode ? (
+				{isDarkMode ? (
 					<GreenButton className={classes.sheetButton} iconName="damaged-vehicle" onClick={handleDamagedClick}>
 						{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
 					</GreenButton>
@@ -662,7 +658,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 						{formatMessage({ id: 'get_help.add_report_sheet.button.damaged_vehicle' })}
 					</LightGreenButton>
 				)}
-				{state.settings.isDarkMode ? (
+				{isDarkMode ? (
 					<GreenButton className={classes.sheetButton} iconName="support" onClick={handleContactClick}>
 						{formatMessage({ id: 'get_help.add_report_sheet.button.support' })}
 					</GreenButton>
@@ -707,11 +703,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 									iconName={damagedVehicleType.iconName}
 									colorType="black"
 									secondaryFillColor={
-										state.settings.isDarkMode
-											? selectedVehicle === damagedVehicleType.iconName
-												? '#00b559'
-												: '#242725'
-											: 'rgb(248, 202, 6)'
+										isDarkMode ? (selectedVehicle === damagedVehicleType.iconName ? '#00b559' : '#242725') : 'rgb(248, 202, 6)'
 									}
 								/>
 								<Text className={classes.smallText}>{formatMessage({ id: damagedVehicleType.label })}</Text>

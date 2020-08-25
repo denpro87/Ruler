@@ -1,18 +1,14 @@
-import { AppContext } from 'providers/State';
 import { Box, Typography, makeStyles } from '@material-ui/core';
 import { Dialog, GreenButton, Page, TextField } from 'components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { styles } from './Profile.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
 
 export const Profile: React.FunctionComponent = () => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const [showDialog, setShowDialog] = React.useState(false);
 	const [state, setState] = React.useState({

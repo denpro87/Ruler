@@ -1,19 +1,15 @@
-import { AppContext } from 'providers/State';
 import { Box, Input, InputAdornment, InputLabel, makeStyles } from '@material-ui/core';
 import { Icon, IconButton, Page, Text } from 'components';
 import { IonImg } from '@ionic/react';
 import { styles } from './Report.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useIntl } from 'react-intl';
 import React from 'react';
 import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Report: React.FunctionComponent = () => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const { formatMessage } = useIntl();
 	const [msg, setMsg] = React.useState('');
 	const [rowsNum, setRowsNum] = React.useState(0);

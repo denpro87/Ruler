@@ -1,17 +1,16 @@
-import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { GreenButton, Page, PasswordInput, TextField } from 'components';
 import { styles } from './Login.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateEmail, validatePassword } from 'utils';
-import Rating from '@material-ui/lab/Rating';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const Login: React.FunctionComponent = () => {
-	const appState = React.useContext(AppContext).state;
-	const classes = useStyles({ isDarkMode: appState.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const [state, setState] = React.useState({

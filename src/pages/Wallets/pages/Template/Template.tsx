@@ -2,9 +2,9 @@ import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { GreenButton, IconButton, Page, Select, TextField } from 'components';
 import { ITemplateDataProps, ITemplateProps } from './Template.types';
 // import { paymentMethodTypes, walletTypes } from '../../Wallets.data';
-import { AppContext } from 'providers/State';
 import { paymentMethodTypes } from '../../Wallets.data';
 import { styles } from './Template.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateNumber } from 'utils';
@@ -12,11 +12,7 @@ import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const Template: React.FunctionComponent<ITemplateProps> = props => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const { formatMessage } = useIntl();

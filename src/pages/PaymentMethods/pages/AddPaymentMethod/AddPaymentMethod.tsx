@@ -1,9 +1,9 @@
-import { AppContext } from 'providers/State';
 import { GreenButton, Icon, Page } from 'components';
 import { IAddPaymentMethodProps } from './AddPaymentMethod.types';
 import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import { paymentMethodTypes } from '../../PaymentMethods.data';
 import { styles } from './AddPaymentMethod.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
@@ -11,11 +11,7 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const AddPaymentMethod: React.FunctionComponent<IAddPaymentMethodProps> = props => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage } = useIntl();
 	const [selectedTypeIndex, setSelectedTypeIndex] = React.useState(-1);

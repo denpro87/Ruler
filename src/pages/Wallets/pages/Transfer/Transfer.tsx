@@ -1,7 +1,7 @@
-import { AppContext } from 'providers/State';
 import { Box, InputAdornment, MenuItem, makeStyles } from '@material-ui/core';
 import { Button, GreenButton, IconButton, Page, Select, Text, TextField } from 'components';
 import { ITemplateDataProps } from '../Template/Template.types';
+import { useDarkMode } from 'hooks/UseDarkMode';
 
 import { ITransferProps } from './Transfer.types';
 import { RulerButton } from '../../components';
@@ -15,11 +15,7 @@ import clsx from 'clsx';
 const useStyles = makeStyles(styles);
 
 export const Transfer: React.FunctionComponent<ITransferProps> = props => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 	const history = useHistory();
 	const location = useLocation();

@@ -1,16 +1,16 @@
-import { AppContext } from 'providers/State';
 import { ISafetyRegulationsProps } from './SafetyRegulations.types';
 import { Page, Text } from 'components';
 import { Paper, Typography, makeStyles } from '@material-ui/core';
 import { styles } from './SafetyRegulations.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 
 const useStyles = makeStyles(styles);
 
 export const SafetyScooter: React.FunctionComponent<ISafetyRegulationsProps> = props => {
-	const { state } = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const [title, setTitle] = React.useState('');
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	React.useEffect(() => {
 		const url: string = props.match.url;
 

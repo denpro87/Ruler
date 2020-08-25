@@ -1,14 +1,14 @@
-import { AppContext } from 'providers/State';
 import { ILanguageItemProps } from './LanguageItem.types';
 import { Icon } from 'components';
 import { ListItem, ListItemSecondaryAction, ListItemText, makeStyles } from '@material-ui/core';
 import { styles } from './LanguageItem.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const LanguageItem: React.FunctionComponent<ILanguageItemProps> = ({ title, text, selected, onClick, code }) => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode, selected });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode, selected });
 
 	return (
 		<ListItem
