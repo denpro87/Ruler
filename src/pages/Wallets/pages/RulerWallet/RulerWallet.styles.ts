@@ -12,7 +12,7 @@ import { font, percentage, pxToRem } from 'styles';
 const goBackIcon: CSSProperties = {
 	backgroundColor: '#00b559',
 	color: '#ffffff',
-	margin: `${pxToRem(20)} 0 0 ${pxToRem(15)}`,
+	margin: `${pxToRem(20)} 0 0 ${pxToRem(10)}`,
 	'&:hover': {
 		backgroundColor: 'rgb(0, 171, 85)'
 	}
@@ -42,7 +42,7 @@ const headerWrapper: CSSProperties = {
 };
 
 const titleWrapper: CSSProperties = {
-	padding: `0 ${pxToRem(20)} ${pxToRem(17)} ${pxToRem(30)}`,
+	padding: `0 ${pxToRem(20)} ${pxToRem(17)} ${pxToRem(20)}`,
 	display: 'flex',
 	flexDirection: 'row',
 	justifyContent: 'space-between',
@@ -60,7 +60,7 @@ const titleText: CSSProperties = {
 };
 
 const headerContent: CSSProperties = {
-	padding: `0 ${pxToRem(20)} ${pxToRem(35)} ${pxToRem(30)}`,
+	padding: `0 ${pxToRem(20)} ${pxToRem(35)} ${pxToRem(20)}`,
 	display: 'flex',
 	flexDirection: 'column'
 };
@@ -147,7 +147,7 @@ const historyWrapper: CSSProperties = {
 const historyRowWrapper: CSSProperties = {
 	display: 'flex',
 	flexDirection: 'column',
-	padding: `${pxToRem(25)} ${pxToRem(30)} ${pxToRem(15)} ${pxToRem(30)}`
+	padding: `${pxToRem(25)} ${pxToRem(30)} ${pxToRem(15)} ${pxToRem(20)}`
 };
 
 const footer: CSSProperties = {

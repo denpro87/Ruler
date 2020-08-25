@@ -1,4 +1,4 @@
-import { Box, Paper, makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import { Footer, Page, Text } from 'components';
 import { styles } from './Faq.styles';
 import clsx from 'clsx';
