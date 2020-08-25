@@ -161,6 +161,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				}
 			}
 		}
+		setTimeout(() => {
+			setRateRulerModal(true);
+		}, 2000);
 	}, [props.location.state]);
 	React.useEffect(() => {
 		let placeHolderStr = '';
@@ -611,7 +614,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				onClose={handleRateRulerDialogClose}
 				aria-labelledby="form-dialog-title"
 			>
-				<Text className={classes.dialogContentText}>{formatMessage({ id: 'home.rate_ruler.dialog.description' })}</Text>
+				<Text className={classes.dialogContentText} black>
+					{formatMessage({ id: 'home.rate_ruler.dialog.description' })}
+				</Text>
 				<Box className={classes.rateImageWrapper}>
 					<IonImg className={classes.rateImage} src={rateImage} />
 				</Box>
