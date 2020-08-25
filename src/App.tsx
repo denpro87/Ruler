@@ -68,6 +68,8 @@ export const App: React.FunctionComponent = () => {
 							<PrivateRoute path="/get-help/contact-us" component={GetHelp.ContactUs} exact />
 							<PrivateRoute path="/get-help/regulations" component={GetHelp.SafetyRegulations} exact />
 							<PrivateRoute path="/get-help/regulations-scooter" component={GetHelp.SafetyScooter} exact />
+							<PrivateRoute path="/get-help/regulations-car" component={GetHelp.SafetyScooter} exact />
+							<PrivateRoute path="/get-help/regulations-bike" component={GetHelp.SafetyScooter} exact />
 							<PrivateRoute path="/get-help/my-reports" component={GetHelp.MyReports} exact />
 							<PrivateRoute path="/get-help/how-to-ride" component={GetHelp.HowToRide} exact />
 							<PrivateRoute path="/wallets" component={Wallets.Wallets} exact />

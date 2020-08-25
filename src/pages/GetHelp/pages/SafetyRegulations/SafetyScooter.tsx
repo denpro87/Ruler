@@ -1,4 +1,5 @@
 import { AppContext } from 'providers/State';
+import { ISafetyRegulationsProps } from './SafetyRegulations.types';
 import { Page, Text } from 'components';
 import { Paper, Typography, makeStyles } from '@material-ui/core';
 import { styles } from './SafetyRegulations.styles';
@@ -6,12 +7,20 @@ import React from 'react';
 
 const useStyles = makeStyles(styles);
 
-export const SafetyScooter: React.FunctionComponent = () => {
+export const SafetyScooter: React.FunctionComponent<ISafetyRegulationsProps> = props => {
 	const { state } = React.useContext(AppContext);
+	const [title, setTitle] = React.useState('');
 	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	React.useEffect(() => {
+		const url: string = props.match.url;
+
+		if (url.includes('regulations-scooter')) setTitle('Scooter');
+		else if (url.includes('regulations-car')) setTitle('Car');
+		else setTitle('Bike');
+	}, [props.match.url]);
 
 	return (
-		<Page title="Scooter" titleSize="medium">
+		<Page title={title} titleSize="medium">
 			<Text className={classes.subTitle}>Your safety is important to us</Text>
 			<Paper elevation={0} className={classes.container}>
 				<Typography className={classes.content}>
