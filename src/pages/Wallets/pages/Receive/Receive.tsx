@@ -1,7 +1,7 @@
 import { AppContext } from 'providers/State';
 import { Box, InputAdornment, makeStyles } from '@material-ui/core';
-import { Button, Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
+import { Dialog, GreenButton, IconButton, Page, Text, TextField } from 'components';
 import { IReceiveProps } from './Receive.types';
 import { IonImg } from '@ionic/react';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';

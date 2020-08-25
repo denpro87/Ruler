@@ -27,7 +27,8 @@ import { percentage } from 'styles';
 
 export const slides: Array<ISlide> = [
 	{
-		image: require('./images/scan-qr-code.svg'),
+		imageLight: require('./images/scan-qr-code.svg'),
+		imageDark: require('./images/scan-qr-code-dark.svg'),
 		title: 'get_help.how_to_ride.scan_qr.title',
 		description: 'get_help.how_to_ride.scan_qr.description',
 		style: {
@@ -38,7 +39,8 @@ export const slides: Array<ISlide> = [
 		}
 	},
 	{
-		image: require('./images/payment-method.svg'),
+		imageLight: require('./images/payment-method.svg'),
+		imageDark: require('./images/payment-method-dark.svg'),
 		title: 'get_help.how_to_ride.payment_method.title',
 		description: 'get_help.how_to_ride.payment_method.description',
 		style: {
@@ -49,7 +51,8 @@ export const slides: Array<ISlide> = [
 		}
 	},
 	{
-		image: require('./images/start-trip.svg'),
+		imageLight: require('./images/start-trip.svg'),
+		imageDark: require('./images/start-trip-dark.svg'),
 		title: 'get_help.how_to_ride.start_trip.title',
 		description: 'get_help.how_to_ride.start_trip.description',
 		style: {
@@ -60,7 +63,8 @@ export const slides: Array<ISlide> = [
 		}
 	},
 	{
-		image: require('./images/watch-areas.svg'),
+		imageLight: require('./images/watch-areas.svg'),
+		imageDark: require('./images/watch-areas-dark.svg'),
 		title: 'get_help.how_to_ride.watch_areas.title',
 		description: 'get_help.how_to_ride.watch_areas.description',
 		style: {
@@ -71,7 +75,8 @@ export const slides: Array<ISlide> = [
 		}
 	},
 	{
-		image: require('./images/trip-status.svg'),
+		imageLight: require('./images/trip-status.svg'),
+		imageDark: require('./images/trip-status-dark.svg'),
 		title: 'get_help.how_to_ride.trip_status.title',
 		description: 'get_help.how_to_ride.trip_status.description',
 		style: {
