@@ -3,7 +3,7 @@ import { ILinkProps, LinkColorType } from './Link.types';
 import { getColorFromColorType } from './getColorFromColorType';
 import { makeStyles } from '@material-ui/core';
 import { styles } from './Link.styles';
-import { AppContext } from 'providers/State';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -11,16 +11,13 @@ const useStyles = makeStyles(styles);
 
 export const Link: React.FunctionComponent<ILinkProps> = ({ href, iconProps, iconName, colorType, onClick, className, children }) => {
 	iconProps = Object.assign({}, { iconName, colorType }, iconProps) as IIconProps;
-	const { state } = React.useContext(AppContext);
-	const { linkColor, hoveredLinkColor, pressedLinkColor } = getColorFromColorType(
-		iconProps.colorType as LinkColorType,
-		state.settings.isDarkMode
-	);
+	const isDarkMode = useDarkMode();
+	const { linkColor, hoveredLinkColor, pressedLinkColor } = getColorFromColorType(iconProps.colorType as LinkColorType, isDarkMode);
 	const classes = useStyles({
 		linkColor,
 		hoveredLinkColor,
 		pressedLinkColor,
-		isDarkMode: state.settings.isDarkMode
+		isDarkMode: isDarkMode
 	});
 
 	// if (onClick) {

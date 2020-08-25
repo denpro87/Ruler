@@ -1,10 +1,10 @@
-import { AppContext } from 'providers/State';
 import { DEFAULT_ICON_BUTTON_SIZE } from './IconButton.variables';
 import { GoBackIconButtonProps, IIconButtonProps, SocialIconButtonProps } from './IconButton.types';
 import { IIconProps, Icon } from 'components';
 import { IconButton as MuiIconButton, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './IconButton.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -28,7 +28,7 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 	if (!(iconName || iconProps)) {
 		console.warn('`IconButton` requires `iconName` or `iconProps` to be specified.');
 	}
-	const { state } = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 
 	const classes = useStyles({
 		width,
@@ -38,7 +38,7 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = ({
 		noShadow,
 		outlined,
 		label,
-		isDarkMode: state.settings.isDarkMode,
+		isDarkMode: isDarkMode,
 		black
 	});
 

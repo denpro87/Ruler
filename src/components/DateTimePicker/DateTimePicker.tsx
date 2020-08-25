@@ -1,4 +1,3 @@
-import { AppContext } from 'providers/State';
 import { BlackButton, GreenButton, LightGreenButton } from 'components';
 import { IDateTimePickerProps } from './DateTimePicker.types';
 import { IonBackdrop, IonPickerColumn } from '@ionic/react';
@@ -7,6 +6,7 @@ import { Platform } from 'types';
 import { Stack } from '@fluentui/react';
 import { makeStyles } from '@material-ui/core';
 import { styles } from './DateTimePicker.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -22,8 +22,8 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 	onMinuteChange,
 	onDismiss
 }) => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 
 	const hourPickerRef = React.useRef<HTMLIonPickerColumnElement>(null);
 	const minutePickerRef = React.useRef<HTMLIonPickerColumnElement>(null);
@@ -92,7 +92,7 @@ export const DateTimePicker: React.FunctionComponent<IDateTimePickerProps> = ({
 					<div className={clsx(classes.pickerHighlight, classes.pickerBelowHighlight)} />
 				</div>
 				<Stack horizontal tokens={{ childrenGap: 15 }}>
-					{state.settings.isDarkMode ? (
+					{isDarkMode ? (
 						<BlackButton onClick={onDismiss}>Cancel</BlackButton>
 					) : (
 						<LightGreenButton onClick={onDismiss}>Cancel</LightGreenButton>

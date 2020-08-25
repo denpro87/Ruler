@@ -1,10 +1,10 @@
-import { AppContext } from 'providers/State';
 import { Box } from '@material-ui/core';
 import { DEFAULT_PAGE_BACKGROUND_COLOR, GoBackIconButton, Link, Text } from 'components';
 import { FullPageProps, IPageProps } from './Page.types';
 import { IonContent, IonPage } from '@ionic/react';
 import { makeStyles } from '@material-ui/styles';
 import { styles } from './Page.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useHistory } from 'react-router';
 import React from 'react';
 import clsx from 'clsx';
@@ -30,7 +30,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 	mainPage,
 	from
 }) => {
-	const { state } = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const hasPageHeader = Boolean(canGoBack || title);
 	const classes = useStyles({
 		hasPageHeader,
@@ -38,7 +38,7 @@ export const Page: React.FunctionComponent<IPageProps> = ({
 		background,
 		backgroundColor,
 		noHorizontalContentPadding,
-		isDarkMode: state.settings.isDarkMode,
+		isDarkMode: isDarkMode,
 		headerLinkIsString: !!(headerLink && typeof headerLink === 'string')
 	});
 	const history = useHistory();

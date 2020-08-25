@@ -2,15 +2,15 @@ import { Box, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemTex
 import { IMenuProps } from './Menu.types';
 import { Icon, IconButton } from 'components';
 import { IntlShape, useIntl } from 'react-intl';
-import { styles } from './Menu.styles';
 import { menuItems } from './Menu.data';
-import { AppContext } from 'providers/State';
+import { styles } from './Menu.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
 export const Menu: React.FunctionComponent<IMenuProps> = ({ open, onOpen, onClose, menuItemClick }) => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ isDarkMode: isDarkMode });
 	const { formatMessage }: IntlShape = useIntl();
 
 	const renderMenuList = (): JSX.Element => (

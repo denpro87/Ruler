@@ -1,9 +1,9 @@
-import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { ISlideProps } from './Slide.types';
 import { IonSlide } from '@ionic/react';
 import { Text, Title } from 'components/Text';
 import { styles } from './Slide.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import { useIntl } from 'react-intl';
 import React from 'react';
 
@@ -13,11 +13,7 @@ export const Slide: React.FunctionComponent<ISlideProps> = props => {
 	const { formatMessage } = useIntl();
 	const { slide } = props;
 
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyle({ imageStyle: slide.style });
 
 	return (

@@ -1,4 +1,3 @@
-import { AppContext } from 'providers/State';
 import { BUTTON_LIGHT_GREEN_COLOR_TYPE_BACKGROUND_COLOR } from 'components/Button/Button.variables';
 import { ColoredIconProps, CommonIcon, IIconProps } from './Icon.types';
 import { DEFAULT_ICON_SIZE } from './Icon.variables';
@@ -6,6 +5,7 @@ import { ReactSVG } from 'react-svg';
 import { getColorFromColorType } from './getColorFromColorType';
 import { makeStyles } from '@material-ui/core';
 import { styles } from './Icon.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -31,7 +31,7 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 		secondaryStrokeColor,
 		black
 	}) => {
-		const { state } = React.useContext(AppContext);
+		const isDarkMode = useDarkMode();
 
 		iconName = iconName.trim().toLowerCase();
 
@@ -45,9 +45,8 @@ export const Icon: React.FunctionComponent<IIconProps> = React.memo(
 
 		let tempPrimaryColor = primaryColor;
 
-		if (!primaryColor || primaryColor === 'black')
-			tempPrimaryColor = getColorFromColorType(colorType!, 'primary', state.settings.isDarkMode, black);
-		const tempSecondaryColor = secondaryColor ?? getColorFromColorType(colorType!, 'secondary', state.settings.isDarkMode, black);
+		if (!primaryColor || primaryColor === 'black') tempPrimaryColor = getColorFromColorType(colorType!, 'primary', isDarkMode, black);
+		const tempSecondaryColor = secondaryColor ?? getColorFromColorType(colorType!, 'secondary', isDarkMode, black);
 
 		const classes = useStyles({
 			width,

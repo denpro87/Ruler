@@ -1,8 +1,8 @@
-import { AppContext } from 'providers/State';
 import { ITextFieldProps } from './TextField.types';
 import { Icon, IconButton } from 'components';
 import { InputAdornment, TextField as MuiTextField, makeStyles } from '@material-ui/core';
 import { styles } from './TextField.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -23,11 +23,7 @@ export const TextField: React.FunctionComponent<ITextFieldProps> = ({
 	selectProps,
 	...rest
 }) => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const classes = useStyles({ isDarkMode: isDarkMode });
 
 	return (
@@ -53,11 +49,7 @@ export const TextField: React.FunctionComponent<ITextFieldProps> = ({
 
 export const PasswordInput: React.FunctionComponent<ITextFieldProps> = props => {
 	const [passwordIsMasked, setPasswordIsMasked] = React.useState(true);
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 
 	const togglePasswordMask = (): void => {
 		setPasswordIsMasked(!passwordIsMasked);

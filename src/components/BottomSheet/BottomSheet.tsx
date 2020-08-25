@@ -1,9 +1,9 @@
-import { AppContext } from 'providers/State';
 import { IBottomSheetProps } from './BottomSheet.types';
 import { IconButton } from 'components';
 import { Typography, makeStyles } from '@material-ui/core';
 import { pxToRem } from 'styles';
 import { styles } from './BottomSheet.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import BackdropFilter from 'react-backdrop-filter';
 import React from 'react';
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet';
@@ -22,8 +22,8 @@ export const BottomSheet: React.FunctionComponent<IBottomSheetProps> = ({
 	hasFindMeButton,
 	onCloseButtonClick
 }) => {
-	const { state } = React.useContext(AppContext);
-	const classes = useStyles({ darkMode, hasCloseButton, isDarkMode: state.settings.isDarkMode });
+	const isDarkMode = useDarkMode();
+	const classes = useStyles({ darkMode, hasCloseButton, isDarkMode: isDarkMode });
 
 	return (
 		<div className={classes.sheetContainer}>

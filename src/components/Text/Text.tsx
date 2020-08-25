@@ -1,18 +1,14 @@
-import { AppContext } from 'providers/State';
 import { ITextProps, ParagraphProps, TextStyles, TitleProps } from './Text.types';
 import { Typography, makeStyles } from '@material-ui/core';
 import { styles } from './Text.styles';
+import { useDarkMode } from 'hooks/UseDarkMode';
 import React from 'react';
 import clsx from 'clsx';
 
 export const createTextStyles = (textStyles: TextStyles): TextStyles => textStyles;
 
 export const Title: React.FunctionComponent<TitleProps> = props => {
-	const {
-		state: {
-			settings: { isDarkMode }
-		}
-	} = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 
 	return <Text block {...props} color={isDarkMode ? '#fff' : '#181c19'} />;
 };
@@ -57,7 +53,7 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 		children
 	} = props;
 
-	const { state } = React.useContext(AppContext);
+	const isDarkMode = useDarkMode();
 	const _makeStyles = React.useCallback(() => makeStyles(styles(inheritStyles)), [inheritStyles]);
 	const useStyles = _makeStyles();
 
@@ -70,7 +66,7 @@ export const Text: React.FunctionComponent<ITextProps> = React.memo(({ textStyle
 		lineHeight,
 		fontFamily,
 		letterSpacing,
-		isDarkMode: state.settings.isDarkMode,
+		isDarkMode: isDarkMode,
 		color,
 		black,
 		active
