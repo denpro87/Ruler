@@ -42,6 +42,7 @@ import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
+import Rating from '@material-ui/lab/Rating';
 import React from 'react';
 import axios from 'axios';
 import bike from './images/bike.png';
@@ -95,6 +96,7 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 	});
 	const [vehicleSelectionExpanded, setVehicleSelectionExpanded] = React.useState(false);
 	const [rateRulerModal, setRateRulerModal] = React.useState(false);
+	const [value, setValue] = React.useState<number | null>(2);
 	const [open, setOpen] = React.useState(false);
 	const [showInviteFriends, setShowInviteFriends] = React.useState<boolean>(false);
 	const [showReport, setShowReport] = React.useState(false);
@@ -161,9 +163,9 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				}
 			}
 		}
-		setTimeout(() => {
-			setRateRulerModal(true);
-		}, 2000);
+		// setTimeout(() => {
+		// 	setRateRulerModal(true);
+		// }, 2000);
 	}, [props.location.state]);
 	React.useEffect(() => {
 		let placeHolderStr = '';
@@ -1295,12 +1297,16 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				</Box>
 				<Box className={classes.rateRideWrapper}>
 					<Text className={classes.rateRideText}>{formatMessage({ id: 'home.finished_ride_sheet.text.rate_ride' })}</Text>
-					<Box>
-						{[0, 1, 2, 3].map(index => {
-							return <Icon key={index} iconName="rate-active" className={classes.rateActiveIcon} />;
-						})}
-						<Icon iconName="rate-inactive" />
-					</Box>
+					<Rating
+						classes={{ root: classes.ratingRoot }}
+						name="customized-empty"
+						value={value}
+						onChange={(event, newValue): void => {
+							setValue(newValue);
+						}}
+						emptyIcon={<Icon iconName="rate-inactive" />}
+						icon={<Icon iconName="rate-active" />}
+					/>
 				</Box>
 				<TextField
 					label={formatMessage({ id: 'home.finished_ride_sheet.text.last_ride' })}

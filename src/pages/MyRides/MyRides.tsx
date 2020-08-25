@@ -10,7 +10,9 @@ import { useIntl } from 'react-intl';
 import Background from './images/bg.svg';
 import React from 'react';
 import clsx from 'clsx';
+import darkBackground from './images/bg-dark.svg';
 import loadingBackground from './images/loading-bg.svg';
+import loadingDarkBackground from './images/loading-bg-dark.svg';
 
 const useStyles = makeStyles(styles);
 
@@ -59,12 +61,15 @@ export const MyRides: React.FunctionComponent = () => {
 					{ [classes.backgroundArea]: !loading && myRidesHistoryData.length === 0 }
 				)}
 			>
-				<img src={loading ? loadingBackground : Background} alt="background" />
+				<img
+					src={loading ? (isDarkMode ? loadingDarkBackground : loadingBackground) : isDarkMode ? darkBackground : Background}
+					alt="background"
+				/>
 			</Box>
 			<Box className={classes.content}>
 				<Stack>
 					<Stack.Item>
-						<Text className={classes.descriptionText} block>
+						<Text className={classes.descriptionText} block black>
 							{loading && formatMessage({ id: 'my_rides.text.loading' })}
 							{!loading && myRidesHistoryData.length === 0 && formatMessage({ id: 'my_rides.text.description' })}
 						</Text>

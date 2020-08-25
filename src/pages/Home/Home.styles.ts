@@ -702,10 +702,6 @@ const rateRideText: CSSProperties = {
 	color: '#181c19'
 };
 
-const rateActiveIcon: CSSProperties = {
-	marginRight: pxToRem(10)
-};
-
 const reserveFooter: CSSProperties = {
 	padding: `${pxToRem(93)} 0 ${pxToRem(25)}`
 };
@@ -724,14 +720,20 @@ const finishAndScanButton: CreateCSSProperties = {
 	backgroundColor: (props: any) => (props.isDarkMode ? '#303331' : 'rgb(202, 241, 221)'),
 	color: (props: any) => (props.isDarkMode ? '#fff' : 'rgb(0, 181, 89)')
 };
+
+const ratingRoot: CSSProperties = {
+	'& .MuiRating-label:not(:first-child)': {
+		marginLeft: pxToRem(10)
+	}
+};
 export const styles = createStyles({
+	ratingRoot,
 	finishAndScanButton,
 	totalAmountDecimal,
 	paymentMethodTitleTextWrapper,
 	circleWithVehicleNumber,
 	circleWithVehicleIcon,
 	reserveFooter,
-	rateActiveIcon,
 	rateRideText,
 	rateRideWrapper,
 	totalAmountNumber,

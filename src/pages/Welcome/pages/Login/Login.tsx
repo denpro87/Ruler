@@ -1,10 +1,11 @@
+import { AppContext } from 'providers/State';
 import { Box, makeStyles } from '@material-ui/core';
 import { GreenButton, Page, PasswordInput, TextField } from 'components';
 import { styles } from './Login.styles';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { validateEmail, validatePassword } from 'utils';
-import { AppContext } from 'providers/State';
+import Rating from '@material-ui/lab/Rating';
 import React from 'react';
 const useStyles = makeStyles(styles);
 
