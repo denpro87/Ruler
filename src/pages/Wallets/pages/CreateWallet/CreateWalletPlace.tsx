@@ -81,6 +81,8 @@ export const CreateWalletPlace: React.FunctionComponent<ICreateWalletProps> = pr
 						className={clsx(classes.wordButton, classes.wordText)}
 						// disabled={selectedStatus[index]}
 						onClick={(): void => handleWordClick(createWalletWord.toLowerCase(), index)}
+						pressedBackgroundColor={isDarkMode ? '#181c19' : '#b3b3b3'}
+						hoveredBackgroundColor={isDarkMode ? '#181c19' : '#303331'}
 					>
 						<Text className={classes.wordNumber} black>
 							{index + 1}.
