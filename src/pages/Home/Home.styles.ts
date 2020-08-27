@@ -721,13 +721,7 @@ const finishAndScanButton: CreateCSSProperties = {
 	color: (props: any) => (props.isDarkMode ? '#fff' : 'rgb(0, 181, 89)')
 };
 
-const ratingRoot: CSSProperties = {
-	'& .MuiRating-label:not(:first-child)': {
-		marginLeft: pxToRem(10)
-	}
-};
 export const styles = createStyles({
-	ratingRoot,
 	finishAndScanButton,
 	totalAmountDecimal,
 	paymentMethodTitleTextWrapper,

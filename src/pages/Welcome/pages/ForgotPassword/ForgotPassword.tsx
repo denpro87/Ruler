@@ -32,7 +32,9 @@ export const ForgotPassword: React.FunctionComponent = () => {
 					<GreenButton compact iconName="submit-report" disabled={!email || !emailValid}>
 						{formatMessage({ id: 'button.send' })}
 					</GreenButton>
-					<Text className={classes.forgotPasswordText}>{formatMessage({ id: 'welcome.forgot_password.text' })}</Text>
+					<Text className={classes.forgotPasswordText} black>
+						{formatMessage({ id: 'welcome.forgot_password.text' })}
+					</Text>
 				</Box>
 			</Box>
 		</Page>

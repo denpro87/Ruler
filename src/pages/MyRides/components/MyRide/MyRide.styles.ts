@@ -119,7 +119,14 @@ const reportIconButton: CSSProperties = {
 const endPoint: CSSProperties = {
 	paddingTop: pxToRem(15)
 };
+
+const rating: CSSProperties = {
+	'& .MuiRating-label:not(:first-child)': {
+		marginLeft: pxToRem(0)
+	}
+};
 export const styles = createStyles({
+	rating,
 	historyContainer,
 	historyContent,
 	historyFooter,

@@ -21,3 +21,4 @@ export * from './Slide';
 export * from './Divider';
 export * from './Footer';
 export * from './CheckBox';
+export * from './Rating';

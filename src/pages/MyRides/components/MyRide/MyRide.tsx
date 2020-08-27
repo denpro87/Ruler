@@ -1,6 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { IMyRideProps } from './MyRide.types';
-import { Icon, IconButton, Text } from 'components';
+import { Icon, IconButton, Rating, Text } from 'components';
 import { styles } from './MyRide.styles';
 import { useDarkMode } from 'hooks/UseDarkMode';
 import { useIntl } from 'react-intl';
@@ -11,6 +11,7 @@ const useStyles = makeStyles(styles);
 export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
+	const [value, setValue] = React.useState<number | null>(4);
 	const isDarkMode = useDarkMode();
 
 	return (
@@ -66,12 +67,16 @@ export const MyRide: React.FunctionComponent<IMyRideProps> = props => {
 						{formatMessage({ id: 'my_rides.text.report_trip' })}
 					</Text>
 				</Box>
-				<Box>
-					{[0, 1, 2, 3].map(index => {
-						return <Icon key={index} iconName="full-rate" />;
-					})}
-					<Icon iconName="rate" />
-				</Box>
+
+				<Rating
+					value={value}
+					className={classes.rating}
+					onValueChange={(event: React.ChangeEvent<{}>, newValue: number | null): void => {
+						setValue(newValue);
+					}}
+					emptyIconName="rate"
+					iconName="full-rate"
+				/>
 			</Box>
 		</Box>
 	);

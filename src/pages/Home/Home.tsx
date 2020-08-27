@@ -14,6 +14,7 @@ import {
 	LightGreenButton,
 	Link,
 	Menu,
+	Rating,
 	SwitchListItem,
 	Text,
 	TextField
@@ -42,7 +43,6 @@ import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import Fab from '@material-ui/core/Fab';
 import MapGL, { Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
-import Rating from '@material-ui/lab/Rating';
 import React from 'react';
 import axios from 'axios';
 import bike from './images/bike.png';
@@ -1290,14 +1290,12 @@ export const Home: React.FunctionComponent<IHomeProps> = props => {
 				<Box className={classes.rateRideWrapper}>
 					<Text className={classes.rateRideText}>{formatMessage({ id: 'home.finished_ride_sheet.text.rate_ride' })}</Text>
 					<Rating
-						classes={{ root: classes.ratingRoot }}
-						name="customized-empty"
 						value={value}
-						onChange={(event, newValue): void => {
+						onValueChange={(event: React.ChangeEvent<{}>, newValue: number | null): void => {
 							setValue(newValue);
 						}}
-						emptyIcon={<Icon iconName="rate-inactive" />}
-						icon={<Icon iconName="rate-active" />}
+						emptyIconName="rate-inactive"
+						iconName="rate-active"
 					/>
 				</Box>
 				<TextField
