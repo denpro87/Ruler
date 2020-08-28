@@ -27,6 +27,7 @@ import { percentage } from 'styles';
 
 export const slides: Array<ISlide> = [
 	{
+		index: 0,
 		imageLight: require('./images/scan-qr-code.svg'),
 		imageDark: require('./images/scan-qr-code-dark.svg'),
 		title: 'get_help.how_to_ride.scan_qr.title',
@@ -39,6 +40,7 @@ export const slides: Array<ISlide> = [
 		}
 	},
 	{
+		index: 1,
 		imageLight: require('./images/payment-method.svg'),
 		imageDark: require('./images/payment-method-dark.svg'),
 		title: 'get_help.how_to_ride.payment_method.title',
@@ -51,6 +53,7 @@ export const slides: Array<ISlide> = [
 		}
 	},
 	{
+		index: 2,
 		imageLight: require('./images/start-trip.svg'),
 		imageDark: require('./images/start-trip-dark.svg'),
 		title: 'get_help.how_to_ride.start_trip.title',
@@ -63,6 +66,7 @@ export const slides: Array<ISlide> = [
 		}
 	},
 	{
+		index: 3,
 		imageLight: require('./images/watch-areas.svg'),
 		imageDark: require('./images/watch-areas-dark.svg'),
 		title: 'get_help.how_to_ride.watch_areas.title',
@@ -75,6 +79,7 @@ export const slides: Array<ISlide> = [
 		}
 	},
 	{
+		index: 4,
 		imageLight: require('./images/trip-status.svg'),
 		imageDark: require('./images/trip-status-dark.svg'),
 		title: 'get_help.how_to_ride.trip_status.title',

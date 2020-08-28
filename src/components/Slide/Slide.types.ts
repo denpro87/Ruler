@@ -1,6 +1,7 @@
 import { CSSProperties } from '@material-ui/styles';
 
 export interface ISlide {
+	index: number;
 	imageLight?: string;
 	imageDark?: string;
 	title: string;

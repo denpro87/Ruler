@@ -14,7 +14,7 @@ export const Slide: React.FunctionComponent<ISlideProps> = props => {
 	const { slide } = props;
 
 	const isDarkMode = useDarkMode();
-	const classes = useStyle({ imageStyle: slide.style });
+	const classes = useStyle({ imageStyle: slide.style, index: props.slide.index });
 
 	return (
 		<IonSlide className={classes.slide}>

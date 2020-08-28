@@ -4,6 +4,7 @@ import { IonSlides } from '@ionic/react';
 import { Slide } from 'components/Slide';
 import { slides } from './HowToRide.data';
 import { styles } from './HowToRide.styles';
+import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import React from 'react';
 import clsx from 'clsx';
@@ -17,6 +18,7 @@ const useStyles = makeStyles(styles);
 
 export const HowToRide: React.FunctionComponent = () => {
 	const classes = useStyles();
+	const history = useHistory();
 	const { formatMessage } = useIntl();
 	const slidesRef = React.useRef<HTMLIonSlidesElement>(null);
 	const [activeIndex, setActiveIndex] = React.useState(0);
@@ -27,6 +29,7 @@ export const HowToRide: React.FunctionComponent = () => {
 
 	const handleNextButtonClick = (event: any) => {
 		if (activeIndex === 4) {
+			history.push('/home');
 			slidesRef.current?.slideTo(0);
 		} else {
 			slidesRef.current?.slideNext();

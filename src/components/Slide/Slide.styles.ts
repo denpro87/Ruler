@@ -8,7 +8,7 @@ const slide: CSSProperties = {
 };
 
 const imageContainer: CSSProperties = {
-	zIndex: -1,
+	zIndex: 0,
 	position: 'absolute',
 	whiteSpace: 'nowrap',
 	overflow: 'visible',
@@ -46,9 +46,13 @@ const description: CSSProperties = {
 };
 
 const slideContent: CreateCSSProperties = {
+	// zIndex: -1,
 	paddingLeft: 20,
 	paddingRight: 20,
-	paddingTop: (props: any) => `calc(${props.imageStyle.height} + ${pxToRem(25)} + ${props.imageStyle.top})`,
+	paddingTop: (props: any) =>
+		props.index === 0
+			? `calc(${props.imageStyle.height} - ${pxToRem(65)} + ${props.imageStyle.top})`
+			: `calc(${props.imageStyle.height} + ${pxToRem(25)} + ${props.imageStyle.top})`,
 	textAlign: 'left',
 	marginTop: -5
 };
