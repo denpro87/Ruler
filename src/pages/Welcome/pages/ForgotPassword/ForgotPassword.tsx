@@ -1,5 +1,5 @@
 import { Box, makeStyles } from '@material-ui/core';
-import { GreenButton, Page, Text, TextField } from 'components';
+import { Dialog, GreenButton, Page, Text, TextField } from 'components';
 import { styles } from './ForgotPassword.styles';
 import { useIntl } from 'react-intl';
 import { validateEmail } from 'utils';
@@ -10,11 +10,20 @@ export const ForgotPassword: React.FunctionComponent = () => {
 	const classes = useStyles();
 	const { formatMessage } = useIntl();
 	const [email, setEmail] = React.useState('');
+	const [showDialog, setShowDialog] = React.useState<boolean>(false);
 	const [emailValid, setEmailValid] = React.useState(true);
 
 	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		setEmail(event.target.value);
 		setEmailValid(validateEmail(event.target.value));
+	};
+
+	const handleSendClick = (): void => {
+		setShowDialog(true);
+	};
+
+	const handleDialogClose = () => {
+		setShowDialog(false);
 	};
 
 	return (
@@ -29,14 +38,26 @@ export const ForgotPassword: React.FunctionComponent = () => {
 					onValueChange={handleEmailChange}
 				/>
 				<Box className={classes.footer}>
-					<GreenButton compact iconName="submit-report" disabled={!email || !emailValid}>
+					<GreenButton compact iconName="submit-report" disabled={!email || !emailValid} onClick={handleSendClick}>
 						{formatMessage({ id: 'button.send' })}
 					</GreenButton>
-					<Text className={classes.forgotPasswordText} black>
+					{/* <Text className={classes.forgotPasswordText} black>
 						{formatMessage({ id: 'welcome.forgot_password.text' })}
-					</Text>
+					</Text> */}
 				</Box>
 			</Box>
+			<Dialog
+				open={showDialog}
+				hasClose
+				illustrationName="sent"
+				onClose={handleDialogClose}
+				aria-labelledby="form-dialog-title"
+				title={formatMessage({ id: 'wallets.receive.dialog.title' })}
+			>
+				<Text className={classes.dialogContentText} black>
+					{formatMessage({ id: 'welcome.forgot_password.text' })}
+				</Text>
+			</Dialog>
 		</Page>
 	);
 };
